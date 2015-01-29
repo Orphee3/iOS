@@ -11,11 +11,20 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var window: UIWindow?;
+    var storybd: UIStoryboard?;
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        var vc: ViewController? = storybd?.instantiateInitialViewController() as ViewController?;
+        if let viewCtl = vc {
+            self.window?.rootViewController = vc!;
+            self.window?.makeKeyAndVisible();
+        }
+        else {
+            return false;
+        }
         return true
     }
 

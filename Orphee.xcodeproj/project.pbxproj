@@ -12,7 +12,17 @@
 		52C61DA01A79E5C400B3DE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		52C61DA21A79E5C400B3DE23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
 		52C61DA51A79E5C400B3DE23 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
-		52C61DB11A79E5C400B3DE23 /* OrpheeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DB01A79E5C400B3DE23 /* OrpheeTests.swift */; };
+		52C61DBB1A7A026200B3DE23 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */; };
+		52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
+		52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
+		52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */; };
+		52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */; };
+		52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC71A7A11BC00B3DE23 /* CoreAudio.framework */; };
+		52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
+		52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
+		52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
+		52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
+		52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +45,15 @@
 		52C61DA41A79E5C400B3DE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		52C61DAA1A79E5C400B3DE23 /* OrpheeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrpheeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C61DAF1A79E5C400B3DE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52C61DB01A79E5C400B3DE23 /* OrpheeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrpheeTests.swift; sourceTree = "<group>"; };
+		52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
+		52C61DBC1A7A039E00B3DE23 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraph.swift; sourceTree = "<group>"; };
+		52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		52C61DC71A7A11BC00B3DE23 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
+		52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetMgr.swift; sourceTree = "<group>"; };
+		52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +61,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */,
+				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
+				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
+				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +81,11 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */,
+				52C61DC71A7A11BC00B3DE23 /* CoreAudio.framework */,
+				52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */,
+				52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */,
+				52C61DBC1A7A039E00B3DE23 /* UIKit.framework */,
 				52C61D971A79E5C400B3DE23 /* Orphee */,
 				52C61DAD1A79E5C400B3DE23 /* OrpheeTests */,
 				52C61D961A79E5C400B3DE23 /* Products */,
@@ -77,12 +104,15 @@
 		52C61D971A79E5C400B3DE23 /* Orphee */ = {
 			isa = PBXGroup;
 			children = (
+				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
 				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
 				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
 				52C61D981A79E5C400B3DE23 /* Supporting Files */,
+				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
+				52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */,
 			);
 			path = Orphee;
 			sourceTree = "<group>";
@@ -98,7 +128,7 @@
 		52C61DAD1A79E5C400B3DE23 /* OrpheeTests */ = {
 			isa = PBXGroup;
 			children = (
-				52C61DB01A79E5C400B3DE23 /* OrpheeTests.swift */,
+				52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */,
 				52C61DAE1A79E5C400B3DE23 /* Supporting Files */,
 			);
 			path = OrpheeTests;
@@ -214,6 +244,9 @@
 			files = (
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
+				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
+				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
+				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52C61DB11A79E5C400B3DE23 /* OrpheeTests.swift in Sources */,
+				52C61DBB1A7A026200B3DE23 /* AudioGraphTests.swift in Sources */,
+				52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */,
+				52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
+				52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +443,7 @@
 				52C61DB61A79E5C400B3DE23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52C61DB71A79E5C400B3DE23 /* Build configuration list for PBXNativeTarget "OrpheeTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +452,7 @@
 				52C61DB91A79E5C400B3DE23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
