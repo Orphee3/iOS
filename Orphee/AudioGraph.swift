@@ -95,6 +95,7 @@ class AudioGraph {
             0,
             &plist, szPlist
         );
+        println("Got error #\(result)");
         return result;
     }
 

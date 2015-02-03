@@ -161,9 +161,15 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
+        var url = NSURL(fileURLWithPath: path!)!;
         var pstMgr: PresetMgr = PresetMgr();
 
-        var plist: CFPropertyListRef = pstMgr.getPListFromRessourceForURL(NSURL(fileURLWithPath: path!)!)!;
+        println("\n\nUsing ObjC delegate: \(pstMgr.loadPresetFromURL(url, graphMgr: graph))\n\n");
+
+        print("Retrieving the property list: \t");
+        var plist: CFPropertyListRef = pstMgr.getPListFromRessourceForURL(url)!;
+        println("Done");
+        println("Loading preset from plist onto AudioUnit: ");
         XCTAssert(graph.loadPresetFromPList(&plist) == noErr, "Preset LOADING failed for file:\n\(path)\n");
     }
 

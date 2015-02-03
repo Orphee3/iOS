@@ -58,19 +58,18 @@
                                       &presetPropertyList,
                                       sizeof(CFPropertyListRef)
                                       );
-        
-            //        CFRelease(presetPropertyList);
-    }
-    
-    if (errorRef) {
-        NSLog(@"\nERROR in %ld\n\n", CFErrorGetCode(errorRef));
-            //        CFRelease(errorRef);
-    }
-    else if (result != noErr)
-        NSLog(@"\n\nERROR in %d\n\n", (int)result);
+        if (result != noErr) {
+            NSLog(@"\n\nERROR in %d\nData = { %@\n}\n\n", (int)result, presetPropertyList);
+        }
 
-        //    CFRelease(propertyResourceData);
-        
+        CFRelease(presetPropertyList);
+    }
+    if (errorRef) {
+        CFRelease(errorRef);
+    }
+
+    CFRelease(propertyResourceData);
+
     return result;
 }
 
