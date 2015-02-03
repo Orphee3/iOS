@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523432E61A80C3CE0041B7BD /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523432E51A80C3CE0041B7BD /* PresetMgrTests.swift */; };
+		523432EB1A80D7AE0041B7BD /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 523432E81A80D7AE0041B7BD /* Vibraphone.aupreset */; };
+		523432EC1A80D7AE0041B7BD /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 523432E81A80D7AE0041B7BD /* Vibraphone.aupreset */; };
+		523432EE1A80DFCD0041B7BD /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 523432ED1A80DFCD0041B7BD /* Trombone.aupreset */; };
+		523432EF1A80DFCD0041B7BD /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 523432ED1A80DFCD0041B7BD /* Trombone.aupreset */; };
 		52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */; };
 		52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9C1A79E5C400B3DE23 /* ViewController.swift */; };
 		52C61DA01A79E5C400B3DE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
@@ -23,6 +28,8 @@
 		52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */; };
+		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
+		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
+		523432E41A80C2440041B7BD /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OrpheeTests-Bridging-Header.h"; path = "../Orphee/OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		523432E51A80C3CE0041B7BD /* PresetMgrTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresetMgrTests.swift; path = ../Orphee/PresetMgrTests.swift; sourceTree = "<group>"; };
+		523432E81A80D7AE0041B7BD /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
+		523432ED1A80DFCD0041B7BD /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
 		52C61D951A79E5C400B3DE23 /* Orphee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orphee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C61D991A79E5C400B3DE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +66,8 @@
 		52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetMgr.swift; sourceTree = "<group>"; };
 		52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
+		52C61DD31A7A61C300B3DE23 /* PresetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetLoader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +95,8 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				523432ED1A80DFCD0041B7BD /* Trombone.aupreset */,
+				523432E81A80D7AE0041B7BD /* Vibraphone.aupreset */,
 				52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */,
 				52C61DC71A7A11BC00B3DE23 /* CoreAudio.framework */,
 				52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */,
@@ -104,15 +120,18 @@
 		52C61D971A79E5C400B3DE23 /* Orphee */ = {
 			isa = PBXGroup;
 			children = (
-				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
 				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
 				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
 				52C61D981A79E5C400B3DE23 /* Supporting Files */,
+				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
 				52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */,
+				52C61DD31A7A61C300B3DE23 /* PresetLoader.m */,
+				523432E31A80C1420041B7BD /* PresetLoader.h */,
+				52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */,
 			);
 			path = Orphee;
 			sourceTree = "<group>";
@@ -128,6 +147,8 @@
 		52C61DAD1A79E5C400B3DE23 /* OrpheeTests */ = {
 			isa = PBXGroup;
 			children = (
+				523432E41A80C2440041B7BD /* OrpheeTests-Bridging-Header.h */,
+				523432E51A80C3CE0041B7BD /* PresetMgrTests.swift */,
 				52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */,
 				52C61DAE1A79E5C400B3DE23 /* Supporting Files */,
 			);
@@ -223,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C61DA01A79E5C400B3DE23 /* Main.storyboard in Resources */,
+				523432EB1A80D7AE0041B7BD /* Vibraphone.aupreset in Resources */,
 				52C61DA51A79E5C400B3DE23 /* LaunchScreen.xib in Resources */,
+				523432EE1A80DFCD0041B7BD /* Trombone.aupreset in Resources */,
 				52C61DA21A79E5C400B3DE23 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +255,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523432EF1A80DFCD0041B7BD /* Trombone.aupreset in Resources */,
+				523432EC1A80D7AE0041B7BD /* Vibraphone.aupreset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
+				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
@@ -254,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */,
+				523432E61A80C3CE0041B7BD /* PresetMgrTests.swift in Sources */,
 				52C61DBB1A7A026200B3DE23 /* AudioGraphTests.swift in Sources */,
 				52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
@@ -374,9 +402,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -384,9 +415,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -394,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -405,6 +439,8 @@
 				INFOPLIST_FILE = OrpheeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/OrpheeTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
 			name = Debug;
@@ -413,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -420,6 +457,7 @@
 				INFOPLIST_FILE = OrpheeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/OrpheeTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
 			name = Release;

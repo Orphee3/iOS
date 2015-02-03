@@ -40,7 +40,7 @@ class AudioGraph {
         result = AUGraphNodeInfo(graph, out, nil, &ioUnit!);
         result = AUGraphNodeInfo(graph, sampler, nil, &self.sampler!);
 
-        return (result == noErr ? true : false);
+        return (result == noErr);
     }
 
     func configureAudioGraph() -> Bool {
@@ -70,7 +70,7 @@ class AudioGraph {
             &FPS, fpsSize
         );
 
-        return (result == noErr ? true : false);
+        return (result == noErr);
     }
 
     func startAudioGraph() -> Bool {
@@ -80,7 +80,7 @@ class AudioGraph {
         result = AUGraphInitialize(graph!);
         result = AUGraphStart(graph!);
 
-        return (result == noErr ? true : false);
+        return (result == noErr);
     }
 
     /////////////////////////////

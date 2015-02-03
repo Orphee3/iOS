@@ -9,19 +9,39 @@
 import Foundation
 import CoreFoundation
 
+
 class PresetMgr {
 
     func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
 
-        var resData: CFDataRef = NSData();
-        var result: OSStatus = noErr;
+        var presetLoader: PresetLoader = PresetLoader();
 
-        resData = CFURLCreateData(kCFAllocatorDefault, url, kCFStringEncodingASCII, 0);
+        return ( noErr == presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!)) );
+    }
 
-        var plist: CFPropertyListRef = NSDictionary();
-        var format: CFPropertyListFormat = CFPropertyListFormat(rawValue: CFIndex(0))!;
-//        var err = CFErrorCreate(kCFAllocatorDefault, kCFErrorDomainOSStatus, CFIndex(50), CFDictionaryCreate(kCFAllocatorDefault, <#keys: UnsafeMutablePointer<UnsafePointer<Void>>#>, <#values: UnsafeMutablePointer<UnsafePointer<Void>>#>, <#numValues: CFIndex#>, <#keyCallBacks: UnsafePointer<CFDictionaryKeyCallBacks>#>, <#valueCallBacks: UnsafePointer<CFDictionaryValueCallBacks>#>))
-        //       plist = CFPropertyListCreateWithData(kCFAllocatorDefault, resData, 0, &format, Unmanaged<CFError>.fromOpaque(nil));
-        return true;
+    func getDataFromRessourceForURL(url: NSURL) -> CFDataRef? {
+
+        return NSData(contentsOfURL: url);
+    }
+
+    func getPListFromRessourceForURL(url: NSURL) -> CFPropertyListRef? {
+
+        var plist: CFPropertyListRef? = nil;
+        var data: CFData? = NSData(contentsOfURL: url);
+        var format: CFPropertyListFormat = CFPropertyListFormat.OpenStepFormat;
+        var err: Unmanaged<CFError>? = nil;
+
+        if let DATA = data {
+            plist = CFPropertyListCreateWithData(kCFAllocatorDefault, DATA, CFPropertyListMutabilityOptions.Immutable.rawValue, &format, &err).takeRetainedValue();
+        }
+        else {
+            assertionFailure("FATAL ERROR: OBTAINED NO DATA");
+        }
+
+        if (err != nil) {
+            println("\n\nERROR while creating PLIST: \(err?.takeRetainedValue())\n");
+            plist = nil;
+        }
+        return plist;
     }
 }

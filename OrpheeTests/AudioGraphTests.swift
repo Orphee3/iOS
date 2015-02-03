@@ -84,11 +84,11 @@ class AudioGraphTests: XCTestCase {
         XCTAssertTrue(result, "Error on Audio graph START");
 
         var test: Boolean = 0;
-        result = AUGraphIsInitialized(graph.graph!, &test) == noErr ? true : false;
+        result = AUGraphIsInitialized(graph.graph!, &test) == noErr;
         XCTAssert(test == 1, "Graph wasn't initialized");
 
         test = 0;
-        result = AUGraphIsRunning(graph.graph!, &test) == noErr ? true : false;
+        result = AUGraphIsRunning(graph.graph!, &test) == noErr;
         XCTAssert(test == 1, "Graph isn't running");
     }
 }
