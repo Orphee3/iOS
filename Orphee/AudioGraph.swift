@@ -83,6 +83,44 @@ class AudioGraph {
         return (result == noErr);
     }
 
+    func loadPresetFromPList(inout plist: CFPropertyListRef) -> OSStatus {
+
+        var result: OSStatus = noErr;
+        var szPlist: UInt32 = UInt32(sizeofValue(plist));
+
+        result = AudioUnitSetProperty(
+            sampler,
+            AudioUnitPropertyID(kAudioUnitProperty_ClassInfo),
+            AudioUnitScope(kAudioUnitScope_Global),
+            0,
+            &plist, szPlist
+        );
+        return result;
+    }
+
+    /////////////////////////////
+    //// Audio Output methods ///
+    /////////////////////////////
+
+    func playNote(note: UInt32) -> OSStatus {
+
+        var result: OSStatus = noErr;
+        var cmd: UInt32 = 0x9 << 4 | 0;
+
+        result = MusicDeviceMIDIEvent(sampler, cmd, note, 127, 0);
+        return result;
+    }
+
+
+    func stopNote(note: UInt32) -> OSStatus {
+
+        var result: OSStatus = noErr;
+        var cmd: UInt32 = 0x8 << 4 | 0;
+
+        result = MusicDeviceMIDIEvent(sampler, cmd, note, 0, 0);
+        return result;
+    }
+
     /////////////////////////////
     ////// Utility methods //////
     /////////////////////////////
@@ -151,7 +189,12 @@ class AudioGraph {
     }
 
     deinit {
+        AUGraphStop(graph);
+        AUGraphUninitialize(graph);
+        AUGraphClearConnections(graph);
+        AUGraphClose(graph);
 
+        graph = nil;
     }
 
 }

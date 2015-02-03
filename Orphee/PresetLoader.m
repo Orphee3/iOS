@@ -27,7 +27,9 @@
                                                       NULL,
                                                       &errorCode
                                                       );
-
+    if (status == NO || errorCode != 0) {
+        NSLog(@"\nError on Data/property loading: %d\n", errorCode);
+    }
     NSAssert (status == YES && propertyResourceData != 0,
               @"Unable to create data and properties from a preset. Error code: %d '%.4s'",
               (int) errorCode, (const char *) &errorCode);
@@ -35,7 +37,7 @@
         // Convert the data object into a property list
     CFPropertyListRef    presetPropertyList = 0;
     CFPropertyListFormat dataFormat         = 0;
-    CFErrorRef           errorRef           = 0;
+    CFErrorRef           errorRef           = NULL;
     presetPropertyList = CFPropertyListCreateWithData(
                                                       kCFAllocatorDefault,
                                                       propertyResourceData,
@@ -46,7 +48,8 @@
     
         // Set the class info property for the Sampler unit using the property list as the value.                                      
     if (presetPropertyList != 0) {
-        
+
+        NSLog(@"PresetPropertyList == OK");
         result = AudioUnitSetProperty(
                                       *aUnit,
                                       kAudioUnitProperty_ClassInfo,
@@ -56,14 +59,17 @@
                                       sizeof(CFPropertyListRef)
                                       );
         
-        CFRelease(presetPropertyList);
+            //        CFRelease(presetPropertyList);
     }
     
     if (errorRef) {
-        CFRelease(errorRef);
+        NSLog(@"\nERROR in %ld\n\n", CFErrorGetCode(errorRef));
+            //        CFRelease(errorRef);
     }
-    
-    CFRelease(propertyResourceData);
+    else if (result != noErr)
+        NSLog(@"\n\nERROR in %d\n\n", (int)result);
+
+        //    CFRelease(propertyResourceData);
         
     return result;
 }

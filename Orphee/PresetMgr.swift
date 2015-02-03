@@ -12,12 +12,14 @@ import CoreFoundation
 
 class PresetMgr {
 
-    func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
-
-        var presetLoader: PresetLoader = PresetLoader();
-
-        return ( noErr == presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!)) );
-    }
+//    func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
+//
+//        var presetLoader: PresetLoader = PresetLoader();
+//
+//        var res = presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!));
+//        println("\n\nFOR \(url)\nERROR \(res)\n");
+//        return (noErr == res);
+//    }
 
     func getDataFromRessourceForURL(url: NSURL) -> CFDataRef? {
 
