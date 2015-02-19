@@ -77,8 +77,15 @@ class AudioGraph {
 
         var result: OSStatus = noErr;
 
+        //TODO: Might need to change to early return on error.
         result = AUGraphInitialize(graph!);
+        if (result != noErr) {
+            println("got error \(result) on graph init");
+        }
         result = AUGraphStart(graph!);
+        if (result != noErr) {
+            println("got error \(result) on graph start");
+        }
 
         return (result == noErr);
     }
@@ -186,15 +193,22 @@ class AudioGraph {
     }
 
     init() {
-        
+
     }
 
     deinit {
         AUGraphStop(graph);
         AUGraphUninitialize(graph);
         AUGraphClearConnections(graph);
-        AUGraphClose(graph);
 
+        var nodeCnt: UInt32 = 0;
+        AUGraphGetNodeCount(graph, &nodeCnt);
+        for node in 0...nodeCnt {
+            AUGraphRemoveNode(graph, AUNode(node));
+        }
+
+        AUGraphClose(graph);
+        DisposeAUGraph(graph);
         graph = nil;
     }
 
