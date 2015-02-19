@@ -93,7 +93,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPlistFromRawData_fails_whenGiven_rawDataFromAnInvalidFile() {
 
-        var result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath("/Users/john/Desktop/5e.caf");
+        var result: (data:CFDataRef?, error:NSError?) = mgr.getDataFromRessourceWithPath(NSBundle.mainBundle().pathForResource("Sounds/Tbone/5e", ofType: "caf")!);
 
         XCTAssertNil(result.error, "\nERROR: \n\(result.error)\n");
         XCTAssertNotNil(result.data, "\nERROR: no data obtained");
