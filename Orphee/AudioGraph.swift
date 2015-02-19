@@ -200,13 +200,6 @@ class AudioGraph {
         AUGraphStop(graph);
         AUGraphUninitialize(graph);
         AUGraphClearConnections(graph);
-
-        var nodeCnt: UInt32 = 0;
-        AUGraphGetNodeCount(graph, &nodeCnt);
-        for node in 0...nodeCnt {
-            AUGraphRemoveNode(graph, AUNode(node));
-        }
-
         AUGraphClose(graph);
         DisposeAUGraph(graph);
         graph = nil;
