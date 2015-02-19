@@ -75,7 +75,7 @@ class AudioGraphCreationSubroutinesTests: XCTestCase {
         XCTAssert(ac.componentFlags == 0, "Incorrect Flags");
         XCTAssert(ac.componentFlagsMask == 0, "Incorrect Mask for Component Flags");
     }
-    
+
 }
 
 class AudioGraphTests: XCTestCase {
@@ -92,7 +92,7 @@ class AudioGraphTests: XCTestCase {
         graph = AudioGraph();
         XCTAssert(session.setupSession(&graph!), "Error while setting up session");
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         graph = nil;
@@ -130,7 +130,7 @@ class AudioGraphTests: XCTestCase {
         var result = graph.createAudioGraph();
 
         XCTAssertTrue(result, "Error on Audio graph CREATION");
-        
+
         result = graph.configureAudioGraph();
         XCTAssertTrue(result, "Error on Audio graph CONFIGURATION");
     }
@@ -161,16 +161,16 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var url = NSURL(fileURLWithPath: path!)!;
         var pstMgr: PresetMgr = PresetMgr();
 
-        println("\n\nUsing ObjC delegate: \(pstMgr.loadPresetFromURL(url, graphMgr: graph))\n\n");
+        //FIXME: For some reason CAShow encounters an error
+        //        CAShow(&graph.graph);
 
-        print("Retrieving the property list: \t");
-        var plist: CFPropertyListRef = pstMgr.getPListFromRessourceForURL(url)!;
-        println("Done");
-        println("Loading preset from plist onto AudioUnit: ");
-        XCTAssert(graph.loadPresetFromPList(&plist) == noErr, "Preset LOADING failed for file:\n\(path)\n");
+        var resData = pstMgr.getDataFromRessourceWithPath(path!);
+        XCTAssertNil(resData.error, "Couldn't load raw data from file:\n\(resData.error)\n");
+        var resPlist = pstMgr.getPListFromRawData(resData.data!);
+        XCTAssertNil(resPlist.error, "Couldn't load PList from raw data:\n\(resPlist.error)\n");
+        XCTAssert(graph.loadPresetFromPList(&resPlist.plist!) == noErr, "Preset LOADING failed for file:\n\(path)\n");
     }
 
     func testIfAudioOuputWorks() {
@@ -182,8 +182,11 @@ class AudioGraphTests: XCTestCase {
 
         //        var res = pstMgr.loadPresetFromURL(NSURL(fileURLWithPath: path!)!, graphMgr: graph);
 
-        var plist: CFPropertyListRef = pstMgr.getPListFromRessourceForURL(NSURL(fileURLWithPath: path!)!)!;
-        graph.loadPresetFromPList(&plist)
+        var resData = pstMgr.getDataFromRessourceWithPath(path!);
+        XCTAssertNil(resData.error, "Couldn't load raw data from file:\n\(resData.error)\n");
+        var resPlist = pstMgr.getPListFromRawData(resData.data!);
+        XCTAssertNil(resPlist.error, "Couldn't load PList from raw data:\n\(resPlist.error)\n");
+        XCTAssert(graph.loadPresetFromPList(&resPlist.plist!) == noErr, "Preset LOADING failed for file:\n\(path)\n");
 
         XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
         sleep(1);
