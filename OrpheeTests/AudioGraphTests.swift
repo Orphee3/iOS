@@ -10,6 +10,7 @@ import UIKit
 import XCTest
 import AVFoundation
 
+
 class AudioGraphCreationSubroutinesTests: XCTestCase {
 
     var result: OSStatus = noErr;
@@ -78,6 +79,7 @@ class AudioGraphCreationSubroutinesTests: XCTestCase {
 
 }
 
+
 class AudioGraphTests: XCTestCase {
 
     var graph: AudioGraph! = nil;
@@ -85,6 +87,7 @@ class AudioGraphTests: XCTestCase {
     var path: String? = NSBundle.mainBundle().pathForResource("Trombone", ofType: "aupreset");
 
     override func setUp() {
+
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -94,6 +97,7 @@ class AudioGraphTests: XCTestCase {
     }
 
     override func tearDown() {
+
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         graph = nil;
 

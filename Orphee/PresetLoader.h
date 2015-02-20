@@ -14,12 +14,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
+
 @interface PresetLoader : NSObject
 
-- (OSStatus) loadSynthFromPresetURL:(NSURL *)presetURL toAudioUnit:(AudioUnit *)aUnit;
+- (OSStatus)loadSynthFromPresetURL:(NSURL *)presetURL toAudioUnit:(AudioUnit *)aUnit;
 
 - (OSStatus)loadFromDLSOrSoundFont:(CFURLRef)bankURL withPatch:(int)presetNumber toAudioGraph:(AudioUnit *)aUnit;
 
 @end
+
 
 #endif
