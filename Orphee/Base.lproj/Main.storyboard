@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -150,11 +150,18 @@
                                             <constraint firstAttribute="height" constant="31" id="6Cw-Bl-A9U"/>
                                         </constraints>
                                     </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxn-d8-MdT">
+                                        <rect key="frame" x="0.0" y="30" width="426" height="243"/>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Kxn-d8-MdT" secondAttribute="trailing" id="1Db-rK-4NH"/>
                                     <constraint firstAttribute="centerX" secondItem="QSS-ll-XBP" secondAttribute="centerX" id="4Yb-69-eeM"/>
+                                    <constraint firstItem="QSS-ll-XBP" firstAttribute="top" secondItem="Kxn-d8-MdT" secondAttribute="bottom" constant="8" id="79e-hF-c9S"/>
                                     <constraint firstAttribute="bottom" secondItem="QSS-ll-XBP" secondAttribute="bottom" constant="8" id="FbL-om-C3d"/>
+                                    <constraint firstItem="Kxn-d8-MdT" firstAttribute="top" secondItem="Ux5-fn-p1x" secondAttribute="top" constant="30" id="IUa-Zp-CvZ"/>
+                                    <constraint firstItem="Kxn-d8-MdT" firstAttribute="leading" secondItem="Ux5-fn-p1x" secondAttribute="leading" id="vUI-Li-8vv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -178,6 +185,7 @@
                         <outlet property="instrumentsB" destination="jLV-Nq-Q49" id="ajB-Go-QsW"/>
                         <outlet property="pickerInstruments" destination="hMF-hJ-5Hh" id="rxc-bs-zu8"/>
                         <outlet property="saveB" destination="adP-vX-xAc" id="hJ4-Wi-VAf"/>
+                        <outlet property="scrollBlocks" destination="Kxn-d8-MdT" id="NEQ-2W-29U"/>
                         <outlet property="viewForBlocks" destination="Ux5-fn-p1x" id="hw7-xD-4je"/>
                         <outlet property="viewForPicker" destination="JiN-rO-gQs" id="Xy8-tZ-bb8"/>
                     </connections>

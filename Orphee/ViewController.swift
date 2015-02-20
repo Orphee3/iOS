@@ -9,26 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
-
+    
     @IBOutlet weak var viewForPicker: UIView!
     @IBOutlet weak var saveB: UIButton!
     @IBOutlet weak var importB: UIButton!
     @IBOutlet weak var instrumentsB: UIButton!
     @IBOutlet weak var pickerInstruments: UIPickerView!
     @IBOutlet weak var viewForBlocks: UIView!
+    @IBOutlet weak var scrollBlocks: UIScrollView!
+    var dictBlocks: [String:[UIButton]] = [:];
     var instrumentsList: [String] = [];
     override func viewDidLoad() {
-        super.viewDidLoad()
-        layoutButtons()
-        createBlocks()
+        super.viewDidLoad();
+        layoutButtons();
+        createBlocks(10, column: 20);
         instrumentsList = ["violin", "guitar", "tambour", "battery", "trumpet"];
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func layoutButtons() {
         saveB.layer.cornerRadius = 8;
         saveB.layer.borderWidth = 1;
@@ -38,9 +40,25 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         instrumentsB.layer.borderWidth = 1;
     }
     
-    func createBlocks() {
-        var block = UIButton(frame: CGRectMake(10, 10, 30, 30))
-        viewForBlocks .addSubview(block)
+    func createBlocks(lines: Int, column: Int) {
+        var posX = 0;
+        var posY = 40;
+        var width = 50;
+        var height = 50;
+        
+        for (var j = 0; j < column; j++) {
+            posX = 40;
+            var array: [UIButton] = [];
+            for (var i = 0; i < lines; i++) {
+                var block = UIButton(frame: CGRectMake(CGFloat(posX), CGFloat(posY), CGFloat(width), CGFloat(height)));
+                block.backgroundColor = UIColor.blueColor();
+                scrollBlocks .addSubview(block);
+                array.append(block);
+                posX += width + 10;
+            }
+            posY += height + 10;
+        }
+        scrollBlocks.contentSize = CGSizeMake(CGFloat(posX), CGFloat(posY));
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -82,6 +100,5 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func PlayButtonTouched(sender: AnyObject) {
         println("play");
     }
-    
 }
 
