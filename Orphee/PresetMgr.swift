@@ -12,15 +12,21 @@ import CoreFoundation
 
 class PresetMgr {
 
-    func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
+    var presetLoader: PresetLoader = PresetLoader();
 
-        var presetLoader: PresetLoader = PresetLoader();
+    func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
 
         var res = presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!));
         println("\n\nFOR \(url)\nERROR \(res)\n");
         return (noErr == res);
     }
 
+    func loadSoundBankFromURL(url: NSURL, patchId: Int32, graphMgr: AudioGraph) -> Bool {
+
+        var res = presetLoader.loadFromDLSOrSoundFont(url, withPatch: patchId, toAudioGraph: &(graphMgr.sampler!));
+        println("\n\nFOR \(url)\nERROR \(res)\n");
+        return (noErr == res);
+    }
 
 /**
     Retrieves raw data from the file at the given path.

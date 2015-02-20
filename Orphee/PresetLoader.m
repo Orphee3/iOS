@@ -27,8 +27,8 @@
                                                       NULL,
                                                       &errorCode
                                                       );
-    if (status == NO || errorCode != 0) {
-        NSLog(@"\nError on Data/property loading: %d\n", errorCode);
+    if (!status || errorCode != 0) {
+        NSLog(@"\nError on Data/property loading: %d\n", (int) errorCode);
     }
     NSAssert (status == YES && propertyResourceData != 0,
               @"Unable to create data and properties from a preset. Error code: %d '%.4s'",
@@ -36,7 +36,7 @@
 
         // Convert the data object into a property list
     CFPropertyListRef    presetPropertyList = 0;
-    CFPropertyListFormat dataFormat         = 0;
+    CFPropertyListFormat dataFormat = (CFPropertyListFormat) 0;
     CFErrorRef           errorRef           = NULL;
     presetPropertyList = CFPropertyListCreateWithData(
                                                       kCFAllocatorDefault,
@@ -59,7 +59,7 @@
                                       sizeof(CFPropertyListRef)
                                       );
         if (result != noErr) {
-            NSLog(@"\n\nERROR in %d\nData = { %@\n}\n\n", (int)result, presetPropertyList);
+            NSLog(@"\n\nERROR in %d\nData = { %p\n}\n\n", (int) result, presetPropertyList);
         }
 
         CFRelease(presetPropertyList);
@@ -73,13 +73,13 @@
     return result;
 }
 
--(OSStatus) loadFromDLSOrSoundFont: (NSURL *)bankURL withPatch: (int)presetNumber toAudioGraph: (AudioUnit *)aUnit{
+- (OSStatus)loadFromDLSOrSoundFont:(CFURLRef)bankURL withPatch:(int)presetNumber toAudioGraph:(AudioUnit *)aUnit {
 
     OSStatus result = noErr;
 
     // fill out a bank preset data structure
     AUSamplerBankPresetData bpdata;
-    bpdata.bankURL  = (__bridge CFURLRef) bankURL;
+    bpdata.bankURL = (CFURLRef) bankURL;
     bpdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
     bpdata.bankLSB  = kAUSampler_DefaultBankLSB;
     bpdata.presetID = (UInt8) presetNumber;
@@ -91,7 +91,8 @@
             kAudioUnitScope_Global,
             0,
             &bpdata,
-            sizeof(bpdata));
+            sizeof(bpdata)
+    );
 
     // check for errors
     NSCAssert (result == noErr,

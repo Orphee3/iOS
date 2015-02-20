@@ -18,6 +18,8 @@
 
 - (OSStatus) loadSynthFromPresetURL:(NSURL *)presetURL toAudioUnit:(AudioUnit *)aUnit;
 
+- (OSStatus)loadFromDLSOrSoundFont:(CFURLRef)bankURL withPatch:(int)presetNumber toAudioGraph:(AudioUnit *)aUnit;
+
 @end
 
 #endif
