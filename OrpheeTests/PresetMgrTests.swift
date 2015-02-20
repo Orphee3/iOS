@@ -88,12 +88,12 @@ class PresetMgrTests: XCTestCase {
         XCTAssertNil(res.error, "\nERROR: \(res.error)");
         XCTAssertNotNil(res.plist, "\nERROR: no data was read from file");
         XCTAssert(CFPropertyListIsValid(res.plist!, CFPropertyListFormat.BinaryFormat_v1_0) == 1, "\nERROR: PList is invalid");
-        XCTAssertEqual(res.plist as NSDictionary, validPlist!, "ERROR PList is not the same as dictionary");
+        XCTAssertEqual(res.plist as! NSDictionary, validPlist!, "ERROR PList is not the same as dictionary");
     }
 
     func testThat_getPlistFromRawData_fails_whenGiven_rawDataFromAnInvalidFile() {
 
-        var result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath("/Users/john/Desktop/5e.caf");
+        var result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath(NSBundle.mainBundle().pathForResource("5e", ofType: "caf")!);
 
         XCTAssertNil(result.error, "\nERROR: \n\(result.error)\n");
         XCTAssertNotNil(result.data, "\nERROR: no data obtained");

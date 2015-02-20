@@ -55,7 +55,7 @@ class PresetMgr {
 
         if let ERR = err?.takeUnretainedValue() {
 
-            errRet = NSError(domain: CFErrorGetDomain(ERR), code: CFErrorGetCode(ERR), userInfo: nil);
+            errRet = NSError(domain: CFErrorGetDomain(ERR) as! String, code: CFErrorGetCode(ERR), userInfo: nil);
             err?.release();
         }
         return (plist, errRet);
