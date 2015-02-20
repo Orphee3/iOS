@@ -42,7 +42,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func createBlocks(lines: Int, column: Int) {
         var posX = 0;
-        var posY = 40;
+        var posY = 20;
         var width = 50;
         var height = 50;
         
