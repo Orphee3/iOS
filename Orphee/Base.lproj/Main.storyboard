@@ -178,6 +178,7 @@
                         <outlet property="instrumentsB" destination="jLV-Nq-Q49" id="ajB-Go-QsW"/>
                         <outlet property="pickerInstruments" destination="hMF-hJ-5Hh" id="rxc-bs-zu8"/>
                         <outlet property="saveB" destination="adP-vX-xAc" id="hJ4-Wi-VAf"/>
+                        <outlet property="viewForBlocks" destination="Ux5-fn-p1x" id="hw7-xD-4je"/>
                         <outlet property="viewForPicker" destination="JiN-rO-gQs" id="Xy8-tZ-bb8"/>
                     </connections>
                 </viewController>

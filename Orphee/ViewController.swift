@@ -15,10 +15,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var importB: UIButton!
     @IBOutlet weak var instrumentsB: UIButton!
     @IBOutlet weak var pickerInstruments: UIPickerView!
+    @IBOutlet weak var viewForBlocks: UIView!
     var instrumentsList: [String] = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutButtons()
+        createBlocks()
         instrumentsList = ["violin", "guitar", "tambour", "battery", "trumpet"];
     }
 
@@ -34,6 +36,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         importB.layer.borderWidth = 1;
         instrumentsB.layer.cornerRadius = 8;
         instrumentsB.layer.borderWidth = 1;
+    }
+    
+    func createBlocks() {
+        var block = UIButton(frame: CGRectMake(10, 10, 30, 30))
+        viewForBlocks .addSubview(block)
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
