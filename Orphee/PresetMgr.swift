@@ -100,12 +100,13 @@ class PresetMgr {
 
 /**
     Builds an AUSamplerInstrumentData structure corresponding to the Sound Bank file at the provided path.
+    This method is specific to melodic instruments; If you want to load a percussion soundbank see getPercussionInstrumentFromSoundBank.
     No check is done to assertain wether the file has the correct format. Beware!
 
     :returns:   The built structure
     :returns:   If path is invalid, returns nil.
 */
-    func getInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
+    func getMelodicInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
 
         var instru: AUSamplerInstrumentData? = nil;
         var url: NSURL? = NSURL(fileURLWithPath: path);
@@ -122,4 +123,31 @@ class PresetMgr {
         }
         return instru;
     }
+
+/**
+    Builds an AUSamplerInstrumentData structure corresponding to the Sound Bank file at the provided path.
+    This method is specific to percussion instruments; If you want to load a melodic soundbank see getMelodicInstrumentFromSoundBank.
+    No check is done to assertain wether the file has the correct format. Beware!
+
+    :returns:   The built structure
+    :returns:   If path is invalid, returns nil.
+*/
+    func getPercussionInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
+
+        var instru: AUSamplerInstrumentData? = nil;
+        var url: NSURL? = NSURL(fileURLWithPath: path);
+
+        if let URL = url {
+            var type: UInt8 = UInt8(isSoundFont ? kInstrumentType_SF2Preset : kInstrumentType_DLSPreset);
+
+            instru = AUSamplerInstrumentData(
+            fileURL: Unmanaged<CFURLRef>.passRetained(URL),
+            instrumentType: type,
+            bankMSB: UInt8(kAUSampler_DefaultPercussionBankMSB),
+            bankLSB: UInt8(kAUSampler_DefaultBankLSB), presetID: id
+            );
+        }
+        return instru;
+    }
+
 }

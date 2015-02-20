@@ -239,7 +239,7 @@ class AudioGraphTests: XCTestCase {
         XCTAssert(graph.stopNote(48) == noErr, "Couldn't STOP playing note");
     }
 
-    func testIfAudioOuputWorks_fromSoundBank_Swift() {
+    func testIfAudioOuputWorks_fromMelodicSoundBank_Swift() {
 
         graph.createAudioGraph();
         graph.configureAudioGraph();
@@ -249,7 +249,7 @@ class AudioGraphTests: XCTestCase {
 
         self.measureBlock() {
 
-            var resInstru = pstMgr.getInstrumentFromSoundBank(path: path);
+            var resInstru = pstMgr.getMelodicInstrumentFromSoundBank(path: path);
 
             XCTAssert(resInstru != nil, "Couldn't load instrument from file \(path)\n");
             if (resInstru != nil) {
@@ -264,4 +264,31 @@ class AudioGraphTests: XCTestCase {
         sleep(1);
         XCTAssert(graph.stopNote(48) == noErr, "Couldn't STOP playing note");
     }
+
+    func testIfAudioOuputWorks_fromPercussionSoundBank_Swift() {
+
+        graph.createAudioGraph();
+        graph.configureAudioGraph();
+        graph.startAudioGraph();
+        var pstMgr: PresetMgr = PresetMgr();
+        var path: String = NSBundle.mainBundle().pathForResource("SoundBanks/Roland_TD10_Woody", ofType: "sf2")!;
+
+        self.measureBlock() {
+
+            var resInstru = pstMgr.getPercussionInstrumentFromSoundBank(id: 1, path: path);
+
+            XCTAssert(resInstru != nil, "\n\nCouldn't load instrument from file \(path)\n");
+            if (resInstru != nil) {
+                XCTAssert(self.graph.loadInstrumentFromInstrumentData(&resInstru!) == noErr, "\n\nInstrument LOADING failed for file:\n\(path)\n");
+            }
+            else {
+                XCTAssertFalse(false, "No instrument to load");
+            }
+        };
+
+        XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
+        sleep(1);
+        XCTAssert(graph.stopNote(48) == noErr, "Couldn't STOP playing note");
+    }
+
 }

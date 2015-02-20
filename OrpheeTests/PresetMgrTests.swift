@@ -132,11 +132,29 @@ class PresetMgrTests: XCTestCase {
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
     }
 
-    func testThat_getInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
+
+    ///////////////////////////////////////
+    // getMelodicInstrumentFromSoundBank //
+    ///////////////////////////////////////
+
+    func testThat_getMelodicInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
 
         var path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
-        var resInstru = mgr.getInstrumentFromSoundBank(path: path!);
+        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: path!);
 
         XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
+
+    //////////////////////////////////////////
+    // getPercussionInstrumentFromSoundBank //
+    //////////////////////////////////////////
+
+    func testThat_getPercussionInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
+
+        var path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
+        var resInstru = mgr.getPercussionInstrumentFromSoundBank(path: path!);
+
+        XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
+    }
+
 }
