@@ -73,4 +73,33 @@
     return result;
 }
 
+-(OSStatus) loadFromDLSOrSoundFont: (NSURL *)bankURL withPatch: (int)presetNumber toAudioGraph: (AudioUnit *)aUnit{
+
+    OSStatus result = noErr;
+
+    // fill out a bank preset data structure
+    AUSamplerBankPresetData bpdata;
+    bpdata.bankURL  = (__bridge CFURLRef) bankURL;
+    bpdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
+    bpdata.bankLSB  = kAUSampler_DefaultBankLSB;
+    bpdata.presetID = (UInt8) presetNumber;
+
+    // set the kAUSamplerProperty_LoadPresetFromBank property
+    result = AudioUnitSetProperty(
+            *aUnit,
+            kAUSamplerProperty_LoadPresetFromBank,
+            kAudioUnitScope_Global,
+            0,
+            &bpdata,
+            sizeof(bpdata));
+
+    // check for errors
+    NSCAssert (result == noErr,
+            @"Unable to set the preset property on the Sampler. Error code:%d '%.4s'",
+            (int) result,
+            (const char *)&result);
+
+    return result;
+}
+
 @end
