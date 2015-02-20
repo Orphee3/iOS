@@ -102,7 +102,20 @@ class AudioGraph {
             0,
             &plist, szPlist
         );
-        println("Got error #\(result)");
+        return result;
+    }
+
+    func loadInstrumentFromInstrumentData(inout data: AUSamplerInstrumentData) -> OSStatus {
+
+        var result: OSStatus = noErr;
+        var szData: UInt32 = UInt32(sizeofValue(data));
+
+        result = AudioUnitSetProperty(
+        sampler,
+        AudioUnitPropertyID(kAUSamplerProperty_LoadInstrument),
+        AudioUnitScope(kAudioUnitScope_Global),
+        0, &data, szData
+        );
         return result;
     }
 

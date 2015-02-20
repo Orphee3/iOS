@@ -184,13 +184,17 @@ class AudioGraphTests: XCTestCase {
         graph.startAudioGraph();
         var pstMgr: PresetMgr = PresetMgr();
 
-        self.measureBlock({
+        self.measureBlock() {
+
             var resData = pstMgr.getDataFromRessourceWithPath(self.path!);
+
             XCTAssertNil(resData.error, "Couldn't load raw data from file:\n\(resData.error)\n");
+
             var resPlist = pstMgr.getPListFromRawData(resData.data!);
+
             XCTAssertNil(resPlist.error, "Couldn't load PList from raw data:\n\(resPlist.error)\n");
             XCTAssert(self.graph.loadPresetFromPList(&resPlist.plist!) == noErr, "Preset LOADING failed for file:\n\(self.path)\n");
-        });
+        };
 
         XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
         sleep(1);
@@ -204,11 +208,12 @@ class AudioGraphTests: XCTestCase {
         graph.startAudioGraph();
         var pstMgr: PresetMgr = PresetMgr();
 
-        self.measureBlock({
+        self.measureBlock() {
+
             var url1: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Vibraphone", ofType: "aupreset")!)!;
 
             XCTAssert(pstMgr.loadPresetFromURL(url1, graphMgr: self.graph));
-        });
+        };
 
         XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
         sleep(1);
@@ -222,15 +227,41 @@ class AudioGraphTests: XCTestCase {
         graph.startAudioGraph();
         var pstMgr: PresetMgr = PresetMgr();
 
-        self.measureBlock({
+        self.measureBlock() {
+
             var url: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ProTrax_Classical_Guitar", ofType: "sf2")!)!;
 
-            XCTAssert(pstMgr.loadSoundBankFromURL(url, patchId: 10, graphMgr: self.graph));
-        });
+            XCTAssert(pstMgr.loadSoundBankFromURL(url, patchId: 0, graphMgr: self.graph));
+        };
 
         XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
         sleep(1);
         XCTAssert(graph.stopNote(48) == noErr, "Couldn't STOP playing note");
     }
 
+    func testIfAudioOuputWorks_fromSoundBank_Swift() {
+
+        graph.createAudioGraph();
+        graph.configureAudioGraph();
+        graph.startAudioGraph();
+        var pstMgr: PresetMgr = PresetMgr();
+        var path: String = NSBundle.mainBundle().pathForResource("ProTrax_Classical_Guitar", ofType: "sf2")!;
+
+        self.measureBlock() {
+
+            var resInstru = pstMgr.getInstrumentFromSoundBank(path: path);
+
+            XCTAssert(resInstru != nil, "Couldn't load instrument from file \(path)\n");
+            if (resInstru != nil) {
+                XCTAssert(self.graph.loadInstrumentFromInstrumentData(&resInstru!) == noErr, "Instrument LOADING failed for file:\n\(path)\n");
+            }
+            else {
+                XCTAssertFalse(false, "No instrument to load");
+            }
+        };
+
+        XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
+        sleep(1);
+        XCTAssert(graph.stopNote(48) == noErr, "Couldn't STOP playing note");
+    }
 }
