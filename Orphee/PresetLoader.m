@@ -50,7 +50,6 @@
     // Set the class info property for the Sampler unit using the property list as the value.
     if (presetPropertyList != 0) {
 
-        NSLog(@"PresetPropertyList == OK");
         result = AudioUnitSetProperty(
                 *aUnit,
                 kAudioUnitProperty_ClassInfo,

@@ -17,14 +17,18 @@ class PresetMgr {
     func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
 
         var res = presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!));
-        println("\n\nFOR \(url)\nERROR \(res)\n");
+        if (res != noErr) {
+            println("\n\nFOR \(url)\nERROR \(res)\n");
+        }
         return (noErr == res);
     }
 
     func loadSoundBankFromURL(url: NSURL, patchId: Int32, graphMgr: AudioGraph) -> Bool {
 
         var res = presetLoader.loadFromDLSOrSoundFont(url, withPatch: patchId, toAudioGraph: &(graphMgr.sampler!));
-        println("\n\nFOR \(url)\nERROR \(res)\n");
+        if (res != noErr) {
+            println("\n\nFOR \(url)\nERROR \(res)\n");
+        }
         return (noErr == res);
     }
 
@@ -46,7 +50,7 @@ class PresetMgr {
 /**
     Retrieves a property list (PList) from the raw data provided.
     Always check if error in non-nil as plist is not guaranteed to be nil if an error occured.
-    
+
     :returns:	A pair of optionals
     :returns:	Provided data is the well-formatted raw data of a valid file, plist is a reference to the file's property list.
     			If an error occured error is set.
@@ -82,5 +86,25 @@ class PresetMgr {
             return getPListFromRawData(data);
         }
         return (nil, res.error);
+    }
+
+/**
+
+*/
+    func getInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
+
+        var instru: AUSamplerInstrumentData? = nil;
+        var url: NSURL? = NSURL(fileURLWithPath: path);
+
+        if let URL = url {
+            var type: UInt8 = UInt8(isSoundFont ? kInstrumentType_SF2Preset : kInstrumentType_DLSPreset);
+            instru = AUSamplerInstrumentData(
+            fileURL: Unmanaged < CFURLRef>.passRetained(URL),
+            instrumentType: type,
+            bankMSB: UInt8(kAUSampler_DefaultMelodicBankMSB),
+            bankLSB: UInt8(kAUSampler_DefaultBankLSB), presetID: id
+            );
+        }
+        return instru;
     }
 }

@@ -17,8 +17,9 @@ class PresetMgrTests: XCTestCase {
     var path: String? = NSBundle.mainBundle().pathForResource("Trombone", ofType: "aupreset");
     lazy var url: NSURL? = ({
         //FIXME: Possible strong reference cycle?
+                                println("\n\nStarting PresetMgr tests");
+                                println("PATH = \(self.path)\n\n");
         if let PATH = self.path {
-            println("\n\nPATH = \(self.path)\n\n");
             return NSURL(fileURLWithPath: PATH);
         }
         return nil;
@@ -64,7 +65,6 @@ class PresetMgrTests: XCTestCase {
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.data, "\nData was read:\n\(result.data)\n");
-        println("\nGot error: \(result.error)\n");
     }
 
     func testThat_getDataFromRessourceWithPath_fails_whenGiven_directory() {
@@ -73,7 +73,6 @@ class PresetMgrTests: XCTestCase {
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.data, "\nData was read:\n\(result.data)\n");
-        println("\nGot error: \(result.error)\n");
     }
 
 
@@ -102,7 +101,6 @@ class PresetMgrTests: XCTestCase {
 
         XCTAssertNotNil(res.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(res.plist, "\nA Plist was obtained:\n\(res.plist)\n");
-        println("\nGot error: \(res.error)\n");
     }
 
 
@@ -124,7 +122,6 @@ class PresetMgrTests: XCTestCase {
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
-        println("\nGot error: \(result.error)\n");
     }
 
     func testThat_getPlistFromRessourceWithPath_fails_whenGiven_directory() {
@@ -133,6 +130,12 @@ class PresetMgrTests: XCTestCase {
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
-        println("\nGot error: \(result.error)\n");
+    }
+
+    func testThat_getInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
+
+        var resInstru = mgr.getInstrumentFromSoundBank(path: self.path!);
+
+        XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
 }
