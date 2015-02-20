@@ -229,7 +229,7 @@ class AudioGraphTests: XCTestCase {
 
         self.measureBlock() {
 
-            var url: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ProTrax_Classical_Guitar", ofType: "sf2")!)!;
+            var url: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2")!)!;
 
             XCTAssert(pstMgr.loadSoundBankFromURL(url, patchId: 0, graphMgr: self.graph));
         };
@@ -245,7 +245,7 @@ class AudioGraphTests: XCTestCase {
         graph.configureAudioGraph();
         graph.startAudioGraph();
         var pstMgr: PresetMgr = PresetMgr();
-        var path: String = NSBundle.mainBundle().pathForResource("ProTrax_Classical_Guitar", ofType: "sf2")!;
+        var path: String = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2")!;
 
         self.measureBlock() {
 

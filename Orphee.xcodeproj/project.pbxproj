@@ -32,7 +32,7 @@
 		52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */; };
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
-		88F21C01B58E58898BB408A5 /* ProTrax_Classical_Guitar.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 88F212DF22684870C99EBA35 /* ProTrax_Classical_Guitar.sf2 */; };
+		DBAEE1681A97DDCB0002BDB9 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,7 @@
 		52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		52C61DD31A7A61C300B3DE23 /* PresetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetLoader.m; sourceTree = "<group>"; };
-		88F212DF22684870C99EBA35 /* ProTrax_Classical_Guitar.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file.sf2; path = ProTrax_Classical_Guitar.sf2; sourceTree = "<group>"; };
+		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,11 +110,11 @@
 		523433021A8103DB0041B7BD /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				88F21A363E92E4DAFEE687AF /* SoundBanks */,
 				526FF6041A81106E00CF6A9C /* Sounds */,
 				526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */,
 				526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */,
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
-				88F212DF22684870C99EBA35 /* ProTrax_Classical_Guitar.sf2 */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -269,7 +269,6 @@
 				526FF5F61A810DA700CF6A9C /* Main.storyboard in Resources */,
 				526FF5F71A810DA700CF6A9C /* LaunchScreen.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
-				88F21C01B58E58898BB408A5 /* ProTrax_Classical_Guitar.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBAEE1681A97DDCB0002BDB9 /* SoundBanks in Resources */,
 				526FF6061A81106E00CF6A9C /* Sounds in Resources */,
 				5241CD7A1A8110ED00A1FBEF /* Trombone.aupreset in Resources */,
 				5241CD7B1A8110ED00A1FBEF /* Vibraphone.aupreset in Resources */,

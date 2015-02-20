@@ -134,7 +134,8 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
 
-        var resInstru = mgr.getInstrumentFromSoundBank(path: self.path!);
+        var path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
+        var resInstru = mgr.getInstrumentFromSoundBank(path: path!);
 
         XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
