@@ -14,6 +14,11 @@ class PresetMgr {
 
     var presetLoader: PresetLoader = PresetLoader();
 
+/**
+    Convenience wrapper around the PresetLoader's loadSynthFromPresetURL:toAudioUnit: ObjC method
+
+    :returns:   true if no error occured, false otherwise.
+*/
     func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
 
         var res = presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!));
@@ -23,9 +28,14 @@ class PresetMgr {
         return (noErr == res);
     }
 
+/**
+    Convenience wrapper around the PresetLoader's loadSynthFromDLSOrSoundFont:withPatch:toAudioUnit: ObjC method
+
+    :returns:   true if no error occured, false otherwise
+*/
     func loadSoundBankFromURL(url: NSURL, patchId: Int32, graphMgr: AudioGraph) -> Bool {
 
-        var res = presetLoader.loadFromDLSOrSoundFont(url, withPatch: patchId, toAudioGraph: &(graphMgr.sampler!));
+        var res = presetLoader.loadSynthFromDLSOrSoundFont(url, withPatch: patchId, toAudioUnit: &(graphMgr.sampler!));
         if (res != noErr) {
             println("\n\nFOR \(url)\nERROR \(res)\n");
         }
@@ -89,7 +99,11 @@ class PresetMgr {
     }
 
 /**
+    Builds an AUSamplerInstrumentData structure corresponding to the Sound Bank file at the provided path.
+    No check is done to assertain wether the file has the correct format. Beware!
 
+    :returns:   The built structure
+    :returns:   If path is invalid, returns nil.
 */
     func getInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
 
@@ -98,11 +112,12 @@ class PresetMgr {
 
         if let URL = url {
             var type: UInt8 = UInt8(isSoundFont ? kInstrumentType_SF2Preset : kInstrumentType_DLSPreset);
+
             instru = AUSamplerInstrumentData(
-            fileURL: Unmanaged < CFURLRef>.passRetained(URL),
-            instrumentType: type,
-            bankMSB: UInt8(kAUSampler_DefaultMelodicBankMSB),
-            bankLSB: UInt8(kAUSampler_DefaultBankLSB), presetID: id
+                fileURL: Unmanaged<CFURLRef>.passRetained(URL),
+                instrumentType: type,
+                bankMSB: UInt8(kAUSampler_DefaultMelodicBankMSB),
+                bankLSB: UInt8(kAUSampler_DefaultBankLSB), presetID: id
             );
         }
         return instru;

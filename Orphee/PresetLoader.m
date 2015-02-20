@@ -12,6 +12,7 @@
 
 @implementation PresetLoader
 
+
 - (OSStatus)loadSynthFromPresetURL:(NSURL *)presetURL toAudioUnit:(AudioUnit *)aUnit {
 
     CFDataRef propertyResourceData = 0;
@@ -73,7 +74,7 @@
     return result;
 }
 
-- (OSStatus)loadFromDLSOrSoundFont:(CFURLRef)bankURL withPatch:(int)presetNumber toAudioGraph:(AudioUnit *)aUnit {
+- (OSStatus)loadSynthFromDLSOrSoundFont:(CFURLRef)bankURL withPatch:(int)presetNumber toAudioUnit:(AudioUnit *)aUnit {
 
     OSStatus result = noErr;
 
