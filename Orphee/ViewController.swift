@@ -52,7 +52,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             for (var i = 0; i < lines; i++) {
                 var block = UIButton(frame: CGRectMake(CGFloat(posX), CGFloat(posY), CGFloat(width), CGFloat(height)));
                 block.backgroundColor = UIColor.blueColor();
-                scrollBlocks .addSubview(block);
+                scrollBlocks.addSubview(block);
                 array.append(block);
                 posX += width + 10;
             }
@@ -74,10 +74,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             var block = UIButton(frame: CGRectMake(posX, posY, pos!.width, pos!.height));
             block.backgroundColor = UIColor.redColor();
-            scrollBlocks .addSubview(block);
+            scrollBlocks.addSubview(block);
             dictBlocks[instrumentsList[i]]?.append(block);
         }
-        scrollBlocks.contentSize = CGSizeMake(posX + posWidth, scrollBlocks.frame.height);
+        scrollBlocks.contentSize = CGSizeMake(posX + 10 + posWidth, scrollBlocks.frame.height);
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -94,6 +94,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         instrumentsB.titleLabel?.text = instrumentsList[row]
+        println("chosen instrument : \(instrumentsList[row])");
     }
     
     @IBAction func saveButtonTouched(sender: AnyObject) {
