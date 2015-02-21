@@ -21,9 +21,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var instrumentsList: [String] = [];
     override func viewDidLoad() {
         super.viewDidLoad();
-        layoutButtons();
-        createBlocks(10, column: 20);
         instrumentsList = ["violin", "guitar", "tambour", "battery", "trumpet"];
+        layoutButtons();
+        createBlocks(10, column: instrumentsList.count);
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,8 +57,27 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 posX += width + 10;
             }
             posY += height + 10;
+            dictBlocks[instrumentsList[j]] = array;
         }
         scrollBlocks.contentSize = CGSizeMake(CGFloat(posX), CGFloat(posY));
+    }
+    
+    @IBAction func addColumOfBlocks(sender: AnyObject) {
+        var posX: CGFloat = 0;
+        var posY: CGFloat = 0;
+        for (var i = 0; i < instrumentsList.count; i++) {
+            var pos = dictBlocks[instrumentsList[i]]?.last?.frame;
+            posX = pos!.origin.x + pos!.width + 10;
+            posY = pos!.origin.y;
+            
+            var block = UIButton(frame: CGRectMake(posX, posY, pos!.width, pos!.height));
+            block.backgroundColor = UIColor.redColor();
+            scrollBlocks .addSubview(block);
+            println(dictBlocks[instrumentsList[i]]);
+            dictBlocks[instrumentsList[i]]?.append(block);
+            println(dictBlocks[instrumentsList[i]]);
+        }
+        scrollBlocks.contentSize = CGSizeMake(posX, scrollBlocks.frame.height);
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

@@ -153,6 +153,15 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxn-d8-MdT">
                                         <rect key="frame" x="0.0" y="30" width="426" height="243"/>
                                     </scrollView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrv-c2-uQI">
+                                        <rect key="frame" x="388" y="282" width="30" height="30"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addColumOfBlocks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hla-9j-uKX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -161,7 +170,9 @@
                                     <constraint firstItem="QSS-ll-XBP" firstAttribute="top" secondItem="Kxn-d8-MdT" secondAttribute="bottom" constant="8" id="79e-hF-c9S"/>
                                     <constraint firstAttribute="bottom" secondItem="QSS-ll-XBP" secondAttribute="bottom" constant="8" id="FbL-om-C3d"/>
                                     <constraint firstItem="Kxn-d8-MdT" firstAttribute="top" secondItem="Ux5-fn-p1x" secondAttribute="top" constant="30" id="IUa-Zp-CvZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="rrv-c2-uQI" secondAttribute="trailing" constant="8" id="Rac-vd-LZo"/>
                                     <constraint firstItem="Kxn-d8-MdT" firstAttribute="leading" secondItem="Ux5-fn-p1x" secondAttribute="leading" id="vUI-Li-8vv"/>
+                                    <constraint firstAttribute="bottom" secondItem="rrv-c2-uQI" secondAttribute="bottom" constant="8" id="xnK-rX-iRs"/>
                                 </constraints>
                             </view>
                         </subviews>
