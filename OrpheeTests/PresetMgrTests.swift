@@ -124,6 +124,14 @@ class PresetMgrTests: XCTestCase {
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
     }
 
+    func testThat_getPlistFromRessourceWithPath_fails_whenGiven_InvalidFile() {
+
+        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPlistFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+
+        XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
+        XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
+    }
+
     func testThat_getPlistFromRessourceWithPath_fails_whenGiven_directory() {
 
         var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPlistFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
@@ -145,6 +153,21 @@ class PresetMgrTests: XCTestCase {
         XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
 
+    func testThat_getMelodicInstrumentFromSoundBank_fails_whenGiven_invalidPath() {
+
+        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+
+        XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
+    }
+
+    func testThat_getMelodicInstrumentFromSoundBank_fails_whenGiven_directory() {
+
+        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+
+        XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
+    }
+
+
     //////////////////////////////////////////
     // getPercussionInstrumentFromSoundBank //
     //////////////////////////////////////////
@@ -157,4 +180,17 @@ class PresetMgrTests: XCTestCase {
         XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
 
+    func testThat_getPercussionInstrumentFromSoundBank_fails_whenGiven_invalidPath() {
+
+        var resInstru = mgr.getPercussionInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+
+        XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
+    }
+
+    func testThat_getPercussionInstrumentFromSoundBank_fails_whenGiven_directory() {
+
+        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+
+        XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
+    }
 }
