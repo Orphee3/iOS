@@ -65,19 +65,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func addColumOfBlocks(sender: AnyObject) {
         var posX: CGFloat = 0;
         var posY: CGFloat = 0;
+        var posWidth: CGFloat = 0;
         for (var i = 0; i < instrumentsList.count; i++) {
             var pos = dictBlocks[instrumentsList[i]]?.last?.frame;
             posX = pos!.origin.x + pos!.width + 10;
             posY = pos!.origin.y;
+            posWidth = pos!.size.width;
             
             var block = UIButton(frame: CGRectMake(posX, posY, pos!.width, pos!.height));
             block.backgroundColor = UIColor.redColor();
             scrollBlocks .addSubview(block);
-            println(dictBlocks[instrumentsList[i]]);
             dictBlocks[instrumentsList[i]]?.append(block);
-            println(dictBlocks[instrumentsList[i]]);
         }
-        scrollBlocks.contentSize = CGSizeMake(posX, scrollBlocks.frame.height);
+        scrollBlocks.contentSize = CGSizeMake(posX + posWidth, scrollBlocks.frame.height);
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
