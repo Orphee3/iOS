@@ -32,6 +32,9 @@
 		52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */; };
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
+		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
+		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
+		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		52C61DD31A7A61C300B3DE23 /* PresetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetLoader.m; sourceTree = "<group>"; };
+		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
+		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
+		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITimeBlockArray.swift; path = Orphee/UITimeBlockArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,8 @@
 			children = (
 				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
 				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
+				DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */,
+				DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
+				DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -290,6 +299,9 @@
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
+				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
+				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
+				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 			);
