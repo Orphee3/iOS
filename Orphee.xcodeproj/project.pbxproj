@@ -159,12 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
-				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
-				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
-				52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */,
-				52C61DD31A7A61C300B3DE23 /* PresetLoader.m */,
-				523432E31A80C1420041B7BD /* PresetLoader.h */,
-				52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */,
+				DB3A9EAC1AA996ED000660F4 /* Audio generation */,
+				DB3A9EAD1AA9970D000660F4 /* MIDI-related */,
+				DB3A9EAB1AA99650000660F4 /* Preset management */,
 			);
 			name = Classes;
 			path = Orphee;
@@ -178,6 +175,33 @@
 				52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */,
 			);
 			path = OrpheeTests;
+			sourceTree = "<group>";
+		};
+		DB3A9EAB1AA99650000660F4 /* Preset management */ = {
+			isa = PBXGroup;
+			children = (
+				52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */,
+				52C61DD31A7A61C300B3DE23 /* PresetLoader.m */,
+				523432E31A80C1420041B7BD /* PresetLoader.h */,
+				52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */,
+			);
+			name = "Preset management";
+			sourceTree = "<group>";
+		};
+		DB3A9EAC1AA996ED000660F4 /* Audio generation */ = {
+			isa = PBXGroup;
+			children = (
+				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
+				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
+			);
+			name = "Audio generation";
+			sourceTree = "<group>";
+		};
+		DB3A9EAD1AA9970D000660F4 /* MIDI-related */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "MIDI-related";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
