@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SidebarVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SidebarVC: UIViewController, UIPickerViewDelegate {
 
     @IBOutlet weak var viewForPicker: UIView!
     @IBOutlet weak var saveB: UIButton!
@@ -29,6 +29,7 @@ class SidebarVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
 
         instrumentsList = ["violin", "guitar", "tambour", "battery", "trumpet"];
         layoutButtons();
+        pickerInstruments.dataSource;
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -51,14 +52,6 @@ class SidebarVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         importB.layer.borderWidth = 1;
         instrumentsB.layer.cornerRadius = 8;
         instrumentsB.layer.borderWidth = 1;
-    }
-
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1;
-    }
-
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return instrumentsList.count;
     }
 
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {

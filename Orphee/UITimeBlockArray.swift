@@ -10,7 +10,7 @@ import UIKit
 
 class UITimeBlockArray: UIView {
 
-    var buttons: [UITrackTimeBlock] = [];
+    var buttons: [UITrackTimeBlock?] = [];
     var row: Int = 0;
     var size: Int = 0;
 
@@ -36,26 +36,25 @@ class UITimeBlockArray: UIView {
 
     func addButtons(count: Int, color: UIColor) {
 
-        for col in 0...count {
+        for (var col = 0; col < count; col++) {
             var tBlock = UITrackTimeBlock.timeBlock(color: color, row: row, column: col + size);
 
             buttons.append(tBlock);
             addSubview(tBlock);
         }
         size = buttons.count;
-        frame.size = CGSizeMake(CGFloat(endPos.x), CGFloat(endPos.y));
     }
 
     func removeButtons(count: Int) {
 
         let safeCount = (count <= size) ? count : size;
 
-        for _ in 0...safeCount {
+        for (var idx = 0; idx < safeCount; idx++) {
             var button = buttons.removeLast();
 
-            self.willRemoveSubview(button);
+            button?.removeFromSuperview();
+            button = nil;
         }
         size = buttons.count;
-        frame.size = CGSizeMake(CGFloat(endPos.x), CGFloat(endPos.y));
     }
 }

@@ -35,11 +35,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ux5-fn-p1x" userLabel="CompositionArea">
                                 <rect key="frame" x="141" y="0.0" width="427" height="320"/>
                                 <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxn-d8-MdT">
+                                        <rect key="frame" x="0.0" y="8" width="427" height="265"/>
+                                    </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-ll-XBP">
-                                        <rect key="frame" x="166" y="281" width="96" height="31"/>
+                                        <rect key="frame" x="0.0" y="281" width="427" height="31"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4M-Yh-hiV">
+                                                <rect key="frame" x="8" y="1" width="57" height="30"/>
+                                                <state key="normal" title="Remove">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="removeColumOfBlocks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uWM-OC-UeY"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0b-3U-Jww" userLabel="Play">
-                                                <rect key="frame" x="5" y="0.0" width="31" height="32"/>
+                                                <rect key="frame" x="178" y="0.0" width="31" height="32"/>
                                                 <state key="normal" image="Triangle 1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -48,7 +60,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-69-1fP" userLabel="Stop">
-                                                <rect key="frame" x="61" y="1" width="30" height="30"/>
+                                                <rect key="frame" x="219" y="1" width="30" height="30"/>
                                                 <state key="normal" image="Rectangle 1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -56,29 +68,29 @@
                                                     <action selector="StopButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9IL-SY-9tK"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrv-c2-uQI">
+                                                <rect key="frame" x="389" y="1" width="30" height="30"/>
+                                                <state key="normal" title="Add">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addColumOfBlocks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hla-9j-uKX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="96" id="145-Ze-Fp2"/>
                                             <constraint firstAttribute="height" constant="31" id="6Cw-Bl-A9U"/>
-                                            <constraint firstAttribute="trailing" secondItem="mjS-69-1fP" secondAttribute="trailing" constant="5" id="MMu-xS-L75"/>
+                                            <constraint firstItem="B4M-Yh-hiV" firstAttribute="leading" secondItem="QSS-ll-XBP" secondAttribute="leading" constant="8" id="7vv-TI-CWE"/>
+                                            <constraint firstAttribute="centerY" secondItem="rrv-c2-uQI" secondAttribute="centerY" id="8vQ-AM-1AF"/>
+                                            <constraint firstAttribute="trailing" secondItem="rrv-c2-uQI" secondAttribute="trailing" constant="8" id="NoS-Yg-DoI"/>
                                             <constraint firstAttribute="centerY" secondItem="mjS-69-1fP" secondAttribute="centerY" id="Num-JB-WXp"/>
+                                            <constraint firstAttribute="centerX" secondItem="mjS-69-1fP" secondAttribute="centerX" constant="-20" id="NxL-C5-ZBn"/>
+                                            <constraint firstAttribute="centerX" secondItem="N0b-3U-Jww" secondAttribute="centerX" constant="20" id="P39-Md-rOy"/>
+                                            <constraint firstAttribute="centerY" secondItem="B4M-Yh-hiV" secondAttribute="centerY" id="mjk-eo-KSK"/>
                                             <constraint firstAttribute="centerY" secondItem="N0b-3U-Jww" secondAttribute="centerY" id="qJd-k3-g4i"/>
-                                            <constraint firstItem="N0b-3U-Jww" firstAttribute="leading" secondItem="QSS-ll-XBP" secondAttribute="leading" constant="5" id="wpD-kE-nbP"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrv-c2-uQI">
-                                        <rect key="frame" x="389" y="282" width="30" height="30"/>
-                                        <state key="normal" title="Add">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addColumOfBlocks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hla-9j-uKX"/>
-                                        </connections>
-                                    </button>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxn-d8-MdT">
-                                        <rect key="frame" x="0.0" y="8" width="427" height="265"/>
-                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -87,9 +99,9 @@
                                     <constraint firstItem="QSS-ll-XBP" firstAttribute="top" secondItem="Kxn-d8-MdT" secondAttribute="bottom" constant="8" id="79e-hF-c9S"/>
                                     <constraint firstAttribute="bottom" secondItem="QSS-ll-XBP" secondAttribute="bottom" constant="8" id="FbL-om-C3d"/>
                                     <constraint firstItem="Kxn-d8-MdT" firstAttribute="top" secondItem="Ux5-fn-p1x" secondAttribute="top" constant="8" id="IUa-Zp-CvZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="rrv-c2-uQI" secondAttribute="trailing" constant="8" id="Rac-vd-LZo"/>
+                                    <constraint firstAttribute="trailing" secondItem="QSS-ll-XBP" secondAttribute="trailing" id="OAH-od-rjA"/>
+                                    <constraint firstItem="QSS-ll-XBP" firstAttribute="leading" secondItem="Ux5-fn-p1x" secondAttribute="leading" id="fG4-ce-xSn"/>
                                     <constraint firstItem="Kxn-d8-MdT" firstAttribute="leading" secondItem="Ux5-fn-p1x" secondAttribute="leading" id="vUI-Li-8vv"/>
-                                    <constraint firstAttribute="bottom" secondItem="rrv-c2-uQI" secondAttribute="bottom" constant="8" id="xnK-rX-iRs"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -178,7 +190,6 @@
                                                     <constraint firstAttribute="height" constant="90" id="tan-in-Opd"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="LtO-pT-v4w" id="QaF-PJ-UKf"/>
                                                     <outlet property="delegate" destination="LtO-pT-v4w" id="v5k-k7-QbD"/>
                                                 </connections>
                                             </pickerView>
@@ -195,8 +206,8 @@
                                             <constraint firstAttribute="trailing" secondItem="hMF-hJ-5Hh" secondAttribute="trailing" constant="8" id="pAO-wB-CTC"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLV-Nq-Q49">
-                                        <rect key="frame" x="29" y="183" width="89" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLV-Nq-Q49">
+                                        <rect key="frame" x="29" y="185" width="89" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="89" id="dDg-8m-3bE"/>

@@ -35,6 +35,7 @@
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
+		DBC191191AA9DE0B005D9350 /* InstrumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC191181AA9DE0B005D9350 /* InstrumentList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITimeBlockArray.swift; path = Orphee/UITimeBlockArray.swift; sourceTree = "<group>"; };
+		DBC191181AA9DE0B005D9350 /* InstrumentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		52C61D971A79E5C400B3DE23 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DBC191171AA9DD82005D9350 /* UI related */,
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
 				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
@@ -187,6 +190,14 @@
 				52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */,
 			);
 			path = OrpheeTests;
+			sourceTree = "<group>";
+		};
+		DBC191171AA9DD82005D9350 /* UI related */ = {
+			isa = PBXGroup;
+			children = (
+				DBC191181AA9DE0B005D9350 /* InstrumentList.swift */,
+			);
+			name = "UI related";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +312,7 @@
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
+				DBC191191AA9DE0B005D9350 /* InstrumentList.swift in Sources */,
 				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,

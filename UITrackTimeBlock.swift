@@ -25,7 +25,11 @@ class UITrackTimeBlock: UIButton {
 
         var tBlock: UITrackTimeBlock = UITrackTimeBlock(pos_x: column * (width + 10), pos_y: row * (height + 10));
 
+        tBlock.pos = column;
+        tBlock.row = row;
+        tBlock.layer.borderWidth = 5;
         tBlock.backgroundColor = color;
+        tBlock.addTarget(tBlock, action: Selector("printPos"), forControlEvents: UIControlEvents.TouchUpInside);
         return tBlock;
     }
 
@@ -48,9 +52,8 @@ class UITrackTimeBlock: UIButton {
         self.endY = pos_y + UITrackTimeBlock.height;
     }
 
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        super.touchesBegan(touches, withEvent: event);
+    func printPos() {
 
-        println("button #\(pos) touched on line \(row)");
+        println("button #\(pos) on row #\(row)");
     }
 }
