@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E3362DA7-6E95-4475-9B37-E0693BFF4D91</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Orphee</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D14799E26D7946157D05059A66EDC2DB8B20B8DE</key>
+		<string>https://github.com/Orphee3/iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Orphee.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D14799E26D7946157D05059A66EDC2DB8B20B8DE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Orphee3/iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D14799E26D7946157D05059A66EDC2DB8B20B8DE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D14799E26D7946157D05059A66EDC2DB8B20B8DE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OrpheeiOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
