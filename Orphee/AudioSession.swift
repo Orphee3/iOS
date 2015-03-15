@@ -9,10 +9,19 @@
 import Foundation
 import AVFoundation
 
+/// This class is a wrapper around AVAudioSession.
 class AudioSession {
 
+    /// A short-hand to the AVAudioSession singleton.
     var session: AVAudioSession = AVAudioSession.sharedInstance();
 
+    /// Defines the session as a **playback** session and the preferred sample rate to *graph's* default value.
+    /// Then marks the session as active and updates *graph's* sample rate.
+    ///
+    /// :param: graph   The `AudioGraph` instance to use for this session.
+    ///
+    /// :returns: - `false` if one of the underlying routines fail.
+    ///           - `true` if all goes well.
     func setupSession(inout graph: AudioGraph) -> Bool {
 
         var err: NSError? = NSError();
