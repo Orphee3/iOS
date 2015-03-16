@@ -9,13 +9,28 @@
 import Foundation
 import AVFoundation
 
+/// Groups all methods related to the creation, configuration and running of the audio graph.
 class AudioGraph {
 
-    var sampleRate: Float64 = 44_100; // Default hardware sample rate in Hz
-    var graph: AUGraph! = AUGraph();		// The actual processing Audio Graph
-    lazy var ioUnit: AudioUnit! = AudioUnit();	// The default I/O unit
-    lazy var sampler: AudioUnit! = AudioUnit();	// The default sampler unit
+    /// Default hardware sample rate in Hz.
+    var sampleRate: Float64 = 44_100;
 
+    /// The actual processing Audio Graph
+    var graph: AUGraph! = AUGraph();
+
+    /// The default I/O unit
+    lazy var ioUnit: AudioUnit! = AudioUnit();
+
+    /// The default sampler unit
+    lazy var sampler: AudioUnit! = AudioUnit();
+
+    /// MARK: Construction and configuration
+    //
+
+    /// Builds the underlying AUGraph and its default AudioUnit.
+    ///
+    /// :returns: - `false` if one of the underlying routines fail.
+    ///           - `true` if all goes well.
     func createAudioGraph() -> Bool {
 
         var ac: AudioComponentDescription;
@@ -43,6 +58,10 @@ class AudioGraph {
         return (result == noErr);
     }
 
+    /// Initializes and sets different properties of the underlying AudioUnits
+    ///
+    /// :returns: - `false` if one of the underlying routines fail.
+    ///           - `true` if all goes well.
     func configureAudioGraph() -> Bool {
 
         var result: OSStatus = noErr;
@@ -73,6 +92,10 @@ class AudioGraph {
         return (result == noErr);
     }
 
+    /// Initializes and starts the underlying AUGraph
+    ///
+    /// :returns: - `false` if one of the underlying routines fail.
+    ///           - `true` if all goes well.
     func startAudioGraph() -> Bool {
 
         var result: OSStatus = noErr;
@@ -90,6 +113,15 @@ class AudioGraph {
         return (result == noErr);
     }
 
+    /// MARK: Preset configuration
+    //
+
+    /// Applies the properties contained in `plist` to the sampler `AudioUnit`
+    ///
+    /// :param: plist   A valid property list as provided by `PresetMgr`
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func loadPresetFromPList(inout plist: CFPropertyListRef) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -105,24 +137,35 @@ class AudioGraph {
         return result;
     }
 
+    /// Applies the properties contained in `data` to the sampler `AudioUnit`
+    ///
+    /// :param: data    A valid `AUSamplerInstrumentData` structure as provided by `PresetMgr`
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func loadInstrumentFromInstrumentData(inout data: AUSamplerInstrumentData) -> OSStatus {
 
         var result: OSStatus = noErr;
         var szData: UInt32 = UInt32(sizeofValue(data));
 
         result = AudioUnitSetProperty(
-        sampler,
-        AudioUnitPropertyID(kAUSamplerProperty_LoadInstrument),
-        AudioUnitScope(kAudioUnitScope_Global),
-        0, &data, szData
+            sampler,
+            AudioUnitPropertyID(kAUSamplerProperty_LoadInstrument),
+            AudioUnitScope(kAudioUnitScope_Global),
+            0, &data, szData
         );
         return result;
     }
 
-    /////////////////////////////
-    //// Audio Output methods ///
-    /////////////////////////////
+    /// MARK: Audio Output methods.
+    //
 
+    /// Sends a `NoteOn` MIDI event to the sampler `AudioUnit`
+    ///
+    /// :param: note    The note that is going to be played by the sampler.
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func playNote(note: UInt32) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -132,7 +175,12 @@ class AudioGraph {
         return result;
     }
 
-
+    /// Sends a `NoteOff` MIDI event to the sampler `AudioUnit`
+    ///
+    /// :param: note    The note that the sampler needs to stop playing.
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func stopNote(note: UInt32) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -142,10 +190,13 @@ class AudioGraph {
         return result;
     }
 
-    /////////////////////////////
-    ////// Utility methods //////
-    /////////////////////////////
+    /// MARK: Utility methods
+    //
 
+    /// Sets the hardware sample rate for the *sampler* and *output* units. Default is 44100Hz.
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func setAudioUnitsSampleRate() -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -170,6 +221,12 @@ class AudioGraph {
         return result;
     }
 
+    /// Builds and adds a *sampler* `AUNode` to the graph.
+    ///
+    /// :param: sampler    A reference to the node to be built.
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func buildSamplerNode(inout sampler: AUNode) -> OSStatus {
 
         /*
@@ -182,6 +239,12 @@ class AudioGraph {
         return AUGraphAddNode(graph, &ac, &sampler);
     }
 
+    /// Builds and adds an *output* `AUNode` to the graph.
+    ///
+    /// :param: out    A reference to the node to be built.
+    ///
+    /// :returns:   - `noErr` if all goes well.
+    ///             - Another `OSStatus` error code if the underlying routine fail.
     func buildOutputNode(inout out: AUNode) -> OSStatus {
 
         /*
@@ -194,6 +257,12 @@ class AudioGraph {
         return AUGraphAddNode(graph, &ac, &out);
     }
 
+    /// Builds an `AudioComponentDescription` with satisfying values.
+    ///
+    /// :param: type    The component type. Default is 0.
+    /// :param: subtype The component's subtype. Default is 0.
+    ///
+    /// :returns: A valid `AudioComponentDescription` structure initialized with satisfying values.
     func mkComponentDescription(type: OSType = OSType(0), subType: OSType = OSType(0)) -> AudioComponentDescription {
 
         return AudioComponentDescription(
@@ -205,10 +274,12 @@ class AudioGraph {
         );
     }
 
-    init() {
+    /// MARK: init - deinit
+    //
 
-    }
-
+    /// First, stop and uninitialize the underlying `AUGraph`.
+    /// Then clear all the connections between it's nodes.
+    /// Finally close and dispose of it.
     deinit {
         AUGraphStop(graph);
         AUGraphUninitialize(graph);
@@ -217,5 +288,4 @@ class AudioGraph {
         DisposeAUGraph(graph);
         graph = nil;
     }
-
 }

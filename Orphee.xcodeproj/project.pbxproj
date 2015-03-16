@@ -7,19 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5234331C1A8104B40041B7BD /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234331B1A8104B40041B7BD /* PresetMgrTests.swift */; };
-		5241CD7A1A8110ED00A1FBEF /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */; };
-		5241CD7B1A8110ED00A1FBEF /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */; };
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
 		526FF5F61A810DA700CF6A9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		526FF5F71A810DA700CF6A9C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */; };
 		526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */; };
 		526FF6051A81106E00CF6A9C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6041A81106E00CF6A9C /* Sounds */; };
-		526FF6061A81106E00CF6A9C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6041A81106E00CF6A9C /* Sounds */; };
 		52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */; };
 		52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9C1A79E5C400B3DE23 /* ViewController.swift */; };
-		52C61DBB1A7A026200B3DE23 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */; };
 		52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */; };
@@ -32,11 +27,16 @@
 		52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */; };
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
-		88F21C01B58E58898BB408A5 /* ProTrax_Classical_Guitar.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 88F212DF22684870C99EBA35 /* ProTrax_Classical_Guitar.sf2 */; };
+		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
+		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
+		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
+		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
+		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		52C61DAB1A79E5C400B3DE23 /* PBXContainerItemProxy */ = {
+		DBDC8A0C1A980200001ADE00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
 			proxyType = 1;
@@ -47,8 +47,6 @@
 
 /* Begin PBXFileReference section */
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
-		5234331A1A8104B40041B7BD /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		5234331B1A8104B40041B7BD /* PresetMgrTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetMgrTests.swift; sourceTree = "<group>"; };
 		526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Trombone.aupreset; path = Ressources/Trombone.aupreset; sourceTree = "<group>"; };
 		526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = Ressources/Vibraphone.aupreset; sourceTree = "<group>"; };
 		526FF6041A81106E00CF6A9C /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = Ressources/Sounds; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 		52C61DA11A79E5C400B3DE23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Orphee/Images.xcassets; sourceTree = "<group>"; };
 		52C61DA41A79E5C400B3DE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		52C61DAA1A79E5C400B3DE23 /* OrpheeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrpheeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		52C61DBC1A7A039E00B3DE23 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraph.swift; sourceTree = "<group>"; };
 		52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -70,7 +67,13 @@
 		52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		52C61DD31A7A61C300B3DE23 /* PresetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetLoader.m; sourceTree = "<group>"; };
-		88F212DF22684870C99EBA35 /* ProTrax_Classical_Guitar.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file.sf2; path = ProTrax_Classical_Guitar.sf2; sourceTree = "<group>"; };
+		88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetMgrTests.swift; sourceTree = "<group>"; };
+		88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
+		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
+		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
+		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
+		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITimeBlockArray.swift; path = Orphee/UITimeBlockArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,11 +113,11 @@
 		523433021A8103DB0041B7BD /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				88F21A363E92E4DAFEE687AF /* SoundBanks */,
 				526FF6041A81106E00CF6A9C /* Sounds */,
 				526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */,
 				526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */,
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
-				88F212DF22684870C99EBA35 /* ProTrax_Classical_Guitar.sf2 */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -124,6 +127,8 @@
 			children = (
 				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
 				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
+				DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */,
+				DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
+				DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -139,12 +145,12 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				88F21BCA4626CFD565278816 /* OrpheeTests */,
 				523433011A8103A40041B7BD /* Frameworks */,
 				523433021A8103DB0041B7BD /* Ressources */,
 				526FF5C11A810AA000CF6A9C /* ViewControllers */,
 				526FF5B91A8109BA00CF6A9C /* Views */,
 				52C61D971A79E5C400B3DE23 /* Classes */,
-				52C61DAD1A79E5C400B3DE23 /* OrpheeTests */,
 				52C61D961A79E5C400B3DE23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,25 +168,49 @@
 			isa = PBXGroup;
 			children = (
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
-				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
-				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
-				52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */,
-				52C61DD31A7A61C300B3DE23 /* PresetLoader.m */,
-				523432E31A80C1420041B7BD /* PresetLoader.h */,
-				52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */,
+				DB3A9EAC1AA996ED000660F4 /* Audio generation */,
+				DB3A9EAD1AA9970D000660F4 /* MIDI-related */,
+				DB3A9EAB1AA99650000660F4 /* Preset management */,
 			);
 			name = Classes;
 			path = Orphee;
 			sourceTree = "<group>";
 		};
-		52C61DAD1A79E5C400B3DE23 /* OrpheeTests */ = {
+		88F21BCA4626CFD565278816 /* OrpheeTests */ = {
 			isa = PBXGroup;
 			children = (
-				5234331A1A8104B40041B7BD /* OrpheeTests-Bridging-Header.h */,
-				5234331B1A8104B40041B7BD /* PresetMgrTests.swift */,
-				52C61DBA1A7A026200B3DE23 /* AudioGraphTests.swift */,
+				88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */,
+				88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */,
+				88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */,
 			);
 			path = OrpheeTests;
+			sourceTree = "<group>";
+		};
+		DB3A9EAB1AA99650000660F4 /* Preset management */ = {
+			isa = PBXGroup;
+			children = (
+				52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */,
+				52C61DD31A7A61C300B3DE23 /* PresetLoader.m */,
+				523432E31A80C1420041B7BD /* PresetLoader.h */,
+				52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */,
+			);
+			name = "Preset management";
+			sourceTree = "<group>";
+		};
+		DB3A9EAC1AA996ED000660F4 /* Audio generation */ = {
+			isa = PBXGroup;
+			children = (
+				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
+				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
+			);
+			name = "Audio generation";
+			sourceTree = "<group>";
+		};
+		DB3A9EAD1AA9970D000660F4 /* MIDI-related */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "MIDI-related";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,7 +244,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				52C61DAC1A79E5C400B3DE23 /* PBXTargetDependency */,
+				DBDC8A0D1A980200001ADE00 /* PBXTargetDependency */,
 			);
 			name = OrpheeTests;
 			productName = OrpheeTests;
@@ -263,13 +293,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */,
 				526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */,
 				526FF5F61A810DA700CF6A9C /* Main.storyboard in Resources */,
 				526FF5F71A810DA700CF6A9C /* LaunchScreen.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
-				88F21C01B58E58898BB408A5 /* ProTrax_Classical_Guitar.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,9 +307,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				526FF6061A81106E00CF6A9C /* Sounds in Resources */,
-				5241CD7A1A8110ED00A1FBEF /* Trombone.aupreset in Resources */,
-				5241CD7B1A8110ED00A1FBEF /* Vibraphone.aupreset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +321,9 @@
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
+				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
+				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
+				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 			);
@@ -304,21 +334,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */,
-				5234331C1A8104B40041B7BD /* PresetMgrTests.swift in Sources */,
-				52C61DBB1A7A026200B3DE23 /* AudioGraphTests.swift in Sources */,
 				52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
+				88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */,
+				88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		52C61DAC1A79E5C400B3DE23 /* PBXTargetDependency */ = {
+		DBDC8A0D1A980200001ADE00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 52C61D941A79E5C400B3DE23 /* Orphee */;
-			targetProxy = 52C61DAB1A79E5C400B3DE23 /* PBXContainerItemProxy */;
+			targetProxy = DBDC8A0C1A980200001ADE00 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
