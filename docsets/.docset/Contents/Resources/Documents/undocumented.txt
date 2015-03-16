@@ -1,7 +1,5 @@
 ViewController.swift
-	class ViewController: UIViewController
-	override func viewDidLoad()
-	override func didReceiveMemoryWarning()
+	@IBAction func StopButtonTouched(sender: AnyObject)
 AppDelegate.swift
 	class AppDelegate: UIResponder, UIApplicationDelegate
 	var window: UIWindow?;
@@ -9,3 +7,21 @@ AppDelegate.swift
 AudioGraph.swift
 	var ac: AudioComponentDescription = mkComponentDescription(
 	var ac: AudioComponentDescription = mkComponentDescription(
+UITrackTimeBlock.swift
+	class UITrackTimeBlock: UIButton
+	class var width: Int
+	class var height: Int
+	var pos: Int = 0
+	var row: Int = 0
+	var originX: Int = 0
+	var originY: Int = 0
+	var endX: Int = 0;
+	var endY: Int = 0;
+	class func timeBlock(#color: UIColor, row: Int, column: Int) -> UITrackTimeBlock
+	required init(coder aDecoder: NSCoder)
+	init(row: Int, column: Int)
+	func printPos()
+UITimeBlockArray.swift
+	init(rowNbr: Int)
+SidebarVC.swift
+	class SidebarVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource

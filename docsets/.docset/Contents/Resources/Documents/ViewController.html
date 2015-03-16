@@ -24,8 +24,8 @@
     <a title="ViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p class="header-text"><a href="../index.html"> Docs</a> (81% documented)</p>
-        <p id="header-links"><a href="https://github.com/Orphee3/iOS"><img id="header-icon" src="../img/gh.png" height="16px" width="16px" />View on GitHub</a></p>
+        <p class="header-text"><a href="../index.html"> Docs</a> (76% documented)</p>
+        <p id="header-links"><a href=""><img id="header-icon" src="../img/gh.png" height="16px" width="16px" />View on GitHub</a></p>
       </div>
     </header>
     <section id="valence">
@@ -56,6 +56,15 @@
                 <a href="../Classes/PresetMgr.html">PresetMgr</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Classes/SidebarVC.html">SidebarVC</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes/UITimeBlockArray.html">UITimeBlockArray</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes/UITrackTimeBlock.html">UITrackTimeBlock</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Classes/ViewController.html">ViewController</a>
               </li>
             </ul>
@@ -69,13 +78,107 @@
         <h1 class="chapter-name">ViewController</h1>
         <section>
           <section class="section">
-            <p class="para">Undocumented</p>
+            <p class="para">The app&rsquo;s main view controller</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
                 
                 <a name="/Unnamed"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vC6Orphee14ViewController12scrollBlocksXwGSQCSo12UIScrollView_">
+                    <a name="//apple_ref/swift/Property/scrollBlocks" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vC6Orphee14ViewController12scrollBlocksXwGSQCSo12UIScrollView_">scrollBlocks</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">The scroll view containing the composition area</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">scrollBlocks</span><span class="p">:</span> <span class="kt">UIScrollView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vC6Orphee14ViewController10dictBlocksGVSs10DictionarySSCS_16UITimeBlockArray_">
+                    <a name="//apple_ref/swift/Property/dictBlocks" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vC6Orphee14ViewController10dictBlocksGVSs10DictionarySSCS_16UITimeBlockArray_">dictBlocks</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">dictBlocks</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">UITimeBlockArray</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:];</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vC6Orphee14ViewController15instrumentsListGSaSS_">
+                    <a name="//apple_ref/swift/Property/instrumentsList" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vC6Orphee14ViewController15instrumentsListGSaSS_">instrumentsList</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A list of all instruments supported by the app. TODO: actually implement the system.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">instrumentsList</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">"violin"</span><span class="p">,</span> <span class="s">"guitar"</span><span class="p">,</span> <span class="s">"tambour"</span><span class="p">,</span> <span class="s">"battery"</span><span class="p">,</span> <span class="s">"trumpet"</span><span class="p">];</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Overrides"></a>
+                <a name="//apple_ref/swift/Section/Overrides" class="dashAnchor"></a>
+                <a href="#/Overrides">
+                  <h3 class="section-name">Overrides</h3>
+                </a>
                 
               </div>
               <ul class="task-group-list">
@@ -92,7 +195,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Called when this controller&rsquo;s view is loaded.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -110,7 +222,244 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
+                        <p class="para">Called when the app consumes too much memory. Dispose of any resources that can be recreated.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">didReceiveMemoryWarning</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/UI%20action%20responders"></a>
+                <a name="//apple_ref/swift/Section/UI action responders" class="dashAnchor"></a>
+                <a href="#/UI%20action%20responders">
+                  <h3 class="section-name">UI action responders</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC6Orphee14ViewController16addColumOfBlocksFS0_FPSs9AnyObject_T_">
+                    <a name="//apple_ref/swift/Method/addColumOfBlocks(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC6Orphee14ViewController16addColumOfBlocksFS0_FPSs9AnyObject_T_">addColumOfBlocks(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Called when the UI&rsquo;s <code>add</code> button is pressed. Adds 4 buttons to each track and updates the scroll view&rsquo;s size.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">@IBAction</span> <span class="kd">func</span> <span class="nf">addColumOfBlocks</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The object sending the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC6Orphee14ViewController19removeColumOfBlocksFS0_FPSs9AnyObject_T_">
+                    <a name="//apple_ref/swift/Method/removeColumOfBlocks(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC6Orphee14ViewController19removeColumOfBlocksFS0_FPSs9AnyObject_T_">removeColumOfBlocks(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Called when the UI&rsquo;s <code>Stop</code> button is pressed. Displays <em>stop</em></p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">@IBAction</span> <span class="kd">func</span> <span class="nf">removeColumOfBlocks</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The object sending the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC6Orphee14ViewController17StopButtonTouchedFS0_FPSs9AnyObject_T_">
+                    <a name="//apple_ref/swift/Method/StopButtonTouched(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC6Orphee14ViewController17StopButtonTouchedFS0_FPSs9AnyObject_T_">StopButtonTouched(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
                         <p class="para">Undocumented</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC6Orphee14ViewController17PlayButtonTouchedFS0_FPSs9AnyObject_T_">
+                    <a name="//apple_ref/swift/Method/PlayButtonTouched(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC6Orphee14ViewController17PlayButtonTouchedFS0_FPSs9AnyObject_T_">PlayButtonTouched(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Called when the UI&rsquo;s <code>Play</code> button is pressed. Displays <em>play</em></p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">@IBAction</span> <span class="kd">func</span> <span class="kt">PlayButtonTouched</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The object sending the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Utility%20methods"></a>
+                <a name="//apple_ref/swift/Section/Utility methods" class="dashAnchor"></a>
+                <a href="#/Utility%20methods">
+                  <h3 class="section-name">Utility methods</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC6Orphee14ViewController12createBlocksFS0_FSiT_">
+                    <a name="//apple_ref/swift/Method/createBlocks(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC6Orphee14ViewController12createBlocksFS0_FSiT_">createBlocks(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Creates a track for each entry in <code>instrumentsList</code> with <code>columns</code> number of columns. Each track is added to <code>dictBlocks</code> with the corresponding instrument as key. Each track is added as a subview to <code>scrollBlocks</code> and updates the scroll view&rsquo;s size.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">createBlocks</span><span class="p">(</span><span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">columns</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The number of columns to add to each track.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -120,7 +469,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Massil Yataghene, Jeromin Lebon</a>. All rights reserved. (Last updated: 2015-03-15)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-03-17)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
