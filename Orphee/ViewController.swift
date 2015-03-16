@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var scrollBlocks: UIScrollView!
 
     var dictBlocks: [String:UITimeBlockArray] = [:];
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
         createBlocks(10);
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -36,10 +36,19 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func removeColumOfBlocks(sender: AnyObject) {
+
+        for (instrument, track) in dictBlocks {
+
+            track.removeButtons(4, fromView: scrollBlocks);
+            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
+        }
+    }
+
     @IBAction func StopButtonTouched(sender: AnyObject) {
         println("stop");
     }
-    
+
     @IBAction func PlayButtonTouched(sender: AnyObject) {
         println("play");
     }
