@@ -56,6 +56,15 @@ class ViewController: UIViewController {
     /// Displays *stop*
     ///
     /// :param: sender  The object sending the event.
+    @IBAction func removeColumOfBlocks(sender: AnyObject) {
+
+        for (instrument, track) in dictBlocks {
+
+            track.removeButtons(4, fromView: scrollBlocks);
+            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
+        }
+    }
+
     @IBAction func StopButtonTouched(sender: AnyObject) {
         println("stop");
     }
