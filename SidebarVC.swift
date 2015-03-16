@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The ViewController in charge of the composition screen's sidebar
 class SidebarVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     /// The view containing the sidebar's PickerView.
