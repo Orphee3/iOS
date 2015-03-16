@@ -10,12 +10,12 @@ import UIKit
 
 class UITimeBlockArray {
 
-    private var buttons: [UITrackTimeBlock] = [];
+    private var buttons: [UITrackTimeBlock?] = [];
 
     var row: Int = 0 {
         didSet(newValue) {
             for button in self.buttons {
-                button.row = newValue;
+                button?.row = newValue;
             }
         }
     }
