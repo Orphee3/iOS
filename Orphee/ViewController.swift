@@ -12,14 +12,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var scrollBlocks: UIScrollView!
 
-    var dictBlocks: [Int:UITimeBlockArray] = [:];
-    var instrumentsList: [String:Int] = [
-        "violin" : 12,
-        "guitar" : 12,
-        "tambour" : 4,
-        "battery" : 8,
-        "trumpet" : 12
-    ];
+    var dictBlocks: [String:UITimeBlockArray] = [:];
+
+    var instrumentsList: [String] = ["violin", "guitar", "tambour", "battery", "trumpet"];
 
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -29,39 +24,15 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    func createBlocks(columns: Int) {
 
-        var size: (x: Int, y: Int) = (0, 0);
-        for (instrument, cord) in instrumentsList {
-            
-            var track: UITimeBlockArray = UITimeBlockArray(count: columns, rowNbr: cord, color: UIColor.blueColor());
-
-            dictBlocks[cord] = track;
-            scrollBlocks.addSubview(track);
-            size = track.endPos;
-        }
-        scrollBlocks.contentSize = CGSizeMake(CGFloat(size.x), CGFloat(size.y));
-    }
 
     @IBAction func addColumOfBlocks(sender: AnyObject) {
 
-        var size: (x: Int, y: Int) = (0, 0);
         for (instrument, track) in dictBlocks {
 
-            track.addButtons(4, color: UIColor.redColor());
-            size = track.endPos;
-        }
-        scrollBlocks.contentSize = CGSizeMake(CGFloat(size.x), CGFloat(size.y));
-    }
-
-    @IBAction func removeColumOfBlocks(sender: AnyObject) {
-
-        for (instrument, track) in dictBlocks {
-
-            track.removeButtons(4);
+            track.addButtons(4, color: UIColor.redColor(), toView: scrollBlocks);
+            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
         }
     }
 
@@ -71,6 +42,17 @@ class ViewController: UIViewController {
     
     @IBAction func PlayButtonTouched(sender: AnyObject) {
         println("play");
+    }
+    func createBlocks(columns: Int) {
+
+        for (idx, instrument) in enumerate(instrumentsList) {
+
+            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx);
+
+            dictBlocks[instrument] = track;
+            track.addButtons(columns, color: UIColor.blueColor(), toView: scrollBlocks)
+            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
+        }
     }
 }
 
