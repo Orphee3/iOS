@@ -8,11 +8,19 @@
 
 import UIKit
 
-class UITimeBlockArray: UIView {
+class UITimeBlockArray {
 
-    var buttons: [UITrackTimeBlock] = [];
-    var row: Int = 0;
-    var size: Int = 0;
+    private var buttons: [UITrackTimeBlock] = [];
+
+    var row: Int = 0 {
+        didSet(newValue) {
+            for button in self.buttons {
+                button.row = newValue;
+            }
+        }
+    }
+
+    private var size: Int = 0;
 
     var endPos: (x: Int, y: Int) {
         get {
@@ -22,40 +30,33 @@ class UITimeBlockArray: UIView {
         }
     }
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
-    }
 
-    init(count: Int, rowNbr: Int, color: UIColor) {
-
-        super.init(frame: CGRect(x: 10, y: 0, width: 0, height: 0));
+    init(rowNbr: Int) {
 
         row = rowNbr;
-        addButtons(count, color: color);
     }
 
-    func addButtons(count: Int, color: UIColor) {
+    func addButtons(count: Int, color: UIColor, toView view: UIView) {
 
-        for col in 0...count {
+        for (var col = 0; col < count; col++) {
             var tBlock = UITrackTimeBlock.timeBlock(color: color, row: row, column: col + size);
 
             buttons.append(tBlock);
-            addSubview(tBlock);
+            view.addSubview(tBlock);
         }
         size = buttons.count;
-        frame.size = CGSizeMake(CGFloat(endPos.x), CGFloat(endPos.y));
     }
 
-    func removeButtons(count: Int) {
+    func removeButtons(count: Int, fromView view: UIView) {
 
         let safeCount = (count <= size) ? count : size;
 
-        for _ in 0...safeCount {
+        for (var idx = 0; idx < safeCount; idx++) {
             var button = buttons.removeLast();
 
-            self.willRemoveSubview(button);
+            button?.removeFromSuperview();
+            button = nil;
         }
         size = buttons.count;
-        frame.size = CGSizeMake(CGFloat(endPos.x), CGFloat(endPos.y));
     }
 }

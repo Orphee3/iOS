@@ -47,7 +47,7 @@ class ViewController: UIViewController {
 
         for (instrument, track) in dictBlocks {
 
-            track.addButtons(4, color: UIColor.redColor());
+            track.addButtons(4, color: UIColor.redColor(), toView: scrollBlocks);
             scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
         }
     }
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     @IBAction func StopButtonTouched(sender: AnyObject) {
         println("stop");
     }
-    
+
     /// Called when the UI's `Play` button is pressed.
     /// Displays *play*
     ///
@@ -80,10 +80,10 @@ class ViewController: UIViewController {
 
         for (idx, instrument) in enumerate(instrumentsList) {
 
-            var track: UITimeBlockArray = UITimeBlockArray(count: columns, rowNbr: idx, color: UIColor.blueColor());
+            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx);
 
             dictBlocks[instrument] = track;
-            scrollBlocks.addSubview(track);
+            track.addButtons(columns, color: UIColor.blueColor(), toView: scrollBlocks)
             scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
         }
     }
