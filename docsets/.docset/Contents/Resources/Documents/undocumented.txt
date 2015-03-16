@@ -1,5 +1,3 @@
-ViewController.swift
-	@IBAction func StopButtonTouched(sender: AnyObject)
 AppDelegate.swift
 	class AppDelegate: UIResponder, UIApplicationDelegate
 	var window: UIWindow?;
@@ -23,5 +21,3 @@ UITrackTimeBlock.swift
 	func printPos()
 UITimeBlockArray.swift
 	init(rowNbr: Int)
-SidebarVC.swift
-	class SidebarVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
