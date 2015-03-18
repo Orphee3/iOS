@@ -27,21 +27,27 @@ class UITrackTimeBlock: UIButton {
 
     var originX: Int = 0 {
         willSet(x) {
-            self.endX = self.originX + UITrackTimeBlock.width;
             self.frame.origin.x = CGFloat(x);
         }
     }
 
     var originY: Int = 0 {
         willSet(y) {
-            self.endY = self.originY + UITrackTimeBlock.height;
             self.frame.origin.y = CGFloat(y);
         }
     }
 
-    var endX: Int = 0;
-    var endY: Int = 0;
+    var endX: Int {
+        get{
+            return (self.originX + UITrackTimeBlock.width);
+        }
+    }
 
+    var endY: Int {
+        get {
+            return (self.originY + UITrackTimeBlock.height);
+        }
+    }
     class func timeBlock(#color: UIColor, row: Int, column: Int) -> UITrackTimeBlock {
 
         var tBlock: UITrackTimeBlock = UITrackTimeBlock(row: row, column: column);
@@ -50,7 +56,7 @@ class UITrackTimeBlock: UIButton {
         tBlock.row = row;
         tBlock.layer.borderWidth = 5;
         tBlock.backgroundColor = color;
-        tBlock.addTarget(tBlock, action: Selector("printPos"), forControlEvents: UIControlEvents.TouchUpInside);
+        tBlock.addTarget(tBlock, action: Selector("onClick"), forControlEvents: UIControlEvents.TouchUpInside);
         return tBlock;
     }
 
@@ -76,7 +82,7 @@ class UITrackTimeBlock: UIButton {
         self.row = pos_y / (UITrackTimeBlock.height + 10);
     }
 
-    func printPos() {
+    func onClick() {
 
         println("button #\(pos) on row #\(row)");
     }
