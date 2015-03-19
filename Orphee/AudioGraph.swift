@@ -229,9 +229,8 @@ class AudioGraph {
     ///             - Another `OSStatus` error code if the underlying routine fail.
     func buildSamplerNode(inout sampler: AUNode) -> OSStatus {
 
-        /*
-        ** add the sampler node to the processing graph
-        */
+        // add the sampler node to the processing graph
+        //
         var ac: AudioComponentDescription = mkComponentDescription(
             type: OSType(kAudioUnitType_MusicDevice),
             subType: OSType(kAudioUnitSubType_Sampler)
@@ -247,9 +246,9 @@ class AudioGraph {
     ///             - Another `OSStatus` error code if the underlying routine fail.
     func buildOutputNode(inout out: AUNode) -> OSStatus {
 
-        /*
-        ** add the output node to the processing graph
-        */
+
+        // add the output node to the processing graph
+        //
         var ac: AudioComponentDescription = mkComponentDescription(
             type: OSType(kAudioUnitType_Output),
             subType: OSType(kAudioUnitSubType_RemoteIO)
