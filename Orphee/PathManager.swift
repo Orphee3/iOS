@@ -26,21 +26,21 @@ class PathManager {
         var path: String? = resourcePath;
 
         if let subdir = dir {
-            let res = getCompletePathWith(basedir: resourcePath, subdir: subdir);
+            let res = PathManager.getCompletePathWith(basedir: resourcePath, subdir: subdir);
 
             path = res.path;
             if (path == nil) {
-                let res2 = buildPathFrom(resourcePath, subdir: subdir);
+                let res2 = PathManager.buildPathFrom(resourcePath, subdir: subdir);
 
                 path = res2.path;
                 if (path == nil) {
-                    return (nil, .nsError(res2.err!));
+                    return (nil, pMgrErr.nsError(res2.err!));
                 }
             }
         }
 
         path! += filename;
-        return NSFileManager.defaultManager().createFileAtPath(path!, contents: nil, attributes: nil) ? (path, nil) : (nil, .unknown("Failed at creating '\(path)'"));
+        return NSFileManager.defaultManager().createFileAtPath(path!, contents: nil, attributes: nil) ? (path, nil) : (nil, pMgrErr.unknown("Failed at creating '\(path)'"));
     }
 
     private class func getCompletePathWith(#basedir: String, subdir: String) -> (path: String?, err: pMgrErr?) {

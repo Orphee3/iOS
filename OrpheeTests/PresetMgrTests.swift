@@ -105,36 +105,36 @@ class PresetMgrTests: XCTestCase {
 
 
     ///////////////////////////////////
-    // getPlistFromRessourceWithPath //
+    // getPListFromRessourceWithPath //
     ///////////////////////////////////
 
-    func testThat_getPlistFromRessourceWithPath_succeeds_whenGiven_reachableFile() {
+    func testThat_getPListFromRessourceWithPath_succeeds_whenGiven_reachableFile() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPlistFromRessourceWithPath(path!);
+        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath(path!);
 
         XCTAssertNil(result.error, "\nERROR: \(result.error)\n");
         XCTAssertNotNil(result.plist, "\nERROR: no Plist was obtained");
     }
 
-    func testThat_getPlistFromRessourceWithPath_fails_whenGiven_InvalidPath() {
+    func testThat_getPListFromRessourceWithPath_fails_whenGiven_InvalidPath() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPlistFromRessourceWithPath("");
-
-        XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
-        XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
-    }
-
-    func testThat_getPlistFromRessourceWithPath_fails_whenGiven_InvalidFile() {
-
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPlistFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
     }
 
-    func testThat_getPlistFromRessourceWithPath_fails_whenGiven_directory() {
+    func testThat_getPListFromRessourceWithPath_fails_whenGiven_InvalidFile() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPlistFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+
+        XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
+        XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
+    }
+
+    func testThat_getPListFromRessourceWithPath_fails_whenGiven_directory() {
+
+        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
