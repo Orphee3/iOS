@@ -32,10 +32,33 @@
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
+		DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
+		DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
+		DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
+		DB8E61DF1ABB4D2B005BF7B4 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
+		DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
+		DB8E61ED1ABB4D86005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
+		DB8E61EE1ABB4D86005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
+		DB8E61F01ABB4D86005BF7B4 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
+		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DB8E61DA1ABB4D2B005BF7B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52C61D941A79E5C400B3DE23;
+			remoteInfo = Orphee;
+		};
+		DB8E61EB1ABB4D86005BF7B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52C61D941A79E5C400B3DE23;
+			remoteInfo = Orphee;
+		};
 		DBDC8A0C1A980200001ADE00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
@@ -74,6 +97,10 @@
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
+		DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AudioGraphTests-Info.plist"; path = "/Users/Massil/Desktop/Orphee/AudioGraphTests-Info.plist"; sourceTree = "<absolute>"; };
+		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB8E61F91ABB4D86005BF7B4 /* PresetManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PresetManagementTests-Info.plist"; path = "/Users/Massil/Desktop/Orphee/PresetManagementTests-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +116,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		52C61DA71A79E5C400B3DE23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB8E61E21ABB4D2B005BF7B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB8E61F31ABB4D86005BF7B4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -161,6 +202,8 @@
 			children = (
 				52C61D951A79E5C400B3DE23 /* Orphee.app */,
 				52C61DAA1A79E5C400B3DE23 /* OrpheeTests.xctest */,
+				DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */,
+				DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,9 +223,11 @@
 		88F21BCA4626CFD565278816 /* OrpheeTests */ = {
 			isa = PBXGroup;
 			children = (
-				88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */,
-				88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */,
+				DB8E61F91ABB4D86005BF7B4 /* PresetManagementTests-Info.plist */,
+				DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */,
 				88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */,
+				88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */,
+				88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */,
 			);
 			path = OrpheeTests;
 			sourceTree = "<group>";
@@ -262,6 +307,42 @@
 			productReference = 52C61DAA1A79E5C400B3DE23 /* OrpheeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DB8E61D81ABB4D2B005BF7B4 /* AudioGraphTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB8E61E41ABB4D2B005BF7B4 /* Build configuration list for PBXNativeTarget "AudioGraphTests" */;
+			buildPhases = (
+				DB8E61DB1ABB4D2B005BF7B4 /* Sources */,
+				DB8E61E21ABB4D2B005BF7B4 /* Frameworks */,
+				DB8E61E31ABB4D2B005BF7B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB8E61D91ABB4D2B005BF7B4 /* PBXTargetDependency */,
+			);
+			name = AudioGraphTests;
+			productName = OrpheeTests;
+			productReference = DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB8E61E91ABB4D86005BF7B4 /* PresetManagementTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB8E61F51ABB4D86005BF7B4 /* Build configuration list for PBXNativeTarget "PresetManagementTests" */;
+			buildPhases = (
+				DB8E61EC1ABB4D86005BF7B4 /* Sources */,
+				DB8E61F31ABB4D86005BF7B4 /* Frameworks */,
+				DB8E61F41ABB4D86005BF7B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB8E61EA1ABB4D86005BF7B4 /* PBXTargetDependency */,
+			);
+			name = PresetManagementTests;
+			productName = OrpheeTests;
+			productReference = DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -295,6 +376,8 @@
 			targets = (
 				52C61D941A79E5C400B3DE23 /* Orphee */,
 				52C61DA91A79E5C400B3DE23 /* OrpheeTests */,
+				DB8E61D81ABB4D2B005BF7B4 /* AudioGraphTests */,
+				DB8E61E91ABB4D86005BF7B4 /* PresetManagementTests */,
 			);
 		};
 /* End PBXProject section */
@@ -315,6 +398,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		52C61DA81A79E5C400B3DE23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB8E61E31ABB4D2B005BF7B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB8E61F41ABB4D86005BF7B4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,9 +450,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DB8E61DB1ABB4D2B005BF7B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */,
+				DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */,
+				DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */,
+				DB8E61DF1ABB4D2B005BF7B4 /* PresetMgr.swift in Sources */,
+				DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB8E61EC1ABB4D86005BF7B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB8E61ED1ABB4D86005BF7B4 /* PresetLoader.m in Sources */,
+				DB8E61EE1ABB4D86005BF7B4 /* AudioGraph.swift in Sources */,
+				DB8E61F01ABB4D86005BF7B4 /* PresetMgr.swift in Sources */,
+				DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DB8E61D91ABB4D2B005BF7B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52C61D941A79E5C400B3DE23 /* Orphee */;
+			targetProxy = DB8E61DA1ABB4D2B005BF7B4 /* PBXContainerItemProxy */;
+		};
+		DB8E61EA1ABB4D86005BF7B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52C61D941A79E5C400B3DE23 /* Orphee */;
+			targetProxy = DB8E61EB1ABB4D86005BF7B4 /* PBXContainerItemProxy */;
+		};
 		DBDC8A0D1A980200001ADE00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 52C61D941A79E5C400B3DE23 /* Orphee */;
@@ -528,6 +658,84 @@
 			};
 			name = Release;
 		};
+		DB8E61E51ABB4D2B005BF7B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OrpheeTests/AudioGraphTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = AudioGraphTests;
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
+			};
+			name = Debug;
+		};
+		DB8E61E61ABB4D2B005BF7B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OrpheeTests/AudioGraphTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = AudioGraphTests;
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
+			};
+			name = Release;
+		};
+		DB8E61F61ABB4D86005BF7B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OrpheeTests/PresetManagementTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = PresetManagementTests;
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
+			};
+			name = Debug;
+		};
+		DB8E61F71ABB4D86005BF7B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OrpheeTests/PresetManagementTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = PresetManagementTests;
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -554,6 +762,24 @@
 			buildConfigurations = (
 				52C61DB81A79E5C400B3DE23 /* Debug */,
 				52C61DB91A79E5C400B3DE23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB8E61E41ABB4D2B005BF7B4 /* Build configuration list for PBXNativeTarget "AudioGraphTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB8E61E51ABB4D2B005BF7B4 /* Debug */,
+				DB8E61E61ABB4D2B005BF7B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB8E61F51ABB4D86005BF7B4 /* Build configuration list for PBXNativeTarget "PresetManagementTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB8E61F61ABB4D86005BF7B4 /* Debug */,
+				DB8E61F71ABB4D86005BF7B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
