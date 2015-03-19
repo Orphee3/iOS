@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
-		526FF5F61A810DA700CF6A9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
-		526FF5F71A810DA700CF6A9C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */; };
 		526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */; };
 		526FF6051A81106E00CF6A9C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6041A81106E00CF6A9C /* Sounds */; };
@@ -32,6 +30,8 @@
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
+		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
+		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
@@ -52,9 +52,9 @@
 		526FF6041A81106E00CF6A9C /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = Ressources/Sounds; sourceTree = "<group>"; };
 		52C61D951A79E5C400B3DE23 /* Orphee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orphee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52C61D9C1A79E5C400B3DE23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Orphee/ViewController.swift; sourceTree = "<group>"; };
+		52C61D9C1A79E5C400B3DE23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		52C61D9F1A79E5C400B3DE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		52C61DA11A79E5C400B3DE23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Orphee/Images.xcassets; sourceTree = "<group>"; };
+		52C61DA11A79E5C400B3DE23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Ressources/Images.xcassets; sourceTree = "<group>"; };
 		52C61DA41A79E5C400B3DE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		52C61DAA1A79E5C400B3DE23 /* OrpheeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrpheeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C61DBC1A7A039E00B3DE23 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -73,7 +73,7 @@
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
-		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITimeBlockArray.swift; path = Orphee/UITimeBlockArray.swift; sourceTree = "<group>"; };
+		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,17 +120,17 @@
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
 			);
 			name = Ressources;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		526FF5B91A8109BA00CF6A9C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
-				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
+				DB2BB3411ABAE280003B066B /* storyboard and xibs */,
 				DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */,
 				DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */,
 			);
 			name = Views;
+			path = Orphee/Views;
 			sourceTree = "<group>";
 		};
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
@@ -140,6 +140,7 @@
 				DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */,
 			);
 			name = ViewControllers;
+			path = Orphee/ViewControllers;
 			sourceTree = "<group>";
 		};
 		52C61D8C1A79E5C400B3DE23 = {
@@ -186,6 +187,16 @@
 			path = OrpheeTests;
 			sourceTree = "<group>";
 		};
+		DB2BB3411ABAE280003B066B /* storyboard and xibs */ = {
+			isa = PBXGroup;
+			children = (
+				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
+				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
+			);
+			name = "storyboard and xibs";
+			path = ../Base.lproj;
+			sourceTree = "<group>";
+		};
 		DB3A9EAB1AA99650000660F4 /* Preset management */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +205,7 @@
 				523432E31A80C1420041B7BD /* PresetLoader.h */,
 				52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */,
 			);
-			name = "Preset management";
+			path = "Preset management";
 			sourceTree = "<group>";
 		};
 		DB3A9EAC1AA996ED000660F4 /* Audio generation */ = {
@@ -203,7 +214,7 @@
 				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
 			);
-			name = "Audio generation";
+			path = "Audio generation";
 			sourceTree = "<group>";
 		};
 		DB3A9EAD1AA9970D000660F4 /* MIDI-related */ = {
@@ -293,12 +304,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
+				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */,
 				526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */,
-				526FF5F61A810DA700CF6A9C /* Main.storyboard in Resources */,
-				526FF5F71A810DA700CF6A9C /* LaunchScreen.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +370,7 @@
 				52C61D9F1A79E5C400B3DE23 /* Base */,
 			);
 			name = Main.storyboard;
-			path = Orphee;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */ = {
@@ -368,7 +379,7 @@
 				52C61DA41A79E5C400B3DE23 /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = Orphee;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -461,7 +472,7 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Preset management/Orphee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -474,7 +485,7 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Preset management/Orphee-Bridging-Header.h";
 			};
 			name = Release;
 		};
