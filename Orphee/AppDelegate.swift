@@ -8,10 +8,15 @@
 
 import UIKit
 
+/// The app delegate works alongside the app object to ensure your app interacts properly with the system and with other apps.
+/// Specifically, the methods of the app delegate give you a chance to respond to important changes
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    /// The application's window
     var window: UIWindow?;
+
+    /// This view controller graph represents the view controllers for all or part of the application’s user interface.
     var storybd: UIStoryboard?;
 
     /// Override point for customization after application launch.

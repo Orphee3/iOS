@@ -52,8 +52,8 @@ class ViewController: UIViewController {
         }
     }
 
-    /// Called when the UI's `Stop` button is pressed.
-    /// Displays *stop*
+    /// Called when the UI's `remove` button is pressed.
+    /// Removes 4 buttons from each track and updates the scroll view's size.
     ///
     /// :param: sender  The object sending the event.
     @IBAction func removeColumOfBlocks(sender: AnyObject) {
@@ -65,6 +65,10 @@ class ViewController: UIViewController {
         }
     }
 
+    /// Called when the UI's `Stop` button is pressed.
+    /// Displays *stop*
+    ///
+    /// :param: sender  The object sending the event.
     @IBAction func StopButtonTouched(sender: AnyObject) {
         println("stop");
     }
