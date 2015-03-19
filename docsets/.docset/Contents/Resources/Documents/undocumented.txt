@@ -1,6 +1,3 @@
-AudioGraph.swift
-	var ac: AudioComponentDescription = mkComponentDescription(
-	var ac: AudioComponentDescription = mkComponentDescription(
 UITrackTimeBlock.swift
 	init(row: Int, column: Int)
 UITimeBlockArray.swift
