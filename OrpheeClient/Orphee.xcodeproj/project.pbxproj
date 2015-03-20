@@ -32,8 +32,6 @@
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
-		DB2BB3861ABAF66E003B066B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41CDF51AB4BF510072D83F /* PathManager.swift */; };
-		DBA908891ABB198F00294F2B /* MIDIFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF412611AB48793001E6C43 /* MIDIFileCreator.swift */; };
 		DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
@@ -103,8 +101,6 @@
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61F91ABB4D86005BF7B4 /* PresetManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PresetManagementTests-Info.plist"; sourceTree = "<group>"; };
-		DB41CDF51AB4BF510072D83F /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
-		DBF412611AB48793001E6C43 /* MIDIFileCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFileCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,9 +213,7 @@
 			children = (
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
 				DB3A9EAC1AA996ED000660F4 /* Audio generation */,
-				DB3A9EAD1AA9970D000660F4 /* MIDI-related */,
 				DB3A9EAB1AA99650000660F4 /* Preset management */,
-				DB41CDF51AB4BF510072D83F /* PathManager.swift */,
 			);
 			name = Classes;
 			path = Orphee;
@@ -265,14 +259,6 @@
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
 			);
 			path = "Audio generation";
-			sourceTree = "<group>";
-		};
-		DB3A9EAD1AA9970D000660F4 /* MIDI-related */ = {
-			isa = PBXGroup;
-			children = (
-				DBF412611AB48793001E6C43 /* MIDIFileCreator.swift */,
-			);
-			name = "MIDI-related";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,8 +417,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBA908891ABB198F00294F2B /* MIDIFileCreator.swift in Sources */,
-				DB2BB3861ABAF66E003B066B /* PathManager.swift in Sources */,
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
