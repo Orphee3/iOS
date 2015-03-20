@@ -10,6 +10,8 @@
 		DB5DA54A1ABC97FC009A09B1 /* FileManagement.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DA5491ABC97FC009A09B1 /* FileManagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DA5501ABC97FC009A09B1 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5DA5441ABC97FC009A09B1 /* FileManagement.framework */; };
 		DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */; };
+		DB5DA5611ABC9964009A09B1 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5601ABC9964009A09B1 /* PathManager.swift */; };
+		DB5DA5621ABC996A009A09B1 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5601ABC9964009A09B1 /* PathManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,7 @@
 		DB5DA54F1ABC97FC009A09B1 /* FileManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5DA5551ABC97FC009A09B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagementTests.swift; sourceTree = "<group>"; };
+		DB5DA5601ABC9964009A09B1 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 		DB5DA5461ABC97FC009A09B1 /* FileManagement */ = {
 			isa = PBXGroup;
 			children = (
+				DB5DA5601ABC9964009A09B1 /* PathManager.swift */,
 				DB5DA5491ABC97FC009A09B1 /* FileManagement.h */,
 				DB5DA5471ABC97FC009A09B1 /* Supporting Files */,
 			);
@@ -209,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5DA5611ABC9964009A09B1 /* PathManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5DA5621ABC996A009A09B1 /* PathManager.swift in Sources */,
 				DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
