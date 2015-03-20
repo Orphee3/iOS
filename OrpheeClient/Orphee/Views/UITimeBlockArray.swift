@@ -83,4 +83,13 @@ class UITimeBlockArray {
         }
         size = buttons.count;
     }
+
+    /// MARK: Accessors
+    //
+
+    /// Allows access to the array's size
+    func getSize() -> Int {
+
+        return size;
+    }
 }
