@@ -20,151 +20,212 @@ func SwapUInt16(i: UInt16) -> UInt16
     return ((i & 0xFF00) >> 8) | ((i & 0x00FF) << 8);
 }
 
+enum NoteVelocity: Int {
+    case noire = 96
+    case croche = 48
+    case dbCroche = 24
+}
+
 class MIDIFileCreator {
 
-    func writeOutMIDIFile() {
+    struct Track {
+        var trackLength: UInt32    = 0;
+        var channel: UInt8         = 0;
 
+        var header: ByteBuffer;
+        var channelPrg: ByteBuffer;
+        lazy var body: ByteBuffer! = nil;
+
+        init(channel: UInt8, startTime: Int, instrument: Int) {
+
+            header       = ByteBuffer(order: LittleEndian(), capacity: 24);
+            channelPrg   = ByteBuffer(order: LittleEndian(), capacity: 7);
+            self.channel = channel;
+
+            fillHeader();
+            mkChannelPrg(channel, startTime: startTime, instrument: instrument);
+        }
+
+        mutating func fillHeader() {
+
+            // track head mark
+            header.putUTF8("MTrk");
+            header.mark();
+
+            // track header length
+            header.putUInt32(SwapUInt32(trackLength));
+
+            // track time signature (4/4)
+            header.putUInt32(SwapUInt32(0x00FF5804));
+            header.putUInt32(SwapUInt32(0x04021808));
+
+            // track tempo
+            header.putUInt32(SwapUInt32(0x00FF5103));
+            header.putUInt8(0x07);
+            header.putUInt8(0xA1);
+            header.putUInt8(0x20);
+
+            trackLength = 19;
+        }
+
+        mutating func mkChannelPrg(channel: UInt8, startTime: Int, instrument: Int) {
+
+            mkDeltaTime(channelPrg, deltaTime: startTime);
+            channelPrg.putUInt8(0xC0 + channel);
+            channelPrg.putUInt8(UInt8(instrument));
+            trackLength += 2;
+        }
+
+        mutating func mkDeltaTime(bbuf: ByteBuffer, deltaTime: Int) {
+
+            var buffer: [UInt8] = [0, 0, 0, 0];
+            var delta: Int      = deltaTime;
+            var pos: Int        = 0;
+
+            do {
+                buffer[pos++] = UInt8(delta) & 0x7F;
+                delta >>= 7;
+                ++trackLength;
+            } while (delta > 0);
+
+            while (pos > 0)
+            {
+                pos--;
+                if (pos > 0) {
+                    bbuf.putUInt8(buffer[pos] | 0x80);
+                }
+                else {
+                    bbuf.putUInt8(buffer[pos]);
+                }
+            }
+        }
+
+        mutating func noteEvent(event: MIDIEvents, note: Int, velocity: UInt8) {
+
+            body.putUInt8(channel + event.rawValue);
+            body.putUInt8(UInt8(note));
+            body.putUInt8(velocity);
+            trackLength += 3;
+        }
+
+        mutating func buildTrack(events: [ [Int] ]) {
+
+            var silences: Int = 0;
+            var eventNb: Int = 0;
+
+            for notes in events {
+                eventNb += (2 * notes.count * 3) + (2 * notes.count * 4) + 1;
+            }
+
+            body = ByteBuffer(order: LittleEndian(), capacity: eventNb);
+            for notes in events {
+
+                if (notes.count > 0) {
+                    for (idx, note) in enumerate(notes) {
+                        mkDeltaTime(body, deltaTime: (silences > 0 && idx == 0) ? (NoteVelocity.croche.rawValue * silences) : 0);
+                        noteEvent(MIDIEvents.noteOn, note: note, velocity: 76);
+                    }
+                    for (idx, note) in enumerate(notes) {
+                        mkDeltaTime(body, deltaTime: (idx == 0) ? NoteVelocity.croche.rawValue : 0);
+                        noteEvent(MIDIEvents.noteOff, note: note, velocity: 0);
+                    }
+                }
+                else {
+                    ++silences;
+                }
+            }
+            body.putUInt32(SwapUInt32(0x00FF2F00));
+
+            let pos = header.position;
+            header.reset();
+            header.putUInt32(SwapUInt32(trackLength));
+            header.position = pos;
+        }
+
+        mutating func unifiedBufferForTrack() -> ByteBuffer {
+
+            //            let size = header.position + channelPrg.position + body.position;
+            var buffer = ByteBuffer(order: LittleEndian(), capacity: Int(trackLength + 50));
+
+            memcpy(buffer.data + buffer.position, header.data, UInt(header.position));
+            buffer.position += header.position;
+            memcpy(buffer.data + buffer.position, channelPrg.data, UInt(channelPrg.position));
+            buffer.position += channelPrg.position;
+            memcpy(buffer.data + buffer.position, body.data, UInt(body.position));
+            buffer.position += body.position;
+            return buffer;
+        }
     }
 
-    var NumberOfTrack: Int = 0;
-    var MidiFileType: Int = 0;
-    var _trackLength: Int = 0;
+    var NumberOfTrack: UInt16 = 1;
+    var MidiFileType: UInt16  = 0;
 
-    var _midiFile: String = "";
+    var _midiFile: String     = "";
 
-    let _fileHeaderLength: Int;
-    let _deltaTicksPerQuarterNote: Int;
+    let _fileHeaderLength: UInt32;
+    let _deltaTicksPerQuarterNote: UInt16;
 
+    var fileHeader: ByteBuffer;
+    var tracks: [Track] = [];
+    
     init() {
-        _fileHeaderLength = 6;
+        _fileHeaderLength         = 6;
         _deltaTicksPerQuarterNote = 60;
-        _trackLength = 0;
+
+        fileHeader = ByteBuffer(order: LittleEndian(), capacity: 15);
+        fillHeader();
     }
 
-//    func CreateMidiFile(fileName: String, noteList: [Int : [Int]], currentInstrument: Int)
-//    {
-//        var folder: StorageFolder = ApplicationData.Current.LocalFolder;
-//        this._midiFile = await folder.CreateFileAsync(fileName + ".mid", CreationCollisionOption.ReplaceExisting);
+    func fillHeader() {
+        // file header mark
+        fileHeader.putUTF8("MThd");
 
-//        let resources: String = NSBundle.mainBundle().resourcePath!;
+        // track header length
+        fileHeader.putUInt32(SwapUInt32(_fileHeaderLength));
+        fileHeader.putUInt16(SwapUInt16(MidiFileType));
+        fileHeader.putUInt16(SwapUInt16(NumberOfTrack));
+        fileHeader.putUInt16(SwapUInt16(_deltaTicksPerQuarterNote));
+    }
 
-//        using (_writer = new BinaryWriter(this._midiFile.OpenStreamForWriteAsync().Result))
-//        {
-//            WriteMidiFileHeader();
-//            WriteChannelProgram(0, channel: 0, programIndex: currentInstrument);
-//            WriteTrack(noteList);
-//            WriteTrackHeaderLengthNewValue();
-//            WriteEndOfTrack();
-//        }
-//    }
-//
-//    func WriteMidiFileHeader()
-//    {
-//        "MThd".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)?.writeToFile(, atomically: <#Bool#>);
-//        _writer.Write(SwapUInt32(_fileHeaderLength));
-//        _writer.Write(SwapUInt16(MidiFileType));
-//        _writer.Write(SwapUInt16(this.NumberOfTrack));
-//        _writer.Write(SwapUInt16(_deltaTicksPerQuarterNote));
-//        WriteMidiTrackHeader(0);
-//    }
-//
-//    func WriteMidiTrackHeader(trackLength: Int)
-//    {
-//        this._writer.Write(Encoding.UTF8.GetBytes("MTrk"));
-//        this._writer.Write(SwapUInt32((uint)trackLength));
-//        this._trackLength += 4;
-//        WriteTimeSignature();
-//        WriteTempo();
-//    }
-//
-//    func WriteTimeSignature()
-//    {
-//        this._writer.Write(SwapUInt32(0x00FF5804));
-//        this._writer.Write(SwapUInt32(0x04021808));
-//        this._trackLength += 8;
-//    }
-//
-//    func WriteTempo()
-//    {
-//        this._writer.Write(SwapUInt32(0x00FF5103));
-//        this._writer.Write((Byte)0x07);
-//        this._writer.Write((Byte)0xA1);
-//        this._writer.Write((Byte)0x20);
-//        this._trackLength += 7;
-//    }
-//
-//    func WriteChannelProgram(deltaTime: Int, channel: Int, programIndex: Int)
-//    {
-//        WriteDeltaTime(deltaTime);
-//        this._writer.Write((Byte)(0xC0 + channel));
-//        this._writer.Write((Byte)programIndex);
-//        this._trackLength += 2;
-//    }
-//
-//    func WriteTrack(noteList: [Int : [Note]])
-//    {
-//        for (var lineNumber = 0; lineNumber < noteList.Count; lineNumber++)
-//        {
-//            var silenceNumber = 0;
-//
-//            while (lineNumber < (noteList.Count - 1) && noteList[lineNumber].Count == 0)
-//            {
-//                silenceNumber++;
-//                lineNumber++;
-//            }
-//
-//            if (noteList[lineNumber].Count > 0)
-//            {
-//                for (var i = 0; i < noteList[lineNumber].Count; i++) {
-//                    WriteMidiNoteEvent(silenceNumber == 0 ? 0 : (i == 0 ? (48 * silenceNumber) : 0), 0x90, 0, noteList[lineNumber][i], 76);
-//                }
-//                for (var i = 0; i < noteList[lineNumber].Count; i++) {
-//                    WriteMidiNoteEvent(i == 0 ? 48 : 0, 0x80, 0, noteList[lineNumber][i], 0);
-//                }
-//            }
-//        }
-//    }
-//
-//    func WriteMidiNoteEvent(deltaTime: Int, eventCode: Int, channel: Int, noteIndex: Int, noteVelocity: Int)
-//    {
-//        WriteDeltaTime(deltaTime);
-//        this._writer.Write((byte)(eventCode + channel));
-//        this._writer.Write((byte)noteIndex);
-//        this._writer.Write((byte)noteVelocity);
-//        this._trackLength += 3;
-//    }
-//
-//    func WriteTrackHeaderLengthNewValue()
-//    {
-//        this._writer.Seek(-this._trackLength, SeekOrigin.End);
-//        this._writer.Write(SwapUInt32((uint)this._trackLength));
-//        this._writer.Seek(0, SeekOrigin.End);
-//    }
-//
-//    func WriteEndOfTrack()
-//    {
-//        this._writer.Write(SwapUInt32(0x00FF2F00));
-//    }
-//
-//    func WriteDeltaTime(deltaTime: int)
-//    {
-//        var pos = 0;
-//        var buffer = new byte[4];
-//
-//        do
-//        {
-//            buffer[pos++] = (byte)(deltaTime & 0x7F);
-//            deltaTime >>= 7;
-//            this._trackLength++;
-//        } while (deltaTime > 0);
-//
-//        while (pos > 0)
-//        {
-//            pos--;
-//            if (pos > 0)
-//            this._writer.Write((byte)(buffer[pos] | 0x80));
-//            else
-//            this._writer.Write(buffer[pos]);
-//        }
-//    }
+    func addTrack(notes: [[Int]]) {
+
+        var track = Track(channel: 0, startTime: 0, instrument: 0x2e);
+
+        track.buildTrack(notes);
+        tracks.append(track);
+    }
+
+    func mkBuffersForTracks() -> [ByteBuffer] {
+
+        var buffers: [ByteBuffer] = [];
+
+        for (var idx = 0; idx < tracks.count; idx++) {
+
+            buffers.append(tracks[idx].unifiedBufferForTrack());
+        }
+        return buffers;
+    }
+
+    func dataForFile() -> NSData {
+
+        var size = fileHeader.position;
+        var buffers = mkBuffersForTracks();
+
+        for buffer in buffers {
+            size += buffer.position;
+        }
+
+        println("\ntotal data size \(size)\n")
+        var fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
+
+        memcpy(fileBuf.data + fileBuf.position, fileHeader.data, UInt(fileHeader.position));
+        fileBuf.position += fileHeader.position;
+        for buffer in buffers {
+            memcpy(fileBuf.data + fileBuf.position, buffer.data, UInt(buffer.position));
+            fileBuf.position += buffer.position;
+        }
+
+        println("\ntotal data in file buffer \(fileBuf.position)\n")
+        return NSData(bytes: fileBuf.data, length: fileBuf.position);
+    }
 }

@@ -7,11 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB51C8E51AC04D6900404F06 /* MIDIFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */; };
+		DB51C8E61AC04D6900404F06 /* MIDIFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */; };
+		DB5D752E1AC2D61F0011B197 /* IOManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D752D1AC2D61F0011B197 /* IOManagers.swift */; };
+		DB5D752F1AC2D61F0011B197 /* IOManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D752D1AC2D61F0011B197 /* IOManagers.swift */; };
+		DB5D75311AC2DFF50011B197 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75301AC2DFF50011B197 /* ResourceManager.swift */; };
+		DB5D75321AC2DFF50011B197 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75301AC2DFF50011B197 /* ResourceManager.swift */; };
+		DB5D75341AC2E4880011B197 /* FormattedFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75331AC2E4880011B197 /* FormattedFileManager.swift */; };
+		DB5D75351AC2E4880011B197 /* FormattedFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75331AC2E4880011B197 /* FormattedFileManager.swift */; };
+		DB5D753A1AC2F13B0011B197 /* MIDIFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */; };
+		DB5D753B1AC2F13B0011B197 /* MIDIFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */; };
 		DB5DA54A1ABC97FC009A09B1 /* FileManagement.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DA5491ABC97FC009A09B1 /* FileManagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DA5501ABC97FC009A09B1 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5DA5441ABC97FC009A09B1 /* FileManagement.framework */; };
 		DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */; };
 		DB5DA5611ABC9964009A09B1 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5601ABC9964009A09B1 /* PathManager.swift */; };
 		DB5DA5621ABC996A009A09B1 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5601ABC9964009A09B1 /* PathManager.swift */; };
+		DB6CE5F01AC2FA930065A99E /* MIDIReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */; };
+		DB6CE5F11AC2FA930065A99E /* MIDIReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */; };
+		DB6CE5F31AC2FB370065A99E /* MIDIWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */; };
+		DB6CE5F41AC2FB370065A99E /* MIDIWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */; };
+		DB6CE5F71AC31D160065A99E /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */; };
+		DB6CE5F81AC31D160065A99E /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */; };
+		DB6CE5F91AC31D160065A99E /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F61AC31D160065A99E /* ByteOrder.swift */; };
+		DB6CE5FA1AC31D160065A99E /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F61AC31D160065A99E /* ByteOrder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFileCreator.swift; sourceTree = "<group>"; };
+		DB51C8EA1AC05AC400404F06 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		DB5D752D1AC2D61F0011B197 /* IOManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOManagers.swift; sourceTree = "<group>"; };
+		DB5D75301AC2DFF50011B197 /* ResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
+		DB5D75331AC2E4880011B197 /* FormattedFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattedFileManager.swift; sourceTree = "<group>"; };
+		DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFileManager.swift; sourceTree = "<group>"; };
 		DB5DA5441ABC97FC009A09B1 /* FileManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FileManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5DA5481ABC97FC009A09B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB5DA5491ABC97FC009A09B1 /* FileManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManagement.h; sourceTree = "<group>"; };
@@ -32,6 +56,10 @@
 		DB5DA5551ABC97FC009A09B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagementTests.swift; sourceTree = "<group>"; };
 		DB5DA5601ABC9964009A09B1 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
+		DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIReader.swift; sourceTree = "<group>"; };
+		DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIWriter.swift; sourceTree = "<group>"; };
+		DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBuffer.swift; sourceTree = "<group>"; };
+		DB6CE5F61AC31D160065A99E /* ByteOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,9 @@
 		DB5DA53A1ABC97FC009A09B1 = {
 			isa = PBXGroup;
 			children = (
+				DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */,
+				DB6CE5F61AC31D160065A99E /* ByteOrder.swift */,
+				DB51C8EA1AC05AC400404F06 /* File.swift */,
 				DB5DA5461ABC97FC009A09B1 /* FileManagement */,
 				DB5DA5531ABC97FC009A09B1 /* FileManagementTests */,
 				DB5DA5451ABC97FC009A09B1 /* Products */,
@@ -74,9 +105,16 @@
 		DB5DA5461ABC97FC009A09B1 /* FileManagement */ = {
 			isa = PBXGroup;
 			children = (
+				DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */,
 				DB5DA5601ABC9964009A09B1 /* PathManager.swift */,
 				DB5DA5491ABC97FC009A09B1 /* FileManagement.h */,
 				DB5DA5471ABC97FC009A09B1 /* Supporting Files */,
+				DB5D752D1AC2D61F0011B197 /* IOManagers.swift */,
+				DB5D75301AC2DFF50011B197 /* ResourceManager.swift */,
+				DB5D75331AC2E4880011B197 /* FormattedFileManager.swift */,
+				DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */,
+				DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */,
+				DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */,
 			);
 			path = FileManagement;
 			sourceTree = "<group>";
@@ -213,7 +251,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6CE5F01AC2FA930065A99E /* MIDIReader.swift in Sources */,
+				DB6CE5F71AC31D160065A99E /* ByteBuffer.swift in Sources */,
+				DB5D753A1AC2F13B0011B197 /* MIDIFileManager.swift in Sources */,
+				DB5D752E1AC2D61F0011B197 /* IOManagers.swift in Sources */,
+				DB6CE5F31AC2FB370065A99E /* MIDIWriter.swift in Sources */,
 				DB5DA5611ABC9964009A09B1 /* PathManager.swift in Sources */,
+				DB51C8E51AC04D6900404F06 /* MIDIFileCreator.swift in Sources */,
+				DB5D75341AC2E4880011B197 /* FormattedFileManager.swift in Sources */,
+				DB6CE5F91AC31D160065A99E /* ByteOrder.swift in Sources */,
+				DB5D75311AC2DFF50011B197 /* ResourceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,8 +268,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5D75351AC2E4880011B197 /* FormattedFileManager.swift in Sources */,
+				DB6CE5F11AC2FA930065A99E /* MIDIReader.swift in Sources */,
+				DB5D753B1AC2F13B0011B197 /* MIDIFileManager.swift in Sources */,
+				DB6CE5F81AC31D160065A99E /* ByteBuffer.swift in Sources */,
 				DB5DA5621ABC996A009A09B1 /* PathManager.swift in Sources */,
+				DB6CE5F41AC2FB370065A99E /* MIDIWriter.swift in Sources */,
+				DB5D752F1AC2D61F0011B197 /* IOManagers.swift in Sources */,
 				DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */,
+				DB6CE5FA1AC31D160065A99E /* ByteOrder.swift in Sources */,
+				DB51C8E61AC04D6900404F06 /* MIDIFileCreator.swift in Sources */,
+				DB5D75321AC2DFF50011B197 /* ResourceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +457,7 @@
 				DB5DA55C1ABC97FC009A09B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5DA55D1ABC97FC009A09B1 /* Build configuration list for PBXNativeTarget "FileManagementTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +466,7 @@
 				DB5DA55F1ABC97FC009A09B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
