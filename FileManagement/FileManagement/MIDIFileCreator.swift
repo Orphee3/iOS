@@ -56,11 +56,26 @@ class MIDIFileCreator {
             header.putUInt32(SwapUInt32(trackLength));
 
             // track time signature (4/4)
+            //
+            // 0xFF = MIDI Meta event
+            // 0x58 = MIDI time signature event
+            // 0x04 = 4 Bytes of data follow
             header.putUInt32(SwapUInt32(0x00FF5804));
+
+            // 0x04 = time signature numerator is 4
+            // 0x02 = time signature denominator is 2^2 = 4
+            // 0x18 = metronome clicks once every 24 MIDI clock tick
+            // 0x08 = number of 32nd notes per beat (8 = 1/4 note per beat).
             header.putUInt32(SwapUInt32(0x04021808));
 
-            // track tempo
+            // track tempo (number of 1/4 note per minute)
+            //
+            // 0xFF = MIDI Meta event
+            // 0x51 = MIDI set tempo event
+            // 0x03 = 3 Bytes of data follow -> number of μs/quarter_note
             header.putUInt32(SwapUInt32(0x00FF5103));
+
+            // 0x07A120 = 500_000: 60_000_000/500_000 = 120 quarter_notes/minute
             header.putUInt8(0x07);
             header.putUInt8(0xA1);
             header.putUInt8(0x20);
@@ -76,17 +91,16 @@ class MIDIFileCreator {
             trackLength += 2;
         }
 
-        mutating func mkDeltaTime(bbuf: ByteBuffer, deltaTime: Int) {
+        mutating func mkDeltaTime(bbuf: ByteBuffer, var deltaTime: Int) {
 
             var buffer: [UInt8] = [0, 0, 0, 0];
-            var delta: Int      = deltaTime;
             var pos: Int        = 0;
 
             do {
-                buffer[pos++] = UInt8(delta) & 0x7F;
-                delta >>= 7;
+                buffer[pos++] = UInt8(deltaTime & Int(0x7F));
+                deltaTime >>= 7;
                 ++trackLength;
-            } while (delta > 0);
+            } while (deltaTime > 0);
 
             while (pos > 0)
             {
@@ -100,7 +114,7 @@ class MIDIFileCreator {
             }
         }
 
-        mutating func noteEvent(event: MIDIEvents, note: Int, velocity: UInt8) {
+        mutating func noteEvent(event: MidiEventType, note: Int, velocity: UInt8) {
 
             body.putUInt8(channel + event.rawValue);
             body.putUInt8(UInt8(note));
@@ -123,11 +137,11 @@ class MIDIFileCreator {
                 if (notes.count > 0) {
                     for (idx, note) in enumerate(notes) {
                         mkDeltaTime(body, deltaTime: (silences > 0 && idx == 0) ? (NoteVelocity.croche.rawValue * silences) : 0);
-                        noteEvent(MIDIEvents.noteOn, note: note, velocity: 76);
+                        noteEvent(MidiEventType.noteOn, note: note, velocity: 76);
                     }
                     for (idx, note) in enumerate(notes) {
                         mkDeltaTime(body, deltaTime: (idx == 0) ? NoteVelocity.croche.rawValue : 0);
-                        noteEvent(MIDIEvents.noteOff, note: note, velocity: 0);
+                        noteEvent(MidiEventType.noteOff, note: note, velocity: 0);
                     }
                 }
                 else {

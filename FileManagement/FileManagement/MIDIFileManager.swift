@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum MIDIEvents: Int {
-    case noteOn  = 0x90
-    case noteOff = 0x80
-}
-
 /// Class MIDIFileManager implements FormattedFileManager
 ///
 /// A file manager dedicated to MIDI files.
