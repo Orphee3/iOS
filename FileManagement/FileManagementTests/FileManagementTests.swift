@@ -25,17 +25,37 @@ class FileManagementTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
+    func testReadWrite() {
+
         XCTAssertNotNil(fm as MIDIFileManager, "File manager is nil");
         XCTAssertTrue(fm!.createFile(nil, header: nil), "Pass")
+        XCTAssertTrue(fm!.readFile(nil), "Pass")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
         }
+
+    func testGetNextEvent() {
+
+        var test: Bool = false;
+        var b1: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+        var b2: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+
+        b1.putUInt32(0x00FF5806);
+        b2.putUInt32(0x00005846);
+
+        b1.position = 0;
+        b2.position = 0;
+
+        let b1Pos = b1.position;
+        let res1 = getNextEvent(b1, &test);
+        XCTAssert(res1 == 0x58, "Wrong output! Got \(res1)");
+        XCTAssert(b1Pos != b1.position, "Wrong position! \(b1Pos) == \(b1.position)");
+        println("position: \(b1.position), Byte: \(res1)");
+
+        let b2Pos = b2.position;
+        let res2 = getNextEvent(b2, &test);
+        XCTAssert(res2 == 0x58, "Wrong output! Got \(res2)");
+        XCTAssert(b2Pos != b2.position, "Wrong position! \(b2Pos) == \(b2.position)");
+        println("position: \(b2.position), Byte: \(res2)");
     }
     
 }
