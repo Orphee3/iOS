@@ -45,6 +45,8 @@ protocol FormattedFileManager {
     ///                 - `false` otherwise.
     func createFile(name: String?, header: [String : AnyObject]?) -> Bool;
 
+    func readFile(name: String?) -> Bool;
+
     ///    Deletes the managed file.
     func deleteFile();
 }

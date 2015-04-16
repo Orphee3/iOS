@@ -56,6 +56,15 @@ class MIDIFileManager: FormattedFileManager {
         return writer.write(midiFile.dataForFile());
     }
 
+    func readFile(name: String?) -> Bool {
+
+        if (name != nil) {
+            self.name = name!;
+        }
+
+        return true;
+    }
+
     func deleteFile() {
 
     }
