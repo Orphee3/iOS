@@ -10,7 +10,7 @@ import UIKit
 
 /// Class MIDIDataParser
 ///
-/// 
+///
 class MIDIDataParser {
 
     struct Track {
@@ -172,6 +172,8 @@ class MIDIDataParser {
     var nbrOfTracks: UInt16             = 0;
     var deltaTickPerQuarterNote: UInt16 = 0;
 
+    var smallestTimeDiv: UInt32         = NoteValue.breve.rawValue;
+
     init(data: NSData) {
 
         self.dataBuffer = ByteBuffer(order: LittleEndian(), capacity: data.length);
@@ -182,7 +184,7 @@ class MIDIDataParser {
     }
 
     func readHeader() {
-        
+
         // file header mark
         headerMark = dataBuffer.getUTF8(4);
 
@@ -193,13 +195,25 @@ class MIDIDataParser {
         deltaTickPerQuarterNote = SwapUInt16(dataBuffer.getUInt16());
     }
 
-
     func parseTracks() {
 
+        build_allTracks:
         for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
 
             var track: Track = Track(trackData: dataBuffer, trackNbr: idx + 1);
             track.getNoteArray();
+
+            find_smallestTimeDivision:
+            for midiEvent in track.midiEvents {
+
+                if let tmEvent = midiEvent as? TimedEvent<ByteBuffer> {
+
+                    if (tmEvent.deltaTime > 0) {
+
+                        smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
+                    }
+                }
+            }
         }
     }
 
