@@ -22,6 +22,7 @@
 		DBEF68EE1AD76431009F8548 /* MIDIReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */; };
 		DBEF68EF1AD76431009F8548 /* MIDIWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */; };
 		DBEF68F01AD76431009F8548 /* MidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80AC2D1AD7222100ADC083 /* MidiEvent.swift */; };
+		DBEF68F21AD76431009F8548 /* MIDIEventsProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80AC331AD74BF300ADC083 /* MIDIEventsProcessors.swift */; };
 		DBEF68F31AD7646C009F8548 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */; };
 		DBEF68F41AD7646C009F8548 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F61AC31D160065A99E /* ByteOrder.swift */; };
 		DBEF68F51AD7646C009F8548 /* MIDIFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */; };
@@ -34,6 +35,7 @@
 		DBEF68FC1AD7646C009F8548 /* MIDIReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */; };
 		DBEF68FD1AD7646C009F8548 /* MIDIWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */; };
 		DBEF68FE1AD7646C009F8548 /* MidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80AC2D1AD7222100ADC083 /* MidiEvent.swift */; };
+		DBEF69001AD7646C009F8548 /* MIDIEventsProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80AC331AD74BF300ADC083 /* MIDIEventsProcessors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBuffer.swift; sourceTree = "<group>"; };
 		DB6CE5F61AC31D160065A99E /* ByteOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
 		DB80AC2D1AD7222100ADC083 /* MidiEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEvent.swift; sourceTree = "<group>"; };
+		DB80AC331AD74BF300ADC083 /* MIDIEventsProcessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIEventsProcessors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,7 @@
 				DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */,
 				DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */,
 				DB80AC2D1AD7222100ADC083 /* MidiEvent.swift */,
+				DB80AC331AD74BF300ADC083 /* MIDIEventsProcessors.swift */,
 			);
 			path = FileManagement;
 			sourceTree = "<group>";
@@ -271,6 +275,7 @@
 				DBEF68FC1AD7646C009F8548 /* MIDIReader.swift in Sources */,
 				DBEF68FD1AD7646C009F8548 /* MIDIWriter.swift in Sources */,
 				DBEF68FE1AD7646C009F8548 /* MidiEvent.swift in Sources */,
+				DBEF69001AD7646C009F8548 /* MIDIEventsProcessors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +295,7 @@
 				DBEF68EE1AD76431009F8548 /* MIDIReader.swift in Sources */,
 				DBEF68EF1AD76431009F8548 /* MIDIWriter.swift in Sources */,
 				DBEF68F01AD76431009F8548 /* MidiEvent.swift in Sources */,
+				DBEF68F21AD76431009F8548 /* MIDIEventsProcessors.swift in Sources */,
 				DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

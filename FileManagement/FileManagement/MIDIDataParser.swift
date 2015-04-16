@@ -55,3 +55,42 @@ class MIDIDataParser {
     }
 }
 
+func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8 {
+
+    if (!isMetaEvent) {
+        buffer.mark();
+    }
+
+    let byte = buffer.getUInt8()
+
+    if (byte == 0xFF || byte == 0) {
+
+        isMetaEvent = isMetaEventByte(byte)
+        return getNextEvent(buffer, &isMetaEvent);
+    }
+    if (!isMetaEvent) {
+        buffer.reset();
+    }
+    return byte;
+}
+
+func isMetaEventByte(currentByte: UInt8) -> Bool {
+
+    return currentByte == 0xFF
+}
+
+func processStatusByte(statusByte: UInt8) -> MidiEventType {
+
+    if let eventType = MidiEventType(rawValue: statusByte) {
+        return eventType;
+    }
+    for eventType in MidiEventType.MIDIEvents {
+
+        if ((eventType.rawValue & statusByte == eventType.rawValue)
+            && (eventType.rawValue ^ statusByte < 0xF)) {
+
+            return eventType;
+        }
+    }
+    return MidiEventType.unknown;
+}
