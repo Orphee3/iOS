@@ -62,6 +62,7 @@ class MIDIFileManager: FormattedFileManager {
             self.name = name!;
         }
 
+        var parser = MIDIDataParser(data: reader.readAllData());
         return true;
     }
 

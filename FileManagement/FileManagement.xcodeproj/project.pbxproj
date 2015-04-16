@@ -13,6 +13,7 @@
 		DBEF68E51AD76431009F8548 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */; };
 		DBEF68E61AD76431009F8548 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F61AC31D160065A99E /* ByteOrder.swift */; };
 		DBEF68E71AD76431009F8548 /* MIDIFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */; };
+		DBEF68E81AD76431009F8548 /* MIDIDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4539911AD04E150016C782 /* MIDIDataParser.swift */; };
 		DBEF68E91AD76431009F8548 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5601ABC9964009A09B1 /* PathManager.swift */; };
 		DBEF68EA1AD76431009F8548 /* IOManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D752D1AC2D61F0011B197 /* IOManagers.swift */; };
 		DBEF68EB1AD76431009F8548 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75301AC2DFF50011B197 /* ResourceManager.swift */; };
@@ -24,6 +25,7 @@
 		DBEF68F31AD7646C009F8548 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */; };
 		DBEF68F41AD7646C009F8548 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F61AC31D160065A99E /* ByteOrder.swift */; };
 		DBEF68F51AD7646C009F8548 /* MIDIFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */; };
+		DBEF68F61AD7646C009F8548 /* MIDIDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4539911AD04E150016C782 /* MIDIDataParser.swift */; };
 		DBEF68F71AD7646C009F8548 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5601ABC9964009A09B1 /* PathManager.swift */; };
 		DBEF68F81AD7646C009F8548 /* IOManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D752D1AC2D61F0011B197 /* IOManagers.swift */; };
 		DBEF68F91AD7646C009F8548 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75301AC2DFF50011B197 /* ResourceManager.swift */; };
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB4539911AD04E150016C782 /* MIDIDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIDataParser.swift; sourceTree = "<group>"; };
 		DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFileCreator.swift; sourceTree = "<group>"; };
 		DB51C8EA1AC05AC400404F06 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		DB5D752D1AC2D61F0011B197 /* IOManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOManagers.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				DB51C8E41AC04D6900404F06 /* MIDIFileCreator.swift */,
+				DB4539911AD04E150016C782 /* MIDIDataParser.swift */,
 				DB5DA5471ABC97FC009A09B1 /* Supporting Files */,
 				DB5DA5491ABC97FC009A09B1 /* FileManagement.h */,
 				DB5DA5601ABC9964009A09B1 /* PathManager.swift */,
@@ -258,6 +262,7 @@
 				DBEF68F31AD7646C009F8548 /* ByteBuffer.swift in Sources */,
 				DBEF68F41AD7646C009F8548 /* ByteOrder.swift in Sources */,
 				DBEF68F51AD7646C009F8548 /* MIDIFileCreator.swift in Sources */,
+				DBEF68F61AD7646C009F8548 /* MIDIDataParser.swift in Sources */,
 				DBEF68F71AD7646C009F8548 /* PathManager.swift in Sources */,
 				DBEF68F81AD7646C009F8548 /* IOManagers.swift in Sources */,
 				DBEF68F91AD7646C009F8548 /* ResourceManager.swift in Sources */,
@@ -276,6 +281,7 @@
 				DBEF68E51AD76431009F8548 /* ByteBuffer.swift in Sources */,
 				DBEF68E61AD76431009F8548 /* ByteOrder.swift in Sources */,
 				DBEF68E71AD76431009F8548 /* MIDIFileCreator.swift in Sources */,
+				DBEF68E81AD76431009F8548 /* MIDIDataParser.swift in Sources */,
 				DBEF68E91AD76431009F8548 /* PathManager.swift in Sources */,
 				DBEF68EA1AD76431009F8548 /* IOManagers.swift in Sources */,
 				DBEF68EB1AD76431009F8548 /* ResourceManager.swift in Sources */,
