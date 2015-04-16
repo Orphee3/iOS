@@ -22,11 +22,11 @@ class MIDIReader: InputManager {
 
     func readAllData() -> NSData {
 
-        return NSData(contentsOfFile: "")!;
+        return handle!.readDataToEndOfFile();
     }
 
     func read(#size: UInt) -> NSData {
 
-        return NSData(contentsOfFile: "")!;
+        return handle!.readDataOfLength(Int(size));
     }
 }
