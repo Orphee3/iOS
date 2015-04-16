@@ -13,6 +13,29 @@ func isExpectedLength(length: UInt8, expected: UInt8) -> Bool {
     return length == expected;
 }
 
+func makeMidiEvent(delta: UInt32 = 0, #eventType: MidiEventType, #buffer: ByteBuffer) -> GenericMidiEvent<ByteBuffer> {
+
+    var event: GenericMidiEvent<ByteBuffer>? = nil;
+    switch eventType {
+    case .noteOn:
+        event = TimedEvent(type: eventType, deltaTime: delta, reader: processNoteOnEvent);
+    case .noteOff:
+        event = TimedEvent(type: eventType, deltaTime: delta, reader: processNoteOffEvent);
+    case .programChange:
+        event = TimedEvent(type: eventType, deltaTime: delta, reader: processProgramChange);
+    case .timeSignature:
+        event = GenericMidiEvent(type: eventType, reader: processTimeSigEvent);
+    case .setTempo:
+        event = GenericMidiEvent(type: eventType, reader: processTempoEvent);
+    case .endOfTrack:
+        event = GenericMidiEvent(type: eventType, reader: processEndOfTrack);
+    default:
+        event = GenericMidiEvent(type: eventType, reader: processUnknownEvent);
+    }
+    event!.readData(buffer);
+    return event!;
+}
+
 /// MARK: META Events
 
 func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
