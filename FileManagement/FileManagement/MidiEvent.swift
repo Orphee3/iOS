@@ -34,3 +34,31 @@ enum MidiEventType: UInt8 {
     static let METAEvents = [timeSignature, setTempo, endOfTrack];
 }
 
+
+/** MidiEvent protocol
+
+*/
+
+
+protocol MidiEvent {
+
+    typealias dataSource;
+
+    var type: MidiEventType { get };
+    var data: [UInt32]? { get set };
+
+    func readData(rawData: dataSource);
+}
+
+
+/** TimedMidiEvent protocol
+
+*/
+
+
+protocol TimedMidiEvent: MidiEvent {
+
+    var deltaTime: UInt32 { get };
+
+    init(type: MidiEventType, deltaTime: UInt32, reader: (rawData:dataSource) -> [UInt32]);
+}
