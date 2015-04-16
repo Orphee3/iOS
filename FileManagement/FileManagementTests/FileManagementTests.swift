@@ -31,7 +31,18 @@ class FileManagementTests: XCTestCase {
         XCTAssertTrue(fm!.createFile(nil, header: nil), "Pass")
         XCTAssertTrue(fm!.readFile(nil), "Pass")
     }
+
+    func testGenericEventBuild() {
+
+        var event = TimedEvent<ByteBuffer>(type: MidiEventType.noteOn, deltaTime: 5) { (rawData) -> [UInt32] in
+            return [5];
         }
+
+        XCTAssert(event.type == MidiEventType.noteOn, "Bad type init");
+        XCTAssert(event.deltaTime == 5, "Bad delta init");
+        event.readData(ByteBuffer(order: LittleEndian(), capacity: 10));
+        XCTAssert(event.data! == [5], "Bad reader init");
+    }
 
     func testGetNextEvent() {
 
