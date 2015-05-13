@@ -602,7 +602,7 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/Orphee/Preset management/Orphee-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Preset management/Orphee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -615,7 +615,7 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/Orphee/Preset management/Orphee-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Preset management/Orphee-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -635,7 +635,7 @@
 				INFOPLIST_FILE = OrpheeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
@@ -653,7 +653,7 @@
 				INFOPLIST_FILE = OrpheeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
 			name = Release;
@@ -674,7 +674,7 @@
 				INFOPLIST_FILE = "OrpheeTests/AudioGraphTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = AudioGraphTests;
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
@@ -692,7 +692,7 @@
 				INFOPLIST_FILE = "OrpheeTests/AudioGraphTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = AudioGraphTests;
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
 			name = Release;
@@ -713,7 +713,7 @@
 				INFOPLIST_FILE = "OrpheeTests/PresetManagementTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = PresetManagementTests;
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
@@ -731,7 +731,7 @@
 				INFOPLIST_FILE = "OrpheeTests/PresetManagementTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = PresetManagementTests;
-				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeClient/OrpheeTests/OrpheeTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OrpheeTests/OrpheeTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphee.app/Orphee";
 			};
 			name = Release;
