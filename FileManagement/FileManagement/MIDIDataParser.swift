@@ -176,8 +176,8 @@ class MIDIDataParser {
 
     init(data: NSData) {
 
-        self.dataBuffer = ByteBuffer(order: LittleEndian(), capacity: data.length);
-        data.getBytes(self.dataBuffer.data);
+        self.dataBuffer = ByteBuffer(order: LittleEndian(), capacity: data.length + 1);
+        data.getBytes(self.dataBuffer.data, length: data.length);
 
         self.readHeader();
         self.printHeader();

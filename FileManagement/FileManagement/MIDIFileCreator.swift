@@ -166,11 +166,20 @@ class MIDIFileCreator {
             //            let size = header.position + channelPrg.position + body.position;
             var buffer = ByteBuffer(order: LittleEndian(), capacity: Int(trackLength + 50));
 
-            memcpy(buffer.data + buffer.position, header.data, UInt(header.position));
+            memcpy(UnsafeMutablePointer<Void>(buffer.data + buffer.position),
+                UnsafeMutablePointer<Void>(header.data),
+                header.position
+            );
             buffer.position += header.position;
-            memcpy(buffer.data + buffer.position, channelPrg.data, UInt(channelPrg.position));
+            memcpy(UnsafeMutablePointer<Void>(buffer.data + buffer.position),
+                UnsafeMutablePointer<Void>(channelPrg.data),
+                channelPrg.position
+            );
             buffer.position += channelPrg.position;
-            memcpy(buffer.data + buffer.position, body.data, UInt(body.position));
+            memcpy(UnsafeMutablePointer<Void>(buffer.data + buffer.position),
+                UnsafeMutablePointer<Void>(body.data),
+                body.position
+            );
             buffer.position += body.position;
             return buffer;
         }
@@ -237,13 +246,19 @@ class MIDIFileCreator {
         println("\ntotal data size \(size)\n")
         var fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
 
-        memcpy(fileBuf.data + fileBuf.position, fileHeader.data, UInt(fileHeader.position));
+        memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
+            UnsafeMutablePointer<Void>(fileHeader.data),
+            fileHeader.position
+        );
         fileBuf.position += fileHeader.position;
         for buffer in buffers {
-            memcpy(fileBuf.data + fileBuf.position, buffer.data, UInt(buffer.position));
+            memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
+                UnsafeMutablePointer<Void>(buffer.data),
+                buffer.position
+            );
             fileBuf.position += buffer.position;
         }
-
+        
         println("\ntotal data in file buffer \(fileBuf.position)\n")
         return NSData(bytes: fileBuf.data, length: fileBuf.position);
     }

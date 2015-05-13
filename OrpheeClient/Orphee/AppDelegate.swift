@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        var vc: ViewController? = storybd?.instantiateInitialViewController() as ViewController?;
+        var vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
         if let viewCtl = vc {
             self.window?.rootViewController = vc!;
             self.window?.makeKeyAndVisible();

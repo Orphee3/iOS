@@ -9,13 +9,13 @@
 import Foundation
 
 ///    Classes managing standardized files should follow this protocol.
-protocol FormattedFileManager {
+protocol FormattedFileManager: class {
 
     /// The formatted file type's standard extension.
-    class var ext: String { get };
+    static var ext: String { get };
 
     /// The formatted file type's standard storing directory.
-    class var store: String { get };
+    static var store: String { get };
 
 
     /// The object used to write to the managed file.

@@ -27,7 +27,7 @@ class FileManagementTests: XCTestCase {
     
     func testReadWrite() {
 
-        XCTAssertNotNil(fm as MIDIFileManager, "File manager is nil");
+        XCTAssertNotNil(fm as! MIDIFileManager, "File manager is nil");
         XCTAssertTrue(fm!.createFile(nil, header: nil), "Pass")
         XCTAssertTrue(fm!.readFile(nil), "Pass")
     }
