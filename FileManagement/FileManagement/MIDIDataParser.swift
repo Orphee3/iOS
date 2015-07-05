@@ -235,7 +235,6 @@ public class MIDIDataParser {
             }
             tracks[Int(idx)] = cleanedEvents;
         }
-        println(tracks);
         return tracks;
     }
 

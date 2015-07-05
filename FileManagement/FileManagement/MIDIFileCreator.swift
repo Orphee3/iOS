@@ -141,8 +141,11 @@ public class MIDIFileCreator {
 
                 if (notes.count > 0) {
                     for (idx, note) in enumerate(notes) {
-                        mkDeltaTime(body, deltaTime: (silences > 0 && idx == 0) ? (NoteValue.quaver.rawValue * silences) : 0);
+                        mkDeltaTime(body, deltaTime: (idx == 0) ? (NoteValue.quaver.rawValue * silences) : 0);
                         noteEvent(MidiEventType.noteOn, note: note, velocity: 76);
+                        if (idx == 0) {
+                            silences = 0;
+                        }
                     }
                     for (idx, note) in enumerate(notes) {
                         mkDeltaTime(body, deltaTime: (idx == 0) ? NoteValue.quaver.rawValue : 0);
@@ -263,7 +266,7 @@ public class MIDIFileCreator {
             );
             fileBuf.position += buffer.position;
         }
-        
+
         println("\ntotal data in file buffer \(fileBuf.position)\n")
         return NSData(bytes: fileBuf.data, length: fileBuf.position);
     }
