@@ -11,39 +11,39 @@ import UIKit
 /// Class MIDIFileManager implements FormattedFileManager
 ///
 /// A file manager dedicated to MIDI files.
-class MIDIFileManager: FormattedFileManager {
+public class MIDIFileManager: FormattedFileManager {
 
     /// The formatted file type's standard extension.
-    static var ext: String {
+    public static var ext: String {
         return "mid";
     };
 
     /// The formatted file type's standard storing directory.
-    static var store: String {
+    public static var store: String {
         return "/Users/Massil/Desktop";
     }
 
     /// The object used to write to the managed file.
-    lazy var writer: OutputManager = MIDIWriter(path: self.path);
+    public lazy var writer: OutputManager = MIDIWriter(path: self.path);
 
     /// The object used to read from the managed file.
-    lazy var reader: InputManager = MIDIReader(path: self.path);
+    public lazy var reader: InputManager = MIDIReader(path: self.path);
 
     /// The name to the managed file.
-    var name: String;
+    public var name: String;
 
-    var path: String {
+    public var path: String {
         get {
             return (MIDIFileManager.store + "/" + self.name + "." + MIDIFileManager.ext)
         }
     }
 
-    required init(name: String) {
+    public required init(name: String) {
 
         self.name = name;
     }
 
-    func createFile(name: String?, header: [String : AnyObject]?) -> Bool {
+    public func createFile(name: String?, content: [String : AnyObject]?) -> Bool {
 
         if (name != nil) {
             self.name = name!;
@@ -52,23 +52,26 @@ class MIDIFileManager: FormattedFileManager {
         NSFileManager.defaultManager().createFileAtPath(self.path, contents: nil, attributes: nil);
 
         var midiFile = MIDIFileCreator();
-        midiFile.addTrack([ [45, 86, 74], [], [45, 86, 74], [45, 86, 74], [45, 86, 74], [], [], [], [45, 86, 74] ])
+        if let tracks: AnyObject = content?["TRACKS"] {
+            var trackList = tracks as! [Int : [[Int]]];
+            for (idx, track) in trackList {
+                midiFile.addTrack(track);
+            }
+        }
         return writer.write(midiFile.dataForFile());
     }
 
-    func readFile(name: String?) -> Bool {
+    public func readFile(name: String?) -> [String : AnyObject]? {
 
         if (name != nil) {
             self.name = name!;
         }
 
         var parser = MIDIDataParser(data: reader.readAllData());
-        parser.parseTracks();
-        return true;
+        return ["TRACKS" : parser.parseTracks()];
     }
 
-    func deleteFile() {
+    public func deleteFile() {
 
     }
-	
 }
