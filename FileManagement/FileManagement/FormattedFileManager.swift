@@ -9,7 +9,7 @@
 import Foundation
 
 ///    Classes managing standardized files should follow this protocol.
-protocol FormattedFileManager: class {
+public protocol FormattedFileManager: class {
 
     /// The formatted file type's standard extension.
     static var ext: String { get };

@@ -8,12 +8,12 @@
 
 import Foundation
 
-func isExpectedLength(length: UInt8, expected: UInt8) -> Bool {
+public func isExpectedLength(length: UInt8, expected: UInt8) -> Bool {
 
     return length == expected;
 }
 
-func makeMidiEvent(delta: UInt32 = 0, #eventType: MidiEventType, #buffer: ByteBuffer) -> GenericMidiEvent<ByteBuffer> {
+public func makeMidiEvent(delta: UInt32 = 0, #eventType: MidiEventType, #buffer: ByteBuffer) -> GenericMidiEvent<ByteBuffer> {
 
     var event: GenericMidiEvent<ByteBuffer>? = nil;
     switch eventType {
@@ -38,7 +38,7 @@ func makeMidiEvent(delta: UInt32 = 0, #eventType: MidiEventType, #buffer: ByteBu
 
 /// MARK: META Events
 
-func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
+public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
@@ -55,7 +55,7 @@ func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
     return [];
 }
 
-func processTempoEvent(data: ByteBuffer) -> [UInt32] {
+public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
@@ -74,7 +74,7 @@ func processTempoEvent(data: ByteBuffer) -> [UInt32] {
     return [];
 }
 
-func processEndOfTrack(data: ByteBuffer) -> [UInt32] {
+public func processEndOfTrack(data: ByteBuffer) -> [UInt32] {
 
     // No data to process actually...
     return [];
@@ -83,14 +83,14 @@ func processEndOfTrack(data: ByteBuffer) -> [UInt32] {
 
 /// MARK: MIDI Events
 
-func processProgramChange(data: ByteBuffer) -> [UInt32] {
+public func processProgramChange(data: ByteBuffer) -> [UInt32] {
 
     let channel = data.getUInt8() ^ 0xC0;
     let instruID = data.getUInt8();
     return [UInt32(channel), UInt32(instruID)];
 }
 
-func processNoteOnEvent(data: ByteBuffer) -> [UInt32] {
+public func processNoteOnEvent(data: ByteBuffer) -> [UInt32] {
 
     let channel = data.getUInt8() ^ 0x90;
     let note = data.getUInt8();
@@ -98,7 +98,7 @@ func processNoteOnEvent(data: ByteBuffer) -> [UInt32] {
     return [UInt32(channel), UInt32(note), UInt32(velocity)];
 }
 
-func processNoteOffEvent(data: ByteBuffer) -> [UInt32] {
+public func processNoteOffEvent(data: ByteBuffer) -> [UInt32] {
 
     let channel = data.getUInt8() ^ 0x80;
     let note = data.getUInt8();
@@ -109,7 +109,7 @@ func processNoteOffEvent(data: ByteBuffer) -> [UInt32] {
 
 /// MARK: Other
 
-func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
+public func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
 
     var stop: Bool = false;
     var event: [UInt32] = [];

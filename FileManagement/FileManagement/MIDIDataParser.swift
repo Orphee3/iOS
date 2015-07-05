@@ -11,9 +11,9 @@ import UIKit
 /// Class MIDIDataParser
 ///
 ///
-class MIDIDataParser {
+public class MIDIDataParser {
 
-    struct Track {
+    public struct Track {
 
         var dataBuffer: ByteBuffer;
         var trackNbr: UInt16;
@@ -174,7 +174,7 @@ class MIDIDataParser {
 
     var smallestTimeDiv: UInt32         = NoteValue.breve.rawValue;
 
-    init(data: NSData) {
+    public init(data: NSData) {
 
         self.dataBuffer = ByteBuffer(order: LittleEndian(), capacity: data.length + 1);
         data.getBytes(self.dataBuffer.data, length: data.length);
@@ -229,7 +229,7 @@ class MIDIDataParser {
     }
 }
 
-func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8 {
+public func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8 {
 
     if (!isMetaEvent) {
         buffer.mark();
@@ -248,12 +248,12 @@ func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8 {
     return byte;
 }
 
-func isMetaEventByte(currentByte: UInt8) -> Bool {
+public func isMetaEventByte(currentByte: UInt8) -> Bool {
 
     return currentByte == 0xFF
 }
 
-func processStatusByte(statusByte: UInt8) -> MidiEventType {
+public func processStatusByte(statusByte: UInt8) -> MidiEventType {
 
     if let eventType = MidiEventType(rawValue: statusByte) {
         return eventType;

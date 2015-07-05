@@ -13,14 +13,14 @@ import Foundation
 ///    - Readonly:  Read access only. Writting is impossible.
 ///    - Writeonly: Write access only. Reading is impossible.
 ///    - ReadWrite: Read and write access.
-enum AccessMode {
+public enum AccessMode {
     case Readonly
     case Writeonly
     case ReadWrite
 }
 
 ///    Common interface for writing to files, sockets and the like.
-protocol OutputManager {
+public protocol OutputManager {
 
     ///    Writes the given data to the target.
     ///
@@ -32,7 +32,7 @@ protocol OutputManager {
 }
 
 ///    Common interface for reading from files, sockets and the like.
-protocol InputManager {
+public protocol InputManager {
 
     ///    Reads all the data contained in the given target.
     ///

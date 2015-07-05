@@ -12,7 +12,7 @@ import UIKit
 ///
 /// Proxy for accessing an application special directories.
 /// TODO: This class is a mess. Fix it.
-class PathManager {
+public class PathManager {
 
     ///    An enumeration of the different errors that `PathManager` might encounter.
     ///
@@ -20,7 +20,7 @@ class PathManager {
     ///    - noDir:      No directory with the given name exists.
     ///    - nsError:    An internal error occured. See the related `NSError` for more information.
     ///    - unknown:    An unspecified error occured. See the related `String` for more information.
-    enum PathMgrErr {
+    public enum PathMgrErr {
         case fileExists
         case noDir
         case nsError(NSError)
@@ -35,7 +35,7 @@ class PathManager {
     ///    :returns: A pair of optionals.
     ///    :returns:    - `path` is nil on error. Otherwise it's the new file's path.
     ///                 - `err` is nil if no error is encountered. Otherwise it is set with the corresponding value.
-    class func createResourceFile(filename: String, subdirectory dir: String? = nil) -> (path: String?, err: PathMgrErr?) {
+    public class func createResourceFile(filename: String, subdirectory dir: String? = nil) -> (path: String?, err: PathMgrErr?) {
 
         let resourcePath: String = NSBundle.mainBundle().resourcePath!;
         var path: String        = resourcePath;
