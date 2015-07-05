@@ -219,8 +219,13 @@ public class MIDIFileCreator {
 
         var track = Track(channel: 0, startTime: 0, instrument: 0x2e);
 
-        track.buildTrack(notes);
-        tracks.append(track);
+        if (notes.count > 0) {
+            track.buildTrack(notes);
+            tracks.append(track);
+        }
+        else {
+            println("No events in given track: Ignoring");
+        }
     }
 
     func mkBuffersForTracks() -> [ByteBuffer] {

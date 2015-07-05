@@ -195,7 +195,9 @@ public class MIDIDataParser {
         deltaTickPerQuarterNote = SwapUInt16(dataBuffer.getUInt16());
     }
 
-    func parseTracks() {
+    func parseTracks() -> [Int : [[Int]]] {
+
+        var tracks: [Int : [[Int]]] = [:];
 
         build_allTracks:
         for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
@@ -203,18 +205,38 @@ public class MIDIDataParser {
             var track: Track = Track(trackData: dataBuffer, trackNbr: idx + 1);
             track.getNoteArray();
 
-            find_smallestTimeDivision:
-            for midiEvent in track.midiEvents {
+            var timedEvents: [TimedEvent<ByteBuffer>] = track.midiEvents
+                .filter({ $0 is TimedEvent<ByteBuffer> })
+                .map({ $0 as! TimedEvent<ByteBuffer> });
 
-                if let tmEvent = midiEvent as? TimedEvent<ByteBuffer> {
+            for tmEvent in timedEvents {
 
-                    if (tmEvent.deltaTime > 0) {
+                if (tmEvent.deltaTime > 0) {
 
-                        smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
-                    }
+                    smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
                 }
             }
+            var i = 0;
+            var cleanedEvents: [[Int]] = [[]];
+            for event in timedEvents {
+
+                if (event.deltaTime >= smallestTimeDiv) {
+
+                    var silences = event.deltaTime / smallestTimeDiv;
+                    for (var j: UInt32 = 0; j < silences; ++j) {
+
+                        cleanedEvents.append([]);
+                        ++i;
+                    }
+                }
+                if (event.type == MidiEventType.noteOn) {
+                    cleanedEvents[i].append(Int(event.data![1]));
+                }
+            }
+            tracks[Int(idx)] = cleanedEvents;
         }
+        println(tracks);
+        return tracks;
     }
 
     private func printHeader() {
