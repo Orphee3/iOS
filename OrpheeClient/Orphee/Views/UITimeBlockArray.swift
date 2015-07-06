@@ -13,7 +13,11 @@ import UIKit
 class UITimeBlockArray {
 
     /// The actual array of `UITrackTimeBlocks`
-    private var buttons: [UITrackTimeBlock?] = [];
+    var buttons: [UITrackTimeBlock?] = [];
+    var note: UInt32;
+    var blockId: String = "";
+    weak var graph: AudioGraph!;
+    weak var container: UIView?;
 
     /// The row this array represents in the UI.
     var row: Int = 0 {
@@ -43,9 +47,12 @@ class UITimeBlockArray {
     /// Init
     ///
     /// :param: rowNbr  The row number represented by this array.
-    init(rowNbr: Int) {
+    init(rowNbr: Int, noteValue: Int, inView view: UIView, withGraph: AudioGraph) {
 
         row = rowNbr;
+        note = UInt32(noteValue);
+        graph = withGraph;
+        container = view;
     }
 
     /// MARK: Add/Remove buttons
@@ -56,13 +63,13 @@ class UITimeBlockArray {
     /// :param: count   The number of buttons to add to the array and given view.
     /// :param: color   The buttons' color.
     /// :param: toView  The view to which to add these buttons.
-    func addButtons(count: Int, color: UIColor, toView view: UIView) {
+    func addButtons(count: Int, color: UIColor) {
 
         for (var col = 0; col < count; col++) {
-            var tBlock = UITrackTimeBlock.timeBlock(image: UIImage(named: "buttonBlue")!, row: row, column: col + size);
+            var tBlock = UITrackTimeBlock.timeBlock(image: UIImage(named: "buttonBlue")!, row: row, column: col + size, note: note, graph: graph);
 
             buttons.append(tBlock);
-            view.addSubview(tBlock);
+            container!.addSubview(tBlock);
         }
         size = buttons.count;
     }
@@ -71,7 +78,7 @@ class UITimeBlockArray {
     ///
     /// :param: count       The number of buttons to remove from the array and given view.
     /// :param: fromView    The view from which to remove these buttons.
-    func removeButtons(count: Int, fromView view: UIView) {
+    func removeButtons(count: Int) {
 
         let safeCount = (count <= size) ? count : size;
 
