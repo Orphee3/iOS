@@ -14,7 +14,7 @@ import Foundation
 */
 
 
-enum MidiEventType: UInt8 {
+public enum MidiEventType: UInt8 {
 
     // MIDI events
     case noteOn = 0x90
@@ -40,7 +40,7 @@ enum MidiEventType: UInt8 {
 */
 
 
-protocol MidiEvent {
+public protocol MidiEvent {
 
     typealias dataSource;
 
@@ -56,7 +56,7 @@ protocol MidiEvent {
 */
 
 
-protocol TimedMidiEvent: MidiEvent {
+public protocol TimedMidiEvent: MidiEvent {
 
     var deltaTime: UInt32 { get };
 

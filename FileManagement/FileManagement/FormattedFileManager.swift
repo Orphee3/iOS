@@ -9,7 +9,7 @@
 import Foundation
 
 ///    Classes managing standardized files should follow this protocol.
-protocol FormattedFileManager: class {
+public protocol FormattedFileManager: class {
 
     /// The formatted file type's standard extension.
     static var ext: String { get };
@@ -39,13 +39,19 @@ protocol FormattedFileManager: class {
     ///    and writes a header containing the provided information.
     ///
     ///    :param: name   The name of the new file. If nil, the internal `name` is used instead.
-    ///    :param: header A dictionnary of values to fill the header if necessary.
+    ///    :param: content A dictionnary of values to fill the file.
     ///
     ///    :returns:    - `true` if the file was created.
     ///                 - `false` otherwise.
-    func createFile(name: String?, header: [String : AnyObject]?) -> Bool;
+    func createFile(name: String?, content: [String : AnyObject]?) -> Bool;
 
-    func readFile(name: String?) -> Bool;
+    ///    Opens a file with the given name in the file format's standard store
+    ///    and reads the data.
+    ///
+    ///    :param: name   The name of the file. If nil, the internal `name` is used instead.
+    ///
+    ///    :returns:    The data contained in the file, organized as key-value pairs.
+    func readFile(name: String?) -> [String : AnyObject]?;
 
     ///    Deletes the managed file.
     func deleteFile();

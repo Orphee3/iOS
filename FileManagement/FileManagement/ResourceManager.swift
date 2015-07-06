@@ -9,7 +9,7 @@
 import Foundation
 
 ///    Classes charged with managing resources for an iOS app should follow this protocol.
-protocol ResourceManager {
+public protocol ResourceManager {
 
     func createResource(path: String) -> Bool;
     func deleteResource() -> Bool;

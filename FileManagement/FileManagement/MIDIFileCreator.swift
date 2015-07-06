@@ -31,9 +31,9 @@ enum NoteValue: UInt32 {
     case hemidemisemiquaver = 6   // quadruple croche: 1/64 note
 }
 
-class MIDIFileCreator {
+public class MIDIFileCreator {
 
-    struct Track {
+    public struct Track {
         var trackLength: UInt32    = 0;
         var channel: UInt8         = 0;
 
@@ -141,8 +141,11 @@ class MIDIFileCreator {
 
                 if (notes.count > 0) {
                     for (idx, note) in enumerate(notes) {
-                        mkDeltaTime(body, deltaTime: (silences > 0 && idx == 0) ? (NoteValue.quaver.rawValue * silences) : 0);
+                        mkDeltaTime(body, deltaTime: (idx == 0) ? (NoteValue.quaver.rawValue * silences) : 0);
                         noteEvent(MidiEventType.noteOn, note: note, velocity: 76);
+                        if (idx == 0) {
+                            silences = 0;
+                        }
                     }
                     for (idx, note) in enumerate(notes) {
                         mkDeltaTime(body, deltaTime: (idx == 0) ? NoteValue.quaver.rawValue : 0);
@@ -196,7 +199,7 @@ class MIDIFileCreator {
     var fileHeader: ByteBuffer;
     var tracks: [Track] = [];
 
-    init() {
+    public init() {
         _fileHeaderLength         = 6;
         _deltaTicksPerQuarterNote = 60;
 
@@ -215,12 +218,17 @@ class MIDIFileCreator {
         fileHeader.putUInt16(SwapUInt16(_deltaTicksPerQuarterNote));
     }
 
-    func addTrack(notes: [[Int]]) {
+    public func addTrack(notes: [[Int]]) {
 
         var track = Track(channel: 0, startTime: 0, instrument: 0x2e);
 
-        track.buildTrack(notes);
-        tracks.append(track);
+        if (notes.count > 0) {
+            track.buildTrack(notes);
+            tracks.append(track);
+        }
+        else {
+            println("No events in given track: Ignoring");
+        }
     }
 
     func mkBuffersForTracks() -> [ByteBuffer] {
@@ -234,7 +242,7 @@ class MIDIFileCreator {
         return buffers;
     }
 
-    func dataForFile() -> NSData {
+    public func dataForFile() -> NSData {
 
         var size = fileHeader.position;
         var buffers = mkBuffersForTracks();
@@ -258,7 +266,7 @@ class MIDIFileCreator {
             );
             fileBuf.position += buffer.position;
         }
-        
+
         println("\ntotal data in file buffer \(fileBuf.position)\n")
         return NSData(bytes: fileBuf.data, length: fileBuf.position);
     }

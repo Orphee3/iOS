@@ -11,11 +11,11 @@ import UIKit
 /// Class MIDIWriter implements OutputManager
 ///
 /// 
-class MIDIWriter: OutputManager {
+public class MIDIWriter: OutputManager {
 
     var handle: NSFileHandle?;
 
-    init(path: String) {
+    public init(path: String) {
 
         self.handle = NSFileHandle(forWritingAtPath: path);
         if (self.handle == nil) {
@@ -23,7 +23,7 @@ class MIDIWriter: OutputManager {
         }
     }
 
-    func write(data: NSData) -> Bool {
+    public func write(data: NSData) -> Bool {
 
         if let hdl = handle {
             hdl.writeData(data);

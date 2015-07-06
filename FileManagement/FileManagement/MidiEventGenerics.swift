@@ -9,24 +9,24 @@
 import UIKit
 
 
-class GenericMidiEvent<T>: MidiEvent, Printable {
+public class GenericMidiEvent<T>: MidiEvent, Printable {
 
     typealias dataSource = T;
 
-    var type: MidiEventType;
-    var dataReader: (rawData: T) -> [UInt32];
+    public var type: MidiEventType;
+    public var dataReader: (rawData: T) -> [UInt32];
 
-    var description: String = "\n";
+    public var description: String = "\n";
 
-    var data: [UInt32]? = nil;
+    public var data: [UInt32]? = nil;
 
-    init(type: MidiEventType, reader: (rawData: T) -> [UInt32]) {
+    public init(type: MidiEventType, reader: (rawData: T) -> [UInt32]) {
 
         self.type = type;
         self.dataReader = reader;
     }
 
-    func readData(data: T) {
+    public func readData(data: T) {
 
         self.data = dataReader(rawData: data);
         description += String(format: "\t0x%X : ", type.rawValue) + self.data!.description;
@@ -34,11 +34,11 @@ class GenericMidiEvent<T>: MidiEvent, Printable {
 }
 
 
-class TimedEvent<T>: GenericMidiEvent<T>, TimedMidiEvent {
+public class TimedEvent<T>: GenericMidiEvent<T>, TimedMidiEvent {
 
-    var deltaTime: UInt32 = 0;
+    public var deltaTime: UInt32 = 0;
 
-    required init(type: MidiEventType, deltaTime: UInt32, reader: (rawData: T) -> [UInt32]) {
+    required public init(type: MidiEventType, deltaTime: UInt32, reader: (rawData: T) -> [UInt32]) {
 
         super.init(type: type, reader: reader);
         

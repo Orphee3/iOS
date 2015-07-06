@@ -11,21 +11,21 @@ import UIKit
 /// Class MIDIReader implements InputManager
 ///
 /// 
-class MIDIReader: InputManager {
+public class MIDIReader: InputManager {
 
     var handle: NSFileHandle?;
 
-    init(path: String) {
+    public init(path: String) {
 
         self.handle = NSFileHandle(forReadingAtPath: path);
     }
 
-    func readAllData() -> NSData {
+    public func readAllData() -> NSData {
 
         return handle!.readDataToEndOfFile();
     }
 
-    func read(#size: UInt) -> NSData {
+    public func read(#size: UInt) -> NSData {
 
         return handle!.readDataOfLength(Int(size));
     }
