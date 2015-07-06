@@ -80,15 +80,15 @@ class PresetMgr {
     ///                 - If an error occured `error` is set.
     func getPListFromRawData(data: CFData) -> (plist: CFPropertyListRef?, error: NSError?) {
 
-        var format: CFPropertyListFormat = CFPropertyListFormat.OpenStepFormat;
+        var format: CFPropertyListFormat = CFPropertyListFormat.BinaryFormat_v1_0;
         var err: Unmanaged<CFError>? = nil;
         var errRet: NSError? = nil;
 
-        var plist: CFPropertyList? = CFPropertyListCreateWithData(kCFAllocatorDefault, data, CFPropertyListMutabilityOptions.Immutable.rawValue, &format, &err).takeRetainedValue();
+        var plist: CFPropertyList? = CFPropertyListCreateWithData(kCFAllocatorDefault, data, CFPropertyListMutabilityOptions.Immutable.rawValue, &format, &err)?.takeRetainedValue();
 
         if let ERR = err?.takeUnretainedValue() {
 
-            errRet = NSError(domain: CFErrorGetDomain(ERR), code: CFErrorGetCode(ERR), userInfo: nil);
+            errRet = NSError(domain: String(CFErrorGetDomain(ERR)), code: Int(CFErrorGetCode(ERR)), userInfo: nil);
             err?.release();
         }
         return (plist, errRet);

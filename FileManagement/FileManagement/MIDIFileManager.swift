@@ -14,12 +14,12 @@ import UIKit
 class MIDIFileManager: FormattedFileManager {
 
     /// The formatted file type's standard extension.
-    class var ext: String {
+    static var ext: String {
         return "mid";
     };
 
     /// The formatted file type's standard storing directory.
-    class var store: String {
+    static var store: String {
         return "/Users/Massil/Desktop";
     }
 
