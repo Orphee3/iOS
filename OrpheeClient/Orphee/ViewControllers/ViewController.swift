@@ -100,5 +100,25 @@ class ViewController: UIViewController {
             scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
         }
     }
+    
+    @IBAction func FileButtonTouched(sender: AnyObject) {
+        let optionMenu = UIAlertController(title: nil, message: "Choisissez une option", preferredStyle: .ActionSheet)
+        let deleteAction = UIAlertAction(title: "Importer", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("File Deleted")
+        })
+        let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("File Saved")
+        })
+        let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("Cancelled")
+        })
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
 }
 

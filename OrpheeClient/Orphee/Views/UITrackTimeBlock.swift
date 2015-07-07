@@ -74,14 +74,13 @@ class UITrackTimeBlock: UIButton {
     /// :param: column  The column the new button will belong to.
     ///
     /// :returns: A UITrackTimeBlock `color` button belonging at `row` X `column`
-    class func timeBlock(#color: UIColor, row: Int, column: Int) -> UITrackTimeBlock {
+    class func timeBlock(#image: UIImage, row: Int, column: Int) -> UITrackTimeBlock {
 
         var tBlock: UITrackTimeBlock = UITrackTimeBlock(row: row, column: column);
 
         tBlock.pos = column;
         tBlock.row = row;
-        tBlock.layer.borderWidth = 5;
-        tBlock.backgroundColor = color;
+        tBlock.setImage(image, forState: .Normal);
         tBlock.addTarget(tBlock, action: Selector("onClick"), forControlEvents: UIControlEvents.TouchUpInside);
         return tBlock;
     }
@@ -127,7 +126,7 @@ class UITrackTimeBlock: UIButton {
 
     /// The responder called when the button is clicked.
     func onClick() {
-
+        
         println("button #\(pos) on row #\(row)");
     }
 }

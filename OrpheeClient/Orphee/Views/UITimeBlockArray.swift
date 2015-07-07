@@ -59,7 +59,7 @@ class UITimeBlockArray {
     func addButtons(count: Int, color: UIColor, toView view: UIView) {
 
         for (var col = 0; col < count; col++) {
-            var tBlock = UITrackTimeBlock.timeBlock(color: color, row: row, column: col + size);
+            var tBlock = UITrackTimeBlock.timeBlock(image: UIImage(named: "buttonBlue")!, row: row, column: col + size);
 
             buttons.append(tBlock);
             view.addSubview(tBlock);
