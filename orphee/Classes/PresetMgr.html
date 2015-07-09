@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PresetMgr Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/PresetMgr" class="dashAnchor"></a>
+    <a title="PresetMgr Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/Orphee3/iOS"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PresetMgr Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AudioGraph.html">AudioGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AudioSession.html">AudioSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PresetMgr.html">PresetMgr</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SidebarVC.html">SidebarVC</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITimeBlockArray.html">UITimeBlockArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITrackTimeBlock.html">UITrackTimeBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewController.html">ViewController</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PresetMgr</h1>
+            <p>This class is in charge of providing an easy way of loading and changing presets on the fly.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6Orphee9PresetMgr12presetLoaderCSo12PresetLoader"></a>
+                    <a name="//apple_ref/swift/Property/presetLoader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6Orphee9PresetMgr12presetLoaderCSo12PresetLoader">presetLoader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ObjC class PresetLoader instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">presetLoader</span><span class="p">:</span> <span class="kt">PresetLoader</span> <span class="o">=</span> <span class="kt">PresetLoader</span><span class="p">();</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/ObjC%20wrappers"></a>
+                  <a name="//apple_ref/swift/Section/ObjC wrappers" class="dashAnchor"></a>
+                  <a href="#/ObjC%20wrappers">
+                    <h3 class="section-name">ObjC wrappers</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr17loadPresetFromURLFS0_FTCSo5NSURL8graphMgrCS_10AudioGraph_Sb"></a>
+                    <a name="//apple_ref/swift/Method/loadPresetFromURL(_:graphMgr:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr17loadPresetFromURLFS0_FTCSo5NSURL8graphMgrCS_10AudioGraph_Sb">loadPresetFromURL(_:graphMgr:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: ObjC wrappers
+Convenience wrapper around the PresetLoader&rsquo;s <code>loadSynthFromPresetURL:toAudioUnit:</code> ObjC method</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">loadPresetFromURL</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">graphMgr</span><span class="p">:</span> <span class="kt">AudioGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A URL to the preset file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>graphMgr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The AudioGraph containing the sampler unit on which to load the preset.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li>true:  if no error occured</li><li>false: otherwise</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr20loadSoundBankFromURLFS0_FTCSo5NSURL7patchIdVSs5Int328graphMgrCS_10AudioGraph_Sb"></a>
+                    <a name="//apple_ref/swift/Method/loadSoundBankFromURL(_:patchId:graphMgr:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr20loadSoundBankFromURLFS0_FTCSo5NSURL7patchIdVSs5Int328graphMgrCS_10AudioGraph_Sb">loadSoundBankFromURL(_:patchId:graphMgr:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience wrapper around the PresetLoader&rsquo;s <code>loadSynthFromDLSOrSoundFont:withPatch:toAudioUnit:</code> ObjC method</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">loadSoundBankFromURL</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">patchId</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span> <span class="nv">graphMgr</span><span class="p">:</span> <span class="kt">AudioGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A URL to the sound bank file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>patchID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The id of a patch in the given file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>graphMgr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The AudioGraph containing the sampler unit on which to load the patch.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>true</code> if no error occured</li><li><code>false</code> otherwise</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/AUPreset%20specific%20methods"></a>
+                  <a name="//apple_ref/swift/Section/AUPreset specific methods" class="dashAnchor"></a>
+                  <a href="#/AUPreset%20specific%20methods">
+                    <h3 class="section-name">AUPreset specific methods</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr28getDataFromRessourceWithPathFS0_FSST4dataGSqCSo6CFData_5errorGSqCSo7NSError__"></a>
+                    <a name="//apple_ref/swift/Method/getDataFromRessourceWithPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr28getDataFromRessourceWithPathFS0_FSST4dataGSqCSo6CFData_5errorGSqCSo7NSError__">getDataFromRessourceWithPath(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: AUPreset specific methods
+Retrieves raw data from the file at the given path.
+Always check if error is non-nil as data is not guaranteed to be nil if an error occured.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getDataFromRessourceWithPath</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">CFDataRef</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to the resource file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A pair of optionals.</p>
+
+<ul><li>If the file exists and is reachable, <code>data</code> is a reference to the file&rsquo;s raw data.</li><li>If an error occured <code>error</code> is set.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr19getPListFromRawDataFS0_FCSo6CFDataT5plistGSqPSs9AnyObject__5errorGSqCSo7NSError__"></a>
+                    <a name="//apple_ref/swift/Method/getPListFromRawData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr19getPListFromRawDataFS0_FCSo6CFDataT5plistGSqPSs9AnyObject__5errorGSqCSo7NSError__">getPListFromRawData(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves a property list (PList) from the raw data provided.
+Always check if error in non-nil as plist is not guaranteed to be nil if an error occured.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getPListFromRawData</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">CFData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">plist</span><span class="p">:</span> <span class="kt">CFPropertyListRef</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Raw data extracted from a preset file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A pair of optionals.</p>
+
+<ul><li>Given <code>data</code> is the well-formatted raw data of a valid file, <code>plist</code> is a reference to the retrieved property list.</li><li>If an error occured <code>error</code> is set.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr29getPListFromRessourceWithPathFS0_FSST5plistGSqPSs9AnyObject__5errorGSqCSo7NSError__"></a>
+                    <a name="//apple_ref/swift/Method/getPListFromRessourceWithPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr29getPListFromRessourceWithPathFS0_FSST5plistGSqPSs9AnyObject__5errorGSqCSo7NSError__">getPListFromRessourceWithPath(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience wrapper around getDataFromRessourceWithPath and getPlistFromRawData.
+Always check if error in non-nil as plist is not guaranteed to be nil if an error occured.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getPListFromRessourceWithPath</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">plist</span><span class="p">:</span> <span class="kt">CFPropertyListRef</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to the resource file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A pair of optionals.</p>
+
+<ul><li>If <code>path</code> is valid file and provided no error occurs, <code>plist</code> is a reference to the file&rsquo;s property list.</li><li>If an error occured <code>error</code> is set.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/SoundBank%20specific%20methods"></a>
+                  <a name="//apple_ref/swift/Section/SoundBank specific methods" class="dashAnchor"></a>
+                  <a href="#/SoundBank%20specific%20methods">
+                    <h3 class="section-name">SoundBank specific methods</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr33getMelodicInstrumentFromSoundBankFS0_FT2idVSs5UInt84pathSS11isSoundFontSb_GSqVSC23AUSamplerInstrumentData_"></a>
+                    <a name="//apple_ref/swift/Method/getMelodicInstrumentFromSoundBank(id:path:isSoundFont:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr33getMelodicInstrumentFromSoundBankFS0_FT2idVSs5UInt84pathSS11isSoundFontSb_GSqVSC23AUSamplerInstrumentData_">getMelodicInstrumentFromSoundBank(id:path:isSoundFont:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: SoundBank specific methods
+Builds an AUSamplerInstrumentData structure corresponding to the Sound Bank file at the provided path.
+This method is specific to melodic instruments; If you want to load a percussion soundbank see getPercussionInstrumentFromSoundBank.
+A basic check is done to assertain wether the file has the correct format. Beware this is based only on the file extension!</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getMelodicInstrumentFromSoundBank</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">isSoundFont</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AUSamplerInstrumentData</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The patch&rsquo;s id in the given sound bank file</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to the sound bank file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isSoundFont</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines if the file should be treated as a SoundFont file (e.g. *.sf2) or not (e.g. *.dls)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li>If <code>path</code> is valid: The corresponding structure</li><li>Else: returns <code>nil</code>.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee9PresetMgr36getPercussionInstrumentFromSoundBankFS0_FT2idVSs5UInt84pathSS11isSoundFontSb_GSqVSC23AUSamplerInstrumentData_"></a>
+                    <a name="//apple_ref/swift/Method/getPercussionInstrumentFromSoundBank(id:path:isSoundFont:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee9PresetMgr36getPercussionInstrumentFromSoundBankFS0_FT2idVSs5UInt84pathSS11isSoundFontSb_GSqVSC23AUSamplerInstrumentData_">getPercussionInstrumentFromSoundBank(id:path:isSoundFont:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an AUSamplerInstrumentData structure corresponding to the Sound Bank file at the provided path.
+This method is specific to percussion instruments; If you want to load a melodic soundbank see getMelodicInstrumentFromSoundBank.
+A basic check is done to assertain wether the file has the correct format. Beware this is based only on the file extension!</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getPercussionInstrumentFromSoundBank</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">isSoundFont</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AUSamplerInstrumentData</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The patch&rsquo;s id in the given sound bank file</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to the sound bank file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isSoundFont</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines if the file should be treated as a SoundFont file (e.g. *.sf2) or not (e.g. *.dls)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li>If <code>path</code> is valid: The corresponding structure</li><li>Else: returns <code>nil</code>.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Massil Yataghene, Jeromin Lebon</a>. All rights reserved. (Last updated: 2015-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

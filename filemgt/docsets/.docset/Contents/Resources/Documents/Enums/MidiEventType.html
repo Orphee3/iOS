@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MidiEventType Enum Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Enum/MidiEventType" class="dashAnchor"></a>
+    <a title="MidiEventType Enum Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (26% documented)</p>
+        <p class="header-right"><a href="https://github.com/Orphee3/iOS"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MidiEventType Enum Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/GenericMidiEvent.html">GenericMidiEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIDataParser.html">MIDIDataParser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIFileCreator.html">MIDIFileCreator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIFileManager.html">MIDIFileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIReader.html">MIDIReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIWriter.html">MIDIWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PathManager.html">PathManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TimedEvent.html">TimedEvent</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O14FileManagement10AccessMode">AccessMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MidiEventType.html">MidiEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O14FileManagement9NoteValue">NoteValue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement10SwapUInt16FVSs6UInt16S0_">SwapUInt16(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement10SwapUInt32FVSs6UInt32S0_">SwapUInt32(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement12getNextEventFTCS_10ByteBufferRSb_VSs5UInt8">getNextEvent(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement16isExpectedLengthFTVSs5UInt8S0__Sb">isExpectedLength(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement15isMetaEventByteFVSs5UInt8Sb">isMetaEventByte(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement13makeMidiEventFT5deltaVSs6UInt329eventTypeOS_13MidiEventType6bufferCS_10ByteBuffer_GCS_16GenericMidiEventS2__">makeMidiEvent(delta:eventType:buffer:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement17processEndOfTrackFCS_10ByteBufferGSaVSs6UInt32_">processEndOfTrack(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement19processNoteOffEventFCS_10ByteBufferGSaVSs6UInt32_">processNoteOffEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement18processNoteOnEventFCS_10ByteBufferGSaVSs6UInt32_">processNoteOnEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement20processProgramChangeFCS_10ByteBufferGSaVSs6UInt32_">processProgramChange(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement17processStatusByteFVSs5UInt8OS_13MidiEventType">processStatusByte(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement17processTempoEventFCS_10ByteBufferGSaVSs6UInt32_">processTempoEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement19processTimeSigEventFCS_10ByteBufferGSaVSs6UInt32_">processTimeSigEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement19processUnknownEventFCS_10ByteBufferGSaVSs6UInt32_">processUnknownEvent(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/FormattedFileManager.html">FormattedFileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/InputManager.html">InputManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MidiEvent.html">MidiEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OutputManager.html">OutputManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResourceManager.html">ResourceManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TimedMidiEvent.html">TimedMidiEvent</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MidiEventType</h1>
+            <p>MidiEventType enumeration</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvO14FileManagement13MidiEventType9allValuesGSaS0__"></a>
+                    <a name="//apple_ref/swift/Variable/allValues" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvO14FileManagement13MidiEventType9allValuesGSaS0__">allValues</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvO14FileManagement13MidiEventType10MIDIEventsGSaS0__"></a>
+                    <a name="//apple_ref/swift/Variable/MIDIEvents" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvO14FileManagement13MidiEventType10MIDIEventsGSaS0__">MIDIEvents</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvO14FileManagement13MidiEventType10METAEventsGSaS0__"></a>
+                    <a name="//apple_ref/swift/Variable/METAEvents" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvO14FileManagement13MidiEventType10METAEventsGSaS0__">METAEvents</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Massil Yataghene, Jeromin Lebon</a>. All rights reserved. (Last updated: 2015-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FormattedFileManager Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/FormattedFileManager" class="dashAnchor"></a>
+    <a title="FormattedFileManager Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (26% documented)</p>
+        <p class="header-right"><a href="https://github.com/Orphee3/iOS"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FormattedFileManager Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/GenericMidiEvent.html">GenericMidiEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIDataParser.html">MIDIDataParser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIFileCreator.html">MIDIFileCreator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIFileManager.html">MIDIFileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIReader.html">MIDIReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIWriter.html">MIDIWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PathManager.html">PathManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TimedEvent.html">TimedEvent</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O14FileManagement10AccessMode">AccessMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MidiEventType.html">MidiEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O14FileManagement9NoteValue">NoteValue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement10SwapUInt16FVSs6UInt16S0_">SwapUInt16(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement10SwapUInt32FVSs6UInt32S0_">SwapUInt32(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement12getNextEventFTCS_10ByteBufferRSb_VSs5UInt8">getNextEvent(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement16isExpectedLengthFTVSs5UInt8S0__Sb">isExpectedLength(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement15isMetaEventByteFVSs5UInt8Sb">isMetaEventByte(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement13makeMidiEventFT5deltaVSs6UInt329eventTypeOS_13MidiEventType6bufferCS_10ByteBuffer_GCS_16GenericMidiEventS2__">makeMidiEvent(delta:eventType:buffer:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement17processEndOfTrackFCS_10ByteBufferGSaVSs6UInt32_">processEndOfTrack(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement19processNoteOffEventFCS_10ByteBufferGSaVSs6UInt32_">processNoteOffEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement18processNoteOnEventFCS_10ByteBufferGSaVSs6UInt32_">processNoteOnEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement20processProgramChangeFCS_10ByteBufferGSaVSs6UInt32_">processProgramChange(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement17processStatusByteFVSs5UInt8OS_13MidiEventType">processStatusByte(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement17processTempoEventFCS_10ByteBufferGSaVSs6UInt32_">processTempoEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement19processTimeSigEventFCS_10ByteBufferGSaVSs6UInt32_">processTimeSigEvent(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14FileManagement19processUnknownEventFCS_10ByteBufferGSaVSs6UInt32_">processUnknownEvent(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/FormattedFileManager.html">FormattedFileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/InputManager.html">InputManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MidiEvent.html">MidiEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OutputManager.html">OutputManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResourceManager.html">ResourceManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TimedMidiEvent.html">TimedMidiEvent</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FormattedFileManager</h1>
+            <p>Classes managing standardized files should follow this protocol.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvP14FileManagement20FormattedFileManager3extSS"></a>
+                    <a name="//apple_ref/swift/Variable/ext" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvP14FileManagement20FormattedFileManager3extSS">ext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The formatted file type&rsquo;s standard extension.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="k">var</span> <span class="nv">ext</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">};</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvP14FileManagement20FormattedFileManager5storeSS"></a>
+                    <a name="//apple_ref/swift/Variable/store" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvP14FileManagement20FormattedFileManager5storeSS">store</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The formatted file type&rsquo;s standard storing directory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="k">var</span> <span class="nv">store</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">};</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP14FileManagement20FormattedFileManager6writerPS_13OutputManager_"></a>
+                    <a name="//apple_ref/swift/Property/writer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP14FileManagement20FormattedFileManager6writerPS_13OutputManager_">writer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The object used to write to the managed file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">writer</span><span class="p">:</span> <span class="kt">OutputManager</span> <span class="p">{</span> <span class="k">get</span> <span class="p">};</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP14FileManagement20FormattedFileManager6readerPS_12InputManager_"></a>
+                    <a name="//apple_ref/swift/Property/reader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP14FileManagement20FormattedFileManager6readerPS_12InputManager_">reader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The object used to read from the managed file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">reader</span><span class="p">:</span> <span class="kt">InputManager</span> <span class="p">{</span> <span class="k">get</span> <span class="p">};</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP14FileManagement20FormattedFileManager4nameSS"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP14FileManagement20FormattedFileManager4nameSS">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The name to the managed file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">};</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP14FileManagement20FormattedFileManagercUS0___FMQPS0_FT4nameSS_S1_"></a>
+                    <a name="//apple_ref/swift/Method/init(name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP14FileManagement20FormattedFileManagercUS0___FMQPS0_FT4nameSS_S1_">init(name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Required init. Provides the instance with the name to the managed file.
+If the file already exists, creates the <code>writer</code> and <code>reader</code> objects.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">);</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the managed file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A properly initialized instance of a FormattedFileManager-conforming class.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP14FileManagement20FormattedFileManager10createFileUS0___FQPS0_FTGSqSS_7contentGSqGVSs10DictionarySSPSs9AnyObject____Sb"></a>
+                    <a name="//apple_ref/swift/Method/createFile(_:content:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP14FileManagement20FormattedFileManager10createFileUS0___FQPS0_FTGSqSS_7contentGSqGVSs10DictionarySSPSs9AnyObject____Sb">createFile(_:content:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a file with the given name in the file format&rsquo;s standard store
+and writes a header containing the provided information.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">createFile</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the new file. If nil, the internal <code>name</code> is used instead.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>content</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A dictionnary of values to fill the file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>true</code> if the file was created.</li><li><code>false</code> otherwise.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP14FileManagement20FormattedFileManager8readFileUS0___FQPS0_FGSqSS_GSqGVSs10DictionarySSPSs9AnyObject___"></a>
+                    <a name="//apple_ref/swift/Method/readFile(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP14FileManagement20FormattedFileManager8readFileUS0___FQPS0_FGSqSS_GSqGVSs10DictionarySSPSs9AnyObject___">readFile(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Opens a file with the given name in the file format&rsquo;s standard store
+and reads the data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">readFile</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the file. If nil, the internal <code>name</code> is used instead.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The data contained in the file, organized as key-value pairs.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP14FileManagement20FormattedFileManager10deleteFileUS0___FQPS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteFile()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP14FileManagement20FormattedFileManager10deleteFileUS0___FQPS0_FT_T_">deleteFile()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes the managed file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">deleteFile</span><span class="p">();</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Massil Yataghene, Jeromin Lebon</a>. All rights reserved. (Last updated: 2015-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

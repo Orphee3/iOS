@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AudioGraph Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AudioGraph" class="dashAnchor"></a>
+    <a title="AudioGraph Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/Orphee3/iOS"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AudioGraph Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AudioGraph.html">AudioGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AudioSession.html">AudioSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PresetMgr.html">PresetMgr</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SidebarVC.html">SidebarVC</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITimeBlockArray.html">UITimeBlockArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITrackTimeBlock.html">UITrackTimeBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewController.html">ViewController</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AudioGraph</h1>
+            <p>Groups all methods related to the creation, configuration and running of the audio graph.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6Orphee10AudioGraph10sampleRateSd"></a>
+                    <a name="//apple_ref/swift/Property/sampleRate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6Orphee10AudioGraph10sampleRateSd">sampleRate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default hardware sample rate in Hz.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">sampleRate</span><span class="p">:</span> <span class="kt">Float64</span> <span class="o">=</span> <span class="mi">44_100</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6Orphee10AudioGraph5graphGSQVSs14COpaquePointer_"></a>
+                    <a name="//apple_ref/swift/Property/graph" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6Orphee10AudioGraph5graphGSQVSs14COpaquePointer_">graph</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The actual processing Audio Graph</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">graph</span><span class="p">:</span> <span class="kt">AUGraph</span><span class="o">!</span> <span class="o">=</span> <span class="kt">AUGraph</span><span class="p">();</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6Orphee10AudioGraph6ioUnitGSQVSs14COpaquePointer_"></a>
+                    <a name="//apple_ref/swift/Property/ioUnit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6Orphee10AudioGraph6ioUnitGSQVSs14COpaquePointer_">ioUnit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default I/O unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">lazy</span> <span class="k">var</span> <span class="nv">ioUnit</span><span class="p">:</span> <span class="kt">AudioUnit</span><span class="o">!</span> <span class="o">=</span> <span class="kt">AudioUnit</span><span class="p">();</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6Orphee10AudioGraph7samplerGSQVSs14COpaquePointer_"></a>
+                    <a name="//apple_ref/swift/Property/sampler" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6Orphee10AudioGraph7samplerGSQVSs14COpaquePointer_">sampler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default sampler unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">lazy</span> <span class="k">var</span> <span class="nv">sampler</span><span class="p">:</span> <span class="kt">AudioUnit</span><span class="o">!</span> <span class="o">=</span> <span class="kt">AudioUnit</span><span class="p">();</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Construction%20and%20configuration"></a>
+                  <a name="//apple_ref/swift/Section/Construction and configuration" class="dashAnchor"></a>
+                  <a href="#/Construction%20and%20configuration">
+                    <h3 class="section-name">Construction and configuration</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph16createAudioGraphFS0_FT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/createAudioGraph()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph16createAudioGraphFS0_FT_Sb">createAudioGraph()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: Construction and configuration
+Builds the underlying AUGraph and its default AudioUnit.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">createAudioGraph</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>false</code> if one of the underlying routines fail.</li><li><code>true</code> if all goes well.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph19configureAudioGraphFS0_FT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/configureAudioGraph()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph19configureAudioGraphFS0_FT_Sb">configureAudioGraph()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and sets different properties of the underlying AudioUnits</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">configureAudioGraph</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>false</code> if one of the underlying routines fail.</li><li><code>true</code> if all goes well.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph15startAudioGraphFS0_FT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/startAudioGraph()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph15startAudioGraphFS0_FT_Sb">startAudioGraph()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and starts the underlying AUGraph</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">startAudioGraph</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>false</code> if one of the underlying routines fail.</li><li><code>true</code> if all goes well.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Preset%20configuration"></a>
+                  <a name="//apple_ref/swift/Section/Preset configuration" class="dashAnchor"></a>
+                  <a href="#/Preset%20configuration">
+                    <h3 class="section-name">Preset configuration</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph19loadPresetFromPListFS0_FRPSs9AnyObject_VSs5Int32"></a>
+                    <a name="//apple_ref/swift/Method/loadPresetFromPList(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph19loadPresetFromPListFS0_FRPSs9AnyObject_VSs5Int32">loadPresetFromPList(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: Preset configuration
+Applies the properties contained in <code>plist</code> to the sampler <code>AudioUnit</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">loadPresetFromPList</span><span class="p">(</span><span class="k">inout</span> <span class="nv">plist</span><span class="p">:</span> <span class="kt">CFPropertyListRef</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>plist</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A valid property list as provided by <code>PresetMgr</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph32loadInstrumentFromInstrumentDataFS0_FRVSC23AUSamplerInstrumentDataVSs5Int32"></a>
+                    <a name="//apple_ref/swift/Method/loadInstrumentFromInstrumentData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph32loadInstrumentFromInstrumentDataFS0_FRVSC23AUSamplerInstrumentDataVSs5Int32">loadInstrumentFromInstrumentData(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Applies the properties contained in <code>data</code> to the sampler <code>AudioUnit</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">loadInstrumentFromInstrumentData</span><span class="p">(</span><span class="k">inout</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">AUSamplerInstrumentData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A valid <code>AUSamplerInstrumentData</code> structure as provided by <code>PresetMgr</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Audio%20Output%20methods."></a>
+                  <a name="//apple_ref/swift/Section/Audio Output methods." class="dashAnchor"></a>
+                  <a href="#/Audio%20Output%20methods.">
+                    <h3 class="section-name">Audio Output methods.</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph8playNoteFS0_FVSs6UInt32VSs5Int32"></a>
+                    <a name="//apple_ref/swift/Method/playNote(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph8playNoteFS0_FVSs6UInt32VSs5Int32">playNote(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: Audio Output methods.
+Sends a <code>NoteOn</code> MIDI event to the sampler <code>AudioUnit</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">playNote</span><span class="p">(</span><span class="nv">note</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>note</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The note that is going to be played by the sampler.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph8stopNoteFS0_FVSs6UInt32VSs5Int32"></a>
+                    <a name="//apple_ref/swift/Method/stopNote(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph8stopNoteFS0_FVSs6UInt32VSs5Int32">stopNote(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sends a <code>NoteOff</code> MIDI event to the sampler <code>AudioUnit</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">stopNote</span><span class="p">(</span><span class="nv">note</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>note</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The note that the sampler needs to stop playing.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Utility%20methods"></a>
+                  <a name="//apple_ref/swift/Section/Utility methods" class="dashAnchor"></a>
+                  <a href="#/Utility%20methods">
+                    <h3 class="section-name">Utility methods</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph23setAudioUnitsSampleRateFS0_FT_VSs5Int32"></a>
+                    <a name="//apple_ref/swift/Method/setAudioUnitsSampleRate()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph23setAudioUnitsSampleRateFS0_FT_VSs5Int32">setAudioUnitsSampleRate()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: Utility methods
+Sets the hardware sample rate for the <em>sampler</em> and <em>output</em> units. Default is 44100Hz.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setAudioUnitsSampleRate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph16buildSamplerNodeFS0_FRVSs5Int32S1_"></a>
+                    <a name="//apple_ref/swift/Method/buildSamplerNode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph16buildSamplerNodeFS0_FRVSs5Int32S1_">buildSamplerNode(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds and adds a <em>sampler</em> <code>AUNode</code> to the graph.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buildSamplerNode</span><span class="p">(</span><span class="k">inout</span> <span class="nv">sampler</span><span class="p">:</span> <span class="kt">AUNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sampler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A reference to the node to be built.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph15buildOutputNodeFS0_FRVSs5Int32S1_"></a>
+                    <a name="//apple_ref/swift/Method/buildOutputNode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph15buildOutputNodeFS0_FRVSs5Int32S1_">buildOutputNode(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds and adds an <em>output</em> <code>AUNode</code> to the graph.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buildOutputNode</span><span class="p">(</span><span class="k">inout</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">AUNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OSStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>out</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A reference to the node to be built.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>noErr</code> if all goes well.</li><li>Another <code>OSStatus</code> error code if the underlying routine fail.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraph22mkComponentDescriptionFS0_FT4typeVSs6UInt327subTypeS1__VSC25AudioComponentDescription"></a>
+                    <a name="//apple_ref/swift/Method/mkComponentDescription(type:subType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraph22mkComponentDescriptionFS0_FT4typeVSs6UInt327subTypeS1__VSC25AudioComponentDescription">mkComponentDescription(type:subType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an <code>AudioComponentDescription</code> with satisfying values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">mkComponentDescription</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">OSType</span> <span class="o">=</span> <span class="kt">OSType</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nv">subType</span><span class="p">:</span> <span class="kt">OSType</span> <span class="o">=</span> <span class="kt">OSType</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="kt">AudioComponentDescription</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The component type. Default is 0.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subtype</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The component&rsquo;s subtype. Default is 0.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A valid <code>AudioComponentDescription</code> structure initialized with satisfying values.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/init%20-%20deinit"></a>
+                  <a name="//apple_ref/swift/Section/init - deinit" class="dashAnchor"></a>
+                  <a href="#/init%20-%20deinit">
+                    <h3 class="section-name">init - deinit</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee10AudioGraphd"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee10AudioGraphd">deinit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: init - deinit
+First, stop and uninitialize the underlying <code>AUGraph</code>.
+Then clear all the connections between it&rsquo;s nodes.
+Finally close and dispose of it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">deinit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Massil Yataghene, Jeromin Lebon</a>. All rights reserved. (Last updated: 2015-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AudioSession Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AudioSession" class="dashAnchor"></a>
+    <a title="AudioSession Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/Orphee3/iOS"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AudioSession Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AudioGraph.html">AudioGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AudioSession.html">AudioSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PresetMgr.html">PresetMgr</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SidebarVC.html">SidebarVC</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITimeBlockArray.html">UITimeBlockArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITrackTimeBlock.html">UITrackTimeBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewController.html">ViewController</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AudioSession</h1>
+            <p>This class is a wrapper around AVAudioSession.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6Orphee12AudioSession7sessionCSo14AVAudioSession"></a>
+                    <a name="//apple_ref/swift/Property/session" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6Orphee12AudioSession7sessionCSo14AVAudioSession">session</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A short-hand to the AVAudioSession singleton.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">AVAudioSession</span> <span class="o">=</span> <span class="kt">AVAudioSession</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">();</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Orphee12AudioSession12setupSessionFS0_FRCS_10AudioGraphSb"></a>
+                    <a name="//apple_ref/swift/Method/setupSession(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Orphee12AudioSession12setupSessionFS0_FRCS_10AudioGraphSb">setupSession(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines the session as a <strong>playback</strong> session and the preferred sample rate to <em>graph&rsquo;s</em> default value.
+Then marks the session as active and updates <em>graph&rsquo;s</em> sample rate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setupSession</span><span class="p">(</span><span class="k">inout</span> <span class="nv">graph</span><span class="p">:</span> <span class="kt">AudioGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>graph</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>AudioGraph</code> instance to use for this session.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <ul><li><code>false</code> if one of the underlying routines fail.</li><li><code>true</code> if all goes well.</li></ul>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Massil Yataghene, Jeromin Lebon</a>. All rights reserved. (Last updated: 2015-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

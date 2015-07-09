@@ -1,0 +1,108 @@
+MIDIFileCreator.swift
+	func SwapUInt32(i: UInt32) -> UInt32
+	func SwapUInt16(i: UInt16) -> UInt16
+	enum NoteValue: UInt32
+	public class MIDIFileCreator
+	public struct Track
+	var trackLength: UInt32    = 0;
+	var channel: UInt8         = 0;
+	var header: ByteBuffer;
+	var channelPrg: ByteBuffer;
+	lazy var body: ByteBuffer! = nil;
+	init(channel: UInt8, startTime: UInt32, instrument: Int)
+	mutating func fillHeader()
+	mutating func mkChannelPrg(channel: UInt8, startTime: UInt32, instrument: Int)
+	mutating func mkDeltaTime(bbuf: ByteBuffer, var deltaTime: UInt32)
+	mutating func noteEvent(event: MidiEventType, note: Int, velocity: UInt8)
+	mutating func buildTrack(events: [ [Int] ])
+	mutating func unifiedBufferForTrack() -> ByteBuffer
+	var NumberOfTrack: UInt16 = 1;
+	var MidiFileType: UInt16  = 0;
+	var _midiFile: String     = "";
+	let _fileHeaderLength: UInt32;
+	let _deltaTicksPerQuarterNote: UInt16;
+	var fileHeader: ByteBuffer;
+	var tracks: [Track] = [];
+	public init()
+	func fillHeader()
+	public func addTrack(notes: [[Int]])
+	func mkBuffersForTracks() -> [ByteBuffer]
+	public func dataForFile() -> NSData
+MIDIDataParser.swift
+	public struct Track
+	var dataBuffer: ByteBuffer;
+	var trackNbr: UInt16;
+	var trackLength: UInt32       = 0;
+	var channel: UInt32              = 0;
+	var clockTicksPerPulse: UInt32   = 0;
+	var instrumentID: Int            = 0;
+	var quarterNotePerMinute: UInt32 = 0;
+	var signature: (UInt32, UInt32)  = (0, 0);
+	var midiEvents: [GenericMidiEvent<ByteBuffer>] = [];
+	init(trackData: ByteBuffer, trackNbr: UInt16)
+	mutating func readHeader()
+	mutating func readInstrument()
+	mutating func readNoteEvents()
+	func readTimeStamp() -> Int
+	mutating func processReadData()
+	func printConfiguration()
+	func getNoteArray() -> [UInt32 : [GenericMidiEvent<ByteBuffer>]]
+	var dataBuffer: ByteBuffer;
+	var tracks: [Track] = [];
+	var headerMark: String              = "";
+	var headerLength: UInt32            = 0;
+	var midiFileType: UInt16            = 0;
+	var nbrOfTracks: UInt16             = 0;
+	var deltaTickPerQuarterNote: UInt16 = 0;
+	var smallestTimeDiv: UInt32         = NoteValue.breve.rawValue;
+	public init(data: NSData)
+	func readHeader()
+	func parseTracks() -> [Int : [[Int]]]
+	public func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8
+	public func isMetaEventByte(currentByte: UInt8) -> Bool
+	public func processStatusByte(statusByte: UInt8) -> MidiEventType
+ResourceManager.swift
+	func createResource(path: String) -> Bool;
+	func deleteResource() -> Bool;
+MIDIFileManager.swift
+	public var path: String
+	public required init(name: String)
+	public func createFile(name: String?, content: [String : AnyObject]?) -> Bool
+	public func readFile(name: String?) -> [String : AnyObject]?
+	public func deleteFile()
+MIDIReader.swift
+	var handle: NSFileHandle?;
+	public init(path: String)
+	public func readAllData() -> NSData
+	public func read(#size: UInt) -> NSData
+MIDIWriter.swift
+	var handle: NSFileHandle?;
+	public init(path: String)
+	public func write(data: NSData) -> Bool
+MidiEvent.swift
+	static let allValues = [noteOn, noteOff, programChange, timeSignature, setTempo, endOfTrack, unknown];
+	static let MIDIEvents = [noteOn, noteOff, programChange];
+	static let METAEvents = [timeSignature, setTempo, endOfTrack];
+	var type: MidiEventType { get };
+	var data: [UInt32]? { get set };
+	func readData(rawData: dataSource);
+	var deltaTime: UInt32 { get };
+	init(type: MidiEventType, deltaTime: UInt32, reader: (rawData:dataSource) -> [UInt32]);
+MidiEventGenerics.swift
+	public class GenericMidiEvent<T>: MidiEvent, Printable
+	public var type: MidiEventType;
+	public var dataReader: (rawData: T) -> [UInt32];
+	public var description: String = "\n";
+	public var data: [UInt32]? = nil;
+	public init(type: MidiEventType, reader: (rawData: T) -> [UInt32])
+	public func readData(data: T)
+	public class TimedEvent<T>: GenericMidiEvent<T>, TimedMidiEvent
+	public var deltaTime: UInt32 = 0;
+	required public init(type: MidiEventType, deltaTime: UInt32, reader: (rawData: T) -> [UInt32])
+MIDIEventsProcessors.swift
+	public func isExpectedLength(length: UInt8, expected: UInt8) -> Bool
+	public func makeMidiEvent(delta: UInt32 = 0, #eventType: MidiEventType, #buffer: ByteBuffer) -> GenericMidiEvent<ByteBuffer>
+	public func processTempoEvent(data: ByteBuffer) -> [UInt32]
+	public func processEndOfTrack(data: ByteBuffer) -> [UInt32]
+	public func processNoteOnEvent(data: ByteBuffer) -> [UInt32]
+	public func processNoteOffEvent(data: ByteBuffer) -> [UInt32]
