@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "container:FileManagement/FileManagement.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "container:OrpheeClient/Orphee.xcodeproj">
    </FileRef>
 </Workspace>

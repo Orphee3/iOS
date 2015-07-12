@@ -39,20 +39,38 @@ class AudioGraph {
         var result: OSStatus = noErr;
 
         result = NewAUGraph(&graph!);
+        if (result != noErr) {
+            return false;
+        }
 
         result = buildOutputNode(&out);
+        if (result != noErr) {
+            return false;
+        }
         result = buildSamplerNode(&sampler);
+        if (result != noErr) {
+            return false;
+        }
 
         /*
         ** Open the processing graph, then connect the sampler as the input source of the output node
         */
         result = AUGraphOpen(graph);
+        if (result != noErr) {
+            return false;
+        }
         result = AUGraphConnectNodeInput(graph, sampler, 0, out, 0);
+        if (result != noErr) {
+            return false;
+        }
 
         /*
         ** Get a reference to the sampler and output Units
         */
         result = AUGraphNodeInfo(graph, out, nil, &ioUnit!);
+        if (result != noErr) {
+            return false;
+        }
         result = AUGraphNodeInfo(graph, sampler, nil, &self.sampler!);
 
         return (result == noErr);
