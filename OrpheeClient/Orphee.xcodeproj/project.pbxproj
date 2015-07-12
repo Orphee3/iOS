@@ -41,7 +41,14 @@
 		DB8E61EE1ABB4D86005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		DB8E61F01ABB4D86005BF7B4 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		DBCF1ED61B52BB650078EADD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */; };
+		DBCF1ED71B52BB650078EADD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */; };
+		DBCF1ED81B52BB650078EADD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */; };
+		DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
+		DBCF1EDC1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
+		DBCF1EDD1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
 		DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD356991AC456FF00ACC304 /* FileManagement.framework */; };
+		DBD99A361B52D692003E660E /* AudioPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD99A351B52D692003E660E /* AudioPlayerTests.swift */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
@@ -102,7 +109,10 @@
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61F91ABB4D86005BF7B4 /* PresetManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PresetManagementTests-Info.plist"; sourceTree = "<group>"; };
+		DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPlayer.swift; sourceTree = "<group>"; };
 		DBD356991AC456FF00ACC304 /* FileManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileManagement.framework; path = "../FileManagement/build/Debug-iphoneos/FileManagement.framework"; sourceTree = "<group>"; };
+		DBD99A351B52D692003E660E /* AudioPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +241,7 @@
 				88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */,
 				88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */,
 				88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */,
+				DBD99A351B52D692003E660E /* AudioPlayerTests.swift */,
 			);
 			path = OrpheeTests;
 			sourceTree = "<group>";
@@ -261,6 +272,8 @@
 			children = (
 				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
+				DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */,
+				DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */,
 			);
 			path = "Audio generation";
 			sourceTree = "<group>";
@@ -430,6 +443,8 @@
 				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
+				DBCF1ED61B52BB650078EADD /* AudioPlayer.swift in Sources */,
+				DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,12 +452,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */,
+				DBCF1ED71B52BB650078EADD /* AudioPlayer.swift in Sources */,
+				DBCF1EDC1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 				52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
+				52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */,
 				88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */,
+				DBD99A361B52D692003E660E /* AudioPlayerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +473,8 @@
 				DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */,
 				DB8E61DF1ABB4D2B005BF7B4 /* PresetMgr.swift in Sources */,
 				DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */,
+				DBCF1ED81B52BB650078EADD /* AudioPlayer.swift in Sources */,
+				DBCF1EDD1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
