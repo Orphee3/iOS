@@ -8,10 +8,10 @@
 
 import UIKit
 
-/// Class MIDIReader implements InputManager
+/// Class MIDIReader implements pInputManager
 ///
-/// 
-public class MIDIReader: InputManager {
+///
+public class MIDIReader: pInputManager {
 
     var handle: NSFileHandle?;
 

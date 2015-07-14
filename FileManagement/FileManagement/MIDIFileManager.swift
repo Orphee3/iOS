@@ -8,10 +8,10 @@
 
 import UIKit
 
-/// Class MIDIFileManager implements FormattedFileManager
+/// Class MIDIFileManager implements pFormattedFileManager
 ///
 /// A file manager dedicated to MIDI files.
-public class MIDIFileManager: FormattedFileManager {
+public class MIDIFileManager: pFormattedFileManager {
 
     /// The formatted file type's standard extension.
     public static var ext: String {
@@ -24,10 +24,10 @@ public class MIDIFileManager: FormattedFileManager {
     }
 
     /// The object used to write to the managed file.
-    public lazy var writer: OutputManager = MIDIWriter(path: self.path);
+    public lazy var writer: pOutputManager = MIDIWriter(path: self.path);
 
     /// The object used to read from the managed file.
-    public lazy var reader: InputManager = MIDIReader(path: self.path);
+    public lazy var reader: pInputManager = MIDIReader(path: self.path);
 
     /// The name to the managed file.
     public var name: String;

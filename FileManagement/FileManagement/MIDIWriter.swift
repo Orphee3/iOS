@@ -8,10 +8,10 @@
 
 import UIKit
 
-/// Class MIDIWriter implements OutputManager
+/// Class MIDIWriter implements pOutputManager
 ///
-/// 
-public class MIDIWriter: OutputManager {
+///
+public class MIDIWriter: pOutputManager {
 
     var handle: NSFileHandle?;
 

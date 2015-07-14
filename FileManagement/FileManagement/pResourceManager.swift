@@ -1,5 +1,5 @@
 //
-//  ResourceManager.swift
+//  pResourceManager.swift
 //  FileManagement
 //
 //  Created by JohnBob on 25/03/2015.
@@ -9,7 +9,7 @@
 import Foundation
 
 ///    Classes charged with managing resources for an iOS app should follow this protocol.
-public protocol ResourceManager {
+public protocol pResourceManager {
 
     func createResource(path: String) -> Bool;
     func deleteResource() -> Bool;
