@@ -20,7 +20,7 @@ public class PathManager {
     ///    - noDir:      No directory with the given name exists.
     ///    - nsError:    An internal error occured. See the related `NSError` for more information.
     ///    - unknown:    An unspecified error occured. See the related `String` for more information.
-    public enum PathMgrErr {
+    public enum ePathMgrErr {
         case fileExists
         case noDir
         case nsError(NSError)
@@ -35,7 +35,7 @@ public class PathManager {
     ///    :returns: A pair of optionals.
     ///    :returns:    - `path` is nil on error. Otherwise it's the new file's path.
     ///                 - `err` is nil if no error is encountered. Otherwise it is set with the corresponding value.
-    public class func createResourceFile(filename: String, subdirectory dir: String? = nil) -> (path: String?, err: PathMgrErr?) {
+    public class func createResourceFile(filename: String, subdirectory dir: String? = nil) -> (path: String?, err: ePathMgrErr?) {
 
         let resourcePath: String = NSBundle.mainBundle().resourcePath!;
         var path: String        = resourcePath;
@@ -47,7 +47,7 @@ public class PathManager {
                 let res2 = PathManager.buildPathFrom(resourcePath, subdir: subdir);
 
                 if (res2.path == nil) {
-                    return (nil, PathMgrErr.nsError(res2.err!));
+                    return (nil, ePathMgrErr.nsError(res2.err!));
                 }
                 else {
                     path = res2.path!;
@@ -61,7 +61,7 @@ public class PathManager {
         path += filename;
         return (NSFileManager.defaultManager().createFileAtPath(path, contents: nil, attributes: nil)
                 ? (path, nil)
-                : (nil, PathMgrErr.unknown("Failed at creating '\(path)'"))
+                : (nil, ePathMgrErr.unknown("Failed at creating '\(path)'"))
         );
     }
 
@@ -73,16 +73,16 @@ public class PathManager {
     ///    :returns: A pair of optionals.
     ///    :returns:    - `path` is nil on error. Otherwise it is the complete path.
     ///                 - `err` is nil if no error is encountered. Otherwise it is set with the corresponding value.
-    private class func getCompletePathWith(#basedir: String, subdir: String) -> (path: String?, err: PathMgrErr?) {
+    private class func getCompletePathWith(#basedir: String, subdir: String) -> (path: String?, err: ePathMgrErr?) {
 
         let completePath: String = basedir + (basedir.hasSuffix("/") ? "" : "/") + subdir;
         let fmgr: NSFileManager  = NSFileManager.defaultManager();
         var isDir: ObjCBool      = false;
 
         if (fmgr.fileExistsAtPath(completePath, isDirectory: &isDir)) {
-            return (Bool(isDir) == true) ? (completePath, nil) : (nil, PathMgrErr.fileExists);
+            return (Bool(isDir) == true) ? (completePath, nil) : (nil, ePathMgrErr.fileExists);
         }
-        return (nil, PathMgrErr.noDir);
+        return (nil, ePathMgrErr.noDir);
     }
 
     ///    Creates the directory tree corresponding to the given paths.

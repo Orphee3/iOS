@@ -1,5 +1,5 @@
 //
-//  FormattedFileManager.swift
+//  pFormattedFileManager.swift
 //  FileManagement
 //
 //  Created by JohnBob on 25/03/2015.
@@ -9,7 +9,7 @@
 import Foundation
 
 ///    Classes managing standardized files should follow this protocol.
-public protocol FormattedFileManager: class {
+public protocol pFormattedFileManager: class {
 
     /// The formatted file type's standard extension.
     static var ext: String { get };
@@ -19,10 +19,10 @@ public protocol FormattedFileManager: class {
 
 
     /// The object used to write to the managed file.
-    var writer: OutputManager { get };
+    var writer: pOutputManager { get };
 
     /// The object used to read from the managed file.
-    var reader: InputManager { get };
+    var reader: pInputManager { get };
 
     /// The name to the managed file.
     var name: String { get };
@@ -32,7 +32,7 @@ public protocol FormattedFileManager: class {
     ///
     ///    :param: name The name of the managed file.
     ///
-    ///    :returns: A properly initialized instance of a FormattedFileManager-conforming class.
+    ///    :returns: A properly initialized instance of a pFormattedFileManager-conforming class.
     init(name: String);
 
     ///    Creates a file with the given name in the file format's standard store

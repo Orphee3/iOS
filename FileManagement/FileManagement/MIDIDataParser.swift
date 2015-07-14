@@ -13,13 +13,13 @@ import UIKit
 ///
 public class MIDIDataParser {
 
-    public struct Track {
+    public struct sTrack {
 
         var dataBuffer: ByteBuffer;
         var trackNbr: UInt16;
         var trackLength: UInt32       = 0;
 
-        /// Track configuration
+        /// sTrack configuration
         var nbrOf32ndNotePerBeat: UInt32 = 0;
         var channel: UInt32              = 0;
         var clockTicksPerPulse: UInt32   = 0;
@@ -46,7 +46,7 @@ public class MIDIDataParser {
             dataBuffer.getUTF8(4);
 
             // track header length
-            trackLength = SwapUInt32(dataBuffer.getUInt32());
+            trackLength = swapUInt32(dataBuffer.getUInt32());
 
             // track time signature (stored as UInt32)
             var meta = false;
@@ -67,8 +67,8 @@ public class MIDIDataParser {
 
         mutating func readNoteEvents() {
 
-            var nextEvent = MidiEventType.unknown;
-            while (dataBuffer.hasRemaining && nextEvent != MidiEventType.endOfTrack) {
+            var nextEvent = eMidiEventType.unknown;
+            while (dataBuffer.hasRemaining && nextEvent != eMidiEventType.endOfTrack) {
 
                 var deltaTime = readTimeStamp();
                 var meta = false;
@@ -97,8 +97,8 @@ public class MIDIDataParser {
 
         mutating func processReadData() {
 
-            var timeSigEvents = midiEvents.filter { $0.type == MidiEventType.timeSignature };
-            var tempoSigs = midiEvents.filter { $0.type == MidiEventType.setTempo };
+            var timeSigEvents = midiEvents.filter { $0.type == eMidiEventType.timeSignature };
+            var tempoSigs = midiEvents.filter { $0.type == eMidiEventType.setTempo };
 
             if (timeSigEvents.count > 0) {
 
@@ -164,7 +164,7 @@ public class MIDIDataParser {
     }
 
     var dataBuffer: ByteBuffer;
-    var tracks: [Track] = [];
+    var tracks: [sTrack] = [];
 
     var headerMark: String              = "";
     var headerLength: UInt32            = 0;
@@ -181,7 +181,7 @@ public class MIDIDataParser {
 
         self.readHeader();
         self.printHeader();
-        self.smallestTimeDiv = UInt32(NoteLength.breve.rawValue) * UInt32(self.deltaTickPerQuarterNote); // Set to longest supported note;
+        self.smallestTimeDiv = UInt32(eNoteLength.breve.rawValue) * UInt32(self.deltaTickPerQuarterNote); // Set to longest supported note;
     }
 
     func readHeader() {
@@ -190,10 +190,10 @@ public class MIDIDataParser {
         headerMark = dataBuffer.getUTF8(4);
 
         // track header length
-        headerLength = SwapUInt32(dataBuffer.getUInt32());
-        midiFileType = SwapUInt16(dataBuffer.getUInt16());
-        nbrOfTracks = SwapUInt16(dataBuffer.getUInt16());
-        deltaTickPerQuarterNote = SwapUInt16(dataBuffer.getUInt16());
+        headerLength = swapUInt32(dataBuffer.getUInt32());
+        midiFileType = swapUInt16(dataBuffer.getUInt16());
+        nbrOfTracks = swapUInt16(dataBuffer.getUInt16());
+        deltaTickPerQuarterNote = swapUInt16(dataBuffer.getUInt16());
     }
 
     func parseTracks() -> [Int : [[Int]]] {
@@ -203,7 +203,7 @@ public class MIDIDataParser {
         build_allTracks:
         for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
 
-            var track: Track = Track(trackData: dataBuffer, trackNbr: idx + 1);
+            var track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
             track.getNoteArray();
 
             var timedEvents: [TimedEvent<ByteBuffer>] = track.midiEvents
@@ -230,7 +230,7 @@ public class MIDIDataParser {
                         ++i;
                     }
                 }
-                if (event.type == MidiEventType.noteOn) {
+                if (event.type == eMidiEventType.noteOn) {
                     cleanedEvents[i].append(Int(event.data![1]));
                 }
             }
@@ -249,44 +249,4 @@ public class MIDIDataParser {
         println("dtTicks/quarter note = \(deltaTickPerQuarterNote)");
         println("////////////////////////////////////\n");
     }
-}
-
-public func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8 {
-
-    if (!isMetaEvent) {
-        buffer.mark();
-    }
-
-    let byte = buffer.getUInt8()
-
-    if (byte == 0xFF || byte == 0) {
-
-        isMetaEvent = isMetaEventByte(byte)
-        return getNextEvent(buffer, &isMetaEvent);
-    }
-    if (!isMetaEvent) {
-        buffer.reset();
-    }
-    return byte;
-}
-
-public func isMetaEventByte(currentByte: UInt8) -> Bool {
-
-    return currentByte == 0xFF
-}
-
-public func processStatusByte(statusByte: UInt8) -> MidiEventType {
-
-    if let eventType = MidiEventType(rawValue: statusByte) {
-        return eventType;
-    }
-    for eventType in MidiEventType.MIDIEvents {
-
-        if ((eventType.rawValue & statusByte == eventType.rawValue)
-            && (eventType.rawValue ^ statusByte < 0xF)) {
-
-            return eventType;
-        }
-    }
-    return MidiEventType.unknown;
 }

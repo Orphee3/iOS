@@ -1,5 +1,5 @@
 //
-//  MidiEventGenerics.swift
+//  MidiEvents.swift
 //  FileManagement
 //
 //  Created by Massil on 10/04/2015.
@@ -8,19 +8,21 @@
 
 import UIKit
 
+/** GenericMidiEvent realizes pTimedMidiEvent and Printable
 
-public class GenericMidiEvent<T>: MidiEvent, Printable {
+*/
+public class GenericMidiEvent<T>: pMidiEvent, Printable {
 
     typealias dataSource = T;
 
-    public var type: MidiEventType;
+    public var type: eMidiEventType;
     public var dataReader: (rawData: T) -> [UInt32];
 
     public var description: String = "\n";
 
     public var data: [UInt32]? = nil;
 
-    public init(type: MidiEventType, reader: (rawData: T) -> [UInt32]) {
+    public init(type: eMidiEventType, reader: (rawData: T) -> [UInt32]) {
 
         self.type = type;
         self.dataReader = reader;
@@ -30,19 +32,5 @@ public class GenericMidiEvent<T>: MidiEvent, Printable {
 
         self.data = dataReader(rawData: data);
         description += String(format: "\t0x%X : ", type.rawValue) + self.data!.description;
-    }
-}
-
-
-public class TimedEvent<T>: GenericMidiEvent<T>, TimedMidiEvent {
-
-    public var deltaTime: UInt32 = 0;
-
-    required public init(type: MidiEventType, deltaTime: UInt32, reader: (rawData: T) -> [UInt32]) {
-
-        super.init(type: type, reader: reader);
-        
-        self.deltaTime = deltaTime;
-        self.description += "delta = \(deltaTime),";
     }
 }

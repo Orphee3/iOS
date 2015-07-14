@@ -11,7 +11,7 @@ import XCTest
 
 class FileManagementTests: XCTestCase {
 
-    var fm: FormattedFileManager? = nil;
+    var fm: pFormattedFileManager? = nil;
 
     override func setUp() {
         super.setUp()
@@ -19,12 +19,12 @@ class FileManagementTests: XCTestCase {
 
         fm = MIDIFileManager(name: "test");
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testReadWrite() {
 
         XCTAssertNotNil(fm as! MIDIFileManager, "File manager is nil");
@@ -34,11 +34,11 @@ class FileManagementTests: XCTestCase {
 
     func testGenericEventBuild() {
 
-        var event = TimedEvent<ByteBuffer>(type: MidiEventType.noteOn, deltaTime: 5) { (rawData) -> [UInt32] in
+        var event = TimedEvent<ByteBuffer>(type: eMidiEventType.noteOn, deltaTime: 5) { (rawData) -> [UInt32] in
             return [5];
         }
 
-        XCTAssert(event.type == MidiEventType.noteOn, "Bad type init");
+        XCTAssert(event.type == eMidiEventType.noteOn, "Bad type init");
         XCTAssert(event.deltaTime == 5, "Bad delta init");
         event.readData(ByteBuffer(order: LittleEndian(), capacity: 10));
         XCTAssert(event.data! == [5], "Bad reader init");
@@ -68,5 +68,5 @@ class FileManagementTests: XCTestCase {
         XCTAssert(b2Pos != b2.position, "Wrong position! \(b2Pos) == \(b2.position)");
         println("position: \(b2.position), Byte: \(res2)");
     }
-    
+
 }
