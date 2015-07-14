@@ -172,7 +172,7 @@ public class MIDIDataParser {
     var nbrOfTracks: UInt16             = 0;
     var deltaTickPerQuarterNote: UInt16 = 0;
 
-    var smallestTimeDiv: UInt32         = NoteValue.breve.rawValue;
+    var smallestTimeDiv: UInt32         = 0;
 
     public init(data: NSData) {
 
@@ -181,6 +181,7 @@ public class MIDIDataParser {
 
         self.readHeader();
         self.printHeader();
+        self.smallestTimeDiv = UInt32(NoteLength.breve.rawValue) * UInt32(self.deltaTickPerQuarterNote); // Set to longest supported note;
     }
 
     func readHeader() {

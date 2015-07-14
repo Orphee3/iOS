@@ -20,29 +20,31 @@ func SwapUInt16(i: UInt16) -> UInt16
     return ((i & 0xFF00) >> 8) | ((i & 0x00FF) << 8);
 }
 
-enum NoteValue: UInt32 {
-    case breve              = 768 // carrée: 2 notes
-    case semibreve          = 384 // ronde: 1 note
-    case minim              = 192 // blanche: 1/2 note
-    case crotchet           = 96  // noire: 1/4 note
-    case quaver             = 48  // croche: 1/8 note
-    case semiquaver         = 24  // double croche: 1/16 note
-    case demisemiquaver     = 12  // triple croche: 1/32 note
-    case hemidemisemiquaver = 6   // quadruple croche: 1/64 note
+enum NoteLength: Float32 {
+    case breve              = 8      // carrée: 2 notes
+    case semibreve          = 4      // ronde: 1 note
+    case minim              = 2      // blanche: 1/2 note
+    case crotchet           = 1      // noire: 1/4 note
+    case quaver             = 0.5    // croche: 1/8 note
+    case semiquaver         = 0.25   // double croche: 1/16 note
+    case demisemiquaver     = 0.125  // triple croche: 1/32 note
+    case hemidemisemiquaver = 0.0625 // quadruple croche: 1/64 note
 }
 
 public class MIDIFileCreator {
 
     public struct Track {
-        var trackLength: UInt32    = 0;
-        var channel: UInt8         = 0;
+        let ppqn: UInt32;
+        var trackLength: UInt32 = 0;
+        var channel: UInt8      = 0;
 
         var header: ByteBuffer;
         var channelPrg: ByteBuffer;
         lazy var body: ByteBuffer! = nil;
 
-        init(channel: UInt8, startTime: UInt32, instrument: Int) {
+        init(ppqn: UInt16, channel: UInt8, startTime: UInt32, instrument: Int) {
 
+            self.ppqn    = UInt32(ppqn)
             header       = ByteBuffer(order: LittleEndian(), capacity: 24);
             channelPrg   = ByteBuffer(order: LittleEndian(), capacity: 7);
             self.channel = channel;
@@ -139,17 +141,24 @@ public class MIDIFileCreator {
             body = ByteBuffer(order: LittleEndian(), capacity: eventNb);
             for notes in events {
 
+                var deltaTime: UInt32 = 0;
                 if (notes.count > 0) {
                     for (idx, note) in enumerate(notes) {
-                        mkDeltaTime(body, deltaTime: (idx == 0) ? (NoteValue.quaver.rawValue * silences) : 0);
-                        noteEvent(MidiEventType.noteOn, note: note, velocity: 76);
                         if (idx == 0) {
-                            silences = 0;
+                            deltaTime = UInt32(NoteLength.crotchet.rawValue * Float32(ppqn) * Float32(silences));
+                            silences = 0
                         }
+                        mkDeltaTime(body, deltaTime: deltaTime);
+                        noteEvent(MidiEventType.noteOn, note: note, velocity: 76);
+                        deltaTime = 0;
                     }
                     for (idx, note) in enumerate(notes) {
-                        mkDeltaTime(body, deltaTime: (idx == 0) ? NoteValue.quaver.rawValue : 0);
+                        if (idx == 0) {
+                            deltaTime = UInt32(NoteLength.crotchet.rawValue * Float32(ppqn));
+                        }
+                        mkDeltaTime(body, deltaTime: deltaTime);
                         noteEvent(MidiEventType.noteOff, note: note, velocity: 0);
+                        deltaTime = 0;
                     }
                 }
                 else {
@@ -220,7 +229,7 @@ public class MIDIFileCreator {
 
     public func addTrack(notes: [[Int]]) {
 
-        var track = Track(channel: 0, startTime: 0, instrument: 0x2e);
+        var track = Track(ppqn: _deltaTicksPerQuarterNote, channel: 0, startTime: 0, instrument: 0x2e);
 
         if (notes.count > 0) {
             track.buildTrack(notes);
