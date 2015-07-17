@@ -64,6 +64,15 @@ class UITrackTimeBlock: UIButton {
         }
     }
 
+    weak var color: UIColor? = UIColor.whiteColor();
+    var note: UInt32 = 0;
+    var active: Bool = false {
+        willSet(act) {
+            self.backgroundColor = act ? UIColor.yellowColor() : self.color;
+        }
+    };
+    weak var graph: AudioGraph! = nil;
+
     /// MARK: Constructors
     //
 
@@ -74,14 +83,16 @@ class UITrackTimeBlock: UIButton {
     /// :param: column  The column the new button will belong to.
     ///
     /// :returns: A UITrackTimeBlock `color` button belonging at `row` X `column`
-    class func timeBlock(#color: UIColor, row: Int, column: Int) -> UITrackTimeBlock {
+    class func timeBlock(#image: UIImage, row: Int, column: Int, note: UInt32, graph: AudioGraph) -> UITrackTimeBlock {
 
         var tBlock: UITrackTimeBlock = UITrackTimeBlock(row: row, column: column);
 
         tBlock.pos = column;
         tBlock.row = row;
-        tBlock.layer.borderWidth = 5;
-        tBlock.backgroundColor = color;
+        tBlock.setImage(image, forState: .Normal);
+        tBlock.note = note;
+        tBlock.graph = graph;
+        tBlock.addTarget(tBlock, action: Selector("onTouchDown"), forControlEvents: UIControlEvents.TouchDown);
         tBlock.addTarget(tBlock, action: Selector("onClick"), forControlEvents: UIControlEvents.TouchUpInside);
         return tBlock;
     }
@@ -128,6 +139,14 @@ class UITrackTimeBlock: UIButton {
     /// The responder called when the button is clicked.
     func onClick() {
 
-        println("button #\(pos) on row #\(row)");
+        println("release button #\(pos) on row #\(row)");
+        graph.stopNote(note);
+    }
+
+    func onTouchDown() {
+
+        println("press button #\(pos) on row #\(row)");
+        active = !active;
+        graph.playNote(note);
     }
 }

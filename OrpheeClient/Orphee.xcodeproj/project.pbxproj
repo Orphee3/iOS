@@ -27,11 +27,17 @@
 		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		9B76B22D1B3E19BC00B1C40B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22C1B3E19BC00B1C40B /* StartViewController.swift */; };
+		9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */; };
+		9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */; };
+		9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */; };
+		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
+		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
 		DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
@@ -102,9 +108,15 @@
 		88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
+		9B76B22C1B3E19BC00B1C40B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionMenuViewController.swift; sourceTree = "<group>"; };
+		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
+		DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockArrayList.swift; sourceTree = "<group>"; };
 		DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +195,7 @@
 				DB2BB3411ABAE280003B066B /* storyboard and xibs */,
 				DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */,
 				DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */,
+				DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */,
 			);
 			name = Views;
 			path = Orphee/Views;
@@ -193,6 +206,11 @@
 			children = (
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
 				DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */,
+				9B76B22C1B3E19BC00B1C40B /* StartViewController.swift */,
+				9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */,
+				9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */,
+				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
+				9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Orphee/ViewControllers;
@@ -435,13 +453,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
+				9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */,
+				9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */,
+				DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */,
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
+				9B76B22D1B3E19BC00B1C40B /* StartViewController.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
 				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
+				9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */,
+				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				DBCF1ED61B52BB650078EADD /* AudioPlayer.swift in Sources */,
 				DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */,

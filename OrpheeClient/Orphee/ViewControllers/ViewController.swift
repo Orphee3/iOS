@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FileManagement
 
 /// The app's main view controller
 class ViewController: UIViewController {
@@ -15,10 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollBlocks: UIScrollView!
 
     /// A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.
-    var dictBlocks: [String:UITimeBlockArray] = [:];
+    var blockArrays: BlockArrayList = BlockArrayList();
 
     /// A list of all instruments supported by the app. TODO: actually implement the system.
     var instrumentsList: [String] = ["violin", "guitar", "tambour", "battery", "trumpet"];
+
+    var audioIO: AudioGraph = AudioGraph();
+    var session: AudioSession = AudioSession();
 
     /// MARK: Overrides
     //
@@ -28,6 +32,10 @@ class ViewController: UIViewController {
         super.viewDidLoad();
 
         createBlocks(10);
+        session.setupSession(&audioIO);
+        audioIO.createAudioGraph();
+        audioIO.configureAudioGraph();
+        audioIO.startAudioGraph();
     }
 
     /// Called when the app consumes too much memory.
@@ -45,11 +53,8 @@ class ViewController: UIViewController {
     /// :param: sender  The object sending the event.
     @IBAction func addColumOfBlocks(sender: AnyObject) {
 
-        for (instrument, track) in dictBlocks {
-
-            track.addButtons(4, color: UIColor.redColor(), toView: scrollBlocks);
-            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
-        }
+        blockArrays.addBlocks(4);
+        updateScrollViewConstraints();
     }
 
     /// Called when the UI's `remove` button is pressed.
@@ -58,11 +63,8 @@ class ViewController: UIViewController {
     /// :param: sender  The object sending the event.
     @IBAction func removeColumOfBlocks(sender: AnyObject) {
 
-        for (instrument, track) in dictBlocks {
-
-            track.removeButtons(4, fromView: scrollBlocks);
-            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
-        }
+        blockArrays.removeBlocks(4);
+        updateScrollViewConstraints();
     }
 
     /// Called when the UI's `Stop` button is pressed.
@@ -81,6 +83,14 @@ class ViewController: UIViewController {
         println("play");
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        if (segue.identifier == "instrumentsSegue") {
+            var sidebar = segue.destinationViewController as! InstrumentsTableViewController;
+            sidebar.graph = audioIO;
+        }
+    }
+
     /// MARK: Utility methods
     //
 
@@ -93,12 +103,63 @@ class ViewController: UIViewController {
 
         for (idx, instrument) in enumerate(instrumentsList) {
 
-            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx);
+            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 70, inView: scrollBlocks, withGraph: audioIO);
 
-            dictBlocks[instrument] = track;
-            track.addButtons(columns, color: UIColor.blueColor(), toView: scrollBlocks)
-            scrollBlocks.contentSize = CGSizeMake(CGFloat(track.endPos.x), CGFloat(track.endPos.y));
+            blockArrays.blockArrays.append(track);
+            track.addButtons(columns, color: UIColor.blueColor());
         }
+        blockArrays.updateProperties();
+        updateScrollViewConstraints();
+    }
+
+    func updateScrollViewConstraints() {
+
+        scrollBlocks.contentSize = CGSizeMake(
+            CGFloat(blockArrays.endPos.x),
+            CGFloat(blockArrays.endPos.y)
+        );
+    }
+
+    @IBAction func FileButtonTouched(sender: AnyObject) {
+        let optionMenu = UIAlertController(title: nil, message: "Choisissez une option", preferredStyle: .ActionSheet)
+
+        let importAction = UIAlertAction(title: "Importer", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("File imported")
+            self.blockArrays.resetBlocks();
+            var data: [String : AnyObject] = MIDIFileManager(name: "test").readFile(nil)!;
+            for (key, value) in data {
+                if (key == "TRACKS") {
+                    if let tracks = value as? [Int : [[Int]]] {
+                        self.blockArrays.updateProperties();
+                        var missingBlocks = tracks[0]!.count - self.blockArrays.blockLength;
+                        if (missingBlocks >= 0) {
+                            self.blockArrays.addBlocks(missingBlocks + 1);
+                        }
+                        self.blockArrays.setBlocksFromList(tracks[0]!);
+                    }
+                }
+            }
+            self.updateScrollViewConstraints();
+        })
+
+        let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("File Saved")
+            var notes = self.blockArrays.getFormattedNoteList();
+            var tracks: [String : AnyObject] = ["TRACKS" : [0 : notes]];
+
+            MIDIFileManager(name: "test").createFile(nil, content: tracks);
+        })
+
+        let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("Cancelled")
+        })
+        optionMenu.addAction(importAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        self.presentViewController(optionMenu, animated: true, completion: nil)
     }
 }
 
