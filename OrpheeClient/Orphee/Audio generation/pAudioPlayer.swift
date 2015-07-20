@@ -1,5 +1,5 @@
 //
-//  AudioPlayer.swift
+//  pAudioPlayer.swift
 //  Orphee
 //
 //  Created by JohnBob on 12/07/2015.
@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import AVFoundation
 
-protocol AudioPlayer {
+protocol pAudioPlayer {
 
     weak var session: AudioSession? { get };
     weak var audioGraph: AudioGraph? { get };
@@ -18,9 +18,10 @@ protocol AudioPlayer {
     var player: MusicPlayer { get };
 
     init(graph: AudioGraph, session: AudioSession);
-    
+
     func play();
     func pause();
     func stop();
     func clean();
+    func isPlaying() -> Bool;
 }

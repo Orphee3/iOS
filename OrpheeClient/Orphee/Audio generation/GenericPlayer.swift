@@ -8,12 +8,13 @@
 
 import Foundation
 
-class GenericPlayer: AudioPlayer {
+class GenericPlayer: pAudioPlayer {
 
     weak var session: AudioSession?;
     weak var audioGraph: AudioGraph?;
     var player: MusicPlayer = MusicPlayer();
     var sequence: MusicSequence = MusicSequence();
+    var currentTime: MusicTimeStamp = 0;
 
     required init(graph: AudioGraph, session: AudioSession) {
 
@@ -21,11 +22,12 @@ class GenericPlayer: AudioPlayer {
         self.session = session;
         NewMusicPlayer(&self.player);
         NewMusicSequence(&self.sequence);
+        MusicSequenceSetAUGraph(self.sequence, graph.graph);
     }
 
     func play() {
 
-        MusicSequenceFileLoad(sequence, NSURL.fileURLWithPath("/Users/Massil/Desktop/test.midi"), 0, 0);
+        MusicSequenceFileLoad(sequence, NSURL.fileURLWithPath("/Users/Massil/Desktop/test.mid"), 0, 0);
         MusicPlayerSetSequence(player, sequence);
         MusicPlayerPreroll(player);
         MusicPlayerStart(player);
@@ -34,13 +36,33 @@ class GenericPlayer: AudioPlayer {
     // Doesn't allow for resume option.
     func pause() {
 
+        var state = MusicPlayerGetTime(player, &currentTime);
         MusicPlayerStop(player);
     }
 
     func stop() {
 
-        MusicPlayerStop(player);
-        clean();
+        let state = MusicPlayerStop(player);
+        if (state != noErr) {
+            clean();
+            NewMusicSequence(&sequence);
+            println("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))");
+        }
+    }
+
+    func isPlaying() -> Bool {
+
+        var playing: Boolean = 0;
+
+        let state = MusicPlayerIsPlaying(player, &playing);
+        if (state != noErr) {
+            playing = 0;
+            stop();
+            clean();
+            NewMusicSequence(&sequence);
+            println("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))");
+        }
+        return playing == 1;
     }
 
     func clean() {

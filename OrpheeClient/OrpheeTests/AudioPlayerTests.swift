@@ -1,5 +1,5 @@
 //
-//  AudioPlayer.swift
+//  pAudioPlayer.swift
 //  Orphee
 //
 //  Created by JohnBob on 12/07/2015.
@@ -12,7 +12,7 @@ import AVFoundation
 
 class AudioPlayerTests: XCTestCase {
 
-    var player: AudioPlayer!;
+    var player: pAudioPlayer!;
     var graph: AudioGraph!;
     var session: AudioSession!;
 
@@ -27,7 +27,7 @@ class AudioPlayerTests: XCTestCase {
         graph!.configureAudioGraph();
         graph!.startAudioGraph();
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()

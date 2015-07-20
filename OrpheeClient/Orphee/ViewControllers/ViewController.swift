@@ -22,10 +22,16 @@ class ViewController: UIViewController {
     /// A list of all instruments supported by the app. TODO: actually implement the system.
     var instrumentsList: [String] = ["violin", "guitar", "tambour", "battery", "trumpet"];
 
+    var player: pAudioPlayer!;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
     var oldValue: Int!
+
+    var importAction: ((UIAlertAction!) -> Void)!
+    var saveAction: ((UIAlertAction!) -> Void)!
+    var cancelAction: ((UIAlertAction!) -> Void)!
+
 
     /// MARK: Overrides
     //
@@ -40,6 +46,9 @@ class ViewController: UIViewController {
         audioIO.createAudioGraph();
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
+
+        player = GenericPlayer(graph: audioIO, session: session);
+        makeActions();
     }
 
     /// Called when the app consumes too much memory.
@@ -79,7 +88,20 @@ class ViewController: UIViewController {
     ///
     /// :param: sender  The object sending the event.
     @IBAction func PlayButtonTouched(sender: AnyObject) {
-        println("play");
+        var button = sender as! UIButton;
+
+        if (player.isPlaying()) {
+            println("stop");
+
+            player.stop();
+        }
+        else {
+            println("play");
+
+            saveAction(UIAlertAction());
+            importAction(UIAlertAction());
+            player.play();
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -102,7 +124,7 @@ class ViewController: UIViewController {
 
         for (idx, instrument) in enumerate(instrumentsList) {
 
-            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 70, inView: scrollBlocks, withGraph: audioIO);
+            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
 
             blockArrays.blockArrays.append(track);
             track.addButtons(columns, color: UIColor.blueColor());
@@ -122,8 +144,19 @@ class ViewController: UIViewController {
     @IBAction func FileButtonTouched(sender: AnyObject) {
         let optionMenu = UIAlertController(title: nil, message: "Choisissez une option", preferredStyle: .ActionSheet)
 
-        let importAction = UIAlertAction(title: "Importer", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let importAction = UIAlertAction(title: "Importer", style: .Default, handler: self.importAction);
+        let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.saveAction)
+        let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.cancelAction)
+
+        optionMenu.addAction(importAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+
+    func makeActions() {
+        importAction = { (alert: UIAlertAction!) -> Void in
+
             println("File imported")
             self.blockArrays.resetBlocks();
             var data: [String : AnyObject] = MIDIFileManager(name: "test").readFile(nil)!;
@@ -142,25 +175,21 @@ class ViewController: UIViewController {
                 }
             }
             self.updateScrollViewConstraints();
-        })
+        };
 
-        let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        saveAction = { (alert: UIAlertAction!) -> Void in
+
             println("File Saved")
             var notes = self.blockArrays.getFormattedNoteList();
             var tracks: [String : AnyObject] = ["TRACKS" : [0 : notes]];
 
             MIDIFileManager(name: "test").createFile(nil, content: tracks);
-        })
+        };
 
-        let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        cancelAction = { (alert: UIAlertAction!) -> Void in
+
             println("Cancelled")
-        })
-        optionMenu.addAction(importAction)
-        optionMenu.addAction(saveAction)
-        optionMenu.addAction(cancelAction)
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        };
     }
 }
 

@@ -208,6 +208,7 @@ public class MIDIFileCreator {
 
         var track = sTrack(ppqn: _deltaTicksPerQuarterNote, channel: 0, startTime: 0, instrument: 0x2e);
 
+        /// FIXME: Crash if only silences (i.e. notes.count > 0 and 0 note events).
         if (notes.count > 0) {
             track.buildTrack(notes);
             tracks.append(track);

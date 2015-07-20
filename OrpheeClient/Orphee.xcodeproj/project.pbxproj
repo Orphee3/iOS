@@ -48,9 +48,9 @@
 		DB8E61EE1ABB4D86005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		DB8E61F01ABB4D86005BF7B4 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
-		DBCF1ED61B52BB650078EADD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */; };
-		DBCF1ED71B52BB650078EADD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */; };
-		DBCF1ED81B52BB650078EADD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */; };
+		DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
+		DBCF1ED71B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
+		DBCF1ED81B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
 		DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
 		DBCF1EDC1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
 		DBCF1EDD1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
@@ -123,7 +123,7 @@
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61F91ABB4D86005BF7B4 /* PresetManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PresetManagementTests-Info.plist"; sourceTree = "<group>"; };
-		DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pAudioPlayer.swift; sourceTree = "<group>"; };
 		DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPlayer.swift; sourceTree = "<group>"; };
 		DBD356991AC456FF00ACC304 /* FileManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileManagement.framework; path = "../FileManagement/build/Debug-iphoneos/FileManagement.framework"; sourceTree = "<group>"; };
 		DBD99A351B52D692003E660E /* AudioPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerTests.swift; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 			children = (
 				52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */,
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
-				DBCF1ED51B52BB650078EADD /* AudioPlayer.swift */,
+				DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */,
 				DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */,
 			);
 			path = "Audio generation";
@@ -471,7 +471,7 @@
 				9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
-				DBCF1ED61B52BB650078EADD /* AudioPlayer.swift in Sources */,
+				DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */,
 				DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */,
-				DBCF1ED71B52BB650078EADD /* AudioPlayer.swift in Sources */,
+				DBCF1ED71B52BB650078EADD /* pAudioPlayer.swift in Sources */,
 				DBCF1EDC1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 				52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */,
@@ -501,7 +501,7 @@
 				DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */,
 				DB8E61DF1ABB4D2B005BF7B4 /* PresetMgr.swift in Sources */,
 				DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */,
-				DBCF1ED81B52BB650078EADD /* AudioPlayer.swift in Sources */,
+				DBCF1ED81B52BB650078EADD /* pAudioPlayer.swift in Sources */,
 				DBCF1EDD1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
