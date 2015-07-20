@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Pf-ZA-oTN">
-                                <rect key="frame" x="204" y="285" width="193" height="30"/>
+                                <rect key="frame" x="204" y="369" width="193" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="193" id="f1F-qG-Hgd"/>
                                     <constraint firstAttribute="width" constant="193" id="nFf-Yw-2y2"/>
@@ -35,18 +35,18 @@
                                 </variation>
                             </textField>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5g1-Xk-cr8">
-                                <rect key="frame" x="146" y="262" width="309" height="2"/>
+                                <rect key="frame" x="146" y="346" width="309" height="2"/>
                                 <color key="trackTintColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-Dm-M6I">
-                                <rect key="frame" x="146" y="323" width="309" height="2"/>
+                                <rect key="frame" x="146" y="407" width="309" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="309" id="iR9-bX-7Lp"/>
                                 </constraints>
                                 <color key="trackTintColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNx-bC-ZMz">
-                                <rect key="frame" x="259" y="358" width="78" height="30"/>
+                                <rect key="frame" x="259" y="442" width="78" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="78" id="tCM-P3-vnf"/>
                                 </constraints>
@@ -66,16 +66,6 @@
                                     <action selector="loginButtonPressed:" destination="UJy-vv-Kb3" eventType="touchUpInside" id="EFa-fC-QIz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orphee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndf-qG-gbX">
-                                <rect key="frame" x="206" y="91" width="188" height="78"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="188" id="rct-W0-cIW"/>
-                                    <constraint firstAttribute="height" constant="78" id="yh1-yA-mnA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="51"/>
-                                <color key="textColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dem-dy-OWu">
                                 <rect key="frame" x="473" y="562" width="111" height="30"/>
                                 <state key="normal" title="Je suis nouveau">
@@ -87,7 +77,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMD-H1-FMf">
-                                <rect key="frame" x="204" y="224" width="193" height="30"/>
+                                <rect key="frame" x="204" y="308" width="193" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="193" id="g51-ZC-ev6"/>
                                     <constraint firstAttribute="height" constant="30" id="zDf-Ku-5hE"/>
@@ -95,24 +85,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orpheeLogoRound" translatesAutoresizingMaskIntoConstraints="NO" id="Hw4-MI-rOl">
+                                <rect key="frame" x="116" y="81" width="369" height="209"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="369" id="2Pu-cM-R7I"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="VNx-bC-ZMz" secondAttribute="centerX" constant="2" id="0e4-os-nvE"/>
-                            <constraint firstAttribute="centerX" secondItem="ndf-qG-gbX" secondAttribute="centerX" id="3Rb-T8-9S2"/>
                             <constraint firstItem="bqu-Dm-M6I" firstAttribute="leading" secondItem="5g1-Xk-cr8" secondAttribute="leading" id="7v1-xD-8XJ"/>
                             <constraint firstItem="Dem-dy-OWu" firstAttribute="trailing" secondItem="yKN-ra-MK6" secondAttribute="trailingMargin" id="8EP-4b-9vz"/>
-                            <constraint firstItem="gMD-H1-FMf" firstAttribute="top" secondItem="EW8-GH-tc8" secondAttribute="bottom" constant="160" id="G5X-as-ud0"/>
+                            <constraint firstAttribute="centerX" secondItem="Hw4-MI-rOl" secondAttribute="centerX" constant="-0.5" id="FQr-kC-BSg"/>
+                            <constraint firstItem="gMD-H1-FMf" firstAttribute="top" secondItem="EW8-GH-tc8" secondAttribute="bottom" constant="244" id="G5X-as-ud0"/>
                             <constraint firstAttribute="centerX" secondItem="5g1-Xk-cr8" secondAttribute="centerX" constant="-0.5" id="GpN-O5-WUZ"/>
                             <constraint firstAttribute="centerX" secondItem="0Pf-ZA-oTN" secondAttribute="centerX" constant="-0.5" id="JGE-At-U4G"/>
                             <constraint firstItem="5g1-Xk-cr8" firstAttribute="top" secondItem="gMD-H1-FMf" secondAttribute="bottom" constant="8" id="L6r-ej-3HH"/>
                             <constraint firstItem="0Pf-ZA-oTN" firstAttribute="top" secondItem="gMD-H1-FMf" secondAttribute="bottom" constant="31" id="NIm-u4-oEz"/>
                             <constraint firstItem="VNx-bC-ZMz" firstAttribute="top" secondItem="bqu-Dm-M6I" secondAttribute="bottom" constant="33" id="P3o-zJ-OTH"/>
                             <constraint firstAttribute="centerX" secondItem="gMD-H1-FMf" secondAttribute="centerX" constant="-0.5" id="U7u-b2-ry7"/>
+                            <constraint firstItem="Hw4-MI-rOl" firstAttribute="top" secondItem="EW8-GH-tc8" secondAttribute="bottom" constant="17" id="VPI-qI-ZaU"/>
                             <constraint firstItem="bqu-Dm-M6I" firstAttribute="top" secondItem="0Pf-ZA-oTN" secondAttribute="bottom" constant="8" id="ZsV-mE-wJh"/>
+                            <constraint firstItem="gMD-H1-FMf" firstAttribute="top" secondItem="Hw4-MI-rOl" secondAttribute="bottom" constant="18" id="j69-cg-M2x"/>
                             <constraint firstItem="ONU-FJ-dHB" firstAttribute="top" secondItem="Dem-dy-OWu" secondAttribute="bottom" constant="8" id="jph-NN-VmS"/>
-                            <constraint firstItem="gMD-H1-FMf" firstAttribute="top" secondItem="EW8-GH-tc8" secondAttribute="bottom" constant="160" id="olx-Ed-1yR"/>
-                            <constraint firstItem="ndf-qG-gbX" firstAttribute="top" secondItem="EW8-GH-tc8" secondAttribute="bottom" constant="27" id="roy-OC-xQv"/>
+                            <constraint firstItem="gMD-H1-FMf" firstAttribute="top" secondItem="EW8-GH-tc8" secondAttribute="bottom" constant="244" id="olx-Ed-1yR"/>
                             <constraint firstAttribute="centerX" secondItem="bqu-Dm-M6I" secondAttribute="centerX" constant="-0.5" id="thT-IQ-DRU"/>
                         </constraints>
                     </view>
@@ -195,6 +192,9 @@
                                         <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="registerButtonPressed:" destination="FeX-v9-5Yb" eventType="touchUpInside" id="cxh-lX-ZtC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -214,6 +214,11 @@
                             <constraint firstItem="pbz-UP-BZg" firstAttribute="centerX" secondItem="CKu-Cd-CqY" secondAttribute="centerX" id="xDV-EA-Ng5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginTextField" destination="CKu-Cd-CqY" id="MTc-Lh-J5R"/>
+                        <outlet property="passwordTextField" destination="71Q-dw-4Kd" id="ruZ-jl-lss"/>
+                        <segue destination="BDj-4S-r0g" kind="presentation" identifier="registerOk" id="3gq-e2-41D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHf-jP-6VP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -235,11 +240,11 @@
             </objects>
             <point key="canvasLocation" x="-944" y="-109"/>
         </scene>
-        <!--Item-->
+        <!--Création-->
         <scene sceneID="GPg-wt-CkI">
             <objects>
                 <navigationController id="RHE-nM-6vW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="heU-Ha-8eW"/>
+                    <tabBarItem key="tabBarItem" title="Création" id="heU-Ha-8eW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZfW-GS-GbX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -252,7 +257,7 @@
             </objects>
             <point key="canvasLocation" x="1310" y="-448"/>
         </scene>
-        <!--Musique-->
+        <!--Création-->
         <scene sceneID="Nqg-lv-Tus">
             <objects>
                 <tableViewController id="VPA-AR-fUf" customClass="CompositionMenuViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
@@ -288,18 +293,18 @@
                             <outlet property="delegate" destination="VPA-AR-fUf" id="8Wp-zl-YMq"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Musique" id="gbW-bO-wzT"/>
+                    <tabBarItem key="tabBarItem" title="Création" id="gbW-bO-wzT"/>
                     <navigationItem key="navigationItem" id="fcw-aH-cWU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fV-NS-VxG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1945" y="-448"/>
         </scene>
-        <!--Item-->
+        <!--Social-->
         <scene sceneID="o3Q-KO-wD7">
             <objects>
                 <navigationController id="Oo4-5R-qgF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="9Ao-a9-nIH"/>
+                    <tabBarItem key="tabBarItem" title="Social" id="9Ao-a9-nIH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ola-PS-z6c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -332,6 +337,63 @@
             </objects>
             <point key="canvasLocation" x="1945" y="211"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="fYU-iG-7VN">
+            <objects>
+                <viewController id="PrB-ji-uSR" customClass="SettingsViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wcd-pU-tcd"/>
+                        <viewControllerLayoutGuide type="bottom" id="4lQ-Kh-gnn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0o9-r8-bjX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYw-bw-3eY">
+                                <rect key="frame" x="16" y="72" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="hAH-8b-IZc"/>
+                                </constraints>
+                                <state key="normal" title="Déconnexion">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deconnectionButtonPressed:" destination="PrB-ji-uSR" eventType="touchUpInside" id="gp9-xa-h49"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oYw-bw-3eY" firstAttribute="leading" secondItem="0o9-r8-bjX" secondAttribute="leadingMargin" id="1RP-rH-dvA"/>
+                            <constraint firstItem="oYw-bw-3eY" firstAttribute="top" secondItem="wcd-pU-tcd" secondAttribute="bottom" constant="8" id="5eP-UO-r5w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="P1i-wx-AdR"/>
+                    <connections>
+                        <segue destination="GRe-bO-9HD" kind="presentation" identifier="disconnect" id="GnC-gS-2RJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bV2-HI-TYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1945" y="882"/>
+        </scene>
+        <!--Paramètres-->
+        <scene sceneID="tyP-wF-KfY">
+            <objects>
+                <navigationController id="WPB-go-lMb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Paramètres" id="ZhB-c0-9BJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SbF-aB-ewz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PrB-ji-uSR" kind="relationship" relationship="rootViewController" id="I6T-Bz-qa1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eal-0e-sP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1310" y="882"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Lc9-CY-6ho">
             <objects>
@@ -346,6 +408,7 @@
                     <connections>
                         <segue destination="RHE-nM-6vW" kind="relationship" relationship="viewControllers" id="EGG-uF-Cok"/>
                         <segue destination="Oo4-5R-qgF" kind="relationship" relationship="viewControllers" id="kdo-gF-CaB"/>
+                        <segue destination="WPB-go-lMb" kind="relationship" relationship="viewControllers" id="aFZ-LU-6FW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FS-6c-xaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,26 +440,6 @@
                                     <action selector="FileButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OhA-Hx-KX7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUp-Ed-ICO">
-                                <rect key="frame" x="16" y="562" width="49" height="30"/>
-                                <state key="normal" title="Ajouter">
-                                    <color key="titleColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addColumOfBlocks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h9e-ZZ-M9X"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3Z-Az-glq">
-                                <rect key="frame" x="92" y="562" width="72" height="30"/>
-                                <state key="normal" title="Supprimer">
-                                    <color key="titleColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="removeColumOfBlocks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M26-0V-ZBT"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1K-D4-YNf">
                                 <rect key="frame" x="421" y="562" width="74" height="30"/>
                                 <state key="normal" title="Instrument">
@@ -407,15 +450,19 @@
                                     <segue destination="stM-uy-J5J" kind="show" identifier="instrumentsSegue" id="lxY-is-oUd"/>
                                 </connections>
                             </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="i7T-cO-73Q">
+                                <rect key="frame" x="16" y="563" width="94" height="29"/>
+                                <connections>
+                                    <action selector="addAndRemoveBlocks:" destination="BYZ-38-t0r" eventType="valueChanged" id="kFL-Vg-nql"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zUp-Ed-ICO" secondAttribute="bottom" constant="8" id="02Y-Le-fvD"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="U8x-8Y-xoo" secondAttribute="bottom" constant="46" id="3PU-NZ-e9r"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t3Z-Az-glq" secondAttribute="bottom" constant="8" id="6eN-ox-MYU"/>
+                            <constraint firstItem="i7T-cO-73Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3Zb-Af-B8z"/>
                             <constraint firstItem="U8x-8Y-xoo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="G5q-V1-BUn"/>
-                            <constraint firstItem="zUp-Ed-ICO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="IOt-uN-7UW"/>
-                            <constraint firstItem="t3Z-Az-glq" firstAttribute="leading" secondItem="zUp-Ed-ICO" secondAttribute="trailing" constant="27" id="J9w-dN-q0O"/>
+                            <constraint firstItem="i7T-cO-73Q" firstAttribute="top" secondItem="U8x-8Y-xoo" secondAttribute="bottom" constant="9" id="JS9-nF-dlJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UTP-C6-IW7" secondAttribute="bottom" constant="8" id="SHO-BX-uUh"/>
                             <constraint firstItem="UTP-C6-IW7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hYc-LL-DWd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="U8x-8Y-xoo" secondAttribute="trailing" constant="-16" id="nW9-Ib-iZi"/>
@@ -429,6 +476,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="scrollBlocks" destination="U8x-8Y-xoo" id="lSE-73-MKr"/>
+                        <outlet property="stepper" destination="i7T-cO-73Q" id="eFb-xd-rb2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -463,4 +511,10 @@
             <point key="canvasLocation" x="3323" y="-448"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="orpheeLogoRound" width="375" height="375"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3gq-e2-41D"/>
+    </inferredMetricsTieBreakers>
 </document>

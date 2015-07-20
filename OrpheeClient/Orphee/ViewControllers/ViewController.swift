@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     /// The scroll view containing the composition area
     @IBOutlet weak var scrollBlocks: UIScrollView!
 
+    @IBOutlet var stepper: UIStepper!
     /// A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.
     var blockArrays: BlockArrayList = BlockArrayList();
 
@@ -24,6 +25,8 @@ class ViewController: UIViewController {
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
+    var oldValue: Int!
+
     /// MARK: Overrides
     //
 
@@ -31,7 +34,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        createBlocks(10);
+        oldValue = Int(stepper.value).description.toInt()
+        createBlocks(1);
         session.setupSession(&audioIO);
         audioIO.createAudioGraph();
         audioIO.configureAudioGraph();
@@ -47,24 +51,19 @@ class ViewController: UIViewController {
     /// MARK: UI action responders
     //
 
-    /// Called when the UI's `add` button is pressed.
-    /// Adds 4 buttons to each track and updates the scroll view's size.
-    ///
-    /// :param: sender  The object sending the event.
-    @IBAction func addColumOfBlocks(sender: AnyObject) {
+    @IBAction func addAndRemoveBlocks(sender: UIStepper) {
+        println(Int(sender.value).description)
+        if (Int(sender.value).description.toInt() > oldValue){
+            oldValue = oldValue! + 1;
+            blockArrays.addBlocks(1);
+            updateScrollViewConstraints();
+        }
 
-        blockArrays.addBlocks(4);
-        updateScrollViewConstraints();
-    }
-
-    /// Called when the UI's `remove` button is pressed.
-    /// Removes 4 buttons from each track and updates the scroll view's size.
-    ///
-    /// :param: sender  The object sending the event.
-    @IBAction func removeColumOfBlocks(sender: AnyObject) {
-
-        blockArrays.removeBlocks(4);
-        updateScrollViewConstraints();
+        else {
+            oldValue = oldValue! - 1;
+            blockArrays.removeBlocks(1);
+            updateScrollViewConstraints();
+        }
     }
 
     /// Called when the UI's `Stop` button is pressed.

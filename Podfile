@@ -8,4 +8,5 @@ target :Orphee do
        pod 'Spring', '~> 1.0.3'
        source 'https://github.com/CocoaPods/Specs.git'
        pod 'Alamofire', '~> 1.2'
+       pod 'SwiftyJSON', '~> 2.2.0'
 end

@@ -32,6 +32,7 @@
 		9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */; };
 		9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */; };
 		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
+		9BC5E3D21B59DE9A00E533DF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5E3D11B59DE9A00E533DF /* SettingsViewController.swift */; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
@@ -113,6 +114,7 @@
 		9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionMenuViewController.swift; sourceTree = "<group>"; };
 		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
+		9BC5E3D11B59DE9A00E533DF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */,
 				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
 				9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */,
+				9BC5E3D11B59DE9A00E533DF /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Orphee/ViewControllers;
@@ -461,6 +464,7 @@
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
 				9B76B22D1B3E19BC00B1C40B /* StartViewController.swift in Sources */,
+				9BC5E3D21B59DE9A00E533DF /* SettingsViewController.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
 				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
