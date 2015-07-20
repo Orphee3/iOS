@@ -56,6 +56,8 @@ class BlockArrayList {
         return cleanList(getRawNoteList());
     }
 
+    /// FIXME: Make it so attribution of notes depends on the note's value. \
+    //         (Crash ATM, if given less notes than arrays).
     func setBlocksFromList(list: [[Int]]) {
 
         for (idx, array) in enumerate(blockArrays) {

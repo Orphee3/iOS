@@ -132,8 +132,10 @@ class ViewController: UIViewController {
                     if let tracks = value as? [Int : [[Int]]] {
                         self.blockArrays.updateProperties();
                         var missingBlocks = tracks[0]!.count - self.blockArrays.blockLength;
-                        if (missingBlocks >= 0) {
+                        if (missingBlocks > 0) {
                             self.blockArrays.addBlocks(missingBlocks + 1);
+                            self.oldValue! += missingBlocks + 1;
+                            self.stepper.value = Double(self.oldValue!);
                         }
                         self.blockArrays.setBlocksFromList(tracks[0]!);
                     }
