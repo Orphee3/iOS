@@ -60,7 +60,7 @@ class AudioGraphCreationSubroutinesTests: XCTestCase {
         XCTAssert(ac.componentFlags == 0, "Incorrect Flags");
         XCTAssert(ac.componentFlagsMask == 0, "Incorrect Mask for Component Flags");
 
-        ac = graph.mkComponentDescription(type: OSType(kAudioUnitType_MusicDevice), subType: OSType(kAudioUnitSubType_Sampler));
+        ac = graph.mkComponentDescription(OSType(kAudioUnitType_MusicDevice), subType: OSType(kAudioUnitSubType_Sampler));
 
         XCTAssert(ac.componentType == OSType(kAudioUnitType_MusicDevice), "Incorrect Type");
         XCTAssert(ac.componentSubType == OSType(kAudioUnitSubType_Sampler), "Incorrect SubType");
@@ -68,7 +68,7 @@ class AudioGraphCreationSubroutinesTests: XCTestCase {
         XCTAssert(ac.componentFlags == 0, "Incorrect Flags");
         XCTAssert(ac.componentFlagsMask == 0, "Incorrect Mask for Component Flags");
 
-        ac = graph.mkComponentDescription(type: OSType(kAudioUnitType_Output), subType: OSType(kAudioUnitSubType_RemoteIO));
+        ac = graph.mkComponentDescription(OSType(kAudioUnitType_Output), subType: OSType(kAudioUnitSubType_RemoteIO));
 
         XCTAssert(ac.componentType == OSType(kAudioUnitType_Output), "Incorrect Type");
         XCTAssert(ac.componentSubType == OSType(kAudioUnitSubType_RemoteIO), "Incorrect SubType");
@@ -107,20 +107,20 @@ class AudioGraphTests: XCTestCase {
     func testIfCreateGraphProperlyConstructsGraph() {
 
         let result = graph.createAudioGraph();
-        if let test = graph.graph {
+        if let _ = graph.graph {
             XCTAssertTrue(true, "All good");
         }
         else {
             XCTAssert(false, "Audio graph is Nil");
         }
 
-        if let test = graph.ioUnit {
+        if let _ = graph.ioUnit {
             XCTAssertTrue(true, "All good");
         }
         else {
             XCTAssert(false, "Audio graph output unit is Nil");
         }
-        if let test = graph.sampler {
+        if let _ = graph.sampler {
             XCTAssertTrue(true, "All good");
         }
         else {
@@ -165,12 +165,12 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var pstMgr: PresetMgr = PresetMgr();
+        let pstMgr: PresetMgr = PresetMgr();
 
         //FIXME: For some reason CAShow encounters an error
         //        CAShow(&graph.graph);
 
-        var resData = pstMgr.getDataFromRessourceWithPath(path!);
+        let resData = pstMgr.getDataFromRessourceWithPath(path!);
         XCTAssertNil(resData.error, "Couldn't load raw data from file:\n\(resData.error)\n");
         var resPlist = pstMgr.getPListFromRawData(resData.data!);
         XCTAssertNil(resPlist.error, "Couldn't load PList from raw data:\n\(resPlist.error)\n");
@@ -182,11 +182,11 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var pstMgr: PresetMgr = PresetMgr();
+        let pstMgr: PresetMgr = PresetMgr();
 
         self.measureBlock() {
 
-            var resData = pstMgr.getDataFromRessourceWithPath(self.path!);
+            let resData = pstMgr.getDataFromRessourceWithPath(self.path!);
 
             XCTAssertNil(resData.error, "Couldn't load raw data from file:\n\(resData.error)\n");
 
@@ -206,11 +206,11 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var pstMgr: PresetMgr = PresetMgr();
+        let pstMgr: PresetMgr = PresetMgr();
 
         self.measureBlock() {
 
-            var url1: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Vibraphone", ofType: "aupreset")!)!;
+            let url1: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Vibraphone", ofType: "aupreset")!);
 
             XCTAssert(pstMgr.loadPresetFromURL(url1, graphMgr: self.graph));
         };
@@ -225,11 +225,11 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var pstMgr: PresetMgr = PresetMgr();
+        let pstMgr: PresetMgr = PresetMgr();
 
         self.measureBlock() {
 
-            var url: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2")!)!;
+            let url: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2")!);
 
             XCTAssert(pstMgr.loadSoundBankFromURL(url, patchId: 0, graphMgr: self.graph));
         };
@@ -244,8 +244,8 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var pstMgr: PresetMgr = PresetMgr();
-        var path: String = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2")!;
+        let pstMgr: PresetMgr = PresetMgr();
+        let path: String = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2")!;
 
         self.measureBlock() {
 
@@ -270,13 +270,13 @@ class AudioGraphTests: XCTestCase {
         graph.createAudioGraph();
         graph.configureAudioGraph();
         graph.startAudioGraph();
-        var pstMgr: PresetMgr = PresetMgr();
-        var path: String = NSBundle.mainBundle().pathForResource("SoundBanks/Roland_TD10_Woody", ofType: "sf2")!;
+        let pstMgr: PresetMgr = PresetMgr();
+        let path: String = NSBundle.mainBundle().pathForResource("SoundBanks/Roland_TD10_Woody", ofType: "sf2")!;
 
         self.measureBlock() {
 
-            var resInstru = pstMgr.getPercussionInstrumentFromSoundBank(id: 1, path: path);
-
+            var resInstru = pstMgr.getPercussionInstrumentFromSoundBank(1, path: path);
+            
             XCTAssert(resInstru != nil, "\n\nCouldn't load instrument from file \(path)\n");
             if (resInstru != nil) {
                 XCTAssert(self.graph.loadInstrumentFromInstrumentData(&resInstru!) == noErr, "\n\nInstrument LOADING failed for file:\n\(path)\n");
@@ -285,10 +285,10 @@ class AudioGraphTests: XCTestCase {
                 XCTAssertFalse(false, "No instrument to load");
             }
         };
-
+        
         XCTAssert(graph.playNote(48) == noErr, "Couldn't PLAY note");
         sleep(1);
         XCTAssert(graph.stopNote(48) == noErr, "Couldn't STOP playing note");
     }
-
+    
 }

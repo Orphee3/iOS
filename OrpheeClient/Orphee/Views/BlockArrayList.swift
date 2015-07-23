@@ -23,8 +23,8 @@ class BlockArrayList {
 
         var list: [[Int]] = [];
         for array in blockArrays {
-            for (idx, block) in enumerate(array.buttons) {
-                var noteValue = block!.active ? Int(block!.note) : 0;
+            for (idx, block) in array.buttons.enumerate() {
+                let noteValue = block!.active ? Int(block!.note) : 0;
                 if (list.endIndex > idx) {
                     list[idx].append(noteValue);
                 }
@@ -60,9 +60,9 @@ class BlockArrayList {
     //         (Crash ATM, if given less notes than arrays).
     func setBlocksFromList(list: [[Int]]) {
 
-        for (idx, array) in enumerate(blockArrays) {
+        for (idx, array) in blockArrays.enumerate() {
 
-            for (dt, notesAtTime) in enumerate(list) {
+            for (dt, notesAtTime) in list.enumerate() {
                 if (notesAtTime.count > 0) {
                     array.buttons[dt]?.active = notesAtTime[idx] > 0;
                 }

@@ -13,9 +13,9 @@ public protocol pOutputManager {
 
     ///    Writes the given data to the target.
     ///
-    ///    :param: data The data to write out.
+    ///    - parameter data: The data to write out.
     ///
-    ///    :returns:    - true:  if no error occured
+    ///    - returns:    - true:  if no error occured
     ///                 - false: otherwise
     func write(data: NSData) -> Bool;
 }

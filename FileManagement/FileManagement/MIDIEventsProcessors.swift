@@ -47,7 +47,7 @@ public func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
         if (isMetaEventByte(byte) || eventType != eMidiEventType.unknown || !data.hasRemaining) {
 
             stop = true;
-            if (contains(eMidiEventType.MIDIEvents, eventType)) {
+            if (eMidiEventType.MIDIEvents.contains(eventType)) {
 
                 data.reset();
             }

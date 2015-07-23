@@ -25,7 +25,7 @@ public class MIDIReader: pInputManager {
         return handle!.readDataToEndOfFile();
     }
 
-    public func read(#size: UInt) -> NSData {
+    public func read(size size: UInt) -> NSData {
 
         return handle!.readDataOfLength(Int(size));
     }

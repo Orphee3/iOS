@@ -18,25 +18,31 @@ class AudioSession {
     /// Defines the session as a **playback** session and the preferred sample rate to *graph's* default value.
     /// Then marks the session as active and updates *graph's* sample rate.
     ///
-    /// :param: graph   The `AudioGraph` instance to use for this session.
+    /// - parameter graph:   The `AudioGraph` instance to use for this session.
     ///
-    /// :returns: - `false` if one of the underlying routines fail.
+    /// - returns: - `false` if one of the underlying routines fail.
     ///           - `true` if all goes well.
     func setupSession(inout graph: AudioGraph) -> Bool {
 
-        var err: NSError? = NSError();
-
-        if (!session.setCategory(AVAudioSessionCategoryPlayback, error: &err)) {
-            println("ERROR: \(err?.localizedDescription)");
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback);
+        }
+        catch (let err) {
+            print("ERROR: \(err)");
             return false;
         }
-
-        if (!session.setPreferredSampleRate(graph.sampleRate, error: &err)) {
-            println("ERROR: \(err?.localizedDescription)");
+        do {
+            try session.setPreferredSampleRate(graph.sampleRate);
+        }
+        catch (let err) {
+            print("ERROR: \(err)");
             return false;
         }
-        if (!session.setActive(true, error: &err)) {
-            println("ERROR: \(err?.localizedDescription)");
+        do {
+            try session.setActive(true)
+        }
+        catch (let err) {
+            print("ERROR: \(err)");
             return false;
         }
         graph.sampleRate = session.sampleRate;

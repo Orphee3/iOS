@@ -13,13 +13,13 @@ public protocol pInputManager {
 
     ///    Reads all the data contained in the given target.
     ///
-    ///    :returns: The data that has been read.
+    ///    - returns: The data that has been read.
     func readAllData() -> NSData;
 
     ///    Reads the given number of bytes from the target.
     ///
-    ///    :param: size The number of bytes to read.
+    ///    - parameter size: The number of bytes to read.
     ///
-    ///    :returns: The data that has been read.
-    func read(#size: UInt) -> NSData;
+    ///    - returns: The data that has been read.
+    func read(size size: UInt) -> NSData;
 }

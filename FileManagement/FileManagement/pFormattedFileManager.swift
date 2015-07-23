@@ -30,27 +30,27 @@ public protocol pFormattedFileManager: class {
     ///    Required init. Provides the instance with the name to the managed file.
     ///    If the file already exists, creates the `writer` and `reader` objects.
     ///
-    ///    :param: name The name of the managed file.
+    ///    - parameter name: The name of the managed file.
     ///
-    ///    :returns: A properly initialized instance of a pFormattedFileManager-conforming class.
+    ///    - returns: A properly initialized instance of a pFormattedFileManager-conforming class.
     init(name: String);
 
     ///    Creates a file with the given name in the file format's standard store
     ///    and writes a header containing the provided information.
     ///
-    ///    :param: name   The name of the new file. If nil, the internal `name` is used instead.
-    ///    :param: content A dictionnary of values to fill the file.
+    ///    - parameter name:   The name of the new file. If nil, the internal `name` is used instead.
+    ///    - parameter content: A dictionnary of values to fill the file.
     ///
-    ///    :returns:    - `true` if the file was created.
+    ///    - returns:    - `true` if the file was created.
     ///                 - `false` otherwise.
     func createFile(name: String?, content: [String : AnyObject]?) -> Bool;
 
     ///    Opens a file with the given name in the file format's standard store
     ///    and reads the data.
     ///
-    ///    :param: name   The name of the file. If nil, the internal `name` is used instead.
+    ///    - parameter name:   The name of the file. If nil, the internal `name` is used instead.
     ///
-    ///    :returns:    The data contained in the file, organized as key-value pairs.
+    ///    - returns:    The data contained in the file, organized as key-value pairs.
     func readFile(name: String?) -> [String : AnyObject]?;
 
     ///    Deletes the managed file.

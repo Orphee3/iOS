@@ -20,24 +20,33 @@ class GenericPlayer: pAudioPlayer {
 
         self.audioGraph = graph;
         self.session = session;
-        NewMusicPlayer(&self.player);
-        NewMusicSequence(&self.sequence);
-        MusicSequenceSetAUGraph(self.sequence, graph.graph);
+        var st: OSStatus = NewMusicPlayer(&self.player);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        st = NewMusicSequence(&self.sequence);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        st = MusicSequenceSetAUGraph(self.sequence, graph.graph);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
     }
 
     func play() {
 
-        MusicSequenceFileLoad(sequence, NSURL.fileURLWithPath("/Users/Massil/Desktop/test.mid"), 0, 0);
-        MusicPlayerSetSequence(player, sequence);
-        MusicPlayerPreroll(player);
-        MusicPlayerStart(player);
+        var st: OSStatus = MusicSequenceFileLoad(sequence, NSURL(fileURLWithPath: "/Users/Massil/Desktop/test.mid"), MusicSequenceFileTypeID(rawValue: 0)!, MusicSequenceLoadFlags(rawValue: 0));
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        st = MusicPlayerSetSequence(player, sequence);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        st = MusicPlayerPreroll(player);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        st = MusicPlayerStart(player);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
     }
 
     // Doesn't allow for resume option.
     func pause() {
 
-        var state = MusicPlayerGetTime(player, &currentTime);
-        MusicPlayerStop(player);
+        var st: OSStatus = MusicPlayerGetTime(player, &currentTime);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        st = MusicPlayerStop(player);
+        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
     }
 
     func stop() {
@@ -46,7 +55,7 @@ class GenericPlayer: pAudioPlayer {
         if (state != noErr) {
             clean();
             NewMusicSequence(&sequence);
-            println("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))");
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
         }
     }
 
@@ -60,7 +69,7 @@ class GenericPlayer: pAudioPlayer {
             stop();
             clean();
             NewMusicSequence(&sequence);
-            println("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))");
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
         }
         return playing == 1;
     }

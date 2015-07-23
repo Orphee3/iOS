@@ -41,19 +41,19 @@ class AudioPlayerTests: XCTestCase {
         player = GenericPlayer(graph: graph!, session: session!);
         player.play();
         var b: Boolean = 0;
-        MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 1, "not playing.")
+        var st: OSStatus = MusicPlayerIsPlaying(player.player, &b);
+        XCTAssert(b == 1 && st == noErr, "not playing.")
         sleep(3);
         player.pause();
-        MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 0, "not playing.")
+        st = MusicPlayerIsPlaying(player.player, &b);
+        XCTAssert(b == 0 && st == noErr, "not playing.")
         sleep(1);
         player.play();
-        MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 1, "not playing.")
+        st = MusicPlayerIsPlaying(player.player, &b);
+        XCTAssert(b == 1 && st == noErr, "not playing.")
         sleep(1);
         player.stop();
-        MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 0, "not playing.")
+        st = MusicPlayerIsPlaying(player.player, &b);
+        XCTAssert(b == 0 && st == noErr, "not playing.")
     }
 }

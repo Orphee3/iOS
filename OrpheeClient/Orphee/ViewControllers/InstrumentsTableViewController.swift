@@ -53,7 +53,7 @@ class InstrumentsTableViewController: UITableViewController {
     /// TODO: Clean it! Possible solution: pFormattedFileManager realisation for SoundBanks/SoundFonts.
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        var instrumentToLoad = presetMgr.getMelodicInstrumentFromSoundBank(id: UInt8(indexPath.row),
+        var instrumentToLoad = presetMgr.getMelodicInstrumentFromSoundBank(UInt8(indexPath.row),
             path: NSBundle.mainBundle().pathForResource("SoundBanks/" + instrumentsList[indexPath.row].path, ofType: "sf2")!);
         graph!.loadInstrumentFromInstrumentData(&instrumentToLoad!);
     }

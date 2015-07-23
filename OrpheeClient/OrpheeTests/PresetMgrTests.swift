@@ -17,8 +17,8 @@ class PresetMgrTests: XCTestCase {
     var path: String? = NSBundle.mainBundle().pathForResource("Trombone", ofType: "aupreset");
     lazy var url: NSURL? = ({
         //FIXME: Possible strong reference cycle?
-                                println("\n\nStarting PresetMgr tests");
-                                println("PATH = \(self.path)\n\n");
+        print("\n\nStarting PresetMgr tests");
+        print("PATH = \(self.path)\n\n");
         if let PATH = self.path {
             return NSURL(fileURLWithPath: PATH);
         }
@@ -53,7 +53,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getDataFromRessourceWithPath_succeeds_whenGiven_reachableFile() {
 
-        var result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath(path!);
+        let result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath(path!);
 
         XCTAssertNil(result.error, "\nERROR: \(result.error)\n");
         XCTAssertNotNil(result.data, "\nERROR: no data was read from file");
@@ -61,7 +61,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getDataFromRessourceWithPath_fails_whenGiven_InvalidPath() {
 
-        var result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath("");
+        let result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath("");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.data, "\nData was read:\n\(result.data)\n");
@@ -69,7 +69,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getDataFromRessourceWithPath_fails_whenGiven_directory() {
 
-        var result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+        let result: (data: CFDataRef?, error: NSError?) = mgr.getDataFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.data, "\nData was read:\n\(result.data)\n");
@@ -82,7 +82,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPlistFromRawData_succeeds_whenGiven_validRawData() {
 
-        var res: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRawData(validData!);
+        let res: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRawData(validData!);
 
         XCTAssertNil(res.error, "\nERROR: \(res.error)");
         XCTAssertNotNil(res.plist, "\nERROR: no data was read from file");
@@ -92,12 +92,12 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPlistFromRawData_fails_whenGiven_rawDataFromAnInvalidFile() {
 
-        var result: (data:CFDataRef?, error:NSError?) = mgr.getDataFromRessourceWithPath(NSBundle.mainBundle().pathForResource("Sounds/Tbone/5e", ofType: "caf")!);
+        let result: (data:CFDataRef?, error:NSError?) = mgr.getDataFromRessourceWithPath(NSBundle.mainBundle().pathForResource("Sounds/Tbone/5e", ofType: "caf")!);
 
         XCTAssertNil(result.error, "\nERROR: \n\(result.error)\n");
         XCTAssertNotNil(result.data, "\nERROR: no data obtained");
 
-        var res: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRawData(result.data!);
+        let res: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRawData(result.data!);
 
         XCTAssertNotNil(res.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(res.plist, "\nA Plist was obtained:\n\(res.plist)\n");
@@ -110,7 +110,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPListFromRessourceWithPath_succeeds_whenGiven_reachableFile() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath(path!);
+        let result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath(path!);
 
         XCTAssertNil(result.error, "\nERROR: \(result.error)\n");
         XCTAssertNotNil(result.plist, "\nERROR: no Plist was obtained");
@@ -118,7 +118,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPListFromRessourceWithPath_fails_whenGiven_InvalidPath() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("");
+        let result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
@@ -126,7 +126,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPListFromRessourceWithPath_fails_whenGiven_InvalidFile() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+        let result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
@@ -134,7 +134,7 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPListFromRessourceWithPath_fails_whenGiven_directory() {
 
-        var result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+        let result: (plist: CFPropertyListRef?, error: NSError?) = mgr.getPListFromRessourceWithPath("\(NSBundle.mainBundle().resourcePath!)/Sounds/");
 
         XCTAssertNotNil(result.error, "\nERROR: The test did not fail as was expected\n");
         XCTAssertNil(result.plist, "\nPlist was obtained:\n\(result.plist)\n");
@@ -147,22 +147,22 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getMelodicInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
 
-        var path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
-        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: path!);
+        let path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
+        let resInstru = mgr.getMelodicInstrumentFromSoundBank(path: path!);
 
         XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
 
     func testThat_getMelodicInstrumentFromSoundBank_fails_whenGiven_invalidPath() {
 
-        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+        let resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
 
         XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
     }
 
     func testThat_getMelodicInstrumentFromSoundBank_fails_whenGiven_directory() {
 
-        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+        let resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/");
 
         XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
     }
@@ -174,23 +174,23 @@ class PresetMgrTests: XCTestCase {
 
     func testThat_getPercussionInstrumentFromSoundBank_succeeds_whenGiven_reachableFile() {
 
-        var path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
-        var resInstru = mgr.getPercussionInstrumentFromSoundBank(path: path!);
+        let path: String? = NSBundle.mainBundle().pathForResource("SoundBanks/ProTrax_Classical_Guitar", ofType: "sf2");
+        let resInstru = mgr.getPercussionInstrumentFromSoundBank(path: path!);
 
         XCTAssert(resInstru != nil, "\nERROR: no instrument was obtained\n");
     }
 
     func testThat_getPercussionInstrumentFromSoundBank_fails_whenGiven_invalidPath() {
 
-        var resInstru = mgr.getPercussionInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
+        let resInstru = mgr.getPercussionInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/Tbone/5e.caf");
 
         XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
     }
-
+    
     func testThat_getPercussionInstrumentFromSoundBank_fails_whenGiven_directory() {
-
-        var resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/");
-
+        
+        let resInstru = mgr.getMelodicInstrumentFromSoundBank(path: "\(NSBundle.mainBundle().resourcePath!)/Sounds/");
+        
         XCTAssert(resInstru == nil, "\nERROR: obtained instrument unexpectedly\n");
     }
 }

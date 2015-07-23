@@ -27,7 +27,7 @@ public protocol ByteOrder {
     func toNative(value: UInt16) -> UInt16
     func toNative(value: UInt32) -> UInt32
     func toNative(value: UInt64) -> UInt64
-    
+
     func fromNative(value: UInt16) -> UInt16
     func fromNative(value: UInt32) -> UInt32
     func fromNative(value: UInt64) -> UInt64
@@ -55,27 +55,27 @@ public func foreignOrder() -> ByteOrder {
 
 public struct LittleEndian : ByteOrder {
     public init() { }
-    
+
     public func toNative(value: UInt16) -> UInt16 {
         return UInt16(littleEndian: value)
     }
-    
+
     public func toNative(value: UInt32) -> UInt32 {
         return UInt32(littleEndian: value)
     }
-    
+
     public func toNative(value: UInt64) -> UInt64 {
         return UInt64(littleEndian: value)
     }
-    
+
     public func fromNative(value: UInt16) -> UInt16 {
         return value.littleEndian
     }
-    
+
     public func fromNative(value: UInt32) -> UInt32 {
         return value.littleEndian
     }
-    
+
     public func fromNative(value: UInt64) -> UInt64 {
         return value.littleEndian
     }
@@ -83,15 +83,15 @@ public struct LittleEndian : ByteOrder {
 
 public struct BigEndian : ByteOrder {
     public init() { }
-    
+
     public func toNative(value: UInt16) -> UInt16 {
         return UInt16(bigEndian: value)
     }
-    
+
     public func toNative(value: UInt32) -> UInt32 {
         return UInt32(bigEndian: value)
     }
-    
+
     public func toNative(value: UInt64) -> UInt64 {
         return UInt64(bigEndian: value)
     }
@@ -99,11 +99,11 @@ public struct BigEndian : ByteOrder {
     public func fromNative(value: UInt16) -> UInt16 {
         return value.bigEndian
     }
-    
+
     public func fromNative(value: UInt32) -> UInt32 {
         return value.bigEndian
     }
-    
+
     public func fromNative(value: UInt64) -> UInt64 {
         return value.bigEndian
     }
