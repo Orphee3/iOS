@@ -70,8 +70,8 @@ public class MIDIFileManager: pFormattedFileManager {
         let parser = MIDIDataParser(data: reader.readAllData());
         return ["TRACKS" : parser.parseTracks()];
     }
-    
+
     public func deleteFile() {
-        
+
     }
 }

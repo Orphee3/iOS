@@ -26,7 +26,7 @@ class RegisterViewController: UIViewController {
                 "username": "\(loginTextField.text)",
                 "password": "\(passwordTextField.text)"
             ]
-            Alamofire.request(.POST, "https://orpheeapi.herokuapp.com/api/register/", parameters: param, encoding: .JSON).responseJSON { (req, res, json, error) in
+            Alamofire.request(.POST, URLString: "https://orpheeapi.herokuapp.com/api/register/", parameters: param, encoding: .JSON).responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
                     print(req)
