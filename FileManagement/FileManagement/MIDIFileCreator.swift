@@ -80,7 +80,7 @@ public class MIDIFileCreator {
             var buffer: [UInt8] = [0, 0, 0, 0];
             var pos: Int        = 0;
 
-            do {
+            repeat {
                 buffer[pos++] = UInt8(deltaTime & UInt32(0x7F));
                 deltaTime >>= 7;
                 ++trackLength;
@@ -120,7 +120,7 @@ public class MIDIFileCreator {
 
                 var deltaTime: UInt32 = 0;
                 if (notes.count > 0) {
-                    for (idx, note) in enumerate(notes) {
+                    for (idx, note) in notes.enumerate() {
                         if (idx == 0) {
                             deltaTime = UInt32(eNoteLength.crotchet.rawValue * Float32(ppqn) * Float32(silences));
                             silences = 0
@@ -129,7 +129,7 @@ public class MIDIFileCreator {
                         noteEvent(eMidiEventType.noteOn, note: note, velocity: 76);
                         deltaTime = 0;
                     }
-                    for (idx, note) in enumerate(notes) {
+                    for (idx, note) in notes.enumerate() {
                         if (idx == 0) {
                             deltaTime = UInt32(eNoteLength.crotchet.rawValue * Float32(ppqn));
                         }
@@ -153,7 +153,7 @@ public class MIDIFileCreator {
         mutating func unifiedBufferForTrack() -> ByteBuffer {
 
             //            let size = header.position + channelPrg.position + body.position;
-            var buffer = ByteBuffer(order: LittleEndian(), capacity: Int(trackLength + 50));
+            let buffer = ByteBuffer(order: LittleEndian(), capacity: Int(trackLength + 50));
 
             memcpy(UnsafeMutablePointer<Void>(buffer.data + buffer.position),
                 UnsafeMutablePointer<Void>(header.data),
@@ -214,7 +214,7 @@ public class MIDIFileCreator {
             tracks.append(track);
         }
         else {
-            println("No events in given track: Ignoring");
+            print("No events in given track: Ignoring");
         }
     }
 
@@ -232,14 +232,14 @@ public class MIDIFileCreator {
     public func dataForFile() -> NSData {
 
         var size = fileHeader.position;
-        var buffers = mkBuffersForTracks();
+        let buffers = mkBuffersForTracks();
 
         for buffer in buffers {
             size += buffer.position;
         }
 
-        println("\ntotal data size \(size)\n")
-        var fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
+        print("\ntotal data size \(size)\n")
+        let fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
 
         memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
             UnsafeMutablePointer<Void>(fileHeader.data),
@@ -253,8 +253,8 @@ public class MIDIFileCreator {
             );
             fileBuf.position += buffer.position;
         }
-
-        println("\ntotal data in file buffer \(fileBuf.position)\n")
+        
+        print("\ntotal data in file buffer \(fileBuf.position)\n")
         return NSData(bytes: fileBuf.data, length: fileBuf.position);
     }
 }

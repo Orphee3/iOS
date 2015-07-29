@@ -35,8 +35,8 @@ class UITimeBlockArray {
     /// The value is calculated when required based on the `size`, the `row` number and the size of the contained buttons.
     var endPos: (x: Int, y: Int) {
         get {
-            var x: Int = size * (UITrackTimeBlock.width + 10) + 10;
-            var y: Int = row * (UITrackTimeBlock.height + 10);
+            let x: Int = size * (UITrackTimeBlock.width + 10) + 10;
+            let y: Int = row * (UITrackTimeBlock.height + 10);
             return (x, y);
         }
     }
@@ -46,7 +46,7 @@ class UITimeBlockArray {
 
     /// Init
     ///
-    /// :param: rowNbr  The row number represented by this array.
+    /// - parameter rowNbr:  The row number represented by this array.
     init(rowNbr: Int, noteValue: Int, inView view: UIView, withGraph: AudioGraph) {
 
         row = rowNbr;
@@ -60,13 +60,13 @@ class UITimeBlockArray {
 
     /// Adds `count` buttons to this array and sets them as subviews to a given view.
     ///
-    /// :param: count   The number of buttons to add to the array and given view.
-    /// :param: color   The buttons' color.
-    /// :param: toView  The view to which to add these buttons.
+    /// - parameter count:   The number of buttons to add to the array and given view.
+    /// - parameter color:   The buttons' color.
+    /// - parameter toView:  The view to which to add these buttons.
     func addButtons(count: Int, color: UIColor) {
 
         for (var col = 0; col < count; col++) {
-            var tBlock = UITrackTimeBlock.timeBlock(image: UIImage(named: "buttonBlue")!, row: row, column: col + size, note: note, graph: graph);
+            let tBlock = UITrackTimeBlock.timeBlock(image: UIImage(named: "buttonBlue")!, row: row, column: col + size, note: note, graph: graph);
 
             buttons.append(tBlock);
             container!.addSubview(tBlock);
@@ -76,8 +76,8 @@ class UITimeBlockArray {
 
     /// Removes the `count` last buttons contained in this array from a given view.
     ///
-    /// :param: count       The number of buttons to remove from the array and given view.
-    /// :param: fromView    The view from which to remove these buttons.
+    /// - parameter count:       The number of buttons to remove from the array and given view.
+    /// - parameter fromView:    The view from which to remove these buttons.
     func removeButtons(count: Int) {
 
         let safeCount = (count <= size) ? count : size;
@@ -96,7 +96,7 @@ class UITimeBlockArray {
 
     /// Allows access to the array's size
     func getSize() -> Int {
-
+        
         return size;
     }
 }

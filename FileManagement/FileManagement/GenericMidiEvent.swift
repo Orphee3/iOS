@@ -11,9 +11,9 @@ import UIKit
 /** GenericMidiEvent realizes pTimedMidiEvent and Printable
 
 */
-public class GenericMidiEvent<T>: pMidiEvent, Printable {
+public class GenericMidiEvent<T>: pMidiEvent, CustomStringConvertible {
 
-    typealias dataSource = T;
+    public typealias dataSource = T;
 
     public var type: eMidiEventType;
     public var dataReader: (rawData: T) -> [UInt32];

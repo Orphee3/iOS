@@ -15,7 +15,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -23,7 +23,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
 
     func testProcessProgramChange() {
 
-        var b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
 
         b.putUInt16(0xC542);
         b.rewind();
@@ -34,7 +34,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
 
     func testProcessNoteOnEvent() {
 
-        var b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
 
         b.putUInt8(0x92);
         b.putUInt16(0x4264);
@@ -46,7 +46,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
 
     func testProcessNoteOffEvent() {
 
-        var b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
 
         b.putUInt8(0x82);
         b.putUInt16(0x4200);
@@ -58,7 +58,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
 
     func testProcessTempoEvent() {
 
-        var b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
 
         b.putUInt32(0x0307A120);
         b.rewind();
@@ -69,7 +69,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
 
     func testProcessTimeSigEvent() {
 
-        var b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 20);
+        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 20);
 
         b.putUInt8(0x04);
         b.putUInt32(0x04021808)
@@ -81,7 +81,7 @@ class MIDIEventsProcessorsTests: XCTestCase {
 
     func testProcessUnkownEvent() {
 
-        var b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 15);
+        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 15);
 
         b.putUInt32(0x0307A120);
         b.putUInt32(0x0307A120);

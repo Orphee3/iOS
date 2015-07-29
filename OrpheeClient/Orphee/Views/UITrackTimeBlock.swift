@@ -78,14 +78,14 @@ class UITrackTimeBlock: UIButton {
 
     /// Creates a UITrackTimeBlock button.
     ///
-    /// :param: color   The new button's color.
-    /// :param: row     The row the new button will belong to.
-    /// :param: column  The column the new button will belong to.
+    /// - parameter color:   The new button's color.
+    /// - parameter row:     The row the new button will belong to.
+    /// - parameter column:  The column the new button will belong to.
     ///
-    /// :returns: A UITrackTimeBlock `color` button belonging at `row` X `column`
-    class func timeBlock(#image: UIImage, row: Int, column: Int, note: UInt32, graph: AudioGraph) -> UITrackTimeBlock {
+    /// - returns: A UITrackTimeBlock `color` button belonging at `row` X `column`
+    class func timeBlock(image image: UIImage, row: Int, column: Int, note: UInt32, graph: AudioGraph) -> UITrackTimeBlock {
 
-        var tBlock: UITrackTimeBlock = UITrackTimeBlock(row: row, column: column);
+        let tBlock: UITrackTimeBlock = UITrackTimeBlock(row: row, column: column);
 
         tBlock.pos = column;
         tBlock.row = row;
@@ -102,19 +102,19 @@ class UITrackTimeBlock: UIButton {
 
     /// Returns an object initialized from data in a given unarchiver.
     ///
-    /// :param: aDecoder    An unarchiver object.
-    required init(coder aDecoder: NSCoder) {
+    /// - parameter aDecoder:    An unarchiver object.
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
 
-        var frame = self.frame;
+        let frame = self.frame;
         self.originX = Int(frame.origin.x);
         self.originY = Int(frame.origin.y);
     }
 
     /// Returns a UITrackTimeBlock button initialized at the given row and column.
     ///
-    /// :param: row     The row the new button will belong to.
-    /// :param: column  The column the new button will belong to.
+    /// - parameter row:     The row the new button will belong to.
+    /// - parameter column:  The column the new button will belong to.
     init(row: Int, column: Int) {
         super.init(frame: CGRect(x: 0, y: 0, width: UITrackTimeBlock.width, height: UITrackTimeBlock.height));
 
@@ -124,8 +124,8 @@ class UITrackTimeBlock: UIButton {
 
     /// Returns a UITrackTimeBlock button initialized at the given position (rounded to nearest row and column).
     ///
-    /// :param: pos_x   The position on the X axis the new button will belong to (rounded to the closest column).
-    /// :param: pos_y   The position on the Y axis the new button will belong to (rounded to the closest row).
+    /// - parameter pos_x:   The position on the X axis the new button will belong to (rounded to the closest column).
+    /// - parameter pos_y:   The position on the Y axis the new button will belong to (rounded to the closest row).
     private init(pos_x: Int, pos_y: Int) {
         super.init(frame: CGRect(x: pos_x, y: pos_y, width: UITrackTimeBlock.width, height: UITrackTimeBlock.height));
 
@@ -139,13 +139,13 @@ class UITrackTimeBlock: UIButton {
     /// The responder called when the button is clicked.
     func onClick() {
 
-        println("release button #\(pos) on row #\(row)");
+        print("release button #\(pos) on row #\(row)", appendNewline: false);
         graph.stopNote(note);
     }
 
     func onTouchDown() {
 
-        println("press button #\(pos) on row #\(row)");
+        print("press button #\(pos) on row #\(row)", appendNewline: false);
         active = !active;
         graph.playNote(note);
     }

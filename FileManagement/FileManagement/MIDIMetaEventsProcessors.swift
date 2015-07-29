@@ -13,7 +13,7 @@ public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
-    if (isExpectedLength(dataLength, 4)) {
+    if (isExpectedLength(dataLength, expected: 4)) {
 
         var result: [UInt32] = [UInt32(data.getUInt8())];
         result.append(UInt32( pow(2, Double(data.getUInt8()))));
@@ -22,7 +22,7 @@ public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
 
         return result;
     }
-    debugPrintln("TimeSig got wrong length !");
+    debugPrint("TimeSig got wrong length !");
     return [];
 }
 
@@ -30,7 +30,7 @@ public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
-    if (isExpectedLength(dataLength, 3)) {
+    if (isExpectedLength(dataLength, expected: 3)) {
 
         var bpm: UInt32 = 0;
 
@@ -41,7 +41,7 @@ public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
         bpm |= UInt32(data.getUInt8());
         return [60_000_000 / bpm];
     }
-    debugPrintln("Tempo got wrong length !");
+    debugPrint("Tempo got wrong length !");
     return [];
 }
 

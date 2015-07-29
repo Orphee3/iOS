@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        var vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
-        if let viewCtl = vc {
+        let vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
+        if let _ = vc {
             self.window?.rootViewController = vc!;
             self.window?.makeKeyAndVisible();
         }
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     func applicationWillTerminate(application: UIApplication) {
     }
-
-
+    
+    
 }
 

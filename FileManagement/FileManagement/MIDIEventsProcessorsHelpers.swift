@@ -14,7 +14,7 @@ public func isExpectedLength(length: UInt8, expected: UInt8) -> Bool {
     return length == expected;
 }
 
-public func makeMidiEvent(delta: UInt32 = 0, #eventType: eMidiEventType, #buffer: ByteBuffer) -> GenericMidiEvent<ByteBuffer> {
+public func makeMidiEvent(delta: UInt32 = 0, eventType: eMidiEventType, buffer: ByteBuffer) -> GenericMidiEvent<ByteBuffer> {
 
     var event: GenericMidiEvent<ByteBuffer>? = nil;
     switch eventType {
@@ -48,7 +48,7 @@ public func getNextEvent(buffer: ByteBuffer, inout isMetaEvent: Bool) -> UInt8 {
     if (byte == 0xFF || byte == 0) {
 
         isMetaEvent = isMetaEventByte(byte)
-        return getNextEvent(buffer, &isMetaEvent);
+        return getNextEvent(buffer, isMetaEvent: &isMetaEvent);
     }
     if (!isMetaEvent) {
         buffer.reset();

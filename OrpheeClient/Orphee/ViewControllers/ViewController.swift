@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        oldValue = Int(stepper.value).description.toInt()
+        oldValue = Int(stepper.value.description)
         createBlocks(1);
         session.setupSession(&audioIO);
         audioIO.createAudioGraph();
@@ -61,8 +61,8 @@ class ViewController: UIViewController {
     //
 
     @IBAction func addAndRemoveBlocks(sender: UIStepper) {
-        println(Int(sender.value).description)
-        if (Int(sender.value).description.toInt() > oldValue){
+        print(Int(sender.value).description, appendNewline: false)
+        if (Int(Int(sender.value).description) > oldValue){
             oldValue = oldValue! + 1;
             blockArrays.addBlocks(1);
             updateScrollViewConstraints();
@@ -78,25 +78,25 @@ class ViewController: UIViewController {
     /// Called when the UI's `Stop` button is pressed.
     /// Displays *stop*
     ///
-    /// :param: sender  The object sending the event.
+    /// - parameter sender:  The object sending the event.
     @IBAction func StopButtonTouched(sender: AnyObject) {
-        println("stop");
+        print("stop", appendNewline: false);
     }
 
     /// Called when the UI's `Play` button is pressed.
     /// Displays *play*
     ///
-    /// :param: sender  The object sending the event.
+    /// - parameter sender:  The object sending the event.
     @IBAction func PlayButtonTouched(sender: AnyObject) {
-        var button = sender as! UIButton;
+        _ = sender as! UIButton;
 
         if (player.isPlaying()) {
-            println("stop");
+            print("stop", appendNewline: false);
 
             player.stop();
         }
         else {
-            println("play");
+            print("play", appendNewline: false);
 
             saveAction(UIAlertAction());
             importAction(UIAlertAction());
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         if (segue.identifier == "instrumentsSegue") {
-            var sidebar = segue.destinationViewController as! InstrumentsTableViewController;
+            let sidebar = segue.destinationViewController as! InstrumentsTableViewController;
             sidebar.graph = audioIO;
         }
     }
@@ -119,12 +119,12 @@ class ViewController: UIViewController {
     /// Each track is added to `dictBlocks` with the corresponding instrument as key.
     /// Each track is added as a subview to `scrollBlocks` and updates the scroll view's size.
     ///
-    /// :param: columns  The number of columns to add to each track.
+    /// - parameter columns:  The number of columns to add to each track.
     func createBlocks(columns: Int) {
 
-        for (idx, instrument) in enumerate(instrumentsList) {
+        for (idx, _) in instrumentsList.enumerate() {
 
-            var track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
+            let track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
 
             blockArrays.blockArrays.append(track);
             track.addButtons(columns, color: UIColor.blueColor());
@@ -157,14 +157,14 @@ class ViewController: UIViewController {
     func makeActions() {
         importAction = { (alert: UIAlertAction!) -> Void in
 
-            println("File imported")
+            print("File imported", appendNewline: false)
             self.blockArrays.resetBlocks();
-            var data: [String : AnyObject] = MIDIFileManager(name: "test").readFile(nil)!;
+            let data: [String : AnyObject] = MIDIFileManager(name: "test").readFile(nil)!;
             for (key, value) in data {
                 if (key == "TRACKS") {
                     if let tracks = value as? [Int : [[Int]]] {
                         self.blockArrays.updateProperties();
-                        var missingBlocks = tracks[0]!.count - self.blockArrays.blockLength;
+                        let missingBlocks = tracks[0]!.count - self.blockArrays.blockLength;
                         if (missingBlocks > 0) {
                             self.blockArrays.addBlocks(missingBlocks + 1);
                             self.oldValue! += missingBlocks + 1;
@@ -179,16 +179,16 @@ class ViewController: UIViewController {
 
         saveAction = { (alert: UIAlertAction!) -> Void in
 
-            println("File Saved")
-            var notes = self.blockArrays.getFormattedNoteList();
-            var tracks: [String : AnyObject] = ["TRACKS" : [0 : notes]];
-
+            print("File Saved", appendNewline: false)
+            let notes = self.blockArrays.getFormattedNoteList();
+            let tracks: [String : AnyObject] = ["TRACKS" : [0 : notes]];
+            
             MIDIFileManager(name: "test").createFile(nil, content: tracks);
         };
-
+        
         cancelAction = { (alert: UIAlertAction!) -> Void in
-
-            println("Cancelled")
+            
+            print("Cancelled", appendNewline: false)
         };
     }
 }

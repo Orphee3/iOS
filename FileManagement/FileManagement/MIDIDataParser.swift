@@ -50,19 +50,19 @@ public class MIDIDataParser {
 
             // track time signature (stored as UInt32)
             var meta = false;
-            var nextEvent = processStatusByte(getNextEvent(dataBuffer, &meta));
-            midiEvents.append(makeMidiEvent(delta: 0, eventType: nextEvent, buffer: dataBuffer));
+            var nextEvent = processStatusByte(getNextEvent(dataBuffer, isMetaEvent: &meta));
+            midiEvents.append(makeMidiEvent(0, eventType: nextEvent, buffer: dataBuffer));
 
             // track tempo (stored as UInt32)
-            nextEvent = processStatusByte(getNextEvent(dataBuffer, &meta));
-            midiEvents.append(makeMidiEvent(delta: 0, eventType: nextEvent, buffer: dataBuffer));
+            nextEvent = processStatusByte(getNextEvent(dataBuffer, isMetaEvent: &meta));
+            midiEvents.append(makeMidiEvent(0, eventType: nextEvent, buffer: dataBuffer));
         }
 
         mutating func readInstrument() {
 
             var meta = false;
-            var nextEvent = processStatusByte(getNextEvent(dataBuffer, &meta));
-            midiEvents.append(makeMidiEvent(delta: 0, eventType: nextEvent, buffer: dataBuffer));
+            let nextEvent = processStatusByte(getNextEvent(dataBuffer, isMetaEvent: &meta));
+            midiEvents.append(makeMidiEvent(0, eventType: nextEvent, buffer: dataBuffer));
         }
 
         mutating func readNoteEvents() {
@@ -70,10 +70,10 @@ public class MIDIDataParser {
             var nextEvent = eMidiEventType.unknown;
             while (dataBuffer.hasRemaining && nextEvent != eMidiEventType.endOfTrack) {
 
-                var deltaTime = readTimeStamp();
+                let deltaTime = readTimeStamp();
                 var meta = false;
-                nextEvent = processStatusByte(getNextEvent(dataBuffer, &meta));
-                midiEvents.append(makeMidiEvent(delta: UInt32(deltaTime), eventType: nextEvent, buffer: dataBuffer));
+                nextEvent = processStatusByte(getNextEvent(dataBuffer, isMetaEvent: &meta));
+                midiEvents.append(makeMidiEvent(UInt32(deltaTime), eventType: nextEvent, buffer: dataBuffer));
             }
         }
 
@@ -126,16 +126,16 @@ public class MIDIDataParser {
 
         func printConfiguration() {
 
-            println("\n/////////// TRACK #\(trackNbr) DATA /////////////");
-            println("Track length = \(trackLength)");
-            println("Signature = \(signature)");
-            println("Number of clock ticks per beat = \(clockTicksPerPulse)");
-            println("Number of 32nd notes between each beat = \(nbrOf32ndNotePerBeat)");
-            println("BPM = \(quarterNotePerMinute)");
-            println();
-            println("Channel = \(channel)");
-            println("Instrument ID = \(instrumentID)");
-            println("////////////////////////////////////\n");
+            print("\n/////////// TRACK #\(trackNbr) DATA /////////////");
+            print("Track length = \(trackLength)");
+            print("Signature = \(signature)");
+            print("Number of clock ticks per beat = \(clockTicksPerPulse)");
+            print("Number of 32nd notes between each beat = \(nbrOf32ndNotePerBeat)");
+            print("BPM = \(quarterNotePerMinute)");
+            print("");
+            print("Channel = \(channel)");
+            print("Instrument ID = \(instrumentID)");
+            print("////////////////////////////////////\n");
         }
 
         func getNoteArray() -> [UInt32 : [GenericMidiEvent<ByteBuffer>]] {
@@ -155,9 +155,9 @@ public class MIDIDataParser {
                     notes[currentDt]!.append(tmEvent);
                 }
             }
-            let keys = notes.keys.array.sorted { $0 < $1 } ;
+            let keys = notes.keys.array.sort { $0 < $1 } ;
             for dt in keys {
-                println("key = \(dt)\nValue = \(notes[dt]!)");
+                print("key = \(dt)\nValue = \(notes[dt]!)");
             }
             return notes;
         }
@@ -201,52 +201,52 @@ public class MIDIDataParser {
         var tracks: [Int : [[Int]]] = [:];
 
         build_allTracks:
-        for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
+            for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
 
-            var track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
-            track.getNoteArray();
+                let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
+                track.getNoteArray();
 
-            var timedEvents: [TimedEvent<ByteBuffer>] = track.midiEvents
-                .filter({ $0 is TimedEvent<ByteBuffer> })
-                .map({ $0 as! TimedEvent<ByteBuffer> });
+                let timedEvents: [TimedEvent<ByteBuffer>] = track.midiEvents
+                    .filter({ $0 is TimedEvent<ByteBuffer> })
+                    .map({ $0 as! TimedEvent<ByteBuffer> });
 
-            for tmEvent in timedEvents {
+                for tmEvent in timedEvents {
 
-                if (tmEvent.deltaTime > 0) {
+                    if (tmEvent.deltaTime > 0) {
 
-                    smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
-                }
-            }
-            var i = 0;
-            var cleanedEvents: [[Int]] = [[]];
-            for event in timedEvents {
-
-                if (event.deltaTime >= smallestTimeDiv) {
-
-                    var silences = event.deltaTime / smallestTimeDiv;
-                    for (var j: UInt32 = 0; j < silences; ++j) {
-
-                        cleanedEvents.append([]);
-                        ++i;
+                        smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
                     }
                 }
-                if (event.type == eMidiEventType.noteOn) {
-                    cleanedEvents[i].append(Int(event.data![1]));
+                var i = 0;
+                var cleanedEvents: [[Int]] = [[]];
+                for event in timedEvents {
+
+                    if (event.deltaTime >= smallestTimeDiv) {
+
+                        let silences = event.deltaTime / smallestTimeDiv;
+                        for (var j: UInt32 = 0; j < silences; ++j) {
+
+                            cleanedEvents.append([]);
+                            ++i;
+                        }
+                    }
+                    if (event.type == eMidiEventType.noteOn) {
+                        cleanedEvents[i].append(Int(event.data![1]));
+                    }
                 }
-            }
-            tracks[Int(idx)] = cleanedEvents;
+                tracks[Int(idx)] = cleanedEvents;
         }
         return tracks;
     }
-
+    
     private func printHeader() {
-
-        println("\n//////////// FILE DATA /////////////");
-        println("Header mark = \(headerMark)");
-        println("Header length = \(headerLength)");
-        println("midi file type = \(midiFileType)");
-        println("number of tracks = \(nbrOfTracks)");
-        println("dtTicks/quarter note = \(deltaTickPerQuarterNote)");
-        println("////////////////////////////////////\n");
+        
+        print("\n//////////// FILE DATA /////////////");
+        print("Header mark = \(headerMark)");
+        print("Header length = \(headerLength)");
+        print("midi file type = \(midiFileType)");
+        print("number of tracks = \(nbrOfTracks)");
+        print("dtTicks/quarter note = \(deltaTickPerQuarterNote)");
+        print("////////////////////////////////////\n");
     }
 }

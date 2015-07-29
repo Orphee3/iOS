@@ -51,10 +51,10 @@ public class MIDIFileManager: pFormattedFileManager {
 
         NSFileManager.defaultManager().createFileAtPath(self.path, contents: nil, attributes: nil);
 
-        var midiFile = MIDIFileCreator();
+        let midiFile = MIDIFileCreator();
         if let tracks: AnyObject = content?["TRACKS"] {
-            var trackList = tracks as! [Int : [[Int]]];
-            for (idx, track) in trackList {
+            let trackList = tracks as! [Int : [[Int]]];
+            for (_, track) in trackList {
                 midiFile.addTrack(track);
             }
         }
@@ -67,11 +67,11 @@ public class MIDIFileManager: pFormattedFileManager {
             self.name = name!;
         }
 
-        var parser = MIDIDataParser(data: reader.readAllData());
+        let parser = MIDIDataParser(data: reader.readAllData());
         return ["TRACKS" : parser.parseTracks()];
     }
-
+    
     public func deleteFile() {
-
+        
     }
 }

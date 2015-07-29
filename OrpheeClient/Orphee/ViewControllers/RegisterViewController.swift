@@ -17,10 +17,10 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     func sendInfosToServer(){
-        if (!loginTextField.text.isEmpty && !passwordTextField.text.isEmpty){
-            println("ça passeé");
+        if (!loginTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
+            print("ça passeé", appendNewline: false);
             let param = [
                 "name": "\(loginTextField.text)",
                 "username": "\(loginTextField.text)",
@@ -29,14 +29,14 @@ class RegisterViewController: UIViewController {
             Alamofire.request(.POST, "https://orpheeapi.herokuapp.com/api/register/", parameters: param, encoding: .JSON).responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
-                    println(req)
-                    println(res)
+                    print(req)
+                    print(res)
                 }
                 else {
-                    println("Success")
+                    print("Success")
                     var json = JSON(json!)
                     NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
-                    println(json)
+                    print(json)
                     self.performSegueWithIdentifier("registerOk", sender: nil)
                 }
             }
@@ -47,9 +47,9 @@ class RegisterViewController: UIViewController {
             alertView.show()
         }
     }
-    
+
     @IBAction func registerButtonPressed(sender: AnyObject) {
-        println("coucou");
+        print("coucou", appendNewline: false);
         sendInfosToServer()
     }
 }

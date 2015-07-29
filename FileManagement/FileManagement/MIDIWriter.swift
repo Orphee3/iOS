@@ -19,7 +19,7 @@ public class MIDIWriter: pOutputManager {
 
         self.handle = NSFileHandle(forWritingAtPath: path);
         if (self.handle == nil) {
-            println("\n\nMIDIWriter init failed.\n\n");
+            print("\n\nMIDIWriter init failed.\n\n");
         }
     }
 
@@ -27,10 +27,10 @@ public class MIDIWriter: pOutputManager {
 
         if let hdl = handle {
             hdl.writeData(data);
-            println("\n\nMIDIWriter write succeeded.\n\n");
+            print("\n\nMIDIWriter write succeeded.\n\n");
             return true;
         }
-        println("\n\nMIDIWriter write failed.\n\n");
+        print("\n\nMIDIWriter write failed.\n\n");
         return false;
     }
 }
