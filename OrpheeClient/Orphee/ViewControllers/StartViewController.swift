@@ -26,47 +26,29 @@ class StartViewController: UIViewController {
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
 
-    func requestConnectWithToken(url: String, requestMethod: String, token: String) {
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var response: NSURLResponse?
-
-        request.HTTPMethod = requestMethod
-        request.setValue("application/x-www-form-urlencoded",
-            forHTTPHeaderField: "Content-Type")
-        if (!token.isEmpty) {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-
-        do {
-            let responseData = try NSURLConnection.sendSynchronousRequest(request,returningResponse:&response) as NSData?
-            if let httpResponse = response as? NSHTTPURLResponse {
-                print("error \(httpResponse.statusCode)", appendNewline: false)
-                if (httpResponse.statusCode == 200){
-                    let jsonResult: NSDictionary = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    NSUserDefaults.standardUserDefaults().setObject(jsonResult["token"], forKey: "token")
-                    performSegueWithIdentifier("toMenu", sender: nil)
-                }
-                else{
-                    let alertView = UIAlertView(title: "Erreur", message: "Connexion impossible, réessayez.", delegate: self, cancelButtonTitle: "Ok")
-                    alertView.alertViewStyle = .Default
-                    alertView.show()
-                }
-            }
-        }
-        catch (let err) {
-            print("Got error: \(err)");
-        }
-    }
-
     func checkLoginAndPasswd() {
         if (!loginField.text!.isEmpty && !mdpField.text!.isEmpty){
             let param = "\(loginField.text):\(mdpField.text):local"
             let utf8str = param.dataUsingEncoding(NSUTF8StringEncoding)
             let token = utf8str!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-            print(token, appendNewline: false)
-            let url = "https://orpheeapi.herokuapp.com/api/login"
-            let method = "POST"
-            requestConnectWithToken(url, requestMethod: method, token: token)
+            let headers = [
+                "Authorization": "Bearer \(token)",
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+            Alamofire.request(.POST, "http://163.5.84.242:3000/api/login", headers: headers)
+                .responseJSON { request, response, json in
+                    print(response?.statusCode)
+                    print(json.value)
+                    if (response?.statusCode == 200){
+                        var json = JSON(json.value!)
+                        NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
+                        self.performSegueWithIdentifier("toMenu", sender: nil)
+                    }else{
+                        let alertView = UIAlertView(title: "Erreur", message: "Les identifiants et le mot de passe ne correspondent pas.", delegate: self, cancelButtonTitle: "Ok")
+                        alertView.alertViewStyle = .Default
+                        alertView.show()
+                    }
+            }
         }
         else{
             let alertView = UIAlertView(title: "Erreur", message: "Tous les champs ne sont pas correctement remplis.", delegate: self, cancelButtonTitle: "Ok")

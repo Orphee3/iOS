@@ -17,39 +17,40 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     func sendInfosToServer(){
         if (!loginTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
-            print("ça passeé", appendNewline: false);
+            print("ça passe");
             let param = [
                 "name": "\(loginTextField.text)",
                 "username": "\(loginTextField.text)",
                 "password": "\(passwordTextField.text)"
             ]
-            Alamofire.request(.POST, URLString: "https://orpheeapi.herokuapp.com/api/register/", parameters: param, encoding: .JSON).responseJSON { (req, res, json, error) in
-                if(error != nil) {
-                    NSLog("Error: \(error)")
-                    print(req)
-                    print(res)
-                }
-                else {
-                    print("Success")
-                    var json = JSON(json!)
-                    NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
-                    print(json)
-                    self.performSegueWithIdentifier("registerOk", sender: nil)
-                }
+            Alamofire.request(.POST, "http://163.5.84.242:3000/api/register", parameters: param, encoding: .JSON)
+                .responseJSON { req, res, json in
+                    if (res?.statusCode == 200){
+                        var json = JSON(json.value!)
+                        NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
+                        self.performSegueWithIdentifier("registerOk", sender: nil)
+                    }else{
+                        if (res?.statusCode == 409){
+                            self.alertViewForErrors("Cet utilisateur existe déjà")
+                        }
+                    }
             }
         }
         else{
-            let alertView = UIAlertView(title: "Erreur", message: "Tous les champs ne sont pas correctement remplis.", delegate: self, cancelButtonTitle: "Ok")
-            alertView.alertViewStyle = .Default
-            alertView.show()
+            alertViewForErrors("Tous les champs ne sont pas correctement remplis.")
         }
     }
-
+    
+    func alertViewForErrors(msg: String){
+        let alertView = UIAlertView(title: "Erreur", message: msg , delegate: self, cancelButtonTitle: "Ok")
+        alertView.alertViewStyle = .Default
+        alertView.show()
+    }
+    
     @IBAction func registerButtonPressed(sender: AnyObject) {
-        print("coucou", appendNewline: false);
         sendInfosToServer()
     }
 }
