@@ -27,12 +27,18 @@
 		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
-		9B76B22D1B3E19BC00B1C40B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22C1B3E19BC00B1C40B /* StartViewController.swift */; };
+		9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */; };
+		9B0CC5871B7B95D700A81982 /* FluxCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */; };
+		9B4313AB1B7E421800248EAD /* AskLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */; };
+		9B4313AE1B7E5DC600248EAD /* AskLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B4313AC1B7E5DC600248EAD /* AskLoginViewController.xib */; };
+		9B4C9A781B6FB8F500F9ADBE /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C9A771B6FB8F500F9ADBE /* Api.swift */; };
+		9B76B22D1B3E19BC00B1C40B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */; };
 		9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */; };
 		9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */; };
 		9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */; };
 		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
-		9BC5E3D21B59DE9A00E533DF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5E3D11B59DE9A00E533DF /* SettingsViewController.swift */; };
+		9B99A3751B84C1B2009F1008 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */; };
+		9BC9DCB11B7C085800DC8138 /* MyProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
@@ -109,12 +115,18 @@
 		88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
-		9B76B22C1B3E19BC00B1C40B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FluxCustomCell.xib; sourceTree = "<group>"; };
+		9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluxCustomCell.swift; sourceTree = "<group>"; };
+		9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AskLoginViewController.swift; path = ../ViewControllers/AskLoginViewController.swift; sourceTree = "<group>"; };
+		9B4313AD1B7E5DC600248EAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = AskLoginViewController.xib; sourceTree = "<group>"; };
+		9B4C9A771B6FB8F500F9ADBE /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionMenuViewController.swift; sourceTree = "<group>"; };
 		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
-		9BC5E3D11B59DE9A00E533DF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewController.swift; sourceTree = "<group>"; };
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
@@ -206,14 +218,16 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BC9DCAE1B7C021A00DC8138 /* Login and Register */,
+				9BC9DCAF1B7C025300DC8138 /* ProfileCustomCell */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
 				DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */,
-				9B76B22C1B3E19BC00B1C40B /* StartViewController.swift */,
-				9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */,
 				9B76B2301B3EC3F800B1C40B /* CompositionMenuViewController.swift */,
 				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
 				9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */,
-				9BC5E3D11B59DE9A00E533DF /* SettingsViewController.swift */,
+				9B4C9A771B6FB8F500F9ADBE /* Api.swift */,
+				9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */,
+				9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Orphee/ViewControllers;
@@ -267,11 +281,31 @@
 			path = OrpheeTests;
 			sourceTree = "<group>";
 		};
+		9BC9DCAE1B7C021A00DC8138 /* Login and Register */ = {
+			isa = PBXGroup;
+			children = (
+				9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */,
+				9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */,
+			);
+			name = "Login and Register";
+			sourceTree = "<group>";
+		};
+		9BC9DCAF1B7C025300DC8138 /* ProfileCustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */,
+				9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */,
+			);
+			name = ProfileCustomCell;
+			sourceTree = "<group>";
+		};
 		DB2BB3411ABAE280003B066B /* storyboard and xibs */ = {
 			isa = PBXGroup;
 			children = (
 				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
 				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
+				9B4313AC1B7E5DC600248EAD /* AskLoginViewController.xib */,
+				9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */,
 			);
 			name = "storyboard and xibs";
 			path = ../Base.lproj;
@@ -421,8 +455,10 @@
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
+				9B4313AE1B7E5DC600248EAD /* AskLoginViewController.xib in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */,
+				9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */,
 				526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
 			);
@@ -456,20 +492,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B99A3751B84C1B2009F1008 /* EditProfileViewController.swift in Sources */,
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
 				9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */,
 				9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */,
+				9B4C9A781B6FB8F500F9ADBE /* Api.swift in Sources */,
+				9B4313AB1B7E421800248EAD /* AskLoginViewController.swift in Sources */,
 				DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */,
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
-				9B76B22D1B3E19BC00B1C40B /* StartViewController.swift in Sources */,
-				9BC5E3D21B59DE9A00E533DF /* SettingsViewController.swift in Sources */,
+				9B0CC5871B7B95D700A81982 /* FluxCustomCell.swift in Sources */,
+				9B76B22D1B3E19BC00B1C40B /* LoginViewController.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
 				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */,
+				9BC9DCB11B7C085800DC8138 /* MyProfileTableViewController.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */,
@@ -555,6 +595,14 @@
 			);
 			name = LaunchScreen.xib;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		9B4313AC1B7E5DC600248EAD /* AskLoginViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B4313AD1B7E5DC600248EAD /* Base */,
+			);
+			name = AskLoginViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
