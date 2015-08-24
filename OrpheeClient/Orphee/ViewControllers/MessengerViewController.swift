@@ -1,18 +1,15 @@
 //
-//  MyProfileTableViewController.swift
+//  MessengerViewController.swift
 //  Orphee
 //
-//  Created by Jeromin Lebon on 13/08/2015.
+//  Created by Jeromin Lebon on 20/08/2015.
 //  Copyright © 2015 __ORPHEE__. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import SwiftyJSON
-import Alamofire
 
-class MyProfileTableViewController: UIViewController{
-    var userProfileDic: JSON!
+class MessengerViewController: UITableViewController{
     var popUp: AskLoginViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +25,11 @@ class MyProfileTableViewController: UIViewController{
         }
         if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
             print("y a un token")
+            SocketManager.sharedInstance.connectSocket()
         }
         else{
             print("no token")
             prepareViewForLogin()
-            // performSegueWithIdentifier("login", sender: nil)
         }
     }
     
@@ -41,9 +38,5 @@ class MyProfileTableViewController: UIViewController{
         popUp.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
         popUp.title = "This is a popup view"
         popUp.showInView(self.view, animated: true)
-    }
-    
-    @IBAction func deconection(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("token")
     }
 }

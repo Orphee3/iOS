@@ -11,12 +11,14 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var loginField: UITextField!
     @IBOutlet var mdpField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginField.delegate = self;
+        mdpField.delegate = self;
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -24,6 +26,10 @@ class LoginViewController: UIViewController {
         navigationController!.navigationBar.barTintColor = UIColor(red: (13/255.0), green: (71/255.0), blue: (161/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
+    @IBAction func close(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func checkLoginAndPasswd() {
@@ -48,9 +54,10 @@ class LoginViewController: UIViewController {
                 else if (response?.statusCode == 200){
                     var json = JSON(json.value!)
                     NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
-                    NSUserDefaults.standardUserDefaults().setObject(self.loginField.text, forKey: "userName")
+                    NSUserDefaults.standardUserDefaults().setObject(self.loginField.text!, forKey: "userName")
+                    NSUserDefaults.standardUserDefaults().setObject(json["user"]["_id"].string, forKey: "myId")
+                    print(NSUserDefaults.standardUserDefaults().objectForKey("myId"))
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    
                 }
             }
         }
@@ -65,9 +72,13 @@ class LoginViewController: UIViewController {
         alertView.show()
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func loginButtonPressed(sender: AnyObject) {
         print("bonjour")
         checkLoginAndPasswd()
-        //performSegueWithIdentifier("toMenu", sender: nil)
     }
 }

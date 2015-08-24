@@ -14,11 +14,21 @@ import SwiftyJSON
 class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     @IBOutlet var tableView: UITableView!
     var userDic: JSON!
+    var popUp: AskLoginViewController!
+    var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsers()
         tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+    }
+    
+    func refresh(sender:AnyObject){
+        getUsers()
+        self.refreshControl.endRefreshing()
     }
     
     @IBAction func segmentedControlTouched(sender: UISegmentedControl) {
@@ -33,9 +43,7 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func getUsers(){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=0&size=15").responseJSON{request, response, json in
-            //print(response)
-            //print(json)
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=0&size=20").responseJSON{request, response, json in
             let newJson = JSON(json.value!)
             self.userDic = newJson
             print(self.userDic)
@@ -58,7 +66,13 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        print(userDic)
+        if let tmp = userDic{
+            return tmp.count
+        }
+        else{
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -72,19 +86,33 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func addFriend(sender: UIButton){
-        print("friend added")
-        let id = userDic[sender.tag]["_id"].string!
-        let token = NSUserDefaults.standardUserDefaults().objectForKey("token")!
-        let headers = [
-            "Authorization": "Bearer \(token)"
-        ]
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
-            request, response, json in
-            if (response?.statusCode == 200){
-                let nameOfFriend = self.userDic[sender.tag]["username"].string!
-                self.alertViewForMsg("\(nameOfFriend) va recevoir votre demande d'amitié.")
+        if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
+            print("y a un token")
+            let id = userDic[sender.tag]["_id"].string!
+            let token = NSUserDefaults.standardUserDefaults().objectForKey("token")!
+            let headers = [
+                "Authorization": "Bearer \(token)"
+            ]
+            Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
+                request, response, json in
+                print(response)
+                print(json.value!)
+                print(request)
+                if (response?.statusCode == 200){
+                    print("FRIEND ASKED : \(json)")
+                    let nameOfFriend = self.userDic[sender.tag]["username"].string!
+                    self.alertViewForMsg("\(nameOfFriend) va recevoir votre demande d'amitié.")
+                }
+                else if (response?.statusCode == 500){
+                    self.alertViewForMsg("Une erreur est survenue lors de votre demande.")
+                }
             }
         }
+        else{
+            print("no token")
+            prepareViewForLogin()
+        }
+        print("friend added")
     }
     
     func alertViewForMsg(msg: String){
@@ -94,6 +122,13 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
+    func prepareViewForLogin(){
+        popUp = AskLoginViewController(nibName: "AskLoginViewController", bundle: nil)
+        popUp.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        popUp.title = "This is a popup view"
+        popUp.showInView(self.view, animated: true)
+    }
 }
