@@ -27,10 +27,10 @@
 		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B00FF6D1B8B625D002890E2 /* LoginRegister.storyboard */; };
 		9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */; };
 		9B0CC5871B7B95D700A81982 /* FluxCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */; };
 		9B4313AB1B7E421800248EAD /* AskLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */; };
-		9B4313AE1B7E5DC600248EAD /* AskLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B4313AC1B7E5DC600248EAD /* AskLoginViewController.xib */; };
 		9B4C9A781B6FB8F500F9ADBE /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C9A771B6FB8F500F9ADBE /* Api.swift */; };
 		9B76B22D1B3E19BC00B1C40B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */; };
 		9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */; };
@@ -47,6 +47,7 @@
 		9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EE1B86A006004A892D /* SocketManager.swift */; };
 		9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F01B874505004A892D /* TabBarViewController.swift */; };
 		9BD186F31B87501E004A892D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F21B87501D004A892D /* FriendsViewController.swift */; };
+		BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D9820519B793A947DF35351 /* Pods_Orphee.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
@@ -112,6 +113,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
 		526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Trombone.aupreset; path = Ressources/Trombone.aupreset; sourceTree = "<group>"; };
 		526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = Ressources/Vibraphone.aupreset; sourceTree = "<group>"; };
@@ -137,10 +139,10 @@
 		88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
+		9B00FF6D1B8B625D002890E2 /* LoginRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginRegister.storyboard; sourceTree = "<group>"; };
 		9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FluxCustomCell.xib; sourceTree = "<group>"; };
 		9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluxCustomCell.swift; sourceTree = "<group>"; };
-		9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AskLoginViewController.swift; path = ../ViewControllers/AskLoginViewController.swift; sourceTree = "<group>"; };
-		9B4313AD1B7E5DC600248EAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = AskLoginViewController.xib; sourceTree = "<group>"; };
+		9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskLoginViewController.swift; sourceTree = "<group>"; };
 		9B4C9A771B6FB8F500F9ADBE /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,8 @@
 		9BD186EE1B86A006004A892D /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		9BD186F01B874505004A892D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9BD186F21B87501D004A892D /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		9D9820519B793A947DF35351 /* Pods_Orphee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.release.xcconfig"; sourceTree = "<group>"; };
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
 				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
 				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
+				BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */,
 				9BD186E31B861A9A004A892D /* FileManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +222,7 @@
 				52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */,
 				52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */,
 				52C61DBC1A7A039E00B3DE23 /* UIKit.framework */,
+				9D9820519B793A947DF35351 /* Pods_Orphee.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				526FF5B91A8109BA00CF6A9C /* Views */,
 				52C61D971A79E5C400B3DE23 /* Classes */,
 				52C61D961A79E5C400B3DE23 /* Products */,
+				E8B0ECD3985AC06B1C93B6A8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -323,6 +330,8 @@
 			children = (
 				9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */,
 				9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */,
+				9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */,
+				9B00FF6D1B8B625D002890E2 /* LoginRegister.storyboard */,
 			);
 			name = "Login and Register";
 			sourceTree = "<group>";
@@ -341,8 +350,6 @@
 			children = (
 				52C61D9E1A79E5C400B3DE23 /* Main.storyboard */,
 				52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */,
-				9B4313AC1B7E5DC600248EAD /* AskLoginViewController.xib */,
-				9B4313AA1B7E421800248EAD /* AskLoginViewController.swift */,
 			);
 			name = "storyboard and xibs";
 			path = ../Base.lproj;
@@ -370,6 +377,15 @@
 			path = "Audio generation";
 			sourceTree = "<group>";
 		};
+		E8B0ECD3985AC06B1C93B6A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */,
+				A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -377,9 +393,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52C61DB41A79E5C400B3DE23 /* Build configuration list for PBXNativeTarget "Orphee" */;
 			buildPhases = (
+				5F396F313AD3C121515DE354 /* Check Pods Manifest.lock */,
 				52C61D911A79E5C400B3DE23 /* Sources */,
 				52C61D921A79E5C400B3DE23 /* Frameworks */,
 				52C61D931A79E5C400B3DE23 /* Resources */,
+				473AE783EE22113072CD7C6A /* Embed Pods Frameworks */,
+				00A8E497A1C2D85966DE48EA /* Copy Pods Resources */,
+				9BD186E51B861A9A004A892D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -492,7 +512,7 @@
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
-				9B4313AE1B7E5DC600248EAD /* AskLoginViewController.xib in Resources */,
+				9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */,
 				9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */,
@@ -523,6 +543,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00A8E497A1C2D85966DE48EA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Orphee/Pods-Orphee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		473AE783EE22113072CD7C6A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Orphee/Pods-Orphee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F396F313AD3C121515DE354 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		52C61D911A79E5C400B3DE23 /* Sources */ = {
@@ -640,14 +708,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		9B4313AC1B7E5DC600248EAD /* AskLoginViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9B4313AD1B7E5DC600248EAD /* Base */,
-			);
-			name = AskLoginViewController.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -733,9 +793,11 @@
 		};
 		52C61DB51A79E5C400B3DE23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
@@ -747,9 +809,11 @@
 		};
 		52C61DB61A79E5C400B3DE23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";

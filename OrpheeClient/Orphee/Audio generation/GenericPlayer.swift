@@ -61,17 +61,17 @@ class GenericPlayer: pAudioPlayer {
 
     func isPlaying() -> Bool {
 
-        var playing: Boolean = 0;
+        var playing: DarwinBoolean = false;
 
         let state = MusicPlayerIsPlaying(player, &playing);
         if (state != noErr) {
-            playing = 0;
+            playing = false;
             stop();
             clean();
             NewMusicSequence(&sequence);
             print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
         }
-        return playing == 1;
+        return playing == true;
     }
 
     func clean() {

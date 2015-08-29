@@ -8,6 +8,7 @@
 
 import Foundation
 import Socket_IO_Client_Swift
+import SwiftyJSON
 
 class SocketManager {
     static let sharedInstance = SocketManager()
@@ -38,10 +39,15 @@ class SocketManager {
         
         socket.on("friend") {data, ack in
             print("friend data : \(data)")
+            self.notifyApp("requestFriend")
         }
     }
     
     func sendMessage(toPerson: String, message: String){
         socket.emit("private message", ["to": toPerson, "message": message]);
+    }
+    
+    func notifyApp(key: String) {
+        NSNotificationCenter.defaultCenter().postNotificationName(key, object: self)
     }
 }

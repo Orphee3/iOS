@@ -53,10 +53,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
                 else if (response?.statusCode == 200){
                     var json = JSON(json.value!)
+                    print(json)
                     NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
                     NSUserDefaults.standardUserDefaults().setObject(self.loginField.text!, forKey: "userName")
                     NSUserDefaults.standardUserDefaults().setObject(json["user"]["_id"].string, forKey: "myId")
-                    print(NSUserDefaults.standardUserDefaults().objectForKey("myId"))
+                    NSUserDefaults.standardUserDefaults().setObject(json["user"]["picture"].string, forKey: "imgProfile")
+                    SocketManager.sharedInstance.connectSocket()
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }

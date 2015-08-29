@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
-    
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        //viewController.viewWillAppear(true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }

@@ -74,6 +74,7 @@ class RegisterViewController: UIViewController {
                 NSUserDefaults.standardUserDefaults().setObject(self.loginTextField.text!, forKey: "userName")
                 NSUserDefaults.standardUserDefaults().setObject(json["user"]["_id"].string, forKey: "myId")
                 print(NSUserDefaults.standardUserDefaults().objectForKey("myId"))
+                SocketManager.sharedInstance.connectSocket()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }

@@ -14,7 +14,6 @@ import SwiftyJSON
 class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     @IBOutlet var tableView: UITableView!
     var userDic: JSON!
-    var popUp: AskLoginViewController!
     var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
@@ -43,7 +42,7 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func getUsers(){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=0&size=20").responseJSON{request, response, json in
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=0&size=50").responseJSON{request, response, json in
             let newJson = JSON(json.value!)
             self.userDic = newJson
             print(self.userDic)
@@ -66,7 +65,6 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(userDic)
         if let tmp = userDic{
             return tmp.count
         }
@@ -95,9 +93,6 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ]
             Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
                 request, response, json in
-                print(response)
-                print(json.value!)
-                print(request)
                 if (response?.statusCode == 200){
                     print("FRIEND ASKED : \(json)")
                     let nameOfFriend = self.userDic[sender.tag]["username"].string!
@@ -126,9 +121,6 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func prepareViewForLogin(){
-        popUp = AskLoginViewController(nibName: "AskLoginViewController", bundle: nil)
-        popUp.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        popUp.title = "This is a popup view"
-        popUp.showInView(self.view, animated: true)
+
     }
 }

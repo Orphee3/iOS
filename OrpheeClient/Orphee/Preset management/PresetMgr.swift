@@ -194,9 +194,9 @@ class PresetMgr {
 
         let typeExt: String = isSoundFont ? "sf2" : "dls";
         
-        if (typeExt.lowercaseString != path.pathExtension.lowercaseString) {
-            return false;
-        }
+//        if (typeExt.lowercaseString != path.pathExtension.lowercaseString) {
+//            return false;
+//        }
         return true;
     }
 }

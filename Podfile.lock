@@ -1,0 +1,39 @@
+PODS:
+  - Alamofire (2.0.0-beta.1)
+  - Socket.IO-Client-Swift (2.4.0)
+  - SwiftyJSON (2.2.1)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
+    branch `swift-2`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: https://github.com/Alamofire/Alamofire.git
+  Socket.IO-Client-Swift:
+    :branch: swift-2
+    :git: https://github.com/socketio/socket.io-client-swift.git
+  SwiftyJSON:
+    :branch: xcode7
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 97531ad0137a335653c83bb911bae33c67621f1e
+    :git: https://github.com/Alamofire/Alamofire.git
+  Socket.IO-Client-Swift:
+    :commit: 4fdb49ea2fe0a87e5bc6add8259f54a69f38646c
+    :git: https://github.com/socketio/socket.io-client-swift.git
+  SwiftyJSON:
+    :commit: d2455075224731f0449366c71e1a08d10d718e6d
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 96feccc1e48a735edb92395cf023ba4ed52bdb45
+  Socket.IO-Client-Swift: 4e5372e7122b401d9f6bc931a3c8c7b6edf2205f
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+
+COCOAPODS: 0.38.2
