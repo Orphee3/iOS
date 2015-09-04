@@ -9,41 +9,6 @@
 import UIKit
 import AudioToolbox
 
-let kMIDIFile_trackMark: String = "MTrk";
-let kMIDIFile_trackMarkSize: Int = 4;
-let kMIDIFile_fileHeaderMark: String = "MThd";
-let kMIDIFile_fileHeaderMarkSize: Int = 4;
-
-let kMIDIFile_headerLength: Int = 6;
-
-let kMIDITrack_headerLength: Int = 23;
-
-/// Hexadecimal representation of a `time signature` event:
-///   - 0xFF = MIDI Meta event
-///   - 0x58 = MIDI time signature event
-///   - 0x04 = 4 Bytes of data follow
-let kMIDIEvent_timeSignature: [UInt8] = [0x00, 0xFF, 0x58, 0x04];
-
-/// Hexadecimal representation of a `set tempo` event:
-///   - 0xFF = MIDI Meta event
-///   - 0x51 = MIDI time signature event
-///   - 0x03 = 4 Bytes of data follow
-let kMIDIEvent_setTempo: [UInt8] = [0x00, 0xFF, 0x51, 0x03];
-
-let kMIDIEvent_endOfTrack: [UInt8] = [0x00, 0xFF, 0x2F, 0x00];
-
-/// Hexadecimal representation of the default `4/4` time signature:
-/// 0x04 = time signature numerator is 4
-/// 0x02 = time signature denominator is 2^2 = 4
-/// 0x18 = metronome clicks once every 24 MIDI clock tick
-/// 0x08 = number of 32th notes per beat (8 = 1/4 note per beat).
-let kMIDIEventDefaultData_timeSig: [UInt8] = [0x04, 0x02, 0x18, 0x08];
-
-/// Hexadecimal representation of the default `120 bpm` tempo:
-/// 0x07A120 = 500_000: 60_000_000/500_000 = 120 quarter_notes/minute
-let kMIDIEventDefaultData_setTempo: [UInt8] = [0x07, 0xA1, 0x20];
-
-
 func get7LowestBits<T where T: UnsignedIntegerType>(input: T) -> UInt8 {
     return UInt8(input.toUIntMax() & 0x7F);
 }
@@ -81,6 +46,10 @@ func decomposeToBytes<T where T: UnsignedIntegerType>(input: T) -> [UInt8] {
 
 let setHighestOrderBit = { (input: UInt8) -> UInt8 in
     return input | 0x80;
+}
+
+let isHighestOrderBitSet = { (input: UInt8) -> Bool in
+    return (input & 0x80) == 0x80;
 }
 
 public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
@@ -258,28 +227,34 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
 
     public func toData() -> NSData {
 
-        var size = fileHeader.position;
-        let buffers = mkBuffersForTracks();
+        var size = 0;
+        let buffers = [fileHeader] + mkBuffersForTracks();
 
         for buffer in buffers {
             size += buffer.position;
         }
 
         print(kOrpheeDebug_bufferCreator_printInputDataSize(size));
-        let fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
 
-        memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
-            UnsafeMutablePointer<Void>(fileHeader.data),
-            fileHeader.position
-        );
-        fileBuf.position += fileHeader.position;
+        let fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
+        var data = fileBuf.data + fileBuf.position;
         for buffer in buffers {
-            memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
-                UnsafeMutablePointer<Void>(buffer.data),
-                buffer.position
-            );
+            data.assignFrom(buffer.data, count: buffer.position);
+            data += buffer.position;
             fileBuf.position += buffer.position;
         }
+//        memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
+//            UnsafeMutablePointer<Void>(fileHeader.data),
+//            fileHeader.position
+//        );
+//        fileBuf.position += fileHeader.position;
+//        for buffer in buffers {
+//            memcpy(UnsafeMutablePointer<Void>(fileBuf.data + fileBuf.position),
+//                UnsafeMutablePointer<Void>(buffer.data),
+//                buffer.position
+//            );
+//            fileBuf.position += buffer.position;
+//        }
 
         print(kOrpheeDebug_bufferCreator_printBufferSize(fileBuf.position));
         return NSData(bytes: fileBuf.data, length: fileBuf.position);

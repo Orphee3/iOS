@@ -21,5 +21,5 @@ public protocol pMidiEventWithReader: pMidiEvent {
 
     typealias dataSource;
 
-    func readData(rawData: dataSource) -> pMidiEvent;
+    func readData(rawData: dataSource) throws -> pMidiEvent;
 }

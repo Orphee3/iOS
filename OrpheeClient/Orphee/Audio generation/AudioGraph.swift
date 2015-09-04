@@ -121,11 +121,11 @@ class AudioGraph {
         //TODO: Might need to change to early return on error.
         result = AUGraphInitialize(graph!);
         if (result != noErr) {
-            print("got error \(result) on graph init", appendNewline: false);
+            print("got error \(result) on graph init", terminator: "");
         }
         result = AUGraphStart(graph!);
         if (result != noErr) {
-            print("got error \(result) on graph start", appendNewline: false);
+            print("got error \(result) on graph start", terminator: "");
         }
 
         return (result == noErr);
@@ -189,7 +189,7 @@ class AudioGraph {
         var result: OSStatus = noErr;
         let cmd: UInt32 = 0x9 << 4 | 0;
 
-        result = MusicDeviceMIDIEvent(sampler, cmd, note, 127, 0);
+        result = MusicDeviceMIDIEvent(sampler, cmd, note, 76, 0);
         return result;
     }
 

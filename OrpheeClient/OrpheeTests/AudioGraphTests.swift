@@ -151,13 +151,13 @@ class AudioGraphTests: XCTestCase {
         result = graph.startAudioGraph();
         XCTAssertTrue(result, "Error on Audio graph START");
 
-        var test: Boolean = 0;
+        var test: DarwinBoolean = false;
         result = AUGraphIsInitialized(graph.graph!, &test) == noErr;
-        XCTAssert(test == 1, "Graph wasn't initialized");
+        XCTAssert(test == true, "Graph wasn't initialized");
 
-        test = 0;
+        test = false;
         result = AUGraphIsRunning(graph.graph!, &test) == noErr;
-        XCTAssert(test == 1, "Graph isn't running");
+        XCTAssert(test == true, "Graph isn't running");
     }
 
     func testIfPresetSettingOnSamplerWorks() {

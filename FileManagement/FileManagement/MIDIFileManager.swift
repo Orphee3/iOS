@@ -9,10 +9,10 @@
 import UIKit
 import AudioToolbox
 
-let kOrpheeFile_extension: String = "mid";
-let kOrpheeFile_store: String = "/Users/Massil/Desktop";
+public let kOrpheeFile_extension: String = "mid";
+public let kOrpheeFile_store: String = "/Users/Massil/Desktop";
 
-let kOrpheeFileContent_tracks: String = "TRACKS";
+public let kOrpheeFileContent_tracks: String = "TRACKS";
 
 /// Class MIDIFileManager implements pFormattedFileManager
 ///
@@ -61,13 +61,14 @@ public class MIDIFileManager<T where T: pMIDIByteStreamBuilder>: pFormattedFileM
 
         NSFileManager.defaultManager().createFileAtPath(self.path, contents: nil, attributes: nil);
 
-        if let tracks: Any = content?[kOrpheeFileContent_tracks] {
-            let trackList = tracks as! [Int : [[MIDINoteMessage]]];
-            dataCreator = dataCreatorType(trkNbr: UInt16(trackList.count), ppqn: 384);
-            dataCreator.buildMIDIBuffer();
-            for (_, track) in trackList {
-                dataCreator.addTrack(track);
-            }
+        if let input = content,
+            let tracks: Any = input[kOrpheeFileContent_tracks] {
+                let trackList = tracks as! [Int : [[MIDINoteMessage]]];
+                dataCreator = dataCreatorType(trkNbr: UInt16(trackList.count), ppqn: 384);
+                dataCreator.buildMIDIBuffer();
+                for (_, track) in trackList {
+                    dataCreator.addTrack(track);
+                }
         }
         return writer.write(dataCreator.toData());
     }

@@ -8,15 +8,29 @@
 
 import Foundation
 
-class GenericPlayer: pAudioPlayer {
+struct GenericPlayer: pAudioPlayer {
 
     weak var session: AudioSession?;
     weak var audioGraph: AudioGraph?;
+
     var player: MusicPlayer = MusicPlayer();
     var sequence: MusicSequence = MusicSequence();
+
     var currentTime: MusicTimeStamp = 0;
 
-    required init(graph: AudioGraph, session: AudioSession) {
+    var playing: Bool {
+        get {
+            var playing: DarwinBoolean = false;
+
+            MusicPlayerIsPlaying(player, &playing);
+            return playing == true;
+        }
+        set {
+            playing = newValue;
+        }
+    }
+
+    init(graph: AudioGraph, session: AudioSession) {
 
         self.audioGraph = graph;
         self.session = session;
@@ -41,7 +55,7 @@ class GenericPlayer: pAudioPlayer {
     }
 
     // Doesn't allow for resume option.
-    func pause() {
+    mutating func pause() {
 
         var st: OSStatus = MusicPlayerGetTime(player, &currentTime);
         assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
@@ -49,41 +63,18 @@ class GenericPlayer: pAudioPlayer {
         assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
     }
 
-    func stop() {
+    mutating func stop() {
 
         let state = MusicPlayerStop(player);
         if (state != noErr) {
             clean();
             NewMusicSequence(&sequence);
-            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", terminator: "");
         }
-    }
-
-    func isPlaying() -> Bool {
-
-        var playing: Boolean = 0;
-
-        let state = MusicPlayerIsPlaying(player, &playing);
-        if (state != noErr) {
-            playing = 0;
-            stop();
-            clean();
-            NewMusicSequence(&sequence);
-            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
-        }
-        return playing == 1;
     }
 
     func clean() {
 
         DisposeMusicSequence(sequence)
-    }
-
-    deinit {
-
-        clean();
-        DisposeMusicPlayer(player);
-        session = nil;
-        audioGraph = nil;
     }
 }

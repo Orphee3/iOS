@@ -137,6 +137,7 @@ class PresetMgr {
         let url: NSURL? = NSURL(fileURLWithPath: path);
 
         if (!self.isPathToSoundBankFile(path, isSoundFont: isSoundFont)) {
+            print("Not a Soundfont file")
             return nil;
         }
         if let URL = url {
@@ -194,7 +195,7 @@ class PresetMgr {
 
         let typeExt: String = isSoundFont ? "sf2" : "dls";
         
-        if (typeExt.lowercaseString != path.pathExtension.lowercaseString) {
+        if (!path.lowercaseString.hasSuffix(typeExt.lowercaseString)) {
             return false;
         }
         return true;

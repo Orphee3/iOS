@@ -8,7 +8,11 @@
 
 import Foundation
 
-public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
+public enum processingErrors: ErrorType {
+    case dataIsInvalidLengthForEventType(eMidiEventType, length: Int, String)
+}
+
+public func processTimeSigEvent(data: ByteBuffer) throws -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
@@ -21,11 +25,10 @@ public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
 
         return result;
     }
-    debugPrint(kOrpheeDebug_metaEventProc_timeSigDataInvalidLength);
-    return [];
+    throw processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: Int(dataLength), kOrpheeDebug_metaEventProc_timeSigDataInvalidLength);
 }
 
-public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
+public func processTempoEvent(data: ByteBuffer) throws -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
@@ -40,8 +43,7 @@ public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
         bpm |= UInt32(data.getUInt8());
         return [60_000_000 / bpm];
     }
-    debugPrint(kOrpheeDebug_metaEventProc_setTempoDataInvalidLength);
-    return [];
+    throw processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.setTempo, length: Int(dataLength), kOrpheeDebug_metaEventProc_setTempoDataInvalidLength);
 }
 
 public func processEndOfTrack(data: ByteBuffer) -> [UInt32] {

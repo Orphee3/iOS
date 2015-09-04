@@ -15,7 +15,7 @@ public class TimedEvent<T>: GenericMidiEvent<T>, pTimedMidiEvent {
 
     public var deltaTime: UInt32 = 0;
 
-    required public init(type: eMidiEventType, deltaTime: UInt32, reader: (rawData: T) -> [UInt32]) {
+    required public init(type: eMidiEventType, deltaTime: UInt32, reader: (rawData: T) throws -> [UInt32]) {
 
         super.init(type: type, reader: reader);
 

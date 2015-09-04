@@ -48,11 +48,11 @@ class FileManagementTests: XCTestCase {
 
         XCTAssert(event.type == eMidiEventType.noteOn, "Bad type init");
         XCTAssert(event.deltaTime == 5, "Bad delta init");
-        event.readData(ByteBuffer(order: LittleEndian(), capacity: 10));
+        try! event.readData(ByteBuffer(order: LittleEndian(), capacity: 10));
         XCTAssert(event.data! == [5], "Bad reader init");
     }
 
-    func testGetNextEvent() {
+    func testGetNextStatusByte() {
 
         var test: Bool = false;
         let b1: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
@@ -65,13 +65,13 @@ class FileManagementTests: XCTestCase {
         b2.position = 0;
 
         let b1Pos = b1.position;
-        let res1 = getNextEvent(b1, isMetaEvent: &test);
+        let res1 = try! getNextStatusByte(b1, isMeta: &test);
         XCTAssert(res1 == 0x58, "Wrong output! Got \(res1)");
         XCTAssert(b1Pos != b1.position, "Wrong position! \(b1Pos) == \(b1.position)");
         print("position: \(b1.position), Byte: \(res1)");
 
         let b2Pos = b2.position;
-        let res2 = getNextEvent(b2, isMetaEvent: &test);
+        let res2 = try! getNextStatusByte(b2, isMeta: &test);
         XCTAssert(res2 == 0x58, "Wrong output! Got \(res2)");
         XCTAssert(b2Pos != b2.position, "Wrong position! \(b2Pos) == \(b2.position)");
         print("position: \(b2.position), Byte: \(res2)");

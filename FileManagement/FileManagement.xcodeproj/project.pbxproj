@@ -35,7 +35,10 @@
 		DB74B5441B55BEDC00AFBDF7 /* pInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74B5421B55BEDC00AFBDF7 /* pInputManager.swift */; };
 		DB74B5461B55BF8E00AFBDF7 /* TimedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74B5451B55BF8E00AFBDF7 /* TimedEvent.swift */; };
 		DB74B5471B55BF8E00AFBDF7 /* TimedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74B5451B55BF8E00AFBDF7 /* TimedEvent.swift */; };
+		DB8941F21B93835C0050D6A1 /* eMidiEventTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8941F11B93835C0050D6A1 /* eMidiEventTypeTests.swift */; settings = {ASSET_TAGS = (); }; };
 		DBB5EDC91B60721F00543AE1 /* kOrpheeDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21D49A9DAA58161125772 /* kOrpheeDebug.swift */; };
+		DBE1A40D1B93B6590072AE06 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A40B1B93B6590072AE06 /* xXCTestThrowingAssert.swift */; settings = {ASSET_TAGS = (); }; };
+		DBE1A40F1B946B900072AE06 /* MidiEventsProcessorsHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A40E1B946B900072AE06 /* MidiEventsProcessorsHelpersTests.swift */; settings = {ASSET_TAGS = (); }; };
 		DBEF68E51AD76431009F8548 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F51AC31D160065A99E /* ByteBuffer.swift */; };
 		DBEF68E61AD76431009F8548 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F61AC31D160065A99E /* ByteOrder.swift */; };
 		DBEF68E71AD76431009F8548 /* MIDIByteBufferCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51C8E41AC04D6900404F06 /* MIDIByteBufferCreator.swift */; };
@@ -112,6 +115,9 @@
 		DB80AC2D1AD7222100ADC083 /* pMidiEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pMidiEvent.swift; sourceTree = "<group>"; };
 		DB80AC301AD73E6E00ADC083 /* GenericMidiEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericMidiEvent.swift; sourceTree = "<group>"; };
 		DB80AC331AD74BF300ADC083 /* MIDIEventsProcessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIEventsProcessors.swift; sourceTree = "<group>"; };
+		DB8941F11B93835C0050D6A1 /* eMidiEventTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eMidiEventTypeTests.swift; sourceTree = "<group>"; };
+		DBE1A40B1B93B6590072AE06 /* xXCTestThrowingAssert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xXCTestThrowingAssert.swift; sourceTree = "<group>"; };
+		DBE1A40E1B946B900072AE06 /* MidiEventsProcessorsHelpersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEventsProcessorsHelpersTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,10 +204,13 @@
 		DB5DA5531ABC97FC009A09B1 /* FileManagementTests */ = {
 			isa = PBXGroup;
 			children = (
+				DBE1A40E1B946B900072AE06 /* MidiEventsProcessorsHelpersTests.swift */,
+				DB8941F11B93835C0050D6A1 /* eMidiEventTypeTests.swift */,
 				DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */,
 				DB5DA5541ABC97FC009A09B1 /* Supporting Files */,
 				DB426EB71AD78ADF007C1617 /* MIDIEventsProcessorsTests.swift */,
 				DB2A500B1B55273D002C2F49 /* CoreMIDISequenceCreatorTests.swift */,
+				DBE1A40B1B93B6590072AE06 /* xXCTestThrowingAssert.swift */,
 			);
 			path = FileManagementTests;
 			sourceTree = "<group>";
@@ -360,6 +369,7 @@
 				DBEF68E51AD76431009F8548 /* ByteBuffer.swift in Sources */,
 				DBEF68E61AD76431009F8548 /* ByteOrder.swift in Sources */,
 				DB74B53B1B55A53600AFBDF7 /* eAccessMode.swift in Sources */,
+				DBE1A40D1B93B6590072AE06 /* xXCTestThrowingAssert.swift in Sources */,
 				DB74B53C1B55A53800AFBDF7 /* eMidiEventType.swift in Sources */,
 				DB74B53D1B55A53B00AFBDF7 /* eNoteLength.swift in Sources */,
 				DBEF68EC1AD76431009F8548 /* pFormattedFileManager.swift in Sources */,
@@ -373,6 +383,8 @@
 				DBEF68F21AD76431009F8548 /* MIDIEventsProcessors.swift in Sources */,
 				DB74B53F1B55A54C00AFBDF7 /* MIDIMetaEventsProcessors.swift in Sources */,
 				DBB5EDC91B60721F00543AE1 /* kOrpheeDebug.swift in Sources */,
+				DBE1A40F1B946B900072AE06 /* MidiEventsProcessorsHelpersTests.swift in Sources */,
+				DB8941F21B93835C0050D6A1 /* eMidiEventTypeTests.swift in Sources */,
 				DB2A500A1B5524EE002C2F49 /* CoreMIDISequenceCreator.swift in Sources */,
 				DBEF68E91AD76431009F8548 /* PathManager.swift in Sources */,
 				DBEF68ED1AD76431009F8548 /* MIDIFileManager.swift in Sources */,
@@ -380,11 +392,11 @@
 				DBEF68EF1AD76431009F8548 /* MIDIWriter.swift in Sources */,
 				DBEF68E81AD76431009F8548 /* MIDIDataParser.swift in Sources */,
 				DBEF68E71AD76431009F8548 /* MIDIByteBufferCreator.swift in Sources */,
-				DB2A500C1B55273D002C2F49 /* CoreMIDISequenceCreatorTests.swift in Sources */,
 				DBEF68F11AD76431009F8548 /* GenericMidiEvent.swift in Sources */,
 				DB74B5471B55BF8E00AFBDF7 /* TimedEvent.swift in Sources */,
-				DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */,
 				DB426EB81AD78ADF007C1617 /* MIDIEventsProcessorsTests.swift in Sources */,
+				DB2A500C1B55273D002C2F49 /* CoreMIDISequenceCreatorTests.swift in Sources */,
+				DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +500,7 @@
 		DB5DA55B1ABC97FC009A09B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -495,9 +508,11 @@
 				INFOPLIST_FILE = FileManagement/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FileManagement
 
 class BlockArrayList {
 
@@ -23,8 +24,8 @@ class BlockArrayList {
 
         var list: [[Int]] = [];
         for array in blockArrays {
-            for (idx, block) in array.buttons.enumerate() {
-                let noteValue = block!.active ? Int(block!.note) : 0;
+            for (idx, button) in array.buttons.enumerate() {
+                let noteValue = button!.active ? Int(array.note) : 0;
                 if (list.endIndex > idx) {
                     list[idx].append(noteValue);
                 }
@@ -39,21 +40,37 @@ class BlockArrayList {
     private func cleanList(rawList: [[Int]]) -> [[Int]] {
 
         var cleanList: [[Int]] = [];
-        for subl in rawList {
-            var cleaned = subl.filter({ return $0 != 0 });
-            if (cleaned.count > 0) {
-                cleanList.append(subl)
+        for notesAtDt in rawList {
+            var activeNotesAtDt = notesAtDt.filter({ return $0 != 0 });
+            if (activeNotesAtDt.count > 0) {
+                cleanList.append(notesAtDt)
             }
             else {
-                cleanList.append(cleaned);
+                cleanList.append(activeNotesAtDt);
             }
         }
         return cleanList;
     }
 
-    func getFormattedNoteList() -> [[Int]] {
-
+    func getCleanedList() -> [[Int]] {
         return cleanList(getRawNoteList());
+    }
+
+    func getFormattedNoteList() -> [[MIDINoteMessage]] {
+
+        let cleanedList = getCleanedList();
+        var midiNoteMsgs: [[MIDINoteMessage]] = [[MIDINoteMessage]](count: cleanedList.count, repeatedValue: []);
+        for array in blockArrays {
+            let notesForLine = cleanedList.map({ $0.contains(Int(array.note)) });
+            for (idx, note) in notesForLine.enumerate() where note == true {
+                midiNoteMsgs[idx].append(
+                    MIDINoteMessage(channel: 0, note: UInt8(array.note), velocity: 76, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue)
+                );
+            }
+        }
+        print(cleanedList);
+        print(midiNoteMsgs);
+        return midiNoteMsgs;
     }
 
     /// FIXME: Make it so attribution of notes depends on the note's value. \
@@ -61,11 +78,8 @@ class BlockArrayList {
     func setBlocksFromList(list: [[Int]]) {
 
         for (idx, array) in blockArrays.enumerate() {
-
-            for (dt, notesAtTime) in list.enumerate() {
-                if (notesAtTime.count > 0) {
-                    array.buttons[dt]?.active = notesAtTime[idx] > 0;
-                }
+            for (dt, contains) in list.map({ $0.contains(Int(array.note)) }).enumerate() {
+                blockArrays[idx].buttons[dt]?.active = contains;
             }
         }
     }

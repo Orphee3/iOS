@@ -16,7 +16,7 @@ public class GenericMidiEvent<T>: pMidiEventWithReader, CustomStringConvertible 
     public typealias dataSource = T;
 
     public var type: eMidiEventType;
-    public var dataReader: (rawData: T) -> [UInt32];
+    public var dataReader: (rawData: T) throws -> [UInt32];
 
     public var description: String = "\n";
 
@@ -26,15 +26,15 @@ public class GenericMidiEvent<T>: pMidiEventWithReader, CustomStringConvertible 
         }
     }
 
-    public init(type: eMidiEventType, reader: (rawData: T) -> [UInt32]) {
+    public init(type: eMidiEventType, reader: (rawData: T) throws -> [UInt32]) {
 
         self.type = type;
         self.dataReader = reader;
     }
 
-    public func readData(data: T) -> pMidiEvent {
+    public func readData(data: T) throws -> pMidiEvent {
 
-        self.data = dataReader(rawData: data);
+        self.data = try dataReader(rawData: data);
         return self;
     }
 }

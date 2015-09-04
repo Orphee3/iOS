@@ -40,20 +40,15 @@ class AudioPlayerTests: XCTestCase {
 
         player = GenericPlayer(graph: graph!, session: session!);
         player.play();
-        var b: Boolean = 0;
-        var st: OSStatus = MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 1 && st == noErr, "not playing.")
+        XCTAssert(player.playing, "not playing.")
         sleep(3);
         player.pause();
-        st = MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 0 && st == noErr, "not playing.")
+        XCTAssert(!player.playing, "not playing.")
         sleep(1);
         player.play();
-        st = MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 1 && st == noErr, "not playing.")
+        XCTAssert(player.playing, "not playing.")
         sleep(1);
         player.stop();
-        st = MusicPlayerIsPlaying(player.player, &b);
-        XCTAssert(b == 0 && st == noErr, "not playing.")
+        XCTAssert(!player.playing, "not playing.")
     }
 }

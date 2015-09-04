@@ -68,19 +68,22 @@ public class MIDIDataParser {
 
                     let deltaTime = readTimeStamp();
                     let event: GenericMidiEvent<ByteBuffer>!;
-
-                    nextEventType = processStatusByte(peakNextByte(dataBuffer));
+                    let nextByte = try! peakNextByte(dataBuffer);
+                    nextEventType = processStatusByte(nextByte);
                     if (nextEventType == eMidiEventType.runningStatus) {
 
                         event = makeMidiEvent(lastValidEventType, chan: lastValidEventChannel, delta: UInt32(deltaTime));
                     }
                     else {
-                        var isMeta = false;
+                        var meta = isMetaEventByte(nextByte);
+                        let statusByte = try! getNextStatusByte(dataBuffer, isMeta: &meta)
 
-                        currentEventType = processStatusByte(getNextEvent(dataBuffer, isMetaEvent: &isMeta));
-                        event = makeMidiEvent(currentEventType, delta: UInt32(deltaTime));
+                        print("nextByte: \(nextByte)", "statusByte: \(statusByte)", "pos: \(dataBuffer.position)", separator: ", ", terminator: " ");
+                        currentEventType = processStatusByte(statusByte, isMeta: meta);
+                        print(currentEventType == .timeSignature ? "pos: \(dataBuffer.position), event: \(currentEventType)" : "");
+                        event = makeMidiEvent(currentEventType, delta: UInt32(deltaTime), chan: try? getChanForEventType(currentEventType, fromByte: statusByte));
                     }
-                    event.readData(dataBuffer);
+                    try! event.readData(dataBuffer);
                     if (eMidiEventType.MIDIEvents.contains(currentEventType)) {
                         lastValidEventChannel = UInt8(event.data![0]);
                         lastValidEventType = currentEventType;
@@ -217,32 +220,26 @@ public class MIDIDataParser {
         build_allTracks:
             for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
 
-            let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
-            track.getNoteArray();
+                let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
+                track.getNoteArray();
 
                 let timedEvents: [pTimedMidiEvent] = track.midiEvents
                     .filter({ $0 is pTimedMidiEvent })
                     .map({ $0 as! pTimedMidiEvent });
 
-                for tmEvent in timedEvents {
+                for tmEvent in timedEvents where tmEvent.deltaTime > 0 {
 
-                    if (tmEvent.deltaTime > 0) {
-
-                        smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
-                    }
+                    smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
                 }
-                var i = 0;
+                var i: Int = 0;
                 var cleanedEvents: [[Int]] = [[]];
                 for event in timedEvents {
 
                     if (event.deltaTime >= smallestTimeDiv) {
 
                         let silences = event.deltaTime / smallestTimeDiv;
-                        for (var j: UInt32 = 0; j < silences; ++j) {
-
-                            cleanedEvents.append([]);
-                            ++i;
-                        }
+                        cleanedEvents.appendContentsOf([[Int]](count: Int(silences), repeatedValue: []))
+                        i += Int(silences);
                     }
                     if (event.type == eMidiEventType.noteOn) {
                         cleanedEvents[i].append(Int(event.data![1]));
@@ -266,7 +263,7 @@ public class MIDIDataParser {
 }
 
 func printData(dataBuffer: ByteBuffer, trackLength: UInt32) {
-
+    
     dataBuffer.mark();
     print("");
     for (var i: UInt32 = 0, len: UInt32 = trackLength; i <= len; ++i) {

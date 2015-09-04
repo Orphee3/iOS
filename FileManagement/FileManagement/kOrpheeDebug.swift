@@ -18,7 +18,10 @@ let kOrpheeDebug_metaEventProc_setTempoDataInvalidLength: String = "Tempo got wr
 
 let kOrpheeDebug_bufferCreator_noEventsInTrack: String = "No events in given track: Ignoring";
 let kOrpheeDebug_bufferCreator_printInputDataSize = { (input: Int) -> String in return String("\ntotal data size \(input)") };
-let kOrpheeDebug_bufferCreator_printBufferSize = { (input: Int) -> String in return String("\ntotal data in file buffer \(input)") };
+let kOrpheeDebug_bufferCreator_printBufferSize = { (var input: Int) -> String in
+    let output = String("\ntotal data in file buffer \(input)");
+    return output;
+};
 
 let kOrpheeDebug_dataParser_printAllEvents = { (midiEvents: [pMidiEvent]) -> String in return String("All track Events: \(midiEvents)") };
 let kOrpheeDebug_dataParser_printTimeSigs = { (timeSigs: [pMidiEvent]) -> String in return String("got time sig: \(timeSigs)") };
@@ -26,7 +29,7 @@ let kOrpheeDebug_dataParser_printSetTempo = { (tempos: [pMidiEvent]) -> String i
 let kOrpheeDebug_dataParser_printSortedTimedEvents = { (timedEvents: [UInt32 : [pMidiEvent]]) -> String in
 
     var str = "";
-    let keys = timedEvents.keys.array.sort();
+    let keys = timedEvents.keys.sort()
     for dt in keys { str += "key = \(dt)\nValue = \(timedEvents[dt]!)"; }
     return str;
 };

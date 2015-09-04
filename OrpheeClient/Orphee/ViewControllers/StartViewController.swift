@@ -27,35 +27,35 @@ class StartViewController: UIViewController {
     }
 
     func requestConnectWithToken(url: String, requestMethod: String, token: String) {
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var response: NSURLResponse?
-
-        request.HTTPMethod = requestMethod
-        request.setValue("application/x-www-form-urlencoded",
-            forHTTPHeaderField: "Content-Type")
-        if (!token.isEmpty) {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-
-        do {
-            let responseData = try NSURLConnection.sendSynchronousRequest(request,returningResponse:&response) as NSData?
-            if let httpResponse = response as? NSHTTPURLResponse {
-                print("error \(httpResponse.statusCode)", appendNewline: false)
-                if (httpResponse.statusCode == 200){
-                    let jsonResult: NSDictionary = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    NSUserDefaults.standardUserDefaults().setObject(jsonResult["token"], forKey: "token")
+//        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+//        var response: NSURLResponse?
+//
+//        request.HTTPMethod = requestMethod
+//        request.setValue("application/x-www-form-urlencoded",
+//            forHTTPHeaderField: "Content-Type")
+//        if (!token.isEmpty) {
+//            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//        }
+//
+//        do {
+//            let responseData = try NSURLConnection.sendSynchronousRequest(request,returningResponse:&response) as NSData?
+//            if let httpResponse = response as? NSHTTPURLResponse {
+//                print("error \(httpResponse.statusCode)", appendNewline: false)
+//                if (httpResponse.statusCode == 200){
+//                    let jsonResult: NSDictionary = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+//                    NSUserDefaults.standardUserDefaults().setObject(jsonResult["token"], forKey: "token")
                     performSegueWithIdentifier("toMenu", sender: nil)
-                }
-                else{
-                    let alertView = UIAlertView(title: "Erreur", message: "Connexion impossible, réessayez.", delegate: self, cancelButtonTitle: "Ok")
-                    alertView.alertViewStyle = .Default
-                    alertView.show()
-                }
-            }
-        }
-        catch (let err) {
-            print("Got error: \(err)");
-        }
+//                }
+//                else{
+//                    let alertView = UIAlertView(title: "Erreur", message: "Connexion impossible, réessayez.", delegate: self, cancelButtonTitle: "Ok")
+//                    alertView.alertViewStyle = .Default
+//                    alertView.show()
+//                }
+//            }
+//        }
+//        catch (let err) {
+//            print("Got error: \(err)");
+//        }
     }
 
     func checkLoginAndPasswd() {
@@ -63,7 +63,7 @@ class StartViewController: UIViewController {
             let param = "\(loginField.text):\(mdpField.text):local"
             let utf8str = param.dataUsingEncoding(NSUTF8StringEncoding)
             let token = utf8str!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-            print(token, appendNewline: false)
+            print(token, terminator: "")
             let url = "https://orpheeapi.herokuapp.com/api/login"
             let method = "POST"
             requestConnectWithToken(url, requestMethod: method, token: token)
