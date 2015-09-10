@@ -8,16 +8,8 @@
 
 import UIKit
 
-/** GenericMidiEvent realizes pTimedMidiEvent and Printable
-
-*/
-public class GenericMidiEvent<T>: pMidiEventWithReader, CustomStringConvertible {
-
-    public typealias dataSource = T;
-
+public class BaseMidiEvent: pMidiEvent, CustomStringConvertible {
     public var type: eMidiEventType;
-    public var dataReader: (rawData: T) throws -> [UInt32];
-
     public var description: String = "\n";
 
     public var data: [UInt32]! {
@@ -26,10 +18,24 @@ public class GenericMidiEvent<T>: pMidiEventWithReader, CustomStringConvertible 
         }
     }
 
+    init(type: eMidiEventType) {
+        self.type = type;
+    }
+}
+
+/** BasicMidiEvent realizes pTimedMidiEvent and Printable
+
+*/
+public class BasicMidiEvent<T>: BaseMidiEvent, pMidiEventWithReader {
+
+    public typealias dataSource = T;
+
+    public var dataReader: (rawData: T) throws -> [UInt32];
+
     public init(type: eMidiEventType, reader: (rawData: T) throws -> [UInt32]) {
 
-        self.type = type;
         self.dataReader = reader;
+        super.init(type: type);
     }
 
     public func readData(data: T) throws -> pMidiEvent {
@@ -37,4 +43,10 @@ public class GenericMidiEvent<T>: pMidiEventWithReader, CustomStringConvertible 
         self.data = try dataReader(rawData: data);
         return self;
     }
+}
+
+extension BaseMidiEvent :Equatable {}
+
+public func ==(lhs: BaseMidiEvent, rhs: BaseMidiEvent) -> Bool {
+    return (lhs.dynamicType == rhs.dynamicType) && (lhs.data == rhs.data) && (lhs.type == rhs.type);
 }

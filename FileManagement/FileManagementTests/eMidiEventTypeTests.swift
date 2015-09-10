@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import FileManagement
 
 extension eMidiEventType.eMidiEventTypeErrors :Equatable {}

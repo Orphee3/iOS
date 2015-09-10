@@ -20,7 +20,7 @@ public func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
 
         let byte = data.getUInt8();
         let eventType = processStatusByte(byte);
-        if (isMetaEventByte(byte)
+        if (isSysResetByte(byte)
             || eventType != eMidiEventType.runningStatus
             || !data.hasRemaining) {
 
@@ -30,9 +30,7 @@ public func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
                 data.reset();
             }
         }
-        else {
-            event.append(UInt32(byte));
-        }
+        event.append(UInt32(byte));
     }
     return event;
 }

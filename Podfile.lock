@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (2.0.0-beta.3)
+  - Spring (1.0.3)
+  - SwiftyJSON (2.2.1)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: https://github.com/Alamofire/Alamofire.git
+  Spring:
+    :branch: swift2
+    :git: https://github.com/MengTo/Spring.git
+  SwiftyJSON:
+    :branch: xcode7
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 1bc35abfa7c167ba54af4e87158af7945cc9984e
+    :git: https://github.com/Alamofire/Alamofire.git
+  Spring:
+    :commit: 18d5c7b74489de8044e34767f856d1e574f0820e
+    :git: https://github.com/MengTo/Spring.git
+  SwiftyJSON:
+    :commit: f269523ac572979245baa99c8475eab73caf1e9b
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+
+COCOAPODS: 0.38.2

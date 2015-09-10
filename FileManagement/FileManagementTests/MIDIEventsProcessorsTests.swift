@@ -9,6 +9,8 @@
 import UIKit
 import XCTest
 
+@testable import FileManagement
+
 class MIDIEventsProcessorsTests: XCTestCase {
 
     override func setUp() {

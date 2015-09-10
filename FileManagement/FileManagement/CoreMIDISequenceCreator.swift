@@ -76,7 +76,7 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
         var data: Unmanaged<CFData>? = Unmanaged<CFData>.passRetained(NSData());
         let st: OSStatus = MusicSequenceFileCreateData(buffer,  MusicSequenceFileTypeID.MIDIType, MusicSequenceFileFlags.EraseFile, Int16(_timeResolution), &data);
-        if (st == noErr) {
+        if (st != noErr) {
             print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
         }
         return data!.takeRetainedValue();

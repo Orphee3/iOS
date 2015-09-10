@@ -48,6 +48,6 @@ public func processTempoEvent(data: ByteBuffer) throws -> [UInt32] {
 
 public func processEndOfTrack(data: ByteBuffer) -> [UInt32] {
 
-    // No data to process actually...
-    return [UInt32(data.getUInt8())];
+    let _ = data.getUInt8() // length == 0
+    return [];
 }

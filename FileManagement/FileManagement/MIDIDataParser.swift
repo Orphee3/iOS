@@ -42,11 +42,11 @@ public class MIDIDataParser {
             self.trackNbr = trackNbr;
             self.readHeader();
 
-            printData(trackData, trackLength: self.trackLength);
+//            printData(trackData, trackLength: self.trackLength);
 
             self.readEvents();
             self.processReadData();
-            self.printConfiguration();
+//            self.printConfiguration();
         }
 
         mutating func readHeader() {
@@ -60,28 +60,23 @@ public class MIDIDataParser {
 
         mutating func readEvents() {
 
-            var nextEventType = currentEventType;
             var lastValidEventType = currentEventType;
             var lastValidEventChannel: UInt8 = 0;
             while (dataBuffer.hasRemaining
                 && currentEventType != eMidiEventType.endOfTrack) {
 
                     let deltaTime = readTimeStamp();
-                    let event: GenericMidiEvent<ByteBuffer>!;
+                    let event: BasicMidiEvent<ByteBuffer>!;
                     let nextByte = try! peakNextByte(dataBuffer);
-                    nextEventType = processStatusByte(nextByte);
-                    if (nextEventType == eMidiEventType.runningStatus) {
-
-                        event = makeMidiEvent(lastValidEventType, chan: lastValidEventChannel, delta: UInt32(deltaTime));
+                    if (processStatusByte(nextByte) == eMidiEventType.runningStatus) {
+                        event = makeMidiEvent(lastValidEventType, chan: lastValidEventChannel, delta: deltaTime);
                     }
                     else {
-                        var meta = isMetaEventByte(nextByte);
+                        var meta = isSysResetByte(nextByte);
                         let statusByte = try! getNextStatusByte(dataBuffer, isMeta: &meta)
 
-                        print("nextByte: \(nextByte)", "statusByte: \(statusByte)", "pos: \(dataBuffer.position)", separator: ", ", terminator: " ");
                         currentEventType = processStatusByte(statusByte, isMeta: meta);
-                        print(currentEventType == .timeSignature ? "pos: \(dataBuffer.position), event: \(currentEventType)" : "");
-                        event = makeMidiEvent(currentEventType, delta: UInt32(deltaTime), chan: try? getChanForEventType(currentEventType, fromByte: statusByte));
+                        event = makeMidiEvent(currentEventType, delta: deltaTime, chan: try? getChanForEventType(currentEventType, fromByte: statusByte));
                     }
                     try! event.readData(dataBuffer);
                     if (eMidiEventType.MIDIEvents.contains(currentEventType)) {
@@ -91,6 +86,8 @@ public class MIDIDataParser {
                     midiEvents.append(event);
             }
         }
+        //                        print("nextByte: \(nextByte)", "statusByte: \(statusByte)", "pos: \(dataBuffer.position)", separator: ", ", terminator: " ");
+        //                        print(currentEventType == .timeSignature ? "pos: \(dataBuffer.position), event: \(currentEventType)" : "");
 
         func readTimeStamp() -> Int {
 
@@ -118,7 +115,7 @@ public class MIDIDataParser {
 
             if (timeSigEvents.count > 0) {
 
-                print(kOrpheeDebug_dataParser_printTimeSigs(timeSigEvents));
+//                print(kOrpheeDebug_dataParser_printTimeSigs(timeSigEvents));
                 let data: [UInt32] = timeSigEvents[0].data!;
 
                 signature = (data[0], data[1]);
@@ -132,7 +129,7 @@ public class MIDIDataParser {
             }
             if (tempoSigs.count > 0) {
 
-                print(kOrpheeDebug_dataParser_printSetTempo(tempoSigs));
+//                print(kOrpheeDebug_dataParser_printSetTempo(tempoSigs));
                 let data: [UInt32] = tempoSigs[0].data!;
 
                 quarterNotePerMinute = data[0];
@@ -162,7 +159,7 @@ public class MIDIDataParser {
             var timedEvents: [UInt32 : [pMidiEvent]] = [0 : []];
             var currentDt: UInt32 = 0;
 
-            print(kOrpheeDebug_dataParser_printAllEvents(midiEvents));
+//            print(kOrpheeDebug_dataParser_printAllEvents(midiEvents));
             for midiEvent in midiEvents {
 
                 if let tmEvent = midiEvent as? pTimedMidiEvent {
@@ -175,7 +172,7 @@ public class MIDIDataParser {
                     timedEvents[currentDt]!.append(tmEvent);
                 }
             }
-            print(kOrpheeDebug_dataParser_printSortedTimedEvents(timedEvents));
+//            print(kOrpheeDebug_dataParser_printSortedTimedMidiEvents(timedEvents));
             return timedEvents;
         }
     }
@@ -197,7 +194,7 @@ public class MIDIDataParser {
         data.getBytes(self.dataBuffer.data, length: data.length);
 
         self.readHeader();
-        self.printHeader();
+//        self.printHeader();
         self.smallestTimeDiv = UInt32(eNoteLength.breve.rawValue) * UInt32(self.deltaTickPerQuarterNote); // Set to longest supported note;
     }
 
@@ -223,23 +220,18 @@ public class MIDIDataParser {
                 let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
                 track.getNoteArray();
 
-                let timedEvents: [pTimedMidiEvent] = track.midiEvents
-                    .filter({ $0 is pTimedMidiEvent })
-                    .map({ $0 as! pTimedMidiEvent });
+                let timedEvents: [pTimedMidiEvent] = track.midiEvents.flatMap({ $0 as? pTimedMidiEvent });
 
                 for tmEvent in timedEvents where tmEvent.deltaTime > 0 {
-
                     smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
                 }
                 var i: Int = 0;
                 var cleanedEvents: [[Int]] = [[]];
                 for event in timedEvents {
-
-                    if (event.deltaTime >= smallestTimeDiv) {
-
-                        let silences = event.deltaTime / smallestTimeDiv;
-                        cleanedEvents.appendContentsOf([[Int]](count: Int(silences), repeatedValue: []))
-                        i += Int(silences);
+                    if (event.deltaTime >= self.smallestTimeDiv && event.deltaTime > 0) {
+                        let silences = Int(event.deltaTime / self.smallestTimeDiv);
+                        cleanedEvents.appendContentsOf([[Int]](count: silences, repeatedValue: []));
+                        i += silences;
                     }
                     if (event.type == eMidiEventType.noteOn) {
                         cleanedEvents[i].append(Int(event.data![1]));

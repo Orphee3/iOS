@@ -39,21 +39,21 @@ public func buildMIDIEventProcessor(event: eMidiEventType, chan: UInt8?) -> (dat
     }
 }
 
-public func makeMidiEvent(eventType: eMidiEventType, delta: UInt32 = 0, chan: UInt8? = nil) -> GenericMidiEvent<ByteBuffer> {
+public func makeMidiEvent(eventType: eMidiEventType, delta: Int = 0, chan: UInt8? = nil) -> BasicMidiEvent<ByteBuffer> {
 
-    let event: GenericMidiEvent<ByteBuffer>!;
+    let event: BasicMidiEvent<ByteBuffer>!;
     let processor = buildMIDIEventProcessor(eventType, chan: chan);
 
-    if (eMidiEventType.MIDIEvents.contains(eventType)) {
-        event = TimedEvent(type: eventType, deltaTime: delta, reader: processor);
+    if (eMidiEventType.allMIDIEvents.contains(eventType)) {
+        event = TimedMidiEvent(type: eventType, deltaTime: UInt32(delta), reader: processor);
     }
     else {
-        event = GenericMidiEvent(type: eventType, reader: processor);
+        event = BasicMidiEvent(type: eventType, reader: processor);
     }
     return event!;
 }
 
-public func isMetaEventByte(currentByte: UInt8) -> Bool {
+public func isSysResetByte(currentByte: UInt8) -> Bool {
 
     return currentByte == 0xFF
 }
@@ -95,7 +95,7 @@ public func getNextStatusByte(buffer: ByteBuffer, inout isMeta meta: Bool) throw
         guard readByte == 0x00 || readByte == 0xFF else {
             return readByte;
         }
-        meta = isMetaEventByte(readByte);
+        meta = isSysResetByte(readByte);
         ++iteration;
     } while (buffer.hasRemaining)
     buffer.position = startPos;
@@ -118,44 +118,3 @@ public func processStatusByte(statusByte: UInt8, isMeta meta: Bool = false) -> e
     return eventType
 }
 
-
-
-
-/* private var Iteration: Int = 0;
-public func getNextStatusByte(buffer: ByteBuffer, inout isMeta meta: Bool) throws -> UInt8 {
-let bufPos = buffer.position;
-do {
-Iteration = 0;
-let byte = try getNextStatusByteRecursevely(buffer, isMeta: &meta);
-return byte;
-}
-catch bufferErrors.readBeyondLimit(let bSz, _, let readSize) {
-buffer.position = bufPos;
-throw bufferErrors.readBeyondLimit(bufferSize: bSz, remainingBytes: buffer.remaining, readSize: readSize);
-}
-catch {
-buffer.position = bufPos;
-throw error;
-}
-}
-private func getNextStatusByteRecursevely(buffer: ByteBuffer, inout isMeta meta: Bool) throws -> UInt8 {
-
-Iteration++;
-guard buffer.hasRemaining else {
-throw bufferErrors.readBeyondLimit(bufferSize: buffer.capacity, remainingBytes: buffer.remaining, readSize: Iteration)
-}
-if (!meta) {
-buffer.mark();
-}
-
-let byte = buffer.getUInt8()
-if (byte == 0xFF || byte == 0) {
-
-meta = isMetaEventByte(byte)
-return try getNextStatusByte(buffer, isMeta: &meta);
-}
-if (!meta) {
-buffer.reset();
-}
-return byte;
-} */

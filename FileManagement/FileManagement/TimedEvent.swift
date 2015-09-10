@@ -1,5 +1,5 @@
 //
-//  TimedEvent.swift
+//  TimedMidiEvent.swift
 //  FileManagement
 //
 //  Created by Massil on 15/07/2015.
@@ -8,10 +8,11 @@
 
 import UIKit
 
-/** TimedEvent realizes pTimedMidiEvent and specialises GenericMidiEvent
+
+/** TimedMidiEvent realizes pTimedMidiEvent and specialises BasicMidiEvent
 
 */
-public class TimedEvent<T>: GenericMidiEvent<T>, pTimedMidiEvent {
+public class TimedMidiEvent<T>: BasicMidiEvent<T>, pTimedMidiEvent {
 
     public var deltaTime: UInt32 = 0;
 

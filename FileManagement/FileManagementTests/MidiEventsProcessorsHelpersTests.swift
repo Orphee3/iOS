@@ -8,6 +8,9 @@
 
 import XCTest
 
+@testable import FileManagement
+
+
 class MidiEventsProcessorsHelpersTests: XCTestCase {
 
     override func setUp() {
@@ -20,14 +23,14 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
         super.tearDown()
     }
     /*#############################
-    ####### isMetaEventByte #######
+    ####### isSysResetByte #######
     #############################*/
     func testIsMetaEventByte_returns_true__when_currentByteIs_equalTo_0xFF() {
-        XCTAssert(isMetaEventByte(0xFF));
+        XCTAssert(isSysResetByte(0xFF));
     }
 
     func testIsMetaEventByte_returns_false__when_currentByteIs_notEqualTo_0xFF() {
-        XCTAssertFalse(isMetaEventByte(0xEF));
+        XCTAssertFalse(isSysResetByte(0xEF));
     }
 
     /*#############################
@@ -347,4 +350,30 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
             XCTAssertEqual(processStatusByte(eventType.rawValue, isMeta: true), eventType);
         }
     }
+
+    /*#############################
+    ######## makeMidiEvent ########
+    #############################*/
+    func testMakeMidiEvent_returns_instanceOf_TimedMidiEvent__when_eventTypeIs_definedMidiEvent() {
+        for eventType in eMidiEventType.allMIDIEvents {
+            let testEvent = makeMidiEvent(eventType);
+            let ctrlEvent = TimedMidiEvent(type: eventType, deltaTime: 0, reader: processUnknownEvent);
+            testEvent.data = [];
+            ctrlEvent.data = [];
+            XCTAssertEqual(NSStringFromClass(testEvent.dynamicType), NSStringFromClass(TimedMidiEvent<ByteBuffer>));
+            XCTAssertEqual(testEvent, ctrlEvent);
+        }
+    }
+
+    func testMakeMidiEvent_returns_instanceOf_BasicMidiEvent__when_eventType_isNot_defineMidiEvent() {
+        for eventType in eMidiEventType.allValues.subtract(eMidiEventType.allMIDIEvents) {
+            let testEvent = makeMidiEvent(eventType);
+            let ctrlEvent = BasicMidiEvent(type: eventType, reader: processUnknownEvent);
+            testEvent.data = [];
+            ctrlEvent.data = [];
+            XCTAssertEqual(NSStringFromClass(makeMidiEvent(eventType).dynamicType), NSStringFromClass(BasicMidiEvent<ByteBuffer>));
+            XCTAssertEqual(testEvent, ctrlEvent);
+        }
+    }
+
 }

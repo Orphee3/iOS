@@ -42,6 +42,7 @@
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
+		DB6195901BA1332F002CE09E /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB61958F1BA1332F002CE09E /* CreationsListVC.swift */; settings = {ASSET_TAGS = (); }; };
 		DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
@@ -60,6 +61,7 @@
 		DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD356991AC456FF00ACC304 /* FileManagement.framework */; };
 		DBD99A361B52D692003E660E /* AudioPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD99A351B52D692003E660E /* AudioPlayerTests.swift */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
+		FFE34C82FDF2CE98C95320A8 /* Pods_Orphee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE9A330028493FBA214DE16 /* Pods_Orphee.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DE9A330028493FBA214DE16 /* Pods_Orphee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D0B4DB5E72BE949EDE4A3B7 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
 		526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Trombone.aupreset; path = Ressources/Trombone.aupreset; sourceTree = "<group>"; };
 		526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = Ressources/Vibraphone.aupreset; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
 		DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockArrayList.swift; sourceTree = "<group>"; };
+		DB61958F1BA1332F002CE09E /* CreationsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreationsListVC.swift; path = Orphee/ViewControllers/CreationsListVC.swift; sourceTree = "<group>"; };
 		DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +137,7 @@
 		DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPlayer.swift; sourceTree = "<group>"; };
 		DBD356991AC456FF00ACC304 /* FileManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileManagement.framework; path = "../FileManagement/build/Debug-iphoneos/FileManagement.framework"; sourceTree = "<group>"; };
 		DBD99A351B52D692003E660E /* AudioPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerTests.swift; sourceTree = "<group>"; };
+		FAD83AAC3A3B8626EDD19476 /* Pods-Orphee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +150,7 @@
 				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
 				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
 				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
+				FFE34C82FDF2CE98C95320A8 /* Pods_Orphee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +187,7 @@
 				52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */,
 				52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */,
 				52C61DBC1A7A039E00B3DE23 /* UIKit.framework */,
+				0DE9A330028493FBA214DE16 /* Pods_Orphee.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				DB61958F1BA1332F002CE09E /* CreationsListVC.swift */,
 				DBA085491B6D855800D1369C /* Info.plist */,
 				88F21BCA4626CFD565278816 /* OrpheeTests */,
 				523433011A8103A40041B7BD /* Frameworks */,
@@ -235,6 +244,7 @@
 				526FF5B91A8109BA00CF6A9C /* Views */,
 				52C61D971A79E5C400B3DE23 /* Classes */,
 				52C61D961A79E5C400B3DE23 /* Products */,
+				7CE5533D1C7B6F772DFB436E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -258,6 +268,15 @@
 			);
 			name = Classes;
 			path = Orphee;
+			sourceTree = "<group>";
+		};
+		7CE5533D1C7B6F772DFB436E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D0B4DB5E72BE949EDE4A3B7 /* Pods-Orphee.debug.xcconfig */,
+				FAD83AAC3A3B8626EDD19476 /* Pods-Orphee.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		88F21BCA4626CFD565278816 /* OrpheeTests */ = {
@@ -313,9 +332,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52C61DB41A79E5C400B3DE23 /* Build configuration list for PBXNativeTarget "Orphee" */;
 			buildPhases = (
+				A166A8F638BD076630281797 /* Check Pods Manifest.lock */,
 				52C61D911A79E5C400B3DE23 /* Sources */,
 				52C61D921A79E5C400B3DE23 /* Frameworks */,
 				52C61D931A79E5C400B3DE23 /* Resources */,
+				889912E7F1B6D53530C054CB /* Embed Pods Frameworks */,
+				1659DCA3D0D4CD3C5C7EE01B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -459,6 +481,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1659DCA3D0D4CD3C5C7EE01B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Orphee/Pods-Orphee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		889912E7F1B6D53530C054CB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Orphee/Pods-Orphee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A166A8F638BD076630281797 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		52C61D911A79E5C400B3DE23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -477,6 +547,7 @@
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
 				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
+				DB6195901BA1332F002CE09E /* CreationsListVC.swift in Sources */,
 				9B76B2311B3EC3F800B1C40B /* CompositionMenuViewController.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
@@ -653,6 +724,7 @@
 		};
 		52C61DB51A79E5C400B3DE23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D0B4DB5E72BE949EDE4A3B7 /* Pods-Orphee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -667,6 +739,7 @@
 		};
 		52C61DB61A79E5C400B3DE23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAD83AAC3A3B8626EDD19476 /* Pods-Orphee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

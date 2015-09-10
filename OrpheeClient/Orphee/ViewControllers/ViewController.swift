@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     var saveAction: ((UIAlertAction!) -> Void)!
     var cancelAction: ((UIAlertAction!) -> Void)!
 
+    var fileNbr: Int = 0;
 
     /// MARK: Overrides
     //
@@ -110,6 +111,11 @@ class ViewController: UIViewController {
             let sidebar = segue.destinationViewController as! InstrumentsTableViewController;
             sidebar.graph = audioIO;
         }
+        else if (segue.identifier == "creationListSegue") {
+            print("segueseguesegue")
+            let creationList = segue.destinationViewController as! CreationsListVC;
+            creationList.mainVC = self;
+        }
     }
 
     /// MARK: Utility methods
@@ -158,24 +164,7 @@ class ViewController: UIViewController {
         importAction = { (alert: UIAlertAction!) -> Void in
 
             print("File imported")
-            self.blockArrays.resetBlocks();
-            let data: [String : AnyObject] = MIDIFileManager<CoreMIDISequenceCreator>(name: "test").readFile(nil)!;
-            for (key, value) in data {
-                if let tracks = value as? [Int : [[Int]]]
-                    where key == kOrpheeFileContent_tracks {
-                        for (_, track) in tracks {
-                            self.blockArrays.updateProperties();
-                            let missingBlocks = track.count - self.blockArrays.blockLength;
-                            if (missingBlocks > 0) {
-                                self.blockArrays.addBlocks(missingBlocks + 1);
-                                self.oldValue += missingBlocks + 1;
-                                self.stepper.value = Double(self.oldValue);
-                            }
-                            self.blockArrays.setBlocksFromList(track);
-                        }
-                }
-            }
-            self.updateScrollViewConstraints();
+            self.performSegueWithIdentifier("creationListSegue", sender: self);
         };
 
         saveAction = { (alert: UIAlertAction!) -> Void in
@@ -184,13 +173,37 @@ class ViewController: UIViewController {
             let notes = self.blockArrays.getFormattedNoteList();
             let tracks: [String : Any]? = [kOrpheeFileContent_tracks : [0 : notes]];
 
-            MIDIFileManager<CoreMIDISequenceCreator>(name: "test").createFile(nil, content: tracks);
+            let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
+            fm.createFile()
+            fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
+            ++self.fileNbr;
         };
 
         cancelAction = { (alert: UIAlertAction!) -> Void in
 
             print("Cancelled")
         };
+    }
+
+    func importFile(file: String) {
+        self.blockArrays.resetBlocks();
+        let data: [String : AnyObject] = MIDIFileManager(name: file).readFile()!;
+        for (key, value) in data {
+            if let tracks = value as? [Int : [[Int]]]
+                where key == kOrpheeFileContent_tracks {
+                    for (_, track) in tracks {
+                        self.blockArrays.updateProperties();
+                        let missingBlocks = track.count - self.blockArrays.blockLength;
+                        if (missingBlocks > 0) {
+                            self.blockArrays.addBlocks(missingBlocks + 1);
+                            self.oldValue += missingBlocks + 1;
+                            self.stepper.value = Double(self.oldValue);
+                        }
+                        self.blockArrays.setBlocksFromList(track);
+                    }
+            }
+        }
+        self.updateScrollViewConstraints();
     }
 }
 

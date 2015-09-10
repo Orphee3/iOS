@@ -26,7 +26,7 @@ let kOrpheeDebug_bufferCreator_printBufferSize = { (var input: Int) -> String in
 let kOrpheeDebug_dataParser_printAllEvents = { (midiEvents: [pMidiEvent]) -> String in return String("All track Events: \(midiEvents)") };
 let kOrpheeDebug_dataParser_printTimeSigs = { (timeSigs: [pMidiEvent]) -> String in return String("got time sig: \(timeSigs)") };
 let kOrpheeDebug_dataParser_printSetTempo = { (tempos: [pMidiEvent]) -> String in return String("got set tempo: \(tempos)") };
-let kOrpheeDebug_dataParser_printSortedTimedEvents = { (timedEvents: [UInt32 : [pMidiEvent]]) -> String in
+let kOrpheeDebug_dataParser_printSortedTimedMidiEvents = { (timedEvents: [UInt32 : [pMidiEvent]]) -> String in
 
     var str = "";
     let keys = timedEvents.keys.sort()

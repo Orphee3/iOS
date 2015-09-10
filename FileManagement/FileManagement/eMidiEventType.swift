@@ -18,6 +18,9 @@ let kMIDIEventMaxSize_endOfTrack: Int    = 1;
 let kMIDIEventMaxSize_deltaTime: Int     = 4;
 let kMIDIEventMaxSize_runningStatus: Int = -1;
 
+
+extension eMidiEventType :Equatable {}
+
 ///    - **Range of midi event types:**
 ///
 ///      - Meta events:           `0xFF` followed by *type byte* ranging from `0x00` to `0x7F`.
@@ -68,7 +71,7 @@ let kMIDIEventMaxSize_runningStatus: Int = -1;
 ///    - Unsupported SysEx events:
 ///
 ///      - `sysExSingle`:           *Complete system exclusive data* event
-///      - `sysExPacket`:           *System exclusive data as packets* event
+///      - `escapeSequence`:        *Escape sequence* event
 ///
 public enum eMidiEventType: UInt8 {
 
@@ -96,44 +99,44 @@ public enum eMidiEventType: UInt8 {
     ////////////////////////
     */
     /////// supported ///////
-    case noteOn        = 0x90
-    case noteOff       = 0x80
-    case programChange = 0xC0
+    case noteOn         = 0x90
+    case noteOff        = 0x80
+    case programChange  = 0xC0
 
     ////// unsupported //////
-    case afterTouch    = 0xA0
-    case ctrlChange    = 0xB0
-    case chanPressure  = 0xD0
-    case pitchChange   = 0xE0
+    case afterTouch     = 0xA0
+    case ctrlChange     = 0xB0
+    case chanPressure   = 0xD0
+    case pitchChange    = 0xE0
 
     /////////////////////////
     ////// Meta events //////
     /////////////////////////
     /////// supported ///////
-    case timeSignature = 0x58
-    case setTempo      = 0x51
-    case endOfTrack    = 0x2F
+    case timeSignature  = 0x58
+    case setTempo       = 0x51
+    case endOfTrack     = 0x2F
 
     ////// unsupported //////
-    case sequenceNbr   = 0x00
-    case text          = 0x01
-    case copyright     = 0x02
-    case trkName       = 0x03
-    case instruName    = 0x04
-    case lyrics        = 0x05
-    case marker        = 0x06
-    case cuePoint      = 0x07
-    case chanPrefix    = 0x20
-    case smpteOffset   = 0x54
-    case keySignature  = 0x59
-    case seqSpecific   = 0x7F
+    case sequenceNbr    = 0x00
+    case text           = 0x01
+    case copyright      = 0x02
+    case trkName        = 0x03
+    case instruName     = 0x04
+    case lyrics         = 0x05
+    case marker         = 0x06
+    case cuePoint       = 0x07
+    case chanPrefix     = 0x20
+    case smpteOffset    = 0x54
+    case keySignature   = 0x59
+    case seqSpecific    = 0x7F
 
     /////////////////////////
     ////// SysEx events /////
     /////////////////////////
     ////// unsupported //////
-    case sysExSingle   = 0xF0
-    case sysExPacket   = 0xF7
+    case sysExSingle    = 0xF0
+    case escapeSequence = 0xF7
 
     /////////////////////////
     //////// Custom /////////
@@ -143,34 +146,34 @@ public enum eMidiEventType: UInt8 {
     case unknown       = 0xF5 // Arbitrary.
 
     /// An array containing all of this enum's values.
-    static let allValues = [
+    static let allValues: Set<eMidiEventType> = [
         noteOn, noteOff, programChange,
         afterTouch, ctrlChange, chanPressure, pitchChange,
         timeSignature, setTempo, endOfTrack,
         sequenceNbr, text, copyright, trkName, instruName, lyrics, marker, cuePoint, chanPrefix, smpteOffset, keySignature, seqSpecific,
-        sysExSingle, sysExPacket,
+        sysExSingle, escapeSequence,
         runningStatus, unknown,
     ];
 
     /// An array containing all of this enum's Midi, Meta and SysEx events.
-    static let allEvents = allMIDIEvents + allMETAEvents + [sysExSingle, sysExPacket];
+    static let allEvents: Set<eMidiEventType> = allMIDIEvents.union(allMETAEvents).union([sysExSingle, escapeSequence]);
 
     /// An array containing supported MIDI events.
-    static let MIDIEvents = [noteOn, noteOff, programChange];
+    static let MIDIEvents: Set<eMidiEventType> = [noteOn, noteOff, programChange];
     /// An array containing all MIDI events.
-    static let allMIDIEvents = MIDIEvents + [
+    static let allMIDIEvents: Set<eMidiEventType> = MIDIEvents.union([
         afterTouch, ctrlChange, chanPressure, pitchChange
-    ];
+    ]);
 
     /// An array containing supported Meta events.
-    static let METAEvents = [timeSignature, setTempo, endOfTrack];
+    static let METAEvents: Set<eMidiEventType> = [timeSignature, setTempo, endOfTrack];
     /// An array containing all Meta events.
-    static let allMETAEvents = METAEvents + [
+    static let allMETAEvents: Set<eMidiEventType> = METAEvents.union([
         sequenceNbr, text, copyright, trkName, instruName, lyrics, marker, cuePoint, chanPrefix, smpteOffset, keySignature, seqSpecific,
-    ];
+    ]);
 
-    static let unsupported = [
-        sysExSingle, sysExPacket,
+    static let unsupported: Set<eMidiEventType> = [
+        sysExSingle, escapeSequence,
         sequenceNbr, text, copyright, trkName, instruName, lyrics, marker, cuePoint, chanPrefix, smpteOffset, keySignature, seqSpecific,
         afterTouch, ctrlChange, chanPressure, pitchChange
     ];
