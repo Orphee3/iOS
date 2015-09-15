@@ -18,6 +18,11 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
     var arrayCreation: [JSON] = []
     var offset = 0
     var size = 6
+
+    var player: pAudioPlayer!;
+    var audioIO: AudioGraph = AudioGraph();
+    var session: AudioSession = AudioSession();
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "CreationFluxCustomCell", bundle: nil), forCellReuseIdentifier: "creationCell")
@@ -25,6 +30,14 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
         self.tableView.estimatedRowHeight = 44.0
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+
+        session.setupSession(&audioIO);
+        audioIO.createAudioGraph();
+        audioIO.configureAudioGraph();
+        audioIO.startAudioGraph();
+
+        player = GenericPlayer(graph: audioIO, session: session);
+
         getPopularCreations(offset, size: size)
     }
     
@@ -102,8 +115,12 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
     
     func playCreation(sender: UIButton){
         print("touched PLAY CREATION")
+        // Download/load a MIDI file as NSData
+        let url = NSURL(string: "https://s3-eu-west-1.amazonaws.com/orphee/audio/14418797388120.49655897286720574")!
+        let data = NSData(contentsOfURL: url)
+        player.play(data!);
     }
-    
+
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         print("finished playing \(flag)")
     }

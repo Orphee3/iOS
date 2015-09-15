@@ -102,7 +102,7 @@ class ViewController: UIViewController {
             importAction(UIAlertAction());
 
             // Download/load a MIDI file as NSData
-            let url = NSURL()
+            let url = NSURL(string: "https://s3-eu-west-1.amazonaws.com/orphee/audio/14418797388120.49655897286720574")!
             let data = NSData(contentsOfURL: url)
             player.play(data!);
         }
