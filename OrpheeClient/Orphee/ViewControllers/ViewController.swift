@@ -100,7 +100,11 @@ class ViewController: UIViewController {
 
             saveAction(UIAlertAction());
             importAction(UIAlertAction());
-            player.play();
+
+            // Download/load a MIDI file as NSData
+            let url = NSURL()
+            let data = NSData(contentsOfURL: url)
+            player.play(data!);
         }
     }
 

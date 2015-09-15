@@ -19,7 +19,7 @@ protocol pAudioPlayer {
 
     init(graph: AudioGraph, session: AudioSession);
 
-    func play();
+    func play(data: NSData);
     func pause();
     func stop();
     func clean();
