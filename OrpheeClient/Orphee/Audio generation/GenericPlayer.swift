@@ -55,7 +55,7 @@ class GenericPlayer: pAudioPlayer {
         if (state != noErr) {
             clean();
             NewMusicSequence(&sequence);
-            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", terminator: "");
         }
     }
 
@@ -69,7 +69,7 @@ class GenericPlayer: pAudioPlayer {
             stop();
             clean();
             NewMusicSequence(&sequence);
-            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", appendNewline: false);
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(state), userInfo: nil))", terminator: "")
         }
         return playing == true;
     }

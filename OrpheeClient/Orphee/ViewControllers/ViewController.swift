@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     //
 
     @IBAction func addAndRemoveBlocks(sender: UIStepper) {
-        print(Int(sender.value).description, appendNewline: false)
+        print(Int(sender.value).description, terminator: "")
         if (Int(Int(sender.value).description) > oldValue){
             oldValue = oldValue! + 1;
             blockArrays.addBlocks(1);
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
     ///
     /// - parameter sender:  The object sending the event.
     @IBAction func StopButtonTouched(sender: AnyObject) {
-        print("stop", appendNewline: false);
+        print("stop", terminator: "")
     }
 
     /// Called when the UI's `Play` button is pressed.
@@ -91,12 +91,12 @@ class ViewController: UIViewController {
         _ = sender as! UIButton;
 
         if (player.isPlaying()) {
-            print("stop", appendNewline: false);
+            print("stop", terminator: "");
 
             player.stop();
         }
         else {
-            print("play", appendNewline: false);
+            print("play", terminator: "");
 
             saveAction(UIAlertAction());
             importAction(UIAlertAction());
@@ -157,7 +157,7 @@ class ViewController: UIViewController {
     func makeActions() {
         importAction = { (alert: UIAlertAction!) -> Void in
 
-            print("File imported", appendNewline: false)
+            print("File imported", terminator: "")
             self.blockArrays.resetBlocks();
             let data: [String : AnyObject] = MIDIFileManager(name: "test").readFile(nil)!;
             for (key, value) in data {
@@ -179,7 +179,7 @@ class ViewController: UIViewController {
 
         saveAction = { (alert: UIAlertAction!) -> Void in
 
-            print("File Saved", appendNewline: false)
+            print("File Saved", terminator: "")
             let notes = self.blockArrays.getFormattedNoteList();
             let tracks: [String : AnyObject] = ["TRACKS" : [0 : notes]];
             
@@ -188,7 +188,7 @@ class ViewController: UIViewController {
         
         cancelAction = { (alert: UIAlertAction!) -> Void in
             
-            print("Cancelled", appendNewline: false)
+            print("Cancelled", terminator: "")
         };
     }
 }

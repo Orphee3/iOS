@@ -39,7 +39,7 @@ class SocketManager {
         
         socket.on("friend") {data, ack in
             print("friend data : \(data)")
-            self.notifyApp("requestFriend")
+            self.notifyApp("requestFriend", data: data! as Array<AnyObject>)
         }
     }
     
@@ -47,7 +47,11 @@ class SocketManager {
         socket.emit("private message", ["to": toPerson, "message": message]);
     }
     
-    func notifyApp(key: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName(key, object: self)
+    func notifyApp(key: String, data: Array<AnyObject>) {
+        NSNotificationCenter.defaultCenter().postNotificationName(key, object: self, userInfo: ["json":data])
+    }
+    
+    func disconnectFromSocket(){
+        socket.disconnect(fast: true)
     }
 }

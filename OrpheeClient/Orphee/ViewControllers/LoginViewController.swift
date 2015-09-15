@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        navigationController!.navigationBar.barTintColor = UIColor(red: (13/255.0), green: (71/255.0), blue: (161/255.0), alpha: 1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
@@ -53,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
                 else if (response?.statusCode == 200){
                     var json = JSON(json.value!)
-                    print(json)
+                    print("USER : \(json)")
                     NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
                     NSUserDefaults.standardUserDefaults().setObject(self.loginField.text!, forKey: "userName")
                     NSUserDefaults.standardUserDefaults().setObject(json["user"]["_id"].string, forKey: "myId")
@@ -80,7 +80,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        print("bonjour")
         checkLoginAndPasswd()
     }
 }

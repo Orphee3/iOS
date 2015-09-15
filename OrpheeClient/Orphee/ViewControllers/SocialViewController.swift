@@ -11,75 +11,74 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    @IBOutlet var tableView: UITableView!
-    var userDic: JSON!
-    var refreshControl:UIRefreshControl!
+class SocialViewController: UITableViewController{
+    var userDic: [JSON] = []
+    var offset = 0
+    var size = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUsers()
+        getUsers(offset, size: size)
         tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
+        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func refresh(sender:AnyObject){
-        getUsers()
-        self.refreshControl.endRefreshing()
+        self.userDic = []
+        getUsers(0, size: size)
+        self.refreshControl!.endRefreshing()
     }
     
-    @IBAction func segmentedControlTouched(sender: UISegmentedControl) {
-        switch(sender.selectedSegmentIndex){
-        case 0:
-            print("flux")
-        case 1:
-            print("profil")
-        default:
-            break
-        }
-    }
-    
-    func getUsers(){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=0&size=50").responseJSON{request, response, json in
-            let newJson = JSON(json.value!)
-            self.userDic = newJson
-            print(self.userDic)
+    func getUsers(offset: Int, size: Int){
+        print("JE VAIS GET")
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
+            if let newJson = JSON(json.value!).array{
+                self.userDic += newJson
+            }
+            self.offset += self.size
             self.tableView.reloadData()
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        navigationController!.navigationBar.barTintColor = UIColor(red: (13/255.0), green: (71/255.0), blue: (161/255.0), alpha: 1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
-        
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tmp = userDic{
-            return tmp.count
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if (!userDic.isEmpty){
+            return userDic.count
         }
         else{
             return 0
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("CELLULE")
         let cell: FluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("FluxCell") as? FluxCustomCell
-        if(userDic != nil){
-            cell.nameProfile.text = userDic[indexPath.row]["username"].string
-            cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
-            cell.addFriendButton.tag = indexPath.row
-        }
+        cell.nameProfile.text = userDic[indexPath.section]["username"].string
+        cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
+        cell.addFriendButton.tag = indexPath.section
+        
+        //layout
+        cell.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
+        cell.layer.shadowRadius = 1
+        cell.layer.shadowPath = UIBezierPath(rect: cell.bounds).CGPath
+        cell.layer.shadowOpacity = 0.2
+        cell.layoutMargins = UIEdgeInsetsZero;
+        cell.preservesSuperviewLayoutMargins = false;
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     
@@ -105,7 +104,6 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else{
             print("no token")
-            prepareViewForLogin()
         }
         print("friend added")
     }
@@ -116,11 +114,17 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alertView.show()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        print(indexPath.section)
+        if (indexPath.section == offset - 1){
+            getUsers(offset, size: size)
+        }
     }
     
-    func prepareViewForLogin(){
-
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = UIStoryboard(name: "profile", bundle: nil)
+        let loginView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
+        loginView.idUser = userDic[indexPath.section]["_id"].string!
+        self.navigationController?.pushViewController(loginView, animated: true)
     }
 }

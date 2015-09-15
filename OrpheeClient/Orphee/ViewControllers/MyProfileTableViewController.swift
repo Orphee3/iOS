@@ -19,17 +19,17 @@ class MyProfileTableViewController: UITableViewController{
     @IBOutlet var nameProfile: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        getPhoto()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "actOnSpecialNotification", name: "requestFriend", object: nil)
-        navigationController!.navigationBar.barTintColor = UIColor(red: (13/255.0), green: (71/255.0), blue: (161/255.0), alpha: 1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
             print("y a un token")
-            getPhoto()
+            //getPhoto()
             getName()
         }
         else{
@@ -38,22 +38,18 @@ class MyProfileTableViewController: UITableViewController{
         }
     }
     
-    func actOnSpecialNotification() {
-        self.navigationController!.tabBarItem.badgeValue = "1";
-    }
-    
     func getName(){
         nameProfile.text = NSUserDefaults.standardUserDefaults().objectForKey("userName") as? String
     }
     
     func getPhoto(){
-        if let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile"){
-            print("test")
-            Alamofire.request(.GET, photo as! String).response() {
+        let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile")
+        if let tmp = photo{
+            Alamofire.request(.GET, tmp as! String).response() {
                 (_, _, data, _) in
                 let image = UIImage(data: data!)
                 self.imgLogin.image = image
-                print("test")
+                self.tableView.reloadData()
             }
         }
         else{
@@ -63,7 +59,7 @@ class MyProfileTableViewController: UITableViewController{
     
     func prepareViewForLogin(){
         imgLogin = UIImageView(image: UIImage(named: "imgLogin"))
-        imgLogin.frame = self.view.frame
+        imgLogin.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
         self.view.addSubview(imgLogin)
         loginButton = UIButton(frame: CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height - 150, 100, 30))
         loginButton.setTitle("Allons-y !", forState: UIControlState.Normal)
@@ -83,7 +79,6 @@ class MyProfileTableViewController: UITableViewController{
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
-        print("disappear")
         if let _ = loginButton{
             loginButton.removeFromSuperview()
             imgLogin.removeFromSuperview()

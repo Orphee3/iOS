@@ -24,14 +24,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         imgProfile.addGestureRecognizer(gestureImageRecognizer)
         imgProfile.userInteractionEnabled = true
         nameProfile.placeholder = NSUserDefaults.standardUserDefaults().objectForKey("userName") as? String
+        getPhoto()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        navigationController!.navigationBar.barTintColor = UIColor(red: (13/255.0), green: (71/255.0), blue: (161/255.0), alpha: 1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        getPhoto()
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,10 +39,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func getPhoto(){
-        Alamofire.request(.GET, NSUserDefaults.standardUserDefaults().objectForKey("imgProfile") as! String).response() {
-            (_, _, data, _) in
-            let image = UIImage(data: data!)
-            self.imgProfile.image = image
+        if let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile"){
+            Alamofire.request(.GET, photo as! String).response() {
+                (_, _, data, _) in
+                let image = UIImage(data: data!)
+                self.imgProfile.image = image
+            }
+        }
+        else{
+            imgProfile.image = UIImage(named: "emptyprofile")
         }
     }
 
@@ -90,7 +95,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     func saveImageToDirectory(img: UIImage){
         let image = img
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-        print(documentsPath)
         let destinationPath = documentsPath.stringByAppendingPathComponent("imgProfile.png")
         UIImageJPEGRepresentation(image,0.25)!.writeToFile(destinationPath, atomically: true)
         print(destinationPath)

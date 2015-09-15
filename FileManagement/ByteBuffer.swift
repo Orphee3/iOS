@@ -199,7 +199,7 @@ public class ByteBuffer {
 
         var string = String()
         string.reserveCapacity(characters.count)
-        string.extend(characters)
+        //string.extend(characters)
 
         return string
     }

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/socketio/socket.io-client-swift.svg?branch=swift-2)](https://travis-ci.org/socketio/socket.io-client-swift)
+
 #Socket.IO-Client-Swift
 Socket.IO-client for iOS/OS X.
 
@@ -6,7 +8,7 @@ Socket.IO-client for iOS/OS X.
 let socket = SocketIOClient(socketURL: "localhost:8080")
 
 socket.on("connect") {data, ack in
-    println("socket connected")
+    print("socket connected")
 }
 
 socket.on("currentAmount") {data, ack in
@@ -61,7 +63,7 @@ Carthage
 -----------------
 Add this line to your `Cartfile`:
 ```
-github "socketio/socket.io-client-swift" ~> 2.4.0 # Or latest version
+github "socketio/socket.io-client-swift" ~> 2.4.5 # Or latest version
 ```
 
 Run `carthage update`.
@@ -80,7 +82,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Socket.IO-Client-Swift', '~> 2.4.0' # Or latest version
+pod 'Socket.IO-Client-Swift', '~> 2.4.5' # Or latest version
 ```
 
 Install pods:
@@ -119,6 +121,7 @@ Options
 - `nsp: String` Default is `"/"`. Connects to a namespace.
 - `cookies: [NSHTTPCookie]?` An array of NSHTTPCookies. Passed during the handshake. Default is nil.
 - `log: Bool` If `true` socket will log debug messages. Default is false.
+- `logger: SocketLogger` If you wish to implement your own logger that conforms to SocketLogger you can pass it in here. Will use the default logging defined under the protocol otherwise.
 - `sessionDelegate: NSURLSessionDelegate` Sets an NSURLSessionDelegate for the underlying engine. Useful if you need to handle self-signed certs. Default is nil.
 - `path: String` - If the server uses a custom path. ex: `"/swift"`. Default is `""`
 - `extraHeaders: [String: String]?` - Adds custom headers to the initial request. Default is nil.

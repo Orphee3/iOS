@@ -155,7 +155,7 @@ public class MIDIDataParser {
                     notes[currentDt]!.append(tmEvent);
                 }
             }
-            let keys = notes.keys.array.sort { $0 < $1 } ;
+            let keys = notes.keys.sort { $0 < $1 } ;
             for dt in keys {
                 print("key = \(dt)\nValue = \(notes[dt]!)");
             }
