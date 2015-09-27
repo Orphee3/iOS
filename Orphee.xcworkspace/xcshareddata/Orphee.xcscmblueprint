@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D14799E26D7946157D05059A66EDC2DB8B20B8DE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D14799E26D7946157D05059A66EDC2DB8B20B8DE" : 0,
+    "9526BFB132EAB8B4D9625D12A8928D3F071613EA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "31431A8D-E31E-4662-94E0-14F7C42E4649",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D14799E26D7946157D05059A66EDC2DB8B20B8DE" : "iOS",
+    "9526BFB132EAB8B4D9625D12A8928D3F071613EA" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Orphee",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Orphee.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/Jeromin\/orphee.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9526BFB132EAB8B4D9625D12A8928D3F071613EA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Orphee3\/iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D14799E26D7946157D05059A66EDC2DB8B20B8DE"
+    }
+  ]
+}
