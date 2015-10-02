@@ -29,7 +29,7 @@ class MyProfileTableViewController: UITableViewController{
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
             print("y a un token")
-            //getPhoto()
+            getPhoto()
             getName()
         }
         else{
@@ -43,17 +43,8 @@ class MyProfileTableViewController: UITableViewController{
     }
     
     func getPhoto(){
-        let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile")
-        if let tmp = photo{
-            Alamofire.request(.GET, tmp as! String).response() {
-                (_, _, data, _) in
-                let image = UIImage(data: data!)
-                self.imgLogin.image = image
-                self.tableView.reloadData()
-            }
-        }
-        else{
-            imgLogin.image = UIImage(named: "emptyprofile")
+        if let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile"){
+            imgLogin.sd_setImageWithURL(NSURL(string: photo as! String), placeholderImage: UIImage(named: "emptygrayprofile"))
         }
     }
     

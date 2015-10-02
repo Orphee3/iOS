@@ -39,16 +39,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func getPhoto(){
-        if let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile"){
-            Alamofire.request(.GET, photo as! String).response() {
-                (_, _, data, _) in
-                let image = UIImage(data: data!)
-                self.imgProfile.image = image
-            }
-        }
-        else{
-            imgProfile.image = UIImage(named: "emptyprofile")
-        }
+        let photo = NSUserDefaults.standardUserDefaults().objectForKey("imgProfile")
+        imgProfile.sd_setImageWithURL(NSURL(string: photo as! String), placeholderImage: UIImage(named: "emptygrayprofile"))
     }
 
     

@@ -11,17 +11,35 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SocialViewController: UITableViewController{
+class SocialViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating{
     var userDic: [JSON] = []
     var offset = 0
     var size = 3
+    var spinner: UIActivityIndicatorView!
+    var searchDisplay: UISearchController!
+    var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        prepareSearchingDisplay()
+        
+        createActivityIndicatorView()
+        spinner.startAnimating()
         getUsers(offset, size: size)
         tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    func prepareSearchingDisplay(){
+        searchDisplay = UISearchController(searchResultsController: nil)
+        searchDisplay.searchResultsUpdater = self
+        searchDisplay.dimsBackgroundDuringPresentation = false
+        searchDisplay.hidesNavigationBarDuringPresentation = false;
+        searchDisplay.searchBar.sizeToFit()
+        self.navigationItem.titleView = self.searchDisplay.searchBar;
+        definesPresentationContext = true
     }
     
     func refresh(sender:AnyObject){
@@ -30,14 +48,23 @@ class SocialViewController: UITableViewController{
         self.refreshControl!.endRefreshing()
     }
     
+    func createActivityIndicatorView(){
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        spinner.frame = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 50, 50)
+        spinner.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2)
+        self.view.addSubview(spinner)
+    }
+    
     func getUsers(offset: Int, size: Int){
-        print("JE VAIS GET")
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
             if let newJson = JSON(json.value!).array{
                 self.userDic += newJson
             }
             self.offset += self.size
-            self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.spinner.stopAnimating()
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -50,7 +77,7 @@ class SocialViewController: UITableViewController{
         self.tableView.estimatedRowHeight = 44.0
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!userDic.isEmpty){
             return userDic.count
         }
@@ -59,16 +86,15 @@ class SocialViewController: UITableViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         print("CELLULE")
         let cell: FluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("FluxCell") as? FluxCustomCell
-        cell.nameProfile.text = userDic[indexPath.section]["username"].string
+        cell.nameProfile.text = userDic[indexPath.row]["username"].string
         cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
-        cell.addFriendButton.tag = indexPath.section
+        cell.addFriendButton.tag = indexPath.row
+        if let picture = userDic[indexPath.row]["picture"].string {
+            cell.imgProfile.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
+        }
         
         //layout
         cell.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
@@ -114,17 +140,32 @@ class SocialViewController: UITableViewController{
         alertView.show()
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.section)
-        if (indexPath.section == offset - 1){
-            getUsers(offset, size: size)
-        }
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let loginView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
-        loginView.idUser = userDic[indexPath.section]["_id"].string!
+        loginView.idUser = userDic[indexPath.row]["_id"].string!
         self.navigationController?.pushViewController(loginView, animated: true)
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if !searchController.active {
+            return
+        }
+        
+        let text = searchController.searchBar.text
+        
+        if (text?.characters.count > 2){
+            print("search")
+            print("http://163.5.84.242:3000/api/user/\(text!)/name")
+            Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(text!)/name").responseJSON{request, response, json in
+                print(json.value)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.userDic = JSON(json.value!).array!
+                    self.tableView.reloadData()
+                }
+            }
+        }else if (text?.characters.count == 0){
+            getUsers(0, size: 10)
+        }
     }
 }

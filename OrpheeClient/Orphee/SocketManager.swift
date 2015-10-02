@@ -38,8 +38,12 @@ class SocketManager {
         }
         
         socket.on("friend") {data, ack in
-            print("friend data : \(data)")
+            print("friend data : \(data! as Array)")
             self.notifyApp("requestFriend", data: data! as Array<AnyObject>)
+        }
+        
+        socket.on("comments") {data, ack in
+            print("comment data : \(data)")
         }
     }
     

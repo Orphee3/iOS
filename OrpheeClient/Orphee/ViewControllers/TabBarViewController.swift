@@ -21,25 +21,17 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate{
     }
     
     func friendNotification(notif: NSNotification){
+        let userInfo = notif.userInfo as [NSObject:AnyObject]!
+        let receivedRequest = userInfo["json"]
         let navController = self.childViewControllers[4] as! UINavigationController
         navController.tabBarItem.badgeValue = "1";
-        var requests = notif.userInfo?.indexForKey("json")
-        print(requests)
-//        if (NSUserDefaults.standardUserDefaults().objectForKey("friendsRequest") != nil) {
-//            var data: NSData = NSUserDefaults.standardUserDefaults().objectForKey("friendsRequest") as! NSData
-//            var tmp: NSMutableArray = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSMutableArray
-//            tmp.addObject(self.beacons[nbBeacon!])
-//            data = NSKeyedArchiver.archivedDataWithRootObject(tmp)
-//            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "history")
-//            NSUserDefaults.standardUserDefaults().synchronize()
-//        }else {
-//            var tmp = NSMutableArray()
-//            tmp.addObject(self.beacons[nbBeacon!])
-//            var data = NSKeyedArchiver.archivedDataWithRootObject(tmp)
-//            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "history")
-//            NSUserDefaults.standardUserDefaults().synchronize()
-//        }
-
-        //print(notif.userInfo)
+        if let request: Array<AnyObject> = NSUserDefaults.standardUserDefaults().objectForKey("friendsRequests") as? Array<AnyObject>{
+            var tmp = request
+            tmp.append(receivedRequest!)
+            NSUserDefaults.standardUserDefaults().setObject(tmp, forKey: "friendsRequests")
+        }else{
+            NSUserDefaults.standardUserDefaults().setObject(receivedRequest, forKey: "friendsRequests")
+        }
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

@@ -28,7 +28,12 @@ class RequestFriendsTableViewController: UITableViewController{
     }
     
     func getFriendsRequests(){
-        
+        if let request = NSUserDefaults.standardUserDefaults().objectForKey("friendsRequests") as? Array<AnyObject>{
+            for r in request{
+                print(r)
+                arrayRequest.append(JSON(r))
+            }
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,8 +47,9 @@ class RequestFriendsTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: RequestFriendCustomCell! = tableView.dequeueReusableCellWithIdentifier("requestFriend") as? RequestFriendCustomCell
-        //        cell.profilName.text = arrayRequest[indexPath.row][0]["userSource"][0]["username"].string!
-        //        cell.id = arrayRequest[indexPath.row][0]["_id"].string!
+            print(arrayRequest[indexPath.row]["userSource"])
+            cell.profilName.text = arrayRequest[indexPath.row]["userSource"]["name"].string!
+            cell.id = arrayRequest[indexPath.row]["userSource"]["_id"].string!
         return cell
     }
 }

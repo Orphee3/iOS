@@ -130,9 +130,10 @@
             </objects>
             <point key="canvasLocation" x="-130" y="1003"/>
         </scene>
-        <!--Personnes-->
+        <!--Social View Controller-->
         <scene sceneID="hod-4D-udU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ASw-Zr-k5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="3dC-du-yTo" customClass="SocialViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7mg-Fi-8eB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -144,9 +145,8 @@
                             <outlet property="delegate" destination="3dC-du-yTo" id="uoi-pE-iHs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Personnes" id="nVo-wK-bql"/>
+                    <navigationItem key="navigationItem" id="nVo-wK-bql"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ASw-Zr-k5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="505" y="1003"/>
         </scene>
@@ -420,7 +420,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyprofile" translatesAutoresizingMaskIntoConstraints="NO" id="4i7-Um-RT5">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptygrayprofile" translatesAutoresizingMaskIntoConstraints="NO" id="4i7-Um-RT5">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="376"/>
                                     <animations/>
                                 </imageView>
@@ -764,6 +764,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="emptygrayprofile" width="200" height="200"/>
         <image name="emptyprofile" width="200" height="200"/>
     </resources>
 </document>

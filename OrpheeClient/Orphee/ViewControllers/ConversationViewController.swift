@@ -51,6 +51,7 @@ class ConversationViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         let newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
         messages += [newMessage]
+        SocketManager.sharedInstance.sendMessage(senderId, message: text)
         self.finishSendingMessage()
     }
     

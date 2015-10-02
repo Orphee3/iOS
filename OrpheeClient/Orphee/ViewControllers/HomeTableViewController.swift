@@ -13,16 +13,18 @@ import SwiftyJSON
 import SDWebImage
 import AVFoundation
 
-
-class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
+class HomeTableViewController: UITableViewController{
     var arrayCreation: [JSON] = []
     var offset = 0
-    var size = 6
-
+    var size = 10
+    var sectionTab = 0
+    
+    var spinner: UIActivityIndicatorView!
+    
     var player: pAudioPlayer!;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "CreationFluxCustomCell", bundle: nil), forCellReuseIdentifier: "creationCell")
@@ -30,20 +32,23 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
         self.tableView.estimatedRowHeight = 44.0
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-
+        
         session.setupSession(&audioIO);
         audioIO.createAudioGraph();
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
-
+        
         player = GenericPlayer(graph: audioIO, session: session);
-
-        getPopularCreations(offset, size: size)
+        
+        createActivityIndicatorView()
+        spinner.startAnimating()
+        getPopularCreations(offset, size: size, route: self.sectionTab)
     }
     
     func refresh(sender:AnyObject){
         arrayCreation = []
-        getPopularCreations(0, size: size)
+        offset = 0
+        getPopularCreations(offset, size: size, route: self.sectionTab)
         self.refreshControl!.endRefreshing()
     }
     
@@ -54,21 +59,43 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
-    func getPopularCreations(offset: Int, size: Int){
-        let url =  "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
+    func createActivityIndicatorView(){
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        spinner.frame = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 50, 50)
+        spinner.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2)
+        self.view.addSubview(spinner)
+    }
+    
+    func getPopularCreations(offset: Int, size: Int, route: Int){
+   //     let myId = NSUserDefaults.standardUserDefaults().objectForKey("myId") as! String
+        let urlPopular = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
+   //     let urlFriends = "http://163.5.84.242:3000/api/user/\(myId)/flux?offset=\(offset)&size=\(size)"
+        var url: String!
+        if(route == 0){
+            url = urlPopular
+        }
+//        else{
+//            url = urlFriends
+//        }
         Alamofire.request(.GET, url).responseJSON{request, response, json in
             print("POPULAR CREATION : \(json.value)")
             if let newJson = JSON(json.value!).array{
                 self.arrayCreation += newJson
                 print("USERDIC : \(self.arrayCreation)")
                 self.offset += self.size
-                self.tableView.reloadData()
+                print("OFFSET: \(self.offset)")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.spinner.stopAnimating()
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
-        
+        offset = 0
+        getPopularCreations(0, size: 5, route: sender.selectedSegmentIndex)
+        sectionTab = sender.selectedSegmentIndex
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,18 +114,22 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: CreationFluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("creationCell") as? CreationFluxCustomCell
         cell.nameProfileCreator.text = arrayCreation[indexPath.section]["creator"][0]["name"].string
-        cell.nameCreation.text = arrayCreation[indexPath.section]["name"].string
+        let title =  arrayCreation[indexPath.section]["name"].string
+        cell.nameCreation.text =  title!.substringWithRange(Range<String.Index>(start: title!.startIndex.advancedBy(0), end: title!.endIndex.advancedBy(-4)))
         cell.idCreation = arrayCreation[indexPath.section]["_id"].string
         cell.idCreator = arrayCreation[indexPath.section]["creator"][0]["_id"].string
         cell.urlCreation = arrayCreation[indexPath.section]["url"].string
         if let picture = arrayCreation[indexPath.section]["creator"][0]["picture"].string {
             cell.imgProfileCreator.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
         }
+       // cell.nbComments.text = String(arrayCreation[indexPath.section]["nbComments"])
+       // cell.likesCreation.text = String(arrayCreation[indexPath.section]["nbLikes"])
         cell.playCreation.addTarget(self, action: "playCreation:", forControlEvents: .TouchUpInside)
         cell.playCreation.tag = indexPath.section
         cell.accessProfileButton.addTarget(self, action: "accessProfile:", forControlEvents: .TouchUpInside)
         cell.accessProfileButton.tag = indexPath.section
         cell = layoutCell(cell)
+        
         return cell
     }
     
@@ -114,20 +145,21 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
     }
     
     func playCreation(sender: UIButton){
-        print("touched PLAY CREATION")
-        // Download/load a MIDI file as NSData
-        let url = NSURL(string: "https://s3-eu-west-1.amazonaws.com/orphee/audio/14418797388120.49655897286720574")!
-        let data = NSData(contentsOfURL: url)
-        player.play(data!);
-    }
-
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        print("finished playing \(flag)")
-    }
-    
-    
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
-        print("\(error!.localizedDescription)")
+        let destination =
+        Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory,
+            domain: .UserDomainMask)
+        Alamofire.download(.GET, arrayCreation[sender.tag]["url"].string!, destination: destination) .progress{ bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            print(totalBytesRead)
+            }.responseJSON{request, response, json in
+                print(response)
+                if (response?.statusCode == 200){
+                    if let urlDirectory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0] as NSURL!{
+                        let path = response?.suggestedFilename
+                        let data = NSData(contentsOfURL: urlDirectory.URLByAppendingPathComponent(path!))
+                        self.player.play(data!)
+                    }
+                }
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -135,12 +167,6 @@ class HomeTableViewController: UITableViewController, AVAudioPlayerDelegate {
         let loginView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
         loginView.idCreation = arrayCreation[indexPath.section]["_id"].string!
         self.navigationController?.pushViewController(loginView, animated: true)
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.section == offset){
-            getPopularCreations(offset, size: size)
-        }
     }
     
     func accessProfile(sender: UIButton){

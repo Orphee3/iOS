@@ -28,6 +28,7 @@ class ProfileUserTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
         print(idUser)
+        nbLikeProfile.text = "0"
         getInfoUser()
     }
     
@@ -77,7 +78,8 @@ class ProfileUserTableViewController: UITableViewController {
         
         cell.nameCreation.text = self.arrayCreations[indexPath.section]["name"].string
         cell.nbCommentCreation.text = String(self.arrayCreations[indexPath.section]["comments"].count)
-        
+        cell.nbLikeCreation.text = "0"
+        nbCreationProfile.text = String(self.arrayCreations.count)
         cell.commentButton.tag = indexPath.section
         cell.likeButton.tag = indexPath.section
         cell.likeButton.addTarget(self, action: "likeCreation:", forControlEvents: .TouchUpInside)

@@ -29,9 +29,9 @@ class GenericPlayer: pAudioPlayer {
     }
 
     func play(data: NSData) {
-
-        var st: OSStatus = MusicSequenceFileLoadData(sequence, data, MusicSequenceFileTypeID(rawValue: 0)!, MusicSequenceLoadFlags(rawValue: 0));
-        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        MusicPlayerStop(player)
+        var st: OSStatus = MusicSequenceFileLoadData(sequence, data, MusicSequenceFileTypeID.MIDIType, MusicSequenceLoadFlags.SMF_PreserveTracks);
+        assert(st == noErr, "Got \(data.length) bytes\n\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
         st = MusicPlayerSetSequence(player, sequence);
         assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
         st = MusicPlayerPreroll(player);
