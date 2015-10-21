@@ -26,12 +26,13 @@ class ViewController: UIViewController {
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
-    var oldValue: Int!
+    var oldValue: Int = 1;
 
     var importAction: ((UIAlertAction!) -> Void)!
     var saveAction: ((UIAlertAction!) -> Void)!
     var cancelAction: ((UIAlertAction!) -> Void)!
 
+    var fileNbr: Int = 0;
 
     /// MARK: Overrides
     //
@@ -40,14 +41,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        oldValue = Int(stepper.value.description)
+        oldValue = Int(stepper.value)
         createBlocks(1);
         session.setupSession(&audioIO);
         audioIO.createAudioGraph();
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
 
-        player = GenericPlayer(graph: audioIO, session: session);
+        player = LiveAudioPlayer(graph: audioIO, session: session);
         makeActions();
     }
 
@@ -63,13 +64,13 @@ class ViewController: UIViewController {
     @IBAction func addAndRemoveBlocks(sender: UIStepper) {
         print(Int(sender.value).description, terminator: "")
         if (Int(Int(sender.value).description) > oldValue){
-            oldValue = oldValue! + 1;
+            oldValue = oldValue + 1;
             blockArrays.addBlocks(1);
             updateScrollViewConstraints();
         }
 
         else {
-            oldValue = oldValue! - 1;
+            oldValue = oldValue - 1;
             blockArrays.removeBlocks(1);
             updateScrollViewConstraints();
         }
@@ -80,7 +81,7 @@ class ViewController: UIViewController {
     ///
     /// - parameter sender:  The object sending the event.
     @IBAction func StopButtonTouched(sender: AnyObject) {
-        print("stop", terminator: "")
+        print("stop");
     }
 
     /// Called when the UI's `Play` button is pressed.
@@ -90,21 +91,17 @@ class ViewController: UIViewController {
     @IBAction func PlayButtonTouched(sender: AnyObject) {
         _ = sender as! UIButton;
 
-        if (player.isPlaying()) {
-            print("stop", terminator: "");
+        if (player.playing) {
+            print("pause");
 
-            player.stop();
+            player.pause();
         }
         else {
-            print("play", terminator: "");
-
-            saveAction(UIAlertAction());
-            importAction(UIAlertAction());
-
-            // Download/load a MIDI file as NSData
-            let url = NSURL(string: "https://s3-eu-west-1.amazonaws.com/orphee/audio/14418797388120.49655897286720574")!
-            let data = NSData(contentsOfURL: url)
-            player.play(data!);
+            print("play");
+            if let p = player as? LiveAudioPlayer {
+                p.audioData = blockArrays.getCleanedList();
+                p.play();
+            }
         }
     }
 
@@ -113,6 +110,11 @@ class ViewController: UIViewController {
         if (segue.identifier == "instrumentsSegue") {
             let sidebar = segue.destinationViewController as! InstrumentsTableViewController;
             sidebar.graph = audioIO;
+        }
+        else if (segue.identifier == "creationListSegue") {
+            print("segueseguesegue")
+            let creationList = segue.destinationViewController as! CreationsListVC;
+            creationList.mainVC = self;
         }
     }
 
@@ -161,39 +163,47 @@ class ViewController: UIViewController {
     func makeActions() {
         importAction = { (alert: UIAlertAction!) -> Void in
 
-            print("File imported", terminator: "")
-            self.blockArrays.resetBlocks();
-            let data: [String : AnyObject] = MIDIFileManager(name: "test").readFile(nil)!;
-            for (key, value) in data {
-                if (key == "TRACKS") {
-                    if let tracks = value as? [Int : [[Int]]] {
-                        self.blockArrays.updateProperties();
-                        let missingBlocks = tracks[0]!.count - self.blockArrays.blockLength;
-                        if (missingBlocks > 0) {
-                            self.blockArrays.addBlocks(missingBlocks + 1);
-                            self.oldValue! += missingBlocks + 1;
-                            self.stepper.value = Double(self.oldValue!);
-                        }
-                        self.blockArrays.setBlocksFromList(tracks[0]!);
-                    }
-                }
-            }
-            self.updateScrollViewConstraints();
+            print("File imported")
+            self.performSegueWithIdentifier("creationListSegue", sender: self);
         };
 
         saveAction = { (alert: UIAlertAction!) -> Void in
 
-            print("File Saved", terminator: "")
+            print("File Saved")
             let notes = self.blockArrays.getFormattedNoteList();
-            let tracks: [String : AnyObject] = ["TRACKS" : [0 : notes]];
-            
-            MIDIFileManager(name: "test").createFile(nil, content: tracks);
+            let tracks: [String : Any]? = [kOrpheeFileContent_tracks : [0 : notes]];
+
+            let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
+            fm.createFile()
+            fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
+            ++self.fileNbr;
         };
-        
+
         cancelAction = { (alert: UIAlertAction!) -> Void in
-            
-            print("Cancelled", terminator: "")
+
+            print("Cancelled")
         };
+    }
+
+    func importFile(file: String) {
+        self.blockArrays.resetBlocks();
+        let data: [String : AnyObject] = MIDIFileManager(name: file).readFile()!;
+        for (key, value) in data {
+            if let tracks = value as? [Int : [[Int]]]
+                where key == kOrpheeFileContent_tracks {
+                    for (_, track) in tracks {
+                        self.blockArrays.updateProperties();
+                        let missingBlocks = track.count - self.blockArrays.blockLength;
+                        if (missingBlocks > 0) {
+                            self.blockArrays.addBlocks(missingBlocks + 1);
+                            self.oldValue += missingBlocks + 1;
+                            self.stepper.value = Double(self.oldValue);
+                        }
+                        self.blockArrays.setBlocksFromList(track);
+                    }
+            }
+        }
+        self.updateScrollViewConstraints();
     }
 }
 

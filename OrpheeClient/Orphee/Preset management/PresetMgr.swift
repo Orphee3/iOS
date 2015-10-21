@@ -23,8 +23,7 @@ class PresetMgr {
     /// - parameter url:         A URL to the preset file.
     /// - parameter graphMgr:    The AudioGraph containing the sampler unit on which to load the preset.
     ///
-    /// - returns:   - true:  if no error occured
-    ///             - false: otherwise
+    /// - returns:  `true` on success, `false` otherwise.
     func loadPresetFromURL(url: NSURL, graphMgr: AudioGraph) -> Bool {
 
         let res = presetLoader.loadSynthFromPresetURL(url, toAudioUnit: &(graphMgr.sampler!));
@@ -40,8 +39,7 @@ class PresetMgr {
     /// - parameter patchID:     The id of a patch in the given file.
     /// - parameter graphMgr:    The AudioGraph containing the sampler unit on which to load the patch.
     ///
-    /// - returns:   - `true` if no error occured
-    ///             - `false` otherwise
+    /// - returns:  `true` on success, `false` otherwise.
     func loadSoundBankFromURL(url: NSURL, patchId: Int32, graphMgr: AudioGraph) -> Bool {
 
         let res = presetLoader.loadSynthFromDLSOrSoundFont(url, withPatch: patchId, toAudioUnit: &(graphMgr.sampler!));
@@ -60,9 +58,7 @@ class PresetMgr {
     ///
     /// - parameter path:    The path to the resource file.
     ///
-    /// - returns:   A pair of optionals.
-    /// - returns:       - If the file exists and is reachable, `data` is a reference to the file's raw data.
-    ///                 - If an error occured `error` is set.
+    /// - returns:  A pair of optionals: (data, error). If the file exists and is reachable, `data` is a reference to the file's raw data. If an error occured `error` is set.
     func getDataFromRessourceWithPath(path: String) -> (data: CFDataRef?, error: NSError?) {
 
         var err: NSError? = nil;
@@ -81,9 +77,7 @@ class PresetMgr {
     ///
     /// - parameter data:    Raw data extracted from a preset file.
     ///
-    /// - returns:	A pair of optionals.
-    /// - returns:       - Given `data` is the well-formatted raw data of a valid file, `plist` is a reference to the retrieved property list.
-    ///                 - If an error occured `error` is set.
+    /// - returns:  A pair of optionals: (plist, error). Given `data` is the well-formatted raw data of a valid file, `plist` is a reference to the retrieved property list. If an error occured `error` is set.
     func getPListFromRawData(data: CFData) -> (plist: CFPropertyListRef?, error: NSError?) {
 
         var format: CFPropertyListFormat = CFPropertyListFormat.BinaryFormat_v1_0;
@@ -105,9 +99,7 @@ class PresetMgr {
     ///
     /// - parameter path:    The path to the resource file.
     ///
-    /// - returns:	A pair of optionals.
-    /// - returns:       - If `path` is valid file and provided no error occurs, `plist` is a reference to the file's property list.
-    ///                 - If an error occured `error` is set.
+    /// - returns:  A pair of optionals: (plist, error). If `path` is valid file and provided no error occurs, `plist` is a reference to the file's property list. If an error occured `error` is set.
     func getPListFromRessourceWithPath(path: String) -> (plist: CFPropertyListRef?, error: NSError?) {
 
         let res = getDataFromRessourceWithPath(path);
@@ -129,8 +121,7 @@ class PresetMgr {
     /// - parameter path:        The path to the sound bank file.
     /// - parameter isSoundFont: Determines if the file should be treated as a SoundFont file (e.g. *.sf2) or not (e.g. *.dls)
     ///
-    /// - returns:   - If `path` is valid: The corresponding structure
-    ///             - Else: returns `nil`.
+    /// - returns:  The corresponding structure if `path` is valid, `nil` otherwise.
     func getMelodicInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
 
         var instru: AUSamplerInstrumentData? = nil;
@@ -160,8 +151,7 @@ class PresetMgr {
     /// - parameter path:        The path to the sound bank file.
     /// - parameter isSoundFont: Determines if the file should be treated as a SoundFont file (e.g. *.sf2) or not (e.g. *.dls)
     ///
-    /// - returns:   - If `path` is valid: The corresponding structure
-    ///             - Else: returns `nil`.
+    /// - returns:  The corresponding structure if `path` is valid, `nil` otherwise.
     func getPercussionInstrumentFromSoundBank(id: UInt8 = 0, path: String, isSoundFont: Bool = true) -> AUSamplerInstrumentData? {
 
         var instru: AUSamplerInstrumentData? = nil;
@@ -186,17 +176,13 @@ class PresetMgr {
     /// Checks if `path` has the correct extension.
     ///
     /// - parameter path:        The path to the sound bank file.
-    /// - parameter isSoundFont: Determines the correct extension to check for.
+    /// - parameter isSoundFont: If `true` expects an "sf2" file extension, otherwise a "dls" file extension.
     ///
-    /// - returns:   - `true` if the `path` has the extension it's supposed to have.
-    ///             - `false`otherwise.
-    private func isPathToSoundBankFile(path: String, isSoundFont: Bool) -> Bool {
+    /// - returns:  `true` if the `path` has the extension it's supposed to have, `false`otherwise.
+    private func isPathToSoundBankFile(path: NSString, isSoundFont: Bool) -> Bool {
 
         let typeExt: String = isSoundFont ? "sf2" : "dls";
         
-//        if (typeExt.lowercaseString != path.pathExtension.lowercaseString) {
-//            return false;
-//        }
-        return true;
+        return typeExt.lowercaseString == path.pathExtension
     }
 }

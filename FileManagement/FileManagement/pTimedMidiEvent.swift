@@ -14,6 +14,9 @@ import Foundation
 public protocol pTimedMidiEvent: pMidiEvent {
 
     var deltaTime: UInt32 { get };
+}
+
+public protocol pTimedMidiEventWithReader: pTimedMidiEvent, pMidiEventWithReader {
 
     init(type: eMidiEventType, deltaTime: UInt32, reader: (rawData:dataSource) -> [UInt32]);
 }

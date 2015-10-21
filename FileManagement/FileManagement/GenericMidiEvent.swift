@@ -8,29 +8,45 @@
 
 import UIKit
 
-/** GenericMidiEvent realizes pTimedMidiEvent and Printable
+public class BaseMidiEvent: pMidiEvent, CustomStringConvertible {
+    public var type: eMidiEventType;
+    public var description: String = "\n";
+
+    public var data: [UInt32]! {
+        didSet {
+            self.description = String(format: "\n\t0x%X : ", type.rawValue) + self.data!.description
+        }
+    }
+
+    init(type: eMidiEventType) {
+        self.type = type;
+    }
+}
+
+/** BasicMidiEvent realizes pTimedMidiEvent and Printable
 
 */
-public class GenericMidiEvent<T>: pMidiEvent, CustomStringConvertible {
+public class BasicMidiEvent<T>: BaseMidiEvent, pMidiEventWithReader {
 
     public typealias dataSource = T;
 
-    public var type: eMidiEventType;
-    public var dataReader: (rawData: T) -> [UInt32];
+    public var dataReader: (rawData: T) throws -> [UInt32];
 
-    public var description: String = "\n";
+    public init(type: eMidiEventType, reader: (rawData: T) throws -> [UInt32]) {
 
-    public var data: [UInt32]? = nil;
-
-    public init(type: eMidiEventType, reader: (rawData: T) -> [UInt32]) {
-
-        self.type = type;
         self.dataReader = reader;
+        super.init(type: type);
     }
 
-    public func readData(data: T) {
+    public func readData(data: T) throws -> pMidiEvent {
 
-        self.data = dataReader(rawData: data);
-        description += String(format: "\t0x%X : ", type.rawValue) + self.data!.description;
+        self.data = try dataReader(rawData: data);
+        return self;
     }
+}
+
+extension BaseMidiEvent :Equatable {}
+
+public func ==(lhs: BaseMidiEvent, rhs: BaseMidiEvent) -> Bool {
+    return (lhs.dynamicType == rhs.dynamicType) && (lhs.data == rhs.data) && (lhs.type == rhs.type);
 }

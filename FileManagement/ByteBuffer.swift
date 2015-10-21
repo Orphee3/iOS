@@ -197,11 +197,7 @@ public class ByteBuffer {
             }
         }
 
-        var string = String()
-        string.reserveCapacity(characters.count)
-        //string.extend(characters)
-
-        return string
+        return String(characters);
     }
 
     public func getInt8(count: Int) -> Array<Int8> {

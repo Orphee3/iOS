@@ -12,16 +12,20 @@ import AVFoundation
 
 protocol pAudioPlayer {
 
-    weak var session: AudioSession? { get };
-    weak var audioGraph: AudioGraph? { get };
-
-    var player: MusicPlayer { get };
+    var playing: Bool { get set };
 
     init(graph: AudioGraph, session: AudioSession);
 
-    func play(data: NSData);
-    func pause();
-    func stop();
-    func clean();
-    func isPlaying() -> Bool;
+    mutating func play(data: NSData);
+    mutating func pause();
+    mutating func stop();
+}
+
+protocol pAudioPlayerWithDataSource: pAudioPlayer {
+    typealias audioDataType;
+
+    var audioData: audioDataType { get };
+
+    mutating func play();
+    init(graph: AudioGraph, session: AudioSession, audioData: audioDataType);
 }

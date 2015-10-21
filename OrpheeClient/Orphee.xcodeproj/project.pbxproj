@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */; settings = {ASSET_TAGS = (); }; };
+		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; settings = {ASSET_TAGS = (); }; };
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
 		526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */; };
 		526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */; };
@@ -14,17 +16,13 @@
 		52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */; };
 		52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9C1A79E5C400B3DE23 /* ViewController.swift */; };
 		52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
-		52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */; };
 		52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */; };
 		52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC71A7A11BC00B3DE23 /* CoreAudio.framework */; };
 		52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
-		52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
 		52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
-		52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */; };
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
-		52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B00FF6D1B8B625D002890E2 /* LoginRegister.storyboard */; };
@@ -66,6 +64,7 @@
 		9BD186F31B87501E004A892D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F21B87501D004A892D /* FriendsViewController.swift */; };
 		9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF3B69E1BA0FBB10063704C /* creationDetail.storyboard */; };
 		9BF3B6A11BA101070063704C /* DetailsCreationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3B6A01BA101070063704C /* DetailsCreationTableViewController.swift */; };
+		AAAB8D3B6156D3F8D899C5FB /* LiveAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2109111021E866F0D1E72 /* LiveAudioPlayer.swift */; };
 		BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D9820519B793A947DF35351 /* Pods_Orphee.framework */; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
@@ -73,21 +72,10 @@
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
-		DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
-		DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
-		DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */; };
-		DB8E61DF1ABB4D2B005BF7B4 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
-		DB8E61ED1ABB4D86005BF7B4 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
-		DB8E61EE1ABB4D86005BF7B4 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
-		DB8E61F01ABB4D86005BF7B4 /* PresetMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DCC1A7A54EE00B3DE23 /* PresetMgr.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
-		DBCF1ED71B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
-		DBCF1ED81B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
 		DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
-		DBCF1EDC1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
-		DBCF1EDD1B52BD060078EADD /* GenericPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */; };
 		DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD356991AC456FF00ACC304 /* FileManagement.framework */; };
 		DBD99A361B52D692003E660E /* AudioPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD99A351B52D692003E660E /* AudioPlayerTests.swift */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
@@ -119,6 +107,8 @@
 
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
+		1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
+		1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsListVC.swift; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
 		526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Trombone.aupreset; path = Ressources/Trombone.aupreset; sourceTree = "<group>"; };
 		526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = Ressources/Vibraphone.aupreset; sourceTree = "<group>"; };
@@ -140,6 +130,7 @@
 		52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		52C61DD11A7A61C200B3DE23 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		52C61DD31A7A61C300B3DE23 /* PresetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetLoader.m; sourceTree = "<group>"; };
+		88F2109111021E866F0D1E72 /* LiveAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAudioPlayer.swift; sourceTree = "<group>"; };
 		88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetMgrTests.swift; sourceTree = "<group>"; };
 		88F21933A17166E8F37A01A2 /* OrpheeTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrpheeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
@@ -237,6 +228,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E8DA7011BD83E98003C07B8 /* Test resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */,
+			);
+			name = "Test resources";
+			sourceTree = "<group>";
+		};
 		523433011A8103A40041B7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +253,7 @@
 		523433021A8103DB0041B7BD /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				1E8DA7011BD83E98003C07B8 /* Test resources */,
 				9B4C589F1BAAD4F10068AA9E /* 32MbGMStereo.sf2 */,
 				88F21A363E92E4DAFEE687AF /* SoundBanks */,
 				526FF6041A81106E00CF6A9C /* Sounds */,
@@ -279,6 +279,7 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */,
 				9B3280061B9D01B300AAD347 /* Creation */,
 				9BD186F01B874505004A892D /* TabBarViewController.swift */,
 				9B3280051B9CED6300AAD347 /* Home */,
@@ -530,6 +531,7 @@
 				52C61DC91A7A4CB600B3DE23 /* AudioSession.swift */,
 				DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */,
 				DBCF1EDA1B52BD060078EADD /* GenericPlayer.swift */,
+				88F2109111021E866F0D1E72 /* LiveAudioPlayer.swift */,
 			);
 			path = "Audio generation";
 			sourceTree = "<group>";
@@ -685,6 +687,7 @@
 				526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */,
 				9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
+				1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */,
 				9B327FFD1B9C797900AAD347 /* CreationProfileCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,9 +804,11 @@
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				9B1189891BD45996006FFB2C /* Comment.swift in Sources */,
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
+				1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */,
 				DBCF1EDB1B52BD060078EADD /* GenericPlayer.swift in Sources */,
+				AAAB8D3B6156D3F8D899C5FB /* LiveAudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,12 +816,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52C61DC01A7A041200B3DE23 /* AudioGraph.swift in Sources */,
-				DBCF1ED71B52BB650078EADD /* pAudioPlayer.swift in Sources */,
-				DBCF1EDC1B52BD060078EADD /* GenericPlayer.swift in Sources */,
-				52C61DCB1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
-				52C61DD51A7A61C300B3DE23 /* PresetLoader.m in Sources */,
-				52C61DCE1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */,
 				88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */,
 				DBD99A361B52D692003E660E /* AudioPlayerTests.swift in Sources */,
@@ -827,13 +826,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB8E61DC1ABB4D2B005BF7B4 /* PresetLoader.m in Sources */,
-				DB8E61DD1ABB4D2B005BF7B4 /* AudioGraph.swift in Sources */,
-				DB8E61DE1ABB4D2B005BF7B4 /* AudioSession.swift in Sources */,
-				DB8E61DF1ABB4D2B005BF7B4 /* PresetMgr.swift in Sources */,
 				DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */,
-				DBCF1ED81B52BB650078EADD /* pAudioPlayer.swift in Sources */,
-				DBCF1EDD1B52BD060078EADD /* GenericPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,9 +834,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB8E61ED1ABB4D86005BF7B4 /* PresetLoader.m in Sources */,
-				DB8E61EE1ABB4D86005BF7B4 /* AudioGraph.swift in Sources */,
-				DB8E61F01ABB4D86005BF7B4 /* PresetMgr.swift in Sources */,
 				DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,12 +13,13 @@ import Foundation
 */
 public protocol pMidiEvent {
 
-    typealias dataSource;
-
     var type: eMidiEventType { get };
-    var data: [UInt32]? { get set };
-
-    func readData(rawData: dataSource);
+    var data: [UInt32]! { get set };
 }
 
+public protocol pMidiEventWithReader: pMidiEvent {
 
+    typealias dataSource;
+
+    func readData(rawData: dataSource) throws -> pMidiEvent;
+}

@@ -8,12 +8,15 @@
 
 import Foundation
 
+public enum processingErrors: ErrorType {
+    case dataIsInvalidLengthForEventType(eMidiEventType, length: Int, String)
+}
 
-public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
+public func processTimeSigEvent(data: ByteBuffer) throws -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
-    if (isExpectedLength(dataLength, expected: 4)) {
+    if (isExpectedLength(dataLength, expected: UInt8(kMIDIEventMaxSize_timeSignature))) {
 
         var result: [UInt32] = [UInt32(data.getUInt8())];
         result.append(UInt32( pow(2, Double(data.getUInt8()))));
@@ -22,15 +25,14 @@ public func processTimeSigEvent(data: ByteBuffer) -> [UInt32] {
 
         return result;
     }
-    debugPrint("TimeSig got wrong length !");
-    return [];
+    throw processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: Int(dataLength), kOrpheeDebug_metaEventProc_timeSigDataInvalidLength);
 }
 
-public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
+public func processTempoEvent(data: ByteBuffer) throws -> [UInt32] {
 
     let dataLength = data.getUInt8();
 
-    if (isExpectedLength(dataLength, expected: 3)) {
+    if (isExpectedLength(dataLength, expected: UInt8(kMIDIEventMaxSize_setTempo))) {
 
         var bpm: UInt32 = 0;
 
@@ -41,12 +43,11 @@ public func processTempoEvent(data: ByteBuffer) -> [UInt32] {
         bpm |= UInt32(data.getUInt8());
         return [60_000_000 / bpm];
     }
-    debugPrint("Tempo got wrong length !");
-    return [];
+    throw processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.setTempo, length: Int(dataLength), kOrpheeDebug_metaEventProc_setTempoDataInvalidLength);
 }
 
 public func processEndOfTrack(data: ByteBuffer) -> [UInt32] {
 
-    // No data to process actually...
+    let _ = data.getUInt8() // length == 0
     return [];
 }

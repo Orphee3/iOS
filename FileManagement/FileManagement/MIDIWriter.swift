@@ -19,7 +19,7 @@ public class MIDIWriter: pOutputManager {
 
         self.handle = NSFileHandle(forWritingAtPath: path);
         if (self.handle == nil) {
-            print("\n\nMIDIWriter init failed.\n\n");
+            print(kOrpheeDebug_MIDIWriter_initFailed);
         }
     }
 
@@ -27,10 +27,10 @@ public class MIDIWriter: pOutputManager {
 
         if let hdl = handle {
             hdl.writeData(data);
-            print("\n\nMIDIWriter write succeeded.\n\n");
+            print(kOrpheeDebug_MIDIWriter_writeOk);
             return true;
         }
-        print("\n\nMIDIWriter write failed.\n\n");
+        print(kOrpheeDebug_MIDIWriter_writeFailed);
         return false;
     }
 }

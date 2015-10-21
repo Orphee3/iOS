@@ -18,15 +18,39 @@ public class MIDIReader: pInputManager {
     public init(path: String) {
 
         self.handle = NSFileHandle(forReadingAtPath: path);
+        if let _ = self.handle {
+            print("All good!");
+        } else {
+            print("path error on: \(path)");
+        }
     }
 
     public func readAllData() -> NSData {
 
-        return handle!.readDataToEndOfFile();
+
+        let data = handle!.readDataToEndOfFile();
+        handle!.seekToFileOffset(0);
+        return data;
     }
 
     public func read(size size: UInt) -> NSData {
 
-        return handle!.readDataOfLength(Int(size));
+        let data = handle!.readDataOfLength(Int(size));
+        if handle!.offsetInFile >= getEOFposition() {
+            handle!.seekToFileOffset(0);
+        }
+        return data;
+    }
+
+    func getEOFposition() -> UInt64 {
+        let curOffset = handle!.offsetInFile;
+        let endOffset = handle!.seekToEndOfFile();
+        handle!.seekToFileOffset(curOffset);
+        return endOffset;
+    }
+
+    deinit {
+        handle!.closeFile();
+        handle = nil;
     }
 }

@@ -145,7 +145,7 @@ class UITrackTimeBlock: UIButton {
 
     func onTouchDown() {
 
-        print("press button #\(pos) on row #\(row)", terminator: "" );
+        print("press button #\(pos) on row #\(row)", terminator: "");
         active = !active;
         graph.playNote(note);
     }
