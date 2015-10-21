@@ -13,4 +13,5 @@ target :Orphee do
        pod 'SDWebImage', '~>3.7'
        pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
        pod 'UIScrollView-InfiniteScroll'
+       pod 'HanekeSwift'
 end

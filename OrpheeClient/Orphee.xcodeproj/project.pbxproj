@@ -58,8 +58,6 @@
 		9B99A3751B84C1B2009F1008 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */; };
 		9BC9DCB11B7C085800DC8138 /* MyProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */; };
 		9BD0270B1B94D1990097270B /* RequestFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */; };
-		9BD186E31B861A9A004A892D /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD186E21B861A9A004A892D /* FileManagement.framework */; };
-		9BD186E41B861A9A004A892D /* FileManagement.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD186E21B861A9A004A892D /* FileManagement.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186E61B8627C0004A892D /* CropImageToSquare.swift */; };
 		9BD186EB1B8657A5004A892D /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EA1B8657A5004A892D /* MessengerViewController.swift */; };
 		9BD186ED1B865929004A892D /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EC1B865929004A892D /* ConversationViewController.swift */; };
@@ -68,7 +66,7 @@
 		9BD186F31B87501E004A892D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F21B87501D004A892D /* FriendsViewController.swift */; };
 		9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF3B69E1BA0FBB10063704C /* creationDetail.storyboard */; };
 		9BF3B6A11BA101070063704C /* DetailsCreationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3B6A01BA101070063704C /* DetailsCreationTableViewController.swift */; };
-		BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D9820519B793A947DF35351 /* Pods_Orphee.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D9820519B793A947DF35351 /* Pods_Orphee.framework */; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
 		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
@@ -118,20 +116,6 @@
 			remoteInfo = Orphee;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9BD186E51B861A9A004A892D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9BD186E41B861A9A004A892D /* FileManagement.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,10 +172,9 @@
 		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
-		9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewController.swift; sourceTree = "<group>"; };
+		9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = Orphee/ViewControllers/EditProfileViewController.swift; sourceTree = "<group>"; };
+		9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyProfileTableViewController.swift; path = Orphee/ViewControllers/MyProfileTableViewController.swift; sourceTree = "<group>"; };
 		9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFriendsTableViewController.swift; sourceTree = "<group>"; };
-		9BD186E21B861A9A004A892D /* FileManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = FileManagement.framework; path = "/Users/jerominlebon/Library/Developer/Xcode/DerivedData/Orphee-gjamdxkdlsxqkodeyjsaqdvhszem/Build/Products/Debug-iphoneos/FileManagement.framework"; sourceTree = "<absolute>"; };
 		9BD186E61B8627C0004A892D /* CropImageToSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageToSquare.swift; sourceTree = "<group>"; };
 		9BD186EA1B8657A5004A892D /* MessengerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
 		9BD186EC1B865929004A892D /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -227,7 +210,6 @@
 				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
 				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
 				BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */,
-				9BD186E31B861A9A004A892D /* FileManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +290,7 @@
 				9B5CDACD1B93B94300B5452A /* MyFriendCustomCell */,
 				9BC9DCAE1B7C021A00DC8138 /* Login and Register */,
 				9B1189851BD41631006FFB2C /* MyProfile */,
-				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
+				9B85A6EF1BD58DCD00C31287 /* Social */,
 				9BD186F21B87501D004A892D /* FriendsViewController.swift */,
 				9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */,
 			);
@@ -320,7 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				9B6E31441BD248A6006DD0AF /* DataModels */,
-				9BD186E21B861A9A004A892D /* FileManagement.framework */,
 				88F21BCA4626CFD565278816 /* OrpheeTests */,
 				523433011A8103A40041B7BD /* Frameworks */,
 				523433021A8103DB0041B7BD /* Ressources */,
@@ -372,6 +353,8 @@
 		9B1189851BD41631006FFB2C /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */,
+				9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */,
 				9B1189861BD41647006FFB2C /* MyProfile.storyboard */,
 			);
 			name = MyProfile;
@@ -382,9 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				9B327FFB1B9C796100AAD347 /* CreationProfileCustomCell */,
-				9BC9DCAF1B7C025300DC8138 /* ProfileCustomCell */,
-				9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */,
-				9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */,
 				9B327FF91B9C778E00AAD347 /* profile.storyboard */,
 				9B327FFE1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift */,
 			);
@@ -484,6 +464,15 @@
 			name = DataModels;
 			sourceTree = "<group>";
 		};
+		9B85A6EF1BD58DCD00C31287 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				9BC9DCAF1B7C025300DC8138 /* ProfileCustomCell */,
+				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
 		9BC9DCAE1B7C021A00DC8138 /* Login and Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,7 +556,6 @@
 				52C61D931A79E5C400B3DE23 /* Resources */,
 				473AE783EE22113072CD7C6A /* Embed Pods Frameworks */,
 				00A8E497A1C2D85966DE48EA /* Copy Pods Resources */,
-				9BD186E51B861A9A004A892D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -989,7 +977,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1006,7 +993,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";

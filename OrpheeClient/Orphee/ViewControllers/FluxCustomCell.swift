@@ -13,4 +13,30 @@ class FluxCustomCell: UITableViewCell {
     @IBOutlet var addFriendButton: UIButton!
     @IBOutlet var imgProfile: UIImageView!
     @IBOutlet var nameProfile: UILabel!
+    @IBOutlet var nbCreations: UILabel!
+    
+    func putInGraphic(user: User){
+        if let name = user.name{
+            self.nameProfile.text = name
+        }
+        if let picture = user.picture{
+            self.imgProfile.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
+        }else{
+            self.imgProfile.image = UIImage(named: "emptygrayprofile")
+        }
+        if let nbCreations = user.nbCreations{
+            self.nbCreations.text = String(nbCreations)
+        }
+        setLayout()
+    }
+    
+    func setLayout(){
+        self.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
+        self.layer.shadowRadius = 1
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+        self.layer.shadowOpacity = 0.2
+        self.layoutMargins = UIEdgeInsetsZero;
+        self.preservesSuperviewLayoutMargins = false;
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+    }
 }

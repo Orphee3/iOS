@@ -30,8 +30,10 @@ class CreationFluxCustomCell: UITableViewCell{
                 Range<String.Index>(start: nameCreation.startIndex.advancedBy(0),
                     end: nameCreation.endIndex.advancedBy(-4)))
         }
-        if let imgProfileCreator = user.picture{
-            self.imgProfileCreator.sd_setImageWithURL(NSURL(string: imgProfileCreator), placeholderImage: UIImage(named: "emptygrayprofile"))
+        if let picture = user.picture{
+            self.imgProfileCreator.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
+        }else{
+            self.imgProfileCreator.image = UIImage(named: "emptygrayprofile")
         }
         if let nbComments = creation.nbCommments{
             self.nbCommentsCreation.text = String(nbComments)

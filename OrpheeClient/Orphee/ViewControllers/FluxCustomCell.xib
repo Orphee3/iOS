@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" constant="90" id="SQq-TN-bIX"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz7-bO-Wao">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz7-bO-Wao">
                                 <rect key="frame" x="106" y="22" width="190" height="27"/>
                                 <animations/>
                                 <constraints>
@@ -37,27 +37,50 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chw-MO-vUB">
-                                <rect key="frame" x="231" y="30" width="73" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VjU-j2-lYd">
+                                <rect key="frame" x="144" y="64" width="42" height="21"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="l3y-3d-zhf"/>
-                                    <constraint firstAttribute="width" constant="73" id="pCj-ul-m9A"/>
+                                    <constraint firstAttribute="width" constant="42" id="jX4-pq-Zth"/>
+                                    <constraint firstAttribute="height" constant="21" id="zgh-Ej-bzP"/>
                                 </constraints>
-                                <state key="normal" title="Ajouter"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lyrecreation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ0-DI-cqU">
+                                <rect key="frame" x="106" y="60" width="30" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="ga9-Ta-fks"/>
+                                    <constraint firstAttribute="height" constant="30" id="gkW-Wh-sJ9"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chw-MO-vUB">
+                                <rect key="frame" x="263" y="35" width="33" height="33"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="l3y-3d-zhf"/>
+                                    <constraint firstAttribute="width" constant="33" id="pCj-ul-m9A"/>
+                                </constraints>
+                                <state key="normal" image="adduser"/>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="chw-MO-vUB" secondAttribute="bottom" constant="29" id="P5I-Of-RAU"/>
+                            <constraint firstItem="VjU-j2-lYd" firstAttribute="leading" secondItem="TJ0-DI-cqU" secondAttribute="trailing" constant="8" id="HnZ-X8-Wz2"/>
+                            <constraint firstAttribute="bottom" secondItem="chw-MO-vUB" secondAttribute="bottom" constant="36" id="P5I-Of-RAU"/>
                             <constraint firstItem="W3H-JA-Wyh" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="8" id="TRk-TC-Myo"/>
-                            <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="30" id="VAR-VL-To2"/>
+                            <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="35" id="VAR-VL-To2"/>
                             <constraint firstItem="W3H-JA-Wyh" firstAttribute="leading" secondItem="q8n-ti-7hs" secondAttribute="leading" constant="8" id="Vv2-Fi-WDe"/>
                             <constraint firstItem="Xz7-bO-Wao" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="22" id="eTx-Hm-Pye"/>
+                            <constraint firstItem="TJ0-DI-cqU" firstAttribute="top" secondItem="Xz7-bO-Wao" secondAttribute="bottom" constant="11" id="foS-qD-4Gl"/>
                             <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="Xz7-bO-Wao" secondAttribute="bottom" constant="-19" id="geP-Np-Uyx"/>
-                            <constraint firstAttribute="trailing" secondItem="chw-MO-vUB" secondAttribute="trailing" id="mfj-Mc-KKA"/>
+                            <constraint firstAttribute="trailing" secondItem="chw-MO-vUB" secondAttribute="trailing" constant="8" id="mfj-Mc-KKA"/>
+                            <constraint firstItem="TJ0-DI-cqU" firstAttribute="leading" secondItem="W3H-JA-Wyh" secondAttribute="trailing" constant="8" id="qSi-5t-PRE"/>
                             <constraint firstItem="Xz7-bO-Wao" firstAttribute="leading" secondItem="W3H-JA-Wyh" secondAttribute="trailing" constant="8" id="uJl-1J-8WT"/>
+                            <constraint firstItem="VjU-j2-lYd" firstAttribute="top" secondItem="Xz7-bO-Wao" secondAttribute="bottom" constant="15" id="xtJ-cM-BpY"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -80,11 +103,14 @@
                 <outlet property="addFriendButton" destination="chw-MO-vUB" id="bua-RQ-7wq"/>
                 <outlet property="imgProfile" destination="W3H-JA-Wyh" id="hSX-mg-vdk"/>
                 <outlet property="nameProfile" destination="Xz7-bO-Wao" id="0IZ-z6-edS"/>
+                <outlet property="nbCreations" destination="VjU-j2-lYd" id="rXd-yt-S9w"/>
             </connections>
             <point key="canvasLocation" x="281" y="367.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="adduser" width="50" height="50"/>
         <image name="emptygrayprofile" width="200" height="200"/>
+        <image name="lyrecreation" width="50" height="50"/>
     </resources>
 </document>

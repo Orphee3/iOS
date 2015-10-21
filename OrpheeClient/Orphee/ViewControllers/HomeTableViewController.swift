@@ -120,10 +120,6 @@ class HomeTableViewController: UITableViewController{
 extension HomeTableViewController{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if (arrayCreation.isEmpty){
             return 0
         }
@@ -135,14 +131,14 @@ extension HomeTableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CreationFluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("creationCell") as? CreationFluxCustomCell
         
-        let user = self.arrayUser[indexPath.section]
-        let creation = self.arrayCreation[indexPath.section]
+        let user = self.arrayUser[indexPath.row]
+        let creation = self.arrayCreation[indexPath.row]
         
         cell.putInGraphic(creation, user: user)
         cell.playCreation.addTarget(self, action: "playCreation:", forControlEvents: .TouchUpInside)
-        cell.playCreation.tag = indexPath.section
+        cell.playCreation.tag = indexPath.row
         cell.accessProfileButton.addTarget(self, action: "accessProfile:", forControlEvents: .TouchUpInside)
-        cell.accessProfileButton.tag = indexPath.section
+        cell.accessProfileButton.tag = indexPath.row
         
         return cell
     }
@@ -150,7 +146,7 @@ extension HomeTableViewController{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
         let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
-        commentView.creation = arrayCreation[indexPath.section]
+        commentView.creation = arrayCreation[indexPath.row]
         self.navigationController?.pushViewController(commentView, animated: true)
     }
 }
