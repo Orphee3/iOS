@@ -41,6 +41,9 @@ final class LiveAudioPlayer: pAudioPlayerWithDataSource {
     func play() {
 
         playing = true;
+        if (lastPos >= self.audioData.endIndex) {
+            lastPos = 0;
+        }
         let dataToRead = audioDataType(self.audioData[lastPos..<self.audioData.endIndex]);
         dispatch_async(queue, { self.playAudioData(dataToRead); })
     }

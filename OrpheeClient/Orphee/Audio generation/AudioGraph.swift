@@ -29,8 +29,7 @@ class AudioGraph {
 
     /// Builds the underlying AUGraph and its default AudioUnit.
     ///
-    /// - returns: - `false` if one of the underlying routines fail.
-    ///           - `true` if all goes well.
+    /// - returns: `false` if one of the underlying routines fail, `true` if all goes well.
     func createAudioGraph() -> Bool {
 
         var _: AudioComponentDescription;
@@ -78,8 +77,7 @@ class AudioGraph {
 
     /// Initializes and sets different properties of the underlying AudioUnits
     ///
-    /// - returns: - `false` if one of the underlying routines fail.
-    ///           - `true` if all goes well.
+    /// - returns: `false` if one of the underlying routines fail, `true` if all goes well.
     func configureAudioGraph() -> Bool {
 
         var result: OSStatus = noErr;
@@ -112,8 +110,7 @@ class AudioGraph {
 
     /// Initializes and starts the underlying AUGraph
     ///
-    /// - returns: - `false` if one of the underlying routines fail.
-    ///           - `true` if all goes well.
+    /// - returns: `false` if one of the underlying routines fail, `true` if all goes well.
     func startAudioGraph() -> Bool {
 
         var result: OSStatus = noErr;
@@ -138,8 +135,7 @@ class AudioGraph {
     ///
     /// - parameter plist:   A valid property list as provided by `PresetMgr`
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func loadPresetFromPList(inout plist: CFPropertyListRef) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -159,8 +155,7 @@ class AudioGraph {
     ///
     /// - parameter data:    A valid `AUSamplerInstrumentData` structure as provided by `PresetMgr`
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func loadInstrumentFromInstrumentData(inout data: AUSamplerInstrumentData) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -182,8 +177,7 @@ class AudioGraph {
     ///
     /// - parameter note:    The note that is going to be played by the sampler.
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
     func playNote(note: UInt32) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -197,8 +191,7 @@ class AudioGraph {
     ///
     /// - parameter note:    The note that the sampler needs to stop playing.
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
     func stopNote(note: UInt32) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -213,8 +206,7 @@ class AudioGraph {
 
     /// Sets the hardware sample rate for the *sampler* and *output* units. Default is 44100Hz.
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
     func setAudioUnitsSampleRate() -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -243,8 +235,7 @@ class AudioGraph {
     ///
     /// - parameter sampler:    A reference to the node to be built.
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
     func buildSamplerNode(inout sampler: AUNode) -> OSStatus {
 
         // add the sampler node to the processing graph
@@ -260,8 +251,7 @@ class AudioGraph {
     ///
     /// - parameter out:    A reference to the node to be built.
     ///
-    /// - returns:   - `noErr` if all goes well.
-    ///             - Another `OSStatus` error code if the underlying routine fail.
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
     func buildOutputNode(inout out: AUNode) -> OSStatus {
 
 
