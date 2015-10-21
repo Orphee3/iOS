@@ -19,8 +19,9 @@ let kMIDIFile_trackMark: String = "MTrk";
 /// Midi track header mark's size in Bytes.
 let kMIDIFile_trackMarkSize: Int = 4;
 
+/// Midi file's header length
 let kMIDIFile_headerLength: Int = 6;
-
+/// Midi track's header length
 let kMIDITrack_headerLength: Int = 23;
 
 /// Hexadecimal representation of a `time signature` event:
@@ -31,17 +32,21 @@ let kMIDIEvent_timeSignature: [UInt8] = [0x00, 0xFF, 0x58, 0x04];
 
 /// Hexadecimal representation of a `set tempo` event:
 ///   - 0xFF = MIDI Meta event
-///   - 0x51 = MIDI time signature event
-///   - 0x03 = 4 Bytes of data follow
+///   - 0x51 = MIDI set tempo event
+///   - 0x03 = 3 Bytes of data follow
 let kMIDIEvent_setTempo: [UInt8] = [0x00, 0xFF, 0x51, 0x03];
 
+/// Hexadecimal representation of an `end of track` event:
+///   - 0xFF = MIDI Meta event
+///   - 0x2F = MIDI end of track event
+///   - 0x00 = 0 Bytes of data follow
 let kMIDIEvent_endOfTrack: [UInt8] = [0x00, 0xFF, 0x2F, 0x00];
 
 /// Hexadecimal representation of the default `4/4` time signature:
 /// 0x04 = time signature numerator is 4
 /// 0x02 = time signature denominator is 2^2 = 4
 /// 0x18 = metronome clicks once every 24 MIDI clock tick
-/// 0x08 = number of 32th notes per beat (8 = 1/4 note per beat).
+/// 0x08 = number of 1/32nd notes per beat (8 = 1/4 note per beat).
 let kMIDIEventDefaultData_timeSig: [UInt8] = [0x04, 0x02, 0x18, 0x08];
 
 /// Hexadecimal representation of the default `120 bpm` tempo:
@@ -62,22 +67,23 @@ public protocol pMIDIByteStreamBuilder {
 
     ///    Default initializer.
     ///
-    ///    :param: trkNbr The number of tracks the file will contain.
-    ///    :param: ppqn   The time resolution, aka Pulse Per Quarter Note.
+    ///    - parameter  trkNbr: The number of tracks the file will contain.
+    ///    - parameter    ppqn: The time resolution, aka Pulse Per Quarter Note.
     ///
-    ///    :returns: Initializes the MIDIByteStreamBuilder.
+    ///    - returns: Initializes the MIDIByteStreamBuilder.
     init(trkNbr: UInt16, ppqn: UInt16);
 
+	///  Setup the buffer.
     func buildMIDIBuffer();
 
     ///    Builds and adds a track to the MIDI file.
     ///
-    ///    :param: notes    The note events in the form of an array of arrays of MIDINoteMessages.
+    ///    - parameter  notes    The note events in the form of an array of arrays of MIDINoteMessages.
     ///                     Each array contains all the data for every note event sent at deltaTime = array index.
     func addTrack(notes: [[MIDINoteMessage]]);
 
     ///    Provides the formatted content as NSData.
     ///
-    ///    :returns: NSData wrapper for the MIDI byte stream content.
+    ///    - returns: NSData wrapper for the MIDI byte stream content.
     func toData() -> NSData;
 }

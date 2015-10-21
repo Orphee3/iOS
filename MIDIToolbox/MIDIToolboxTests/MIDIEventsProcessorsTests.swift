@@ -9,7 +9,8 @@
 import UIKit
 import XCTest
 
-@testable import FileManagement
+@testable import MIDIToolbox
+
 
 class MIDIEventsProcessorsTests: XCTestCase {
 

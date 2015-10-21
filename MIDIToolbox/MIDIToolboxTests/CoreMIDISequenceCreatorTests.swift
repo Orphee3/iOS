@@ -10,7 +10,8 @@ import UIKit
 import XCTest
 import AudioToolbox
 
-@testable import FileManagement
+@testable import MIDIToolbox
+
 
 /** CoreMIDISequenceCreatorTests Class
 

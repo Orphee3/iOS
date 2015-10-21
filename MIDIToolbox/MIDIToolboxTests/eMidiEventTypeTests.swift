@@ -7,12 +7,11 @@
 //
 
 import XCTest
+@testable import MIDIToolbox
 
-@testable import FileManagement
+extension eMidiEventType.eMidiEventTypeError :Equatable {}
 
-extension eMidiEventType.eMidiEventTypeErrors :Equatable {}
-
-public func ==(lhs: eMidiEventType.eMidiEventTypeErrors, rhs: eMidiEventType.eMidiEventTypeErrors) -> Bool {
+public func ==(lhs: eMidiEventType.eMidiEventTypeError, rhs: eMidiEventType.eMidiEventTypeError) -> Bool {
 
     switch(lhs, rhs) {
     case (.invalidMetaEvent(_, _), .invalidMetaEvent(_, _)):
@@ -46,7 +45,7 @@ class eMidiEventTypeTests: XCTestCase {
     func testIsByteAMidiEventOfType_throws_invalidMidiEvent__when_eventTypeIs_nonMidiEventType() {
         for case let type in eMidiEventType.allEvents where !eMidiEventType.allMIDIEvents.contains(type) {
             XCTAssertThrowsSpecific(try eMidiEventType.isByte(0, aMidiEventOfType: type),
-                exception: eMidiEventType.eMidiEventTypeErrors.invalidMidiEvent(byte: 0, ""));
+                exception: eMidiEventType.eMidiEventTypeError.invalidMidiEvent(byte: 0, ""));
         }
     }
 
@@ -74,7 +73,7 @@ class eMidiEventTypeTests: XCTestCase {
     func testGetMidiEventTypeFor_thows_invalidMetaEvent__when_metaIs_true__byteIs_superiorTo_0x7F() {
         for case let i: UInt8 in 0x80...0xFE {
             XCTAssertThrowsSpecific(try eMidiEventType.getMidiEventTypeFor(i, isMeta: true),
-                exception: eMidiEventType.eMidiEventTypeErrors.invalidMetaEvent(byte: i, "")
+                exception: eMidiEventType.eMidiEventTypeError.invalidMetaEvent(byte: i, "")
             );
         }
     }
@@ -82,11 +81,11 @@ class eMidiEventTypeTests: XCTestCase {
     func testGetMidiEventTypeFor_doesNotThow_tooManyEventsForByte__forAnyValue() {
         for case let i: UInt8 in 0...0xFE {
             XCTAssertDoesNotThrowSpecific(try eMidiEventType.getMidiEventTypeFor(i, isMeta: true),
-                exception: eMidiEventType.eMidiEventTypeErrors.tooManyEventsForByte(byte: 0, ""));
+                exception: eMidiEventType.eMidiEventTypeError.tooManyEventsForByte(byte: 0, ""));
         }
         for case let i: UInt8 in 0...0xFE {
             XCTAssertDoesNotThrowSpecific(try eMidiEventType.getMidiEventTypeFor(i, isMeta: false),
-                exception: eMidiEventType.eMidiEventTypeErrors.tooManyEventsForByte(byte: 0, ""));
+                exception: eMidiEventType.eMidiEventTypeError.tooManyEventsForByte(byte: 0, ""));
         }
     }
 

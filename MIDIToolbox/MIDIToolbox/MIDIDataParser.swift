@@ -8,7 +8,11 @@
 
 import UIKit
 
-
+///  Checks if given Byte is last Byte of a Variable Length Value.
+///
+///  - parameter byte: Byte to check.
+///
+///  - returns: `true` if it is, `false` otherwise.
 func isLastVLVByte(byte: UInt8) -> Bool {
 
     return byte & 0x80 != 0;
@@ -19,23 +23,42 @@ func isLastVLVByte(byte: UInt8) -> Bool {
 ///
 public class MIDIDataParser {
 
+	///  Structure in charge of parsing tracks.
     public struct sTrack {
 
+        /// Byte stream buffer containing the track's data.
         var dataBuffer: ByteBuffer;
+        /// The number of the track.
         var trackNbr: UInt16;
-        var trackLength: UInt32       = 0;
+        /// The length of the track, in Bytes.
+        var trackLength: UInt32 = 0;
 
-        /// sTrack configuration
-        var nbrOf32ndNotePerBeat: UInt32 = 0;
-        var channel: UInt32              = 0;
+        /// Number of MIDI clock ticks per metronome click (pulse).
+        /// - remark: A 4/4 time signature sets this value to 24ticks/pulse. This is also the default.
         var clockTicksPerPulse: UInt32   = 0;
+        /// Number of 1/32nd notes per MIDI quarter-note
+        /// - remark: This defines what is considered a quarter-note. Defaults to 8.
+        var nbrOf32ndNotePerBeat: UInt32 = 0;
+        /// Channel to which the track's events belong.
+        var channel: UInt32              = 0;
+        /// The instrument this track represents.
         var instrumentID: Int            = 0;
+        /// BPM or quarter-note per minute.
         var quarterNotePerMinute: UInt32 = 0;
+        /// Time signature: numerator/denominator. Default 4/4.
         var signature: (UInt32, UInt32)  = (0, 0);
 
+        /// Last event type.
         var currentEventType: eMidiEventType = eMidiEventType.unknown;
+        /// Array containing all the parsed events.
         var midiEvents: [pMidiEvent] = [];
 
+        ///  init
+        ///
+        ///  - parameter trackData: The buffer containing the track's data.
+        ///  - parameter trackNbr:  The track number.
+        ///
+        ///  - returns: An initialized sTrack instance.
         init(trackData: ByteBuffer, trackNbr: UInt16) {
 
             self.dataBuffer = trackData;
@@ -49,6 +72,7 @@ public class MIDIDataParser {
 //            self.printConfiguration();
         }
 
+        ///  Parses the track header information.
         mutating func readHeader() {
 
             // file header mark
@@ -58,6 +82,7 @@ public class MIDIDataParser {
             trackLength = swapUInt32(dataBuffer.getUInt32());
         }
 
+        ///  Parses all the track's events following the track header.
         mutating func readEvents() {
 
             var lastValidEventType = currentEventType;
@@ -86,9 +111,10 @@ public class MIDIDataParser {
                     midiEvents.append(event);
             }
         }
-        //                        print("nextByte: \(nextByte)", "statusByte: \(statusByte)", "pos: \(dataBuffer.position)", separator: ", ", terminator: " ");
-        //                        print(currentEventType == .timeSignature ? "pos: \(dataBuffer.position), event: \(currentEventType)" : "");
 
+        ///  Parses current delta-time
+        ///
+        ///  - returns: Delta-time as an Int.
         func readTimeStamp() -> Int {
 
             var result: Int = 0;
@@ -107,6 +133,7 @@ public class MIDIDataParser {
             }
         }
 
+        ///  Fills sTrack instance properties with parsed data.
         mutating func processReadData() {
 
             var timeSigEvents = midiEvents.filter { $0.type == eMidiEventType.timeSignature };
@@ -140,6 +167,7 @@ public class MIDIDataParser {
             instrumentID = progChg.count > 0 ? Int(progChg[0].data[1]) : 1;
         }
 
+        ///  Pretty print of the track's properties.
         func printConfiguration() {
 
             print("\n/////////// TRACK #\(trackNbr) DATA /////////////");
@@ -154,6 +182,9 @@ public class MIDIDataParser {
             print("////////////////////////////////////\n");
         }
 
+        ///  Provides a dictionnary of all timed events with delta-time offsets as keys.
+        ///
+        ///  - returns: All timed events sorted by delta-time offset.
         func getNoteArray() -> [UInt32 : [pMidiEvent]] {
 
             var timedEvents: [UInt32 : [pMidiEvent]] = [0 : []];
@@ -177,17 +208,30 @@ public class MIDIDataParser {
         }
     }
 
+    /// Byte stream buffer containing the MIDI file's data.
     var dataBuffer: ByteBuffer;
+    /// An array containing all parsed tracks.
     var tracks: [sTrack] = [];
 
+    /// File header mark.
     var headerMark: String              = "";
+    /// File header length.
     var headerLength: UInt32            = 0;
+    /// MIDI file type. (0, 1 or 2)
     var midiFileType: UInt16            = 0;
+    /// Number of tracks in the file.
     var nbrOfTracks: UInt16             = 0;
+    /// Time resolution.
     var deltaTickPerQuarterNote: UInt16 = 0;
 
+    /// Smallest time division in the file (= smallest delta-time).
     var smallestTimeDiv: UInt32         = 0;
 
+    ///  init
+    ///
+    ///  - parameter data: The MIDI file's raw data.
+    ///
+    ///  - returns: An initialized instance of MIDIDataParser.
     public init(data: NSData) {
 
         self.dataBuffer = ByteBuffer(order: LittleEndian(), capacity: data.length + 1);
@@ -198,6 +242,7 @@ public class MIDIDataParser {
         self.smallestTimeDiv = UInt32(eNoteLength.breve.rawValue) * UInt32(self.deltaTickPerQuarterNote); // Set to longest supported note;
     }
 
+    ///  Parses the file's header chunk.
     func readHeader() {
 
         // file header mark
@@ -210,7 +255,10 @@ public class MIDIDataParser {
         deltaTickPerQuarterNote = swapUInt16(dataBuffer.getUInt16());
     }
 
-    func parseTracks() -> [Int : [[Int]]] {
+    ///  Parses each track in the file and provides all timed events for each track.
+    ///
+    ///  - returns: A dictionnary with the track number as key and an array of all timed events for the track as value.
+    public func parseTracks() -> [Int : [[Int]]] {
 
         var tracks: [Int : [[Int]]] = [:];
 
@@ -242,6 +290,7 @@ public class MIDIDataParser {
         return tracks;
     }
 
+    ///  pretty print the file's properties.
     private func printHeader() {
 
         print("\n//////////// FILE DATA /////////////");
@@ -254,6 +303,10 @@ public class MIDIDataParser {
     }
 }
 
+///  Prints the buffer Byte per Byte.
+///
+///  - parameter dataBuffer:  The buffer to print.
+///  - parameter trackLength: The number of Bytes to print.
 func printData(dataBuffer: ByteBuffer, trackLength: UInt32) {
     
     dataBuffer.mark();

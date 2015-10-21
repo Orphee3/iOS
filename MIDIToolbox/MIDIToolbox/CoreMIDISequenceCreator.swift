@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import AudioToolbox
 
+/// Apple's default time resolution
 let kTimeResolution_AppleDefault: UInt16 = 480;
 
 /** CoreMIDISequenceCreator realizes pMIDIByteStreamBuilder
@@ -17,34 +18,42 @@ let kTimeResolution_AppleDefault: UInt16 = 480;
 */
 public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
+    /// Provides the number of tracks.
     public var _trackCount: UInt16 {
         get {
             return self.trkCnt;
         }
     }
 
+    /// Provides the time resolution.
     public let _timeResolution: UInt16;
 
+    /// The container for MIDI events to be transformed to a Byte stream.
     var buffer: MusicSequence!;
+    /// Internal count of tracks.
     var trkCnt: UInt16 = 0;
 
-    ///    Initialises a new CoreMIDISequenceCreator.
+    ///  Initialises a new CoreMIDISequenceCreator.
     ///
-    ///    :param: trkNbr The number of tracks. Leave default.
-    ///    :param: ppqn   Pulse Per Quarter Note or time resolution.
+    ///  - parameter trkNbr: The number of tracks. Leave default.
+    ///  - parameter ppqn:   Pulse Per Quarter Note or time resolution.
     ///                   No way to change it: Leave Apple default time resolution.
     ///
-    ///    :returns: An initialised CoreMIDISequenceCreator.
+    ///  - returns: An initialised CoreMIDISequenceCreator.
     public required init(trkNbr: UInt16 = 0, ppqn: UInt16 = kTimeResolution_AppleDefault) {
 
         _timeResolution = kTimeResolution_AppleDefault;
     }
 
+    ///  Creates and sets up the MusicSequence buffer.
     public func buildMIDIBuffer() {
 
         buffer = CoreMIDISequenceCreator.makeMIDIBuffer();
     }
 
+    ///  Adds the given track to the buffer
+    ///
+    ///  - parameter notes: The MIDI events composing a track.
     public func addTrack(notes: [[MIDINoteMessage]]) {
 
         var trk: MusicTrack = MusicTrack();
@@ -72,6 +81,9 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
         trkCnt++;
     }
 
+    ///  Transforms the buffer to a Byte stream.
+    ///
+    ///  - returns: A Byte stream representation of a MIDI file.
     public func toData() -> NSData {
 
         var data: Unmanaged<CFData>? = Unmanaged<CFData>.passRetained(NSData());
@@ -82,6 +94,9 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
         return data!.takeRetainedValue();
     }
 
+    ///  Creates and initializes the MusicSequence object.
+    ///
+    ///  - returns: An initialized MusicSequence object.
     class func makeMIDIBuffer() -> MusicSequence {
 
         var s = MusicSequence();

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MIDIToolbox
 import FileManagement
 
 /// The app's main view controller

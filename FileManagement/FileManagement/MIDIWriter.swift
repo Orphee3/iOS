@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import MIDIToolbox
 
 /// Class MIDIWriter implements pOutputManager
 ///
 ///
 public class MIDIWriter: pOutputManager {
 
+    /// The handle for the managed file.
     var handle: NSFileHandle?;
 
+    ///  Default init method.
+    ///
+    ///  - parameter path: The path to the MIDI file to write.
+    ///
+    ///  - returns: An initialized MIDIWriter instance.
     public init(path: String) {
 
         self.handle = NSFileHandle(forWritingAtPath: path);
@@ -23,6 +30,11 @@ public class MIDIWriter: pOutputManager {
         }
     }
 
+    ///    Writes the given data to the target.
+    ///
+    ///    - parameter data: The data to write out.
+    ///
+    ///    - returns: `true` on success, `false` otherwise.
     public func write(data: NSData) -> Bool {
 
         if let hdl = handle {

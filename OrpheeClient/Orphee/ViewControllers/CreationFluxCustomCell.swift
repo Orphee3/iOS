@@ -17,6 +17,7 @@ class CreationFluxCustomCell: UITableViewCell{
     @IBOutlet var nameCreation: UILabel!
     @IBOutlet var nbLikesCreation: UILabel!
     @IBOutlet var playCreation: UIButton!
+    @IBOutlet var stopPlayCreation: UIButton!
     @IBOutlet var nbCommentsCreation: UILabel!
     @IBOutlet var accessProfileButton: UIButton!
     

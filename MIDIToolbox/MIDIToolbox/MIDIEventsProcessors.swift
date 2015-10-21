@@ -8,7 +8,11 @@
 
 import Foundation
 
-
+///  Processes an unknown or unsupported event given a data source.
+///
+///  - parameter data: The data source containing the unknown event and its associated data.
+///
+///  - returns: A Byte array containing all parsed data.
 public func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
 
     var stop: Bool = false;

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MIDIToolbox
 
 ///    Classes managing standardized files should follow this protocol.
 public protocol pFormattedFileManager: class {
@@ -30,33 +31,31 @@ public protocol pFormattedFileManager: class {
     ///    Required init. Provides the instance with the name to the managed file.
     ///    If the file already exists, creates the `writer` and `reader` objects.
     ///
-    ///    :param: name		The name of the managed file.
+    ///    - parameter name:    The name of the managed file.
     ///
-    ///    :returns:	A properly initialized instance of a pFormattedFileManager-conforming class.
+    ///    - returns:   A properly initialized instance of a pFormattedFileManager-conforming class.
     init(name: String);
 
     ///    Creates a file with the given name in the file format's standard store
     ///
-    ///    :returns:  - `true` if the file was created.
-    ///               - `false` otherwise.
+    ///    - returns:   `true` if the file was created, `false` otherwise.
     func createFile(name: String?) -> Bool;
 
     ///    Writes the information provided by `content` and transformed by an instance of `dataBuilderType`.
     ///
-    ///    :param: name				The name of the new file. If nil, the internal `name` is used instead.
-    ///    :param: content			A dictionnary of values to fill the file.
-    ///    :param: dataBuilderType	The Type in charge of transforming `content` into construct
+    ///    - parameter name:			The name of the new file. If nil, the internal `name` is used instead.
+    ///    - parameter content:			A dictionnary of values to fill the file.
+    ///    - parameter dataBuilderType:	The Type in charge of transforming `content` into construct
     ///
-    ///    :returns:	- `true` if `content` was written successfully
-    ///					- `false` otherwise
+    ///    - returns: `true` if `content` was written successfully, `false` otherwise.
     func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool;
 
     ///    Opens a file with the given name in the file format's standard store
     ///    and reads the data.
     ///
-    ///    :param:	name	The name of the file. If nil, the internal `name` is used instead.
+    ///    - parameter	name:	The name of the file. If nil, the internal `name` is used instead.
     ///
-    ///    :returns:	The data contained in the file, organized as key-value pairs.
+    ///    - returns:	The data contained in the file, organized as key-value pairs.
     func readFile() -> [String : AnyObject]?;
 
     ///    Deletes the managed file.

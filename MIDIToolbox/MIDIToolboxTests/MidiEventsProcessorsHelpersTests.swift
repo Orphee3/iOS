@@ -8,7 +8,8 @@
 
 import XCTest
 
-@testable import FileManagement
+@testable import MIDIToolbox
+
 
 
 class MidiEventsProcessorsHelpersTests: XCTestCase {
@@ -45,14 +46,14 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     func testGetChanForEventType_throws_invalidMidiEvent__when_eventTypeIsNot_aMidiEventType() {
         for case let type in eMidiEventType.allEvents where !eMidiEventType.allMIDIEvents.contains(type) {
             XCTAssertThrowsSpecific(try getChanForEventType(type, fromByte: 0x45),
-                exception: eMidiEventType.eMidiEventTypeErrors.invalidMidiEvent(byte: 0x45, ""))
+                exception: eMidiEventType.eMidiEventTypeError.invalidMidiEvent(byte: 0x45, ""))
         }
     }
 
     func testGetChanForEventType_throws_byteIsNotOfGivenType__when_eventTypeIs_aMidiEventType__and_byteIs_notConstruedAs_MidiEventType() {
         for case let type in eMidiEventType.allMIDIEvents {
             for byte in UInt8(0x10)...UInt8(0x1F) {
-                XCTAssertThrowsSpecific(try getChanForEventType(type, fromByte: byte), exception: eMidiEventType.eMidiEventTypeErrors.byteIsNotOfGivenType(byte: byte, type: type, ""))
+                XCTAssertThrowsSpecific(try getChanForEventType(type, fromByte: byte), exception: eMidiEventType.eMidiEventTypeError.byteIsNotOfGivenType(byte: byte, type: type, ""))
             }
         }
     }

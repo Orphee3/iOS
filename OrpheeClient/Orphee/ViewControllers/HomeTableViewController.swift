@@ -109,6 +109,10 @@ class HomeTableViewController: UITableViewController{
         }
     }
     
+    func stopPlayCreation(sender: UIButton) {
+        self.player.stop()
+    }
+    
     func accessProfile(sender: UIButton){
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let profileView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
@@ -137,6 +141,8 @@ extension HomeTableViewController{
         cell.putInGraphic(creation, user: user)
         cell.playCreation.addTarget(self, action: "playCreation:", forControlEvents: .TouchUpInside)
         cell.playCreation.tag = indexPath.row
+        cell.stopPlayCreation.addTarget(self, action: "stopPlayCreation:", forControlEvents: .TouchUpInside)
+        cell.stopPlayCreation.tag = indexPath.row
         cell.accessProfileButton.addTarget(self, action: "accessProfile:", forControlEvents: .TouchUpInside)
         cell.accessProfileButton.tag = indexPath.row
         

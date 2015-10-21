@@ -11,6 +11,15 @@ import Foundation
 ///    Classes charged with managing resources for an iOS app should follow this protocol.
 public protocol pResourceManager {
 
+    ///  Creates ressource file at given path.
+    ///
+    ///  - parameter path: The path leading to the resource file.
+    ///
+    ///  - returns: `true` on success, `false` on failure.
     func createResource(path: String) -> Bool;
+    
+    ///  Deletes the managed resource
+    ///
+    ///  - returns: `true` on success, `false` on failure.
     func deleteResource() -> Bool;
 }

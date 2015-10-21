@@ -10,56 +10,63 @@ import UIKit
 import XCTest
 import AudioToolbox
 
+import MIDIToolbox
+
 @testable import FileManagement
 
 class FileManagementTests: XCTestCase {
 
     var fm: pFormattedFileManager? = nil;
 
+    let n1: MIDINoteMessage = MIDINoteMessage(channel: 0, note: 50, velocity: 76, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
+    let n2 = MIDINoteMessage(channel: 0, note: 60, velocity: 86, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
+
+    var testContent: [String : Any] = [:]
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
+        testContent = [kOrpheeFileContent_tracks: [0: [[n1, n2, n1, n2], [], [n1, n2], [], [n1, n2], []]]];
+        
+        try! NSFileManager.defaultManager().createDirectoryAtPath(MIDIFileManager.store, withIntermediateDirectories: true, attributes: nil);
         fm = MIDIFileManager(name: "test");
     }
 
     override func tearDown() {
+        
+        try! NSFileManager.defaultManager().removeItemAtPath(MIDIFileManager.store);
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
     func testCreateFile_succeeds__using_CoreMIDISequenceCreator() {
-        let n1 = MIDINoteMessage(channel: 0, note: 50, velocity: 76, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
-        let n2 = MIDINoteMessage(channel: 0, note: 60, velocity: 86, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
-        let testContent: [String : Any] = [kOrpheeFileContent_tracks: [0: [[n1, n2, n1, n2], [], [n1, n2], [], [n1, n2], []]]];
-
         precondition(fm as? MIDIFileManager != nil);
+
         XCTAssertTrue(fm!.createFile(nil))
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: CoreMIDISequenceCreator.self))
-}
+    }
 
     func testCreateFile_succeeds__using_MIDIByteBufferCreator() {
-
-        let n1 = MIDINoteMessage(channel: 0, note: 50, velocity: 76, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
-        let n2 = MIDINoteMessage(channel: 0, note: 60, velocity: 86, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
-        let testContent: [String : Any] = [kOrpheeFileContent_tracks: [0: [[n1, n2, n1, n2], [], [n1, n2], [], [n1, n2], []]]];
-
-
         precondition(fm as? MIDIFileManager != nil);
 
-        fm = MIDIFileManager(name: "test2");
         XCTAssertTrue(fm!.createFile(nil))
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: MIDIByteBufferCreator.self));
     }
 
     func testReadFile_succeeds__when_file_wasCreatedBy_MIDIByteBufferCreator() {
-        fm = MIDIFileManager(name: "test2");
         precondition(fm as? MIDIFileManager != nil);
+        precondition(fm!.createFile(nil))
+        precondition(fm!.writeToFile(content: testContent, dataBuilderType: MIDIByteBufferCreator.self));
+    
         XCTAssertNotNil(fm!.readFile(), "Pass");
     }
 
     func testReadFile_succeeds__when_file_wasCreatedBy_CoreMIDISequenceCreator() {
         precondition(fm as? MIDIFileManager != nil);
+        precondition(fm!.createFile(nil))
+        precondition(fm!.writeToFile(content: testContent, dataBuilderType: CoreMIDISequenceCreator.self))
+
         XCTAssertNotNil(fm!.readFile(), "Pass");
     }
     

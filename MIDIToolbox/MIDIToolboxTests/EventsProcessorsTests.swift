@@ -9,14 +9,19 @@
 import UIKit
 import XCTest
 
-@testable import FileManagement
+@testable import MIDIToolbox
 
-extension processingErrors: Equatable {}
 
-public func ==(lhs: processingErrors, rhs: processingErrors) -> Bool {
+extension processingError: Equatable {}
+
+public func ==(lhs: processingError, rhs: processingError) -> Bool {
     switch (lhs, rhs) {
     case (.dataIsInvalidLengthForEventType(_, _, _), .dataIsInvalidLengthForEventType(_, _, _)):
         return true
+    case (.readBeyondLimit(_, _, _), .readBeyondLimit(_, _, _)):
+        return true
+    default:
+        return false
     }
 }
 
@@ -50,13 +55,13 @@ class EventsProcessorsTests : XCTestCase {
         buffer.putUInt8(0x03);
         buffer.rewind();
 
-        XCTAssertThrowsSpecific(try processTimeSigEvent(buffer), exception: processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
+        XCTAssertThrowsSpecific(try processTimeSigEvent(buffer), exception: processingError.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
     }
 
     func testProcessTimeSigEvent_throws__when_dataLength_isSuperiorTo_0x04() {
         buffer.putUInt8(0x05);
         buffer.rewind()
-        XCTAssertThrowsSpecific(try processTimeSigEvent(buffer), exception: processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
+        XCTAssertThrowsSpecific(try processTimeSigEvent(buffer), exception: processingError.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
     }
 
     func testProcessTimeSigEvent_return_formattedData__when_dataLength_IsEqualTo_0x04__and_dataIs_defaultTimeSigData() {
@@ -81,13 +86,13 @@ class EventsProcessorsTests : XCTestCase {
         buffer.putUInt8(0x02);
         buffer.rewind();
 
-        XCTAssertThrowsSpecific(try processTempoEvent(buffer), exception: processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
+        XCTAssertThrowsSpecific(try processTempoEvent(buffer), exception: processingError.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
     }
 
     func testProcessTempoEvent_throws__when_dataLength_isSuperiorTo_0x03() {
         buffer.putUInt8(0x05);
         buffer.rewind()
-        XCTAssertThrowsSpecific(try processTempoEvent(buffer), exception: processingErrors.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
+        XCTAssertThrowsSpecific(try processTempoEvent(buffer), exception: processingError.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, kOrpheeDebug_metaEventProc_timeSigDataInvalidLength))
     }
 
     func testProcessTempoEvent_return_formattedData__when_dataLength_IsEqualTo_0x03__and_dataIs_defaultSetTempoData() {
