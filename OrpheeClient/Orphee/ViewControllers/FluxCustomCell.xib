@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B30a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -8,15 +8,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FluxCell" rowHeight="198" id="ppp-JM-xLW" customClass="FluxCustomCell" customModule="Orphee" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FluxCell" rowHeight="119" id="ppp-JM-xLW" customClass="FluxCustomCell" customModule="Orphee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ppp-JM-xLW" id="bPp-Dg-lA5">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-ti-7hs">
-                        <rect key="frame" x="8" y="8" width="304" height="183"/>
+                        <rect key="frame" x="8" y="8" width="304" height="104"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptygrayprofile" translatesAutoresizingMaskIntoConstraints="NO" id="W3H-JA-Wyh">
                                 <rect key="frame" x="8" y="8" width="90" height="90"/>
@@ -38,37 +38,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chw-MO-vUB">
-                                <rect key="frame" x="0.0" y="138" width="304" height="45"/>
+                                <rect key="frame" x="231" y="30" width="73" height="45"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="l3y-3d-zhf"/>
+                                    <constraint firstAttribute="width" constant="73" id="pCj-ul-m9A"/>
                                 </constraints>
                                 <state key="normal" title="Ajouter"/>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlv-bH-xBV">
-                                <rect key="frame" x="0.0" y="138" width="304" height="1"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="UWm-5u-2yf"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="chw-MO-vUB" secondAttribute="bottom" id="P5I-Of-RAU"/>
-                            <constraint firstAttribute="trailing" secondItem="nlv-bH-xBV" secondAttribute="trailing" id="TDA-kv-dfm"/>
+                            <constraint firstAttribute="bottom" secondItem="chw-MO-vUB" secondAttribute="bottom" constant="29" id="P5I-Of-RAU"/>
                             <constraint firstItem="W3H-JA-Wyh" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="8" id="TRk-TC-Myo"/>
+                            <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="30" id="VAR-VL-To2"/>
                             <constraint firstItem="W3H-JA-Wyh" firstAttribute="leading" secondItem="q8n-ti-7hs" secondAttribute="leading" constant="8" id="Vv2-Fi-WDe"/>
                             <constraint firstItem="Xz7-bO-Wao" firstAttribute="top" secondItem="q8n-ti-7hs" secondAttribute="top" constant="22" id="eTx-Hm-Pye"/>
-                            <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="Xz7-bO-Wao" secondAttribute="bottom" constant="89" id="geP-Np-Uyx"/>
-                            <constraint firstItem="nlv-bH-xBV" firstAttribute="leading" secondItem="q8n-ti-7hs" secondAttribute="leading" id="j9u-rN-YOh"/>
-                            <constraint firstItem="chw-MO-vUB" firstAttribute="leading" secondItem="q8n-ti-7hs" secondAttribute="leading" id="krd-7O-fAC"/>
-                            <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="nlv-bH-xBV" secondAttribute="bottom" constant="-1" id="ldg-3k-KSl"/>
+                            <constraint firstItem="chw-MO-vUB" firstAttribute="top" secondItem="Xz7-bO-Wao" secondAttribute="bottom" constant="-19" id="geP-Np-Uyx"/>
                             <constraint firstAttribute="trailing" secondItem="chw-MO-vUB" secondAttribute="trailing" id="mfj-Mc-KKA"/>
                             <constraint firstItem="Xz7-bO-Wao" firstAttribute="leading" secondItem="W3H-JA-Wyh" secondAttribute="trailing" constant="8" id="uJl-1J-8WT"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="geP-Np-Uyx"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <animations/>
@@ -86,7 +81,7 @@
                 <outlet property="imgProfile" destination="W3H-JA-Wyh" id="hSX-mg-vdk"/>
                 <outlet property="nameProfile" destination="Xz7-bO-Wao" id="0IZ-z6-edS"/>
             </connections>
-            <point key="canvasLocation" x="281" y="407"/>
+            <point key="canvasLocation" x="281" y="367.5"/>
         </tableViewCell>
     </objects>
     <resources>

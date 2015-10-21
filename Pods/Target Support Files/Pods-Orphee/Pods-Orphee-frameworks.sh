@@ -59,6 +59,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-Orphee/SDWebImage.framework'
   install_framework 'Pods-Orphee/Socket_IO_Client_Swift.framework'
   install_framework 'Pods-Orphee/SwiftyJSON.framework'
+  install_framework 'Pods-Orphee/UIScrollView_InfiniteScroll.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Orphee/Alamofire.framework'
@@ -68,4 +69,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Orphee/SDWebImage.framework'
   install_framework 'Pods-Orphee/Socket_IO_Client_Swift.framework'
   install_framework 'Pods-Orphee/SwiftyJSON.framework'
+  install_framework 'Pods-Orphee/UIScrollView_InfiniteScroll.framework'
 fi

@@ -24,6 +24,13 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
         
         prepareSearchingDisplay()
         
+        tableView.infiniteScrollIndicatorStyle = .White
+        tableView.infiniteScrollIndicatorMargin = 40
+        tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
+            self.getUsers(self.offset, size: self.size)
+            scrollView.finishInfiniteScroll()
+        })
+        
         createActivityIndicatorView()
         spinner.startAnimating()
         getUsers(offset, size: size)
@@ -143,7 +150,7 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let loginView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
-        loginView.idUser = userDic[indexPath.row]["_id"].string!
+       // loginView.idUser = userDic[indexPath.row]["_id"].string!
         self.navigationController?.pushViewController(loginView, animated: true)
     }
     

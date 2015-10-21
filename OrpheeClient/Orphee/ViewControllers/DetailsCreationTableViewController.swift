@@ -11,11 +11,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class DetailsCreationTableViewController: UITableViewController , UITextFieldDelegate{
-    var idCreation: String = ""
-    var creationArray: JSON = []
-    var commentsArray: [JSON] = []
-    
+class DetailsCreationTableViewController: UITableViewController{
+    var creation: Creation!
+    var arrayComments: [Comment] = []
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var commentTextField: UITextField!
     @IBOutlet var nbComments: UILabel!
@@ -34,7 +32,7 @@ class DetailsCreationTableViewController: UITableViewController , UITextFieldDel
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.commentTextField.delegate = self
-        getInfosCreation()
+        
         getComments()
         layoutCreation()
         
@@ -48,12 +46,10 @@ class DetailsCreationTableViewController: UITableViewController , UITextFieldDel
     }
     
     func refresh(sender:AnyObject){
-        commentsArray = []
-        getInfosCreation()
+        arrayComments = []
         getComments()
         self.layoutCreation()
         self.tableView.reloadData()
-        print(commentsArray.count)
         self.refreshControl!.endRefreshing()
     }
     
@@ -74,24 +70,17 @@ class DetailsCreationTableViewController: UITableViewController , UITextFieldDel
     
     //offset & size
     
-    func getInfosCreation(){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/creation/\(idCreation)").responseJSON{request, response, json in
-            print("creation = \(json.value)")
-            if (response!.statusCode == 200){
-                self.creationArray = JSON(json.value!)
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     func getComments(){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/comment/creation/\(idCreation)").responseJSON{request, response, json in
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/comment/creation/\(creation.id)").responseJSON{request, response, json in
             print("comments = \(json.value)")
             if (response!.statusCode == 200){
-                self.commentsArray = JSON(json.value!).array!
-                print(self.commentsArray)
-                self.commentsArray = self.commentsArray.reverse()
-                self.tableView.reloadData()
+                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    for elem in array{
+                        self.arrayComments.append(Comment(Comment: elem["message"] as! String, user: User(User: elem["creator"] as! Dictionary<String, AnyObject>)))
+                    }
+                    self.arrayComments = self.arrayComments.reverse()
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -106,24 +95,20 @@ class DetailsCreationTableViewController: UITableViewController , UITextFieldDel
                 ]
                 let myId = NSUserDefaults.standardUserDefaults().objectForKey("myId") as! String
                 let params = [
-                    "creation": "\(idCreation)",
+                    "creation": "\(creation.id)",
                     "creator": "\(myId)",
                     "message": "\(commentTextField.text!)",
-                    "parentId": "\(idCreation)"
+                    "parentId": "\(creation.id)"
                 ]
                 print(params)
                 Alamofire.request(.POST, "http://163.5.84.242:3000/api/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
-                    var creator = JSON(json.value!)
-                    let name = "name"
-                    let picture = "picture"
-                    let keycreator = "creator"
-                    self.commentsArray.insert([
-                        "message":"\(self.commentTextField.text!)",
-                        "creator": ["name":"\(creator[keycreator][name])", "picture": "\(creator[keycreator][picture])"]
-                        ], atIndex: 0)
+                    let creator = User(User: json.value as! Dictionary<String, AnyObject>)
+                    let commentToAdd = Comment(Comment: self.commentTextField.text!,
+                        user: creator)
+                    self.arrayComments.insert(commentToAdd, atIndex: 0)
                     self.commentTextField.text = ""
                     self.tableView.reloadData()
-                    Alamofire.request(.GET, "http://163.5.84.242:3000/api/notify/comments/\(self.idCreation)", headers: headers).responseJSON{request, response, json in
+                    Alamofire.request(.GET, "http://163.5.84.242:3000/api/notify/comments/\(self.creation.id)", headers: headers).responseJSON{request, response, json in
                         print("message envoyé")
                     }
                 }
@@ -136,40 +121,12 @@ class DetailsCreationTableViewController: UITableViewController , UITextFieldDel
         textFieldShouldReturn(self.commentTextField)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (commentsArray.isEmpty){
-            return 0
-        }
-        else{
-            return commentsArray.count
-        }
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: commentCellView! = tableView.dequeueReusableCellWithIdentifier("commentcell") as? commentCellView
-        cell.msgUser.text = commentsArray[indexPath.section]["message"].string!
-        cell.nameUser.text = commentsArray[indexPath.section]["creator"]["name"].string!
-        if let picture = commentsArray[indexPath.section]["creator"]["picture"].string {
-            cell.imgUser.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
-        }
-        return cell
-    }
-    
     @IBAction func playButtonTouched(sender: AnyObject) {
-        print(creationArray["url"].string!)
+        print(creation.id)
         let destination =
         Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory,
             domain: .UserDomainMask)
-        Alamofire.download(.GET, creationArray["url"].string!, destination: destination) .progress{ bytesRead, totalBytesRead, totalBytesExpectedToRead in
+        Alamofire.download(.GET, creation.url, destination: destination) .progress{ bytesRead, totalBytesRead, totalBytesExpectedToRead in
             print(totalBytesRead)
             }.responseJSON{request, response, json in
                 print(response)
@@ -184,4 +141,34 @@ class DetailsCreationTableViewController: UITableViewController , UITextFieldDel
 
     }
     
+}
+
+extension DetailsCreationTableViewController: UITextFieldDelegate{
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if (arrayComments.isEmpty){
+            return 0
+        }
+        else{
+            return arrayComments.count
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: commentCellView! = tableView.dequeueReusableCellWithIdentifier("commentcell") as? commentCellView
+        cell.msgUser.text = arrayComments[indexPath.section].message
+        cell.nameUser.text = arrayComments[indexPath.section].user.name
+        if let picture = arrayComments[indexPath.section].user.picture {
+            cell.imgUser.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
+        }
+        return cell
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

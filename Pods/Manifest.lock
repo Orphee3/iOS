@@ -9,6 +9,7 @@ PODS:
   - SDWebImage/Core (3.7.3)
   - Socket.IO-Client-Swift (2.4.5)
   - SwiftyJSON (2.2.1)
+  - UIScrollView-InfiniteScroll (0.7.3)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
     branch `swift-2`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
+  - UIScrollView-InfiniteScroll
 
 EXTERNAL SOURCES:
   JSQMessagesViewController:
@@ -56,5 +58,6 @@ SPEC CHECKSUMS:
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  UIScrollView-InfiniteScroll: b6c7d6d155dca7f9c5dd43813ecffeb301b3d50c
 
 COCOAPODS: 0.38.2

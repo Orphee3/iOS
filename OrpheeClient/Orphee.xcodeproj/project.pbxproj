@@ -30,6 +30,8 @@
 		9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B00FF6D1B8B625D002890E2 /* LoginRegister.storyboard */; };
 		9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */; };
 		9B0CC5871B7B95D700A81982 /* FluxCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */; };
+		9B1189871BD41647006FFB2C /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B1189861BD41647006FFB2C /* MyProfile.storyboard */; settings = {ASSET_TAGS = (); }; };
+		9B1189891BD45996006FFB2C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1189881BD45996006FFB2C /* Comment.swift */; settings = {ASSET_TAGS = (); }; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
 		9B327FF01B9B850600AAD347 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FEF1B9B850600AAD347 /* HomeTableViewController.swift */; };
 		9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B327FF51B9B8E9300AAD347 /* CreationFluxCustomCell.xib */; };
@@ -47,6 +49,8 @@
 		9B5CDAD11B93BAA200B5452A /* MyFriendCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CDAD01B93BAA200B5452A /* MyFriendCustomCell.swift */; };
 		9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5CDAD31B943EBF00B5452A /* RequestFriendCustomCell.xib */; };
 		9B5CDAD61B94407C00B5452A /* RequestFriendCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CDAD51B94407C00B5452A /* RequestFriendCustomCell.swift */; };
+		9B6E31461BD248DB006DD0AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E31451BD248DB006DD0AF /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		9B6E31481BD289FA006DD0AF /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E31471BD289FA006DD0AF /* Creation.swift */; settings = {ASSET_TAGS = (); }; };
 		9B76B22D1B3E19BC00B1C40B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */; };
 		9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */; };
 		9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */; };
@@ -159,6 +163,8 @@
 		9B00FF6D1B8B625D002890E2 /* LoginRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginRegister.storyboard; sourceTree = "<group>"; };
 		9B0CC5841B7B955400A81982 /* FluxCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FluxCustomCell.xib; sourceTree = "<group>"; };
 		9B0CC5861B7B95D700A81982 /* FluxCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluxCustomCell.swift; sourceTree = "<group>"; };
+		9B1189861BD41647006FFB2C /* MyProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
+		9B1189881BD45996006FFB2C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9B327FEF1B9B850600AAD347 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		9B327FF51B9B8E9300AAD347 /* CreationFluxCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreationFluxCustomCell.xib; sourceTree = "<group>"; };
@@ -176,6 +182,8 @@
 		9B5CDAD01B93BAA200B5452A /* MyFriendCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFriendCustomCell.swift; sourceTree = "<group>"; };
 		9B5CDAD31B943EBF00B5452A /* RequestFriendCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestFriendCustomCell.xib; sourceTree = "<group>"; };
 		9B5CDAD51B94407C00B5452A /* RequestFriendCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFriendCustomCell.swift; sourceTree = "<group>"; };
+		9B6E31451BD248DB006DD0AF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9B6E31471BD289FA006DD0AF /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
 		9B76B22C1B3E19BC00B1C40B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +307,7 @@
 				9B5CDAD21B943E9B00B5452A /* RequestFriendCustomCell */,
 				9B5CDACD1B93B94300B5452A /* MyFriendCustomCell */,
 				9BC9DCAE1B7C021A00DC8138 /* Login and Register */,
+				9B1189851BD41631006FFB2C /* MyProfile */,
 				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
 				9BD186F21B87501D004A892D /* FriendsViewController.swift */,
 				9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */,
@@ -310,6 +319,7 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				9B6E31441BD248A6006DD0AF /* DataModels */,
 				9BD186E21B861A9A004A892D /* FileManagement.framework */,
 				88F21BCA4626CFD565278816 /* OrpheeTests */,
 				523433011A8103A40041B7BD /* Frameworks */,
@@ -357,6 +367,15 @@
 				DBD99A351B52D692003E660E /* AudioPlayerTests.swift */,
 			);
 			path = OrpheeTests;
+			sourceTree = "<group>";
+		};
+		9B1189851BD41631006FFB2C /* MyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				9B1189861BD41647006FFB2C /* MyProfile.storyboard */,
+			);
+			name = MyProfile;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		9B327FF11B9B854000AAD347 /* Profile */ = {
@@ -453,6 +472,16 @@
 				9B5CDAD51B94407C00B5452A /* RequestFriendCustomCell.swift */,
 			);
 			name = RequestFriendCustomCell;
+			sourceTree = "<group>";
+		};
+		9B6E31441BD248A6006DD0AF /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				9B6E31451BD248DB006DD0AF /* User.swift */,
+				9B6E31471BD289FA006DD0AF /* Creation.swift */,
+				9B1189881BD45996006FFB2C /* Comment.swift */,
+			);
+			name = DataModels;
 			sourceTree = "<group>";
 		};
 		9BC9DCAE1B7C021A00DC8138 /* Login and Register */ = {
@@ -660,6 +689,7 @@
 				9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */,
+				9B1189871BD41647006FFB2C /* MyProfile.storyboard in Resources */,
 				526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */,
 				9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */,
 				9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */,
@@ -770,8 +800,10 @@
 				9B3280011B9C80FB00AAD347 /* CreationProfileCustomCell.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
+				9B6E31461BD248DB006DD0AF /* User.swift in Sources */,
 				9B0CC5871B7B95D700A81982 /* FluxCustomCell.swift in Sources */,
 				9B76B22D1B3E19BC00B1C40B /* LoginViewController.swift in Sources */,
+				9B6E31481BD289FA006DD0AF /* Creation.swift in Sources */,
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
 				9BD0270B1B94D1990097270B /* RequestFriendsTableViewController.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
@@ -779,6 +811,7 @@
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				9BC9DCB11B7C085800DC8138 /* MyProfileTableViewController.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
+				9B1189891BD45996006FFB2C /* Comment.swift in Sources */,
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */,

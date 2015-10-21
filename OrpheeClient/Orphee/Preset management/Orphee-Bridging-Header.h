@@ -5,3 +5,4 @@
 #import "PresetLoader.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <JSQMessagesViewController/JSQMessages.h>
+#import <UIScrollView_InfiniteScroll/UIScrollView+InfiniteScroll.h>

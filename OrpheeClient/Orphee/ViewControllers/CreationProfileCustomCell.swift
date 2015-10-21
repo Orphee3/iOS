@@ -13,8 +13,33 @@ class CreationProfileCustomCell: UITableViewCell {
     
     @IBOutlet var imgCreation: UIImageView!
     @IBOutlet var nameCreation: UILabel!
-    @IBOutlet var nbLikeCreation: UILabel!
-    @IBOutlet var nbCommentCreation: UILabel!
+    @IBOutlet var nbLikesCreation: UILabel!
+    @IBOutlet var nbCommentsCreation: UILabel!
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var commentButton: UIButton!
+    
+    func putInGraphic(creation: Creation){
+        if let nameCreation = creation.name{
+            self.nameCreation.text = nameCreation.substringWithRange(
+                Range<String.Index>(start: nameCreation.startIndex.advancedBy(0),
+                    end: nameCreation.endIndex.advancedBy(-4)))
+        }
+        if let nbComments = creation.nbCommments{
+            self.nbCommentsCreation.text = String(nbComments)
+        }
+        if let nbLikes = creation.nbLikes{
+            self.nbLikesCreation.text = String(nbLikes)
+        }
+        setLayout()
+    }
+    
+    func setLayout(){
+        self.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
+        self.layer.shadowRadius = 1
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+        self.layer.shadowOpacity = 0.2
+        self.layoutMargins = UIEdgeInsetsZero;
+        self.preservesSuperviewLayoutMargins = false;
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+    }
 }

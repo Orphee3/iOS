@@ -12,4 +12,5 @@ target :Orphee do
        pod 'PagedArray', :git => 'https://github.com/MrAlek/PagedArray.git', :branch => 'xcode-7'
        pod 'SDWebImage', '~>3.7'
        pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
+       pod 'UIScrollView-InfiniteScroll'
 end
