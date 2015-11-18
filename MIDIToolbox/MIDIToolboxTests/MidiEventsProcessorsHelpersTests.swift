@@ -44,14 +44,14 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     }
 
     func testGetChanForEventType_throws_invalidMidiEvent__when_eventTypeIsNot_aMidiEventType() {
-        for case let type in eMidiEventType.allEvents where !eMidiEventType.allMIDIEvents.contains(type) {
+        for case let type in eMidiEventType.kAllEvents where !eMidiEventType.kAllMIDIEvents.contains(type) {
             XCTAssertThrowsSpecific(try getChanForEventType(type, fromByte: 0x45),
                 exception: eMidiEventType.eMidiEventTypeError.invalidMidiEvent(byte: 0x45, ""))
         }
     }
 
     func testGetChanForEventType_throws_byteIsNotOfGivenType__when_eventTypeIs_aMidiEventType__and_byteIs_notConstruedAs_MidiEventType() {
-        for case let type in eMidiEventType.allMIDIEvents {
+        for case let type in eMidiEventType.kAllMIDIEvents {
             for byte in UInt8(0x10)...UInt8(0x1F) {
                 XCTAssertThrowsSpecific(try getChanForEventType(type, fromByte: byte), exception: eMidiEventType.eMidiEventTypeError.byteIsNotOfGivenType(byte: byte, type: type, ""))
             }
@@ -59,7 +59,7 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     }
 
     func testGetChanForEventType_returns_validChannel__when_eventTypeIs_aMidiEventType__and_byteIs_construedAs_same_type() {
-        for case let type in eMidiEventType.allMIDIEvents {
+        for case let type in eMidiEventType.kAllMIDIEvents {
             for byte in UInt8(0x00)...UInt8(0x0F) {
                 XCTAssertEqual(try! getChanForEventType(type, fromByte: type.rawValue + byte), byte);
             }
@@ -292,18 +292,18 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
         XCTAssertEqual(processStatusByte(0x7E, isMeta: true), eMidiEventType.unknown);
     }
 
-    func testProcessStatusByte_returns_unknownEvent__when_metaIs_true__byteIs_inferiorOrEqualTo_0x7F__and_is_unsupportedMetaEvent() {
-        XCTAssertEqual(processStatusByte(0x00, isMeta: true), eMidiEventType.unknown);
-        XCTAssertEqual(processStatusByte(0x20, isMeta: true), eMidiEventType.unknown);
-        XCTAssertEqual(processStatusByte(0x54, isMeta: true), eMidiEventType.unknown);
-        XCTAssertEqual(processStatusByte(0x7F, isMeta: true), eMidiEventType.unknown);
+    func testProcessStatusByte_returns_unsupportedEvent__when_metaIs_true__byteIs_inferiorOrEqualTo_0x7F__and_is_unsupportedMetaEvent() {
+        XCTAssertEqual(processStatusByte(0x00, isMeta: true), eMidiEventType.unsupported);
+        XCTAssertEqual(processStatusByte(0x20, isMeta: true), eMidiEventType.unsupported);
+        XCTAssertEqual(processStatusByte(0x54, isMeta: true), eMidiEventType.unsupported);
+        XCTAssertEqual(processStatusByte(0x7F, isMeta: true), eMidiEventType.unsupported);
     }
 
-    func testProcessStatusByte_returns_unknownEvent__when_metaIs_false__byteIs_between_0x80_and_0xEF__and_is_unsupportedMidiEvent() {
-        XCTAssertEqual(processStatusByte(0xA0, isMeta: false), eMidiEventType.unknown);
-        XCTAssertEqual(processStatusByte(0xBD, isMeta: false), eMidiEventType.unknown);
-        XCTAssertEqual(processStatusByte(0xDB, isMeta: false), eMidiEventType.unknown);
-        XCTAssertEqual(processStatusByte(0xEF, isMeta: false), eMidiEventType.unknown);
+    func testProcessStatusByte_returns_unsupportedEvent__when_metaIs_false__byteIs_between_0x80_and_0xEF__and_is_unsupportedMidiEvent() {
+        XCTAssertEqual(processStatusByte(0xA0, isMeta: false), eMidiEventType.unsupported);
+        XCTAssertEqual(processStatusByte(0xBD, isMeta: false), eMidiEventType.unsupported);
+        XCTAssertEqual(processStatusByte(0xDB, isMeta: false), eMidiEventType.unsupported);
+        XCTAssertEqual(processStatusByte(0xEF, isMeta: false), eMidiEventType.unsupported);
     }
 
     func testProcessStatusByte_returns_unknownEvent__when_metaIs_false__byteIs_superiorTo_0xEF() {
@@ -327,19 +327,19 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     }
 
     func testProcessStatusByte_returns_runningStatus__when_metaIs_false__byteIs_inferiorOrEqualTo_0x7F__and_is_supportedMetaEvent() {
-        for case let eventType in eMidiEventType.METAEvents {
+        for case let eventType in eMidiEventType.kMETAEvents {
             XCTAssertEqual(processStatusByte(eventType.rawValue, isMeta: false), eMidiEventType.runningStatus);
         }
     }
 
     func testProcessStatusByte_returns_supportedMidiEvent__when_metaIs_false__byteIs_supportedMidiEventRawValue() {
-        for case let eventType in eMidiEventType.MIDIEvents {
+        for case let eventType in eMidiEventType.kMIDIEvents {
             XCTAssertEqual(processStatusByte(eventType.rawValue, isMeta: false), eventType);
         }
     }
 
     func testProcessStatusByte_returns_supportedMidiEvent__when_metaIs_false__byteIs_supportedMidiEvent() {
-        for case let eventType in eMidiEventType.MIDIEvents {
+        for case let eventType in eMidiEventType.kMIDIEvents {
             for case let byte: UInt8 in 0x00...0x0f {
                 XCTAssertEqual(processStatusByte(eventType.rawValue + byte, isMeta: false), eventType);
             }
@@ -347,7 +347,7 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     }
 
     func testProcessStatusByte_returns_supportedMetaEvent_when_metaIs_true__byteIs_supportedMetaEventRawValue() {
-        for case let eventType in eMidiEventType.METAEvents {
+        for case let eventType in eMidiEventType.kMETAEvents {
             XCTAssertEqual(processStatusByte(eventType.rawValue, isMeta: true), eventType);
         }
     }
@@ -356,7 +356,7 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     ######## makeMidiEvent ########
     #############################*/
     func testMakeMidiEvent_returns_instanceOf_TimedMidiEvent__when_eventTypeIs_definedMidiEvent() {
-        for eventType in eMidiEventType.allMIDIEvents {
+        for eventType in eMidiEventType.kAllMIDIEvents {
             let testEvent = makeMidiEvent(eventType);
             let ctrlEvent = TimedMidiEvent(type: eventType, deltaTime: 0, reader: processUnknownEvent);
             testEvent.data = [];
@@ -367,7 +367,7 @@ class MidiEventsProcessorsHelpersTests: XCTestCase {
     }
 
     func testMakeMidiEvent_returns_instanceOf_BasicMidiEvent__when_eventType_isNot_defineMidiEvent() {
-        for eventType in eMidiEventType.allValues.subtract(eMidiEventType.allMIDIEvents) {
+        for eventType in eMidiEventType.kAllValues.subtract(eMidiEventType.kAllMIDIEvents) {
             let testEvent = makeMidiEvent(eventType);
             let ctrlEvent = BasicMidiEvent(type: eventType, reader: processUnknownEvent);
             testEvent.data = [];

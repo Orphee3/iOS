@@ -99,8 +99,9 @@ public class MIDIFileManager: pFormattedFileManager {
 
         for (idx, track) in trackList {
             var chanMsg = MIDIChannelMessage(status: eMidiEventType.programChange.rawValue | UInt8(idx), data1: 0, data2: 0, reserved: 0);
-            if let patchID = trackInfo[idx]?["PATCH"] as? UInt8 {
-                chanMsg.data1 = patchID;
+            if let trkInfo = trackInfo[idx],
+               let patchID = trkInfo["PATCH"] as? Int {
+                chanMsg.data1 = UInt8(patchID);
             }
             dataCreator.addTrack(track, prog: chanMsg)
         }

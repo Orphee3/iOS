@@ -14,27 +14,35 @@ import Foundation
 ///
 ///  - returns: A Byte array containing all parsed data.
 public func processUnknownEvent(data: ByteBuffer) -> [UInt32] {
-
-    var stop: Bool = false;
-    var event: [UInt32] = [];
-
-    while (!stop) {
-
+    
+    var stop: Bool = false
+    var event: [UInt32] = []
+    var firstIteration = true
+    var meta = false
+    
+    while (!stop && data.hasRemaining) {
+        
         data.mark();
-
+        
         let byte = data.getUInt8();
-        let eventType = processStatusByte(byte);
-        if (isSysResetByte(byte)
-            || eventType != eMidiEventType.runningStatus
-            || !data.hasRemaining) {
-
-            stop = true;
-            if (eMidiEventType.MIDIEvents.contains(eventType)) {
-
+        if (isSysResetByte(byte)) {
+            if (firstIteration) {
+                meta = true;
+                event.append(UInt32(byte));
+            }
+            else {
+                stop = true;
                 data.reset();
             }
         }
-        event.append(UInt32(byte));
+        else {
+            
+            let eventType = processStatusByte(byte, isMeta: meta);
+            
+            event.append(UInt32(byte));
+            meta = false
+        }
+        firstIteration = false;
     }
     return event;
 }

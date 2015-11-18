@@ -43,26 +43,26 @@ class eMidiEventTypeTests: XCTestCase {
     ### isByte:aMidiEventOfType ###
     #############################*/
     func testIsByteAMidiEventOfType_throws_invalidMidiEvent__when_eventTypeIs_nonMidiEventType() {
-        for case let type in eMidiEventType.allEvents where !eMidiEventType.allMIDIEvents.contains(type) {
+        for case let type in eMidiEventType.kAllEvents where !eMidiEventType.kAllMIDIEvents.contains(type) {
             XCTAssertThrowsSpecific(try eMidiEventType.isByte(0, aMidiEventOfType: type),
                 exception: eMidiEventType.eMidiEventTypeError.invalidMidiEvent(byte: 0, ""));
         }
     }
 
     func testIsByteAMidiEventOfType_returns_false__when_eventTypeIs_midiEventType__and_byteIs_construedAs_different_type() {
-        for case let type in eMidiEventType.allMIDIEvents {
+        for case let type in eMidiEventType.kAllMIDIEvents {
             XCTAssertFalse(try! eMidiEventType.isByte(type.rawValue + 0x10, aMidiEventOfType: type));
         }
-        for case let type in eMidiEventType.allMIDIEvents {
+        for case let type in eMidiEventType.kAllMIDIEvents {
             XCTAssertFalse(try! eMidiEventType.isByte(type.rawValue + 0x15, aMidiEventOfType: type));
         }
     }
 
     func testIsByteAMidiEventOfType_returns_true__when_eventTypeIs_midiEventType__and_byteIs_construedAs_same_type() {
-        for case let type in eMidiEventType.allMIDIEvents {
+        for case let type in eMidiEventType.kAllMIDIEvents {
             XCTAssert(try! eMidiEventType.isByte(type.rawValue + 0x0F, aMidiEventOfType: type));
         }
-        for case let type in eMidiEventType.allMIDIEvents {
+        for case let type in eMidiEventType.kAllMIDIEvents {
             XCTAssert(try! eMidiEventType.isByte(type.rawValue + 0x00, aMidiEventOfType: type));
         }
     }
@@ -96,18 +96,18 @@ class eMidiEventTypeTests: XCTestCase {
         XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x7E, isMeta: true), eMidiEventType.unknown);
     }
 
-    func testGetMidiEventTypeFor_returns_unknownEvent__when_metaIs_true__byteIs_inferiorOrEqualTo_0x7F__and_is_unsupportedMetaEvent() {
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x00, isMeta: true), eMidiEventType.unknown);
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x20, isMeta: true), eMidiEventType.unknown);
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x54, isMeta: true), eMidiEventType.unknown);
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x7F, isMeta: true), eMidiEventType.unknown);
+    func testGetMidiEventTypeFor_returns_unsupportedEvent__when_metaIs_true__byteIs_inferiorOrEqualTo_0x7F__and_is_unsupportedMetaEvent() {
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x00, isMeta: true), eMidiEventType.unsupported);
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x20, isMeta: true), eMidiEventType.unsupported);
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x54, isMeta: true), eMidiEventType.unsupported);
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0x7F, isMeta: true), eMidiEventType.unsupported);
     }
 
-    func testGetMidiEventTypeFor_returns_unknownEvent__when_metaIs_false__byteIs_between_0x80_and_0xEF__and_is_unsupportedMidiEvent() {
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xA0, isMeta: false), eMidiEventType.unknown);
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xBD, isMeta: false), eMidiEventType.unknown);
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xDB, isMeta: false), eMidiEventType.unknown);
-        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xEF, isMeta: false), eMidiEventType.unknown);
+    func testGetMidiEventTypeFor_returns_unsupportedEvent__when_metaIs_false__byteIs_between_0x80_and_0xEF__and_is_unsupportedMidiEvent() {
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xA0, isMeta: false), eMidiEventType.unsupported);
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xBD, isMeta: false), eMidiEventType.unsupported);
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xDB, isMeta: false), eMidiEventType.unsupported);
+        XCTAssertEqual(try! eMidiEventType.getMidiEventTypeFor(0xEF, isMeta: false), eMidiEventType.unsupported);
     }
 
     func testGetMidiEventTypeFor_returns_unknownEvent__when_metaIs_false__byteIs_superiorTo_0xEF() {

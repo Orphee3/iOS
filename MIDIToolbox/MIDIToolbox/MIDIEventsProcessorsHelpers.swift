@@ -58,7 +58,7 @@ public func makeMidiEvent(eventType: eMidiEventType, delta: Int = 0, chan: UInt8
     let event: BasicMidiEvent<ByteBuffer>!;
     let processor = buildMIDIEventProcessor(eventType, chan: chan);
 
-    if (eMidiEventType.allMIDIEvents.contains(eventType)) {
+    if (eMidiEventType.kAllMIDIEvents.contains(eventType)) {
         event = TimedMidiEvent(type: eventType, deltaTime: UInt32(delta), reader: processor);
     }
     else {

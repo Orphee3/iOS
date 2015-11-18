@@ -28,8 +28,14 @@ class FileManagementTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         testContent = [
-            kOrpheeFileContent_tracks: [0: [[n1, n2, n1, n2], [], [n1, n2], [], [n1, n2], []]],
-            kOrpheeFileContent_trackInfo: [0 : ["PATCH" : 12 as Any]]
+            kOrpheeFileContent_tracks: [
+                0: [[n1], [], [], [n1, n2], [], [], [n1, n2], []],
+                1: [[n2], [], [n1], [], [], [n2], [], [], [n2, n1]]
+            ],
+            kOrpheeFileContent_trackInfo: [
+                0 : ["PATCH" : 1 as Any],
+                1 : ["PATCH" : 34 as Any]
+            ]
         ];
         
         try! NSFileManager.defaultManager().createDirectoryAtPath(MIDIFileManager.store, withIntermediateDirectories: true, attributes: nil);
@@ -37,7 +43,6 @@ class FileManagementTests: XCTestCase {
     }
 
     override func tearDown() {
-        
         try! NSFileManager.defaultManager().removeItemAtPath(MIDIFileManager.store);
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -48,6 +53,8 @@ class FileManagementTests: XCTestCase {
 
         XCTAssertTrue(fm!.createFile(nil))
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: CoreMIDISequenceCreator.self))
+
+        try! NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/test0.mid");
     }
 
     func testCreateFile_succeeds__using_MIDIByteBufferCreator() {
@@ -55,6 +62,7 @@ class FileManagementTests: XCTestCase {
 
         XCTAssertTrue(fm!.createFile(nil))
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: MIDIByteBufferCreator.self));
+        try! NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/test1.mid");
     }
 
     func testReadFile_succeeds__when_file_wasCreatedBy_MIDIByteBufferCreator() {

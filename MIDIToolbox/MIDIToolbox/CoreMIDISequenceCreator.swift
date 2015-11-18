@@ -77,6 +77,7 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
                 if (curTmStmp == tmStmp && idx != 0) {
                     tmStmp += Float64(note.duration);
                 }
+                curNote.channel = UInt8(trkCnt);
                 MusicTrackNewMIDINoteEvent(trk, tmStmp, &curNote);
             }
         }
@@ -90,7 +91,7 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
     public func toData() -> NSData {
 
         var data: Unmanaged<CFData>? = Unmanaged<CFData>.passRetained(NSData());
-        let st: OSStatus = MusicSequenceFileCreateData(buffer,  MusicSequenceFileTypeID.MIDIType, MusicSequenceFileFlags.EraseFile, Int16(_timeResolution), &data);
+        let st: OSStatus = MusicSequenceFileCreateData(buffer, MusicSequenceFileTypeID.MIDIType, MusicSequenceFileFlags.EraseFile, Int16(_timeResolution), &data);
         if (st != noErr) {
             print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
         }

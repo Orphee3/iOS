@@ -8,30 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		1E7F4A471BD556B4008B4774 /* MIDIToolbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E7F4A461BD556B4008B4774 /* MIDIToolbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E7F4A4E1BD556B4008B4774 /* MIDIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7F4A431BD556B4008B4774 /* MIDIToolbox.framework */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A6B1BD556FB008B4774 /* eMidiEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A5D1BD556FB008B4774 /* eMidiEventType.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A6C1BD556FB008B4774 /* eNoteLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A5E1BD556FB008B4774 /* eNoteLength.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A6D1BD556FB008B4774 /* pMidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A5F1BD556FB008B4774 /* pMidiEvent.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A6E1BD556FB008B4774 /* pTimedMidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A601BD556FB008B4774 /* pTimedMidiEvent.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A6F1BD556FB008B4774 /* pMIDIByteStreamBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A611BD556FB008B4774 /* pMIDIByteStreamBuilder.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A701BD556FB008B4774 /* MIDIByteBufferCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A621BD556FB008B4774 /* MIDIByteBufferCreator.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A711BD556FB008B4774 /* MIDIDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A631BD556FB008B4774 /* MIDIDataParser.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A721BD556FB008B4774 /* CoreMIDISequenceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A641BD556FB008B4774 /* CoreMIDISequenceCreator.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A731BD556FB008B4774 /* GenericMidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A651BD556FB008B4774 /* GenericMidiEvent.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A741BD556FB008B4774 /* TimedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A661BD556FB008B4774 /* TimedEvent.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A751BD556FB008B4774 /* MIDIEventsProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A671BD556FB008B4774 /* MIDIEventsProcessors.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A761BD556FB008B4774 /* MIDIMetaEventsProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A681BD556FB008B4774 /* MIDIMetaEventsProcessors.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A771BD556FB008B4774 /* MIDIEventsProcessorsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A691BD556FB008B4774 /* MIDIEventsProcessorsHelpers.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A781BD556FB008B4774 /* kOrpheeDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A6A1BD556FB008B4774 /* kOrpheeDebug.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A7E1BD55729008B4774 /* MidiEventsProcessorsHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A791BD55729008B4774 /* MidiEventsProcessorsHelpersTests.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A7F1BD55729008B4774 /* eMidiEventTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7A1BD55729008B4774 /* eMidiEventTypeTests.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A801BD55729008B4774 /* MIDIEventsProcessorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7B1BD55729008B4774 /* MIDIEventsProcessorsTests.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A811BD55729008B4774 /* CoreMIDISequenceCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7C1BD55729008B4774 /* CoreMIDISequenceCreatorTests.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A821BD55729008B4774 /* EventsProcessorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7D1BD55729008B4774 /* EventsProcessorsTests.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A841BD5573E008B4774 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A831BD5573E008B4774 /* xXCTestThrowingAssert.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A891BD557E7008B4774 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A871BD557E7008B4774 /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A8A1BD557E7008B4774 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A881BD557E7008B4774 /* ByteOrder.swift */; settings = {ASSET_TAGS = (); }; };
-		1E7F4A8C1BD55805008B4774 /* BinaryOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A8B1BD55805008B4774 /* BinaryOps.swift */; settings = {ASSET_TAGS = (); }; };
+		1E7F4A4E1BD556B4008B4774 /* MIDIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7F4A431BD556B4008B4774 /* MIDIToolbox.framework */; };
+		1E7F4A6B1BD556FB008B4774 /* eMidiEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A5D1BD556FB008B4774 /* eMidiEventType.swift */; };
+		1E7F4A6C1BD556FB008B4774 /* eNoteLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A5E1BD556FB008B4774 /* eNoteLength.swift */; };
+		1E7F4A6D1BD556FB008B4774 /* pMidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A5F1BD556FB008B4774 /* pMidiEvent.swift */; };
+		1E7F4A6E1BD556FB008B4774 /* pTimedMidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A601BD556FB008B4774 /* pTimedMidiEvent.swift */; };
+		1E7F4A6F1BD556FB008B4774 /* pMIDIByteStreamBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A611BD556FB008B4774 /* pMIDIByteStreamBuilder.swift */; };
+		1E7F4A701BD556FB008B4774 /* MIDIByteBufferCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A621BD556FB008B4774 /* MIDIByteBufferCreator.swift */; };
+		1E7F4A711BD556FB008B4774 /* MIDIDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A631BD556FB008B4774 /* MIDIDataParser.swift */; };
+		1E7F4A721BD556FB008B4774 /* CoreMIDISequenceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A641BD556FB008B4774 /* CoreMIDISequenceCreator.swift */; };
+		1E7F4A731BD556FB008B4774 /* GenericMidiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A651BD556FB008B4774 /* GenericMidiEvent.swift */; };
+		1E7F4A741BD556FB008B4774 /* TimedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A661BD556FB008B4774 /* TimedEvent.swift */; };
+		1E7F4A751BD556FB008B4774 /* MIDIEventsProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A671BD556FB008B4774 /* MIDIEventsProcessors.swift */; };
+		1E7F4A761BD556FB008B4774 /* MIDIMetaEventsProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A681BD556FB008B4774 /* MIDIMetaEventsProcessors.swift */; };
+		1E7F4A771BD556FB008B4774 /* MIDIEventsProcessorsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A691BD556FB008B4774 /* MIDIEventsProcessorsHelpers.swift */; };
+		1E7F4A781BD556FB008B4774 /* kOrpheeDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A6A1BD556FB008B4774 /* kOrpheeDebug.swift */; };
+		1E7F4A7E1BD55729008B4774 /* MidiEventsProcessorsHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A791BD55729008B4774 /* MidiEventsProcessorsHelpersTests.swift */; };
+		1E7F4A7F1BD55729008B4774 /* eMidiEventTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7A1BD55729008B4774 /* eMidiEventTypeTests.swift */; };
+		1E7F4A801BD55729008B4774 /* MIDIEventsProcessorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7B1BD55729008B4774 /* MIDIEventsProcessorsTests.swift */; };
+		1E7F4A811BD55729008B4774 /* CoreMIDISequenceCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7C1BD55729008B4774 /* CoreMIDISequenceCreatorTests.swift */; };
+		1E7F4A821BD55729008B4774 /* EventsProcessorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A7D1BD55729008B4774 /* EventsProcessorsTests.swift */; };
+		1E7F4A841BD5573E008B4774 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A831BD5573E008B4774 /* xXCTestThrowingAssert.swift */; };
+		1E7F4A891BD557E7008B4774 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A871BD557E7008B4774 /* ByteBuffer.swift */; };
+		1E7F4A8A1BD557E7008B4774 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A881BD557E7008B4774 /* ByteOrder.swift */; };
+		1E7F4A8C1BD55805008B4774 /* BinaryOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A8B1BD55805008B4774 /* BinaryOps.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +49,6 @@
 		1E7F4A461BD556B4008B4774 /* MIDIToolbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIDIToolbox.h; sourceTree = "<group>"; };
 		1E7F4A481BD556B4008B4774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E7F4A4D1BD556B4008B4774 /* MIDIToolboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIDIToolboxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7F4A521BD556B4008B4774 /* MIDIToolboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIToolboxTests.swift; sourceTree = "<group>"; };
 		1E7F4A541BD556B4008B4774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E7F4A5D1BD556FB008B4774 /* eMidiEventType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eMidiEventType.swift; sourceTree = "<group>"; };
 		1E7F4A5E1BD556FB008B4774 /* eNoteLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eNoteLength.swift; sourceTree = "<group>"; };
@@ -148,7 +147,6 @@
 				1E7F4A7B1BD55729008B4774 /* MIDIEventsProcessorsTests.swift */,
 				1E7F4A7C1BD55729008B4774 /* CoreMIDISequenceCreatorTests.swift */,
 				1E7F4A7D1BD55729008B4774 /* EventsProcessorsTests.swift */,
-				1E7F4A521BD556B4008B4774 /* MIDIToolboxTests.swift */,
 				1E7F4A541BD556B4008B4774 /* Info.plist */,
 			);
 			path = MIDIToolboxTests;

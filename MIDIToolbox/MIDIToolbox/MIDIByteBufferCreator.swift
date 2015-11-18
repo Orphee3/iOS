@@ -254,7 +254,7 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
     let _fileHeaderLength: Int;
 
     /// The MIDI file type used.
-    var MidiFileType: UInt16  = 0;
+    var MidiFileType: UInt16  = 1;
 
     /// The file's name (?)
     var _midiFile: String     = "";

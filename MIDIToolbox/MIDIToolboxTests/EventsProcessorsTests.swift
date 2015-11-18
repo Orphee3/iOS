@@ -45,6 +45,8 @@ class EventsProcessorsTests : XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+
+        buffer = nil
         super.tearDown()
     }
 
@@ -111,6 +113,20 @@ class EventsProcessorsTests : XCTestCase {
         XCTAssertEqual(try! processTempoEvent(buffer), [320])
     }
 
+    // MARK: processEndOfTrack()
+    func testProcessEndOfTrack_throws__when_dataLength_isSuperiorTo_0x00() {
+        buffer.putUInt8(0x03);
+        buffer.rewind();
+
+        XCTAssertThrowsSpecific(try processEndOfTrack(buffer), exception: processingError.dataIsInvalidLengthForEventType(eMidiEventType.timeSignature, length: 0, ""))
+    }
+
+    func testProcessEndOfTrack_return_formattedData__when_dataLength_IsEqualTo_0x00() {
+        buffer.putUInt8(0x00)
+        buffer.rewind()
+
+        XCTAssertEqual(try! processEndOfTrack(buffer), [])
+    }
 
     // MARK: processUnknownEvent()
     func testProcessUnknownEvent_returns_formattedInputData__when_buffer_contains_only_runningStatusBytes() {
@@ -121,10 +137,13 @@ class EventsProcessorsTests : XCTestCase {
     }
 
     func testProcessUnknownEvent_returns_formattedInputData__when_buffer_contains_runningStatusBytes__and_metaBytes() {
-        buffer.putUInt8([0x01, 0x05, 0x7E, 0xFF, 0x23, 0x51, 0x58, 0x75])
+        buffer.putUInt8([
+            0x01, 0x05, 0x7E,
+            0xFF, 0x23, 0x51, 0x58, 0x75
+            ])
         buffer.rewind();
 
-        XCTAssertEqual(processUnknownEvent(buffer), [0x01, 0x05, 0x7E, 0xFF])
-        XCTAssertEqual(processUnknownEvent(buffer), [0x23, 0x51, 0x58, 0x75]);
+        XCTAssertEqual(processUnknownEvent(buffer), [0x01, 0x05, 0x7E])
+        XCTAssertEqual(processUnknownEvent(buffer), [0xFF, 0x23, 0x51, 0x58, 0x75]);
     }
 }

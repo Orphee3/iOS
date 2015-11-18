@@ -172,11 +172,15 @@ class ViewController: UIViewController {
 
             print("File Saved")
             let notes = self.blockArrays.getFormattedNoteList();
-            let tracks: [String : Any]? = [kOrpheeFileContent_tracks : [0 : notes]];
+            let tracks: [String : Any]? = [
+                kOrpheeFileContent_tracks : [0 : notes],
+                kOrpheeFileContent_trackInfo : [0 : ["PATCH" : 0 as Any]]
+            ];
 
             let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
             fm.createFile()
             fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
+            try! NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
             ++self.fileNbr;
         };
 

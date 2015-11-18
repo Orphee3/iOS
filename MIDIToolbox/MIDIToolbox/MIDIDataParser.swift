@@ -104,7 +104,7 @@ public class MIDIDataParser {
                         event = makeMidiEvent(currentEventType, delta: deltaTime, chan: try? getChanForEventType(currentEventType, fromByte: statusByte));
                     }
                     try! event.readData(dataBuffer);
-                    if (eMidiEventType.MIDIEvents.contains(currentEventType)) {
+                    if (eMidiEventType.kMIDIEvents.contains(currentEventType)) {
                         lastValidEventChannel = UInt8(event.data![0]);
                         lastValidEventType = currentEventType;
                     }

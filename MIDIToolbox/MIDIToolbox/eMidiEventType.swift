@@ -28,13 +28,13 @@ let kMIDIEventMaxSize_runningStatus: Int = -1;
 
 extension eMidiEventType :Equatable {}
 
-///    - ##Range of midi event types##
+///  ## Range of midi event types ##
 ///
-///      - Meta events:           `0xFF` followed by *type byte* ranging from `0x00` to `0x7F`.
-///      - MIDI events:           *Type byte* ranges from `0x8X` to `0xEX` where `X` represents the channel (0x00 to 0x0F).
-///      - SysEx events:          *Type byte* is either `0xF0` or `0xF7`.
-///      - SysCommon events:      *Type byte* ranges from `0xF1` to `0xF6`. Should not be present in Midi files.
-///      - SysRealTime events:    *Type byte* ranges from `0xF8` to `0xFE`. Should not be present in Midi files.
+///    - Meta events:           `0xFF` followed by *status byte* ranging from `0x00` to `0x7F` included.
+///    - MIDI events:           *status byte* ranges from `0x8X` to `0xEX` where `X` represents the channel (0x00 to 0x0F).
+///    - SysEx events:          *status byte* is either `0xF0` or `0xF7`.
+///    - SysCommon events:      *status byte* ranges from `0xF1` to `0xF6`. Should not be present in Midi files.
+///    - SysRealTime events:    *status byte* ranges from `0xF8` to `0xFE`. Should not be present in Midi files.
 ///
 ///  ### MIDI Events ###
 ///    - Supported:
@@ -185,12 +185,15 @@ public enum eMidiEventType: UInt8 {
     /// MIDI running status
     /// - attention: This is not an actual event with an arbitrary associated value.
     case runningStatus = 0xF4
-    /// Unknown or unsupported event.
+    /// Unknown event.
     /// - attention: This is not an actual event with an arbitrary associated value.
     case unknown       = 0xF5
-
+    /// Unsupported event.
+    /// - attention: This is not an actual event with an arbitrary associated value.
+    case unsupported   = 0xF6
+    
     /// An array containing all of this enum's values.
-    static let allValues: Set<eMidiEventType> = [
+    static let kAllValues: Set<eMidiEventType> = [
         noteOn, noteOff, programChange,
         afterTouch, ctrlChange, chanPressure, pitchChange,
         timeSignature, setTempo, endOfTrack,
@@ -200,24 +203,24 @@ public enum eMidiEventType: UInt8 {
     ];
 
     /// An array containing all of this enum's Midi, Meta and SysEx events.
-    static let allEvents: Set<eMidiEventType> = allMIDIEvents.union(allMETAEvents).union([sysExSingle, escapeSequence]);
+    static let kAllEvents: Set<eMidiEventType> = kAllMIDIEvents.union(kAllMETAEvents).union([sysExSingle, escapeSequence]);
 
     /// An array containing supported MIDI events.
-    static let MIDIEvents: Set<eMidiEventType> = [noteOn, noteOff, programChange];
+    static let kMIDIEvents: Set<eMidiEventType> = [noteOn, noteOff, programChange];
     /// An array containing all MIDI events.
-    static let allMIDIEvents: Set<eMidiEventType> = MIDIEvents.union([
+    static let kAllMIDIEvents: Set<eMidiEventType> = kMIDIEvents.union([
         afterTouch, ctrlChange, chanPressure, pitchChange
     ]);
 
     /// An array containing supported Meta events.
-    static let METAEvents: Set<eMidiEventType> = [timeSignature, setTempo, endOfTrack];
+    static let kMETAEvents: Set<eMidiEventType> = [timeSignature, setTempo, endOfTrack];
     /// An array containing all Meta events.
-    static let allMETAEvents: Set<eMidiEventType> = METAEvents.union([
+    static let kAllMETAEvents: Set<eMidiEventType> = kMETAEvents.union([
         sequenceNbr, text, copyright, trkName, instruName, lyrics, marker, cuePoint, chanPrefix, smpteOffset, keySignature, seqSpecific,
     ]);
 
     /// An array containing all unsupported events.
-    static let unsupported: Set<eMidiEventType> = [
+    static let kUnsupported: Set<eMidiEventType> = [
         sysExSingle, escapeSequence,
         sequenceNbr, text, copyright, trkName, instruName, lyrics, marker, cuePoint, chanPrefix, smpteOffset, keySignature, seqSpecific,
         afterTouch, ctrlChange, chanPressure, pitchChange
@@ -249,8 +252,8 @@ public enum eMidiEventType: UInt8 {
             let event = try _getUnsafeEventTypeFor(byte, isMeta: meta);
             switch (event, isHighestOrderBitSet(byte), meta) {
             case (.Some(let eventType), _, _):
-                guard !eMidiEventType.unsupported.contains(eventType) else {
-                    return .unknown;
+                guard !eMidiEventType.kUnsupported.contains(eventType) else {
+                    return .unsupported;
                 }
                 return eventType;
             case (_, false, false):
@@ -274,7 +277,7 @@ public enum eMidiEventType: UInt8 {
                 possibleEvents = [event];
             }
         case (false, true, true):
-            possibleEvents = eMidiEventType.allMIDIEvents.filter() {
+            possibleEvents = eMidiEventType.kAllMIDIEvents.filter() {
                 ($0.rawValue & byte == $0.rawValue) && ($0.rawValue ^ byte <= 0x0F);
             }
         default:
@@ -295,7 +298,7 @@ public enum eMidiEventType: UInt8 {
     ///
     ///  - returns: `true` if the given byte represents the expected MIDI event type, `false` otherwise.
     public static func isByte(byte: UInt8, aMidiEventOfType type: eMidiEventType) throws -> Bool {
-        guard allMIDIEvents.contains(type) else {
+        guard kAllMIDIEvents.contains(type) else {
             throw eMidiEventTypeError.invalidMidiEvent(byte: byte, "Invalid Midi event type: \(byte)");
         }
         return (type.rawValue & byte == type.rawValue) && ((type.rawValue ^ byte) < 0x10)
