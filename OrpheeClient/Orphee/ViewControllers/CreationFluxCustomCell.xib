@@ -300,6 +300,7 @@
                 <outlet property="accessProfileButton" destination="nQQ-pw-KWa" id="hdr-Tl-8rS"/>
                 <outlet property="imgCreation" destination="XKA-wT-RXF" id="iui-dT-462"/>
                 <outlet property="imgProfileCreator" destination="xVD-dp-49a" id="9to-r5-CyG"/>
+                <outlet property="likeButton" destination="Nat-cR-Zq9" id="QrT-Yd-QPM"/>
                 <outlet property="nameCreation" destination="Anp-Rt-EJk" id="d03-GK-6v4"/>
                 <outlet property="nameProfileCreator" destination="sQh-jo-Ahd" id="MLR-Xy-7Qd"/>
                 <outlet property="nbCommentsCreation" destination="myy-Mb-LNm" id="Q2R-L9-4a6"/>

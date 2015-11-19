@@ -17,6 +17,7 @@ class HomeTableViewController: UITableViewController{
     var arrayUser: [User] = []
     var offset = 0
     var size = 10
+    var user = User!()
     
     var spinner: UIActivityIndicatorView!
     
@@ -26,6 +27,9 @@ class HomeTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
         tableView.infiniteScrollIndicatorStyle = .White
         tableView.infiniteScrollIndicatorMargin = 40
         tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
@@ -147,7 +151,23 @@ extension HomeTableViewController{
         cell.accessProfileButton.tag = indexPath.row
         cell.accessCommentButton.tag = indexPath.row
         cell.accessCommentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
+        cell.likeButton.addTarget(self, action: "likePushed:", forControlEvents: .TouchUpInside)
+        cell.likeButton.tag = indexPath.row
         return cell
+    }
+    
+    func likePushed(sender: UIButton){
+        print("push")
+        let headers = [
+            "Authorization": "Bearer \(user.token)"
+        ]
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(arrayCreation[sender.tag].id)", headers: headers).responseJSON{request, response, json in
+            print(response)
+            if (response?.statusCode == 200){
+                print(json.value)
+                sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+            }
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

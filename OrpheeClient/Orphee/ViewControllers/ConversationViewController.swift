@@ -14,17 +14,26 @@ import JSQMessagesViewController
 class ConversationViewController: JSQMessagesViewController {
     
     var userName = ""
+    
     var messages = [JSQMessage]()
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.userName = "Jeromin"
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "messageReceived:", name: "message", object: nil)
         self.collectionView!.reloadData()
         self.senderDisplayName = self.userName
-        self.senderId = "56488fb73fbc01cc1464f16c"
         self.showLoadEarlierMessagesHeader = true
+        self.senderId = "55f0af6ee5c3dc0a1dfdb2c3"
+    }
+    
+    func messageReceived(notif: NSNotification){
+        print(notif)
+        print(notif.object as! String)
+        let message = JSQMessage(senderId: self.senderId, displayName: userName, text: notif.object as! String)
+        self.messages.append(message)
+        self.collectionView?.reloadData()
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
@@ -51,7 +60,7 @@ class ConversationViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         let newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
         messages += [newMessage]
-        SocketManager.sharedInstance.sendMessage(senderId, message: text)
+        SocketManager.sharedInstance.sendMessage("55f0af6ee5c3dc0a1dfdb2c3"/*senderId*/, message: text)
         self.finishSendingMessage()
     }
     

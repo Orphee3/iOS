@@ -25,6 +25,13 @@ class FriendsViewController: UITableViewController, DZNEmptyDataSetDelegate, DZN
         tableView.registerNib(UINib(nibName: "FriendCustomCell", bundle: nil), forCellReuseIdentifier: "FriendCustomCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        getFriends()
+    }
+    
+    func refresh(sender:AnyObject){
+        arrayFriends = []
         getFriends()
     }
     
@@ -88,6 +95,7 @@ class FriendsViewController: UITableViewController, DZNEmptyDataSetDelegate, DZN
                         self.arrayFriends.append(User(User: elem))
                         print(elem)
                     }
+                    self.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 }
             }

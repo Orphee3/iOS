@@ -153,10 +153,13 @@
                     <navigationItem key="navigationItem" id="mff-zd-PFG">
                         <barButtonItem key="rightBarButtonItem" title="+" id="pxc-ew-FTm">
                             <connections>
-                                <segue destination="PI8-Zy-GPS" kind="show" id="Q4o-g1-mQl"/>
+                                <segue destination="PI8-Zy-GPS" kind="show" id="8yK-1T-MwH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="PI8-Zy-GPS" kind="show" identifier="toConversation" id="Awl-vH-PVV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNQ-4c-6dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -740,4 +743,7 @@
         <image name="music" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Awl-vH-PVV"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -84,6 +84,8 @@ class RequestFriendsTableViewController: UITableViewController, DZNEmptyDataSetD
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/acceptfriend/\(self.user.arrayFriendShipRequests[sender.tag].id)", headers: headers).responseJSON{request, response, json in
             if (response?.statusCode == 200){
                 self.user.arrayFriendShipRequests.removeAtIndex(sender.tag)
+                let userData = NSKeyedArchiver.archivedDataWithRootObject(self.user)
+                NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")
                 self.tableView.reloadData()
             }
             else{
@@ -95,6 +97,8 @@ class RequestFriendsTableViewController: UITableViewController, DZNEmptyDataSetD
     
     func declineFriend(sender: UIButton){
         self.user.arrayFriendShipRequests.removeAtIndex(sender.tag)
+        let userData = NSKeyedArchiver.archivedDataWithRootObject(self.user)
+        NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")
         self.tableView.reloadData()
     }
     

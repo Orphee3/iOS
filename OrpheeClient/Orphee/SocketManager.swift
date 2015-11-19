@@ -30,20 +30,22 @@ class SocketManager {
             print("error")
         }
         
-        socket.on("private message") {data, ack in
-            print("private message")
-            print(data)
-        }
-        
         socket.on("newFriend") {data, ack in
             print("newFriend data : \(data)")
+        }
+        
+        socket.on("private message"){data, ack in
+            print(data)
+            var message: String
+            message = data?.objectAtIndex(0)["message"]!!["message"] as! String
+            NSNotificationCenter.defaultCenter().postNotificationName("message", object: message)
         }
         
         socket.on("friend") {data, ack in
             print("friend data : \(data! as Array)")
             self.user.arrayFriendShipRequests.insert(FriendShipRequest(FriendShipRequest: data?.objectAtIndex(0)["userSource"] as! Dictionary<String, AnyObject>), atIndex: 0)
             let userData = NSKeyedArchiver.archivedDataWithRootObject(self.user)
-            NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")              
+            NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")
             self.notifyApp("requestFriend", data: data! as Array<AnyObject>)
         }
         
@@ -53,9 +55,7 @@ class SocketManager {
     }
     
     func sendMessage(toPerson: String, message: String){
-        print(toPerson)
-        print(message)
-        socket.emit("private chat", ["to": toPerson, "message": message])
+        self.socket.emit("private message", ["to": toPerson, "message": message])
     }
     
     func notifyApp(key: String, data: Array<AnyObject>) {
