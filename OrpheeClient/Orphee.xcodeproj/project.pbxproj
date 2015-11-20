@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0EDCFF1C06C47300F343CB /* eCreationRouter.swift */; };
 		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
@@ -172,6 +173,7 @@
 
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
+		1E0EDCFF1C06C47300F343CB /* eCreationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eCreationRouter.swift; sourceTree = "<group>"; };
 		1E6300851BFCCB2A009F4478 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Composition.storyboard; path = Orphee/Views/Composition.storyboard; sourceTree = SOURCE_ROOT; };
 		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
 		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Trombone.aupreset; path = "Ressources/Test resources/Trombone.aupreset"; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				9BD186E61B8627C0004A892D /* CropImageToSquare.swift */,
 				9BD186EE1B86A006004A892D /* SocketManager.swift */,
 				9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */,
+				1E0EDCFF1C06C47300F343CB /* eCreationRouter.swift */,
 			);
 			name = Classes;
 			path = Orphee;
@@ -1027,6 +1030,7 @@
 				9B5CDAD11B93BAA200B5452A /* MyFriendCustomCell.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */,
+				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,
 				9B4C589E1BAA32450068AA9E /* commentCellView.swift in Sources */,
 				9B327FF01B9B850600AAD347 /* HomeTableViewController.swift in Sources */,
