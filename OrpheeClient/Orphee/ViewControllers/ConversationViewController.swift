@@ -20,10 +20,10 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.userName = NSUserDefaults.standardUserDefaults().objectForKey("userName") as! String
+        self.userName = "Jeromin"
         self.collectionView!.reloadData()
         self.senderDisplayName = self.userName
-        self.senderId = self.userName
+        self.senderId = "56488fb73fbc01cc1464f16c"
         self.showLoadEarlierMessagesHeader = true
     }
     

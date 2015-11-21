@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FriendShipRequest{
+class FriendShipRequest: NSObject, NSCoding{
     var name: String!
     var picture: String!
     var id: String!
@@ -24,4 +24,18 @@ class FriendShipRequest{
             self.id = id
         }
     }
+    
+    required init(coder decoder: NSCoder) {
+        super.init()
+        self.name = decoder.decodeObjectForKey("name") as? String
+        self.picture = decoder.decodeObjectForKey("picture") as? String
+        self.id = decoder.decodeObjectForKey("id") as? String
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.name, forKey:"name")
+        coder.encodeObject(self.picture, forKey:"picture")
+        coder.encodeObject(self.id, forKey:"id")
+    }
+
 }

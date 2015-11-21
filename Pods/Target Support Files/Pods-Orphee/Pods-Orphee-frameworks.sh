@@ -85,23 +85,21 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Orphee/Alamofire.framework"
-  install_framework "Pods-Orphee/ICSPullToRefresh.framework"
+  install_framework "Pods-Orphee/DZNEmptyDataSet.framework"
   install_framework "Pods-Orphee/JSQMessagesViewController.framework"
   install_framework "Pods-Orphee/JSQSystemSoundPlayer.framework"
   install_framework "Pods-Orphee/PagedArray.framework"
   install_framework "Pods-Orphee/SDWebImage.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
-  install_framework "Pods-Orphee/SwiftyJSON.framework"
   install_framework "Pods-Orphee/UIScrollView_InfiniteScroll.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Orphee/Alamofire.framework"
-  install_framework "Pods-Orphee/ICSPullToRefresh.framework"
+  install_framework "Pods-Orphee/DZNEmptyDataSet.framework"
   install_framework "Pods-Orphee/JSQMessagesViewController.framework"
   install_framework "Pods-Orphee/JSQSystemSoundPlayer.framework"
   install_framework "Pods-Orphee/PagedArray.framework"
   install_framework "Pods-Orphee/SDWebImage.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
-  install_framework "Pods-Orphee/SwiftyJSON.framework"
   install_framework "Pods-Orphee/UIScrollView_InfiniteScroll.framework"
 fi

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C40a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCustomCell" rowHeight="107" id="5a9-ng-PCc" customClass="FriendCustomCell" customModule="Orphee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5a9-ng-PCc" id="kPG-VN-OW0">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u81-FU-y95">
+                        <rect key="frame" x="8" y="8" width="90" height="90"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="1h8-qB-0cg"/>
+                            <constraint firstAttribute="height" constant="90" id="7DW-V0-61Q"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmL-zd-t1e">
+                        <rect key="frame" x="106" y="28" width="206" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DW1-Io-gvq">
+                        <rect key="frame" x="106" y="57" width="206" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLw-ar-Ip1">
+                        <rect key="frame" x="292" y="8" width="20" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="Qy8-cf-eKC"/>
+                            <constraint firstAttribute="height" constant="20" id="WXW-n7-rUH"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="decline"/>
+                    </button>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="DW1-Io-gvq" secondAttribute="trailing" id="482-TF-BMU"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="u81-FU-y95" secondAttribute="leading" id="IqG-46-4Ok"/>
+                    <constraint firstItem="pmL-zd-t1e" firstAttribute="top" secondItem="LLw-ar-Ip1" secondAttribute="bottom" id="NLo-MU-d3O"/>
+                    <constraint firstAttribute="topMargin" secondItem="u81-FU-y95" secondAttribute="top" id="SPt-db-X9v"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="pmL-zd-t1e" secondAttribute="trailing" id="Wzd-wO-njZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LLw-ar-Ip1" secondAttribute="trailing" id="XrT-Lx-Kaf"/>
+                    <constraint firstItem="DW1-Io-gvq" firstAttribute="top" secondItem="pmL-zd-t1e" secondAttribute="bottom" constant="8" id="cqJ-a4-FO8"/>
+                    <constraint firstItem="pmL-zd-t1e" firstAttribute="leading" secondItem="u81-FU-y95" secondAttribute="trailing" constant="8" id="hyc-NV-VRC"/>
+                    <constraint firstAttribute="topMargin" secondItem="LLw-ar-Ip1" secondAttribute="top" id="sDC-7i-0JD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="DW1-Io-gvq" secondAttribute="bottom" constant="20" id="vts-CP-qXM"/>
+                    <constraint firstItem="DW1-Io-gvq" firstAttribute="leading" secondItem="u81-FU-y95" secondAttribute="trailing" constant="8" id="xIy-sL-Z27"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="deleteButton" destination="LLw-ar-Ip1" id="JHd-12-0lH"/>
+                <outlet property="name" destination="pmL-zd-t1e" id="srH-MT-M3H"/>
+                <outlet property="profilImg" destination="u81-FU-y95" id="M0F-pe-j1L"/>
+            </connections>
+            <point key="canvasLocation" x="865" y="338.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="decline" width="100" height="100"/>
+    </resources>
+</document>

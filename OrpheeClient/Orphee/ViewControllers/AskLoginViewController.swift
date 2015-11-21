@@ -14,6 +14,13 @@ class AskLoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
     @IBAction func facebookButton(sender: AnyObject) {
     }
     
@@ -22,7 +29,6 @@ class AskLoginViewController: UIViewController {
     }
     
     @IBAction func closePopup(sender: AnyObject) {
-        print("ça close")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

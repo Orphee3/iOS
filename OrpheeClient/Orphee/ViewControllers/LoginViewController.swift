@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var loginField: UITextField!
@@ -53,7 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if let user = json.value!["user"] as! Dictionary<String, AnyObject>?{
                         let user = User(User: user)
                         user.token = json.value!["token"] as! String
-                        print(user.name)
                         let data = NSKeyedArchiver.archivedDataWithRootObject(user)
                         NSUserDefaults.standardUserDefaults().setObject(data, forKey: "myUser")
                         SocketManager.sharedInstance.connectSocket()

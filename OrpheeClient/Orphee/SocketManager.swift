@@ -8,7 +8,6 @@
 
 import Foundation
 import Socket_IO_Client_Swift
-import SwiftyJSON
 
 class SocketManager {
     static let sharedInstance = SocketManager()
@@ -44,7 +43,7 @@ class SocketManager {
             print("friend data : \(data! as Array)")
             self.user.arrayFriendShipRequests.insert(FriendShipRequest(FriendShipRequest: data?.objectAtIndex(0)["userSource"] as! Dictionary<String, AnyObject>), atIndex: 0)
             let userData = NSKeyedArchiver.archivedDataWithRootObject(self.user)
-            NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")
+            NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")              
             self.notifyApp("requestFriend", data: data! as Array<AnyObject>)
         }
         
@@ -54,7 +53,9 @@ class SocketManager {
     }
     
     func sendMessage(toPerson: String, message: String){
-        socket.emit("private message", ["to": toPerson, "message": message]);
+        print(toPerson)
+        print(message)
+        socket.emit("private chat", ["to": toPerson, "message": message])
     }
     
     func notifyApp(key: String, data: Array<AnyObject>) {

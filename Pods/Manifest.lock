@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (2.0.0)
-  - ICSPullToRefresh (0.2)
+  - DZNEmptyDataSet (1.7.2)
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -9,19 +9,17 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - Socket.IO-Client-Swift (2.4.5)
-  - SwiftyJSON (2.2.1)
   - UIScrollView-InfiniteScroll (0.7.3)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
-  - ICSPullToRefresh (~> 0.2)
+  - DZNEmptyDataSet
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`,
     branch `develop`)
   - PagedArray (from `https://github.com/MrAlek/PagedArray.git`, branch `xcode-7`)
   - SDWebImage (~> 3.7)
   - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
     branch `swift-2`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - UIScrollView-InfiniteScroll
 
 EXTERNAL SOURCES:
@@ -34,9 +32,6 @@ EXTERNAL SOURCES:
   Socket.IO-Client-Swift:
     :branch: swift-2
     :git: https://github.com/socketio/socket.io-client-swift.git
-  SwiftyJSON:
-    :branch: xcode7
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   JSQMessagesViewController:
@@ -48,19 +43,15 @@ CHECKOUT OPTIONS:
   Socket.IO-Client-Swift:
     :commit: 108aa4b08af202bfcb6d6bedf86ccb3337f3ef94
     :git: https://github.com/socketio/socket.io-client-swift.git
-  SwiftyJSON:
-    :commit: d2455075224731f0449366c71e1a08d10d718e6d
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
-  ICSPullToRefresh: 39ccd2cdba439ee71848b39b31c27639826b6833
+  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   PagedArray: face4e8e871f954e77169f2b338820b7a55c85ec
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   UIScrollView-InfiniteScroll: b6c7d6d155dca7f9c5dd43813ecffeb301b3d50c
 
 COCOAPODS: 0.39.0

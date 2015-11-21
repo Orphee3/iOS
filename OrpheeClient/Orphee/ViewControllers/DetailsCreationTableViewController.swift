@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class DetailsCreationTableViewController: UITableViewController{
     var creation: Creation!

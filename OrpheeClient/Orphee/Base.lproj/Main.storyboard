@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B30a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C40a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +9,7 @@
         <scene sceneID="GPg-wt-CkI">
             <objects>
                 <navigationController id="RHE-nM-6vW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="heU-Ha-8eW"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="heU-Ha-8eW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZfW-GS-GbX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -60,7 +59,7 @@
         <scene sceneID="79l-ur-uvK">
             <objects>
                 <navigationController id="8eF-jk-wiD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Musique" id="G4B-Hi-9gf"/>
+                    <tabBarItem key="tabBarItem" title="Musique" image="music" id="G4B-Hi-9gf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bbn-iX-2zh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -78,7 +77,7 @@
         <scene sceneID="Nqg-lv-Tus">
             <objects>
                 <tableViewController id="VPA-AR-fUf" customClass="HomeTableViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3yQ-O5-krQ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3yQ-O5-krQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -90,7 +89,9 @@
                             <outlet property="delegate" destination="VPA-AR-fUf" id="8Wp-zl-YMq"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Création" id="gbW-bO-wzT"/>
+                    <tabBarItem key="tabBarItem" title="Création" image="home" id="gbW-bO-wzT">
+                        <inset key="imageInsets" minX="17" minY="17" maxX="17" maxY="17"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Accueil" id="fcw-aH-cWU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fV-NS-VxG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,7 +102,7 @@
         <scene sceneID="o3Q-KO-wD7">
             <objects>
                 <navigationController id="Oo4-5R-qgF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Social" id="9Ao-a9-nIH"/>
+                    <tabBarItem key="tabBarItem" title="Social" image="friends" id="9Ao-a9-nIH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ola-PS-z6c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -352,7 +353,7 @@
         <scene sceneID="ehV-l2-vTR">
             <objects>
                 <navigationController id="zsD-dQ-7jy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Moi" id="W7O-IX-Vag"/>
+                    <tabBarItem key="tabBarItem" title="Moi" image="user" id="W7O-IX-Vag"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cgt-Cq-6mz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -427,7 +428,7 @@
         <scene sceneID="tyP-wF-KfY">
             <objects>
                 <navigationController id="WPB-go-lMb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" id="ZhB-c0-9BJ"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chat" id="ZhB-c0-9BJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SbF-aB-ewz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -626,14 +627,14 @@
                                                 <constraint firstAttribute="height" constant="36" id="cyJ-ab-mxn"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoW-i8-HDO">
                                             <rect key="frame" x="30" y="81" width="42" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udd-4o-JmL">
@@ -643,7 +644,7 @@
                                                 <constraint firstAttribute="width" constant="64" id="LG5-tZ-iyx"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjK-se-IQI">
@@ -730,8 +731,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chat" width="25" height="25"/>
         <image name="emptygrayprofile" width="200" height="200"/>
         <image name="emptyprofile" width="200" height="200"/>
+        <image name="friends" width="25" height="25"/>
+        <image name="home" width="25" height="25"/>
         <image name="lyrecreation" width="50" height="50"/>
+        <image name="music" width="25" height="25"/>
+        <image name="user" width="25" height="25"/>
     </resources>
 </document>

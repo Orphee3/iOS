@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -97,13 +96,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             print(request)
             print(response)
             print(json.value!)
-            var newJson = JSON(json.value!)
-            let headers = [
-                "Content-Type":"image/png"
-            ]
-            let url = newJson["urlPut"].string!
-            let urlGet = newJson["urlGet"].string!
-            self.sendImgToAmazon(url, headers: headers, urlGet: urlGet)
+//            var newJson = JSON(json.value!)
+//            let headers = [
+//                "Content-Type":"image/png"
+//            ]
+//            let url = newJson["urlPut"].string!
+//            let urlGet = newJson["urlGet"].string!
+//            self.sendImgToAmazon(url, headers: headers, urlGet: urlGet)
         }
     }
     

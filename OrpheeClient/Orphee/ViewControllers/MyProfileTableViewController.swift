@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SwiftyJSON
 import Alamofire
 
 class MyProfileTableViewController: UITableViewController{

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class SocialViewController: UITableViewController{
     var arrayUser: [User] = []
@@ -155,6 +154,7 @@ extension SocialViewController: UISearchControllerDelegate, UISearchResultsUpdat
         let text = searchController.searchBar.text
         
         if (text?.characters.count > 2){
+            self.arrayUser = []
             print("search")
             print("http://163.5.84.242:3000/api/user/\(text!)/name")
             Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(text!)/name").responseJSON{request, response, json in

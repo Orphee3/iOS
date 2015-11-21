@@ -24,9 +24,9 @@ class FluxCustomCell: UITableViewCell {
         }else{
             self.imgProfile.image = UIImage(named: "emptygrayprofile")
         }
-        if let nbCreations = user.nbCreations{
-            self.nbCreations.text = String(nbCreations)
-        }
+//        if let nbCreations = user.nbCreations{
+//            self.nbCreations.text = String(nbCreations)
+//        }
         setLayout()
     }
     

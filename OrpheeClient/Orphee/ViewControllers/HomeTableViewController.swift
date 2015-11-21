@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 import SDWebImage
 import AVFoundation
 
@@ -78,17 +77,22 @@ class HomeTableViewController: UITableViewController{
     func getPopularCreations(offset: Int, size: Int){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
         Alamofire.request(.GET, url).responseJSON{request, response, json in
-            if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                for elem in array{
-                    self.arrayCreation.append(Creation(Creation: elem))
-                    self.arrayUser.append(User(User: elem["creator"]!.objectAtIndex(0) as! Dictionary<String, AnyObject>))
+            if (response?.statusCode == 200){
+                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    for elem in array{
+                        self.arrayCreation.append(Creation(Creation: elem))
+                        self.arrayUser.append(User(User: elem["creator"]!.objectAtIndex(0) as! Dictionary<String, AnyObject>))
+                    }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.spinner.stopAnimating()
+                        self.refreshControl!.endRefreshing()
+                        self.tableView.reloadData()
+                    }
+                    self.offset += self.size
                 }
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.spinner.stopAnimating()
-                    self.refreshControl!.endRefreshing()
-                    self.tableView.reloadData()
-                }
-                self.offset += self.size
+            }
+            else{
+                // A REMPLIR
             }
         }
     }
