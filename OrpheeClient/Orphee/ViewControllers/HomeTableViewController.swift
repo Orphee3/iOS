@@ -31,6 +31,7 @@ class HomeTableViewController: UITableViewController{
         tableView.infiniteScrollIndicatorMargin = 40
         tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
             self.getPopularCreations(self.offset, size: self.size)
+            self.tableView.reloadData()
             scrollView.finishInfiniteScroll()
         })
         
@@ -55,9 +56,9 @@ class HomeTableViewController: UITableViewController{
     
     func refresh(sender:AnyObject){
         arrayCreation = []
+        arrayUser = []
         offset = 0
         getPopularCreations(offset, size: size)
-        self.refreshControl!.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,6 +85,7 @@ class HomeTableViewController: UITableViewController{
                 }
                 dispatch_async(dispatch_get_main_queue()) {
                     self.spinner.stopAnimating()
+                    self.refreshControl!.endRefreshing()
                     self.tableView.reloadData()
                 }
                 self.offset += self.size

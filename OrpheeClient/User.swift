@@ -8,11 +8,13 @@
 
 import Foundation
 
-class User {
+class User : NSObject{
     var name: String!
     var picture: String!
     var id: String!
     var nbCreations: Int!
+    
+    var token: String!
     
     init(User: Dictionary<String, AnyObject>){
         if let name = User["name"] as? String{
@@ -26,6 +28,9 @@ class User {
         }
         if let nbCreations = User["creations"] as? Array<String>{
             self.nbCreations = nbCreations.count
+        }
+        if let token = User["token"] as? String{
+            self.token = token
         }
     }
 }

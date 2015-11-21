@@ -42,9 +42,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             ]
             print(token)
             Alamofire.request(.POST, "http://163.5.84.242:3000/api/login", headers: headers).responseJSON { request, response, json in
-                print(response)
-                print(request)
-                print(json)
                 if (response?.statusCode == 500){
                     self.alertViewForErrors("Une erreur s'est produite. Réessayer plus tard")
                 }
@@ -52,14 +49,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.alertViewForErrors("Les identifiants et le mot de passe ne correspondent pas")
                 }
                 else if (response?.statusCode == 200){
-                    var json = JSON(json.value!)
-                    print("USER : \(json)")
-                    NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
-                    NSUserDefaults.standardUserDefaults().setObject(self.loginField.text!, forKey: "userName")
-                    NSUserDefaults.standardUserDefaults().setObject(json["user"]["_id"].string, forKey: "myId")
-                    NSUserDefaults.standardUserDefaults().setObject(json["user"]["picture"].string, forKey: "imgProfile")
-                    SocketManager.sharedInstance.connectSocket()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    print(json.value)
+                    if let id = json.value!["user"]!!["_id"] as? String{
+                        NSUserDefaults.standardUserDefaults().setObject(id, forKey: "myId")
+                        NSUserDefaults.standardUserDefaults().synchronize()
+                        // SocketManager.sharedInstance.connectSocket()
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             }
         }

@@ -41,8 +41,8 @@ class SocialViewController: UITableViewController{
     
     func refresh(sender:AnyObject){
         self.arrayUser = []
-        getUsers(0, size: size)
-        self.refreshControl!.endRefreshing()
+        self.offset = 0
+        getUsers(self.offset, size: size)
     }
     
     func createActivityIndicatorView(){
@@ -62,6 +62,7 @@ class SocialViewController: UITableViewController{
                 self.offset += self.size
                 dispatch_async(dispatch_get_main_queue()) {
                     self.spinner.stopAnimating()
+                    self.refreshControl!.endRefreshing()
                     self.tableView.reloadData()
                 }
             }

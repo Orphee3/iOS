@@ -37,19 +37,6 @@ class ProfileUserTableViewController: UITableViewController {
         super.viewWillAppear(true)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (arrayCreations.isEmpty){
-            return 0
-        }
-        else{
-            return arrayCreations.count
-        }
-    }
-    
     func getInfoUser(){
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(self.user.id)/creation").responseJSON{request, response, json in
             if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
@@ -76,6 +63,19 @@ class ProfileUserTableViewController: UITableViewController {
 }
 
 extension ProfileUserTableViewController{
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if (arrayCreations.isEmpty){
+            return 0
+        }
+        else{
+            return arrayCreations.count
+        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CreationProfileCustomCell! = tableView.dequeueReusableCellWithIdentifier("creationProfileCell") as? CreationProfileCustomCell
         
