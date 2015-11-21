@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class SocialViewController: UITableViewController{
     var arrayUser: [User] = []
@@ -41,8 +40,8 @@ class SocialViewController: UITableViewController{
     
     func refresh(sender:AnyObject){
         self.arrayUser = []
-        getUsers(0, size: size)
-        self.refreshControl!.endRefreshing()
+        self.offset = 0
+        getUsers(self.offset, size: size)
     }
     
     func createActivityIndicatorView(){
@@ -62,6 +61,7 @@ class SocialViewController: UITableViewController{
                 self.offset += self.size
                 dispatch_async(dispatch_get_main_queue()) {
                     self.spinner.stopAnimating()
+                    self.refreshControl!.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
@@ -78,12 +78,11 @@ class SocialViewController: UITableViewController{
     }
     
     func addFriend(sender: UIButton){
-        if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
-            print("y a un token")
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             let id = arrayUser[sender.tag].id
-            let token = NSUserDefaults.standardUserDefaults().objectForKey("token")!
             let headers = [
-                "Authorization": "Bearer \(token)"
+                "Authorization": "Bearer \(user.token)"
             ]
             Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
                 request, response, json in
@@ -155,6 +154,7 @@ extension SocialViewController: UISearchControllerDelegate, UISearchResultsUpdat
         let text = searchController.searchBar.text
         
         if (text?.characters.count > 2){
+            self.arrayUser = []
             print("search")
             print("http://163.5.84.242:3000/api/user/\(text!)/name")
             Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(text!)/name").responseJSON{request, response, json in

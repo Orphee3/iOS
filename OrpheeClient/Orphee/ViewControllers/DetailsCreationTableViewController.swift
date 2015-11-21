@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class DetailsCreationTableViewController: UITableViewController{
     var creation: Creation!
@@ -63,7 +62,7 @@ class DetailsCreationTableViewController: UITableViewController{
     func layoutCreation(){
         nbComments.text = "0"
         nbLikes.text = "0"
-       // let title = creationArray["name"].string!
+        // let title = creationArray["name"].string!
         titleCreation.text = "Mickael"
         //title.substringWithRange(Range<String.Index>(start: title.startIndex.advancedBy(0), end: title.endIndex.advancedBy(-4)))
     }
@@ -86,22 +85,23 @@ class DetailsCreationTableViewController: UITableViewController{
     }
     
     @IBAction func sendComment(sender: AnyObject) {
-        if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
-            print("y a un token")
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             if (commentTextField.text != nil){
-                let token = NSUserDefaults.standardUserDefaults().objectForKey("token")!
+                print(user.name)
+                print(user.token)
                 let headers = [
-                    "Authorization": "Bearer \(token)"
+                    "Authorization": "Bearer \(user.token)"
                 ]
-                let myId = NSUserDefaults.standardUserDefaults().objectForKey("myId") as! String
                 let params = [
                     "creation": "\(creation.id)",
-                    "creator": "\(myId)",
+                    "creator": "\(user.id)",
                     "message": "\(commentTextField.text!)",
                     "parentId": "\(creation.id)"
                 ]
                 print(params)
                 Alamofire.request(.POST, "http://163.5.84.242:3000/api/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
+                    print(json.value)
                     let creator = User(User: json.value as! Dictionary<String, AnyObject>)
                     let commentToAdd = Comment(Comment: self.commentTextField.text!,
                         user: creator)
@@ -138,7 +138,7 @@ class DetailsCreationTableViewController: UITableViewController{
                     }
                 }
         }
-
+        
     }
     
 }

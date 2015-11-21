@@ -8,13 +8,13 @@
 
 import Foundation
 import UIKit
-import SwiftyJSON
 import Alamofire
 import SDWebImage
 
 class ProfileUserTableViewController: UITableViewController {
     var user: User!
     var arrayCreations: [Creation] = []
+    var myProfile = User!()
     
     @IBOutlet var nameProfile: UILabel!
     @IBOutlet var nbLikeProfile: UILabel!
@@ -23,6 +23,9 @@ class ProfileUserTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            myProfile = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
         tableView.registerNib(UINib(nibName: "CreationProfileCustomCell", bundle: nil), forCellReuseIdentifier: "creationProfileCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
@@ -37,19 +40,6 @@ class ProfileUserTableViewController: UITableViewController {
         super.viewWillAppear(true)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (arrayCreations.isEmpty){
-            return 0
-        }
-        else{
-            return arrayCreations.count
-        }
-    }
-    
     func getInfoUser(){
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(self.user.id)/creation").responseJSON{request, response, json in
             if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
@@ -62,28 +52,57 @@ class ProfileUserTableViewController: UITableViewController {
     }
     
     func likeCreation(sender: UIButton){
-        //        Alamofire.request(.POST, <#T##URLString: URLStringConvertible##URLStringConvertible#>){
-        //
-        //        }
-    }
-    
-    func commentPushed(sender: UIButton){
-        let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
-        let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
-        commentView.creation = arrayCreations[sender.tag]
-        self.navigationController?.pushViewController(commentView, animated: true)
+        print("push")
+        let headers = [
+            "Authorization": "Bearer \(myProfile.token)"
+        ]
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(arrayCreations[sender.tag].id)", headers: headers).responseJSON{request, response, json in
+            print(response)
+            if (response?.statusCode == 400){
+                if (json.value! as! String == "already like"){
+                    Alamofire.request(.GET, "http://163.5.84.242:3000/api/dislike/\(self.arrayCreations[sender.tag].id)", headers: headers).responseJSON{request, response, json in
+                        print(response)
+                        print(json.value)
+                        if (response?.statusCode == 200){
+                            sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                        }
+                    }
+                }
+                if (response?.statusCode == 200){
+                    print(json.value)
+                    sender.setBackgroundImage(UIImage(named:"heartfill"), forState: .Normal)
+                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                }
+            }
+        }
+        
+        func commentPushed(sender: UIButton){
+            let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+            let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+            commentView.creation = arrayCreations[sender.tag]
+            self.navigationController?.pushViewController(commentView, animated: true)
+        }
     }
 }
 
 extension ProfileUserTableViewController{
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (arrayCreations.isEmpty){
+            return 0
+        }
+        else{
+            return arrayCreations.count
+        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CreationProfileCustomCell! = tableView.dequeueReusableCellWithIdentifier("creationProfileCell") as? CreationProfileCustomCell
         
-        cell.putInGraphic(arrayCreations[indexPath.section])
+        cell.putInGraphic(arrayCreations[indexPath.row])
         
         nbCreationProfile.text = String(self.arrayCreations.count)
-        cell.commentButton.tag = indexPath.section
-        cell.likeButton.tag = indexPath.section
+        cell.commentButton.tag = indexPath.row
+        cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: "likeCreation:", forControlEvents: .TouchUpInside)
         cell.commentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
         return cell

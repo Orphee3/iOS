@@ -25,21 +25,10 @@ class CreationProfileCustomCell: UITableViewCell {
                     end: nameCreation.endIndex.advancedBy(-4)))
         }
         if let nbComments = creation.nbCommments{
-            self.nbCommentsCreation.text = String(nbComments)
+            //self.nbCommentsCreation.text = String(nbComments)
         }
         if let nbLikes = creation.nbLikes{
-            self.nbLikesCreation.text = String(nbLikes)
+            //self.nbLikesCreation.text = String(nbLikes)
         }
-        setLayout()
-    }
-    
-    func setLayout(){
-        self.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
-        self.layer.shadowRadius = 1
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
-        self.layer.shadowOpacity = 0.2
-        self.layoutMargins = UIEdgeInsetsZero;
-        self.preservesSuperviewLayoutMargins = false;
-        self.selectionStyle = UITableViewCellSelectionStyle.None
     }
 }

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 import SDWebImage
 import AVFoundation
 
@@ -18,6 +17,7 @@ class HomeTableViewController: UITableViewController{
     var arrayUser: [User] = []
     var offset = 0
     var size = 10
+    var user = User!()
     
     var spinner: UIActivityIndicatorView!
     
@@ -27,10 +27,14 @@ class HomeTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
         tableView.infiniteScrollIndicatorStyle = .White
         tableView.infiniteScrollIndicatorMargin = 40
         tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
             self.getPopularCreations(self.offset, size: self.size)
+            self.tableView.reloadData()
             scrollView.finishInfiniteScroll()
         })
         
@@ -55,9 +59,9 @@ class HomeTableViewController: UITableViewController{
     
     func refresh(sender:AnyObject){
         arrayCreation = []
+        arrayUser = []
         offset = 0
         getPopularCreations(offset, size: size)
-        self.refreshControl!.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,16 +81,22 @@ class HomeTableViewController: UITableViewController{
     func getPopularCreations(offset: Int, size: Int){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
         Alamofire.request(.GET, url).responseJSON{request, response, json in
-            if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                for elem in array{
-                    self.arrayCreation.append(Creation(Creation: elem))
-                    self.arrayUser.append(User(User: elem["creator"]!.objectAtIndex(0) as! Dictionary<String, AnyObject>))
+            if (response?.statusCode == 200){
+                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    for elem in array{
+                        self.arrayCreation.append(Creation(Creation: elem))
+                        self.arrayUser.append(User(User: elem["creator"]!.objectAtIndex(0) as! Dictionary<String, AnyObject>))
+                    }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.spinner.stopAnimating()
+                        self.refreshControl!.endRefreshing()
+                        self.tableView.reloadData()
+                    }
+                    self.offset += self.size
                 }
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.spinner.stopAnimating()
-                    self.tableView.reloadData()
-                }
-                self.offset += self.size
+            }
+            else{
+                // A REMPLIR
             }
         }
     }
@@ -112,7 +122,7 @@ class HomeTableViewController: UITableViewController{
     func stopPlayCreation(sender: UIButton) {
         self.player.stop()
     }
-    
+
     func accessProfile(sender: UIButton){
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let profileView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
@@ -145,14 +155,38 @@ extension HomeTableViewController{
         cell.stopPlayCreation.tag = indexPath.row
         cell.accessProfileButton.addTarget(self, action: "accessProfile:", forControlEvents: .TouchUpInside)
         cell.accessProfileButton.tag = indexPath.row
-        
+        cell.accessCommentButton.tag = indexPath.row
+        cell.accessCommentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
+        cell.likeButton.addTarget(self, action: "likePushed:", forControlEvents: .TouchUpInside)
+        cell.likeButton.tag = indexPath.row
         return cell
     }
-    
+
+    func likePushed(sender: UIButton){
+        print("push")
+        let headers = [
+            "Authorization": "Bearer \(user.token)"
+        ]
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(arrayCreation[sender.tag].id)", headers: headers).responseJSON{request, response, json in
+            print(response)
+            if (response?.statusCode == 200){
+                print(json.value)
+                sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+            }
+        }
+    }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
         let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
         commentView.creation = arrayCreation[indexPath.row]
+        self.navigationController?.pushViewController(commentView, animated: true)
+    }
+
+    func commentPushed(sender: UIButton){
+        let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+        let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+        commentView.creation = arrayCreation[sender.tag]
         self.navigationController?.pushViewController(commentView, animated: true)
     }
 }

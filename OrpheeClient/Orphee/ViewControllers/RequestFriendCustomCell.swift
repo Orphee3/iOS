@@ -15,8 +15,28 @@ class RequestFriendCustomCell: UITableViewCell{
     @IBOutlet var profilName: UILabel!
     @IBOutlet var profilNbFriend: UILabel!
     @IBOutlet var profilNbPublication: UILabel!
-    @IBOutlet var buttonGoToProfil: UIButton!
     @IBOutlet var buttonAccept: UIButton!
     @IBOutlet var buttonDecline: UIButton!
     var id: String!
+    
+    func putInGraphic(user: FriendShipRequest){
+        
+        if let nameProfileCreator = user.name{
+            self.profilName.text = nameProfileCreator
+        }
+        if let picture = user.picture{
+            self.profilImg.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
+        }else{
+            self.profilImg.image = UIImage(named: "emptygrayprofile")
+        }
+        if let id = user.id{
+            self.id = id
+        }
+        setLayout()
+    }
+    
+    func setLayout(){
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+    }
+
 }

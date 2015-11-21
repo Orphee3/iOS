@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A263e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5oO-7x-Wrh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15C27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5oO-7x-Wrh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="width" constant="193" id="agC-eP-y33"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="ED8-Wt-zOQ"/>
@@ -71,7 +71,7 @@
                                     <action selector="loginButtonPressed:" destination="LfY-KM-bpA" eventType="touchUpInside" id="wxP-DL-8uT"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6M-5e-ubu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6M-5e-ubu">
                                 <rect key="frame" x="204" y="308" width="193" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="height" constant="30" id="7V0-FG-FHc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orpheeLogoRound" translatesAutoresizingMaskIntoConstraints="NO" id="Vki-a5-eY9">
                                 <rect key="frame" x="116" y="81" width="369" height="209"/>
@@ -165,7 +165,7 @@
                                 <color key="textColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xd-vf-5lI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xd-vf-5lI">
                                 <rect key="frame" x="204" y="224" width="193" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -173,7 +173,7 @@
                                     <constraint firstAttribute="height" constant="30" id="yHH-DD-fvH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GXR-mR-EVg">
                                 <rect key="frame" x="204" y="283" width="193" height="30"/>
@@ -183,7 +183,7 @@
                                     <constraint firstAttribute="height" constant="30" id="lnw-zf-BGN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Sn-dh-H41">
                                 <rect key="frame" x="146" y="262" width="309" height="2"/>
@@ -301,42 +301,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyq-Mf-veg">
-                                <rect key="frame" x="271" y="128" width="34" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyq-Mf-veg">
+                                <rect key="frame" x="193" y="341" width="214" height="30"/>
                                 <animations/>
-                                <state key="normal" title="login"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="214" id="M6O-uF-6Dr"/>
+                                    <constraint firstAttribute="height" constant="30" id="gVV-A1-YDl"/>
+                                </constraints>
+                                <state key="normal" title="Se connecter avec votre email"/>
                                 <connections>
                                     <segue destination="LfY-KM-bpA" kind="show" id="cLg-ir-BZu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqH-Qv-7CB">
-                                <rect key="frame" x="271" y="206" width="64" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqH-Qv-7CB">
+                                <rect key="frame" x="268" y="385" width="64" height="30"/>
                                 <animations/>
                                 <state key="normal" title="facebook"/>
                                 <connections>
                                     <action selector="facebookButton:" destination="D4z-om-pOK" eventType="touchUpInside" id="Vu4-fh-c6h"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6f4-ZT-Qnh">
-                                <rect key="frame" x="271" y="278" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6f4-ZT-Qnh">
+                                <rect key="frame" x="285" y="428" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="g+"/>
                                 <connections>
                                     <action selector="googleButton:" destination="D4z-om-pOK" eventType="touchUpInside" id="lnL-vQ-6TO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csd-9o-gfP">
-                                <rect key="frame" x="20" y="77" width="37" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orpheeLogoRound" translatesAutoresizingMaskIntoConstraints="NO" id="qTO-lC-eCv">
+                                <rect key="frame" x="142" y="90" width="316" height="235"/>
                                 <animations/>
-                                <state key="normal" title="close"/>
-                                <connections>
-                                    <action selector="closePopup:" destination="D4z-om-pOK" eventType="touchUpInside" id="MS3-aS-Gqi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cV-EL-zx1">
-                                <rect key="frame" x="260" y="532" width="53" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="235" id="4kl-sb-nCM"/>
+                                    <constraint firstAttribute="width" constant="316" id="gDb-jH-cpu"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cV-EL-zx1">
+                                <rect key="frame" x="146" y="534" width="309" height="30"/>
                                 <animations/>
-                                <state key="normal" title="register"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="309" id="mee-KU-Glg"/>
+                                </constraints>
+                                <state key="normal" title="Vous n'avez pas de compte ? Inscrivez vous !"/>
                                 <connections>
                                     <segue destination="xxe-Kr-XuA" kind="show" id="rbf-TG-H8q"/>
                                 </connections>
@@ -344,8 +351,26 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pyq-Mf-veg" firstAttribute="top" secondItem="qTO-lC-eCv" secondAttribute="bottom" constant="16" id="ABt-zy-bm7"/>
+                            <constraint firstItem="8cV-EL-zx1" firstAttribute="centerX" secondItem="P8r-Me-bie" secondAttribute="centerX" id="Ur9-0h-wLH"/>
+                            <constraint firstItem="YqH-Qv-7CB" firstAttribute="centerX" secondItem="P8r-Me-bie" secondAttribute="centerX" id="Uy3-tn-HOs"/>
+                            <constraint firstItem="qTO-lC-eCv" firstAttribute="top" secondItem="OKE-ad-rtg" secondAttribute="bottom" constant="26" id="YJG-qm-8Xy"/>
+                            <constraint firstItem="6f4-ZT-Qnh" firstAttribute="centerX" secondItem="P8r-Me-bie" secondAttribute="centerX" id="clc-Xo-7m0"/>
+                            <constraint firstItem="qTO-lC-eCv" firstAttribute="centerX" secondItem="P8r-Me-bie" secondAttribute="centerX" id="jr6-Fi-uVE"/>
+                            <constraint firstItem="HpY-nc-2Sr" firstAttribute="top" secondItem="8cV-EL-zx1" secondAttribute="bottom" constant="36" id="oMn-HF-zGx"/>
+                            <constraint firstItem="YqH-Qv-7CB" firstAttribute="top" secondItem="pyq-Mf-veg" secondAttribute="bottom" constant="14" id="psh-Za-GTZ"/>
+                            <constraint firstItem="6f4-ZT-Qnh" firstAttribute="top" secondItem="YqH-Qv-7CB" secondAttribute="bottom" constant="13" id="qoc-8E-IW9"/>
+                            <constraint firstItem="pyq-Mf-veg" firstAttribute="centerX" secondItem="P8r-Me-bie" secondAttribute="centerX" id="vgD-jg-2ul"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="QNv-V8-iES"/>
+                    <navigationItem key="navigationItem" id="QNv-V8-iES">
+                        <barButtonItem key="leftBarButtonItem" title="Fermer" id="fr4-Er-e82">
+                            <connections>
+                                <action selector="closePopup:" destination="D4z-om-pOK" id="YnJ-D3-Jtk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CvD-bx-gfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

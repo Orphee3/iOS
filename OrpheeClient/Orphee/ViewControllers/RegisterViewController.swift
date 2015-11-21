@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class RegisterViewController: UIViewController {
     @IBOutlet var loginTextField: UITextField!
@@ -69,13 +68,15 @@ class RegisterViewController: UIViewController {
                 self.alertViewForErrors("Les identifiants et le mot de passe ne correspondent pas")
             }
             else if (response?.statusCode == 200){
-                var json = JSON(json.value!)
-                NSUserDefaults.standardUserDefaults().setObject(json["token"].string, forKey: "token")
-                NSUserDefaults.standardUserDefaults().setObject(self.loginTextField.text!, forKey: "userName")
-                NSUserDefaults.standardUserDefaults().setObject(json["user"]["_id"].string, forKey: "myId")
-                print(NSUserDefaults.standardUserDefaults().objectForKey("myId"))
-                SocketManager.sharedInstance.connectSocket()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                if let user = json.value!["user"] as! Dictionary<String, AnyObject>?{
+                    let user = User(User: user)
+                    user.token = json.value!["token"] as! String
+                    print(user.name)
+                    let data = NSKeyedArchiver.archivedDataWithRootObject(user)
+                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "myUser")
+                    SocketManager.sharedInstance.connectSocket()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
         }
     }

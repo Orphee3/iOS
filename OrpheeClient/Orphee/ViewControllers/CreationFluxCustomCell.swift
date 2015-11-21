@@ -20,7 +20,9 @@ class CreationFluxCustomCell: UITableViewCell{
     @IBOutlet var stopPlayCreation: UIButton!
     @IBOutlet var nbCommentsCreation: UILabel!
     @IBOutlet var accessProfileButton: UIButton!
-    
+    @IBOutlet var accessCommentButton: UIButton!
+    @IBOutlet var likeButton: UIButton!
+
     func putInGraphic(creation: Creation, user: User){
         
         if let nameProfileCreator = user.name{
@@ -46,12 +48,6 @@ class CreationFluxCustomCell: UITableViewCell{
     }
     
     func setLayout(){
-        self.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
-        self.layer.shadowRadius = 1
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
-        self.layer.shadowOpacity = 0.2
-        self.layoutMargins = UIEdgeInsetsZero;
-        self.preservesSuperviewLayoutMargins = false;
         self.selectionStyle = UITableViewCellSelectionStyle.None
     }
 }

@@ -177,7 +177,7 @@ class AudioGraph {
     ///
     /// - parameter note:    The note that is going to be played by the sampler.
     ///
-    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func playNote(note: UInt32) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -191,7 +191,7 @@ class AudioGraph {
     ///
     /// - parameter note:    The note that the sampler needs to stop playing.
     ///
-    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func stopNote(note: UInt32) -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -206,7 +206,7 @@ class AudioGraph {
 
     /// Sets the hardware sample rate for the *sampler* and *output* units. Default is 44100Hz.
     ///
-    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func setAudioUnitsSampleRate() -> OSStatus {
 
         var result: OSStatus = noErr;
@@ -235,7 +235,7 @@ class AudioGraph {
     ///
     /// - parameter sampler:    A reference to the node to be built.
     ///
-    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func buildSamplerNode(inout sampler: AUNode) -> OSStatus {
 
         // add the sampler node to the processing graph
@@ -251,7 +251,7 @@ class AudioGraph {
     ///
     /// - parameter out:    A reference to the node to be built.
     ///
-    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.     
+    /// - returns:  `noErr` if all goes well, another `OSStatus` error code if the underlying routine fail.
     func buildOutputNode(inout out: AUNode) -> OSStatus {
 
 
