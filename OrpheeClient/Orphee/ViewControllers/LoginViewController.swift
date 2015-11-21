@@ -50,10 +50,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
                 else if (response?.statusCode == 200){
                     print(json.value)
-                    if let id = json.value!["user"]!!["_id"] as? String{
-                        NSUserDefaults.standardUserDefaults().setObject(id, forKey: "myId")
-                        NSUserDefaults.standardUserDefaults().synchronize()
-                        // SocketManager.sharedInstance.connectSocket()
+                    if let user = json.value!["user"] as! Dictionary<String, AnyObject>?{
+                        let user = User(User: user)
+                        user.token = json.value!["token"] as! String
+                        print(user.name)
+                        let data = NSKeyedArchiver.archivedDataWithRootObject(user)
+                        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "myUser")
+                        SocketManager.sharedInstance.connectSocket()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }

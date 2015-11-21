@@ -21,17 +21,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate{
     }
     
     func friendNotification(notif: NSNotification){
-        let userInfo = notif.userInfo as [NSObject:AnyObject]!
-        let receivedRequest = userInfo["json"]
         let navController = self.childViewControllers[4] as! UINavigationController
         navController.tabBarItem.badgeValue = "1";
-        if let request: Array<AnyObject> = NSUserDefaults.standardUserDefaults().objectForKey("friendsRequests") as? Array<AnyObject>{
-            var tmp = request
-            tmp.append(receivedRequest!)
-            NSUserDefaults.standardUserDefaults().setObject(tmp, forKey: "friendsRequests")
-        }else{
-            NSUserDefaults.standardUserDefaults().setObject(receivedRequest, forKey: "friendsRequests")
-        }
-        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

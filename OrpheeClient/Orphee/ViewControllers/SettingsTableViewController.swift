@@ -15,9 +15,6 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func disconnect(sender: UIButton){
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("token")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("userName")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("myId")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("imgProfile")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("myUser")
     }
 }

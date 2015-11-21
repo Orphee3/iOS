@@ -141,7 +141,8 @@ extension HomeTableViewController{
         cell.playCreation.tag = indexPath.row
         cell.accessProfileButton.addTarget(self, action: "accessProfile:", forControlEvents: .TouchUpInside)
         cell.accessProfileButton.tag = indexPath.row
-        
+        cell.accessCommentButton.tag = indexPath.row
+        cell.accessCommentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
         return cell
     }
     
@@ -149,6 +150,13 @@ extension HomeTableViewController{
         let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
         let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
         commentView.creation = arrayCreation[indexPath.row]
+        self.navigationController?.pushViewController(commentView, animated: true)
+    }
+    
+    func commentPushed(sender: UIButton){
+        let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+        let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+        commentView.creation = arrayCreation[sender.tag]
         self.navigationController?.pushViewController(commentView, animated: true)
     }
 }

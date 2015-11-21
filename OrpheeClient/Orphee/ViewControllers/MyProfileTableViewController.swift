@@ -15,6 +15,7 @@ class MyProfileTableViewController: UITableViewController{
     var user: User!
     var arrayCreations: [Creation] = []
     var loginView: UINavigationController!
+    @IBOutlet var nbCreations: UILabel!
     @IBOutlet var imgLogin: UIImageView!
     var loginButton: UIButton!
     @IBOutlet var nameProfile: UILabel!
@@ -31,33 +32,29 @@ class MyProfileTableViewController: UITableViewController{
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        if let id = NSUserDefaults.standardUserDefaults().objectForKey("myId"){
-            getUser(id as! String)
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            self.user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+            self.nameProfile.text = self.user.name
+            if let picture = self.user.picture{
+                self.imgLogin.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
+            }else{
+                self.imgLogin.image = UIImage(named: "emptygrayprofile")
+            }
+            getCreations()
         }
         else{
             prepareViewForLogin()
         }
     }
     
-    func getUser(id: String){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(id)").responseJSON{request, response, json in
-            print(json.value)
-            if let dic = json.value as! Dictionary<String, AnyObject>?{
-                self.user = User(User: dic)
-                self.nameProfile.text = self.user.name
-                if let picture = self.user.picture{
-                    self.imgLogin.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
-                }else{
-                    self.imgLogin.image = UIImage(named: "emptygrayprofile")
+    func getCreations(){
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(self.user.id)/creation").responseJSON{request, response, json in
+            if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                for elem in array{
+                    self.arrayCreations.append(Creation(Creation: elem))
                 }
-                Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(id)/creation").responseJSON{request, response, json in
-                    if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                        for elem in array{
-                            self.arrayCreations.append(Creation(Creation: elem))
-                        }
-                        self.tableView.reloadData()
-                    }
-                }
+                self.nbCreations.text = String(self.arrayCreations.count)
+                self.tableView.reloadData()
             }
         }
     }
@@ -106,11 +103,17 @@ extension MyProfileTableViewController{
         
         cell.putInGraphic(arrayCreations[indexPath.section])
         
-       // nbCreationProfile.text = String(self.arrayCreations.count)
-        cell.commentButton.tag = indexPath.section
         cell.likeButton.tag = indexPath.section
         cell.likeButton.addTarget(self, action: "likeCreation:", forControlEvents: .TouchUpInside)
+        cell.commentButton.tag = indexPath.section
         cell.commentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
         return cell
+    }
+    
+    func commentPushed(sender: UIButton){
+        let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+        let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+        commentView.creation = arrayCreations[sender.tag]
+        self.navigationController?.pushViewController(commentView, animated: true)
     }
 }

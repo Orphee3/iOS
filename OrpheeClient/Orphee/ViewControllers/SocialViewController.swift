@@ -79,12 +79,11 @@ class SocialViewController: UITableViewController{
     }
     
     func addFriend(sender: UIButton){
-        if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
-            print("y a un token")
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             let id = arrayUser[sender.tag].id
-            let token = NSUserDefaults.standardUserDefaults().objectForKey("token")!
             let headers = [
-                "Authorization": "Bearer \(token)"
+                "Authorization": "Bearer \(user.token)"
             ]
             Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
                 request, response, json in

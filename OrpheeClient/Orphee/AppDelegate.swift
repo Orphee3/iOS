@@ -22,12 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
-            print("y a un token")
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             SocketManager.sharedInstance.connectSocket()
         }
         else{
-            print("no token")
+            print("no user")
         }
         
         let vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;

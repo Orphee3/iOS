@@ -297,6 +297,7 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
+                <outlet property="accessCommentButton" destination="miF-hh-AIy" id="hLI-2g-cpO"/>
                 <outlet property="accessProfileButton" destination="nQQ-pw-KWa" id="hdr-Tl-8rS"/>
                 <outlet property="imgCreation" destination="XKA-wT-RXF" id="iui-dT-462"/>
                 <outlet property="imgProfileCreator" destination="xVD-dp-49a" id="9to-r5-CyG"/>

@@ -11,13 +11,15 @@ import UIKit
 import SwiftyJSON
 
 class RequestFriendsTableViewController: UITableViewController{
-    var arrayRequest: [JSON] = []
+    var user = User!()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "RequestFriendCustomCell", bundle: nil), forCellReuseIdentifier: "requestFriend")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
-        getFriendsRequests()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            self.user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -27,29 +29,19 @@ class RequestFriendsTableViewController: UITableViewController{
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
-    func getFriendsRequests(){
-        if let request = NSUserDefaults.standardUserDefaults().objectForKey("friendsRequests") as? Array<AnyObject>{
-            for r in request{
-                print(r)
-                arrayRequest.append(JSON(r))
-            }
-        }
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (arrayRequest.isEmpty){
+        if (self.user.arrayFriendShipRequests.isEmpty){
             return 0
         }
         else{
-            return arrayRequest.count
+            return self.user.arrayFriendShipRequests.count
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: RequestFriendCustomCell! = tableView.dequeueReusableCellWithIdentifier("requestFriend") as? RequestFriendCustomCell
-            print(arrayRequest[indexPath.row]["userSource"])
-            cell.profilName.text = arrayRequest[indexPath.row]["userSource"]["name"].string!
-            cell.id = arrayRequest[indexPath.row]["userSource"]["_id"].string!
+            cell.profilName.text = self.user.arrayFriendShipRequests[indexPath.row].name
+            cell.id = self.user.arrayFriendShipRequests[indexPath.row].id
         return cell
     }
 }

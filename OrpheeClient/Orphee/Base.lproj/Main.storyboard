@@ -232,7 +232,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyprofile" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-X8-n2m">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="emptyprofile" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-X8-n2m">
                                 <rect key="frame" x="20" y="72" width="200" height="200"/>
                                 <animations/>
                                 <gestureRecognizers/>
@@ -241,7 +241,7 @@
                                     <constraint firstAttribute="height" constant="200" id="i4B-1D-yQn"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13H-2M-QUe">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13H-2M-QUe">
                                 <rect key="frame" x="0.0" y="64" width="600" height="2"/>
                                 <animations/>
                             </progressView>
@@ -290,7 +290,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vlf-Bk-Xfk">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vlf-Bk-Xfk" id="2ug-eK-dQb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -306,7 +306,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Mes amis" id="2wt-hq-WVy">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Msy-TR-mNn">
+                        <barButtonItem key="rightBarButtonItem" title="Demandes d'amitié" id="Msy-TR-mNn">
                             <connections>
                                 <segue destination="8CR-LB-Rz0" kind="show" id="6AZ-0N-AKL"/>
                             </connections>
@@ -328,7 +328,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bCC-Jx-w8J">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bCC-Jx-w8J" id="Ls7-yh-I7L">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -376,7 +376,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="49c-vh-VRr">
-                            <rect key="frame" x="0.0" y="72" width="600" height="92"/>
+                            <rect key="frame" x="0.0" y="136" width="600" height="92"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-OL-O7V">
@@ -403,7 +403,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jro-pq-oUe">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jro-pq-oUe" id="pKF-ed-a1O">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -636,13 +636,36 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udd-4o-JmL">
-                                            <rect key="frame" x="374" y="81" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udd-4o-JmL">
+                                            <rect key="frame" x="374" y="81" width="64" height="21"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="64" id="LG5-tZ-iyx"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjK-se-IQI">
+                                            <rect key="frame" x="380" y="8" width="58" height="30"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="58" id="7e1-bu-vWa"/>
+                                                <constraint firstAttribute="height" constant="30" id="r4B-Qq-Wj0"/>
+                                            </constraints>
+                                            <state key="normal" title="Amis"/>
+                                            <connections>
+                                                <segue destination="TqV-Iu-pIa" kind="show" id="LH6-V8-QTv"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lyrecreation" translatesAutoresizingMaskIntoConstraints="NO" id="Wab-tv-Yfu">
+                                            <rect key="frame" x="331" y="74" width="35" height="35"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="Met-Ia-Csl"/>
+                                                <constraint firstAttribute="height" constant="35" id="Qvc-V4-yg1"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -652,10 +675,14 @@
                                         <constraint firstItem="Udd-4o-JmL" firstAttribute="top" secondItem="Nm0-oU-uhz" secondAttribute="bottom" constant="22" id="ajW-CY-9Gs"/>
                                         <constraint firstItem="Nm0-oU-uhz" firstAttribute="leading" secondItem="mg4-CM-5BZ" secondAttribute="leading" constant="8" id="bpP-bU-D5q"/>
                                         <constraint firstAttribute="width" constant="446" id="cu8-bH-I1m"/>
-                                        <constraint firstAttribute="trailing" secondItem="Udd-4o-JmL" secondAttribute="trailing" constant="30" id="ep0-MQ-h7I"/>
+                                        <constraint firstAttribute="trailing" secondItem="Udd-4o-JmL" secondAttribute="trailing" constant="8" id="ep0-MQ-h7I"/>
                                         <constraint firstItem="Nm0-oU-uhz" firstAttribute="top" secondItem="mg4-CM-5BZ" secondAttribute="top" constant="23" id="mG9-EG-ene"/>
+                                        <constraint firstAttribute="trailing" secondItem="hjK-se-IQI" secondAttribute="trailing" constant="8" id="mKx-9h-GO8"/>
+                                        <constraint firstItem="hjK-se-IQI" firstAttribute="top" secondItem="mg4-CM-5BZ" secondAttribute="top" constant="8" id="nOx-tk-x9R"/>
                                         <constraint firstItem="SoW-i8-HDO" firstAttribute="leading" secondItem="mg4-CM-5BZ" secondAttribute="leading" constant="30" id="ttc-DN-Jd4"/>
+                                        <constraint firstItem="Wab-tv-Yfu" firstAttribute="top" secondItem="Nm0-oU-uhz" secondAttribute="bottom" constant="15" id="u1e-zJ-8yu"/>
                                         <constraint firstItem="SoW-i8-HDO" firstAttribute="top" secondItem="Nm0-oU-uhz" secondAttribute="bottom" constant="22" id="xOv-Uc-0MD"/>
+                                        <constraint firstItem="Udd-4o-JmL" firstAttribute="leading" secondItem="Wab-tv-Yfu" secondAttribute="trailing" constant="8" id="y4T-iK-HuY"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -684,10 +711,17 @@
                             <outlet property="delegate" destination="6KT-Pa-efQ" id="H1W-GC-jMM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2Cb-l2-Fjl"/>
+                    <navigationItem key="navigationItem" id="2Cb-l2-Fjl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="vm3-tZ-cry">
+                            <connections>
+                                <segue destination="hae-Nm-TSU" kind="show" id="6Lc-sa-KDi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imgLogin" destination="LDI-du-07Q" id="iUX-ey-DrY"/>
                         <outlet property="nameProfile" destination="Nm0-oU-uhz" id="IQq-rg-ax2"/>
+                        <outlet property="nbCreations" destination="Udd-4o-JmL" id="uZm-Rk-79c"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFT-e3-eEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -698,5 +732,6 @@
     <resources>
         <image name="emptygrayprofile" width="200" height="200"/>
         <image name="emptyprofile" width="200" height="200"/>
+        <image name="lyrecreation" width="50" height="50"/>
     </resources>
 </document>
