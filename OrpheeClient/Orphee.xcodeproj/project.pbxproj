@@ -188,8 +188,8 @@
 		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
-		9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewController.swift; sourceTree = "<group>"; };
+		9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = Orphee/ViewControllers/EditProfileViewController.swift; sourceTree = "<group>"; };
+		9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyProfileTableViewController.swift; path = Orphee/ViewControllers/MyProfileTableViewController.swift; sourceTree = "<group>"; };
 		9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFriendsTableViewController.swift; sourceTree = "<group>"; };
 		9BD186E21B861A9A004A892D /* FileManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = FileManagement.framework; path = "/Users/jerominlebon/Library/Developer/Xcode/DerivedData/Orphee-gjamdxkdlsxqkodeyjsaqdvhszem/Build/Products/Debug-iphoneos/FileManagement.framework"; sourceTree = "<absolute>"; };
 		9BD186E61B8627C0004A892D /* CropImageToSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageToSquare.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 				9B5CDACD1B93B94300B5452A /* MyFriendCustomCell */,
 				9BC9DCAE1B7C021A00DC8138 /* Login and Register */,
 				9B1189851BD41631006FFB2C /* MyProfile */,
-				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
+				9B85A6EF1BD58DCD00C31287 /* Social */,
 				9BD186F21B87501D004A892D /* FriendsViewController.swift */,
 				9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */,
 			);
@@ -372,6 +372,8 @@
 		9B1189851BD41631006FFB2C /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */,
+				9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */,
 				9B1189861BD41647006FFB2C /* MyProfile.storyboard */,
 			);
 			name = MyProfile;
@@ -382,9 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				9B327FFB1B9C796100AAD347 /* CreationProfileCustomCell */,
-				9BC9DCAF1B7C025300DC8138 /* ProfileCustomCell */,
-				9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */,
-				9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */,
 				9B327FF91B9C778E00AAD347 /* profile.storyboard */,
 				9B327FFE1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift */,
 			);
@@ -482,6 +481,15 @@
 				9B1189881BD45996006FFB2C /* Comment.swift */,
 			);
 			name = DataModels;
+			sourceTree = "<group>";
+		};
+		9B85A6EF1BD58DCD00C31287 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				9BC9DCAF1B7C025300DC8138 /* ProfileCustomCell */,
+				9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */,
+			);
+			name = Social;
 			sourceTree = "<group>";
 		};
 		9BC9DCAE1B7C021A00DC8138 /* Login and Register */ = {

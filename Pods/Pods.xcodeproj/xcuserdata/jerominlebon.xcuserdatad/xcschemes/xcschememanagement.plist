@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HanekeSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,22 +57,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03E7D46E8C998B331C24B567F8502A7A</key>
+		<key>1A69BE4D82F7ECAADEF22DD63ABEA168</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>06CB6C5CF9C04964630CA0558E396943</key>
+		<key>2A1D7F94C40DA7EC3710AF4848FA467D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26E8E697F17D79904701B6E5AA23BD8C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5D9C17CCC4E846ECBA8F9F5F25218611</key>
+		<key>876029EBDC83A761D7E8CD4FCF2A512F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B9D6D79A3EBD7F8C27017E8844E21DB5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DBEAAD3AC4D621DD6FC83D18B539444D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DC80A6EAF9B8DD58C8029BDEDCF135A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3CE47FF146E22CFEE8F9FED22ABB648</key>
+		<key>F84126D30FC0FC42C372A56B9B71F22E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

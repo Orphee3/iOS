@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6AE4F6AB41687C6A38D6AC2"
+               BlueprintIdentifier = "84503C546646B46DF637411E"
                BuildableName = "Pods_Orphee.framework"
                BlueprintName = "Pods-Orphee"
                ReferencedContainer = "container:Pods.xcodeproj">

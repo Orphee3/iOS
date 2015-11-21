@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (2.0.0)
+  - HanekeSwift (0.10.0)
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -13,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
+  - HanekeSwift
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`,
     branch `develop`)
   - PagedArray (from `https://github.com/MrAlek/PagedArray.git`, branch `xcode-7`)
@@ -52,6 +54,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
+  HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   PagedArray: face4e8e871f954e77169f2b338820b7a55c85ec

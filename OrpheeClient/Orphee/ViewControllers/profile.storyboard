@@ -59,20 +59,34 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKr-og-tmj">
-                                            <rect key="frame" x="374" y="81" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKr-og-tmj">
+                                            <rect key="frame" x="398" y="81" width="40" height="21"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="akk-qb-TVM"/>
+                                                <constraint firstAttribute="width" constant="40" id="fOh-o3-TiN"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lyrecreation" translatesAutoresizingMaskIntoConstraints="NO" id="b7j-yP-FlN">
+                                            <rect key="frame" x="355" y="74" width="35" height="35"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="Sm1-kW-uGI"/>
+                                                <constraint firstAttribute="width" constant="35" id="YNg-rl-0sD"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="9nE-hX-Cm1" firstAttribute="top" secondItem="HE4-lB-SfQ" secondAttribute="top" constant="23" id="2NJ-OS-1qI"/>
-                                        <constraint firstAttribute="trailing" secondItem="iKr-og-tmj" secondAttribute="trailing" constant="30" id="2UK-xZ-mjb"/>
+                                        <constraint firstAttribute="trailing" secondItem="iKr-og-tmj" secondAttribute="trailing" constant="8" id="2UK-xZ-mjb"/>
                                         <constraint firstItem="DrZ-Kj-MOS" firstAttribute="top" secondItem="9nE-hX-Cm1" secondAttribute="bottom" constant="22" id="4Sm-HB-o9e"/>
+                                        <constraint firstItem="b7j-yP-FlN" firstAttribute="top" secondItem="9nE-hX-Cm1" secondAttribute="bottom" constant="15" id="5rc-ua-vI6"/>
+                                        <constraint firstItem="iKr-og-tmj" firstAttribute="leading" secondItem="b7j-yP-FlN" secondAttribute="trailing" constant="8" id="7hT-SK-nq4"/>
                                         <constraint firstItem="DrZ-Kj-MOS" firstAttribute="leading" secondItem="HE4-lB-SfQ" secondAttribute="leading" constant="30" id="Gwx-Ab-N5i"/>
                                         <constraint firstItem="iKr-og-tmj" firstAttribute="top" secondItem="9nE-hX-Cm1" secondAttribute="bottom" constant="22" id="jkF-ZI-nbV"/>
                                         <constraint firstItem="iKr-og-tmj" firstAttribute="centerX" secondItem="HE4-lB-SfQ" secondAttribute="centerX" id="kMb-x4-3DN"/>
@@ -121,5 +135,6 @@
     </scenes>
     <resources>
         <image name="emptygrayprofile" width="200" height="200"/>
+        <image name="lyrecreation" width="50" height="50"/>
     </resources>
 </document>

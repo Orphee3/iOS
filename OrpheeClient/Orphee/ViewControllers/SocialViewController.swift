@@ -11,10 +11,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SocialViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating{
-    var userDic: [JSON] = []
+class SocialViewController: UITableViewController{
+    var arrayUser: [User] = []
     var offset = 0
-    var size = 3
+    var size = 6
     var spinner: UIActivityIndicatorView!
     var searchDisplay: UISearchController!
     var searchBar: UISearchBar!
@@ -39,18 +39,8 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
     }
     
-    func prepareSearchingDisplay(){
-        searchDisplay = UISearchController(searchResultsController: nil)
-        searchDisplay.searchResultsUpdater = self
-        searchDisplay.dimsBackgroundDuringPresentation = false
-        searchDisplay.hidesNavigationBarDuringPresentation = false;
-        searchDisplay.searchBar.sizeToFit()
-        self.navigationItem.titleView = self.searchDisplay.searchBar;
-        definesPresentationContext = true
-    }
-    
     func refresh(sender:AnyObject){
-        self.userDic = []
+        self.arrayUser = []
         getUsers(0, size: size)
         self.refreshControl!.endRefreshing()
     }
@@ -64,13 +54,16 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
     
     func getUsers(offset: Int, size: Int){
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-            if let newJson = JSON(json.value!).array{
-                self.userDic += newJson
-            }
-            self.offset += self.size
-            dispatch_async(dispatch_get_main_queue()) {
-                self.spinner.stopAnimating()
-                self.tableView.reloadData()
+            print(json.value)
+            if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                for elem in array{
+                    self.arrayUser.append(User(User: elem))
+                }
+                self.offset += self.size
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.spinner.stopAnimating()
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -84,41 +77,10 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
         self.tableView.estimatedRowHeight = 44.0
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (!userDic.isEmpty){
-            return userDic.count
-        }
-        else{
-            return 0
-        }
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("CELLULE")
-        let cell: FluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("FluxCell") as? FluxCustomCell
-        cell.nameProfile.text = userDic[indexPath.row]["username"].string
-        cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
-        cell.addFriendButton.tag = indexPath.row
-        if let picture = userDic[indexPath.row]["picture"].string {
-            cell.imgProfile.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
-        }
-        
-        //layout
-        cell.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
-        cell.layer.shadowRadius = 1
-        cell.layer.shadowPath = UIBezierPath(rect: cell.bounds).CGPath
-        cell.layer.shadowOpacity = 0.2
-        cell.layoutMargins = UIEdgeInsetsZero;
-        cell.preservesSuperviewLayoutMargins = false;
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        return cell
-    }
-    
     func addFriend(sender: UIButton){
         if var _ = NSUserDefaults.standardUserDefaults().objectForKey("token"){
             print("y a un token")
-            let id = userDic[sender.tag]["_id"].string!
+            let id = arrayUser[sender.tag].id
             let token = NSUserDefaults.standardUserDefaults().objectForKey("token")!
             let headers = [
                 "Authorization": "Bearer \(token)"
@@ -127,8 +89,7 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
                 request, response, json in
                 if (response?.statusCode == 200){
                     print("FRIEND ASKED : \(json)")
-                    let nameOfFriend = self.userDic[sender.tag]["username"].string!
-                    self.alertViewForMsg("\(nameOfFriend) va recevoir votre demande d'amitié.")
+                    self.alertViewForMsg("\(self.arrayUser[sender.tag].name) va recevoir votre demande d'amitié.")
                 }
                 else if (response?.statusCode == 500){
                     self.alertViewForMsg("Une erreur est survenue lors de votre demande.")
@@ -146,16 +107,48 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
         alertView.alertViewStyle = .Default
         alertView.show()
     }
-    
+}
+
+extension SocialViewController{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
-        let loginView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
-       // loginView.idUser = userDic[indexPath.row]["_id"].string!
-        self.navigationController?.pushViewController(loginView, animated: true)
+        let profileView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
+        profileView.user = arrayUser[indexPath.row]
+        self.navigationController?.pushViewController(profileView, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (!arrayUser.isEmpty){
+            return arrayUser.count
+        }
+        else{
+            return 0
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: FluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("FluxCell") as? FluxCustomCell
+        cell.putInGraphic(arrayUser[indexPath.row])
+        cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
+        cell.addFriendButton.tag = indexPath.row
+        return cell
+    }
+}
+
+extension SocialViewController: UISearchControllerDelegate, UISearchResultsUpdating{
+    func prepareSearchingDisplay(){
+        searchDisplay = UISearchController(searchResultsController: nil)
+        searchDisplay.searchResultsUpdater = self
+        searchDisplay.dimsBackgroundDuringPresentation = false
+        searchDisplay.hidesNavigationBarDuringPresentation = false;
+        searchDisplay.searchBar.sizeToFit()
+        self.navigationItem.titleView = self.searchDisplay.searchBar;
+        definesPresentationContext = true
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if !searchController.active {
+            getUsers(0, size: self.size)
             return
         }
         
@@ -165,10 +158,14 @@ class SocialViewController: UITableViewController, UISearchControllerDelegate, U
             print("search")
             print("http://163.5.84.242:3000/api/user/\(text!)/name")
             Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(text!)/name").responseJSON{request, response, json in
-                print(json.value)
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.userDic = JSON(json.value!).array!
-                    self.tableView.reloadData()
+                    if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                        for elem in array{
+                            self.arrayUser.append(User(User: elem))
+                            print("search found")
+                        }
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }else if (text?.characters.count == 0){

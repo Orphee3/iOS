@@ -12,6 +12,7 @@ class User {
     var name: String!
     var picture: String!
     var id: String!
+    var nbCreations: Int!
     
     init(User: Dictionary<String, AnyObject>){
         if let name = User["name"] as? String{
@@ -22,6 +23,9 @@ class User {
         }
         if let id = User["_id"] as? String{
             self.id = id
+        }
+        if let nbCreations = User["creations"] as? Array<String>{
+            self.nbCreations = nbCreations.count
         }
     }
 }
