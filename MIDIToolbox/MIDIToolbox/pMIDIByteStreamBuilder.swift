@@ -78,9 +78,10 @@ public protocol pMIDIByteStreamBuilder {
 
     ///    Builds and adds a track to the MIDI file.
     ///
-    ///    - parameter  notes    The note events in the form of an array of arrays of MIDINoteMessages.
+    ///    - parameter  notes:    The note events in the form of an array of arrays of MIDINoteMessages.
     ///                     Each array contains all the data for every note event sent at deltaTime = array index.
-    func addTrack(notes: [[MIDINoteMessage]]);
+    ///    - parameter  prog:     The MIDI program (instrument) associated with this track.
+    func addTrack(notes: [[MIDINoteMessage]], prog: MIDIChannelMessage);
 
     ///    Provides the formatted content as NSData.
     ///

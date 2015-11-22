@@ -56,7 +56,7 @@ public protocol pFormattedFileManager: class {
     ///    - parameter	name:	The name of the file. If nil, the internal `name` is used instead.
     ///
     ///    - returns:	The data contained in the file, organized as key-value pairs.
-    func readFile() -> [String : AnyObject]?;
+    func readFile() -> [String : Any]?;
 
     ///    Deletes the managed file.
     func deleteFile();

@@ -53,8 +53,9 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
     ///  Adds the given track to the buffer
     ///
-    ///  - parameter notes: The MIDI events composing a track.
-    public func addTrack(notes: [[MIDINoteMessage]]) {
+    ///  - parameter notes: The MIDI note events composing a track.
+    ///  - parameter prog:  The MIDI program (instrument) associated with this track.
+    public func addTrack(notes: [[MIDINoteMessage]], var prog: MIDIChannelMessage) {
 
         var trk: MusicTrack = MusicTrack();
         var ct: UInt32 = 0;
@@ -62,6 +63,8 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
         MusicSequenceNewTrack(buffer, &trk);
         MusicSequenceGetTrackCount(buffer, &ct);
 
+        MusicTrackNewMIDIChannelEvent(trk, 0, &prog);
+        
         var endNote = MIDINoteMessage(channel: UInt8(trkCnt), note: 0, velocity: 0, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
         var tmStmp: Float64 = 0;
         for (idx, dtNotes) in notes.enumerate() {

@@ -27,7 +27,10 @@ class FileManagementTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        testContent = [kOrpheeFileContent_tracks: [0: [[n1, n2, n1, n2], [], [n1, n2], [], [n1, n2], []]]];
+        testContent = [
+            kOrpheeFileContent_tracks: [0: [[n1, n2, n1, n2], [], [n1, n2], [], [n1, n2], []]],
+            kOrpheeFileContent_trackInfo: [0 : ["PATCH" : 12 as Any]]
+        ];
         
         try! NSFileManager.defaultManager().createDirectoryAtPath(MIDIFileManager.store, withIntermediateDirectories: true, attributes: nil);
         fm = MIDIFileManager(name: "test");

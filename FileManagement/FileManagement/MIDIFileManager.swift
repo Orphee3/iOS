@@ -22,6 +22,12 @@ public let kOrpheeFile_store: String = NSHomeDirectory() + "/Documents";
 /// - todo: Make an enum with all accepted values.
 public let kOrpheeFileContent_tracks: String = "TRACKS";
 
+/// The key coding for the track's information dictionary contained in the "content" dictionnary
+/// used by `MidiFileManager`'s `writeToFile` and `readFile` methodes.
+///
+/// - todo: Make an enum with all accepted values.
+public let kOrpheeFileContent_trackInfo: String = "TRACKINFO";
+
 /// Class MIDIFileManager implements pFormattedFileManager
 ///
 /// A file manager dedicated to MIDI files.
@@ -83,16 +89,20 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  - returns: `true` on success, `false otherwise.
     public func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool {
         guard let input		= content,
-              let tracks	= input[kOrpheeFileContent_tracks],
-              let trackList	= tracks as? [Int : [[MIDINoteMessage]]]
+              let trackInfo = input[kOrpheeFileContent_trackInfo] as? [Int : [String : Any]],
+              let trackList	= input[kOrpheeFileContent_tracks] as? [Int : [[MIDINoteMessage]]]
               else {
                 return false;
         }
         let dataCreator = dataBuilderType.init(trkNbr: UInt16(trackList.count), ppqn: 384);
         dataCreator.buildMIDIBuffer();
 
-        for (_, track) in trackList {
-            dataCreator.addTrack(track);
+        for (idx, track) in trackList {
+            var chanMsg = MIDIChannelMessage(status: eMidiEventType.programChange.rawValue | UInt8(idx), data1: 0, data2: 0, reserved: 0);
+            if let patchID = trackInfo[idx]?["PATCH"] as? UInt8 {
+                chanMsg.data1 = patchID;
+            }
+            dataCreator.addTrack(track, prog: chanMsg)
         }
         return writer.write(dataCreator.toData())
     }
@@ -100,9 +110,15 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  Reads the managed MIDI file and produces a formatted dictionnary describing the content.
     ///
     ///  - returns: The formatted dictionnary describing the file's content.
-    public func readFile() -> [String : AnyObject]? {
+    public func readFile() -> [String : Any]? {
         let parser = MIDIDataParser(data: reader.readAllData());
-        return [kOrpheeFileContent_tracks : parser.parseTracks()];
+        var content = [kOrpheeFileContent_tracks : parser.parseTracks() as Any];
+        var trackInfo = [Int : Any]()
+        for track in parser.tracks {
+            trackInfo[Int(track.trackNbr) ] = ["PATCH" : track.instrumentID]
+        }
+        content[kOrpheeFileContent_trackInfo] = trackInfo;
+        return content;
     }
 
     ///  Deletes the managed MIDI file.

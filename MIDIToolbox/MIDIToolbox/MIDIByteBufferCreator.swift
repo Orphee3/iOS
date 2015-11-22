@@ -101,7 +101,7 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
         ///  - parameter instrument: The instrument this track represents.
         ///
         ///  - returns: An initialized instance of sTrack.
-        init(ppqn: UInt16, channel: UInt8, startTime: UInt32, instrument: Int) {
+        init(ppqn: UInt16, channel: UInt8, startTime: UInt32, instrument: UInt8) {
 
             self.ppqn    = UInt32(ppqn)
             header       = ByteBuffer(order: LittleEndian(), capacity: kMIDITrack_headerLength);
@@ -136,11 +136,11 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
         ///  - parameter channel:    The channel to which the track's events belong.
         ///  - parameter startTime:  The offset at which the track begins.
         ///  - parameter instrument: The instrument this track represents.
-        mutating func mkChannelPrg(channel: UInt8, startTime: UInt32, instrument: Int) {
+        mutating func mkChannelPrg(channel: UInt8, startTime: UInt32, instrument: UInt8) {
 
             mkDeltaTime(channelPrg, deltaTime: startTime);
             channelPrg.putUInt8(eMidiEventType.programChange.rawValue + channel);
-            channelPrg.putUInt8(UInt8(instrument));
+            channelPrg.putUInt8(instrument);
             trackLength += kMIDIEventMaxSize_programChange;
         }
 
@@ -288,9 +288,10 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
     ///  Builds track from the given event array.
     ///
     ///  - parameter notes: The notes to add to the track.
-    public func addTrack(notes: [[MIDINoteMessage]]) {
+    ///  - parameter prog:  The MIDI program (instrument) associated with this track.
+    public func addTrack(notes: [[MIDINoteMessage]], prog: MIDIChannelMessage) {
 
-        var track = sTrack(ppqn: _timeResolution, channel: 0, startTime: 0, instrument: 0x2e);
+        var track = sTrack(ppqn: _timeResolution, channel: 0, startTime: 0, instrument: prog.data1);
 
         if (notes.count > 0) {
             track.buildTrack(notes);

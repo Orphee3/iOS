@@ -29,7 +29,7 @@ public class MIDIDataParser {
         /// Byte stream buffer containing the track's data.
         var dataBuffer: ByteBuffer;
         /// The number of the track.
-        var trackNbr: UInt16;
+        public var trackNbr: UInt16;
         /// The length of the track, in Bytes.
         var trackLength: UInt32 = 0;
 
@@ -40,9 +40,9 @@ public class MIDIDataParser {
         /// - remark: This defines what is considered a quarter-note. Defaults to 8.
         var nbrOf32ndNotePerBeat: UInt32 = 0;
         /// Channel to which the track's events belong.
-        var channel: UInt32              = 0;
+        public var channel: UInt32              = 0;
         /// The instrument this track represents.
-        var instrumentID: Int            = 0;
+        public var instrumentID: Int            = 0;
         /// BPM or quarter-note per minute.
         var quarterNotePerMinute: UInt32 = 0;
         /// Time signature: numerator/denominator. Default 4/4.
@@ -211,7 +211,7 @@ public class MIDIDataParser {
     /// Byte stream buffer containing the MIDI file's data.
     var dataBuffer: ByteBuffer;
     /// An array containing all parsed tracks.
-    var tracks: [sTrack] = [];
+    public var tracks: [sTrack] = [];
 
     /// File header mark.
     var headerMark: String              = "";

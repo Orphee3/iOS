@@ -188,7 +188,7 @@ class ViewController: UIViewController {
 
     func importFile(file: String) {
         self.blockArrays.resetBlocks();
-        let data: [String : AnyObject] = MIDIFileManager(name: file).readFile()!;
+        let data: [String : Any] = MIDIFileManager(name: file).readFile()!;
         for (key, value) in data {
             if let tracks = value as? [Int : [[Int]]]
                 where key == kOrpheeFileContent_tracks {
