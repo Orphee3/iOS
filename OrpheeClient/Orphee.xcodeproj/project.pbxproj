@@ -8,12 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1B68741BD882360020DF40 /* Composition.storyboard */; };
-		1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
-		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; settings = {ASSET_TAGS = (); }; };
+		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
+		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
+		1ED8F4031C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
+		1ED8F4051C0158CB00FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
+		1ED8F4061C0158D100FA1852 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
+		1ED8F4071C0158D100FA1852 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
+		1ED8F4091C0158D300FA1852 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
+		1ED8F40A1C0158D600FA1852 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */; };
+		1ED8F40B1C0158D700FA1852 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */; };
+		1ED8F40C1C0158D700FA1852 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */; };
+		1ED8F40D1C0158DA00FA1852 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */; };
+		1ED8F40E1C0158DB00FA1852 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */; };
+		1ED8F40F1C0158DB00FA1852 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */; };
+		1ED8F4101C0158DE00FA1852 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */; };
+		1ED8F4111C0158DE00FA1852 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */; };
+		1ED8F4131C0158E000FA1852 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */; };
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
-		526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */; };
-		526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */; };
 		526FF6051A81106E00CF6A9C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6041A81106E00CF6A9C /* Sounds */; };
 		52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */; };
 		52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9C1A79E5C400B3DE23 /* ViewController.swift */; };
@@ -49,7 +61,6 @@
 		9B46C18D1BD847220099D18C /* FriendShipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46C18C1BD847220099D18C /* FriendShipRequest.swift */; };
 		9B4C589C1BAA31D80068AA9E /* commentCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B4C589B1BAA31D80068AA9E /* commentCellView.xib */; };
 		9B4C589E1BAA32450068AA9E /* commentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C589D1BAA32450068AA9E /* commentCellView.swift */; };
-		9B4C58A01BAADBF20068AA9E /* 32MbGMStereo.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 9B4C589F1BAAD4F10068AA9E /* 32MbGMStereo.sf2 */; };
 		9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5CDACE1B93B95900B5452A /* MyFriendCustomCell.xib */; };
 		9B5CDAD11B93BAA200B5452A /* MyFriendCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CDAD01B93BAA200B5452A /* MyFriendCustomCell.swift */; };
 		9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5CDAD31B943EBF00B5452A /* RequestFriendCustomCell.xib */; };
@@ -87,7 +98,6 @@
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
-		DB5B24A01BD893A1008D48D2 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
 		DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
@@ -163,12 +173,13 @@
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
 		1E1B68741BD882360020DF40 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Composition.storyboard; sourceTree = "<group>"; };
-		1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
+		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
+		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Trombone.aupreset; path = "Ressources/Test resources/Trombone.aupreset"; sourceTree = "<group>"; };
+		1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = "Ressources/Test resources/Vibraphone.aupreset"; sourceTree = "<group>"; };
+		1EA5BA871BFD483500ABAF25 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = "Ressources/Test resources/Sounds"; sourceTree = "<group>"; };
 		1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsListVC.swift; sourceTree = "<group>"; };
 		1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSequencer.swift; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
-		526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Trombone.aupreset; path = Ressources/Trombone.aupreset; sourceTree = "<group>"; };
-		526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = Ressources/Vibraphone.aupreset; sourceTree = "<group>"; };
 		526FF6041A81106E00CF6A9C /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = Ressources/Sounds; sourceTree = "<group>"; };
 		52C61D951A79E5C400B3DE23 /* Orphee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orphee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -214,7 +225,6 @@
 		9B46C18C1BD847220099D18C /* FriendShipRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendShipRequest.swift; sourceTree = "<group>"; };
 		9B4C589B1BAA31D80068AA9E /* commentCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commentCellView.xib; sourceTree = "<group>"; };
 		9B4C589D1BAA32450068AA9E /* commentCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentCellView.swift; sourceTree = "<group>"; };
-		9B4C589F1BAAD4F10068AA9E /* 32MbGMStereo.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 32MbGMStereo.sf2; sourceTree = "<group>"; };
 		9B5CDACE1B93B95900B5452A /* MyFriendCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFriendCustomCell.xib; sourceTree = "<group>"; };
 		9B5CDAD01B93BAA200B5452A /* MyFriendCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFriendCustomCell.swift; sourceTree = "<group>"; };
 		9B5CDAD31B943EBF00B5452A /* RequestFriendCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestFriendCustomCell.xib; sourceTree = "<group>"; };
@@ -312,8 +322,11 @@
 		1E8DA7011BD83E98003C07B8 /* Test resources */ = {
 			isa = PBXGroup;
 			children = (
+				1EA5BA871BFD483500ABAF25 /* Sounds */,
 				DB5B249F1BD893A1008D48D2 /* xtreme.mid */,
-				1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */,
+				1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */,
+				1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */,
+				1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */,
 			);
 			name = "Test resources";
 			sourceTree = "<group>";
@@ -336,11 +349,8 @@
 			isa = PBXGroup;
 			children = (
 				1E8DA7011BD83E98003C07B8 /* Test resources */,
-				9B4C589F1BAAD4F10068AA9E /* 32MbGMStereo.sf2 */,
 				88F21A363E92E4DAFEE687AF /* SoundBanks */,
 				526FF6041A81106E00CF6A9C /* Sounds */,
-				526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */,
-				526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */,
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
 			);
 			name = Ressources;
@@ -870,8 +880,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB5B24A01BD893A1008D48D2 /* xtreme.mid in Resources */,
-				9B4C58A01BAADBF20068AA9E /* 32MbGMStereo.sf2 in Resources */,
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
 				9B0D5F741BFDDA40001A9DF6 /* RoomCell.xib in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
@@ -882,15 +890,12 @@
 				9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */,
-				526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */,
 				9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */,
 				9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */,
 				9B4C589C1BAA31D80068AA9E /* commentCellView.xib in Resources */,
 				9B0D5F6D1BFBB1E7001A9DF6 /* FriendCustomCell.xib in Resources */,
-				526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */,
 				9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
-				1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */,
 				1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */,
 				9B327FFD1B9C797900AAD347 /* CreationProfileCustomCell.xib in Resources */,
 			);
@@ -900,6 +905,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED8F40A1C0158D600FA1852 /* Dont_Cry.mid in Resources */,
+				1ED8F4101C0158DE00FA1852 /* Vibraphone.aupreset in Resources */,
+				1ED8F4021C0158C900FA1852 /* Sounds in Resources */,
+				1ED8F40D1C0158DA00FA1852 /* Trombone.aupreset in Resources */,
+				1ED8F4061C0158D100FA1852 /* xtreme.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +934,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED8F40B1C0158D700FA1852 /* Dont_Cry.mid in Resources */,
+				1ED8F4111C0158DE00FA1852 /* Vibraphone.aupreset in Resources */,
+				1ED8F4031C0158C900FA1852 /* Sounds in Resources */,
+				1ED8F40E1C0158DB00FA1852 /* Trombone.aupreset in Resources */,
+				1ED8F4071C0158D100FA1852 /* xtreme.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +946,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED8F40C1C0158D700FA1852 /* Dont_Cry.mid in Resources */,
+				1ED8F4131C0158E000FA1852 /* Vibraphone.aupreset in Resources */,
+				1ED8F4051C0158CB00FA1852 /* Sounds in Resources */,
+				1ED8F40F1C0158DB00FA1852 /* Trombone.aupreset in Resources */,
+				1ED8F4091C0158D300FA1852 /* xtreme.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

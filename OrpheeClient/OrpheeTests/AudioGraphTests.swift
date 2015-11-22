@@ -85,7 +85,7 @@ class AudioGraphTests: XCTestCase {
 
     var graph: AudioGraph! = nil;
     var session: AudioSession! = nil;
-    var path: String? = NSBundle.mainBundle().pathForResource("Trombone", ofType: "aupreset");
+    var path: String? = NSBundle(forClass: AudioGraphTests.self).pathForResource("Trombone", ofType: "aupreset");
 
     override func setUp() {
 
@@ -172,9 +172,16 @@ class AudioGraphTests: XCTestCase {
         //        CAShow(&graph.graph);
 
         let resData = pstMgr.getDataFromRessourceWithPath(path!);
-        XCTAssertNil(resData.error, "Couldn't load raw data from file:\n\(resData.error)\n");
+        if let _ = resData.error {
+            XCTFail("Couldn't load raw data from file:\n\(resData.error)\n");
+        }
         var resPlist = pstMgr.getPListFromRawData(resData.data!);
-        XCTAssertNil(resPlist.error, "Couldn't load PList from raw data:\n\(resPlist.error)\n");
+        if let _ = resPlist.error {
+            XCTFail("Couldn't load PList from raw data:\n\(resPlist.error)\n");
+        }
+        else {
+            print(resPlist.plist);
+        }
         XCTAssert(graph.loadPresetFromPList(&resPlist.plist!) == noErr, "Preset LOADING failed for file:\n\(path)\n");
     }
 
@@ -211,7 +218,7 @@ class AudioGraphTests: XCTestCase {
 
         self.measureBlock() {
 
-            let url1: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Vibraphone", ofType: "aupreset")!);
+            let url1: NSURL = NSURL(fileURLWithPath: NSBundle(forClass: AudioGraphTests.self).pathForResource("Vibraphone", ofType: "aupreset")!);
 
             XCTAssert(pstMgr.loadPresetFromURL(url1, graphMgr: self.graph));
         };

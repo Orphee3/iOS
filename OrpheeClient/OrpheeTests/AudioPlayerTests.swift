@@ -20,7 +20,7 @@ class AudioPlayerTests: XCTestCase {
     var graph: AudioGraph!;
     var session: AudioSession!;
 
-    let data: NSData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("Dont_Cry", ofType: ".mid")!)!;
+    let data: NSData = NSData(contentsOfFile: NSBundle(forClass: AudioPlayerTests.self).pathForResource("Dont_Cry", ofType: ".mid")!)!;
     
     override func setUp() {
         super.setUp()
@@ -60,7 +60,7 @@ class AudioPlayerTests: XCTestCase {
 
     func testLivePlayer() {
 
-        let reader = MIDIReader(path: NSBundle.mainBundle().pathForResource("xtreme", ofType: "mid")!)
+        let reader = MIDIReader(path: NSBundle(forClass: AudioPlayerTests.self).pathForResource("xtreme", ofType: "mid")!)
         let dat = reader.readAllData();
         let parser = MIDIDataParser(data: dat);
         let pl = LiveAudioPlayer(graph: graph, session: session, audioData: parser.parseTracks()[2]!);

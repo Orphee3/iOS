@@ -11,11 +11,11 @@
 		DB426EB91AD7C3D4007C1617 /* FileManagement.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DA5491ABC97FC009A09B1 /* FileManagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB42C6B51BA08A98008C9B63 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5DA5441ABC97FC009A09B1 /* FileManagement.framework */; };
 		DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */; };
-		DB61958C1BA12007002CE09E /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB61958B1BA12007002CE09E /* PathManager.swift */; settings = {ASSET_TAGS = (); }; };
-		DB61958E1BA1250E002CE09E /* PathManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB61958D1BA1250E002CE09E /* PathManagerTests.swift */; settings = {ASSET_TAGS = (); }; };
+		DB61958C1BA12007002CE09E /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB61958B1BA12007002CE09E /* PathManager.swift */; };
+		DB61958E1BA1250E002CE09E /* PathManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB61958D1BA1250E002CE09E /* PathManagerTests.swift */; };
 		DB74B5301B559F8A00AFBDF7 /* eAccessMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74B52F1B559F8A00AFBDF7 /* eAccessMode.swift */; };
 		DB74B5431B55BEDC00AFBDF7 /* pInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74B5421B55BEDC00AFBDF7 /* pInputManager.swift */; };
-		DBE1A40D1B93B6590072AE06 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A40B1B93B6590072AE06 /* xXCTestThrowingAssert.swift */; settings = {ASSET_TAGS = (); }; };
+		DBE1A40D1B93B6590072AE06 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A40B1B93B6590072AE06 /* xXCTestThrowingAssert.swift */; };
 		DBEF68F81AD7646C009F8548 /* pOutputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D752D1AC2D61F0011B197 /* pOutputManager.swift */; };
 		DBEF68F91AD7646C009F8548 /* pResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75301AC2DFF50011B197 /* pResourceManager.swift */; };
 		DBEF68FA1AD7646C009F8548 /* pFormattedFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75331AC2E4880011B197 /* pFormattedFileManager.swift */; };
@@ -374,6 +374,7 @@
 		DB5DA55B1ABC97FC009A09B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -381,7 +382,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = FileManagement/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -399,6 +400,7 @@
 		DB5DA55C1ABC97FC009A09B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -407,7 +409,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
 				INFOPLIST_FILE = FileManagement/Info.plist;

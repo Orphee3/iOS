@@ -40,7 +40,7 @@ class DetailsCreationTableViewController: UITableViewController{
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
         player = GenericPlayer(graph: audioIO, session: session);
-        var instru = PresetMgr().getMelodicInstrumentFromSoundBank(46, path: NSBundle.mainBundle().pathForResource("32MbGMStereo", ofType: "sf2")!, isSoundFont: true)!
+        var instru = PresetMgr().getMelodicInstrumentFromSoundBank(46, path: NSBundle.mainBundle().pathForResource("Soundbanks/32MbGMStereo", ofType: "sf2")!, isSoundFont: true)!
         audioIO.loadInstrumentFromInstrumentData(&instru);
     }
     
