@@ -158,6 +158,36 @@ class OrpheeApi {
         }
     }
     
+    func getUsers(offset: Int, size: Int, completion:(response: [User]) ->()){
+        Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
+            print(json.value)
+            if (response?.statusCode == 200){
+                var arrayUser: [User] = []
+                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    for elem in array{
+                        arrayUser.append(User(User: elem))
+                    }
+                    completion(response: arrayUser)
+                }
+            }
+        }
+    }
+    
+    func addFriend(token: String, id: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/askfriend/\(id)", headers: headers).responseJSON{
+            request, response, json in
+            if (response?.statusCode == 200){
+                completion(response: "ok")
+            }
+            else if (response?.statusCode == 500){
+                completion(response: "error")
+            }
+        }
+    }
+    
     func notify(token: String, creationId: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"

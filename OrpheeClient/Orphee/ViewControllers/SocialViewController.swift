@@ -14,13 +14,17 @@ class SocialViewController: UITableViewController{
     var arrayUser: [User] = []
     var offset = 0
     var size = 6
-    var spinner: UIActivityIndicatorView!
     var searchDisplay: UISearchController!
     var searchBar: UISearchBar!
+    var user = User!()
+    
+    var isRefreshing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
         prepareSearchingDisplay()
         
         tableView.infiniteScrollIndicatorStyle = .White
@@ -29,9 +33,6 @@ class SocialViewController: UITableViewController{
             self.getUsers(self.offset, size: self.size)
             scrollView.finishInfiniteScroll()
         })
-        
-        createActivityIndicatorView()
-        spinner.startAnimating()
         getUsers(offset, size: size)
         tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
         self.refreshControl = UIRefreshControl()
@@ -39,33 +40,26 @@ class SocialViewController: UITableViewController{
     }
     
     func refresh(sender:AnyObject){
-        self.arrayUser = []
-        self.offset = 0
-        getUsers(self.offset, size: size)
-    }
-    
-    func createActivityIndicatorView(){
-        spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        spinner.frame = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 50, 50)
-        spinner.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2)
-        self.view.addSubview(spinner)
+        if (OrpheeReachability().isConnected() && !isRefreshing){
+            self.isRefreshing = true
+            self.arrayUser = []
+            self.offset = 0
+            getUsers(self.offset, size: size)
+        }else{
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     func getUsers(offset: Int, size: Int){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-            print(json.value)
-            if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                for elem in array{
-                    self.arrayUser.append(User(User: elem))
-                }
-                self.offset += self.size
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.spinner.stopAnimating()
-                    self.refreshControl!.endRefreshing()
-                    self.tableView.reloadData()
-                }
+        
+        OrpheeApi().getUsers(offset, size: size, completion: {(response) in
+            self.offset += self.size
+            dispatch_async(dispatch_get_main_queue()) {
+                self.isRefreshing = false
+                self.refreshControl!.endRefreshing()
+                self.tableView.reloadData()
             }
-        }
+        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,25 +72,15 @@ class SocialViewController: UITableViewController{
     }
     
     func addFriend(sender: UIButton){
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
-            let id = arrayUser[sender.tag].id
-            let headers = [
-                "Authorization": "Bearer \(user.token)"
-            ]
-            Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
-                request, response, json in
-                if (response?.statusCode == 200){
-                    print("FRIEND ASKED : \(json)")
+        if (user != nil){
+            OrpheeApi().addFriend(user.token, id: arrayUser[sender.tag].id, completion: {(response) -> () in
+                if (response as! String == "ok"){
                     self.alertViewForMsg("\(self.arrayUser[sender.tag].name) va recevoir votre demande d'amitié.")
                 }
-                else if (response?.statusCode == 500){
+                else if (response as! String == "error"){
                     self.alertViewForMsg("Une erreur est survenue lors de votre demande.")
                 }
-            }
-        }
-        else{
-            print("no token")
+            })
         }
         print("friend added")
     }

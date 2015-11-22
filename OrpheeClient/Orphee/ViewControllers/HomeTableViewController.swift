@@ -24,6 +24,8 @@ class HomeTableViewController: UITableViewController{
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
     
+    var isRefreshing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,12 +57,14 @@ class HomeTableViewController: UITableViewController{
     }
     
     func refresh(sender:AnyObject){
-        if (OrpheeReachability().isConnected()){
+        if (OrpheeReachability().isConnected() && !isRefreshing){
             arrayCreation = []
             arrayUser = []
             offset = 0
             getPopularCreations(offset, size: size)
+            isRefreshing = true
         }else{
+            isRefreshing = false
             self.refreshControl?.endRefreshing()
         }
     }
@@ -79,6 +83,7 @@ class HomeTableViewController: UITableViewController{
                 self.arrayUser += users
                 dispatch_async(dispatch_get_main_queue()){
                     self.refreshControl!.endRefreshing()
+                    self.isRefreshing = false
                     self.tableView.reloadData()
                 }
                 self.offset += self.size
