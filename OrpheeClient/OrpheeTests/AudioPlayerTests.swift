@@ -9,6 +9,8 @@
 import UIKit
 import XCTest
 import AVFoundation
+import FileManagement
+import MIDIToolbox
 
 @testable import Orphee
 
@@ -54,5 +56,15 @@ class AudioPlayerTests: XCTestCase {
         sleep(1);
         player.stop();
         XCTAssert(!player.playing, "not playing.")
+    }
+
+    func testLivePlayer() {
+
+        let reader = MIDIReader(path: NSBundle.mainBundle().pathForResource("xtreme", ofType: "mid")!)
+        let dat = reader.readAllData();
+        let parser = MIDIDataParser(data: dat);
+        let pl = LiveAudioPlayer(graph: graph, session: session, audioData: parser.parseTracks()[2]!);
+        pl.play();
+        sleep(5)
     }
 }

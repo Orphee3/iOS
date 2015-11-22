@@ -86,6 +86,7 @@
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
 		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
+		DB5B24A01BD893A1008D48D2 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
 		DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		DBCF1ED61B52BB650078EADD /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF1ED51B52BB650078EADD /* pAudioPlayer.swift */; };
@@ -250,6 +251,7 @@
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
 		DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockArrayList.swift; sourceTree = "<group>"; };
+		DB5B249F1BD893A1008D48D2 /* xtreme.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = xtreme.mid; path = "Ressources/Test resources/xtreme.mid"; sourceTree = "<group>"; };
 		DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +310,7 @@
 		1E8DA7011BD83E98003C07B8 /* Test resources */ = {
 			isa = PBXGroup;
 			children = (
+				DB5B249F1BD893A1008D48D2 /* xtreme.mid */,
 				1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */,
 			);
 			name = "Test resources";
@@ -864,6 +867,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5B24A01BD893A1008D48D2 /* xtreme.mid in Resources */,
 				9B4C58A01BAADBF20068AA9E /* 32MbGMStereo.sf2 in Resources */,
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
 				9B0D5F741BFDDA40001A9DF6 /* RoomCell.xib in Resources */,
