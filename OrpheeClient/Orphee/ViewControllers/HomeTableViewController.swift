@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import SDWebImage
 import AVFoundation
+import DZNEmptyDataSet
 
 class HomeTableViewController: UITableViewController{
     var arrayCreation: [Creation] = []
@@ -18,7 +19,6 @@ class HomeTableViewController: UITableViewController{
     var offset = 0
     var size = 10
     var user = User!()
-    var spinner: UIActivityIndicatorView!
     
     var player: pAudioPlayer!;
     var audioIO: AudioGraph = AudioGraph();
@@ -26,7 +26,7 @@ class HomeTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
         }
@@ -51,17 +51,18 @@ class HomeTableViewController: UITableViewController{
         
         player = GenericPlayer(graph: audioIO, session: session);
         
-        createActivityIndicatorView()
-        spinner.startAnimating()
-        
         self.getPopularCreations(offset, size: size)
     }
     
     func refresh(sender:AnyObject){
-        arrayCreation = []
-        arrayUser = []
-        offset = 0
-        getPopularCreations(offset, size: size)
+        if (OrpheeReachability().isConnected()){
+            arrayCreation = []
+            arrayUser = []
+            offset = 0
+            getPopularCreations(offset, size: size)
+        }else{
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,24 +72,18 @@ class HomeTableViewController: UITableViewController{
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
-    func createActivityIndicatorView(){
-        spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        spinner.frame = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 50, 50)
-        spinner.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2)
-        self.view.addSubview(spinner)
-    }
-    
     func getPopularCreations(offset: Int, size: Int){
-        OrpheeApi().getPopularCreations(offset, size: size, completion: {(creations, users) ->() in
-            self.arrayCreation += creations
-            self.arrayUser += users
-            dispatch_async(dispatch_get_main_queue()){
-                self.spinner.stopAnimating()
-                self.refreshControl!.endRefreshing()
-                self.tableView.reloadData()
-            }
-            self.offset += self.size
-        })
+        if (OrpheeReachability().isConnected()){
+            OrpheeApi().getPopularCreations(offset, size: size, completion: {(creations, users) ->() in
+                self.arrayCreation += creations
+                self.arrayUser += users
+                dispatch_async(dispatch_get_main_queue()){
+                    self.refreshControl!.endRefreshing()
+                    self.tableView.reloadData()
+                }
+                self.offset += self.size
+            })
+        }
     }
     
     func playCreation(sender: UIButton){
@@ -112,7 +107,7 @@ class HomeTableViewController: UITableViewController{
     func stopPlayCreation(sender: UIButton) {
         self.player.stop()
     }
-
+    
     func accessProfile(sender: UIButton){
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let profileView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
@@ -147,10 +142,10 @@ extension HomeTableViewController{
         cell.likeButton.tag = indexPath.row
         return cell
     }
-
+    
     func likePushed(sender: UIButton){
         print("like")
-        if (user != nil){
+        if (user != nil && OrpheeReachability().isConnected()){
             OrpheeApi().like(arrayCreation[sender.tag].id, token: user.token, completion: { (response) -> () in
                 print(response)
                 if (response as! String == "ok"){
@@ -166,18 +161,48 @@ extension HomeTableViewController{
             })
         }
     }
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
         let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
         commentView.creation = arrayCreation[indexPath.row]
+        commentView.userCreation = arrayUser[indexPath.row]
         self.navigationController?.pushViewController(commentView, animated: true)
     }
-
+    
     func commentPushed(sender: UIButton){
         let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
         let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
         commentView.creation = arrayCreation[sender.tag]
+        commentView.userCreation = arrayUser[sender.tag]
         self.navigationController?.pushViewController(commentView, animated: true)
+    }
+}
+
+extension HomeTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        let image = UIImage(named: "orpheeLogoRoundSmall")
+        return image
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Aucune données n'est disponible :("
+        let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 19)!]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Vérifiez que vous êtes bien connecté à internet, par 3G/4G ou Wifi !"
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        paragraph.alignment = NSTextAlignment.Center
+        
+        let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 14)!, NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSParagraphStyleAttributeName: paragraph]
+        
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

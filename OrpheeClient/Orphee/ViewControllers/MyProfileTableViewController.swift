@@ -16,8 +16,8 @@ class MyProfileTableViewController: UITableViewController{
     var loginView: UINavigationController!
     @IBOutlet var nbCreations: UILabel!
     @IBOutlet var imgLogin: UIImageView!
-    var loginButton: UIButton!
     @IBOutlet var nameProfile: UILabel!
+    var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,13 +59,13 @@ class MyProfileTableViewController: UITableViewController{
     }
     
     func prepareViewForLogin(){
-        imgLogin = UIImageView(image: UIImage(named: "imgLogin"))
-        imgLogin.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        self.view.addSubview(imgLogin)
-        loginButton = UIButton(frame: CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height - 150, 100, 30))
-        loginButton.setTitle("Allons-y !", forState: UIControlState.Normal)
-        loginButton.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(loginButton)
+//        imgLogin = UIImageView(image: UIImage(named: "imgLogin"))
+//        imgLogin.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+//        self.view.addSubview(imgLogin)
+//        loginButton = UIButton(frame: CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height - 150, 100, 30))
+//        loginButton.setTitle("Allons-y !", forState: UIControlState.Normal)
+//        loginButton.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+//        self.view.addSubview(loginButton)
     }
     
     func sendToLogin(sender: UIButton){

@@ -38,16 +38,17 @@ class CreationFluxCustomCell: UITableViewCell{
         }else{
             self.imgProfileCreator.image = UIImage(named: "emptygrayprofile")
         }
-        if let nbComments = creation.nbCommments{
-            self.nbCommentsCreation.text = String(nbComments)
-        }
-        if let nbLikes = creation.nbLikes{
-            self.nbLikesCreation.text = String(nbLikes)
-        }
+//        if let nbComments = creation.nbCommments{
+//            self.nbCommentsCreation.text = String(nbComments)
+//        }
+//        if let nbLikes = creation.nbLikes{
+//            self.nbLikesCreation.text = String(nbLikes)
+//        }
         setLayout()
     }
     
     func setLayout(){
+        self.imgProfileCreator.layer.cornerRadius = self.imgProfileCreator.frame.width / 2
         self.selectionStyle = UITableViewCellSelectionStyle.None
     }
 }

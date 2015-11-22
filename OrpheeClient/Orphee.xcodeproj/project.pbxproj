@@ -90,6 +90,8 @@
 		9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EE1B86A006004A892D /* SocketManager.swift */; };
 		9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F01B874505004A892D /* TabBarViewController.swift */; };
 		9BD186F31B87501E004A892D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F21B87501D004A892D /* FriendsViewController.swift */; };
+		9BD33DFF1C008E3100802BE3 /* NotConnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD33DFE1C008E3100802BE3 /* NotConnectedView.xib */; };
+		9BD33E011C00AFC000802BE3 /* NotConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E001C00AFC000802BE3 /* NotConnectedView.swift */; };
 		9BD33E031C0124E800802BE3 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E021C0124E700802BE3 /* Reach.swift */; };
 		9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */; };
 		9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF3B69E1BA0FBB10063704C /* creationDetail.storyboard */; };
@@ -260,6 +262,8 @@
 		9BD186EE1B86A006004A892D /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		9BD186F01B874505004A892D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9BD186F21B87501D004A892D /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		9BD33DFE1C008E3100802BE3 /* NotConnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotConnectedView.xib; sourceTree = "<group>"; };
+		9BD33E001C00AFC000802BE3 /* NotConnectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotConnectedView.swift; sourceTree = "<group>"; };
 		9BD33E021C0124E700802BE3 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeReachability.swift; sourceTree = "<group>"; };
 		9BF3B69E1BA0FBB10063704C /* creationDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = creationDetail.storyboard; sourceTree = "<group>"; };
@@ -394,6 +398,8 @@
 				9BC9DCAE1B7C021A00DC8138 /* Login and Register */,
 				9B1189851BD41631006FFB2C /* MyProfile */,
 				9B85A6EF1BD58DCD00C31287 /* Social */,
+				9BD33DFE1C008E3100802BE3 /* NotConnectedView.xib */,
+				9BD33E001C00AFC000802BE3 /* NotConnectedView.swift */,
 			);
 			name = ViewControllers;
 			path = Orphee/ViewControllers;
@@ -906,6 +912,7 @@
 				9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */,
 				9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */,
 				9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */,
+				9BD33DFF1C008E3100802BE3 /* NotConnectedView.xib in Resources */,
 				9B4C589C1BAA31D80068AA9E /* commentCellView.xib in Resources */,
 				9B0D5F6D1BFBB1E7001A9DF6 /* FriendCustomCell.xib in Resources */,
 				9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */,
@@ -1036,6 +1043,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD33E011C00AFC000802BE3 /* NotConnectedView.swift in Sources */,
 				9B327FFF1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift in Sources */,
 				9BD186EB1B8657A5004A892D /* MessengerViewController.swift in Sources */,
 				9B99A3751B84C1B2009F1008 /* EditProfileViewController.swift in Sources */,

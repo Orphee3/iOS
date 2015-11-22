@@ -14,6 +14,7 @@ import Alamofire
 class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
     var arrayRooms: [Room] = []
     var user = User!()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "RoomCell", bundle: nil), forCellReuseIdentifier: "RoomCell")
@@ -58,7 +59,7 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
         print("start")
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)

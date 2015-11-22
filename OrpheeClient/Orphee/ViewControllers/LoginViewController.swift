@@ -13,6 +13,9 @@ import Alamofire
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var loginField: UITextField!
     @IBOutlet var mdpField: UITextField!
+    @IBOutlet var forgetMdp: UIButton!
+    
+    var mailFieldForForgetPwd: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +49,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 else if (response as! String == "ok"){
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
-            
             })
         }
         else{
@@ -67,5 +69,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
         checkLoginAndPasswd()
+    }
+    
+    @IBAction func forgetPassword(sender: AnyObject){
+        let alertController = UIAlertController(title: "Mot de passe oublié", message: "Veuillez indiquer votre email pour recevoir un lien de changement de mot de passe", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler{textField -> Void in
+            self.mailFieldForForgetPwd = textField
+        }
+        
+        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
+            print(self.mailFieldForForgetPwd.text)
+            if (!self.mailFieldForForgetPwd.text!.isEmpty){
+                OrpheeApi().lostPassword(self.mailFieldForForgetPwd.text!, completion: { (response) -> () in
+                    if (response as! String == "ok"){
+                        self.alertViewForErrors("Votre demande a bien été prise en compte, vous allez recevoir un email pour la suite de la procédure")
+                    }
+                })
+            }
+            else{
+                self.alertViewForErrors("Veuillez remplir le champ")
+            }
+        }
+        alertController.addAction(okAction)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Annuler", style: UIAlertActionStyle.Destructive, handler: nil)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
