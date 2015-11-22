@@ -20,7 +20,9 @@ class DetailsCreationTableViewController: UITableViewController{
     
     @IBOutlet var profilePicture: UIImageView!
     @IBOutlet var profileName: UILabel!
-    
+    @IBOutlet var nbLikes: UILabel!
+    @IBOutlet var creationTitle: UILabel!
+    @IBOutlet var nbComments: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
@@ -57,6 +59,17 @@ class DetailsCreationTableViewController: UITableViewController{
     }
     
     func layoutCreation(){
+        print(creation.nbCommments)
+        if let title = creation.name{
+            self.creationTitle.text = title
+        }
+        if let nbComment = creation.nbCommments{
+            self.nbComments.text = String(nbComment)
+        }
+        
+        if let nbLikes = creation.nbLikes{
+            self.nbLikes.text = String(nbLikes)
+        }
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.width / 2
         if let picture = userCreation.picture{
             self.profilePicture.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
@@ -77,15 +90,34 @@ class DetailsCreationTableViewController: UITableViewController{
     
     @IBAction func sendComment(sender: AnyObject) {
         if (commentTextField.text != nil && OrpheeReachability().isConnected()){
-            print(user.name)
-            print(user.token)
             OrpheeApi().sendComment(user.token, creationId: creation.id, userId: user.id, message: commentTextField.text!, completion: {(response) ->() in
                 self.arrayComments.insert(response as! Comment, atIndex: 0)
                 self.commentTextField.text = ""
+                self.nbComments.text = String(self.creation.nbCommments + 1)
                 self.tableView.reloadData()
             })
         }
         textFieldShouldReturn(self.commentTextField)
+    }
+    
+    @IBAction func like(sender: AnyObject) {
+        if (user != nil && OrpheeReachability().isConnected()){
+            OrpheeApi().like(creation.id, token: user.token, completion: { (response) -> () in
+                print(response)
+                if (response as! String == "ok"){
+                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                    self.nbLikes.text = String(self.creation.nbLikes + 1)
+                }
+                if (response as! String == "liked"){
+                    OrpheeApi().dislike(self.creation.id, token: self.user.token, completion: {(response) -> () in
+                        if (response as! String == "ok"){
+                            sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                            self.nbLikes.text = String(self.creation.nbLikes)
+                        }
+                    })
+                }
+            })
+        }
     }
 }
 
