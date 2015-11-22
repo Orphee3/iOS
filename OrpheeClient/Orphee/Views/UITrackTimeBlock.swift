@@ -139,13 +139,13 @@ class UITrackTimeBlock: UIButton {
     /// The responder called when the button is clicked.
     func onClick() {
 
-        print("release button #\(pos) on row #\(row)", terminator: "");
+        print("release button #\(pos) on row #\(row)");
         graph.stopNote(note);
     }
 
     func onTouchDown() {
 
-        print("press button #\(pos) on row #\(row)", terminator: "");
+        print("press button #\(pos) on row #\(row)");
         active = !active;
         graph.playNote(note);
     }

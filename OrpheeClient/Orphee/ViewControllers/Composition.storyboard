@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8eF-jk-wiD">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="WAZ-Sd-uCC">
+            <objects>
+                <tableViewController id="9U0-X4-ukA" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="stc-hf-FXG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Apj-KC-WB9">
+                                <rect key="frame" x="0.0" y="22" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Apj-KC-WB9" id="lCm-Ps-JNP">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9U0-X4-ukA" id="5D0-VF-sqs"/>
+                            <outlet property="delegate" destination="9U0-X4-ukA" id="5uT-R3-xEJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="SGD-Iu-emg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sac-kQ-86t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="505" y="305"/>
+        </scene>
+        <!--Musique-->
+        <scene sceneID="79l-ur-uvK">
+            <objects>
+                <navigationController id="8eF-jk-wiD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Musique" id="G4B-Hi-9gf"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bbn-iX-2zh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hv7-sr-237" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-130" y="305"/>
+        </scene>
+        <!--Instruments-->
+        <scene sceneID="upm-Pg-N8K">
+            <objects>
+                <tableViewController id="Cu6-wN-iYD" customClass="InstrumentsTableViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6RD-00-hGQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="t3X-XJ-1lU">
+                                <rect key="frame" x="0.0" y="22" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t3X-XJ-1lU" id="W7e-b3-XXr">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Cu6-wN-iYD" id="r34-e0-jor"/>
+                            <outlet property="delegate" destination="Cu6-wN-iYD" id="jvF-Y4-IhZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Instruments" id="XhJ-47-MYh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rjx-bk-WvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1214" y="-476"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fmj-Xh-eeD">
+            <objects>
+                <viewController id="alm-pq-EiV" customClass="ViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Re-tI-TT7"/>
+                        <viewControllerLayoutGuide type="bottom" id="228-c3-FTV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Olb-5w-MPU" userLabel="CompositionView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etN-hL-var">
+                                <rect key="frame" x="0.0" y="64" width="600" height="490"/>
+                                <animations/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPV-Wd-M96">
+                                <rect key="frame" x="538" y="562" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Fichier">
+                                    <color key="titleColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="FileButtonTouched:" destination="alm-pq-EiV" eventType="touchUpInside" id="fJO-jN-hr0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyl-Zn-5zX">
+                                <rect key="frame" x="421" y="562" width="74" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Instrument">
+                                    <color key="titleColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ExN-oA-0KT">
+                                <rect key="frame" x="16" y="563" width="94" height="29"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="addAndRemoveBlocks:" destination="alm-pq-EiV" eventType="valueChanged" id="Fhp-44-UaH"/>
+                                </connections>
+                            </stepper>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMT-Uj-Yd3" userLabel="Play">
+                                <rect key="frame" x="160" y="562" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="PlayButtonTouched:" destination="alm-pq-EiV" eventType="touchUpInside" id="VNZ-WR-Aof"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ExN-oA-0KT" firstAttribute="top" secondItem="etN-hL-var" secondAttribute="bottom" constant="9" id="8ix-a6-e6U"/>
+                            <constraint firstItem="228-c3-FTV" firstAttribute="top" secondItem="rMT-Uj-Yd3" secondAttribute="bottom" constant="8" id="AtB-kR-YnI"/>
+                            <constraint firstItem="228-c3-FTV" firstAttribute="top" secondItem="tyl-Zn-5zX" secondAttribute="bottom" constant="8" id="JJG-7H-buR"/>
+                            <constraint firstItem="etN-hL-var" firstAttribute="top" secondItem="7Re-tI-TT7" secondAttribute="bottom" id="MPi-Pa-eZ7"/>
+                            <constraint firstItem="228-c3-FTV" firstAttribute="top" secondItem="pPV-Wd-M96" secondAttribute="bottom" constant="8" id="Ytq-Yv-5QK"/>
+                            <constraint firstItem="rMT-Uj-Yd3" firstAttribute="leading" secondItem="ExN-oA-0KT" secondAttribute="trailing" constant="50" id="ZM6-Ss-DVy"/>
+                            <constraint firstItem="etN-hL-var" firstAttribute="leading" secondItem="Olb-5w-MPU" secondAttribute="leadingMargin" constant="-16" id="cmb-rJ-wul"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="etN-hL-var" secondAttribute="trailing" constant="-16" id="d0b-sR-HGR"/>
+                            <constraint firstItem="pPV-Wd-M96" firstAttribute="trailing" secondItem="Olb-5w-MPU" secondAttribute="trailingMargin" id="gKO-fA-GiK"/>
+                            <constraint firstItem="ExN-oA-0KT" firstAttribute="leading" secondItem="Olb-5w-MPU" secondAttribute="leadingMargin" id="gm5-AB-Db4"/>
+                            <constraint firstItem="228-c3-FTV" firstAttribute="top" secondItem="etN-hL-var" secondAttribute="bottom" constant="46" id="mh7-vV-2Ds"/>
+                            <constraint firstItem="pPV-Wd-M96" firstAttribute="leading" secondItem="tyl-Zn-5zX" secondAttribute="trailing" constant="43" id="wUE-od-cKK"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="scrollBlocks" destination="etN-hL-var" id="h5l-bR-j1J"/>
+                        <outlet property="stepper" destination="ExN-oA-0KT" id="BDb-Mf-gUp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I42-2K-5wn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="533" y="-476"/>
+        </scene>
+    </scenes>
+</document>

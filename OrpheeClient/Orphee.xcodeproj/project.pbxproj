@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */; settings = {ASSET_TAGS = (); }; };
-		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; settings = {ASSET_TAGS = (); }; };
+		1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1B68741BD882360020DF40 /* Composition.storyboard */; };
+		1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */; };
+		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
 		526FF6011A810DD400CF6A9C /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF5FF1A810DBA00CF6A9C /* Trombone.aupreset */; };
 		526FF6021A810DD400CF6A9C /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6001A810DBA00CF6A9C /* Vibraphone.aupreset */; };
@@ -81,7 +82,6 @@
 		AAAB8D3B6156D3F8D899C5FB /* LiveAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2109111021E866F0D1E72 /* LiveAudioPlayer.swift */; };
 		BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D9820519B793A947DF35351 /* Pods_Orphee.framework */; };
 		DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */; };
-		DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */; };
 		DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */; };
 		DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C61D9E1A79E5C400B3DE23 /* Main.storyboard */; };
 		DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA31A79E5C400B3DE23 /* LaunchScreen.xib */; };
@@ -160,6 +160,7 @@
 
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
+		1E1B68741BD882360020DF40 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Composition.storyboard; sourceTree = "<group>"; };
 		1E8DA7021BD83F16003C07B8 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
 		1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsListVC.swift; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
@@ -247,7 +248,6 @@
 		9D9820519B793A947DF35351 /* Pods_Orphee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.release.xcconfig"; sourceTree = "<group>"; };
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
-		DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarVC.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
 		DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockArrayList.swift; sourceTree = "<group>"; };
 		DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,7 +356,6 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */,
 				9B0D5F691BFBB195001A9DF6 /* Friend */,
 				9BD186F01B874505004A892D /* TabBarViewController.swift */,
 				9B3280061B9D01B300AAD347 /* Creation */,
@@ -491,8 +490,9 @@
 		9B327FF21B9B855A00AAD347 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
+				1E1B68741BD882360020DF40 /* Composition.storyboard */,
+				1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
-				DB1999A11AA7112F00DBDB95 /* SidebarVC.swift */,
 				9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */,
 			);
 			name = Composition;
@@ -884,6 +884,7 @@
 				9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
 				1E8DA7031BD83F16003C07B8 /* Dont_Cry.mid in Resources */,
+				1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */,
 				9B327FFD1B9C797900AAD347 /* CreationProfileCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1015,7 +1016,6 @@
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
 				9BD0270B1B94D1990097270B /* RequestFriendsTableViewController.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
-				DB1999A21AA7112F00DBDB95 /* SidebarVC.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				9BC9DCB11B7C085800DC8138 /* MyProfileTableViewController.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
