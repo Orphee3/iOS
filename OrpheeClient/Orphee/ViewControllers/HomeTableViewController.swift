@@ -18,7 +18,6 @@ class HomeTableViewController: UITableViewController{
     var offset = 0
     var size = 10
     var user = User!()
-    
     var spinner: UIActivityIndicatorView!
     
     var player: pAudioPlayer!;
@@ -27,6 +26,7 @@ class HomeTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
         }
@@ -79,26 +79,16 @@ class HomeTableViewController: UITableViewController{
     }
     
     func getPopularCreations(offset: Int, size: Int){
-        let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
-        Alamofire.request(.GET, url).responseJSON{request, response, json in
-            if (response?.statusCode == 200){
-                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                    for elem in array{
-                        self.arrayCreation.append(Creation(Creation: elem))
-                        self.arrayUser.append(User(User: elem["creator"]!.objectAtIndex(0) as! Dictionary<String, AnyObject>))
-                    }
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.spinner.stopAnimating()
-                        self.refreshControl!.endRefreshing()
-                        self.tableView.reloadData()
-                    }
-                    self.offset += self.size
-                }
+        OrpheeApi().getPopularCreations(offset, size: size, completion: {(creations, users) ->() in
+            self.arrayCreation += creations
+            self.arrayUser += users
+            dispatch_async(dispatch_get_main_queue()){
+                self.spinner.stopAnimating()
+                self.refreshControl!.endRefreshing()
+                self.tableView.reloadData()
             }
-            else{
-                // A REMPLIR
-            }
-        }
+            self.offset += self.size
+        })
     }
     
     func playCreation(sender: UIButton){
@@ -149,10 +139,6 @@ extension HomeTableViewController{
         let creation = self.arrayCreation[indexPath.row]
         
         cell.putInGraphic(creation, user: user)
-        cell.playCreation.addTarget(self, action: "playCreation:", forControlEvents: .TouchUpInside)
-        cell.playCreation.tag = indexPath.row
-        cell.stopPlayCreation.addTarget(self, action: "stopPlayCreation:", forControlEvents: .TouchUpInside)
-        cell.stopPlayCreation.tag = indexPath.row
         cell.accessProfileButton.addTarget(self, action: "accessProfile:", forControlEvents: .TouchUpInside)
         cell.accessProfileButton.tag = indexPath.row
         cell.accessCommentButton.tag = indexPath.row
@@ -163,16 +149,21 @@ extension HomeTableViewController{
     }
 
     func likePushed(sender: UIButton){
-        print("push")
-        let headers = [
-            "Authorization": "Bearer \(user.token)"
-        ]
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(arrayCreation[sender.tag].id)", headers: headers).responseJSON{request, response, json in
-            print(response)
-            if (response?.statusCode == 200){
-                print(json.value)
-                sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
-            }
+        print("like")
+        if (user != nil){
+            OrpheeApi().like(arrayCreation[sender.tag].id, token: user.token, completion: { (response) -> () in
+                print(response)
+                if (response as! String == "ok"){
+                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                }
+                if (response as! String == "liked"){
+                    OrpheeApi().dislike(self.arrayCreation[sender.tag].id, token: self.user.token, completion: {(response) -> () in
+                        if (response as! String == "ok"){
+                            sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                        }
+                    })
+                }
+            })
         }
     }
 

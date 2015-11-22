@@ -4,7 +4,6 @@ PODS:
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - PagedArray (0.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -16,7 +15,6 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`,
     branch `develop`)
-  - PagedArray (from `https://github.com/MrAlek/PagedArray.git`, branch `xcode-7`)
   - SDWebImage (~> 3.7)
   - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
     branch `swift-2`)
@@ -26,9 +24,6 @@ EXTERNAL SOURCES:
   JSQMessagesViewController:
     :branch: develop
     :git: https://github.com/jessesquires/JSQMessagesViewController.git
-  PagedArray:
-    :branch: xcode-7
-    :git: https://github.com/MrAlek/PagedArray.git
   Socket.IO-Client-Swift:
     :branch: swift-2
     :git: https://github.com/socketio/socket.io-client-swift.git
@@ -37,9 +32,6 @@ CHECKOUT OPTIONS:
   JSQMessagesViewController:
     :commit: 12e3dc6442e51eaa996de58ba7d983b68607ec6c
     :git: https://github.com/jessesquires/JSQMessagesViewController.git
-  PagedArray:
-    :commit: 5126c1069fa46f7031b496afb6652980f092a096
-    :git: https://github.com/MrAlek/PagedArray.git
   Socket.IO-Client-Swift:
     :commit: 108aa4b08af202bfcb6d6bedf86ccb3337f3ef94
     :git: https://github.com/socketio/socket.io-client-swift.git
@@ -49,7 +41,6 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  PagedArray: face4e8e871f954e77169f2b338820b7a55c85ec
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4
   UIScrollView-InfiniteScroll: b6c7d6d155dca7f9c5dd43813ecffeb301b3d50c
