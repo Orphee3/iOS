@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1B68741BD882360020DF40 /* Composition.storyboard */; };
+		1EA5CD1A1BFFB047004DA763 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
 		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
@@ -173,10 +174,10 @@
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
 		1E1B68741BD882360020DF40 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Composition.storyboard; sourceTree = "<group>"; };
-		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
-		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Trombone.aupreset; path = "Ressources/Test resources/Trombone.aupreset"; sourceTree = "<group>"; };
-		1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = "Ressources/Test resources/Vibraphone.aupreset"; sourceTree = "<group>"; };
-		1EA5BA871BFD483500ABAF25 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = "Ressources/Test resources/Sounds"; sourceTree = "<group>"; };
+		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Dont_Cry.mid; sourceTree = "<group>"; };
+		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
+		1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
+		1EA5BA871BFD483500ABAF25 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsListVC.swift; sourceTree = "<group>"; };
 		1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSequencer.swift; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
@@ -263,7 +264,7 @@
 		DB19999D1AA6F99F00DBDB95 /* UITrackTimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITrackTimeBlock.swift; sourceTree = "<group>"; };
 		DB1999A31AA73EA500DBDB95 /* UITimeBlockArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITimeBlockArray.swift; sourceTree = "<group>"; };
 		DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockArrayList.swift; sourceTree = "<group>"; };
-		DB5B249F1BD893A1008D48D2 /* xtreme.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = xtreme.mid; path = "Ressources/Test resources/xtreme.mid"; sourceTree = "<group>"; };
+		DB5B249F1BD893A1008D48D2 /* xtreme.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = xtreme.mid; sourceTree = "<group>"; };
 		DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8E61E81ABB4D2C005BF7B4 /* AudioGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioGraphTests-Info.plist"; sourceTree = "<group>"; };
 		DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresetManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +330,7 @@
 				1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */,
 			);
 			name = "Test resources";
+			path = "Ressources/Test resources";
 			sourceTree = "<group>";
 		};
 		523433011A8103A40041B7BD /* Frameworks */ = {
@@ -725,6 +727,7 @@
 				473AE783EE22113072CD7C6A /* Embed Pods Frameworks */,
 				00A8E497A1C2D85966DE48EA /* Copy Pods Resources */,
 				9B6865021BF7E2C900D3D6F6 /* Embed Watch Content */,
+				1EA5CD1B1BFFB1A4004DA763 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -888,6 +891,7 @@
 				9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */,
 				9B3280081B9D072700AAD347 /* creation.storyboard in Resources */,
 				9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */,
+				1EA5CD1A1BFFB047004DA763 /* (null) in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */,
 				9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */,
@@ -971,6 +975,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Orphee/Pods-Orphee-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		1EA5CD1B1BFFB1A4004DA763 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../OrpheeClient/Pods-Orphee-frameworks.sh\"";
 		};
 		473AE783EE22113072CD7C6A /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
