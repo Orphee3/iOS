@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1B68741BD882360020DF40 /* Composition.storyboard */; };
+		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
 		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
@@ -172,7 +172,7 @@
 
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
-		1E1B68741BD882360020DF40 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Composition.storyboard; sourceTree = "<group>"; };
+		1E6300851BFCCB2A009F4478 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Composition.storyboard; path = Orphee/Views/Composition.storyboard; sourceTree = SOURCE_ROOT; };
 		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Dont_Cry.mid; path = "Ressources/Test resources/Dont_Cry.mid"; sourceTree = "<group>"; };
 		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Trombone.aupreset; path = "Ressources/Test resources/Trombone.aupreset"; sourceTree = "<group>"; };
 		1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Vibraphone.aupreset; path = "Ressources/Test resources/Vibraphone.aupreset"; sourceTree = "<group>"; };
@@ -505,7 +505,7 @@
 		9B327FF21B9B855A00AAD347 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
-				1E1B68741BD882360020DF40 /* Composition.storyboard */,
+				1E6300851BFCCB2A009F4478 /* Composition.storyboard */,
 				1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
 				9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */,
@@ -885,6 +885,7 @@
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				9B327FFA1B9C778E00AAD347 /* profile.storyboard in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
+				1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */,
 				9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */,
 				9B3280081B9D072700AAD347 /* creation.storyboard in Resources */,
 				9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */,
@@ -896,7 +897,6 @@
 				9B0D5F6D1BFBB1E7001A9DF6 /* FriendCustomCell.xib in Resources */,
 				9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
-				1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */,
 				9B327FFD1B9C797900AAD347 /* CreationProfileCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,20 +19,20 @@ class InstrumentsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        instrumentsList = [("Yamaha Grand Piano", "FluidR3_GM"),
-            ("Bight Yamaha Grand Piano", "FluidR3_GM"),
-            ("Electric Piano", "FluidR3_GM"),
-            ("Honky Tonk", "FluidR3_GM"),
-            ("Rhodes EP", "FluidR3_GM"),
-            ("Legend EP2", "FluidR3_GM"),
-            ("Harpsichord", "FluidR3_GM"),
-            ("Clavinet", "FluidR3_GM"),
-            ("Celesta", "FluidR3_GM"),
-            ("Glockenspiel", "FluidR3_GM"),
-            ("Music Box", "FluidR3_GM"),
-            ("Vibraphone", "FluidR3_GM"),
-            ("Marimba", "FluidR3_GM"),
-            ("Xylophone", "FluidR3_GM")
+        instrumentsList = [("Yamaha Grand Piano", "32MbGMStereo"),
+            ("Bight Yamaha Grand Piano", "32MbGMStereo"),
+            ("Electric Piano", "32MbGMStereo"),
+            ("Honky Tonk", "32MbGMStereo"),
+            ("Rhodes EP", "32MbGMStereo"),
+            ("Legend EP2", "32MbGMStereo"),
+            ("Harpsichord", "32MbGMStereo"),
+            ("Clavinet", "32MbGMStereo"),
+            ("Celesta", "32MbGMStereo"),
+            ("Glockenspiel", "32MbGMStereo"),
+            ("Music Box", "32MbGMStereo"),
+            ("Vibraphone", "32MbGMStereo"),
+            ("Marimba", "32MbGMStereo"),
+            ("Xylophone", "32MbGMStereo")
         ];
     }
 
