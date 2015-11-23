@@ -13,7 +13,6 @@ import Alamofire
 class MyProfileTableViewController: UITableViewController{
     var user: User!
     var arrayCreations: [Creation] = []
-    var loginView: UINavigationController!
     @IBOutlet var nbCreations: UILabel!
     @IBOutlet var imgLogin: UIImageView!
     @IBOutlet var nameProfile: UILabel!
@@ -59,18 +58,18 @@ class MyProfileTableViewController: UITableViewController{
     }
     
     func prepareViewForLogin(){
-//        imgLogin = UIImageView(image: UIImage(named: "imgLogin"))
-//        imgLogin.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-//        self.view.addSubview(imgLogin)
-//        loginButton = UIButton(frame: CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height - 150, 100, 30))
-//        loginButton.setTitle("Allons-y !", forState: UIControlState.Normal)
-//        loginButton.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
-//        self.view.addSubview(loginButton)
+        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = self.tableView.frame
+        self.tableView.addSubview(blurView)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        blurView.addSubview(popupView)
     }
     
     func sendToLogin(sender: UIButton){
         let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
-        loginView = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
         self.presentViewController(loginView, animated: true, completion: nil)
     }
     

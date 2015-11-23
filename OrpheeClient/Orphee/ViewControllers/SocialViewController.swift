@@ -76,19 +76,37 @@ class SocialViewController: UITableViewController{
             OrpheeApi().addFriend(user.token, id: arrayUser[sender.tag].id, completion: {(response) -> () in
                 if (response as! String == "ok"){
                     self.alertViewForMsg("\(self.arrayUser[sender.tag].name) va recevoir votre demande d'amitié.")
+                    sender.setImage(UIImage(named: "adduserfill"), forState: .Normal)
                 }
                 else if (response as! String == "error"){
                     self.alertViewForMsg("Une erreur est survenue lors de votre demande.")
                 }
             })
+        }else{
+            prepareViewForLogin()
         }
-        print("friend added")
     }
     
     func alertViewForMsg(msg: String){
         let alertView = UIAlertView(title: "Requête envoyée", message: msg , delegate: self, cancelButtonTitle: "Ok")
         alertView.alertViewStyle = .Default
         alertView.show()
+    }
+    
+    func prepareViewForLogin(){
+        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = self.tableView.frame
+        self.tableView.addSubview(blurView)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        blurView.addSubview(popupView)
+    }
+    
+    func sendToLogin(sender: UIButton){
+        let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        self.presentViewController(loginView, animated: true, completion: nil)
     }
 }
 

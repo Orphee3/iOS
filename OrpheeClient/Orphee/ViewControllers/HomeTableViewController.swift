@@ -119,6 +119,22 @@ class HomeTableViewController: UITableViewController{
         profileView.user = arrayUser[sender.tag]
         self.navigationController?.pushViewController(profileView, animated: true)
     }
+    
+    func prepareViewForLogin(){
+        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = self.tableView.frame
+        self.tableView.addSubview(blurView)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        blurView.addSubview(popupView)
+    }
+    
+    func sendToLogin(sender: UIButton){
+        let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        self.presentViewController(loginView, animated: true, completion: nil)
+    }
 }
 
 extension HomeTableViewController{
@@ -150,37 +166,49 @@ extension HomeTableViewController{
     
     func likePushed(sender: UIButton){
         print("like")
-        if (user != nil && OrpheeReachability().isConnected()){
-            OrpheeApi().like(arrayCreation[sender.tag].id, token: user.token, completion: { (response) -> () in
-                print(response)
-                if (response as! String == "ok"){
-                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
-                }
-                if (response as! String == "liked"){
-                    OrpheeApi().dislike(self.arrayCreation[sender.tag].id, token: self.user.token, completion: {(response) -> () in
-                        if (response as! String == "ok"){
-                            sender.setImage(UIImage(named: "heart"), forState: .Normal)
-                        }
-                    })
-                }
-            })
+        if (user != nil ){
+            if (OrpheeReachability().isConnected()){
+                OrpheeApi().like(arrayCreation[sender.tag].id, token: user.token, completion: { (response) -> () in
+                    print(response)
+                    if (response as! String == "ok"){
+                        sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                    }
+                    if (response as! String == "liked"){
+                        OrpheeApi().dislike(self.arrayCreation[sender.tag].id, token: self.user.token, completion: {(response) -> () in
+                            if (response as! String == "ok"){
+                                sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                            }
+                        })
+                    }
+                })
+            }
+        }else{
+            prepareViewForLogin()
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
-        let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
-        commentView.creation = arrayCreation[indexPath.row]
-        commentView.userCreation = arrayUser[indexPath.row]
-        self.navigationController?.pushViewController(commentView, animated: true)
+        if(user != nil){
+            let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+            let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+            commentView.creation = arrayCreation[indexPath.row]
+            commentView.userCreation = arrayUser[indexPath.row]
+            self.navigationController?.pushViewController(commentView, animated: true)
+        }else{
+            prepareViewForLogin()
+        }
     }
     
     func commentPushed(sender: UIButton){
-        let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
-        let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
-        commentView.creation = arrayCreation[sender.tag]
-        commentView.userCreation = arrayUser[sender.tag]
-        self.navigationController?.pushViewController(commentView, animated: true)
+        if (user != nil){
+            let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+            let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+            commentView.creation = arrayCreation[sender.tag]
+            commentView.userCreation = arrayUser[sender.tag]
+            self.navigationController?.pushViewController(commentView, animated: true)
+        }else{
+            prepareViewForLogin()
+        }
     }
 }
 

@@ -52,36 +52,52 @@ class ProfileUserTableViewController: UITableViewController {
     }
     
     func likeCreation(sender: UIButton){
-        print("push")
-        let headers = [
-            "Authorization": "Bearer \(myProfile.token)"
-        ]
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(arrayCreations[sender.tag].id)", headers: headers).responseJSON{request, response, json in
-            print(response)
-            if (response?.statusCode == 400){
-                if (json.value! as! String == "already like"){
-                    Alamofire.request(.GET, "http://163.5.84.242:3000/api/dislike/\(self.arrayCreations[sender.tag].id)", headers: headers).responseJSON{request, response, json in
-                        print(response)
-                        print(json.value)
-                        if (response?.statusCode == 200){
-                            sender.setImage(UIImage(named: "heart"), forState: .Normal)
-                        }
+        if (myProfile != nil){
+            if (OrpheeReachability().isConnected()){
+                OrpheeApi().like(arrayCreations[sender.tag].id, token: myProfile.token, completion: { (response) -> () in
+                    print(response)
+                    if (response as! String == "ok"){
+                        sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
                     }
-                }
-                if (response?.statusCode == 200){
-                    print(json.value)
-                    sender.setBackgroundImage(UIImage(named:"heartfill"), forState: .Normal)
-                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
-                }
+                    if (response as! String == "liked"){
+                        OrpheeApi().dislike(self.arrayCreations[sender.tag].id, token: self.user.token, completion: {(response) -> () in
+                            if (response as! String == "ok"){
+                                sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                            }
+                        })
+                    }
+                })
             }
+        }else{
+            prepareViewForLogin()
         }
-        
-        func commentPushed(sender: UIButton){
+    }
+    
+    func commentPushed(sender: UIButton){
+        if (myProfile != nil){
             let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
             let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
             commentView.creation = arrayCreations[sender.tag]
             self.navigationController?.pushViewController(commentView, animated: true)
+        }else{
+            prepareViewForLogin()
         }
+    }
+    
+    func prepareViewForLogin(){
+        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = self.tableView.frame
+        self.tableView.addSubview(blurView)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        blurView.addSubview(popupView)
+    }
+    
+    func sendToLogin(sender: UIButton){
+        let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        self.presentViewController(loginView, animated: true, completion: nil)
     }
 }
 
