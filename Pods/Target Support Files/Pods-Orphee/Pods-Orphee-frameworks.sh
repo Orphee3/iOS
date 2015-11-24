@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Orphee/JSQMessagesViewController.framework"
   install_framework "Pods-Orphee/JSQSystemSoundPlayer.framework"
   install_framework "Pods-Orphee/PullToRefreshSwift.framework"
+  install_framework "Pods-Orphee/RSKImageCropper.framework"
   install_framework "Pods-Orphee/SDWebImage.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
 fi
@@ -98,6 +99,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Orphee/JSQMessagesViewController.framework"
   install_framework "Pods-Orphee/JSQSystemSoundPlayer.framework"
   install_framework "Pods-Orphee/PullToRefreshSwift.framework"
+  install_framework "Pods-Orphee/RSKImageCropper.framework"
   install_framework "Pods-Orphee/SDWebImage.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
 fi

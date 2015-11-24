@@ -65,7 +65,6 @@
 		9B76B22F1B3E1C8200B1C40B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */; };
 		9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */; };
 		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
-		9B99A3751B84C1B2009F1008 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */; };
 		9BC9DCB11B7C085800DC8138 /* MyProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */; };
 		9BD0270B1B94D1990097270B /* RequestFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */; };
 		9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186E61B8627C0004A892D /* CropImageToSquare.swift */; };
@@ -237,7 +236,6 @@
 		9B76B22E1B3E1C8200B1C40B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B76B2321B3EC45C00B1C40B /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
-		9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = Orphee/ViewControllers/EditProfileViewController.swift; sourceTree = "<group>"; };
 		9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyProfileTableViewController.swift; path = Orphee/ViewControllers/MyProfileTableViewController.swift; sourceTree = "<group>"; };
 		9BD0270A1B94D1990097270B /* RequestFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFriendsTableViewController.swift; sourceTree = "<group>"; };
 		9BD186E61B8627C0004A892D /* CropImageToSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageToSquare.swift; sourceTree = "<group>"; };
@@ -486,7 +484,6 @@
 		9B1189851BD41631006FFB2C /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
-				9B99A3741B84C1B2009F1008 /* EditProfileViewController.swift */,
 				9BC9DCB01B7C085800DC8138 /* MyProfileTableViewController.swift */,
 			);
 			name = MyProfile;
@@ -1014,7 +1011,6 @@
 				9BD33E011C00AFC000802BE3 /* NotConnectedView.swift in Sources */,
 				9B327FFF1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift in Sources */,
 				9BD186EB1B8657A5004A892D /* MessengerViewController.swift in Sources */,
-				9B99A3751B84C1B2009F1008 /* EditProfileViewController.swift in Sources */,
 				9BD186ED1B865929004A892D /* ConversationViewController.swift in Sources */,
 				9B0D5F721BFDD4BC001A9DF6 /* Room.swift in Sources */,
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,

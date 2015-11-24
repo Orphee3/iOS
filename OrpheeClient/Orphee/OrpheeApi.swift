@@ -198,4 +198,35 @@ class OrpheeApi {
             }
         }
     }
+    
+    func sendImgToServer() {
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/upload/image/png").responseJSON{request, response, json in
+            print(request)
+            print(response)
+            print(json.value!)
+            //            var newJson = JSON(json.value!)
+            //            let headers = [
+            //                "Content-Type":"image/png"
+            //            ]
+            //            let url = newJson["urlPut"].string!
+            //            let urlGet = newJson["urlGet"].string!
+            //            self.sendImgToAmazon(url, headers: headers, urlGet: urlGet)
+        }
+    }
+    
+    func sendImgToAmazon(url: String, headers: [String:String], urlGet: String){
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let destinationPath = documentsPath.stringByAppendingPathComponent("imgProfile.png")
+        Alamofire.upload(.PUT, url, headers: headers, file: NSURL(fileURLWithPath: destinationPath))
+            .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+                print(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.progressBar.setProgress(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite), animated: true)
+                }
+            }
+            .responseJSON{ request, response, result in
+                print(result.value)
+                self.updateUserProfile(urlGet)
+        }
+    }
 }

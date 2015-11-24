@@ -263,13 +263,13 @@
         <scene sceneID="B9p-qH-pJw">
             <objects>
                 <tableViewController id="hae-Nm-TSU" customClass="SettingsTableViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2nb-i4-8lv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2nb-i4-8lv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="49c-vh-VRr">
-                            <rect key="frame" x="0.0" y="136" width="600" height="92"/>
+                            <rect key="frame" x="0.0" y="122" width="600" height="92"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-OL-O7V">
@@ -294,23 +294,54 @@
                                 <constraint firstItem="gkA-OL-O7V" firstAttribute="leading" secondItem="49c-vh-VRr" secondAttribute="leading" constant="8" id="r0T-kG-t9a"/>
                             </constraints>
                         </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jro-pq-oUe">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jro-pq-oUe" id="pKF-ed-a1O">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection id="TlS-Li-fJv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="58" id="jro-pq-oUe">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jro-pq-oUe" id="pKF-ed-a1O">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QDF-w8-fzT">
+                                                    <rect key="frame" x="8" y="5" width="48" height="48"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="48" id="Hiy-Jc-tb8"/>
+                                                        <constraint firstAttribute="height" constant="48" id="n4O-64-qt0"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Changez votre photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8C-L7-7ON">
+                                                    <rect key="frame" x="64" y="18" width="528" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="M8C-L7-7ON" firstAttribute="leading" secondItem="QDF-w8-fzT" secondAttribute="trailing" constant="8" id="3CB-Tm-5ZR"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="QDF-w8-fzT" secondAttribute="leading" id="4dB-ZA-spl"/>
+                                                <constraint firstItem="M8C-L7-7ON" firstAttribute="top" secondItem="pKF-ed-a1O" secondAttribute="topMargin" constant="10" id="BQr-MI-HDw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="M8C-L7-7ON" secondAttribute="trailing" id="Iwf-aY-Sn8"/>
+                                                <constraint firstItem="QDF-w8-fzT" firstAttribute="top" secondItem="pKF-ed-a1O" secondAttribute="topMargin" constant="-3" id="LRc-ol-4Js"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="hae-Nm-TSU" id="6Zg-Pv-C6a"/>
                             <outlet property="delegate" destination="hae-Nm-TSU" id="cLG-NX-lou"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="imgProfile" destination="QDF-w8-fzT" id="NNu-B2-E2I"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qY8-ar-SJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

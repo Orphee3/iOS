@@ -5,6 +5,7 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - PullToRefreshSwift (2.0.0)
+  - RSKImageCropper (1.4.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`,
     branch `develop`)
   - PullToRefreshSwift
+  - RSKImageCropper
   - SDWebImage (~> 3.7)
   - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
     branch `swift-2`)
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   PullToRefreshSwift: 5c509e89c6638eae689813b665eff1a0ea0560d3
+  RSKImageCropper: 98ae426eb4eb11b733ff87f8e2542a480f4fa8e6
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4
 

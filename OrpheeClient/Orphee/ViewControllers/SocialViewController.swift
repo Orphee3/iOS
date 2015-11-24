@@ -137,6 +137,14 @@ extension SocialViewController: UITableViewDataSource, UITableViewDelegate{
         cell.addFriendButton.tag = indexPath.row
         return cell
     }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row == arrayUser.count){
+            if (OrpheeReachability().isConnected()){
+                getUsers(self.offset, size: self.size)
+            }
+        }
+    }
 }
 
 extension SocialViewController: UISearchControllerDelegate, UISearchResultsUpdating{
