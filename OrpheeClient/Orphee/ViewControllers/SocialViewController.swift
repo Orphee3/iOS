@@ -23,9 +23,6 @@ class SocialViewController: UIViewController{
     var blurView: UIVisualEffectView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
-        }
         prepareSearchingDisplay()
         
         if (OrpheeReachability().isConnected()){
@@ -62,6 +59,9 @@ class SocialViewController: UIViewController{
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
     }

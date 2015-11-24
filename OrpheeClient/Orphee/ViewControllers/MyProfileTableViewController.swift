@@ -29,6 +29,7 @@ class MyProfileTableViewController: UITableViewController{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        print("VIEWWILLAPPEAR")
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()

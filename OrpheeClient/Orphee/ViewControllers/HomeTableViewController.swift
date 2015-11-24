@@ -33,10 +33,6 @@ class HomeTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
-        }
-        
         tableView.registerNib(UINib(nibName: "CreationFluxCustomCell", bundle: nil), forCellReuseIdentifier: "creationCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
@@ -71,6 +67,9 @@ class HomeTableViewController: UITableViewController{
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
     }
     
     func getPopularCreations(offset: Int, size: Int){
@@ -144,7 +143,7 @@ extension HomeTableViewController{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (arrayCreation.isEmpty){
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             return 0
         }
         else{
@@ -204,6 +203,7 @@ extension HomeTableViewController{
     }
     
     func commentPushed(sender: UIButton){
+        print(user.name)
         if (user != nil){
             let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
             let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
