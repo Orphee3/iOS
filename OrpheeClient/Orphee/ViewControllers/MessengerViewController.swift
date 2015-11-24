@@ -11,10 +11,15 @@ import UIKit
 import DZNEmptyDataSet
 import Alamofire
 
-class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+class MessengerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+    
+    @IBOutlet var tableView: UITableView!
+    
     var arrayRooms: [Room] = []
     var user = User!()
-
+    var blurView: UIVisualEffectView!
+    var popupView: NotConnectedView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "RoomCell", bundle: nil), forCellReuseIdentifier: "RoomCell")
@@ -26,7 +31,22 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
         self.tableView.tableFooterView = UIView()
-        getRooms()
+        if (user != nil){
+            getRooms()
+        }else{
+            prepareViewForLogin()
+        }
+        self.tableView.addPullToRefresh({ [weak self] in
+            //refresh code
+            if (OrpheeReachability().isConnected()){
+//                self!.arrayUser = []
+//                self!.offset = 0
+//                self!.getUsers(self!.offset, size: self!.size)
+                self?.tableView.stopPullToRefresh()
+            }else{
+                self?.tableView.stopPullToRefresh()
+            }
+            })
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -59,7 +79,7 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
         print("start")
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
@@ -67,7 +87,7 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (arrayRooms.isEmpty){
             return 0
         }else{
@@ -75,13 +95,13 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RoomCell") as! RoomCell
         cell.layoutCell(arrayRooms[indexPath.row])
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("toConversation", sender: arrayRooms[indexPath.row])
     }
     
@@ -94,6 +114,24 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
         }
     }
     
+    func prepareViewForLogin(){
+        popupView = NotConnectedView.instanceFromNib()
+        popupView.layer.cornerRadius = 8
+        popupView.layer.shadowOffset = CGSize(width: 30, height: 30)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = CGRectMake(0, 0, self.tableView.frame.width, self.tableView.frame.height)
+        self.tableView.addSubview(blurView)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 2) - (popupView.frame.size.width / 2))
+        popupView.closeButton.hidden = true
+        blurView.addSubview(popupView)
+    }
+    
+    func sendToLogin(sender: UIButton){
+        let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        self.presentViewController(loginView, animated: true, completion: nil)
+    }
     
     func getRooms(){
         let headers = [
@@ -111,7 +149,6 @@ class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, D
                 else{
                     
                 }
-                
             }
         }
     }

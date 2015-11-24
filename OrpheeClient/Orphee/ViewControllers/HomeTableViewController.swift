@@ -12,6 +12,7 @@ import Alamofire
 import SDWebImage
 import AVFoundation
 import DZNEmptyDataSet
+import PullToRefreshSwift
 
 class HomeTableViewController: UITableViewController{
     var arrayCreation: [Creation] = []
@@ -26,25 +27,32 @@ class HomeTableViewController: UITableViewController{
     
     var isRefreshing = false
     
+    var popupView: NotConnectedView!
+    var blurView: UIVisualEffectView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
         }
-        tableView.infiniteScrollIndicatorStyle = .White
-        tableView.infiniteScrollIndicatorMargin = 40
-        tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
-            self.getPopularCreations(self.offset, size: self.size)
-            self.tableView.reloadData()
-            scrollView.finishInfiniteScroll()
-        })
         
         tableView.registerNib(UINib(nibName: "CreationFluxCustomCell", bundle: nil), forCellReuseIdentifier: "creationCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.tableView.addPullToRefresh({ [weak self] in
+            //refresh code
+            if (OrpheeReachability().isConnected()){
+                self!.arrayCreation = []
+                self!.arrayUser = []
+                self!.offset = 0
+                self!.getPopularCreations(self!.offset, size: self!.size)
+                self?.tableView.stopPullToRefresh()
+            }else{
+                self?.tableView.stopPullToRefresh()
+            }
+            })
         
         session.setupSession(&audioIO);
         audioIO.createAudioGraph();
@@ -53,19 +61,8 @@ class HomeTableViewController: UITableViewController{
         
         player = GenericPlayer(graph: audioIO, session: session);
         
-        self.getPopularCreations(offset, size: size)
-    }
-    
-    func refresh(sender:AnyObject){
-        if (OrpheeReachability().isConnected() && !isRefreshing){
-            arrayCreation = []
-            arrayUser = []
-            offset = 0
+        if(OrpheeReachability().isConnected()){
             getPopularCreations(offset, size: size)
-            isRefreshing = true
-        }else{
-            isRefreshing = false
-            self.refreshControl?.endRefreshing()
         }
     }
     
@@ -82,8 +79,6 @@ class HomeTableViewController: UITableViewController{
                 self.arrayCreation += creations
                 self.arrayUser += users
                 dispatch_async(dispatch_get_main_queue()){
-                    self.refreshControl!.endRefreshing()
-                    self.isRefreshing = false
                     self.tableView.reloadData()
                 }
                 self.offset += self.size
@@ -121,13 +116,21 @@ class HomeTableViewController: UITableViewController{
     }
     
     func prepareViewForLogin(){
-        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        blurView.frame = self.tableView.frame
+        popupView = NotConnectedView.instanceFromNib()
+        popupView.layer.cornerRadius = 8
+        popupView.layer.shadowOffset = CGSize(width: 30, height: 30)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = CGRectMake(0, 0, self.tableView.frame.width, self.tableView.frame.height)
         self.tableView.addSubview(blurView)
-        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
         popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.closeButton.addTarget(self, action: "closePopUpLogin:", forControlEvents: .TouchUpInside)
         blurView.addSubview(popupView)
+    }
+    
+    func closePopUpLogin(sender: UIButton){
+        popupView.removeFromSuperview()
+        blurView.removeFromSuperview()
     }
     
     func sendToLogin(sender: UIButton){
@@ -217,25 +220,21 @@ extension HomeTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSourc
         let image = UIImage(named: "orpheeLogoRoundSmall")
         return image
     }
-    
+
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Aucune données n'est disponible :("
         let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 19)!]
         return NSAttributedString(string: text, attributes: attributes)
     }
-    
+
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Vérifiez que vous êtes bien connecté à internet, par 3G/4G ou Wifi !"
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
         paragraph.alignment = NSTextAlignment.Center
-        
+
         let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 14)!, NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSParagraphStyleAttributeName: paragraph]
-        
+
         return NSAttributedString(string: text, attributes: attributes)
-    }
-    
-    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-        return true
     }
 }

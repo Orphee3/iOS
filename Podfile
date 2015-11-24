@@ -10,6 +10,6 @@ target :Orphee do
        pod 'Socket.IO-Client-Swift', :git => 'https://github.com/socketio/socket.io-client-swift.git', :branch => 'swift-2'
        pod 'SDWebImage', '~>3.7'
        pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
-       pod 'UIScrollView-InfiniteScroll'
+       pod 'PullToRefreshSwift'
        pod 'DZNEmptyDataSet'
 end

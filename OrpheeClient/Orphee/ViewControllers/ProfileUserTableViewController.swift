@@ -33,6 +33,7 @@ class ProfileUserTableViewController: UITableViewController {
         if let picture = user.picture {
             imgProfile.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
         }
+        imgProfile.layer.cornerRadius = self.imgProfile.frame.width / 2
         getInfoUser()
     }
     

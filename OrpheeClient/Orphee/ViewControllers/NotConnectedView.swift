@@ -11,6 +11,7 @@ import UIKit
 
 class NotConnectedView: UIView {
     @IBOutlet weak var goToLogin: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     class func instanceFromNib() -> NotConnectedView {
         return UINib(nibName: "NotConnectedView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! NotConnectedView

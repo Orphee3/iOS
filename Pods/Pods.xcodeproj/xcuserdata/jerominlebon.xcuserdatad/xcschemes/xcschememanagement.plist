@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ICSPullToRefresh.xcscheme</key>
+		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,12 +24,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PagedArray.xcscheme</key>
+		<key>Pods-Orphee.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Orphee.xcscheme</key>
+		<key>PullToRefreshSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,40 +44,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>UIScrollView-InfiniteScroll.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>003E982B0A7D33A58D67E54A80670559</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>02E635CA8CA6FE42C1E4C33EB6081B82</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0CF02A28868498C41A68F7B125C8EE97</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CA92E00F490D5DCB7A4B5C8B7953DAF</key>
+		<key>2FA6FD452A7F756F3523EF4514EC7BEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,17 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62C2246B5E77548783B78455B7BD9C9B</key>
+		<key>5BB727AF8F76CBE9D5BC87040B176F4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F88C3BE57CA62585DE3AB86B100DAC8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8FEB0B8BA5A7D58C755965A228591E92</key>
+		<key>77CA3D36FE8819951FD80BD712654465</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,27 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5AA99635302A020C78D1BB030F5EF44</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AB916E3E3FAD2C6A2CD34743630EA3C3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D391893E93D682700DB2015E6655E380</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ECAEA7303EE8341C1AC0AB8A34AB204E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>EDA125ADA52355B7CA6DF7BA96918357</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F502A320CDCBA75B6B89C15EB80999C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

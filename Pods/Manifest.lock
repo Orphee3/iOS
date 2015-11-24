@@ -4,21 +4,21 @@ PODS:
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - PullToRefreshSwift (2.0.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - Socket.IO-Client-Swift (2.4.5)
-  - UIScrollView-InfiniteScroll (0.7.3)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
   - DZNEmptyDataSet
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`,
     branch `develop`)
+  - PullToRefreshSwift
   - SDWebImage (~> 3.7)
   - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
     branch `swift-2`)
-  - UIScrollView-InfiniteScroll
 
 EXTERNAL SOURCES:
   JSQMessagesViewController:
@@ -41,8 +41,8 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  PullToRefreshSwift: 5c509e89c6638eae689813b665eff1a0ea0560d3
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4
-  UIScrollView-InfiniteScroll: b6c7d6d155dca7f9c5dd43813ecffeb301b3d50c
 
 COCOAPODS: 0.39.0

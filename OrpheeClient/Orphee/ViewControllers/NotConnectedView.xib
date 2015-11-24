@@ -40,6 +40,15 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ju-mA-piD">
+                    <rect key="frame" x="247" y="8" width="25" height="25"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="92v-de-WeR"/>
+                        <constraint firstAttribute="height" constant="25" id="lDA-RF-66P"/>
+                    </constraints>
+                    <state key="normal" image="decline"/>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,19 +56,23 @@
                 <constraint firstItem="Vx6-o7-alT" firstAttribute="top" secondItem="LR6-BM-wTj" secondAttribute="top" constant="8" id="0aM-sm-NgZ"/>
                 <constraint firstItem="6gc-mp-MgU" firstAttribute="centerX" secondItem="LR6-BM-wTj" secondAttribute="centerX" id="9gV-bu-50E"/>
                 <constraint firstAttribute="bottom" secondItem="6gc-mp-MgU" secondAttribute="bottom" constant="8" id="QEd-ds-7TK"/>
+                <constraint firstItem="7Ju-mA-piD" firstAttribute="top" secondItem="LR6-BM-wTj" secondAttribute="top" constant="8" id="aJJ-km-dET"/>
                 <constraint firstItem="Vx6-o7-alT" firstAttribute="centerX" secondItem="LR6-BM-wTj" secondAttribute="centerX" id="ifF-Yb-d4l"/>
                 <constraint firstItem="G3X-sr-4cT" firstAttribute="top" secondItem="Vx6-o7-alT" secondAttribute="bottom" constant="8" id="k2d-qE-dk0"/>
                 <constraint firstItem="G3X-sr-4cT" firstAttribute="centerX" secondItem="Vx6-o7-alT" secondAttribute="centerX" id="t2G-16-KfL"/>
+                <constraint firstAttribute="trailing" secondItem="7Ju-mA-piD" secondAttribute="trailing" constant="8" id="u4D-lk-4ox"/>
                 <constraint firstItem="6gc-mp-MgU" firstAttribute="top" secondItem="G3X-sr-4cT" secondAttribute="bottom" constant="20" id="veh-gd-UQF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="closeButton" destination="7Ju-mA-piD" id="oVM-6J-DfD"/>
                 <outlet property="goToLogin" destination="6gc-mp-MgU" id="0dV-Oq-MFX"/>
             </connections>
             <point key="canvasLocation" x="107" y="4"/>
         </view>
     </objects>
     <resources>
+        <image name="decline" width="100" height="100"/>
         <image name="orpheeLogoRound" width="375" height="375"/>
     </resources>
 </document>

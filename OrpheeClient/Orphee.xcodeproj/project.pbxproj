@@ -8,24 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E1B68751BD882360020DF40 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1B68741BD882360020DF40 /* Composition.storyboard */; };
-		1E8DA7041BD85FF6003C07B8 /* LiveAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2109111021E866F0D1E72 /* LiveAudioPlayer.swift */; };
-		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
-		1EA5BA6F1BFD46C700ABAF25 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */; };
-		1EA5BA701BFD46C700ABAF25 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */; };
-		1EA5BA711BFD46C700ABAF25 /* Dont_Cry.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */; };
-		1EA5BA811BFD46C700ABAF25 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */; };
-		1EA5BA821BFD46C700ABAF25 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */; };
-		1EA5BA831BFD46C700ABAF25 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */; };
-		1EA5BA841BFD46C700ABAF25 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */; };
-		1EA5BA851BFD46C700ABAF25 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */; };
-		1EA5BA861BFD46C700ABAF25 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */; };
-		1EA5BA881BFD483500ABAF25 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
-		1EA5BA891BFD483500ABAF25 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
-		1EA5BA8A1BFD483500ABAF25 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
-		1EA5BA8B1BFDB48300ABAF25 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
-		1EA5BA8C1BFDB48300ABAF25 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
-		1EA5BA8D1BFDB48400ABAF25 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
+		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
 		526FF6051A81106E00CF6A9C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6041A81106E00CF6A9C /* Sounds */; };
@@ -363,7 +347,6 @@
 			children = (
 				1E8DA7011BD83E98003C07B8 /* Test resources */,
 				9BD33E021C0124E700802BE3 /* Reach.swift */,
-				1EA5BA641BFD46C700ABAF25 /* Test resources */,
 				88F21A363E92E4DAFEE687AF /* SoundBanks */,
 				526FF6041A81106E00CF6A9C /* Sounds */,
 				52C61DA11A79E5C400B3DE23 /* Images.xcassets */,
@@ -926,11 +909,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ED8F40A1C0158D600FA1852 /* Dont_Cry.mid in Resources */,
-				1ED8F4101C0158DE00FA1852 /* Vibraphone.aupreset in Resources */,
-				1ED8F4021C0158C900FA1852 /* Sounds in Resources */,
-				1ED8F40D1C0158DA00FA1852 /* Trombone.aupreset in Resources */,
-				1ED8F4061C0158D100FA1852 /* xtreme.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,11 +933,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ED8F40B1C0158D700FA1852 /* Dont_Cry.mid in Resources */,
-				1ED8F4111C0158DE00FA1852 /* Vibraphone.aupreset in Resources */,
-				1ED8F4031C0158C900FA1852 /* Sounds in Resources */,
-				1ED8F40E1C0158DB00FA1852 /* Trombone.aupreset in Resources */,
-				1ED8F4071C0158D100FA1852 /* xtreme.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,11 +940,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ED8F40C1C0158D700FA1852 /* Dont_Cry.mid in Resources */,
-				1ED8F4131C0158E000FA1852 /* Vibraphone.aupreset in Resources */,
-				1ED8F4051C0158CB00FA1852 /* Sounds in Resources */,
-				1ED8F40F1C0158DB00FA1852 /* Trombone.aupreset in Resources */,
-				1ED8F4091C0158D300FA1852 /* xtreme.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

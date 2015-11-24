@@ -18,6 +18,8 @@ class MyProfileTableViewController: UITableViewController{
     @IBOutlet var nameProfile: UILabel!
     var loginButton: UIButton!
     
+    var popupView: NotConnectedView!
+    var blurView: UIVisualEffectView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "CreationProfileCustomCell", bundle: nil), forCellReuseIdentifier: "creationProfileCell")
@@ -33,10 +35,15 @@ class MyProfileTableViewController: UITableViewController{
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             self.user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             self.nameProfile.text = self.user.name
+            self.imgLogin.layer.cornerRadius = self.imgLogin.frame.width / 2
             if let picture = self.user.picture{
                 self.imgLogin.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
             }else{
                 self.imgLogin.image = UIImage(named: "emptygrayprofile")
+            }
+            if (popupView != nil){
+                popupView.removeFromSuperview()
+                blurView.removeFromSuperview()
             }
             getCreations()
         }
@@ -58,12 +65,15 @@ class MyProfileTableViewController: UITableViewController{
     }
     
     func prepareViewForLogin(){
-        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        blurView.frame = self.tableView.frame
+        popupView = NotConnectedView.instanceFromNib()
+        popupView.layer.cornerRadius = 8
+        popupView.layer.shadowOffset = CGSize(width: 30, height: 30)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = CGRectMake(0, 0, self.tableView.frame.width, self.tableView.frame.height)
         self.tableView.addSubview(blurView)
         popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
-        popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 2) - (popupView.frame.size.width / 2))
+        popupView.closeButton.hidden = true
         blurView.addSubview(popupView)
     }
     
@@ -75,10 +85,6 @@ class MyProfileTableViewController: UITableViewController{
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
-        if let _ = loginButton{
-            loginButton.removeFromSuperview()
-            imgLogin.removeFromSuperview()
-        }
     }
 }
 

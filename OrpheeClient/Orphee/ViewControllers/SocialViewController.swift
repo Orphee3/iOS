@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SocialViewController: UITableViewController{
+class SocialViewController: UIViewController{
+    @IBOutlet var tableView: UITableView!
     var arrayUser: [User] = []
     var offset = 0
     var size = 6
@@ -18,8 +19,8 @@ class SocialViewController: UITableViewController{
     var searchBar: UISearchBar!
     var user = User!()
     
-    var isRefreshing = false
-    
+    var popupView: NotConnectedView!
+    var blurView: UIVisualEffectView!
     override func viewDidLoad() {
         super.viewDidLoad()
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
@@ -27,39 +28,33 @@ class SocialViewController: UITableViewController{
         }
         prepareSearchingDisplay()
         
-        tableView.infiniteScrollIndicatorStyle = .White
-        tableView.infiniteScrollIndicatorMargin = 40
-        tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
-            self.getUsers(self.offset, size: self.size)
-            scrollView.finishInfiniteScroll()
-        })
-        getUsers(offset, size: size)
-        tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-    }
-    
-    func refresh(sender:AnyObject){
-        if (OrpheeReachability().isConnected() && !isRefreshing){
-            self.isRefreshing = true
-            self.arrayUser = []
-            self.offset = 0
-            getUsers(self.offset, size: size)
-        }else{
-            self.refreshControl?.endRefreshing()
+        if (OrpheeReachability().isConnected()){
+            getUsers(offset, size: size)
         }
+        tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
+        self.tableView.addPullToRefresh({ [weak self] in
+            //refresh code
+            if (OrpheeReachability().isConnected()){
+                self!.arrayUser = []
+                self!.offset = 0
+                self!.getUsers(self!.offset, size: self!.size)
+                self?.tableView.stopPullToRefresh()
+            }else{
+                self?.tableView.stopPullToRefresh()
+            }
+            })
     }
     
     func getUsers(offset: Int, size: Int){
-        
-        OrpheeApi().getUsers(offset, size: size, completion: {(response) in
-            self.offset += self.size
-            dispatch_async(dispatch_get_main_queue()) {
-                self.isRefreshing = false
-                self.refreshControl!.endRefreshing()
-                self.tableView.reloadData()
-            }
-        })
+        if (OrpheeReachability().isConnected()){
+            OrpheeApi().getUsers(offset, size: size, completion: {(response) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.arrayUser = response
+                    self.tableView.reloadData()
+                }
+                self.offset += self.size
+            })
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -94,13 +89,21 @@ class SocialViewController: UITableViewController{
     }
     
     func prepareViewForLogin(){
-        let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        blurView.frame = self.tableView.frame
+        popupView = NotConnectedView.instanceFromNib()
+        popupView.layer.cornerRadius = 8
+        popupView.layer.shadowOffset = CGSize(width: 30, height: 30)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = CGRectMake(0, 0, self.tableView.frame.width, self.tableView.frame.height)
         self.tableView.addSubview(blurView)
+        popupView.center = CGPointMake(self.blurView.frame.size.width / 2, self.blurView.frame.size.height / 2)
         popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
-        popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        popupView.closeButton.addTarget(self, action: "closePopUpLogin:", forControlEvents: .TouchUpInside)
         blurView.addSubview(popupView)
+    }
+    
+    func closePopUpLogin(sender: UIButton){
+        popupView.removeFromSuperview()
+        blurView.removeFromSuperview()
     }
     
     func sendToLogin(sender: UIButton){
@@ -110,15 +113,15 @@ class SocialViewController: UITableViewController{
     }
 }
 
-extension SocialViewController{
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+extension SocialViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let profileView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
         profileView.user = arrayUser[indexPath.row]
         self.navigationController?.pushViewController(profileView, animated: true)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!arrayUser.isEmpty){
             return arrayUser.count
         }
@@ -127,7 +130,7 @@ extension SocialViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: FluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("FluxCell") as? FluxCustomCell
         cell.putInGraphic(arrayUser[indexPath.row])
         cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
