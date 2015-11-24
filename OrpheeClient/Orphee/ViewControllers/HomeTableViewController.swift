@@ -18,7 +18,7 @@ class HomeTableViewController: UITableViewController{
     var arrayCreation: [Creation] = []
     var arrayUser: [User] = []
     var offset = 0
-    var size = 10
+    var size = 100
     var user = User!()
     
     var player: pAudioPlayer!;
@@ -144,6 +144,7 @@ extension HomeTableViewController{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (arrayCreation.isEmpty){
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
             return 0
         }
         else{
@@ -202,15 +203,6 @@ extension HomeTableViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == arrayCreation.count){
-            
-            if (OrpheeReachability().isConnected()){
-                getPopularCreations(self.offset, size: self.size)
-            }
-        }
-    }
-    
     func commentPushed(sender: UIButton){
         if (user != nil){
             let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
@@ -229,21 +221,21 @@ extension HomeTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSourc
         let image = UIImage(named: "orpheeLogoRoundSmall")
         return image
     }
-    
+
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Aucune données n'est disponible :("
         let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 19)!]
         return NSAttributedString(string: text, attributes: attributes)
     }
-    
+
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Vérifiez que vous êtes bien connecté à internet, par 3G/4G ou Wifi !"
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
         paragraph.alignment = NSTextAlignment.Center
-        
+
         let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 14)!, NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSParagraphStyleAttributeName: paragraph]
-        
+
         return NSAttributedString(string: text, attributes: attributes)
     }
 }

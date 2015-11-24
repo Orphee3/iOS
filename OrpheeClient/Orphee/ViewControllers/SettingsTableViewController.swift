@@ -99,11 +99,24 @@ extension SettingsTableViewController: RSKImageCropViewControllerDelegate{
     
     func imageCropViewController(controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
         self.imgProfileCropped.image = croppedImage
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let destinationPath = documentsPath.stringByAppendingPathComponent("imgProfile.png")
+        UIImageJPEGRepresentation(croppedImage,0.25)!.writeToFile(destinationPath, atomically: true)
+        OrpheeApi().sendImgToServer(user.token, id: user.id, completion: {(response) in
+            print(response)
+        })
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     func imageCropViewController(controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
         self.imgProfileCropped.image = croppedImage
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let destinationPath = documentsPath.stringByAppendingPathComponent("imgProfile.png")
+        UIImageJPEGRepresentation(croppedImage,0.25)!.writeToFile(destinationPath, atomically: true)
+        OrpheeApi().sendImgToServer(user.token, id: user.id, completion: {(response) in
+            print(response)
+        })
+
         self.navigationController?.popViewControllerAnimated(true)
     }
     

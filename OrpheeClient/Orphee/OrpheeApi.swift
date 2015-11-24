@@ -119,7 +119,7 @@ class OrpheeApi {
         }
     }
     
-    func sendComment(token: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
+    func sendComment(token: String, name: String, picture: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"
         ]
@@ -132,12 +132,9 @@ class OrpheeApi {
         Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
             print(json.value)
             if (response?.statusCode == 200){
-                let creator = User(User: json.value as! Dictionary<String, AnyObject>)
                 let commentToAdd = Comment(Comment: message,
-                    user: creator)
+                    user: name, picture: picture)
                 completion(response: commentToAdd)
-                self.notify(token, creationId: creationId, completion: {(response) -> () in
-                })
             }
         }
         
@@ -150,7 +147,7 @@ class OrpheeApi {
                 var arrayComments: [Comment] = []
                 if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
                     for elem in array{
-                        arrayComments.append(Comment(Comment: elem["message"] as! String, user: User(User: elem["creator"] as! Dictionary<String, AnyObject>)))
+                        arrayComments.append(Comment(Comment: elem["message"] as! String, user: elem["creator"]!["name"] as! String, picture: elem["creator"]!["picture"] as! String))
                     }
                     completion(response: arrayComments)
                 }
@@ -192,41 +189,61 @@ class OrpheeApi {
         let headers = [
             "Authorization": "Bearer \(token)"
         ]
-        Alamofire.request(.GET, "\(url)/comments/\(creationId)", headers: headers).responseJSON{request, response, json in
+        Alamofire.request(.GET, "\(url)/notify/comments/\(creationId)", headers: headers).responseJSON{request, response, json in
             if (response?.statusCode == 200){
                 completion(response: "ok")
             }
         }
     }
     
-    func sendImgToServer() {
+    func sendImgToServer(token: String, id: String, completion:(response: AnyObject) -> ()) {
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/upload/image/png").responseJSON{request, response, json in
             print(request)
             print(response)
             print(json.value!)
-            //            var newJson = JSON(json.value!)
-            //            let headers = [
-            //                "Content-Type":"image/png"
-            //            ]
-            //            let url = newJson["urlPut"].string!
-            //            let urlGet = newJson["urlGet"].string!
-            //            self.sendImgToAmazon(url, headers: headers, urlGet: urlGet)
+            if (response?.statusCode == 200){
+                if let dic = json.value as! Dictionary<String, AnyObject>?{
+                    let headers = [
+                        "Content-Type":"image/png"
+                    ]
+                    let url = dic["urlPut"] as! String
+                    let urlGet = dic["urlGet"] as! String
+                    self.sendImgToAmazon(url, headers: headers, urlGet: urlGet, completion: {(response) in
+                        if (response as! String == "ok"){
+                            self.updateUserProfile(token, id: id, urlGet: urlGet, completion: {(response) in
+                                completion(response: response)
+                            })
+                        }
+                    })
+                }
+            }
         }
     }
     
-    func sendImgToAmazon(url: String, headers: [String:String], urlGet: String){
+    func sendImgToAmazon(url: String, headers: [String:String], urlGet: String, completion:(response: AnyObject) ->()){
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         let destinationPath = documentsPath.stringByAppendingPathComponent("imgProfile.png")
         Alamofire.upload(.PUT, url, headers: headers, file: NSURL(fileURLWithPath: destinationPath))
-            .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                print(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.progressBar.setProgress(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite), animated: true)
-                }
-            }
             .responseJSON{ request, response, result in
+                print(response)
                 print(result.value)
-                self.updateUserProfile(urlGet)
+                completion(response: "ok")
+        }
+    }
+    
+    func updateUserProfile(token: String, id: String, urlGet: String, completion:(response: AnyObject) -> ()){
+        let parameter = [
+            "picture":"\(urlGet)"
+        ]
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.PUT, "http://163.5.84.242:3000/api/user/\(id)", headers: headers, parameters: parameter).responseJSON{request, response, json in
+            print(response)
+            print(json.value)
+            if (response!.statusCode == 200){
+                completion(response: urlGet)
+            }
         }
     }
 }

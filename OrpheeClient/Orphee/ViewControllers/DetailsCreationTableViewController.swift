@@ -83,17 +83,21 @@ class DetailsCreationTableViewController: UITableViewController{
     
     func getComments(){
         OrpheeApi().getComments(creation.id, completion: {(response) -> () in
-            self.arrayComments = response.reverse()
+            print(response)
+            self.arrayComments = response
             self.tableView.reloadData()
         })
     }
     
     @IBAction func sendComment(sender: AnyObject) {
         if (commentTextField.text != nil && OrpheeReachability().isConnected()){
-            OrpheeApi().sendComment(user.token, creationId: creation.id, userId: user.id, message: commentTextField.text!, completion: {(response) ->() in
+            OrpheeApi().sendComment(user.token, name: user.name, picture: user.picture, creationId: creation.id, userId: user.id, message: commentTextField.text!, completion: {(response) ->() in
                 self.arrayComments.insert(response as! Comment, atIndex: 0)
                 self.commentTextField.text = ""
                 self.nbComments.text = String(self.creation.nbCommments + 1)
+                OrpheeApi().notify(self.user.token, creationId: self.creation.id, completion: {(response) in
+                    
+                })
                 self.tableView.reloadData()
             })
         }
@@ -134,8 +138,8 @@ extension DetailsCreationTableViewController: UITextFieldDelegate{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: commentCellView! = tableView.dequeueReusableCellWithIdentifier("commentcell") as? commentCellView
         cell.msgUser.text = arrayComments[indexPath.row].message
-        cell.nameUser.text = arrayComments[indexPath.row].user.name
-        if let picture = arrayComments[indexPath.row].user.picture {
+        cell.nameUser.text = arrayComments[indexPath.row].user
+        if let picture = arrayComments[indexPath.row].picture {
             cell.imgUser.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
         }
         return cell

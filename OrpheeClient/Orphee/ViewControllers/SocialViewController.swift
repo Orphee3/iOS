@@ -14,7 +14,7 @@ class SocialViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     var arrayUser: [User] = []
     var offset = 0
-    var size = 6
+    var size = 100
     var searchDisplay: UISearchController!
     var searchBar: UISearchBar!
     var user = User!()
@@ -136,14 +136,6 @@ extension SocialViewController: UITableViewDataSource, UITableViewDelegate{
         cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)
         cell.addFriendButton.tag = indexPath.row
         return cell
-    }
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == arrayUser.count){
-            if (OrpheeReachability().isConnected()){
-                getUsers(self.offset, size: self.size)
-            }
-        }
     }
 }
 

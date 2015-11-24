@@ -37,6 +37,7 @@ class MyProfileTableViewController: UITableViewController{
             self.nameProfile.text = self.user.name
             self.imgLogin.layer.cornerRadius = self.imgLogin.frame.width / 2
             if let picture = self.user.picture{
+                print(picture)
                 self.imgLogin.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
             }else{
                 self.imgLogin.image = UIImage(named: "emptygrayprofile")

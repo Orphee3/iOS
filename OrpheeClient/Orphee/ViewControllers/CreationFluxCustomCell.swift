@@ -32,6 +32,8 @@ class CreationFluxCustomCell: UITableViewCell{
             self.nameCreation.text = nameCreation.substringWithRange(
                 Range<String.Index>(start: nameCreation.startIndex.advancedBy(0),
                     end: nameCreation.endIndex.advancedBy(-4)))
+        }else{
+            self.nameCreation.text = "Sans titre"
         }
         if let picture = user.picture{
             self.imgProfileCreator.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
