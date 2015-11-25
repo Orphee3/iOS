@@ -65,13 +65,21 @@ public protocol pMIDIByteStreamBuilder {
     /// The time resolution, aka Pulse Per Quarter Note.
     var _timeResolution: UInt16 { get };
 
+    // The file's time signature
+    var _timeSignature: (UInt8, UInt8) { get }
+
+    // The file's tempo
+    var _tempo: UInt { get }
+
     ///    Default initializer.
     ///
     ///    - parameter  trkNbr: The number of tracks the file will contain.
     ///    - parameter    ppqn: The time resolution, aka Pulse Per Quarter Note.
+    ///    - parameter timeSig: The file's time signature.
+    ///    - parameter     bpm: The file's tempo
     ///
     ///    - returns: Initializes the MIDIByteStreamBuilder.
-    init(trkNbr: UInt16, ppqn: UInt16);
+    init(trkNbr: UInt16, ppqn: UInt16, timeSig: (UInt8, UInt8), bpm: UInt);
 
 	///  Setup the buffer.
     func buildMIDIBuffer();

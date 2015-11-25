@@ -54,7 +54,7 @@ class FileManagementTests: XCTestCase {
         XCTAssertTrue(fm!.createFile(nil))
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: CoreMIDISequenceCreator.self))
 
-        try! NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/test0.mid");
+        try? NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/testCoreMIDI.mid");
     }
 
     func testCreateFile_succeeds__using_MIDIByteBufferCreator() {
@@ -62,7 +62,7 @@ class FileManagementTests: XCTestCase {
 
         XCTAssertTrue(fm!.createFile(nil))
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: MIDIByteBufferCreator.self));
-        try! NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/test1.mid");
+        try? NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/testByteBuffer.mid");
     }
 
     func testReadFile_succeeds__when_file_wasCreatedBy_MIDIByteBufferCreator() {

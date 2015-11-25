@@ -16,7 +16,7 @@ let kTimeResolution_AppleDefault: UInt16 = 480;
 /** CoreMIDISequenceCreator realizes pMIDIByteStreamBuilder
 
 */
-public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
+public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
     /// Provides the number of tracks.
     public var _trackCount: UInt16 {
@@ -27,28 +27,36 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
     /// Provides the time resolution.
     public let _timeResolution: UInt16;
+    // The file's time signature
+    public let _timeSignature: (UInt8, UInt8);
+    // The file's tempo
+    public let _tempo: UInt;
 
     /// The container for MIDI events to be transformed to a Byte stream.
     var buffer: MusicSequence!;
     /// Internal count of tracks.
     var trkCnt: UInt16 = 0;
 
-    ///  Initialises a new CoreMIDISequenceCreator.
+    ///    Default initializer.
     ///
-    ///  - parameter trkNbr: The number of tracks. Leave default.
-    ///  - parameter ppqn:   Pulse Per Quarter Note or time resolution.
-    ///                   No way to change it: Leave Apple default time resolution.
+    ///    - parameter  trkNbr: Unused parameter.
+    ///    - parameter    ppqn: The time resolution, aka Pulse Per Quarter Note.
+    ///    - parameter timeSig: The file's time signature.
+    ///    - parameter     bpm: The file's tempo
     ///
-    ///  - returns: An initialised CoreMIDISequenceCreator.
-    public required init(trkNbr: UInt16 = 0, ppqn: UInt16 = kTimeResolution_AppleDefault) {
+    ///    - returns: Initializes the MIDIByteStreamBuilder.
+    public init(trkNbr: UInt16 = 0, ppqn: UInt16 = kTimeResolution_AppleDefault, timeSig: (UInt8, UInt8), bpm: UInt) {
 
-        _timeResolution = kTimeResolution_AppleDefault;
+        _timeResolution   = kTimeResolution_AppleDefault
+        _timeSignature    = (timeSig.0, UInt8(log10(Double(timeSig.1)) / log10(2)))
+        _tempo            = bpm
     }
 
     ///  Creates and sets up the MusicSequence buffer.
     public func buildMIDIBuffer() {
 
         buffer = CoreMIDISequenceCreator.makeMIDIBuffer();
+        setupTempoTrack()
     }
 
     ///  Adds the given track to the buffer
@@ -107,5 +115,36 @@ public class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
         NewMusicSequence(&s);
         return s;
+    }
+
+    func setupTempoTrack() {
+        var trk = MusicTrack()
+        var timeSigEvent = MIDIMetaEvent.buildMetaEvent(eMidiEventType.timeSignature.rawValue, data: [_timeSignature.0, _timeSignature.1, 0x18, 0x08])
+        var tempoEvent = MIDIMetaEvent.buildMetaEvent(eMidiEventType.setTempo.rawValue, data: decomposeToBytes(60_000_000 / _tempo))
+        print(MusicSequenceGetTempoTrack(buffer, &trk))
+        print(MusicTrackNewMetaEvent(trk, 0, timeSigEvent))
+        print(MusicTrackNewMetaEvent(trk, 0, tempoEvent))
+        MIDIMetaEvent.clean(timeSigEvent)
+        MIDIMetaEvent.clean(tempoEvent)
+    }
+}
+
+extension MIDIMetaEvent {
+
+    static func buildMetaEvent(type: UInt8, data: [UInt8]) -> UnsafeMutablePointer<MIDIMetaEvent> {
+        let size = sizeof(MIDIMetaEvent) + data.count
+        let memoryPtr = UnsafeMutablePointer<UInt8>.alloc(size)
+        let metaEvtPtr: UnsafeMutablePointer<MIDIMetaEvent> = UnsafeMutablePointer(memoryPtr)
+
+        metaEvtPtr.memory.metaEventType = type
+        metaEvtPtr.memory.dataLength = UInt32(data.count)
+        memcpy(memoryPtr + 8, data, data.count)
+
+        return metaEvtPtr
+    }
+
+    static func clean(event: UnsafeMutablePointer<MIDIMetaEvent>) {
+        let size = sizeof(MIDIMetaEvent) + Int(event.memory.dataLength)
+        event.dealloc(size)
     }
 }

@@ -53,14 +53,13 @@ func prepareInputForVLV<T where T: UnsignedIntegerType>(input: T) -> [UInt8] {
 func decomposeToBytes<T where T: UnsignedIntegerType>(input: T) -> [UInt8] {
 
     var out: [UInt8] = (input > 0 ? [] : [0]);
-    var inp = input.toUIntMax();
+    var input = input.toUIntMax();
 
-    while (inp > 0) {
-
-        out.append(getFullByte(inp));
-        inp >>= 8;
+    while (input > 0) {
+        out.append(getFullByte(input));
+        input >>= 8
     }
-    return out;
+    return out.reverse();
 }
 
 /// Closure setting the highest order bit on the given Byte.
@@ -73,62 +72,109 @@ let isHighestOrderBitSet = { (input: UInt8) -> Bool in
     return (input & 0x80) == 0x80;
 }
 
+protocol pTrack {
+    
+    /// Length of the track.
+    var trackLength: Int { get set}
+    /// Buffer for the track's header.
+    var header: ByteBuffer { get set}
+    /// Buffer for all other events.
+    var body: ByteBuffer! { get set }
+    
+    ///  Builds the header chunk buffer.
+    mutating func fillHeader(data: [UInt8]);
+    
+    ///  Unify all the track's buffers.
+    ///
+    ///  - returns: A unified buffer containing all the track's information.
+    mutating func unifiedBufferForTrack() -> ByteBuffer
+
+    mutating func unifiedBufferForTrack(buffers: [ByteBuffer]) -> ByteBuffer
+}
+
+extension pTrack {
+    
+    mutating func fillHeader(data: [UInt8]) {
+        header.putUTF8(kMIDIFile_trackMark);
+        
+        header.mark();
+        header.putUInt32(swapUInt32(UInt32(trackLength)));
+        
+        header.putUInt8(data)
+        trackLength = sizeof(UInt32) + data.count;
+    }
+    
+    ///  Unify all the track's buffers.
+    ///
+    ///  - returns: A unified buffer containing all the track's information.
+    mutating func unifiedBufferForTrack() -> ByteBuffer {
+        return unifiedBufferForTrack([header, body])
+    }
+
+    mutating func unifiedBufferForTrack(buffers: [ByteBuffer]) -> ByteBuffer {
+
+        updateTrackLength()
+        let unifiedBuffer = ByteBuffer(order: LittleEndian(), capacity: Int(trackLength) + kMIDIFile_trackMarkSize + kMIDIEvent_endOfTrack.count);
+
+        for buffer in buffers {
+            memcpy(UnsafeMutablePointer<Void>(unifiedBuffer.data + unifiedBuffer.position),
+                UnsafeMutablePointer<Void>(buffer.data),
+                buffer.position
+            );
+            unifiedBuffer.position += buffer.position;
+        }
+        return unifiedBuffer;
+    }
+
+    private mutating func updateTrackLength() {
+        let headerPos = header.position
+
+        header.reset()
+        header.putUInt32(swapUInt32(UInt32(trackLength)));
+        header.position = headerPos
+    }
+}
+
 /// Realisation of pMIDIByteStreamBuilder using a ByteBuffer.
-public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
+public final class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
 
     ///  Structure in charge of building tracks.
-    public struct sTrack {
-    
+    struct sTrack: pTrack {
+
+        /// Tempo
+        let bpm: UInt;
         /// Time resolution
-        let ppqn: UInt32;
+        let timeRes: UInt16;
         /// Length of the track.
         var trackLength: Int = 0;
         /// Channel to which the track's events belong.
-        var channel: UInt8      = 0;
+        var channel: UInt8   = 0;
 
         /// Buffer for the track's header.
         var header: ByteBuffer;
         /// Buffer for the Program change.
         var channelPrg: ByteBuffer;
         /// Buffer for all other events.
-        lazy var body: ByteBuffer! = nil;
+        var body: ByteBuffer! = nil;
 
         ///  init
         ///
-        ///  - parameter ppqn:       The track's time resolution
+        ///  - parameter bpm:       The track's time resolution
         ///  - parameter channel:    The channel to which the track's events belong.
         ///  - parameter startTime:  The offset at which the track begins.
         ///  - parameter instrument: The instrument this track represents.
         ///
         ///  - returns: An initialized instance of sTrack.
-        init(ppqn: UInt16, channel: UInt8, startTime: UInt32, instrument: UInt8) {
+        init(timeRes: UInt16, bpm: UInt, channel: UInt8, startTime: UInt32, instrument: UInt8) {
 
-            self.ppqn    = UInt32(ppqn)
-            header       = ByteBuffer(order: LittleEndian(), capacity: kMIDITrack_headerLength);
-            channelPrg   = ByteBuffer(order: LittleEndian(), capacity: kMIDIEventMaxSize_deltaTime + kMIDIEventMaxSize_programChange);
-            self.channel = channel;
+            self.bpm        = bpm;
+            self.channel    = channel;
+            self.timeRes    = timeRes;
+            self.header     = ByteBuffer(order: LittleEndian(), capacity: kMIDIFile_trackMarkSize + sizeofValue(trackLength));
+            self.channelPrg = ByteBuffer(order: LittleEndian(), capacity: kMIDIEventMaxSize_deltaTime + kMIDIEventMaxSize_programChange);
 
-            fillHeader();
+            fillHeader([]);
             mkChannelPrg(channel, startTime: startTime, instrument: instrument);
-        }
-
-        ///  Builds the header chunk buffer.
-        mutating func fillHeader() {
-
-            header.putUTF8(kMIDIFile_trackMark);
-            header.mark();
-
-            header.putUInt32(swapUInt32(UInt32(trackLength)));
-
-            header.putUInt8(kMIDIEvent_timeSignature);
-            header.putUInt8(kMIDIEventDefaultData_timeSig);
-
-            header.putUInt8(kMIDIEvent_setTempo);
-            header.putUInt8(kMIDIEventDefaultData_setTempo);
-
-            trackLength = kMIDIFile_trackMarkSize + sizeofValue(trackLength)
-                + kMIDIEvent_timeSignature.count + kMIDIEventDefaultData_timeSig.count
-                + kMIDIEvent_setTempo.count + kMIDIEventDefaultData_setTempo.count
         }
 
         ///  Builds the program change buffer
@@ -190,7 +236,7 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
                 if (notes.count > 0) {
                     for (idx, note) in notes.enumerate() {
                         if (idx == 0) {
-                            deltaTime = UInt32(eNoteLength.crotchet.rawValue * Float32(ppqn) * Float32(silences));
+                            deltaTime = UInt32(eNoteLength.crotchet.rawValue * Float32(timeRes) * Float32(silences));
                             silences = 0
                         }
                         mkDeltaTime(body, deltaTime: deltaTime);
@@ -199,7 +245,7 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
                     }
                     for (idx, note) in notes.enumerate() {
                         if (idx == 0) {
-                            deltaTime = UInt32(note.duration * Float32(ppqn));
+                            deltaTime = UInt32(note.duration * Float32(timeRes));
                         }
                         mkDeltaTime(body, deltaTime: deltaTime);
                         noteEvent(eMidiEventType.noteOff, note: note.note, velocity: 0);
@@ -211,44 +257,63 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
                 }
             }
             body.putUInt8(kMIDIEvent_endOfTrack);
-            trackLength += kMIDIEvent_endOfTrack.count;
-
-            let pos = header.position;
-            header.reset();
-            header.putUInt32(swapUInt32(UInt32(trackLength)));
-            header.position = pos;
         }
 
-        ///  Unify all the track's buffers.
-        ///
-        ///  - returns: A unified buffer containing all the track's information.
         mutating func unifiedBufferForTrack() -> ByteBuffer {
+            return unifiedBufferForTrack([header, channelPrg, body])
+        }
+    }
 
-            let buffer = ByteBuffer(order: LittleEndian(), capacity: Int(trackLength));
+    struct sTempoTrack: pTrack {
 
-            memcpy(UnsafeMutablePointer<Void>(buffer.data),
-                UnsafeMutablePointer<Void>(header.data),
-                header.position
-            );
-            buffer.position += header.position;
-            memcpy(UnsafeMutablePointer<Void>(buffer.data + buffer.position),
-                UnsafeMutablePointer<Void>(channelPrg.data),
-                channelPrg.position
-            );
-            buffer.position += channelPrg.position;
-            memcpy(UnsafeMutablePointer<Void>(buffer.data + buffer.position),
-                UnsafeMutablePointer<Void>(body.data),
-                body.position
-            );
-            buffer.position += body.position;
-            return buffer;
+        /// Length of the track.
+        var trackLength: Int = 0;
+        /// Buffer for the track's header.
+        var header: ByteBuffer;
+        /// Buffer for all other events.
+        var body: ByteBuffer! = nil;
+
+        let tempoData: [UInt8]
+        let timeSigData: [UInt8]
+        init(timeSig: (UInt8, UInt8), bpm: UInt) {
+            self.tempoData   = decomposeToBytes(60_000_000 / bpm);
+            self.timeSigData = [timeSig.0, timeSig.1, 0x18, 0x08]
+            self.header      = ByteBuffer(order: LittleEndian(), capacity: kMIDIFile_trackMarkSize + sizeofValue(trackLength));
+
+            fillHeader([]);
+            fillBody();
+        }
+
+        mutating func fillBody() {
+            let timeSig = kMIDIEvent_timeSignature
+            let tempo = kMIDIEvent_setTempo
+            let EOT = kMIDIEvent_endOfTrack
+            let bodySz = tempoData.count + timeSigData.count
+                + timeSig.count + tempo.count
+
+            trackLength += bodySz;
+
+            body = ByteBuffer(order: LittleEndian(), capacity: bodySz + EOT.count);
+            body.putUInt8(timeSig)
+            body.putUInt8(timeSigData)
+            body.putUInt8(tempo)
+            body.putUInt8(tempoData)
+            body.putUInt8(EOT)
         }
     }
 
     /// The file's time resolution.
     public let _timeResolution: UInt16;
     /// The file's track number.
-    public let _trackCount: UInt16;
+    public var _trackCount: UInt16 {
+        get {
+            return UInt16(tracks.count)
+        }
+    }
+    // The file's time signature
+    public let _timeSignature: (UInt8, UInt8);
+    // The file's tempo
+    public let _tempo: UInt;
 
     /// The file's header chunk length.
     let _fileHeaderLength: Int;
@@ -262,19 +327,22 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
     /// The file's header chunk buffer.
     var fileHeader: ByteBuffer!;
     /// An array of all the built tracks.
-    var tracks: [sTrack] = [];
+    var tracks: [pTrack] = [];
 
-    ///  init
+    ///    Default initializer.
     ///
-    ///  - parameter trkNbr: The number of tracks.
-    ///  - parameter ppqn:   The time resolution
+    ///    - parameter  trkNbr: The number of tracks the file will contain.
+    ///    - parameter    ppqn: The time resolution, aka Pulse Per Quarter Note.
+    ///    - parameter timeSig: The file's time signature.
+    ///    - parameter     bpm: The file's tempo
     ///
-    ///  - returns: An initialized MIDIByteBufferCreator instance.
-    public required init(trkNbr: UInt16, ppqn: UInt16) {
+    ///    - returns: Initializes the MIDIByteStreamBuilder.
+    public init(trkNbr: UInt16, ppqn: UInt16 = kTimeResolution_AppleDefault, timeSig: (UInt8, UInt8) = (4, 4), bpm: UInt = 120) {
 
-        _fileHeaderLength = kMIDIFile_headerLength;
-        _timeResolution   = ppqn;
-        _trackCount       = trkNbr;
+        _fileHeaderLength = kMIDIFile_headerLength
+        _timeResolution   = kTimeResolution_AppleDefault
+        _timeSignature    = (timeSig.0, UInt8(log10(Double(timeSig.1)) / log10(2)))
+        _tempo            = bpm
     }
 
     ///  Builds the file's header chunk buffer.
@@ -282,6 +350,7 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
 
         fileHeader = ByteBuffer(order: LittleEndian(), capacity: 15);
         fillHeader();
+        tracks.append(sTempoTrack.init(timeSig: _timeSignature, bpm: _tempo));
     }
 
     // TODO: set instrument dynamically.
@@ -291,7 +360,7 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
     ///  - parameter prog:  The MIDI program (instrument) associated with this track.
     public func addTrack(notes: [[MIDINoteMessage]], prog: MIDIChannelMessage) {
 
-        var track = sTrack(ppqn: _timeResolution, channel: 0, startTime: 0, instrument: prog.data1);
+        var track = sTrack(timeRes: _timeResolution, bpm: _tempo, channel: UInt8(tracks.count - 1), startTime: 0, instrument: prog.data1);
 
         if (notes.count > 0) {
             track.buildTrack(notes);
@@ -307,14 +376,14 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
     ///  - returns: A unified NSData instance ready to be written to a file.
     public func toData() -> NSData {
 
+        updateTrackCount()
+
         var size = 0;
         let buffers = [fileHeader] + mkBuffersForTracks();
 
         for buffer in buffers {
             size += buffer.position;
         }
-
-        print(kOrpheeDebug_bufferCreator_printInputDataSize(size));
 
         let fileBuf = ByteBuffer(order: LittleEndian(), capacity: size);
         var data = fileBuf.data + fileBuf.position;
@@ -324,7 +393,6 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
             fileBuf.position += buffer.position;
         }
 
-        print(kOrpheeDebug_bufferCreator_printBufferSize(fileBuf.position));
         return NSData(bytes: fileBuf.data, length: fileBuf.position);
     }
 
@@ -336,6 +404,8 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
         // track header length
         fileHeader.putUInt32(swapUInt32(UInt32(_fileHeaderLength)));
         fileHeader.putUInt16(swapUInt16(MidiFileType));
+
+        fileHeader.mark()
         fileHeader.putUInt16(swapUInt16(_trackCount));
         fileHeader.putUInt16(swapUInt16(_timeResolution));
     }
@@ -352,5 +422,13 @@ public class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
             buffers.append(tracks[idx].unifiedBufferForTrack());
         }
         return buffers;
+    }
+    
+    func updateTrackCount() {
+        let headerPos = fileHeader.position
+
+        fileHeader.reset()
+        fileHeader.putUInt16(swapUInt16(_trackCount));
+        fileHeader.position = headerPos;
     }
 }

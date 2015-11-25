@@ -94,7 +94,7 @@ public class MIDIFileManager: pFormattedFileManager {
               else {
                 return false;
         }
-        let dataCreator = dataBuilderType.init(trkNbr: UInt16(trackList.count), ppqn: 384);
+        let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 360);
         dataCreator.buildMIDIBuffer();
 
         for (idx, track) in trackList {

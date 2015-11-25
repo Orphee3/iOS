@@ -65,11 +65,8 @@ public class MIDIDataParser {
             self.trackNbr = trackNbr;
             self.readHeader();
 
-//            printData(trackData, trackLength: self.trackLength);
-
             self.readEvents();
             self.processReadData();
-//            self.printConfiguration();
         }
 
         ///  Parses the track header information.
@@ -141,8 +138,6 @@ public class MIDIDataParser {
             var progChg = midiEvents.filter { $0.type == eMidiEventType.programChange };
 
             if (timeSigEvents.count > 0) {
-
-//                print(kOrpheeDebug_dataParser_printTimeSigs(timeSigEvents));
                 let data: [UInt32] = timeSigEvents[0].data!;
 
                 signature = (data[0], data[1]);
@@ -155,8 +150,6 @@ public class MIDIDataParser {
                 nbrOf32ndNotePerBeat = UInt32(kMIDIEventDefaultData_timeSig[3]);
             }
             if (tempoSigs.count > 0) {
-
-//                print(kOrpheeDebug_dataParser_printSetTempo(tempoSigs));
                 let data: [UInt32] = tempoSigs[0].data!;
 
                 quarterNotePerMinute = data[0];
@@ -190,20 +183,16 @@ public class MIDIDataParser {
             var timedEvents: [UInt32 : [pMidiEvent]] = [0 : []];
             var currentDt: UInt32 = 0;
 
-//            print(kOrpheeDebug_dataParser_printAllEvents(midiEvents));
             for midiEvent in midiEvents {
-
                 if let tmEvent = midiEvent as? pTimedMidiEvent {
 
                     if (tmEvent.deltaTime > 0) {
-
                         currentDt += tmEvent.deltaTime;
                         timedEvents[currentDt] = [];
                     }
                     timedEvents[currentDt]!.append(tmEvent);
                 }
             }
-//            print(kOrpheeDebug_dataParser_printSortedTimedMidiEvents(timedEvents));
             return timedEvents;
         }
     }
@@ -238,7 +227,6 @@ public class MIDIDataParser {
         data.getBytes(self.dataBuffer.data, length: data.length);
 
         self.readHeader();
-//        self.printHeader();
         self.smallestTimeDiv = UInt32(eNoteLength.breve.rawValue) * UInt32(self.deltaTickPerQuarterNote); // Set to longest supported note;
     }
 
@@ -315,13 +303,13 @@ func printData(dataBuffer: ByteBuffer, trackLength: UInt32) {
         if (i < trackLength && i % 8 < 7) {
             let byte = dataBuffer.getUInt8();
             let strByte: String!;
-            if (byte < 128 && byte != 0) {
-                strByte = "  " + String(byte);
-            }
-            else {
+//            if (byte < 128 && byte != 0) {
+//                strByte = "  " + String(byte);
+//            }
+//            else {
                 strByte = (byte > 15 ? "0x" : "0x0") + String(byte, radix: 16);
-            }
-            print(strByte! + "\t");
+//            }
+            print(strByte!, terminator: "\t");
         }
         else {
             print("");

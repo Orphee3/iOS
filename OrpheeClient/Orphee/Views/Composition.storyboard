@@ -17,12 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8x-8Y-xoo">
-                                <rect key="frame" x="0.0" y="64" width="600" height="490"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8x-8Y-xoo">
+                                <rect key="frame" x="4" y="99" width="592" height="411"/>
                                 <animations/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTP-C6-IW7">
-                                <rect key="frame" x="538" y="562" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTP-C6-IW7">
+                                <rect key="frame" x="534" y="518" width="46" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Fichier">
                                     <color key="titleColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,8 +32,8 @@
                                     <action selector="FileButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OhA-Hx-KX7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1K-D4-YNf">
-                                <rect key="frame" x="421" y="562" width="74" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1K-D4-YNf">
+                                <rect key="frame" x="417" y="518" width="74" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Instrument">
                                     <color key="titleColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,15 +43,15 @@
                                     <segue destination="stM-uy-J5J" kind="show" identifier="instrumentsSegue" id="lxY-is-oUd"/>
                                 </connections>
                             </button>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="i7T-cO-73Q">
-                                <rect key="frame" x="16" y="563" width="94" height="29"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="i7T-cO-73Q">
+                                <rect key="frame" x="20" y="519" width="94" height="29"/>
                                 <animations/>
                                 <connections>
                                     <action selector="addAndRemoveBlocks:" destination="BYZ-38-t0r" eventType="valueChanged" id="kFL-Vg-nql"/>
                                 </connections>
                             </stepper>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vC-PE-dEi" userLabel="Play">
-                                <rect key="frame" x="160" y="562" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vC-PE-dEi" userLabel="Play">
+                                <rect key="frame" x="164" y="518" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,28 +60,45 @@
                                     <action selector="PlayButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gvf-Dy-qf4"/>
                                 </connections>
                             </button>
+                            <toolbar clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BF2-bh-gHn">
+                                <rect key="frame" x="4" y="64" width="592" height="35"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="V9q-hZ-bZN"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="PdW-XY-4DF"/>
+                                    <barButtonItem systemItem="trash" id="g6E-Lw-MIM"/>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="qQz-Wx-kBN"/>
+                                    <barButtonItem systemItem="add" id="0Op-Ye-oE8">
+                                        <color key="tintColor" red="0.10196078431372549" green="0.42745098039215684" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="U8x-8Y-xoo" secondAttribute="bottom" constant="46" id="3PU-NZ-e9r"/>
                             <constraint firstItem="i7T-cO-73Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3Zb-Af-B8z"/>
+                            <constraint firstItem="BF2-bh-gHn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="7gH-nE-HIz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BF2-bh-gHn" secondAttribute="trailing" constant="-16" id="Bj0-nQ-bth"/>
                             <constraint firstItem="U8x-8Y-xoo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="G5q-V1-BUn"/>
                             <constraint firstItem="i7T-cO-73Q" firstAttribute="top" secondItem="U8x-8Y-xoo" secondAttribute="bottom" constant="9" id="JS9-nF-dlJ"/>
+                            <constraint firstItem="U8x-8Y-xoo" firstAttribute="top" secondItem="BF2-bh-gHn" secondAttribute="bottom" id="LXM-FN-fv0"/>
+                            <constraint firstItem="BF2-bh-gHn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RQZ-6T-Pgk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UTP-C6-IW7" secondAttribute="bottom" constant="8" id="SHO-BX-uUh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1vC-PE-dEi" secondAttribute="bottom" constant="8" id="dR5-7y-PYl"/>
                             <constraint firstItem="UTP-C6-IW7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hYc-LL-DWd"/>
                             <constraint firstItem="1vC-PE-dEi" firstAttribute="leading" secondItem="i7T-cO-73Q" secondAttribute="trailing" constant="50" id="iYf-Zr-lEf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="U8x-8Y-xoo" secondAttribute="trailing" constant="-16" id="nW9-Ib-iZi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="x1K-D4-YNf" secondAttribute="bottom" constant="8" id="nj3-Je-wwu"/>
-                            <constraint firstItem="U8x-8Y-xoo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sF3-Iu-oaL"/>
                             <constraint firstItem="UTP-C6-IW7" firstAttribute="leading" secondItem="x1K-D4-YNf" secondAttribute="trailing" constant="43" id="uJE-ax-QS8"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="r5r-9O-peN"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="scrollBlocks" destination="U8x-8Y-xoo" id="lSE-73-MKr"/>
@@ -91,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="-1124"/>
+            <point key="canvasLocation" x="1066" y="-1132"/>
         </scene>
         <!--Instruments-->
         <scene sceneID="xNg-n1-FxL">

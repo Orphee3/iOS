@@ -53,6 +53,12 @@ class ViewController: UIViewController {
         makeActions();
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBarHidden = true
+    }
+
     /// Called when the app consumes too much memory.
     /// Dispose of any resources that can be recreated.
     override func didReceiveMemoryWarning() {
@@ -108,6 +114,7 @@ class ViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
+        navigationController?.navigationBarHidden = false
         if (segue.identifier == "instrumentsSegue") {
             let sidebar = segue.destinationViewController as! InstrumentsTableViewController;
             sidebar.graph = audioIO;
