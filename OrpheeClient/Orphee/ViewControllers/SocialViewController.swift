@@ -10,61 +10,47 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SocialViewController: UITableViewController{
+class SocialViewController: UIViewController{
+    @IBOutlet var tableView: UITableView!
     var arrayUser: [User] = []
     var offset = 0
-    var size = 6
-    var spinner: UIActivityIndicatorView!
+    var size = 100
     var searchDisplay: UISearchController!
     var searchBar: UISearchBar!
+    var user = User!()
     
+    var popupView: NotConnectedView!
+    var blurView: UIVisualEffectView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         prepareSearchingDisplay()
         
-        tableView.infiniteScrollIndicatorStyle = .White
-        tableView.infiniteScrollIndicatorMargin = 40
-        tableView.addInfiniteScrollWithHandler({(scrollView) -> Void in
-            self.getUsers(self.offset, size: self.size)
-            scrollView.finishInfiniteScroll()
-        })
-        
-        createActivityIndicatorView()
-        spinner.startAnimating()
-        getUsers(offset, size: size)
+        if (OrpheeReachability().isConnected()){
+            getUsers(offset, size: size)
+        }
         tableView.registerNib(UINib(nibName: "FluxCustomCell", bundle: nil), forCellReuseIdentifier: "FluxCell")
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-    }
-    
-    func refresh(sender:AnyObject){
-        self.arrayUser = []
-        self.offset = 0
-        getUsers(self.offset, size: size)
-    }
-    
-    func createActivityIndicatorView(){
-        spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        spinner.frame = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 50, 50)
-        spinner.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2)
-        self.view.addSubview(spinner)
+        self.tableView.addPullToRefresh({ [weak self] in
+            //refresh code
+            if (OrpheeReachability().isConnected()){
+                self!.arrayUser = []
+                self!.offset = 0
+                self!.getUsers(self!.offset, size: self!.size)
+                self?.tableView.stopPullToRefresh()
+            }else{
+                self?.tableView.stopPullToRefresh()
+            }
+            })
     }
     
     func getUsers(offset: Int, size: Int){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-            print(json.value)
-            if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                for elem in array{
-                    self.arrayUser.append(User(User: elem))
-                }
-                self.offset += self.size
+        if (OrpheeReachability().isConnected()){
+            OrpheeApi().getUsers(offset, size: size, completion: {(response) in
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.spinner.stopAnimating()
-                    self.refreshControl!.endRefreshing()
+                    self.arrayUser = response
                     self.tableView.reloadData()
                 }
-            }
+                self.offset += self.size
+            })
         }
     }
     
@@ -73,32 +59,27 @@ class SocialViewController: UITableViewController{
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
     }
     
     func addFriend(sender: UIButton){
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
-            let id = arrayUser[sender.tag].id
-            let headers = [
-                "Authorization": "Bearer \(user.token)"
-            ]
-            Alamofire.request(.GET, "http://163.5.84.242:3000/api/askfriend/\(id)", headers: headers).responseJSON{
-                request, response, json in
-                if (response?.statusCode == 200){
-                    print("FRIEND ASKED : \(json)")
+        if (user != nil){
+            OrpheeApi().addFriend(user.token, id: arrayUser[sender.tag].id, completion: {(response) -> () in
+                if (response as! String == "ok"){
                     self.alertViewForMsg("\(self.arrayUser[sender.tag].name) va recevoir votre demande d'amitié.")
+                    sender.setImage(UIImage(named: "adduserfill"), forState: .Normal)
                 }
-                else if (response?.statusCode == 500){
+                else if (response as! String == "error"){
                     self.alertViewForMsg("Une erreur est survenue lors de votre demande.")
                 }
-            }
+            })
+        }else{
+            prepareViewForLogin()
         }
-        else{
-            print("no token")
-        }
-        print("friend added")
     }
     
     func alertViewForMsg(msg: String){
@@ -106,17 +87,41 @@ class SocialViewController: UITableViewController{
         alertView.alertViewStyle = .Default
         alertView.show()
     }
+    
+    func prepareViewForLogin(){
+        popupView = NotConnectedView.instanceFromNib()
+        popupView.layer.cornerRadius = 8
+        popupView.layer.shadowOffset = CGSize(width: 30, height: 30)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = CGRectMake(0, 0, self.tableView.frame.width, self.tableView.frame.height)
+        self.tableView.addSubview(blurView)
+        popupView.center = CGPointMake(self.blurView.frame.size.width / 2, self.blurView.frame.size.height / 2)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.closeButton.addTarget(self, action: "closePopUpLogin:", forControlEvents: .TouchUpInside)
+        blurView.addSubview(popupView)
+    }
+    
+    func closePopUpLogin(sender: UIButton){
+        popupView.removeFromSuperview()
+        blurView.removeFromSuperview()
+    }
+    
+    func sendToLogin(sender: UIButton){
+        let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        self.presentViewController(loginView, animated: true, completion: nil)
+    }
 }
 
-extension SocialViewController{
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+extension SocialViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "profile", bundle: nil)
         let profileView = storyboard.instantiateViewControllerWithIdentifier("profileView") as! ProfileUserTableViewController
         profileView.user = arrayUser[indexPath.row]
         self.navigationController?.pushViewController(profileView, animated: true)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!arrayUser.isEmpty){
             return arrayUser.count
         }
@@ -125,7 +130,7 @@ extension SocialViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: FluxCustomCell! = tableView.dequeueReusableCellWithIdentifier("FluxCell") as? FluxCustomCell
         cell.putInGraphic(arrayUser[indexPath.row])
         cell.addFriendButton.addTarget(self, action: "addFriend:", forControlEvents: .TouchUpInside)

@@ -35,10 +35,7 @@ class SocketManager {
         }
         
         socket.on("private message"){data, ack in
-            print(data)
-            var message: String
-            message = data?.objectAtIndex(0)["message"]!!["message"] as! String
-            NSNotificationCenter.defaultCenter().postNotificationName("message", object: message)
+            NSNotificationCenter.defaultCenter().postNotificationName("message", object: data)
         }
         
         socket.on("friend") {data, ack in

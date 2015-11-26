@@ -205,6 +205,7 @@
 				TargetAttributes = {
 					DB5DA5431ABC97FC009A09B1 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 99BX55LUM5;
 					};
 					DB5DA54E1ABC97FC009A09B1 = {
 						CreatedOnToolsVersion = 6.2;

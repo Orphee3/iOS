@@ -32,22 +32,25 @@ class CreationFluxCustomCell: UITableViewCell{
             self.nameCreation.text = nameCreation.substringWithRange(
                 Range<String.Index>(start: nameCreation.startIndex.advancedBy(0),
                     end: nameCreation.endIndex.advancedBy(-4)))
+        }else{
+            self.nameCreation.text = "Sans titre"
         }
         if let picture = user.picture{
             self.imgProfileCreator.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
         }else{
             self.imgProfileCreator.image = UIImage(named: "emptygrayprofile")
         }
-        if let nbComments = creation.nbCommments{
-            self.nbCommentsCreation.text = String(nbComments)
-        }
-        if let nbLikes = creation.nbLikes{
-            self.nbLikesCreation.text = String(nbLikes)
-        }
+//        if let nbComments = creation.nbCommments{
+//            self.nbCommentsCreation.text = String(nbComments)
+//        }
+//        if let nbLikes = creation.nbLikes{
+//            self.nbLikesCreation.text = String(nbLikes)
+//        }
         setLayout()
     }
     
     func setLayout(){
+        self.imgProfileCreator.layer.cornerRadius = self.imgProfileCreator.frame.width / 2
         self.selectionStyle = UITableViewCellSelectionStyle.None
     }
 }

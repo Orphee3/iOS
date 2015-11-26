@@ -31,6 +31,7 @@ class FluxCustomCell: UITableViewCell {
     }
     
     func setLayout(){
+        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.width / 2
         self.layer.shadowOffset = CGSizeMake(-0.2, 0.2)
         self.layer.shadowRadius = 1
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath

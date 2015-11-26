@@ -10,14 +10,18 @@ import Foundation
 
 class Comment{
     var message: String!
-    var user: User!
+    var user: String!
+    var picture: String!
     
-    init(Comment: String, user: User){
+    init(Comment: String, user: String, picture: String){
         if let message = Comment as String?{
             self.message = message
         }
-        if let user = user as User?{
+        if let user = user as String?{
             self.user = user
+        }
+        if let picture = picture as String?{
+            self.picture = picture
         }
     }
 }

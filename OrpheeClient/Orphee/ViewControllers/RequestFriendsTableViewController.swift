@@ -49,6 +49,10 @@ class RequestFriendsTableViewController: UITableViewController, DZNEmptyDataSetD
         return NSAttributedString(string: text, attributes: attributes)
     }
     
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)

@@ -25,14 +25,16 @@ class FriendsViewController: UITableViewController, DZNEmptyDataSetDelegate, DZN
         tableView.registerNib(UINib(nibName: "FriendCustomCell", bundle: nil), forCellReuseIdentifier: "FriendCustomCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         getFriends()
-    }
-    
-    func refresh(sender:AnyObject){
-        arrayFriends = []
-        getFriends()
+        self.tableView.addPullToRefresh({ [weak self] in
+            if (OrpheeReachability().isConnected()){
+                self!.arrayFriends = []
+                self!.getFriends()
+                self?.tableView.stopPullToRefresh()
+            }else{
+                self?.tableView.stopPullToRefresh()
+            }
+            })
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -44,6 +46,10 @@ class FriendsViewController: UITableViewController, DZNEmptyDataSetDelegate, DZN
         let text = "Vous n'avez pas encore d'amitiés sur Orphée"
         let attributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 19)!]
         return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -86,19 +92,9 @@ class FriendsViewController: UITableViewController, DZNEmptyDataSetDelegate, DZN
     }
     
     func getFriends(){
-        Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(self.user.id)/friends").responseJSON{ request, response, json in
-            print(response)
-            if (response?.statusCode == 200){
-                print(json.value)
-                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                    for elem in array{
-                        self.arrayFriends.append(User(User: elem))
-                        print(elem)
-                    }
-                    self.refreshControl?.endRefreshing()
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        OrpheeApi().getFriends(user.id, completion: {(response) -> () in
+            self.arrayFriends = response as! [User]
+            self.tableView.reloadData()
+        })
     }
 }

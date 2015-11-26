@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15C27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5oO-7x-Wrh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5oO-7x-Wrh">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -88,16 +87,26 @@
                                     <constraint firstAttribute="width" constant="369" id="sqJ-bk-HhF"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoj-Og-JFh">
+                                <rect key="frame" x="381" y="550" width="199" height="30"/>
+                                <animations/>
+                                <state key="normal" title="J'ai oublié mon mot de passe"/>
+                                <connections>
+                                    <action selector="forgetPassword:" destination="LfY-KM-bpA" eventType="touchUpInside" id="gD8-rK-f4d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Vki-a5-eY9" firstAttribute="top" secondItem="9nQ-1z-fzr" secondAttribute="bottom" constant="17" id="01y-Il-RiG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xoj-Og-JFh" secondAttribute="trailing" id="5fT-2q-KzE"/>
                             <constraint firstItem="BhL-w6-eN7" firstAttribute="leading" secondItem="RR9-cE-ywm" secondAttribute="leading" id="8Bh-Qt-8d0"/>
                             <constraint firstAttribute="centerX" secondItem="BhL-w6-eN7" secondAttribute="centerX" constant="-0.5" id="G9S-XC-yLR"/>
                             <constraint firstAttribute="centerX" secondItem="j6M-5e-ubu" secondAttribute="centerX" constant="-0.5" id="HxO-iF-t50"/>
                             <constraint firstAttribute="centerX" secondItem="RR9-cE-ywm" secondAttribute="centerX" constant="-0.5" id="Rqw-xw-5H4"/>
                             <constraint firstItem="BhL-w6-eN7" firstAttribute="top" secondItem="rxK-hu-Q0x" secondAttribute="bottom" constant="8" id="TPo-PV-LSJ"/>
+                            <constraint firstItem="oD1-kI-ekI" firstAttribute="top" secondItem="xoj-Og-JFh" secondAttribute="bottom" constant="20" id="Uf5-s0-0fz"/>
                             <constraint firstAttribute="centerX" secondItem="Vki-a5-eY9" secondAttribute="centerX" constant="-0.5" id="Ujc-7n-VzS"/>
                             <constraint firstAttribute="centerX" secondItem="rxK-hu-Q0x" secondAttribute="centerX" constant="-0.5" id="b7z-wJ-alB"/>
                             <constraint firstAttribute="centerX" secondItem="Bak-Ai-dn8" secondAttribute="centerX" constant="2" id="fp5-13-5U1"/>
@@ -117,6 +126,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="forgetMdp" destination="xoj-Og-JFh" id="P66-Mo-JBu"/>
                         <outlet property="loginField" destination="j6M-5e-ubu" id="ldB-Vw-1Ov"/>
                         <outlet property="mdpField" destination="rxK-hu-Q0x" id="DPJ-uj-Td4"/>
                     </connections>
@@ -198,8 +208,23 @@
                                 <animations/>
                                 <color key="trackTintColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="nom d'utilisateur" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="saa-Bd-ajV">
+                                <rect key="frame" x="204" y="341" width="193" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Wyb-os-PfB"/>
+                                    <constraint firstAttribute="width" constant="193" id="qkL-Oy-ikZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
+                            </textField>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TPR-Ql-ICj">
+                                <rect key="frame" x="146" y="379" width="309" height="2"/>
+                                <animations/>
+                                <color key="trackTintColor" red="0.050980392159999999" green="0.2784313725" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q6-2W-Jnk">
-                                <rect key="frame" x="250" y="362" width="101" height="30"/>
+                                <rect key="frame" x="250" y="410" width="101" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="101" id="5dd-aX-tba"/>
@@ -224,19 +249,24 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="TPR-Ql-ICj" firstAttribute="top" secondItem="saa-Bd-ajV" secondAttribute="bottom" constant="8" id="2X8-X7-Na2"/>
                             <constraint firstItem="QSg-kE-ArL" firstAttribute="top" secondItem="GXR-mR-EVg" secondAttribute="bottom" constant="8" id="ALf-lI-wvt"/>
                             <constraint firstItem="1Sn-dh-H41" firstAttribute="leading" secondItem="QSg-kE-ArL" secondAttribute="leading" id="B44-Mf-p25"/>
                             <constraint firstAttribute="centerX" secondItem="0Xd-vf-5lI" secondAttribute="centerX" constant="-0.5" id="KL9-BT-edR"/>
-                            <constraint firstItem="6q6-2W-Jnk" firstAttribute="top" secondItem="QSg-kE-ArL" secondAttribute="bottom" constant="39" id="PTB-xj-C8X"/>
                             <constraint firstItem="BEk-Sw-Lwl" firstAttribute="top" secondItem="YoW-Wd-DzS" secondAttribute="bottom" constant="8" id="PuC-y6-NEh"/>
                             <constraint firstItem="GXR-mR-EVg" firstAttribute="top" secondItem="1Sn-dh-H41" secondAttribute="bottom" constant="19" id="VOW-rV-pBq"/>
+                            <constraint firstItem="saa-Bd-ajV" firstAttribute="top" secondItem="QSg-kE-ArL" secondAttribute="bottom" constant="18" id="ZDv-AW-kc5"/>
+                            <constraint firstItem="saa-Bd-ajV" firstAttribute="centerX" secondItem="zxm-fv-4uh" secondAttribute="centerX" id="Zug-PW-FuA"/>
+                            <constraint firstItem="TPR-Ql-ICj" firstAttribute="trailing" secondItem="QSg-kE-ArL" secondAttribute="trailing" id="b3o-0k-aoE"/>
                             <constraint firstItem="1Sn-dh-H41" firstAttribute="centerX" secondItem="0Xd-vf-5lI" secondAttribute="centerX" id="bZ4-zR-kWq"/>
+                            <constraint firstItem="TPR-Ql-ICj" firstAttribute="leading" secondItem="QSg-kE-ArL" secondAttribute="leading" id="eQw-f3-1bh"/>
                             <constraint firstAttribute="centerX" secondItem="6q6-2W-Jnk" secondAttribute="centerX" constant="-0.5" id="ftL-tu-rYa"/>
                             <constraint firstItem="BEk-Sw-Lwl" firstAttribute="leading" secondItem="zxm-fv-4uh" secondAttribute="leadingMargin" id="klJ-Cq-hBc"/>
                             <constraint firstItem="1Sn-dh-H41" firstAttribute="trailing" secondItem="QSg-kE-ArL" secondAttribute="trailing" id="mqT-GZ-ntG"/>
                             <constraint firstItem="1Sn-dh-H41" firstAttribute="top" secondItem="0Xd-vf-5lI" secondAttribute="bottom" constant="8" id="o3m-CT-zFx"/>
                             <constraint firstAttribute="centerX" secondItem="GXR-mR-EVg" secondAttribute="centerX" constant="-0.5" id="r7C-SU-DXw"/>
                             <constraint firstItem="0Xd-vf-5lI" firstAttribute="top" secondItem="YoW-Wd-DzS" secondAttribute="bottom" constant="160" id="yc1-Ju-lp5"/>
+                            <constraint firstItem="6q6-2W-Jnk" firstAttribute="top" secondItem="YoW-Wd-DzS" secondAttribute="bottom" constant="346" id="zf7-z4-3Yi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qIr-eh-xic">
@@ -247,8 +277,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loginTextField" destination="0Xd-vf-5lI" id="czr-2O-dy3"/>
+                        <outlet property="mailTextField" destination="0Xd-vf-5lI" id="ezt-0f-OHe"/>
                         <outlet property="passwordTextField" destination="GXR-mR-EVg" id="G5q-9a-BQA"/>
+                        <outlet property="pseudoTextField" destination="saa-Bd-ajV" id="YTN-Fo-jxo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lT6-UX-5n4" userLabel="First Responder" sceneMemberID="firstResponder"/>

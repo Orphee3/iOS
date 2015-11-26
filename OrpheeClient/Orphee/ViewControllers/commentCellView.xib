@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C40a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8f-id-VTG">
-                        <rect key="frame" x="71" y="37" width="241" height="21"/>
+                        <rect key="frame" x="71" y="39" width="241" height="21"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,6 +45,7 @@
                 <animations/>
                 <constraints>
                     <constraint firstAttribute="leadingMargin" secondItem="rVb-uT-XxQ" secondAttribute="leading" id="8PR-Si-fNP"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rVb-uT-XxQ" secondAttribute="bottom" id="9eV-Sj-wqm"/>
                     <constraint firstItem="2tM-UP-aYB" firstAttribute="top" secondItem="RCD-z8-zbE" secondAttribute="bottom" constant="3" id="9yt-6s-1QW"/>
                     <constraint firstItem="RCD-z8-zbE" firstAttribute="leading" secondItem="rVb-uT-XxQ" secondAttribute="trailing" constant="8" id="Bu4-PP-eGg"/>
                     <constraint firstItem="k8f-id-VTG" firstAttribute="leading" secondItem="rVb-uT-XxQ" secondAttribute="trailing" constant="8" id="BuU-Fk-6sh"/>
@@ -53,13 +54,14 @@
                     <constraint firstAttribute="topMargin" secondItem="RCD-z8-zbE" secondAttribute="top" id="IW4-MN-gfG"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2tM-UP-aYB" secondAttribute="trailing" id="OMA-5J-lem"/>
                     <constraint firstItem="2tM-UP-aYB" firstAttribute="leading" secondItem="rVb-uT-XxQ" secondAttribute="trailing" constant="9" id="RKM-Y3-NPF"/>
-                    <constraint firstItem="k8f-id-VTG" firstAttribute="top" secondItem="2tM-UP-aYB" secondAttribute="bottom" constant="4" id="RpI-Ax-25f"/>
+                    <constraint firstItem="k8f-id-VTG" firstAttribute="top" secondItem="2tM-UP-aYB" secondAttribute="bottom" constant="6" id="RpI-Ax-25f"/>
                     <constraint firstAttribute="trailingMargin" secondItem="RCD-z8-zbE" secondAttribute="trailing" id="ab5-qj-QMK"/>
                     <constraint firstAttribute="topMargin" secondItem="rVb-uT-XxQ" secondAttribute="top" id="uu7-FP-uej"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="k8f-id-VTG" secondAttribute="bottom" constant="5" id="vGw-JJ-P2T"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="k8f-id-VTG" secondAttribute="bottom" constant="3" id="vGw-JJ-P2T"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="9eV-Sj-wqm"/>
                         <exclude reference="I2h-r7-bze"/>
                     </mask>
                 </variation>

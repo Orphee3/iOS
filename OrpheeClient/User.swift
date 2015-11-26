@@ -14,13 +14,13 @@ class User : NSObject, NSCoding{
     var id: String!
     var arrayFriendShipRequests: Array<FriendShipRequest>!
     var token: String!
-    var nbCreation: String!
     
     init(User: Dictionary<String, AnyObject>){
         if let name = User["name"] as? String{
             self.name = name
         }
         if let picture = User["picture"] as? String{
+            print(picture)
             self.picture = picture
         }
         if let id = User["_id"] as? String{
@@ -29,7 +29,6 @@ class User : NSObject, NSCoding{
         if let token = User["token"] as? String{
             self.token = token
         }
-        //if let nbCreation = User[]
         self.arrayFriendShipRequests = []
     }
     

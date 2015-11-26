@@ -13,12 +13,13 @@ import Alamofire
 class MyProfileTableViewController: UITableViewController{
     var user: User!
     var arrayCreations: [Creation] = []
-    var loginView: UINavigationController!
     @IBOutlet var nbCreations: UILabel!
     @IBOutlet var imgLogin: UIImageView!
-    var loginButton: UIButton!
     @IBOutlet var nameProfile: UILabel!
+    var loginButton: UIButton!
     
+    var popupView: NotConnectedView!
+    var blurView: UIVisualEffectView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "CreationProfileCustomCell", bundle: nil), forCellReuseIdentifier: "creationProfileCell")
@@ -28,16 +29,24 @@ class MyProfileTableViewController: UITableViewController{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        print("VIEWWILLAPPEAR")
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController!.tabBarItem.badgeValue = nil;
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             self.user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             self.nameProfile.text = self.user.name
+            self.imgLogin.layer.cornerRadius = self.imgLogin.frame.width / 2
             if let picture = self.user.picture{
+                print(picture)
                 self.imgLogin.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
             }else{
                 self.imgLogin.image = UIImage(named: "emptygrayprofile")
+            }
+            if (popupView != nil){
+                popupView.removeFromSuperview()
+                blurView.removeFromSuperview()
             }
             getCreations()
         }
@@ -59,27 +68,26 @@ class MyProfileTableViewController: UITableViewController{
     }
     
     func prepareViewForLogin(){
-        imgLogin = UIImageView(image: UIImage(named: "imgLogin"))
-        imgLogin.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        self.view.addSubview(imgLogin)
-        loginButton = UIButton(frame: CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height - 150, 100, 30))
-        loginButton.setTitle("Allons-y !", forState: UIControlState.Normal)
-        loginButton.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(loginButton)
+        popupView = NotConnectedView.instanceFromNib()
+        popupView.layer.cornerRadius = 8
+        popupView.layer.shadowOffset = CGSize(width: 30, height: 30)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = CGRectMake(0, 0, self.tableView.frame.width, self.tableView.frame.height)
+        self.tableView.addSubview(blurView)
+        popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
+        popupView.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 2) - (popupView.frame.size.width / 2))
+        popupView.closeButton.hidden = true
+        blurView.addSubview(popupView)
     }
     
     func sendToLogin(sender: UIButton){
         let storyboard = UIStoryboard(name: "LoginRegister", bundle: nil)
-        loginView = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
+        let loginView: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("askLogin") as! UINavigationController
         self.presentViewController(loginView, animated: true, completion: nil)
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
-        if let _ = loginButton{
-            loginButton.removeFromSuperview()
-            imgLogin.removeFromSuperview()
-        }
     }
 }
 
