@@ -251,10 +251,10 @@ public class MIDIDataParser {
         var tracks: [Int : [[Int]]] = [:];
 
         build_allTracks:
-            for (var idx: UInt16 = 0; idx < nbrOfTracks; idx++) {
-
-                let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx + 1);
+            for idx in 0..<self.nbrOfTracks {
+                let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx);
                 track.getNoteArray();
+                self.tracks.append(track);
 
                 let timedEvents: [pTimedMidiEvent] = track.midiEvents.flatMap({ $0 as? pTimedMidiEvent });
 

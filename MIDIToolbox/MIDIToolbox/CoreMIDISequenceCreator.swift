@@ -15,7 +15,7 @@ let kTimeResolution_AppleDefault: UInt16 = 480;
 
 /** CoreMIDISequenceCreator realizes pMIDIByteStreamBuilder
 
-*/
+ */
 public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
     /// Provides the number of tracks.
@@ -71,22 +71,25 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
         MusicSequenceNewTrack(buffer, &trk);
         MusicSequenceGetTrackCount(buffer, &ct);
 
+        prog.status = eMidiEventType.programChange.rawValue | UInt8(trkCnt)
         MusicTrackNewMIDIChannelEvent(trk, 0, &prog);
-        
+
         var endNote = MIDINoteMessage(channel: UInt8(trkCnt), note: 0, velocity: 0, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
         var tmStmp: Float64 = 0;
+        var curTmStmp = tmStmp;
         for (idx, dtNotes) in notes.enumerate() {
-            let curTmStmp = tmStmp;
             if (dtNotes.count == 0) {
                 tmStmp += Float64(eNoteLength.crotchet.rawValue);
             }
-            for note in dtNotes {
-                var curNote = note;
-                if (curTmStmp == tmStmp && idx != 0) {
-                    tmStmp += Float64(note.duration);
+            else {
+                for var note in dtNotes {
+                    if (idx != 0 && curTmStmp == tmStmp) {
+                        tmStmp += Float64(note.duration)
+                    }
+                    note.channel = UInt8(trkCnt);
+                    MusicTrackNewMIDINoteEvent(trk, tmStmp, &note);
                 }
-                curNote.channel = UInt8(trkCnt);
-                MusicTrackNewMIDINoteEvent(trk, tmStmp, &curNote);
+                curTmStmp = tmStmp
             }
         }
         MusicTrackNewMIDINoteEvent(trk, tmStmp, &endNote);
@@ -119,8 +122,8 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
     func setupTempoTrack() {
         var trk = MusicTrack()
-        var timeSigEvent = MIDIMetaEvent.buildMetaEvent(eMidiEventType.timeSignature.rawValue, data: [_timeSignature.0, _timeSignature.1, 0x18, 0x08])
-        var tempoEvent = MIDIMetaEvent.buildMetaEvent(eMidiEventType.setTempo.rawValue, data: decomposeToBytes(60_000_000 / _tempo))
+        let timeSigEvent = MIDIMetaEvent.buildMetaEvent(eMidiEventType.timeSignature.rawValue, data: [_timeSignature.0, _timeSignature.1, 0x18, 0x08])
+        let tempoEvent = MIDIMetaEvent.buildMetaEvent(eMidiEventType.setTempo.rawValue, data: decomposeToBytes(60_000_000 / _tempo))
         print(MusicSequenceGetTempoTrack(buffer, &trk))
         print(MusicTrackNewMetaEvent(trk, 0, timeSigEvent))
         print(MusicTrackNewMetaEvent(trk, 0, tempoEvent))

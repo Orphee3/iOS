@@ -28,16 +28,16 @@ class FileManagementTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         testContent = [
-            kOrpheeFileContent_tracks: [
+                eOrpheeFileContent.Tracks.rawValue: [
                 0: [[n1], [], [], [n1, n2], [], [], [n1, n2], []],
                 1: [[n2], [], [n1], [], [], [n2], [], [], [n2, n1]]
             ],
-            kOrpheeFileContent_trackInfo: [
-                0 : ["PATCH" : 1 as Any],
-                1 : ["PATCH" : 34 as Any]
+                eOrpheeFileContent.TracksInfos.rawValue: [
+                0 : [eOrpheeFileContent.PatchID.rawValue : 1 as Any],
+                1 : [eOrpheeFileContent.PatchID.rawValue : 34 as Any]
             ]
         ];
-        
+
         try! NSFileManager.defaultManager().createDirectoryAtPath(MIDIFileManager.store, withIntermediateDirectories: true, attributes: nil);
         fm = MIDIFileManager(name: "test");
     }
@@ -69,7 +69,7 @@ class FileManagementTests: XCTestCase {
         precondition(fm as? MIDIFileManager != nil);
         precondition(fm!.createFile(nil))
         precondition(fm!.writeToFile(content: testContent, dataBuilderType: MIDIByteBufferCreator.self));
-    
+
         XCTAssertNotNil(fm!.readFile(), "Pass");
     }
 
@@ -80,7 +80,7 @@ class FileManagementTests: XCTestCase {
 
         XCTAssertNotNil(fm!.readFile(), "Pass");
     }
-    
+
     func testGenericEventBuild() {
 
         let event = TimedMidiEvent<ByteBuffer>(type: eMidiEventType.noteOn, deltaTime: 5) { (rawData) -> [UInt32] in

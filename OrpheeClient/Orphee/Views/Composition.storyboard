@@ -68,10 +68,17 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="PdW-XY-4DF"/>
-                                    <barButtonItem systemItem="trash" id="g6E-Lw-MIM"/>
+                                    <barButtonItem systemItem="trash" id="g6E-Lw-MIM">
+                                        <connections>
+                                            <action selector="cleanAll:" destination="BYZ-38-t0r" id="Y5f-yt-YUo"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="qQz-Wx-kBN"/>
                                     <barButtonItem systemItem="add" id="0Op-Ye-oE8">
                                         <color key="tintColor" red="0.10196078431372549" green="0.42745098039215684" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="addTrack:" destination="BYZ-38-t0r" id="DPP-eg-9c0"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -103,6 +110,7 @@
                     <connections>
                         <outlet property="scrollBlocks" destination="U8x-8Y-xoo" id="lSE-73-MKr"/>
                         <outlet property="stepper" destination="i7T-cO-73Q" id="eFb-xd-rb2"/>
+                        <outlet property="trackBar" destination="BF2-bh-gHn" id="ssO-uh-FE3"/>
                         <segue destination="Tg2-lG-wOm" kind="show" identifier="creationListSegue" id="pS9-Xk-7Kw"/>
                     </connections>
                 </viewController>

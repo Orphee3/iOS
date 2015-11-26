@@ -43,12 +43,7 @@ class BlockArrayList {
         var cleanList: [[Int]] = [];
         for notesAtDt in rawList {
             let activeNotesAtDt = notesAtDt.filter({ return $0 != 0 });
-            if (activeNotesAtDt.count > 0) {
-                cleanList.append(notesAtDt)
-            }
-            else {
-                cleanList.append(activeNotesAtDt);
-            }
+            cleanList.append(activeNotesAtDt);
         }
         return cleanList;
     }
@@ -69,6 +64,14 @@ class BlockArrayList {
                 );
             }
         }
+        for idx in (0...midiNoteMsgs.endIndex - 1).reverse() {
+            if (midiNoteMsgs[idx].count > 0) {
+                break;
+            }
+            else {
+                midiNoteMsgs.removeAtIndex(idx);
+            }
+        }
         print(cleanedList);
         print(midiNoteMsgs);
         return midiNoteMsgs;
@@ -87,11 +90,7 @@ class BlockArrayList {
 
     func resetBlocks() {
 
-        for array in blockArrays {
-            for block in array.buttons {
-                block?.active = false;
-            }
-        }
+        removeBlocks(self.blockLength);
     }
 
     func addBlocks(number: Int) {
@@ -119,4 +118,17 @@ class BlockArrayList {
             blockLength = array.getSize();
         }
     }
+
+    func hide() {
+        for array in blockArrays {
+            array.hide();
+        }
+    }
+
+    func show() {
+        for array in blockArrays {
+            array.show();
+        }
+    }
+
 }

@@ -17,17 +17,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollBlocks: UIScrollView!
 
     @IBOutlet var stepper: UIStepper!
-    /// A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.
-    var blockArrays: BlockArrayList = BlockArrayList();
 
-    /// A list of all instruments supported by the app. TODO: actually implement the system.
-    var instrumentsList: [String] = ["violin", "guitar", "tambour", "battery", "trumpet"];
+    @IBOutlet weak var trackBar: UIToolbar!
+
+    /// A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.
+    var tracks: [Int : BlockArrayList] = [:]
+    var tracksInfo: [Int : [String : Any]] = [:]
+
+    var currentTrack: Int = 1;
 
     var player: pAudioPlayer!;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
-    var oldValue: Int = 1;
+    var oldValue: Int {
+        get {
+            return self.tracks[currentTrack]?.blockLength ?? 0;
+        }
+    }
 
     var importAction: ((UIAlertAction!) -> Void)!
     var saveAction: ((UIAlertAction!) -> Void)!
@@ -42,8 +49,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        oldValue = Int(stepper.value)
-        createBlocks(1);
+        addTrack(self)
         session.setupSession(&audioIO);
         audioIO.createAudioGraph();
         audioIO.configureAudioGraph();
@@ -65,20 +71,183 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        navigationController?.navigationBarHidden = false
+        if (segue.identifier == "instrumentsSegue") {
+            let instrus = segue.destinationViewController as! InstrumentsTableViewController;
+            instrus.mainVC = self;
+        }
+        else if (segue.identifier == "creationListSegue") {
+            print("segueseguesegue")
+            let creationList = segue.destinationViewController as! CreationsListVC;
+            creationList.mainVC = self;
+        }
+    }
+
+    /// MARK: Utility methods
+    //
+
+    func createTracks(trackCount: Int) {
+        for trackIdx in (tracks.count + 1)...(tracks.count + trackCount) {
+            let block = BlockArrayList();
+            createBlocks(block, columns: 1);
+            tracks[trackIdx] = block;
+        }
+        print("track count \(tracks.count)");
+        print(tracks);
+        updateScrollViewConstraints();
+    }
+
+    /// Creates a track for each entry in `instrumentsList` with `columns` number of columns.
+    /// Each track is added to `dictBlocks` with the corresponding instrument as key.
+    /// Each track is added as a subview to `scrollBlocks` and updates the scroll view's size.
+    ///
+    /// - parameter columns:  The number of columns to add to each track.
+    func createBlocks(blockArrays: BlockArrayList, columns: Int) {
+
+        for idx in 0...7 {
+
+            let track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
+
+            blockArrays.blockArrays.append(track);
+            track.addButtons(columns, color: UIColor.blueColor());
+        }
+        blockArrays.updateProperties();
+    }
+
+    func updateScrollViewConstraints() {
+
+        scrollBlocks.contentSize = CGSizeMake(
+            CGFloat(tracks[currentTrack]?.endPos.x ?? 0),
+            CGFloat(tracks[currentTrack]?.endPos.y ?? 0)
+        );
+    }
+
+    func makeActions() {
+        importAction = { (alert: UIAlertAction!) -> Void in
+
+            print("File imported")
+            self.performSegueWithIdentifier("creationListSegue", sender: self);
+        };
+
+        saveAction = { (alert: UIAlertAction!) -> Void in
+
+            print("File Saved")
+            let tracks: [String : Any]? = [
+                    eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
+                    eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo
+            ];
+            let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
+            fm.createFile()
+            fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
+            try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
+            ++self.fileNbr;
+        };
+
+        cancelAction = { (alert: UIAlertAction!) -> Void in
+
+            print("Cancelled")
+        };
+    }
+
+    func prepareTracksForSave() -> [Int : [[MIDINoteMessage]]]{
+        var trks = [Int : [[MIDINoteMessage]]]()
+        for idx in 1...tracks.count {
+            trks[idx] = tracks[idx]!.getFormattedNoteList()
+        }
+        return trks;
+    }
+
+    func importFile(file: String) {
+        resetAll()
+        self.updateScrollViewConstraints();
+        let data: [String : Any] = MIDIFileManager(name: file).readFile()!;
+//        print(data)
+        for (key, value) in data {
+            if var trackList = value as? [Int : [[Int]]]
+               where key == eOrpheeFileContent.Tracks.rawValue {
+                    currentTrack = 1;
+                    for idx in 1...trackList.count {
+                        let track = trackList[idx]!
+                        let blockArray = BlockArrayList();
+                        trackBar.items?.insert(UIBarButtonItem(title: "\(idx)", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTrack:"), atIndex: tracks.count)
+                        createBlocks(blockArray, columns: 1);
+                        blockArray.hide();
+                        let missingBlocks = track.count - blockArray.blockLength;
+                        if (missingBlocks > 0) {
+                            blockArray.addBlocks(missingBlocks);
+                            self.stepper.value = Double(self.oldValue);
+                        }
+                        blockArray.setBlocksFromList(track);
+                        tracks[idx] = blockArray;
+                    }
+                    if let infoList = value as? [Int : [String : Any]]
+                        where key == eOrpheeFileContent.TracksInfos.rawValue {
+                            for (idx, info) in infoList {
+                                if let patch = info[eOrpheeFileContent.PatchID.rawValue] as? Int {
+                                    tracksInfo[idx] = [eOrpheeFileContent.PatchID.rawValue : patch];
+                                }
+                            }
+                    }
+            }
+        }
+        changeTrack(trackIdx: 1);
+        self.updateScrollViewConstraints();
+    }
+
+    func resetAll() {
+        for (_, track) in tracks {
+            track.resetBlocks()
+            if let removedItem = trackBar.items?.removeFirst()
+                where removedItem.action != "changeTrack:" {
+                    trackBar.items?.insert(removedItem, atIndex: 0);
+            }
+
+        }
+        tracks.removeAll();
+        tracksInfo.removeAll();
+    }
+
+    func changeTrack(trackIdx idx: Int) {
+        for (_, track) in tracks {
+            track.hide();
+        }
+        currentTrack = idx;
+        tracks[currentTrack]?.show()
+        stepper.value = Double(oldValue)
+        print("current track \(currentTrack)")
+    }
+
     /// MARK: UI action responders
     //
 
+    @IBAction func cleanAll(sender: AnyObject) {
+        resetAll();
+    }
+
+    @IBAction func changeTrack(sender: AnyObject) {
+        if let button = sender as? UIBarButtonItem {
+            changeTrack(trackIdx: Int(button.title ?? "1")!);
+        }
+    }
+
+    @IBAction func addTrack(sender: AnyObject) {
+        trackBar.items?.insert(UIBarButtonItem(title: "\(tracks.count + 1)", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTrack:"), atIndex: tracks.count)
+        createTracks(1);
+        changeTrack(trackIdx: tracks.count)
+    }
+
     @IBAction func addAndRemoveBlocks(sender: UIStepper) {
-        print(Int(sender.value).description, terminator: "")
-        if (Int(Int(sender.value).description) > oldValue){
-            oldValue = oldValue + 1;
-            blockArrays.addBlocks(1);
+        print(sender.value)
+        if (Int(sender.value) > oldValue) {
+            print(oldValue);
+            tracks[currentTrack]?.addBlocks(1);
             updateScrollViewConstraints();
         }
 
-        else {
-            oldValue = oldValue - 1;
-            blockArrays.removeBlocks(1);
+        else if (oldValue > 1) {
+            tracks[currentTrack]?.removeBlocks(1);
             updateScrollViewConstraints();
         }
     }
@@ -106,53 +275,10 @@ class ViewController: UIViewController {
         else {
             print("play");
             if let p = player as? LiveAudioPlayer {
-                p.audioData = blockArrays.getCleanedList();
+                p.audioData = tracks[currentTrack]!.getCleanedList();
                 p.play();
             }
         }
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        navigationController?.navigationBarHidden = false
-        if (segue.identifier == "instrumentsSegue") {
-            let sidebar = segue.destinationViewController as! InstrumentsTableViewController;
-            sidebar.graph = audioIO;
-        }
-        else if (segue.identifier == "creationListSegue") {
-            print("segueseguesegue")
-            let creationList = segue.destinationViewController as! CreationsListVC;
-            creationList.mainVC = self;
-        }
-    }
-
-    /// MARK: Utility methods
-    //
-
-    /// Creates a track for each entry in `instrumentsList` with `columns` number of columns.
-    /// Each track is added to `dictBlocks` with the corresponding instrument as key.
-    /// Each track is added as a subview to `scrollBlocks` and updates the scroll view's size.
-    ///
-    /// - parameter columns:  The number of columns to add to each track.
-    func createBlocks(columns: Int) {
-
-        for (idx, _) in instrumentsList.enumerate() {
-
-            let track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
-
-            blockArrays.blockArrays.append(track);
-            track.addButtons(columns, color: UIColor.blueColor());
-        }
-        blockArrays.updateProperties();
-        updateScrollViewConstraints();
-    }
-
-    func updateScrollViewConstraints() {
-
-        scrollBlocks.contentSize = CGSizeMake(
-            CGFloat(blockArrays.endPos.x),
-            CGFloat(blockArrays.endPos.y)
-        );
     }
 
     @IBAction func FileButtonTouched(sender: AnyObject) {
@@ -166,56 +292,6 @@ class ViewController: UIViewController {
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
         self.presentViewController(optionMenu, animated: true, completion: nil)
-    }
-
-    func makeActions() {
-        importAction = { (alert: UIAlertAction!) -> Void in
-
-            print("File imported")
-            self.performSegueWithIdentifier("creationListSegue", sender: self);
-        };
-
-        saveAction = { (alert: UIAlertAction!) -> Void in
-
-            print("File Saved")
-            let notes = self.blockArrays.getFormattedNoteList();
-            let tracks: [String : Any]? = [
-                kOrpheeFileContent_tracks : [0 : notes],
-                kOrpheeFileContent_trackInfo : [0 : ["PATCH" : 0 as Any]]
-            ];
-
-            let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
-            fm.createFile()
-            fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
-            try! NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
-            ++self.fileNbr;
-        };
-
-        cancelAction = { (alert: UIAlertAction!) -> Void in
-
-            print("Cancelled")
-        };
-    }
-
-    func importFile(file: String) {
-        self.blockArrays.resetBlocks();
-        let data: [String : Any] = MIDIFileManager(name: file).readFile()!;
-        for (key, value) in data {
-            if let tracks = value as? [Int : [[Int]]]
-                where key == kOrpheeFileContent_tracks {
-                    for (_, track) in tracks {
-                        self.blockArrays.updateProperties();
-                        let missingBlocks = track.count - self.blockArrays.blockLength;
-                        if (missingBlocks > 0) {
-                            self.blockArrays.addBlocks(missingBlocks + 1);
-                            self.oldValue += missingBlocks + 1;
-                            self.stepper.value = Double(self.oldValue);
-                        }
-                        self.blockArrays.setBlocksFromList(track);
-                    }
-            }
-        }
-        self.updateScrollViewConstraints();
     }
 }
 

@@ -91,6 +91,18 @@ class UITimeBlockArray {
         size = buttons.count;
     }
 
+    func hide() {
+        for tBlock in buttons where (tBlock != nil) {
+            tBlock!.hidden = true;
+        }
+    }
+
+    func show() {
+        for tBlock in buttons where (tBlock != nil) {
+            tBlock!.hidden = false;
+        }
+    }
+
     /// MARK: Accessors
     //
 

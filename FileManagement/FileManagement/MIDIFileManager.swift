@@ -10,6 +10,12 @@ import UIKit
 import AudioToolbox
 import MIDIToolbox
 
+
+public enum eOrpheeFileContent: String {
+    case Tracks = "TRACKS"
+    case TracksInfos = "TRACKSINFO"
+    case PatchID = "PATCH"
+}
 /// The default extension for files created by the Orphee application
 public let kOrpheeFile_extension: String = "mid";
 
@@ -18,7 +24,7 @@ public let kOrpheeFile_store: String = NSHomeDirectory() + "/Documents";
 
 /// The key coding for the tracks array contained in the "content" dictionnary
 /// used by `MidiFileManager`'s `writeToFile` and `readFile` methodes.
-/// 
+///
 /// - todo: Make an enum with all accepted values.
 public let kOrpheeFileContent_tracks: String = "TRACKS";
 
@@ -89,18 +95,20 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  - returns: `true` on success, `false otherwise.
     public func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool {
         guard let input		= content,
-              let trackInfo = input[kOrpheeFileContent_trackInfo] as? [Int : [String : Any]],
-              let trackList	= input[kOrpheeFileContent_tracks] as? [Int : [[MIDINoteMessage]]]
+              let trackInfo = input[eOrpheeFileContent.TracksInfos.rawValue] as? [Int : [String : Any]],
+              let trackList	= input[eOrpheeFileContent.Tracks.rawValue] as? [Int : [[MIDINoteMessage]]]
               else {
                 return false;
         }
-        let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 360);
+        print(input)
+      let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 180);
         dataCreator.buildMIDIBuffer();
 
-        for (idx, track) in trackList {
+        for idx in 1...trackList.count {
+            let track = trackList[idx]!
             var chanMsg = MIDIChannelMessage(status: eMidiEventType.programChange.rawValue | UInt8(idx), data1: 0, data2: 0, reserved: 0);
             if let trkInfo = trackInfo[idx],
-               let patchID = trkInfo["PATCH"] as? Int {
+               let patchID = trkInfo[eOrpheeFileContent.PatchID.rawValue] as? Int {
                 chanMsg.data1 = UInt8(patchID);
             }
             dataCreator.addTrack(track, prog: chanMsg)
@@ -113,12 +121,15 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  - returns: The formatted dictionnary describing the file's content.
     public func readFile() -> [String : Any]? {
         let parser = MIDIDataParser(data: reader.readAllData());
-        var content = [kOrpheeFileContent_tracks : parser.parseTracks() as Any];
+        var tracks = parser.parseTracks()
+        tracks.removeValueForKey(0)
+        var content = [eOrpheeFileContent.Tracks.rawValue : tracks as Any];
         var trackInfo = [Int : Any]()
         for track in parser.tracks {
-            trackInfo[Int(track.trackNbr) ] = ["PATCH" : track.instrumentID]
+            trackInfo[Int(track.trackNbr) ] = [eOrpheeFileContent.PatchID.rawValue : track.instrumentID]
+            print(trackInfo)
         }
-        content[kOrpheeFileContent_trackInfo] = trackInfo;
+        content[eOrpheeFileContent.TracksInfos.rawValue] = trackInfo;
         return content;
     }
 

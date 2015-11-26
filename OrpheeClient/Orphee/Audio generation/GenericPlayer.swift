@@ -45,13 +45,24 @@ struct GenericPlayer: pAudioPlayer {
     func play(data: NSData) {
         MusicPlayerStop(player)
         var st: OSStatus = MusicSequenceFileLoadData(sequence, data, MusicSequenceFileTypeID.MIDIType, MusicSequenceLoadFlags.SMF_PreserveTracks);
-        assert(st == noErr, "Got \(data.length) bytes\n\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        guard st == noErr else {
+            print("Got \(data.length) bytes\n\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))")
+            return;
+        }
         st = MusicPlayerSetSequence(player, sequence);
-        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        guard st == noErr else {
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))")
+            return
+        }
         st = MusicPlayerPreroll(player);
-        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        guard st == noErr else {
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");    return
+        }
         st = MusicPlayerStart(player);
-        assert(st == noErr, "\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+        guard st == noErr else {
+            print("\(NSError(domain: NSOSStatusErrorDomain, code: Int(st), userInfo: nil))");
+            return;
+        }
     }
 
     // Doesn't allow for resume option.
