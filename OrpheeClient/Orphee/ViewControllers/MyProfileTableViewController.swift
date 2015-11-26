@@ -33,6 +33,7 @@ class MyProfileTableViewController: UITableViewController{
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController!.tabBarItem.badgeValue = nil;
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             self.user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             self.nameProfile.text = self.user.name

@@ -91,7 +91,14 @@ class DetailsCreationTableViewController: UITableViewController{
     
     @IBAction func sendComment(sender: AnyObject) {
         if (commentTextField.text != nil && OrpheeReachability().isConnected()){
+            print(user.token)
+            print(user.name)
+            print(user.picture)
+            print(creation.id)
+            print(user.id)
+            print(commentTextField.text)
             OrpheeApi().sendComment(user.token, name: user.name, picture: user.picture, creationId: creation.id, userId: user.id, message: commentTextField.text!, completion: {(response) ->() in
+                            print("lol")
                 self.arrayComments.insert(response as! Comment, atIndex: 0)
                 self.commentTextField.text = ""
                 self.nbComments.text = String(self.creation.nbCommments + 1)

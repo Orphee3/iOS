@@ -28,11 +28,6 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
         self.tableView.tableFooterView = UIView()
-        if (user != nil){
-            getRooms()
-        }else{
-            prepareViewForLogin()
-        }
         self.tableView.addPullToRefresh({ [weak self] in
             //refresh code
             if (OrpheeReachability().isConnected()){
@@ -85,6 +80,11 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
         }
+        if (user != nil){
+            getRooms()
+        }else{
+            prepareViewForLogin()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,8 +109,8 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "toConversation"{
             let conv = segue.destinationViewController as! ConversationViewController
             let room = sender as! Room
-            conv.senderId = room.peoplesId[1]
-            conv.userName = room.peoples[1]
+//            conv.senderId = room.peoplesId[1]
+//            conv.userName = room.peoples[1]
         }
     }
     
@@ -139,7 +139,7 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         ]
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/user/\(user.id)/rooms", headers: headers).responseJSON{request, response, json in
             if (response?.statusCode == 200){
-                print(json.value)
+                print("euh ...\(json.value)")
                 if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
                     for elem in array{
                         self.arrayRooms.append(Room(RoomElement: elem))

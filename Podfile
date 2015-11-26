@@ -9,8 +9,8 @@ target :Orphee do
        pod 'Alamofire', '~> 2.0'
        pod 'Socket.IO-Client-Swift', :git => 'https://github.com/socketio/socket.io-client-swift.git', :branch => 'swift-2'
        pod 'SDWebImage', '~>3.7'
-       pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
        pod 'PullToRefreshSwift'
        pod 'DZNEmptyDataSet'
        pod 'RSKImageCropper'
+       pod 'SlackTextViewController'
 end

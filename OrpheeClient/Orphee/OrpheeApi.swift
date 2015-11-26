@@ -147,7 +147,19 @@ class OrpheeApi {
                 var arrayComments: [Comment] = []
                 if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
                     for elem in array{
-                        arrayComments.append(Comment(Comment: elem["message"] as! String, user: elem["creator"]!["name"] as! String, picture: elem["creator"]!["picture"] as! String))
+                        var msg = ""
+                        var pic = ""
+                        var name = ""
+                        if let message = elem["message"] as? String{
+                            msg = message
+                        }
+                        if let picture = elem["creator"]!["picture"] as? String{
+                            pic = picture
+                        }
+                        if let user = elem["creator"]!["name"] as? String{
+                            name = user
+                        }
+                        arrayComments.append(Comment(Comment: msg, user: name, picture: pic))
                     }
                     completion(response: arrayComments)
                 }
@@ -238,11 +250,52 @@ class OrpheeApi {
         let headers = [
             "Authorization": "Bearer \(token)"
         ]
-        Alamofire.request(.PUT, "http://163.5.84.242:3000/api/user/\(id)", headers: headers, parameters: parameter).responseJSON{request, response, json in
+        Alamofire.request(.PUT, "\(url)/user/\(id)", headers: headers, parameters: parameter).responseJSON{request, response, json in
             print(response)
             print(json.value)
             if (response!.statusCode == 200){
                 completion(response: urlGet)
+            }
+        }
+    }
+    
+    func getFriends(id: String, completion:(response:AnyObject) -> ()){
+        Alamofire.request(.GET, "\(url)/user/\(id)/friends").responseJSON{ request, response, json in
+            print(response)
+            if (response?.statusCode == 200){
+                print(json.value)
+                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    var arrayFriends: [User] = []
+                    for elem in array{
+                        arrayFriends.append(User(User: elem))
+                        print(elem)
+                    }
+                    completion(response: arrayFriends)
+                }
+            }
+        }
+    }
+    
+    func getNews(id: String, token: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/user/\(id)/news", headers: headers).responseJSON{ request, response, json in
+            print(response)
+            if (response?.statusCode == 200){
+                print(json.value)
+            }
+        }
+    }
+    
+    func removeFriend(id: String, token: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/removeFriend/\(id)", headers: headers).responseJSON{ request, response, json in
+            if (response?.statusCode == 200){
+                print(json.value)
+                completion(response: "ok")
             }
         }
     }

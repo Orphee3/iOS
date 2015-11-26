@@ -116,7 +116,7 @@
         <!--Amis-->
         <scene sceneID="FQZ-vC-0SF">
             <objects>
-                <tableViewController id="TCq-Pd-EXD" customClass="FriendsViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TCq-Pd-EXD" customClass="AddFriendsForChatTableViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TUb-kK-0jh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +124,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="d4Z-Lv-TWf">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4Z-Lv-TWf" id="R8m-6o-3h3">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -140,14 +140,11 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Amis" id="TRa-is-bSc">
-                        <barButtonItem key="rightBarButtonItem" title="Fermer" id="N7t-fd-AAF">
-                            <connections>
-                                <action selector="close:" destination="TCq-Pd-EXD" id="AuG-UU-IK2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Amis" id="TRa-is-bSc"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="PI8-Zy-GPS" kind="show" identifier="toConversation" id="Hhy-Ea-nhn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueT-4F-KRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,6 +164,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPW-3t-Eae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -591,7 +589,13 @@
                             <constraint firstItem="J0N-o7-COt" firstAttribute="top" secondItem="OjO-Gf-4LF" secondAttribute="bottom" id="YD4-DO-bh5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="seH-ql-9L1"/>
+                    <navigationItem key="navigationItem" id="seH-ql-9L1">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="AbM-ma-Qif">
+                            <connections>
+                                <segue destination="TCq-Pd-EXD" kind="show" id="TSZ-dt-IMG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="OjO-Gf-4LF" id="UiI-yy-eKx"/>
                     </connections>
