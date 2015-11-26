@@ -55,6 +55,12 @@ class ViewController: UIViewController {
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
 
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+            eCreationRouter.userID = user.id
+            eCreationRouter.OAuthToken = user.token
+        }
+
         player = LiveAudioPlayer(graph: audioIO, session: session);
         makeActions();
     }
@@ -141,6 +147,7 @@ class ViewController: UIViewController {
             let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
             fm.createFile()
             fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
+            OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
             try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
             ++self.fileNbr;
         };
