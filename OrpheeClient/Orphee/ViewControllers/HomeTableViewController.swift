@@ -14,13 +14,15 @@ import AVFoundation
 import DZNEmptyDataSet
 import PullToRefreshSwift
 
+import FileManagement
+
 class HomeTableViewController: UITableViewController{
     var arrayCreation: [Creation] = []
     var arrayUser: [User] = []
     var offset = 0
     var size = 100
     var user = User!()
-    
+
     var player: pAudioPlayer!;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
@@ -139,8 +141,8 @@ class HomeTableViewController: UITableViewController{
     }
 }
 
-extension HomeTableViewController{
-    
+extension HomeTableViewController {
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (arrayCreation.isEmpty){
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -164,8 +166,33 @@ extension HomeTableViewController{
         cell.accessCommentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
         cell.likeButton.addTarget(self, action: "likePushed:", forControlEvents: .TouchUpInside)
         cell.likeButton.tag = indexPath.row
+        cell.actionButton.tag = indexPath.row
+        cell.actionButton.addTarget(self, action: "getCreation:", forControlEvents: .TouchUpInside)
+        cell.likeButton.tag = indexPath.row
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(user != nil){
+            let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
+            let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
+            commentView.creation = arrayCreation[indexPath.row]
+            commentView.userCreation = arrayUser[indexPath.row]
+            self.navigationController?.pushViewController(commentView, animated: true)
+        }else{
+            prepareViewForLogin()
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        if let vc = segue.destinationViewController as? ViewController,
+            let file = sender as? String
+            where segue.identifier == "compoSegue" {
+            vc.fileForSegue = file
+        }
+    }
+
     
     func likePushed(sender: UIButton){
         print("like")
@@ -190,18 +217,6 @@ extension HomeTableViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if(user != nil){
-            let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
-            let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
-            commentView.creation = arrayCreation[indexPath.row]
-            commentView.userCreation = arrayUser[indexPath.row]
-            self.navigationController?.pushViewController(commentView, animated: true)
-        }else{
-            prepareViewForLogin()
-        }
-    }
-    
     func commentPushed(sender: UIButton){
         print(user.name)
         if (user != nil){
@@ -214,6 +229,27 @@ extension HomeTableViewController{
             prepareViewForLogin()
         }
     }
+    
+    func getCreation(sender: AnyObject) {
+        if (user != nil ){
+            if (OrpheeReachability().isConnected()) {
+                let crea = arrayCreation[sender.tag]
+                OrpheeApi().getCreation(crea.url, destination: MIDIFileManager.store , completion: { (path) -> () in
+                    print(path)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let file = "\(MIDIFileManager.store)/\(crea.name)"
+                        try? NSFileManager.defaultManager().removeItemAtPath(file)
+                        try? NSFileManager.defaultManager().copyItemAtPath(path, toPath: file)
+
+                        self.performSegueWithIdentifier("compoSegue", sender: crea.name)
+                    })
+                })
+            }
+        }else{
+            prepareViewForLogin()
+        }
+    }
+    
 }
 
 extension HomeTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{

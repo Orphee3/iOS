@@ -15,7 +15,7 @@ class InstrumentsTableViewController: UITableViewController {
     var instrumentsList: [String] = [];
 
     var presetMgr: PresetMgr = PresetMgr();
-    weak var mainVC: ViewController! = nil;
+    weak var mainVC: ViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()

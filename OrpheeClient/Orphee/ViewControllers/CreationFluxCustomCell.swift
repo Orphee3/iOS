@@ -22,6 +22,7 @@ class CreationFluxCustomCell: UITableViewCell{
     @IBOutlet var accessProfileButton: UIButton!
     @IBOutlet var accessCommentButton: UIButton!
     @IBOutlet var likeButton: UIButton!
+    @IBOutlet var actionButton: UIButton!
 
     func putInGraphic(creation: Creation, user: User){
         

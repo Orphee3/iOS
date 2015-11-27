@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
+    var fileForSegue: String?
+
     var oldValue: Int {
         get {
             return self.tracks[currentTrack]?.blockLength ?? 0;
@@ -63,6 +65,9 @@ class ViewController: UIViewController {
 
         player = LiveAudioPlayer(graph: audioIO, session: session);
         makeActions();
+        if let segueFile = fileForSegue {
+            self.importFile(segueFile)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -112,7 +117,7 @@ class ViewController: UIViewController {
     /// - parameter columns:  The number of columns to add to each track.
     func createBlocks(blockArrays: BlockArrayList, columns: Int) {
 
-        for idx in 0...7 {
+        for idx in 0...12 {
 
             let track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
 

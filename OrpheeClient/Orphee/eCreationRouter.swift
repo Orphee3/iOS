@@ -19,7 +19,8 @@ enum eCreationRouter: URLRequestConvertible {
     case UpdateCrea(String, [String: AnyObject])
     case DestroyCrea(String)
     case GetStoreURL
-    case StoreCrea(String)
+    case StoreCrea(url: String)
+    case RetrieveCrea(url: String)
 
     var method: Alamofire.Method {
         switch self {
@@ -35,6 +36,8 @@ enum eCreationRouter: URLRequestConvertible {
             return .GET
         case .StoreCrea:
             return .PUT
+        case .RetrieveCrea:
+            return .GET
         }
     }
 
@@ -52,6 +55,8 @@ enum eCreationRouter: URLRequestConvertible {
             return "api/upload/audio/x-midi"
         case .StoreCrea(let url):
             return url
+        case .RetrieveCrea(let url):
+            return url
         }
     }
 
@@ -64,12 +69,13 @@ enum eCreationRouter: URLRequestConvertible {
         case .StoreCrea(let url):
             mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
             mutableURLRequest.setValue("audio/x-midi", forHTTPHeaderField: "Content-Type")
+        case .RetrieveCrea(let url):
+            mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
         default:
             let URL = NSURL(string: eCreationRouter.baseURLString)!
             mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
 
             if let token = eCreationRouter.OAuthToken {
-                print("THIS IS MY TOKEN! \(token)")
                 mutableURLRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
         }
@@ -85,6 +91,8 @@ enum eCreationRouter: URLRequestConvertible {
         case .UpdateCrea(_, let parameters):
             return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: parameters).0
         case .StoreCrea(_):
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0
+        case .RetrieveCrea(_):
             return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0
         default:
             return mutableURLRequest

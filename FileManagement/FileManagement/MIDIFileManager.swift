@@ -120,6 +120,7 @@ public class MIDIFileManager: pFormattedFileManager {
     ///
     ///  - returns: The formatted dictionnary describing the file's content.
     public func readFile() -> [String : Any]? {
+        print("file \(path) exists? \(NSFileManager.defaultManager().fileExistsAtPath(path	))")
         let parser = MIDIDataParser(data: reader.readAllData());
         var tracks = parser.parseTracks()
         tracks.removeValueForKey(0)

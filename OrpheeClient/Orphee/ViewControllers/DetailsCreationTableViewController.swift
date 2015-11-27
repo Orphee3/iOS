@@ -130,6 +130,7 @@ class DetailsCreationTableViewController: UITableViewController{
             })
         }
     }
+
 }
 
 extension DetailsCreationTableViewController: UITextFieldDelegate{

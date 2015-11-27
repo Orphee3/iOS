@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="composition" id="BYZ-38-t0r" customClass="ViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -74,7 +74,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g0p-Mo-Sys"/>
                                     <barButtonItem systemItem="edit" id="mmd-u9-DmE">
                                         <connections>
-                                            <segue destination="stM-uy-J5J" kind="show" id="21c-YE-aep"/>
+                                            <segue destination="stM-uy-J5J" kind="show" identifier="instrumentsSegue" id="21c-YE-aep"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="DxN-lE-gZc"/>

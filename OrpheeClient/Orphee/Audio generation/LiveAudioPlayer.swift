@@ -69,7 +69,7 @@ final class LiveAudioPlayer: pAudioPlayerWithDataSource {
         noteEvents:
             for (idx, dtNotes) in dataToRead.enumerate() where self.playing == true {
                 self.lastPos = idx;
-                self.playNotes(dtNotes, noteLength: eNoteLength.crotchet);
+                self.playNotes(dtNotes, noteLength: eNoteLength.quaver);
                 if (!self.playing) {
                     paused = true;
                     break noteEvents;

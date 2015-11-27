@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -83,6 +83,9 @@
                             <constraint firstAttribute="width" constant="28" id="tCo-GA-waS"/>
                         </constraints>
                         <state key="normal" image="share"/>
+                        <connections>
+                            <action selector="getCreation:" destination="-2" eventType="touchUpInside" id="tMf-oN-vU9"/>
+                        </connections>
                     </button>
                 </subviews>
                 <animations/>
@@ -121,6 +124,7 @@
             <connections>
                 <outlet property="accessCommentButton" destination="c4a-hr-9Pz" id="qKq-Sd-ooa"/>
                 <outlet property="accessProfileButton" destination="P80-Yx-Uns" id="9V2-uB-IoT"/>
+                <outlet property="actionButton" destination="gf7-qP-IQM" id="ysU-Au-snP"/>
                 <outlet property="imgCreation" destination="loU-pS-0XB" id="w5C-1M-8D4"/>
                 <outlet property="imgProfileCreator" destination="pii-1Y-L8r" id="T1y-uv-BOm"/>
                 <outlet property="likeButton" destination="hSU-S3-fNm" id="thP-QC-1eq"/>

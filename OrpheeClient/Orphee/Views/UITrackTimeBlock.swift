@@ -13,10 +13,10 @@ import UIKit
 class UITrackTimeBlock: UIButton {
 
     /// A UITrackTimeBlock button's width.
-    class var width: Int { return 50; };
+    class var width: Int { return 75; };
 
     /// A UITrackTimeBlock button's height.
-    class var height: Int { return 50; };
+    class var height: Int { return 30; };
 
     /// The button's column.
     /// When set, it updates `originX`
@@ -68,7 +68,8 @@ class UITrackTimeBlock: UIButton {
     var note: UInt32 = 0;
     var active: Bool = false {
         willSet(act) {
-            self.backgroundColor = act ? UIColor.yellowColor() : self.color;
+            self.backgroundColor = act ? UIColor ( red: 1.0, green: 0.8054, blue: 0.0, alpha: 1.0 ) : UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
+;
         }
     };
     weak var graph: AudioGraph! = nil;
@@ -89,7 +90,7 @@ class UITrackTimeBlock: UIButton {
 
         tBlock.pos = column;
         tBlock.row = row;
-        tBlock.setImage(image, forState: .Normal);
+//        tBlock.setImage(image, forState: .Normal);
         tBlock.note = note;
         tBlock.graph = graph;
         tBlock.addTarget(tBlock, action: Selector("onTouchDown"), forControlEvents: UIControlEvents.TouchDown);
@@ -118,6 +119,7 @@ class UITrackTimeBlock: UIButton {
     init(row: Int, column: Int) {
         super.init(frame: CGRect(x: 0, y: 0, width: UITrackTimeBlock.width, height: UITrackTimeBlock.height));
 
+        self.backgroundColor = UIColor(red: 26 / 255, green: 109 / 255, blue: 1, alpha: 1)
         self.pos = column;
         self.row = row;
     }
@@ -129,6 +131,7 @@ class UITrackTimeBlock: UIButton {
     private init(pos_x: Int, pos_y: Int) {
         super.init(frame: CGRect(x: pos_x, y: pos_y, width: UITrackTimeBlock.width, height: UITrackTimeBlock.height));
 
+        self.backgroundColor = UIColor(red: 26 / 255, green: 109 / 255, blue: 1, alpha: 1)
         self.pos = pos_x / (UITrackTimeBlock.width + 10);
         self.row = pos_y / (UITrackTimeBlock.height + 10);
     }
