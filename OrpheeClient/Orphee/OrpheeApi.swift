@@ -325,7 +325,7 @@ class OrpheeApi {
         Alamofire.request(eCreationRouter.CreateCrea(name))
         .responseJSON { request, response, json in
             if (response?.statusCode == 200) {
-                if let json = json as? [String : AnyObject] {
+                if let json = json.value as? [String : AnyObject] {
                     let crea = Creation(Creation: json)
                     self.updateCreation(crea.id, urlGet: urlGet, completion: {
                         (response) in

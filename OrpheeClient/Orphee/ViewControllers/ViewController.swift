@@ -264,7 +264,7 @@ class ViewController: UIViewController {
     ///
     /// - parameter sender:  The object sending the event.
     @IBAction func StopButtonTouched(sender: AnyObject) {
-        print("stop");
+        player.pause();
     }
 
     /// Called when the UI's `Play` button is pressed.
@@ -272,19 +272,12 @@ class ViewController: UIViewController {
     ///
     /// - parameter sender:  The object sending the event.
     @IBAction func PlayButtonTouched(sender: AnyObject) {
-        _ = sender as! UIButton;
+        _ = sender as! UIBarButtonItem;
 
-        if (player.playing) {
-            print("pause");
-
-            player.pause();
-        }
-        else {
-            print("play");
-            if let p = player as? LiveAudioPlayer {
-                p.audioData = tracks[currentTrack]!.getCleanedList();
-                p.play();
-            }
+        if let p = player as? LiveAudioPlayer
+            where player is pAudioPlayerWithDataSource && !player.playing {
+            p.audioData = tracks[currentTrack]!.getCleanedList();
+            p.play();
         }
     }
 

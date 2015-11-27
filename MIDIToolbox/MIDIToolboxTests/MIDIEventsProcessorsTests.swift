@@ -24,40 +24,40 @@ class MIDIEventsProcessorsTests: XCTestCase {
         super.tearDown()
     }
 
-    func testProcessProgramChange() {
-
-        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
-
-        b.putUInt16(0xC542);
-        b.rewind();
-
-        let res = try! buildMIDIEventProcessor(eMidiEventType.programChange, chan: 0)(data: b);
-        XCTAssert(res == [5, 66], "wrong result! got \(res)");
-    }
-
-    func testProcessNoteOnEvent() {
-
-        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
-
-        b.putUInt8(0x92);
-        b.putUInt16(0x4264);
-        b.rewind();
-
-        let res = try! buildMIDIEventProcessor(eMidiEventType.noteOn, chan: 0)(data: b);
-        XCTAssert(res == [2, 66, 100], "wrong result! got \(res)");
-    }
-
-    func testProcessNoteOffEvent() {
-
-        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
-
-        b.putUInt8(0x82);
-        b.putUInt16(0x4200);
-        b.rewind();
-
-        let res = try! buildMIDIEventProcessor(eMidiEventType.noteOff, chan: 0)(data: b);
-        XCTAssert(res == [2, 66, 0], "wrong result! got \(res)");
-    }
+//    func testProcessProgramChange() {
+//
+//        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+//
+//        b.putUInt16(0xC542);
+//        b.rewind();
+//
+//        let res = try! buildMIDIEventProcessor(eMidiEventType.programChange, chan: 0)(data: b);
+//        XCTAssert(res == [5, 66], "wrong result! got \(res)");
+//    }
+//
+//    func testProcessNoteOnEvent() {
+//
+//        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+//
+//        b.putUInt8(0x92);
+//        b.putUInt16(0x4264);
+//        b.rewind();
+//
+//        let res = try! buildMIDIEventProcessor(eMidiEventType.noteOn, chan: 0)(data: b);
+//        XCTAssert(res == [2, 66, 100], "wrong result! got \(res)");
+//    }
+//
+//    func testProcessNoteOffEvent() {
+//
+//        let b: ByteBuffer = ByteBuffer(order: BigEndian(), capacity: 8);
+//
+//        b.putUInt8(0x82);
+//        b.putUInt16(0x4200);
+//        b.rewind();
+//
+//        let res = try! buildMIDIEventProcessor(eMidiEventType.noteOff, chan: 0)(data: b);
+//        XCTAssert(res == [2, 66, 0], "wrong result! got \(res)");
+//    }
 
     func testProcessTempoEvent() {
 

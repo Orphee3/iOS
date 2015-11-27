@@ -24,7 +24,7 @@ class CoreMIDISequenceCreatorTests : XCTestCase {
         super.setUp()
         // Put Setup code here. This method is called before the invocation of each test method in the class.
 
-        self.cmsCreator = CoreMIDISequenceCreator(trkNbr: 1, ppqn: 384);
+        self.cmsCreator = CoreMIDISequenceCreator(trkNbr: 1, ppqn: 384, timeSig: (4, 4), bpm: 120);
     }
 
     override func tearDown() {
