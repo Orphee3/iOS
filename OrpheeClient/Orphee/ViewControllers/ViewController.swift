@@ -21,10 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var trackBar: UIToolbar!
 
     /// A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.
-    var tracks: [Int : BlockArrayList] = [:]
-    var tracksInfo: [Int : [String : Any]] = [:]
+    var tracks: [BlockArrayList?] = []
+    var tracksInfo: [[String : Any]?] = []
 
-    var currentTrack: Int = 1;
+    var currentTrack: Int = 0
 
     var player: pAudioPlayer!;
     var audioIO: AudioGraph = AudioGraph();
@@ -34,7 +34,10 @@ class ViewController: UIViewController {
 
     var oldValue: Int {
         get {
-            return self.tracks[currentTrack]?.blockLength ?? 0;
+            guard self.currentTrack < self.tracks.count else {
+                return 0
+            }
+            return self.tracks[self.currentTrack]?.blockLength ?? 0
         }
     }
 
@@ -100,10 +103,10 @@ class ViewController: UIViewController {
     //
 
     func createTracks(trackCount: Int) {
-        for trackIdx in (tracks.count + 1)...(tracks.count + trackCount) {
+        for _ in 0..<trackCount {
             let block = BlockArrayList();
             createBlocks(block, columns: 1);
-            tracks[trackIdx] = block;
+            tracks.append(block);
         }
         print("track count \(tracks.count)");
         print(tracks);
@@ -129,10 +132,12 @@ class ViewController: UIViewController {
 
     func updateScrollViewConstraints() {
 
+        if self.tracks.count > 0 {
         scrollBlocks.contentSize = CGSizeMake(
-            CGFloat(tracks[currentTrack]?.endPos.x ?? 0),
-            CGFloat(tracks[currentTrack]?.endPos.y ?? 0)
+            CGFloat(self.tracks[self.currentTrack]?.endPos.x ?? 0),
+            CGFloat(self.tracks[self.currentTrack]?.endPos.y ?? 0)
         );
+        }
     }
 
     func makeActions() {
@@ -165,8 +170,8 @@ class ViewController: UIViewController {
 
     func prepareTracksForSave() -> [Int : [[MIDINoteMessage]]]{
         var trks = [Int : [[MIDINoteMessage]]]()
-        for idx in 1...tracks.count {
-            trks[idx] = tracks[idx]!.getFormattedNoteList()
+        for (idx, track) in tracks.enumerate() {
+            trks[idx] = track!.getFormattedNoteList()
         }
         return trks;
     }
@@ -179,11 +184,11 @@ class ViewController: UIViewController {
         for (key, value) in data {
             if var trackList = value as? [Int : [[Int]]]
                where key == eOrpheeFileContent.Tracks.rawValue {
-                    currentTrack = 1;
-                    for idx in 1...trackList.count {
+                    currentTrack = 0;
+                    for idx in 0..<trackList.count {
                         let track = trackList[idx]!
                         let blockArray = BlockArrayList();
-                        trackBar.items?.insert(UIBarButtonItem(title: "\(idx)", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTrack:"), atIndex: tracks.count)
+                        trackBar.items?.insert(UIBarButtonItem(title: "\(idx + 1)", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTrack:"), atIndex: tracks.count)
                         createBlocks(blockArray, columns: 1);
                         blockArray.hide();
                         let missingBlocks = track.count - blockArray.blockLength;
@@ -192,11 +197,11 @@ class ViewController: UIViewController {
                             self.stepper.value = Double(self.oldValue);
                         }
                         blockArray.setBlocksFromList(track);
-                        tracks[idx] = blockArray;
+                        tracks.append(blockArray)
                     }
-                    if let infoList = value as? [Int : [String : Any]]
+                    if let infoList = value as? [[String : Any]]
                         where key == eOrpheeFileContent.TracksInfos.rawValue {
-                            for (idx, info) in infoList {
+                            for (idx, info) in infoList.enumerate() {
                                 if let patch = info[eOrpheeFileContent.PatchID.rawValue] as? Int {
                                     tracksInfo[idx] = [eOrpheeFileContent.PatchID.rawValue : patch];
                                 }
@@ -204,13 +209,13 @@ class ViewController: UIViewController {
                     }
             }
         }
-        changeTrack(trackIdx: 1);
+        changeTrack(trackIdx: 0);
         self.updateScrollViewConstraints();
     }
 
     func resetAll() {
-        for (_, track) in tracks {
-            track.resetBlocks()
+        for track in tracks {
+            track!.resetBlocks()
             if let removedItem = trackBar.items?.removeFirst()
                 where removedItem.action != "changeTrack:" {
                     trackBar.items?.insert(removedItem, atIndex: 0);
@@ -222,8 +227,8 @@ class ViewController: UIViewController {
     }
 
     func changeTrack(trackIdx idx: Int) {
-        for (_, track) in tracks {
-            track.hide();
+        for track in tracks {
+            track!.hide();
         }
         currentTrack = idx;
         tracks[currentTrack]?.show()
@@ -240,14 +245,16 @@ class ViewController: UIViewController {
 
     @IBAction func changeTrack(sender: AnyObject) {
         if let button = sender as? UIBarButtonItem {
-            changeTrack(trackIdx: Int(button.title ?? "1")!);
+            changeTrack(trackIdx: Int(button.title ?? "1")! - 1);
         }
     }
 
     @IBAction func addTrack(sender: AnyObject) {
         trackBar.items?.insert(UIBarButtonItem(title: "\(tracks.count + 1)", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTrack:"), atIndex: tracks.count)
         createTracks(1);
-        changeTrack(trackIdx: tracks.count)
+        if let idx = tracks.count - 1 as Int? where tracks.count > 0 {
+            changeTrack(trackIdx: idx)
+        }
     }
 
     @IBAction func addAndRemoveBlocks(sender: UIStepper) {
@@ -279,9 +286,10 @@ class ViewController: UIViewController {
     @IBAction func PlayButtonTouched(sender: AnyObject) {
         _ = sender as! UIBarButtonItem;
 
-        if let p = player as? LiveAudioPlayer
+        if let p = player as? LiveAudioPlayer,
+            let track = tracks[currentTrack]
             where player is pAudioPlayerWithDataSource && !player.playing {
-            p.audioData = tracks[currentTrack]!.getCleanedList();
+            p.audioData = track.getCleanedList();
             p.play();
         }
     }

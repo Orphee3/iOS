@@ -104,7 +104,7 @@ public class MIDIFileManager: pFormattedFileManager {
       let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 180);
         dataCreator.buildMIDIBuffer();
 
-        for idx in 1...trackList.count {
+        for idx in 0..<trackList.count {
             let track = trackList[idx]!
             var chanMsg = MIDIChannelMessage(status: eMidiEventType.programChange.rawValue | UInt8(idx), data1: 0, data2: 0, reserved: 0);
             if let trkInfo = trackInfo[idx],
@@ -123,11 +123,15 @@ public class MIDIFileManager: pFormattedFileManager {
         print("file \(path) exists? \(NSFileManager.defaultManager().fileExistsAtPath(path	))")
         let parser = MIDIDataParser(data: reader.readAllData());
         var tracks = parser.parseTracks()
-        tracks.removeValueForKey(0)
+        for (key, track) in tracks {
+            if track.count == 0 {
+                tracks.removeValueForKey(key)
+            }
+        }
         var content = [eOrpheeFileContent.Tracks.rawValue : tracks as Any];
-        var trackInfo = [Int : Any]()
+        var trackInfo = [Any]()
         for track in parser.tracks {
-            trackInfo[Int(track.trackNbr) ] = [eOrpheeFileContent.PatchID.rawValue : track.instrumentID]
+            trackInfo.insert([eOrpheeFileContent.PatchID.rawValue : track.instrumentID], atIndex: Int(track.trackNbr))
             print(trackInfo)
         }
         content[eOrpheeFileContent.TracksInfos.rawValue] = trackInfo;
