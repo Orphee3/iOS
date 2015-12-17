@@ -75,6 +75,7 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
         MusicTrackNewMIDIChannelEvent(trk, 0, &prog);
 
         var endNote = MIDINoteMessage(channel: UInt8(trkCnt), note: 0, velocity: 0, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
+        var trackHasNotes = false
         var tmStmp: Float64 = 0;
         var curTmStmp = tmStmp;
         for (idx, dtNotes) in notes.enumerate() {
@@ -82,6 +83,7 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
                 tmStmp += Float64(eNoteLength.crotchet.rawValue);
             }
             else {
+                trackHasNotes = true
                 for var note in dtNotes {
                     if (idx != 0 && curTmStmp == tmStmp) {
                         tmStmp += Float64(note.duration)
@@ -92,7 +94,9 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
                 curTmStmp = tmStmp
             }
         }
-        MusicTrackNewMIDINoteEvent(trk, tmStmp, &endNote);
+        if (trackHasNotes) {
+            MusicTrackNewMIDINoteEvent(trk, tmStmp, &endNote);
+        }
         trkCnt++;
     }
 

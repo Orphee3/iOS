@@ -26,7 +26,10 @@ public protocol pFormattedFileManager: class {
     var reader: pInputManager { get };
 
     /// The name to the managed file.
-    var name: String { get };
+    var name: String { get set };
+
+    /// The path to the managed file.
+    var path: String { get };
 
     ///    Required init. Provides the instance with the name to the managed file.
     ///    If the file already exists, creates the `writer` and `reader` objects.

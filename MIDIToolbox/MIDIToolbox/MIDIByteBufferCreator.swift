@@ -73,17 +73,17 @@ let isHighestOrderBitSet = { (input: UInt8) -> Bool in
 }
 
 protocol pTrack {
-    
+
     /// Length of the track.
     var trackLength: Int { get set}
     /// Buffer for the track's header.
     var header: ByteBuffer { get set}
     /// Buffer for all other events.
     var body: ByteBuffer! { get set }
-    
+
     ///  Builds the header chunk buffer.
     mutating func fillHeader(data: [UInt8]);
-    
+
     ///  Unify all the track's buffers.
     ///
     ///  - returns: A unified buffer containing all the track's information.
@@ -93,17 +93,17 @@ protocol pTrack {
 }
 
 extension pTrack {
-    
+
     mutating func fillHeader(data: [UInt8]) {
         header.putUTF8(kMIDIFile_trackMark);
-        
+
         header.mark();
         header.putUInt32(swapUInt32(UInt32(trackLength)));
-        
+
         header.putUInt8(data)
         trackLength = sizeof(UInt32) + data.count;
     }
-    
+
     ///  Unify all the track's buffers.
     ///
     ///  - returns: A unified buffer containing all the track's information.
@@ -223,10 +223,10 @@ public final class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
         mutating func buildTrack(events: [ [MIDINoteMessage] ]) {
 
             var silences: UInt32 = 0;
-            var capacity: Int    = 0;
+            var capacity: Int    = kMIDIEvent_endOfTrack.count;
 
             for notes in events {
-                capacity += (2 * notes.count * kMIDIEventMaxSize_noteEvent) + (2 * notes.count * kMIDIEventMaxSize_deltaTime) + kMIDIEvent_endOfTrack.count;
+                capacity += (2 * notes.count * kMIDIEventMaxSize_noteEvent) + (2 * notes.count * kMIDIEventMaxSize_deltaTime);
             }
 
             body = ByteBuffer(order: LittleEndian(), capacity: capacity);
@@ -362,13 +362,8 @@ public final class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
 
         var track = sTrack(timeRes: _timeResolution, bpm: _tempo, channel: UInt8(tracks.count - 1), startTime: 0, instrument: prog.data1);
 
-        if (notes.count > 0) {
-            track.buildTrack(notes);
-            tracks.append(track);
-        }
-        else {
-            print(kOrpheeDebug_bufferCreator_noEventsInTrack);
-        }
+        track.buildTrack(notes);
+        tracks.append(track);
     }
 
     ///  Transforms all the buffers into a unified NSData instance.
@@ -423,7 +418,7 @@ public final class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
         }
         return buffers;
     }
-    
+
     func updateTrackCount() {
         let headerPos = fileHeader.position
 

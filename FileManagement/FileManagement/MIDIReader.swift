@@ -8,6 +8,10 @@
 
 import UIKit
 
+public enum MIDIReaderError: ErrorType {
+    case InitFailed(String)
+}
+
 /// Class MIDIReader implements pInputManager
 ///
 ///
@@ -21,13 +25,11 @@ public class MIDIReader: pInputManager {
     ///  - parameter path: The path to the MIDI file to read.
     ///
     ///  - returns: An initialized MIDIReader instance.
-    public init(path: String) {
+    public init(path: String) throws {
 
         self.handle = NSFileHandle(forReadingAtPath: path);
-        if let _ = self.handle {
-            print("All good!");
-        } else {
-            print("path error on: \(path)");
+        guard let _ = self.handle else {
+            throw MIDIReaderError.InitFailed("MIDIReader init failed");
         }
     }
 
@@ -67,7 +69,9 @@ public class MIDIReader: pInputManager {
 
     ///  Closes the file handler.
     deinit {
-        handle!.closeFile();
-        handle = nil;
+        if let _ = handle {
+            handle!.closeFile();
+            handle = nil;
+        }
     }
 }

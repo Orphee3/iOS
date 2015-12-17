@@ -15,6 +15,7 @@ func XCTAssertThrows<T>(@autoclosure fn: () throws -> T, message: String = "") {
         XCTFail(message + " got \(result)");
     }
     catch {
+        debugPrint(error)
     }
 }
 

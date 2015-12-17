@@ -9,6 +9,10 @@
 import UIKit
 import MIDIToolbox
 
+public enum MIDIWriterError: ErrorType {
+    case InitFailed(String)
+}
+
 /// Class MIDIWriter implements pOutputManager
 ///
 ///
@@ -22,11 +26,11 @@ public class MIDIWriter: pOutputManager {
     ///  - parameter path: The path to the MIDI file to write.
     ///
     ///  - returns: An initialized MIDIWriter instance.
-    public init(path: String) {
+    public init(path: String) throws {
 
-        self.handle = NSFileHandle(forWritingAtPath: path);
-        if (self.handle == nil) {
-            print(kOrpheeDebug_MIDIWriter_initFailed);
+        self.handle = NSFileHandle(forWritingAtPath: path)
+        guard let _ = self.handle else {
+            throw MIDIWriterError.InitFailed("MIDIWriter init failed.")
         }
     }
 
@@ -39,7 +43,6 @@ public class MIDIWriter: pOutputManager {
 
         if let hdl = handle {
             hdl.writeData(data);
-            print(kOrpheeDebug_MIDIWriter_writeOk);
             return true;
         }
         print(kOrpheeDebug_MIDIWriter_writeFailed);

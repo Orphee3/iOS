@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E282F1C1C23211D004B2084 /* MIDIWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F1B1C23211D004B2084 /* MIDIWriterTests.swift */; };
 		1E7F4A861BD557AC008B4774 /* MIDIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7F4A851BD557AC008B4774 /* MIDIToolbox.framework */; };
+		AAAB80599524C9460B15C921 /* xFormatedFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB825EABAFA547988FABB2 /* xFormatedFileManager.swift */; };
+		AAAB8DD18564D426D7F78E54 /* MIDIReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB8C0EE642CE55AB1D4C17 /* MIDIReaderTests.swift */; };
 		DB426EB91AD7C3D4007C1617 /* FileManagement.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DA5491ABC97FC009A09B1 /* FileManagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB42C6B51BA08A98008C9B63 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5DA5441ABC97FC009A09B1 /* FileManagement.framework */; };
 		DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */; };
@@ -35,7 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E282F1B1C23211D004B2084 /* MIDIWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIWriterTests.swift; sourceTree = "<group>"; };
 		1E7F4A851BD557AC008B4774 /* MIDIToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MIDIToolbox.framework; path = "../MIDIToolbox/MIDIToolbox/build/Debug-iphoneos/MIDIToolbox.framework"; sourceTree = "<group>"; };
+		AAAB825EABAFA547988FABB2 /* xFormatedFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xFormatedFileManager.swift; sourceTree = "<group>"; };
+		AAAB8C0EE642CE55AB1D4C17 /* MIDIReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIReaderTests.swift; sourceTree = "<group>"; };
 		DB5D752D1AC2D61F0011B197 /* pOutputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pOutputManager.swift; sourceTree = "<group>"; };
 		DB5D75301AC2DFF50011B197 /* pResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pResourceManager.swift; sourceTree = "<group>"; };
 		DB5D75331AC2E4880011B197 /* pFormattedFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pFormattedFileManager.swift; sourceTree = "<group>"; };
@@ -106,12 +112,13 @@
 				DB74B5421B55BEDC00AFBDF7 /* pInputManager.swift */,
 				DB5D752D1AC2D61F0011B197 /* pOutputManager.swift */,
 				DB5D75301AC2DFF50011B197 /* pResourceManager.swift */,
-				DB5DA5471ABC97FC009A09B1 /* Supporting Files */,
-				DB5DA5491ABC97FC009A09B1 /* FileManagement.h */,
+				AAAB825EABAFA547988FABB2 /* xFormatedFileManager.swift */,
 				DB61958B1BA12007002CE09E /* PathManager.swift */,
 				DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */,
 				DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */,
 				DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */,
+				DB5DA5471ABC97FC009A09B1 /* Supporting Files */,
+				DB5DA5491ABC97FC009A09B1 /* FileManagement.h */,
 			);
 			path = FileManagement;
 			sourceTree = "<group>";
@@ -131,6 +138,8 @@
 				DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */,
 				DB5DA5541ABC97FC009A09B1 /* Supporting Files */,
 				DBE1A40B1B93B6590072AE06 /* xXCTestThrowingAssert.swift */,
+				1E282F1B1C23211D004B2084 /* MIDIWriterTests.swift */,
+				AAAB8C0EE642CE55AB1D4C17 /* MIDIReaderTests.swift */,
 			);
 			path = FileManagementTests;
 			sourceTree = "<group>";
@@ -254,6 +263,7 @@
 				DBEF68FB1AD7646C009F8548 /* MIDIFileManager.swift in Sources */,
 				DBEF68FC1AD7646C009F8548 /* MIDIReader.swift in Sources */,
 				DBEF68FD1AD7646C009F8548 /* MIDIWriter.swift in Sources */,
+				AAAB80599524C9460B15C921 /* xFormatedFileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBE1A40D1B93B6590072AE06 /* xXCTestThrowingAssert.swift in Sources */,
+				1E282F1C1C23211D004B2084 /* MIDIWriterTests.swift in Sources */,
 				DB61958E1BA1250E002CE09E /* PathManagerTests.swift in Sources */,
 				DB5DA5571ABC97FC009A09B1 /* FileManagementTests.swift in Sources */,
+				AAAB8DD18564D426D7F78E54 /* MIDIReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

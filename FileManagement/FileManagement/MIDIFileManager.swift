@@ -12,27 +12,15 @@ import MIDIToolbox
 
 
 public enum eOrpheeFileContent: String {
-    case Tracks = "TRACKS"
+    case Tracks      = "TRACKS"
     case TracksInfos = "TRACKSINFO"
-    case PatchID = "PATCH"
+    case PatchID     = "PATCH"
 }
 /// The default extension for files created by the Orphee application
 public let kOrpheeFile_extension: String = "mid";
 
 /// The default directory where Orphee files are kept.
 public let kOrpheeFile_store: String = NSHomeDirectory() + "/Documents";
-
-/// The key coding for the tracks array contained in the "content" dictionnary
-/// used by `MidiFileManager`'s `writeToFile` and `readFile` methodes.
-///
-/// - todo: Make an enum with all accepted values.
-public let kOrpheeFileContent_tracks: String = "TRACKS";
-
-/// The key coding for the track's information dictionary contained in the "content" dictionnary
-/// used by `MidiFileManager`'s `writeToFile` and `readFile` methodes.
-///
-/// - todo: Make an enum with all accepted values.
-public let kOrpheeFileContent_trackInfo: String = "TRACKINFO";
 
 /// Class MIDIFileManager implements pFormattedFileManager
 ///
@@ -50,20 +38,13 @@ public class MIDIFileManager: pFormattedFileManager {
     }
 
     /// The object used to write to the managed file.
-    public lazy var writer: pOutputManager = MIDIWriter(path: self.path);
+    public lazy var writer: pOutputManager = try! MIDIWriter(path: self.path);
 
     /// The object used to read from the managed file.
-    public lazy var reader: pInputManager = MIDIReader(path: self.path);
+    public lazy var reader: pInputManager = try! MIDIReader(path: self.path);
 
     /// The name to the managed file.
     public var name: String;
-
-    /// The path to the managed MIDI file.
-    public var path: String {
-        get {
-            return (MIDIFileManager.store + "/" + self.name)
-        }
-    }
 
     ///  Default init method for MIDIFileManager.
     ///
@@ -73,18 +54,6 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  - returns: An initialized instance of MIDIFileManager.
     public required init(name: String) {
         self.name = name;
-    }
-
-    ///  Creates a new MIDI file.
-    ///
-    ///  - parameter name: If provided, overrides and replaces the `name` property.
-    ///
-    ///  - returns: `true` if the operation was successful or if the item already exists, `false` otherwise.
-    public func createFile(name: String? = nil) -> Bool {
-        if (name != nil) {
-            self.name = name!;
-        }
-        return NSFileManager.defaultManager().createFileAtPath(self.path, contents: nil, attributes: nil);
     }
 
     ///  Formats and write the given dictionnary to the managed MIDI file.
@@ -101,15 +70,15 @@ public class MIDIFileManager: pFormattedFileManager {
                 return false;
         }
         print(input)
-      let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 180);
+        let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 180);
         dataCreator.buildMIDIBuffer();
 
         for idx in 0..<trackList.count {
             let track = trackList[idx]!
             var chanMsg = MIDIChannelMessage(status: eMidiEventType.programChange.rawValue | UInt8(idx), data1: 0, data2: 0, reserved: 0);
             if let trkInfo = trackInfo[idx],
-               let patchID = trkInfo[eOrpheeFileContent.PatchID.rawValue] as? Int {
-                chanMsg.data1 = UInt8(patchID);
+                let patchID = trkInfo[eOrpheeFileContent.PatchID.rawValue] as? Int {
+                    chanMsg.data1 = UInt8(patchID);
             }
             dataCreator.addTrack(track, prog: chanMsg)
         }
@@ -120,7 +89,6 @@ public class MIDIFileManager: pFormattedFileManager {
     ///
     ///  - returns: The formatted dictionnary describing the file's content.
     public func readFile() -> [String : Any]? {
-        print("file \(path) exists? \(NSFileManager.defaultManager().fileExistsAtPath(path	))")
         let parser = MIDIDataParser(data: reader.readAllData());
         var tracks = parser.parseTracks()
         for (key, track) in tracks {
@@ -136,20 +104,5 @@ public class MIDIFileManager: pFormattedFileManager {
         }
         content[eOrpheeFileContent.TracksInfos.rawValue] = trackInfo;
         return content;
-    }
-
-    ///  Deletes the managed MIDI file.
-    public func deleteFile() {
-    }
-
-    ///  Checks if the given file name has the expected file extension.
-    ///
-    ///  - parameter name: The file name to check.
-    ///  - parameter fExt: The expected file extension.
-    ///
-    ///  - returns:     `true` if the file has the expected extension, `false` otherwise.
-    ///  - attention:   The expected extension must not start with a "."
-    class func formatFileName(name: NSString, fileExtension fExt: String) -> Bool {
-        return name.pathExtension == fExt;
     }
 }

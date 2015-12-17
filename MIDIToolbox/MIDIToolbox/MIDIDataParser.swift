@@ -262,7 +262,7 @@ public class MIDIDataParser {
                     smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
                 }
                 var i: Int = 0;
-                var cleanedEvents: [[Int]] = [[]];
+                var cleanedEvents: [[Int]] = [];
                 for event in timedEvents {
                     if (event.deltaTime >= self.smallestTimeDiv && event.deltaTime > 0) {
                         let silences = Int(event.deltaTime / self.smallestTimeDiv);
@@ -270,6 +270,9 @@ public class MIDIDataParser {
                         i += silences;
                     }
                     if (event.type == eMidiEventType.noteOn) {
+                        if (cleanedEvents.count == 0) {
+                            cleanedEvents.append([])
+                        }
                         cleanedEvents[i].append(Int(event.data![1]));
                     }
                 }
@@ -296,7 +299,7 @@ public class MIDIDataParser {
 ///  - parameter dataBuffer:  The buffer to print.
 ///  - parameter trackLength: The number of Bytes to print.
 func printData(dataBuffer: ByteBuffer, trackLength: UInt32) {
-    
+
     dataBuffer.mark();
     print("");
     for (var i: UInt32 = 0, len: UInt32 = trackLength; i <= len; ++i) {

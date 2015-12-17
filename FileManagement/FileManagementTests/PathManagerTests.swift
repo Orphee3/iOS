@@ -32,10 +32,6 @@ class PathManagerTests : XCTestCase {
         entries.forEach() { print($0) }
     }
 
-    func testFormatFileName_returns_true__when_name_endsWith_givenExtension() {
-        XCTAssert(MIDIFileManager.formatFileName("toto.mid", fileExtension: "mid"))
-    }
-
     // MARK: - Setup
     override func setUp() {
         super.setUp()
