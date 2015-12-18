@@ -187,7 +187,7 @@ class ViewController: UIViewController {
         ++self.fileNbr;
     }
 
-    func prepareTracksForSave() -> [Int : [[MIDINoteMessage]]]{
+    func prepareTracksForSave() -> [Int : [[MIDINoteMessage]]] {
         var trks = [Int : [[MIDINoteMessage]]]()
         for (idx, track) in tracks.enumerate() {
             trks[idx] = track!.getFormattedNoteList()

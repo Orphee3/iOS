@@ -38,9 +38,9 @@ class TempoViewController: UITableViewController {
         return cell;
     }
 
-    /// TODO: Clean it! Possible solution: pFormattedFileManager realisation for SoundBanks/SoundFonts.
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         mainVC.tempoInfo = TempoList[indexPath.row]
+        self.navigationController!.popViewControllerAnimated(true);
     }
 }

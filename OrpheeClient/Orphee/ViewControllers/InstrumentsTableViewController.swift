@@ -180,5 +180,6 @@ class InstrumentsTableViewController: UITableViewController {
             mainVC.tracksInfo.insert([eOrpheeFileContent.PatchID.rawValue : indexPath.row], atIndex: mainVC.currentTrack)
         }
         mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!);
+        self.navigationController!.popViewControllerAnimated(true);
     }
 }
