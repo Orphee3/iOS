@@ -84,7 +84,7 @@ class UITrackTimeBlock: UIButton {
     /// - parameter column:  The column the new button will belong to.
     ///
     /// - returns: A UITrackTimeBlock `color` button belonging at `row` X `column`
-    class func timeBlock(image image: UIImage, row: Int, column: Int, note: UInt32, graph: AudioGraph) -> UITrackTimeBlock {
+    class func timeBlock(row row: Int, column: Int, note: UInt32, graph: AudioGraph) -> UITrackTimeBlock {
 
         let tBlock: UITrackTimeBlock = UITrackTimeBlock(row: row, column: column);
 

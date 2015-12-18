@@ -216,6 +216,13 @@ public class MIDIDataParser {
     /// Smallest time division in the file (= smallest delta-time).
     var smallestTimeDiv: UInt32         = 0;
 
+    private var tempo: UInt             = 120;
+
+    public var Tempo: UInt {
+        get {
+            return tempo
+        }
+    }
     ///  init
     ///
     ///  - parameter data: The MIDI file's raw data.
@@ -254,6 +261,9 @@ public class MIDIDataParser {
             for idx in 0..<self.nbrOfTracks {
                 let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx);
                 track.getNoteArray();
+                if (track.quarterNotePerMinute > 0) {
+                    tempo = UInt(track.quarterNotePerMinute)
+                }
                 self.tracks.append(track);
 
                 let timedEvents: [pTimedMidiEvent] = track.midiEvents.flatMap({ $0 as? pTimedMidiEvent });
@@ -270,7 +280,7 @@ public class MIDIDataParser {
                         i += silences;
                     }
                     if (event.type == eMidiEventType.noteOn) {
-                        if (cleanedEvents.count == 0) {
+                        if (cleanedEvents.count <= i) {
                             cleanedEvents.append([])
                         }
                         cleanedEvents[i].append(Int(event.data![1]));

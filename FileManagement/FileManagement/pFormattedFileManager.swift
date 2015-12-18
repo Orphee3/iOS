@@ -53,13 +53,22 @@ public protocol pFormattedFileManager: class {
     ///    - returns: `true` if `content` was written successfully, `false` otherwise.
     func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool;
 
-    ///    Opens a file with the given name in the file format's standard store
-    ///    and reads the data.
+    ///  Reads the managed file and produces a formatted dictionnary describing the content.
     ///
-    ///    - parameter	name:	The name of the file. If nil, the internal `name` is used instead.
-    ///
-    ///    - returns:	The data contained in the file, organized as key-value pairs.
+    ///  - returns: The formatted dictionnary describing the file's content.
     func readFile() -> [String : Any]?;
+
+    /// Reads the managed file and returns the raw data;
+    ///
+    /// - returns: The file's raw data.
+    func getFileData() -> NSData;
+
+    ///    Parses the given data.
+    ///
+    ///    - parameter	data:	The data to parse.
+    ///
+    ///    - returns:	The given data organized as key-value pairs.
+    static func parseData(data: NSData) -> [String : Any]?;
 
     ///    Deletes the managed file.
     func deleteFile();

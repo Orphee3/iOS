@@ -66,7 +66,7 @@ class UITimeBlockArray {
     func addButtons(count: Int, color: UIColor) {
 
         for (var col = 0; col < count; col++) {
-            let tBlock = UITrackTimeBlock.timeBlock(image: UIImage(named: "buttonBlue")!, row: row, column: col + size, note: note, graph: graph);
+            let tBlock = UITrackTimeBlock.timeBlock(row: row, column: col + size, note: note, graph: graph);
 
             buttons.append(tBlock);
             container!.addSubview(tBlock);
@@ -108,7 +108,7 @@ class UITimeBlockArray {
 
     /// Allows access to the array's size
     func getSize() -> Int {
-        
+
         return size;
     }
 }

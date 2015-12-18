@@ -15,6 +15,7 @@ public enum eOrpheeFileContent: String {
     case Tracks      = "TRACKS"
     case TracksInfos = "TRACKSINFO"
     case PatchID     = "PATCH"
+    case Tempo       = "TEMPO"
 }
 /// The default extension for files created by the Orphee application
 public let kOrpheeFile_extension: String = "mid";
@@ -64,13 +65,14 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  - returns: `true` on success, `false otherwise.
     public func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool {
         guard let input		= content,
-              let trackInfo = input[eOrpheeFileContent.TracksInfos.rawValue] as? [Int : [String : Any]],
+              let tempoInfo = input[eOrpheeFileContent.Tempo.rawValue] as? UInt,
+              let trackInfo = input[eOrpheeFileContent.TracksInfos.rawValue] as? [[String : Any]?],
               let trackList	= input[eOrpheeFileContent.Tracks.rawValue] as? [Int : [[MIDINoteMessage]]]
               else {
                 return false;
         }
         print(input)
-        let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: 180);
+        let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: tempoInfo);
         dataCreator.buildMIDIBuffer();
 
         for idx in 0..<trackList.count {
@@ -85,11 +87,13 @@ public class MIDIFileManager: pFormattedFileManager {
         return writer.write(dataCreator.toData())
     }
 
-    ///  Reads the managed MIDI file and produces a formatted dictionnary describing the content.
+    ///    Parses the given data.
     ///
-    ///  - returns: The formatted dictionnary describing the file's content.
-    public func readFile() -> [String : Any]? {
-        let parser = MIDIDataParser(data: reader.readAllData());
+    ///    - parameter	data:	The data to parse.
+    ///
+    ///    - returns:	The given data organized as key-value pairs.
+    public class func parseData(data: NSData) -> [String : Any]? {
+        let parser = MIDIDataParser(data: data);
         var tracks = parser.parseTracks()
         for (key, track) in tracks {
             if track.count == 0 {
@@ -97,12 +101,13 @@ public class MIDIFileManager: pFormattedFileManager {
             }
         }
         var content = [eOrpheeFileContent.Tracks.rawValue : tracks as Any];
-        var trackInfo = [Any]()
+        var trackInfo = [[String : Any]]()
         for track in parser.tracks {
             trackInfo.insert([eOrpheeFileContent.PatchID.rawValue : track.instrumentID], atIndex: Int(track.trackNbr))
             print(trackInfo)
         }
         content[eOrpheeFileContent.TracksInfos.rawValue] = trackInfo;
+        content[eOrpheeFileContent.Tempo.rawValue] = parser.Tempo
         return content;
     }
 }

@@ -23,10 +23,11 @@ class ViewController: UIViewController {
     /// A dictionary with as key, the track name and as value, a corresponding wrapper around a UITrackTimeBlock array.
     var tracks: [BlockArrayList?] = []
     var tracksInfo: [[String : Any]?] = []
+    var tempoInfo: UInt = 120
 
     var currentTrack: Int = 0
 
-    var player: pAudioPlayer!;
+    var player: MIDIPlayer!;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
@@ -41,6 +42,7 @@ class ViewController: UIViewController {
         }
     }
 
+    var tempoAction: ((UIAlertAction!) -> Void)!
     var importAction: ((UIAlertAction!) -> Void)!
     var saveAction: ((UIAlertAction!) -> Void)!
     var cancelAction: ((UIAlertAction!) -> Void)!
@@ -66,7 +68,6 @@ class ViewController: UIViewController {
             eCreationRouter.OAuthToken = user.token
         }
 
-        player = LiveAudioPlayer(graph: audioIO, session: session);
         makeActions();
         if let segueFile = fileForSegue {
             self.importFile(segueFile)
@@ -97,6 +98,11 @@ class ViewController: UIViewController {
             let creationList = segue.destinationViewController as! CreationsListVC;
             creationList.mainVC = self;
         }
+        else if (segue.identifier == "tempoSegue") {
+            print("segueseguesegue")
+            let tempoVC = segue.destinationViewController as! TempoViewController;
+            tempoVC.mainVC = self;
+        }
     }
 
     /// MARK: Utility methods
@@ -107,6 +113,7 @@ class ViewController: UIViewController {
             let block = BlockArrayList();
             createBlocks(block, columns: 1);
             tracks.append(block);
+            tracksInfo.append([eOrpheeFileContent.PatchID.rawValue : 0])
         }
         print("track count \(tracks.count)");
         print(tracks);
@@ -120,9 +127,9 @@ class ViewController: UIViewController {
     /// - parameter columns:  The number of columns to add to each track.
     func createBlocks(blockArrays: BlockArrayList, columns: Int) {
 
-        for idx in 0...12 {
+        for idx in 0..<12 {
 
-            let track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 60 - idx, inView: scrollBlocks, withGraph: audioIO);
+            let track: UITimeBlockArray = UITimeBlockArray(rowNbr: idx, noteValue: 71 - idx, inView: scrollBlocks, withGraph: audioIO);
 
             blockArrays.blockArrays.append(track);
             track.addButtons(columns, color: UIColor.blueColor());
@@ -133,14 +140,20 @@ class ViewController: UIViewController {
     func updateScrollViewConstraints() {
 
         if self.tracks.count > 0 {
-        scrollBlocks.contentSize = CGSizeMake(
-            CGFloat(self.tracks[self.currentTrack]?.endPos.x ?? 0),
-            CGFloat(self.tracks[self.currentTrack]?.endPos.y ?? 0)
-        );
+            scrollBlocks.contentSize = CGSizeMake(
+                CGFloat(self.tracks[self.currentTrack]?.endPos.x ?? 0),
+                CGFloat(self.tracks[self.currentTrack]?.endPos.y ?? 0)
+            );
         }
     }
 
     func makeActions() {
+        tempoAction = { (alert: UIAlertAction!) -> Void in
+
+            print("Change tempo")
+            self.performSegueWithIdentifier("tempoSegue", sender: self);
+        };
+
         importAction = { (alert: UIAlertAction!) -> Void in
 
             print("File imported")
@@ -150,22 +163,28 @@ class ViewController: UIViewController {
         saveAction = { (alert: UIAlertAction!) -> Void in
 
             print("File Saved")
-            let tracks: [String : Any]? = [
-                    eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
-                    eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo
-            ];
-            let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
-            fm.createFile()
-            fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self);
-            OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
-            try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
-            ++self.fileNbr;
+            self.saveFile()
         };
 
         cancelAction = { (alert: UIAlertAction!) -> Void in
 
             print("Cancelled")
         };
+    }
+
+    func saveFile() {
+        let tracks: [String : Any]? = [
+            eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
+            eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo,
+            eOrpheeFileContent.Tempo.rawValue : self.tempoInfo
+        ];
+        let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
+        fm.createFile()
+        precondition(fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self));
+        print("Saved File: \(fm.path), data size \(fm.getFileData().length)")
+        OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
+        try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
+        ++self.fileNbr;
     }
 
     func prepareTracksForSave() -> [Int : [[MIDINoteMessage]]]{
@@ -180,16 +199,19 @@ class ViewController: UIViewController {
         resetAll()
         self.updateScrollViewConstraints();
         let data: [String : Any] = MIDIFileManager(name: file).readFile()!;
-//        print(data)
+        //        print(data)
         for (key, value) in data {
+            if key == eOrpheeFileContent.Tempo.rawValue {
+                tempoInfo = value as! UInt
+            }
             if var trackList = value as? [Int : [[Int]]]
-               where key == eOrpheeFileContent.Tracks.rawValue {
+                where key == eOrpheeFileContent.Tracks.rawValue {
                     currentTrack = 0;
                     for idx in 0..<trackList.count {
-                        let track = trackList[idx]!
-                        let blockArray = BlockArrayList();
                         trackBar.items?.insert(UIBarButtonItem(title: "\(idx + 1)", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTrack:"), atIndex: tracks.count)
-                        createBlocks(blockArray, columns: 1);
+                        let track = trackList[idx]!
+                        createTracks(1)
+                        let blockArray = tracks.last!!;
                         blockArray.hide();
                         let missingBlocks = track.count - blockArray.blockLength;
                         if (missingBlocks > 0) {
@@ -197,7 +219,6 @@ class ViewController: UIViewController {
                             self.stepper.value = Double(self.oldValue);
                         }
                         blockArray.setBlocksFromList(track);
-                        tracks.append(blockArray)
                     }
                     if let infoList = value as? [[String : Any]]
                         where key == eOrpheeFileContent.TracksInfos.rawValue {
@@ -276,7 +297,7 @@ class ViewController: UIViewController {
     ///
     /// - parameter sender:  The object sending the event.
     @IBAction func StopButtonTouched(sender: AnyObject) {
-        player.pause();
+        //        player.pause();
     }
 
     /// Called when the UI's `Play` button is pressed.
@@ -286,21 +307,24 @@ class ViewController: UIViewController {
     @IBAction func PlayButtonTouched(sender: AnyObject) {
         _ = sender as! UIBarButtonItem;
 
-        if let p = player as? LiveAudioPlayer,
-            let track = tracks[currentTrack]
-            where player is pAudioPlayerWithDataSource && !player.playing {
-            p.audioData = track.getCleanedList();
-            p.play();
-        }
+        self.saveFile()
+        let fm = MIDIFileManager(name: fileForSegue ?? "test\(self.fileNbr - 1).mid")
+        let data = fm.getFileData()
+        print("PLAYING \(fm.path). \ndata: length \(data.length), \(data)")
+        self.player = MIDIPlayer(data: data)!
+        self.player.setupAudioGraph()
+        self.player.play()
     }
 
     @IBAction func FileButtonTouched(sender: AnyObject) {
         let optionMenu = UIAlertController(title: nil, message: "Choisissez une option", preferredStyle: .ActionSheet)
 
         let importAction = UIAlertAction(title: "Importer", style: .Default, handler: self.importAction);
+        let tempoAction = UIAlertAction(title: "Choisir le tempo", style: .Default, handler: self.tempoAction);
         let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.saveAction)
         let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.cancelAction)
-
+        
+        optionMenu.addAction(tempoAction)
         optionMenu.addAction(importAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)

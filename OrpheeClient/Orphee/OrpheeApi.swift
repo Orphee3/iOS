@@ -11,9 +11,9 @@ import Alamofire
 import FileManagement
 
 class OrpheeApi {
-    
+
     var url = "http://163.5.84.242:3000/api"
-    
+
     func login(token: String, completion:(response: AnyObject) ->()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -39,7 +39,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func register(pseudo: String, mail: String, password: String, completion:(response: AnyObject) -> ()){
         let param = [
             "name": "\(pseudo)",
@@ -58,7 +58,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func lostPassword(mail: String, completion:(response: AnyObject) -> ()){
         let param = [
             "username":"\(mail)"
@@ -69,7 +69,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func like(id :String, token: String, completion:(response: AnyObject) ->()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -86,7 +86,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func dislike(id: String, token: String, completion:(response: AnyObject) ->()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -99,7 +99,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func getPopularCreations(offset: Int, size: Int, completion:(creations: [Creation], users: [User]) -> ()){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
         var arrayCreation: [Creation] = []
@@ -119,7 +119,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func sendComment(token: String, name: String, picture: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -138,9 +138,9 @@ class OrpheeApi {
                 completion(response: commentToAdd)
             }
         }
-        
+
     }
-    
+
     func getComments(creationId: String, completion:(response: [Comment]) -> ()){
         Alamofire.request(.GET, "\(url)/comment/creation/\(creationId)").responseJSON{request, response, json in
             print("comments = \(json.value)")
@@ -167,7 +167,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func getUsers(offset: Int, size: Int, completion:(response: [User]) ->()){
         Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
             print(json.value)
@@ -182,7 +182,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func addFriend(token: String, id: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -197,7 +197,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func notify(token: String, creationId: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -208,7 +208,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func sendImgToServer(token: String, id: String, completion:(response: AnyObject) -> ()) {
         Alamofire.request(.GET, "http://163.5.84.242:3000/api/upload/image/png").responseJSON{request, response, json in
             print(request)
@@ -232,7 +232,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func sendImgToAmazon(url: String, headers: [String:String], urlGet: String, completion:(response: AnyObject) ->()){
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         let destinationPath = documentsPath.stringByAppendingPathComponent("imgProfile.png")
@@ -243,7 +243,7 @@ class OrpheeApi {
                 completion(response: "ok")
         }
     }
-    
+
     func updateUserProfile(token: String, id: String, urlGet: String, completion:(response: AnyObject) -> ()){
         let parameter = [
             "picture":"\(urlGet)"
@@ -259,7 +259,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func getFriends(id: String, completion:(response:AnyObject) -> ()){
         Alamofire.request(.GET, "\(url)/user/\(id)/friends").responseJSON{ request, response, json in
             print(response)
@@ -276,7 +276,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func getNews(id: String, token: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -288,7 +288,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func removeFriend(id: String, token: String, completion:(response: AnyObject) -> ()){
         let headers = [
             "Authorization": "Bearer \(token)"
@@ -300,7 +300,7 @@ class OrpheeApi {
             }
         }
     }
-    
+
     func sendCreationToServer(userId: String, name: String, completion:(response: AnyObject) -> ()) {
         Alamofire.request(eCreationRouter.GetStoreURL)
             .responseJSON{request, response, json in
@@ -320,7 +320,7 @@ class OrpheeApi {
                 }
         }
     }
-    
+
     func createCreation(name: String, urlGet: String, completion: (response: AnyObject) -> () ) {
         Alamofire.request(eCreationRouter.CreateCrea(name))
             .responseJSON { request, response, json in
@@ -335,7 +335,7 @@ class OrpheeApi {
                 }
         }
     }
-    
+
     func sendCreationToAmazon(creationName: String, urlPost: String, urlGet: String, completion:(response: AnyObject) ->()) {
         let fm = MIDIFileManager(name: creationName)
         Alamofire.upload(eCreationRouter.StoreCrea(url: urlPost), data: fm.reader.readAllData())
@@ -345,7 +345,7 @@ class OrpheeApi {
                 completion(response: "ok")
         }
     }
-    
+
     func updateCreation(id: String, urlGet: String, completion:(response: AnyObject) -> ()) {
         Alamofire.request(eCreationRouter.UpdateCrea(id, ["url" : url]))
             .responseJSON { request, response, json in
@@ -356,12 +356,12 @@ class OrpheeApi {
                 }
         }
     }
-    
+
     func getCreation(url: String, destination: String, completion:(String) -> ()) {
         let dest = Request.suggestedDownloadDestination()
         print(url)
         Alamofire.download(eCreationRouter.RetrieveCrea(url: url), destination: dest)
-            .progress{ bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     print(totalBytesRead)
                 })

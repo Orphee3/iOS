@@ -37,6 +37,8 @@ public func buildMIDIEventProcessor(event: eMidiEventType, chan: UInt8?) -> (dat
         }
     case .unknown:
         return processUnknownEvent;
+    case .unsupported:
+        return processUnknownEvent;
     case .setTempo:
         return processTempoEvent;
     case .timeSignature:

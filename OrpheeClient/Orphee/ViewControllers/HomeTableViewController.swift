@@ -23,7 +23,7 @@ class HomeTableViewController: UITableViewController{
     var size = 100
     var user = User!()
 
-    var player: pAudioPlayer!;
+    var player: MIDIPlayer!;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
     
@@ -56,8 +56,6 @@ class HomeTableViewController: UITableViewController{
         audioIO.createAudioGraph();
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
-        
-        player = GenericPlayer(graph: audioIO, session: session);
         
         if(OrpheeReachability().isConnected()){
             getPopularCreations(offset, size: size)
@@ -99,14 +97,16 @@ class HomeTableViewController: UITableViewController{
                     if let urlDirectory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0] as NSURL!{
                         let path = response?.suggestedFilename
                         let data = NSData(contentsOfURL: urlDirectory.URLByAppendingPathComponent(path!))
-                        self.player.play(data!)
+                        self.player = MIDIPlayer(data: data!)
+                        self.player.setupAudioGraph()
+                        self.player.play()
                     }
                 }
         }
     }
     
     func stopPlayCreation(sender: UIButton) {
-        self.player.stop()
+//        self.player.stop()
     }
     
     func accessProfile(sender: UIButton){

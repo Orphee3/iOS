@@ -37,4 +37,13 @@ public extension pFormattedFileManager {
         }
         return true
     }
+
+    public func readFile() -> [String : Any]? {
+        let data = reader.readAllData()
+        return Self.parseData(data)
+    }
+
+    public func getFileData() -> NSData {
+        return self.reader.readAllData()
+    }
 }

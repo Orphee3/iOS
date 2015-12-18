@@ -10,22 +10,18 @@ import UIKit
 import Foundation
 import AVFoundation
 
-protocol pAudioPlayer {
+protocol pMediaPlayer {
 
-    var playing: Bool { get set };
+    var isPlaying: Bool { get }
 
-    init(graph: AudioGraph, session: AudioSession);
-
-    mutating func play(data: NSData);
-    mutating func pause();
-    mutating func stop();
+    func play()
+    func pause()
 }
 
-protocol pAudioPlayerWithDataSource: pAudioPlayer {
-    typealias audioDataType;
+protocol pMediaPlayerTimeManager {
 
-    var audioData: audioDataType { get };
+    var duration: NSTimeInterval { get }
+    var currentTime: NSTimeInterval { get set }
 
-    mutating func play();
-    init(graph: AudioGraph, session: AudioSession, audioData: audioDataType);
+    func formatTime(time: NSTimeInterval) -> String
 }

@@ -171,12 +171,13 @@ class InstrumentsTableViewController: UITableViewController {
 
         var instrumentToLoad = presetMgr.getMelodicInstrumentFromSoundBank(UInt8(indexPath.row),
             path: NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo" , ofType: "sf2")!);
-        if var trackInfo = mainVC.tracksInfo[mainVC.currentTrack] {
+        if mainVC.currentTrack < mainVC.tracksInfo.count {
+            var trackInfo = mainVC.tracksInfo[mainVC.currentTrack]!
             trackInfo[eOrpheeFileContent.PatchID.rawValue] = indexPath.row;
             mainVC.tracksInfo[mainVC.currentTrack] = trackInfo
         }
         else {
-            mainVC.tracksInfo[mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue : indexPath.row]
+            mainVC.tracksInfo.insert([eOrpheeFileContent.PatchID.rawValue : indexPath.row], atIndex: mainVC.currentTrack)
         }
         mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!);
     }
