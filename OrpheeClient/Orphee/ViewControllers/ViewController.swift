@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
     var currentTrack: Int = 0
 
-    var player: MIDIPlayer!;
+    var player: MIDIPlayer?;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
             let block = BlockArrayList();
             createBlocks(block, columns: 1);
             tracks.append(block);
-            tracksInfo.append([eOrpheeFileContent.PatchID.rawValue : 0])
+            tracksInfo.append([eOrpheeFileContent.PatchID.rawValue : 1])
         }
         print("track count \(tracks.count)");
         print(tracks);
@@ -181,9 +181,9 @@ class ViewController: UIViewController {
         let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
         fm.createFile()
         precondition(fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self));
-        print("Saved File: \(fm.path), data size \(fm.getFileData().length)")
-        OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
-        try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
+//        print("Saved File: \(fm.path), data size \(fm.getFileData().length)")
+//        OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
+//        try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
         ++self.fileNbr;
     }
 
@@ -245,6 +245,7 @@ class ViewController: UIViewController {
         }
         tracks.removeAll();
         tracksInfo.removeAll();
+        currentTrack = 0;
     }
 
     func changeTrack(trackIdx idx: Int) {
@@ -310,10 +311,12 @@ class ViewController: UIViewController {
         self.saveFile()
         let fm = MIDIFileManager(name: fileForSegue ?? "test\(self.fileNbr - 1).mid")
         let data = fm.getFileData()
-        print("PLAYING \(fm.path). \ndata: length \(data.length), \(data)")
-        self.player = MIDIPlayer(data: data)!
-        self.player.setupAudioGraph()
-        self.player.play()
+        if let player = MIDIPlayer(data: data) {
+            self.player = player
+            if self.player!.setupAudioGraph() {
+                self.player!.play()
+            }
+        }
     }
 
     @IBAction func FileButtonTouched(sender: AnyObject) {
@@ -323,7 +326,7 @@ class ViewController: UIViewController {
         let tempoAction = UIAlertAction(title: "Choisir le tempo", style: .Default, handler: self.tempoAction);
         let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.saveAction)
         let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.cancelAction)
-        
+
         optionMenu.addAction(tempoAction)
         optionMenu.addAction(importAction)
         optionMenu.addAction(saveAction)

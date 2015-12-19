@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Tools/Tools.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:MIDIToolbox/MIDIToolbox.xcodeproj">
    </FileRef>
    <FileRef

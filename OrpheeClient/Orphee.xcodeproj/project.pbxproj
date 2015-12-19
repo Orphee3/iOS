@@ -16,6 +16,7 @@
 		1E282F781C239AE0004B2084 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F751C239AD8004B2084 /* xXCTestThrowingAssert.swift */; };
 		1E282F7A1C243CE8004B2084 /* MIDIPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F791C243CE8004B2084 /* MIDIPlayerTests.swift */; };
 		1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F7B1C2459CA004B2084 /* TempoVC.swift */; };
+		1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5924F21C24D713002E8A6B /* Tools.framework */; };
 		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
@@ -193,6 +194,7 @@
 		1E282F751C239AD8004B2084 /* xXCTestThrowingAssert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = xXCTestThrowingAssert.swift; path = ../../FileManagement/FileManagementTests/xXCTestThrowingAssert.swift; sourceTree = "<group>"; };
 		1E282F791C243CE8004B2084 /* MIDIPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIPlayerTests.swift; sourceTree = "<group>"; };
 		1E282F7B1C2459CA004B2084 /* TempoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoVC.swift; sourceTree = "<group>"; };
+		1E5924F21C24D713002E8A6B /* Tools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tools.framework; path = "../Tools/build/Debug-iphoneos/Tools.framework"; sourceTree = "<group>"; };
 		1E6300851BFCCB2A009F4478 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Composition.storyboard; path = Orphee/Views/Composition.storyboard; sourceTree = SOURCE_ROOT; };
 		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Dont_Cry.mid; sourceTree = "<group>"; };
 		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */,
 				DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */,
 				52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */,
 				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
@@ -368,6 +371,7 @@
 		523433011A8103A40041B7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E5924F21C24D713002E8A6B /* Tools.framework */,
 				1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */,
 				DBD356991AC456FF00ACC304 /* FileManagement.framework */,
 				52C61DCF1A7A59EE00B3DE23 /* CoreFoundation.framework */,

@@ -13,4 +13,5 @@ target :Orphee do
        pod 'DZNEmptyDataSet'
        pod 'RSKImageCropper'
        pod 'SlackTextViewController'
+       pod 'ReactiveCocoa', '~>4.0.0-RC.1'
 end

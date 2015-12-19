@@ -21,6 +21,9 @@ public class AudioSequencerManager {
     }
 
     public func loadFile(data: NSData) -> Bool {
+        guard data.length > 0 else {
+            return false
+        }
         do {
             try sequencer.loadFromData(data, options: AVMusicSequenceLoadOptions.SMF_PreserveTracks)
         }
@@ -32,7 +35,8 @@ public class AudioSequencerManager {
     }
 
     public func setDestinationAudioUnit(units: [AVAudioUnit]) {
-        for (idx, track) in sequencer.tracks.enumerate() {
+        guard units.count > 0 else { return }
+        for (idx, track) in sequencer.tracks.enumerate() where track.lengthInSeconds > 0 {
             track.destinationAudioUnit = units[idx]
         }
     }

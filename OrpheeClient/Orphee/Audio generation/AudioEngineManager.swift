@@ -76,4 +76,15 @@ public class AudioEngineManager {
             }
         }
     }
+
+    public func cleanEngine() {
+        for sampler in samplers {
+            engine.detachNode(sampler)
+        }
+        samplers.removeAll()
+    }
+
+    deinit {
+        cleanEngine()
+    }
 }

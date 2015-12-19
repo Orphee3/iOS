@@ -7,6 +7,8 @@ import Foundation
 import AVFoundation
 import FileManagement
 
+import Tools
+
 public enum eMIDIPlayerError: ErrorType {
     case InvalidFile(file: String)
 }
@@ -53,16 +55,14 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     }
 
     public func setupAudioGraph() -> Bool {
-        let bank = NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!
+        let bank    = NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!
         let content = MIDIFileManager.parseData(data)
-        let infos = content?[eOrpheeFileContent.TracksInfos.rawValue]
-        if let _ = content,
-           let infos   = infos as? [[String : Any]] {
+        let infos   = content?[eOrpheeFileContent.TracksInfos.rawValue]
+        if let infos = infos as? [[String : Any]] where infos.count > 0 {
 
-            var patchs: [UInt8] = []
-            for info in infos where info[eOrpheeFileContent.PatchID.rawValue] != nil {
-                patchs.append(UInt8(info[eOrpheeFileContent.PatchID.rawValue]! as! Int))
-            }
+            let patchs: [UInt8] = infos.filter {
+                    $0[eOrpheeFileContent.PatchID.rawValue] != nil
+                }.map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
             try! engine.setInstruments(patchs, soundBank: bank, type: eSampleType.Melodic)
             sequence.setDestinationAudioUnit(engine.samplers)
             return true

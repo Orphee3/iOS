@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import FileManagement
+import ReactiveCocoa
 
 class OrpheeApi {
 

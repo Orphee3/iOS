@@ -8,6 +8,8 @@
 
 import UIKit
 import AudioToolbox
+
+import Tools
 import MIDIToolbox
 
 
@@ -65,18 +67,17 @@ public class MIDIFileManager: pFormattedFileManager {
     ///  - returns: `true` on success, `false otherwise.
     public func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool {
         guard let input		= content,
-              let tempoInfo = input[eOrpheeFileContent.Tempo.rawValue] as? UInt,
-              let trackInfo = input[eOrpheeFileContent.TracksInfos.rawValue] as? [[String : Any]?],
-              let trackList	= input[eOrpheeFileContent.Tracks.rawValue] as? [Int : [[MIDINoteMessage]]]
-              else {
+            let tempoInfo = input[eOrpheeFileContent.Tempo.rawValue] as? UInt,
+            let trackInfo = input[eOrpheeFileContent.TracksInfos.rawValue] as? [[String : Any]?],
+            let trackList	= input[eOrpheeFileContent.Tracks.rawValue] as? [Int : [[MIDINoteMessage]]]
+            else {
                 return false;
         }
-        print(input)
+        print(trackInfo)
         let dataCreator = dataBuilderType.init(trkNbr: 0, ppqn: 0, timeSig: (4, 4), bpm: tempoInfo);
         dataCreator.buildMIDIBuffer();
 
-        for idx in 0..<trackList.count {
-            let track = trackList[idx]!
+        trackList.forEach { (idx, track) -> () in
             var chanMsg = MIDIChannelMessage(status: eMidiEventType.programChange.rawValue | UInt8(idx), data1: 0, data2: 0, reserved: 0);
             if let trkInfo = trackInfo[idx],
                 let patchID = trkInfo[eOrpheeFileContent.PatchID.rawValue] as? Int {
@@ -94,20 +95,16 @@ public class MIDIFileManager: pFormattedFileManager {
     ///    - returns:	The given data organized as key-value pairs.
     public class func parseData(data: NSData) -> [String : Any]? {
         let parser = MIDIDataParser(data: data);
-        var tracks = parser.parseTracks()
-        for (key, track) in tracks {
-            if track.count == 0 {
-                tracks.removeValueForKey(key)
-            }
-        }
+        let tracks = parser.parseTracks().filterPairs { $0.1.count > 0 }
         var content = [eOrpheeFileContent.Tracks.rawValue : tracks as Any];
         var trackInfo = [[String : Any]]()
-        for track in parser.tracks {
-            trackInfo.insert([eOrpheeFileContent.PatchID.rawValue : track.instrumentID], atIndex: Int(track.trackNbr))
-            print(trackInfo)
+        for track in parser.tracks.filter({ tracks[Int($0.trackNbr)] != nil }).sort({ $0.trackNbr < $1.trackNbr }) {
+            trackInfo.append([eOrpheeFileContent.PatchID.rawValue : track.instrumentID])
         }
         content[eOrpheeFileContent.TracksInfos.rawValue] = trackInfo;
         content[eOrpheeFileContent.Tempo.rawValue] = parser.Tempo
+
+        print(trackInfo)
         return content;
     }
 }
