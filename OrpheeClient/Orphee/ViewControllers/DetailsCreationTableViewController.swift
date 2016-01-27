@@ -59,7 +59,6 @@ class DetailsCreationTableViewController: UITableViewController{
     }
     
     func layoutCreation(){
-        print(creation.nbCommments)
         if let title = creation.name{
             self.creationTitle.text = title
         }

@@ -182,7 +182,7 @@ class ViewController: UIViewController {
         fm.createFile()
         precondition(fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self));
         print("Saved File: \(fm.path), data size \(fm.getFileData().length)")
-        OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
+        //OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
         try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
         ++self.fileNbr;
     }

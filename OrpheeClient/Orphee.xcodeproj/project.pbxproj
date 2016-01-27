@@ -58,6 +58,8 @@
 		9B0D5F741BFDDA40001A9DF6 /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0D5F731BFDDA40001A9DF6 /* RoomCell.xib */; };
 		9B0D5F761BFDDAD6001A9DF6 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D5F751BFDDAD6001A9DF6 /* RoomCell.swift */; };
 		9B1189891BD45996006FFB2C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1189881BD45996006FFB2C /* Comment.swift */; };
+		9B267BEF1C55990B00A73CC5 /* HeaderProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B267BEE1C55990B00A73CC5 /* HeaderProfileView.xib */; };
+		9B267BF11C55997800A73CC5 /* HeaderProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B267BF01C55997800A73CC5 /* HeaderProfileView.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
 		9B327FF01B9B850600AAD347 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FEF1B9B850600AAD347 /* HomeTableViewController.swift */; };
 		9B327FF61B9B8E9300AAD347 /* CreationFluxCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B327FF51B9B8E9300AAD347 /* CreationFluxCustomCell.xib */; };
@@ -234,6 +236,8 @@
 		9B0D5F731BFDDA40001A9DF6 /* RoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomCell.xib; sourceTree = "<group>"; };
 		9B0D5F751BFDDAD6001A9DF6 /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		9B1189881BD45996006FFB2C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		9B267BEE1C55990B00A73CC5 /* HeaderProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderProfileView.xib; sourceTree = "<group>"; };
+		9B267BF01C55997800A73CC5 /* HeaderProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProfileView.swift; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9B327FEF1B9B850600AAD347 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		9B327FF51B9B8E9300AAD347 /* CreationFluxCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreationFluxCustomCell.xib; sourceTree = "<group>"; };
@@ -541,6 +545,8 @@
 				9B327FFB1B9C796100AAD347 /* CreationProfileCustomCell */,
 				9B327FF91B9C778E00AAD347 /* profile.storyboard */,
 				9B327FFE1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift */,
+				9B267BEE1C55990B00A73CC5 /* HeaderProfileView.xib */,
+				9B267BF01C55997800A73CC5 /* HeaderProfileView.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -950,6 +956,7 @@
 				9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */,
 				9B3280081B9D072700AAD347 /* creation.storyboard in Resources */,
 				9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */,
+				9B267BEF1C55990B00A73CC5 /* HeaderProfileView.xib in Resources */,
 				1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */,
@@ -1088,6 +1095,7 @@
 			files = (
 				9BD33E011C00AFC000802BE3 /* NotConnectedView.swift in Sources */,
 				9B327FFF1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift in Sources */,
+				9B267BF11C55997800A73CC5 /* HeaderProfileView.swift in Sources */,
 				9BD186EB1B8657A5004A892D /* MessengerViewController.swift in Sources */,
 				9BD186ED1B865929004A892D /* ConversationViewController.swift in Sources */,
 				9B0D5F721BFDD4BC001A9DF6 /* Room.swift in Sources */,
