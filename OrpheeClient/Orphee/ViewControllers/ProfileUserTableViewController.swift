@@ -11,29 +11,18 @@ import UIKit
 import Alamofire
 import SDWebImage
 
-class ProfileUserTableViewController: UITableViewController {
+class ProfileUserTableViewController: UICollectionViewController {
     var user: User!
     var arrayCreations: [Creation] = []
     var myProfile = User!()
-    
-    @IBOutlet var nameProfile: UILabel!
-    @IBOutlet var nbLikeProfile: UILabel!
-    @IBOutlet var nbCreationProfile: UILabel!
-    @IBOutlet var imgProfile: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
             myProfile = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
         }
-        tableView.registerNib(UINib(nibName: "CreationProfileCustomCell", bundle: nil), forCellReuseIdentifier: "creationProfileCell")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 44.0
-        nameProfile.text = user.name
-        if let picture = user.picture {
-            imgProfile.sd_setImageWithURL(NSURL(string: picture), placeholderImage: UIImage(named: "emptygrayprofile"))
-        }
-        imgProfile.layer.cornerRadius = self.imgProfile.frame.width / 2
+        collectionView!.registerNib(UINib(nibName: "CreationProfileCustomCell", bundle: nil), forCellWithReuseIdentifier: "creationProfileCell")
+        collectionView?.registerNib(UINib(nibName: "HeaderProfileView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderProfileView")
         getInfoUser()
     }
     
@@ -47,7 +36,7 @@ class ProfileUserTableViewController: UITableViewController {
                 for elem in array{
                     self.arrayCreations.append(Creation(Creation: elem))
                 }
-                self.tableView.reloadData()
+                self.collectionView!.reloadData()
             }
         }
     }
@@ -79,6 +68,7 @@ class ProfileUserTableViewController: UITableViewController {
             let storyboard = UIStoryboard(name: "creationDetail", bundle: nil)
             let commentView = storyboard.instantiateViewControllerWithIdentifier("detailView") as! DetailsCreationTableViewController
             commentView.creation = arrayCreations[sender.tag]
+            commentView.userCreation = user
             self.navigationController?.pushViewController(commentView, animated: true)
         }else{
             prepareViewForLogin()
@@ -88,8 +78,8 @@ class ProfileUserTableViewController: UITableViewController {
     func prepareViewForLogin(){
         let popupView: NotConnectedView = NotConnectedView.instanceFromNib()
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        blurView.frame = self.tableView.frame
-        self.tableView.addSubview(blurView)
+        blurView.frame = self.collectionView!.frame
+        self.collectionView!.addSubview(blurView)
         popupView.goToLogin.addTarget(self, action: "sendToLogin:", forControlEvents: .TouchUpInside)
         popupView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
         blurView.addSubview(popupView)
@@ -103,7 +93,7 @@ class ProfileUserTableViewController: UITableViewController {
 }
 
 extension ProfileUserTableViewController{
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (arrayCreations.isEmpty){
             return 0
         }
@@ -112,16 +102,40 @@ extension ProfileUserTableViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: CreationProfileCustomCell! = tableView.dequeueReusableCellWithIdentifier("creationProfileCell") as? CreationProfileCustomCell
-        
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell: CreationProfileCustomCell! = collectionView.dequeueReusableCellWithReuseIdentifier("creationProfileCell", forIndexPath: indexPath) as? CreationProfileCustomCell
         cell.putInGraphic(arrayCreations[indexPath.row])
         
-        nbCreationProfile.text = String(self.arrayCreations.count)
+        //nbCreationProfile.text = String(self.arrayCreations.count)
         cell.commentButton.tag = indexPath.row
         cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: "likeCreation:", forControlEvents: .TouchUpInside)
         cell.commentButton.addTarget(self, action: "commentPushed:", forControlEvents: .TouchUpInside)
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+            
+        case UICollectionElementKindSectionHeader:
+            
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderProfileView", forIndexPath: indexPath) as! HeaderProfileView
+            headerView.putInGraphic(user)
+            headerView.nbCreationProfile.text = String(self.arrayCreations.count)
+            return headerView
+        default:
+            
+            assert(false, "Unexpected element kind")
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSizeMake(self.view.frame.width, 90)
     }
 }

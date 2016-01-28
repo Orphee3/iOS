@@ -16,9 +16,9 @@ class RoomCell: UITableViewCell{
     @IBOutlet weak var date: UILabel!
     
     func layoutCell(room: Room){
-//        self.imageProfile.sd_setImageWithURL(NSURL(string: room.peoplesPicture[0]), placeholderImage: UIImage(named: "emptygrayprofile"))
-//        nameProfile.text = room.peoples[0]
-//        lastMessage.text = room.lastMessage
-//        date.text = ""//room.lastMessageDate
+        self.imageProfile.sd_setImageWithURL(NSURL(string: room.peoplesPicture[0]), placeholderImage: UIImage(named: "emptygrayprofile"))
+        nameProfile.text = room.peoples[0]
+        lastMessage.text = room.lastMessage
+        date.text = room.lastMessageDate
     }
 }

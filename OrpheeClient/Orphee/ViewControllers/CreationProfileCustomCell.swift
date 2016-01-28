@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CreationProfileCustomCell: UITableViewCell {
+class CreationProfileCustomCell: UICollectionViewCell {
     
     @IBOutlet var imgCreation: UIImageView!
     @IBOutlet var nameCreation: UILabel!
