@@ -316,6 +316,47 @@
             </objects>
             <point key="canvasLocation" x="498" y="3040"/>
         </scene>
+        <!--Messenger View Controller-->
+        <scene sceneID="Jgg-Uo-thd">
+            <objects>
+                <tableViewController id="hXM-rO-RpL" customClass="MessengerViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dOo-IC-rFi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Mig-cf-VR6">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mig-cf-VR6" id="ZX6-kf-mUK">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hXM-rO-RpL" id="Kvj-m2-VWl"/>
+                            <outlet property="delegate" destination="hXM-rO-RpL" id="r0B-h3-J1e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="0bP-xs-VdI">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="9RC-OW-FXK">
+                            <connections>
+                                <segue destination="TCq-Pd-EXD" kind="show" id="Q7L-FM-xgO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="PI8-Zy-GPS" kind="show" identifier="toConversation" id="4BB-iG-IzX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Mo-op-WkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="498" y="1674"/>
+        </scene>
         <!--Chat-->
         <scene sceneID="tyP-wF-KfY">
             <objects>
@@ -327,7 +368,7 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vEY-al-BGg" kind="relationship" relationship="rootViewController" id="Iyi-Go-iTg"/>
+                        <segue destination="hXM-rO-RpL" kind="relationship" relationship="rootViewController" id="X9l-4H-boh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eal-0e-sP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,54 +451,6 @@
             </objects>
             <point key="canvasLocation" x="498" y="1003"/>
         </scene>
-        <!--Empty Data Set Delegate-->
-        <scene sceneID="h32-Db-oA0">
-            <objects>
-                <viewController id="vEY-al-BGg" customClass="MessengerViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="t8z-N8-71t"/>
-                        <viewControllerLayoutGuide type="bottom" id="J0N-o7-COt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3PG-Mw-Wz7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OjO-Gf-4LF">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="vEY-al-BGg" id="MGV-MN-DXE"/>
-                                    <outlet property="delegate" destination="vEY-al-BGg" id="7h7-gJ-cvs"/>
-                                    <outlet property="emptyDataSetDelegate" destination="vEY-al-BGg" id="9tB-7F-eZi"/>
-                                    <outlet property="emptyDataSetSource" destination="vEY-al-BGg" id="aqb-sM-ONq"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="OjO-Gf-4LF" firstAttribute="top" secondItem="t8z-N8-71t" secondAttribute="bottom" id="7l5-Ae-mRk"/>
-                            <constraint firstItem="OjO-Gf-4LF" firstAttribute="leading" secondItem="3PG-Mw-Wz7" secondAttribute="leading" id="A5Y-lJ-3Cq"/>
-                            <constraint firstAttribute="trailing" secondItem="OjO-Gf-4LF" secondAttribute="trailing" id="WRe-B2-fY2"/>
-                            <constraint firstItem="J0N-o7-COt" firstAttribute="top" secondItem="OjO-Gf-4LF" secondAttribute="bottom" id="YD4-DO-bh5"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="seH-ql-9L1">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="AbM-ma-Qif">
-                            <connections>
-                                <segue destination="TCq-Pd-EXD" kind="show" id="TSZ-dt-IMG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="OjO-Gf-4LF" id="UiI-yy-eKx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kSj-r3-ti5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="505" y="1674"/>
-        </scene>
         <!--Mon profil-->
         <scene sceneID="Yso-5M-wIz">
             <objects>
@@ -516,5 +509,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="21W-Xq-RII"/>
+        <segue reference="4BB-iG-IzX"/>
     </inferredMetricsTieBreakers>
 </document>

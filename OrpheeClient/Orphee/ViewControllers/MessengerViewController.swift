@@ -11,9 +11,8 @@ import UIKit
 import DZNEmptyDataSet
 import Alamofire
 
-class MessengerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+class MessengerViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
     
-    @IBOutlet var tableView: UITableView!
     
     var arrayRooms: [Room] = []
     var user = User!()
@@ -22,23 +21,31 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        }
+        if (user != nil){
+            getRooms()
+        }else{
+            prepareViewForLogin()
+        }
         tableView.registerNib(UINib(nibName: "RoomCell", bundle: nil), forCellReuseIdentifier: "RoomCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
         self.tableView.tableFooterView = UIView()
-        self.tableView.addPullToRefresh({ [weak self] in
-            //refresh code
-            if (OrpheeReachability().isConnected()){
-//                self!.arrayUser = []
-//                self!.offset = 0
-//                self!.getUsers(self!.offset, size: self!.size)
-                self?.tableView.stopPullToRefresh()
-            }else{
-                self?.tableView.stopPullToRefresh()
-            }
-            })
+//        self.tableView.addPullToRefresh({ [weak self] in
+//            //refresh code
+//            if (OrpheeReachability().isConnected()){
+////                self!.arrayUser = []
+////                self!.offset = 0
+////                self!.getUsers(self!.offset, size: self!.size)
+//                self?.tableView.stopPullToRefresh()
+//            }else{
+//                self?.tableView.stopPullToRefresh()
+//            }
+//            })
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -77,17 +84,9 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         navigationController!.navigationBar.barTintColor = UIColor(red: (104/255.0), green: (186/255.0), blue: (246/255.0), alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
-        }
-        if (user != nil){
-            getRooms()
-        }else{
-            prepareViewForLogin()
-        }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (arrayRooms.isEmpty){
             return 0
         }else{
@@ -95,13 +94,13 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RoomCell") as! RoomCell
         cell.layoutCell(arrayRooms[indexPath.row])
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("toConversation", sender: arrayRooms[indexPath.row])
     }
     
@@ -109,8 +108,9 @@ class MessengerViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "toConversation"{
             let conv = segue.destinationViewController as! ConversationViewController
             let room = sender as! Room
-//            conv.senderId = room.peoplesId[1]
-//            conv.userName = room.peoples[1]
+            conv.user = user
+            let correspondant = User(User: ["_id":room.peoplesId[0] , "name":room.peoples[0]])
+            conv.correspondant = correspondant
         }
     }
     
