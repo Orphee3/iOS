@@ -33,7 +33,7 @@ class MIDIWriterTests: XCTestCase {
     }
 
     func testMIDIWriterInit__throws_when_path_isIncorrect() {
-        XCTAssertThrows(try MIDIWriter(path: ""));
+        XCTAssertThrows(try DefaultWriter(path: ""));
     }
 
     func testMIDIWriterInit__throws_when_path_isReadOnly() {
@@ -44,7 +44,7 @@ class MIDIWriterTests: XCTestCase {
         precondition(fm!.fileExistsAtPath(testPath))
         precondition(!fm!.isWritableFileAtPath(testPath))
 
-        XCTAssertThrows(try MIDIWriter(path: testPath))
+        XCTAssertThrows(try DefaultWriter(path: testPath))
 
         try! fm!.setAttributes([NSFileImmutable : false], ofItemAtPath: testPath)
         try! fm!.removeItemAtPath(testPath)
@@ -57,7 +57,7 @@ class MIDIWriterTests: XCTestCase {
         precondition(fm!.fileExistsAtPath(testPath))
         precondition(fm!.isWritableFileAtPath(testPath))
 
-        XCTAssertDoesNotThrow(try MIDIWriter(path: testPath))
+        XCTAssertDoesNotThrow(try DefaultWriter(path: testPath))
     }
 
     func testMIDIWriter_write__fails_when_handleIs_nil() {
@@ -68,7 +68,7 @@ class MIDIWriterTests: XCTestCase {
         precondition(fm!.fileExistsAtPath(testPath))
         precondition(fm!.isWritableFileAtPath(testPath))
 
-        let writer = try! MIDIWriter(path: testPath)
+        let writer = try! DefaultWriter(path: testPath)
 
         writer.handle = nil
         XCTAssertFalse(writer.write(testPath.dataUsingEncoding(NSUTF8StringEncoding)!))
@@ -82,7 +82,7 @@ class MIDIWriterTests: XCTestCase {
         precondition(fm!.fileExistsAtPath(testPath))
         precondition(fm!.isWritableFileAtPath(testPath))
 
-        let writer = try! MIDIWriter(path: testPath)
+        let writer = try! DefaultWriter(path: testPath)
 
         XCTAssertTrue(writer.write(testPath.dataUsingEncoding(NSUTF8StringEncoding)!))
     }

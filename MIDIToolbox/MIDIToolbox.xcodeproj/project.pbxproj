@@ -32,6 +32,7 @@
 		1E7F4A891BD557E7008B4774 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A871BD557E7008B4774 /* ByteBuffer.swift */; };
 		1E7F4A8A1BD557E7008B4774 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A881BD557E7008B4774 /* ByteOrder.swift */; };
 		1E7F4A8C1BD55805008B4774 /* BinaryOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F4A8B1BD55805008B4774 /* BinaryOps.swift */; };
+		1EB2747A1C59830F008FDFA4 /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB274791C59830F008FDFA4 /* Tools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		1E7F4A871BD557E7008B4774 /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBuffer.swift; sourceTree = "<group>"; };
 		1E7F4A881BD557E7008B4774 /* ByteOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
 		1E7F4A8B1BD55805008B4774 /* BinaryOps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryOps.swift; sourceTree = "<group>"; };
+		1EB274791C59830F008FDFA4 /* Tools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tools.framework; path = "../Tools/build/Debug-iphoneos/Tools.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB2747A1C59830F008FDFA4 /* Tools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +100,7 @@
 		1E7F4A391BD556B4008B4774 = {
 			isa = PBXGroup;
 			children = (
+				1EB274791C59830F008FDFA4 /* Tools.framework */,
 				1E7F4A8B1BD55805008B4774 /* BinaryOps.swift */,
 				1E7F4A871BD557E7008B4774 /* ByteBuffer.swift */,
 				1E7F4A881BD557E7008B4774 /* ByteOrder.swift */,

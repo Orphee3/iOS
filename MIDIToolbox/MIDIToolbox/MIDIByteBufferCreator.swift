@@ -220,40 +220,31 @@ public final class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
         ///  Build the track's main buffer from given events.
         ///
         ///  - parameter events: Events to add to the track's buffer.
-        mutating func buildTrack(events: [ [MIDINoteMessage] ]) {
+        mutating func buildTrack(events: TimedMidiMsgCollection) {
 
-            var silences: UInt32 = 0;
-            var capacity: Int    = kMIDIEvent_endOfTrack.count;
-
-            for notes in events {
-                capacity += (2 * notes.count * kMIDIEventMaxSize_noteEvent) + (2 * notes.count * kMIDIEventMaxSize_deltaTime);
+            let capacity: Int = events.reduce(kMIDIEvent_endOfTrack.count) {
+                accu, timedCollection in
+                let notes = timedCollection.1
+                return accu + (2 * notes.count * kMIDIEventMaxSize_noteEvent) + (2 * notes.count * kMIDIEventMaxSize_deltaTime)
             }
 
             body = ByteBuffer(order: LittleEndian(), capacity: capacity);
-            for notes in events {
-
-                var deltaTime: UInt32 = 0;
+            for (tmStmp, notes) in events {
                 if (notes.count > 0) {
-                    for (idx, note) in notes.enumerate() {
-                        if (idx == 0) {
-                            deltaTime = UInt32(eNoteLength.crotchet.rawValue * Float32(timeRes) * Float32(silences));
-                            silences = 0
-                        }
-                        mkDeltaTime(body, deltaTime: deltaTime);
+                    mkDeltaTime(body, deltaTime: UInt32(tmStmp));
+                    for note in notes {
                         noteEvent(eMidiEventType.noteOn, note: note.note, velocity: note.velocity);
-                        deltaTime = 0;
                     }
-                    for (idx, note) in notes.enumerate() {
-                        if (idx == 0) {
-                            deltaTime = UInt32(note.duration * Float32(timeRes));
-                        }
-                        mkDeltaTime(body, deltaTime: deltaTime);
+                    let sortedNotesByLength = notes.sort({ n1, n2 in n1.duration < n2.duration })
+                    var deltaTimes: [UInt32] = []
+                    for note in sortedNotesByLength {
+                        let delta = note.duration - Float32(deltaTimes.last ?? 0)
+                        deltaTimes.append(UInt32(delta > 0 ? delta : 0))
+                    }
+                    for (idx, note) in sortedNotesByLength.enumerate() {
+                        mkDeltaTime(body, deltaTime: deltaTimes[idx])
                         noteEvent(eMidiEventType.noteOff, note: note.note, velocity: 0);
-                        deltaTime = 0;
                     }
-                }
-                else {
-                    ++silences;
                 }
             }
             body.putUInt8(kMIDIEvent_endOfTrack);
@@ -358,7 +349,7 @@ public final class MIDIByteBufferCreator: pMIDIByteStreamBuilder {
     ///
     ///  - parameter notes: The notes to add to the track.
     ///  - parameter prog:  The MIDI program (instrument) associated with this track.
-    public func addTrack(notes: [[MIDINoteMessage]], prog: MIDIChannelMessage) {
+    public func addTrack(notes: TimedMidiMsgCollection, prog: MIDIChannelMessage) {
 
         var track = sTrack(timeRes: _timeResolution, bpm: _tempo, channel: UInt8(tracks.count - 1), startTime: 0, instrument: prog.data1);
 

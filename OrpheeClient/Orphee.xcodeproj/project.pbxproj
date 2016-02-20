@@ -17,9 +17,26 @@
 		1E282F7A1C243CE8004B2084 /* MIDIPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F791C243CE8004B2084 /* MIDIPlayerTests.swift */; };
 		1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F7B1C2459CA004B2084 /* TempoVC.swift */; };
 		1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5924F21C24D713002E8A6B /* Tools.framework */; };
-		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
+		1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */; };
+		1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
+		1EB274C21C598A22008FDFA4 /* cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB2748F1C598A22008FDFA4 /* cell.xib */; };
+		1EB274C31C598A22008FDFA4 /* compoGridDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274901C598A22008FDFA4 /* compoGridDataSource.swift */; };
+		1EB274C41C598A22008FDFA4 /* compoGridOpsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274911C598A22008FDFA4 /* compoGridOpsIntent.swift */; };
+		1EB274C61C598A22008FDFA4 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274931C598A22008FDFA4 /* Composition.storyboard */; };
+		1EB274CA1C598A22008FDFA4 /* DataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274971C598A22008FDFA4 /* DataMgr.swift */; };
+		1EB274CB1C598A22008FDFA4 /* header.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274981C598A22008FDFA4 /* header.xib */; };
+		1EB274CC1C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274991C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift */; };
+		1EB274CD1C598A22008FDFA4 /* HorizontalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2749A1C598A22008FDFA4 /* HorizontalTableView.swift */; };
+		1EB274CE1C598A22008FDFA4 /* HorizontalTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB2749B1C598A22008FDFA4 /* HorizontalTableView.xib */; };
+		1EB274CF1C598A22008FDFA4 /* horizontalTVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2749C1C598A22008FDFA4 /* horizontalTVDataSource.swift */; };
+		1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274AF1C598A22008FDFA4 /* trackBarOpsIntent.swift */; };
+		1EB274DC1C598A22008FDFA4 /* trackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274B01C598A22008FDFA4 /* trackItem.swift */; };
+		1EB274DD1C598A22008FDFA4 /* trackItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274B11C598A22008FDFA4 /* trackItemView.swift */; };
+		1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274B21C598A22008FDFA4 /* trackItemView.xib */; };
+		1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */; };
+		1EB274E41C598B25008FDFA4 /* CompoScroll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
 		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
 		1ED8F4031C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
@@ -39,7 +56,6 @@
 		526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C61DA11A79E5C400B3DE23 /* Images.xcassets */; };
 		526FF6051A81106E00CF6A9C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 526FF6041A81106E00CF6A9C /* Sounds */; };
 		52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */; };
-		52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61D9C1A79E5C400B3DE23 /* ViewController.swift */; };
 		52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DBE1A7A041200B3DE23 /* AudioGraph.swift */; };
 		52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC11A7A11AC00B3DE23 /* AudioToolbox.framework */; };
 		52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C61DC31A7A11AC00B3DE23 /* AVFoundation.framework */; };
@@ -198,12 +214,31 @@
 		1E282F7B1C2459CA004B2084 /* TempoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoVC.swift; sourceTree = "<group>"; };
 		1E5924F21C24D713002E8A6B /* Tools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tools.framework; path = "../Tools/build/Debug-iphoneos/Tools.framework"; sourceTree = "<group>"; };
 		1E6300851BFCCB2A009F4478 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Composition.storyboard; path = Orphee/Views/Composition.storyboard; sourceTree = SOURCE_ROOT; };
+		1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalActionsIntents.swift; sourceTree = "<group>"; };
+		1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrollableToolbar.swift; sourceTree = "<group>"; };
 		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Dont_Cry.mid; sourceTree = "<group>"; };
 		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
 		1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
 		1EA5BA871BFD483500ABAF25 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "Pods-Orphee-frameworks.sh"; sourceTree = "<group>"; };
 		1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsListVC.swift; sourceTree = "<group>"; };
+		1EB2748F1C598A22008FDFA4 /* cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cell.xib; sourceTree = "<group>"; };
+		1EB274901C598A22008FDFA4 /* compoGridDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = compoGridDataSource.swift; sourceTree = "<group>"; };
+		1EB274911C598A22008FDFA4 /* compoGridOpsIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = compoGridOpsIntent.swift; sourceTree = "<group>"; };
+		1EB274931C598A22008FDFA4 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Composition.storyboard; sourceTree = "<group>"; };
+		1EB274951C598A22008FDFA4 /* CompoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompoVC.swift; sourceTree = "<group>"; };
+		1EB274971C598A22008FDFA4 /* DataMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMgr.swift; sourceTree = "<group>"; };
+		1EB274981C598A22008FDFA4 /* header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = header.xib; sourceTree = "<group>"; };
+		1EB274991C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		1EB2749A1C598A22008FDFA4 /* HorizontalTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalTableView.swift; sourceTree = "<group>"; };
+		1EB2749B1C598A22008FDFA4 /* HorizontalTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalTableView.xib; sourceTree = "<group>"; };
+		1EB2749C1C598A22008FDFA4 /* horizontalTVDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = horizontalTVDataSource.swift; sourceTree = "<group>"; };
+		1EB274AF1C598A22008FDFA4 /* trackBarOpsIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = trackBarOpsIntent.swift; sourceTree = "<group>"; };
+		1EB274B01C598A22008FDFA4 /* trackItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = trackItem.swift; sourceTree = "<group>"; };
+		1EB274B11C598A22008FDFA4 /* trackItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = trackItemView.swift; sourceTree = "<group>"; };
+		1EB274B21C598A22008FDFA4 /* trackItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = trackItemView.xib; sourceTree = "<group>"; };
+		1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionVC.swift; sourceTree = "<group>"; };
+		1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompoScroll.storyboard; sourceTree = "<group>"; };
 		1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSequencer.swift; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
 		526FF6041A81106E00CF6A9C /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = Ressources/Sounds; sourceTree = "<group>"; };
@@ -370,6 +405,32 @@
 			);
 			name = "Test resources";
 			path = "Ressources/Test resources";
+			sourceTree = "<group>";
+		};
+		1EB2747F1C598A22008FDFA4 /* CompoUI */ = {
+			isa = PBXGroup;
+			children = (
+				1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */,
+				1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */,
+				1EB2748F1C598A22008FDFA4 /* cell.xib */,
+				1EB274901C598A22008FDFA4 /* compoGridDataSource.swift */,
+				1EB274911C598A22008FDFA4 /* compoGridOpsIntent.swift */,
+				1EB274931C598A22008FDFA4 /* Composition.storyboard */,
+				1EB274951C598A22008FDFA4 /* CompoVC.swift */,
+				1EB274971C598A22008FDFA4 /* DataMgr.swift */,
+				1EB274981C598A22008FDFA4 /* header.xib */,
+				1EB274991C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift */,
+				1EB2749A1C598A22008FDFA4 /* HorizontalTableView.swift */,
+				1EB2749B1C598A22008FDFA4 /* HorizontalTableView.xib */,
+				1EB2749C1C598A22008FDFA4 /* horizontalTVDataSource.swift */,
+				1EB274AF1C598A22008FDFA4 /* trackBarOpsIntent.swift */,
+				1EB274B01C598A22008FDFA4 /* trackItem.swift */,
+				1EB274B11C598A22008FDFA4 /* trackItemView.swift */,
+				1EB274B21C598A22008FDFA4 /* trackItemView.xib */,
+				1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */,
+				1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */,
+			);
+			path = CompoUI;
 			sourceTree = "<group>";
 		};
 		523433011A8103A40041B7BD /* Frameworks */ = {
@@ -558,6 +619,7 @@
 		9B327FF21B9B855A00AAD347 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
+				1EB2747F1C598A22008FDFA4 /* CompoUI */,
 				1E6300851BFCCB2A009F4478 /* Composition.storyboard */,
 				1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
@@ -955,14 +1017,19 @@
 				9B0D5F741BFDDA40001A9DF6 /* RoomCell.xib in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				9B327FFA1B9C778E00AAD347 /* profile.storyboard in Resources */,
+				1EB274C21C598A22008FDFA4 /* cell.xib in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
-				1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */,
+				1EB274E41C598B25008FDFA4 /* CompoScroll.storyboard in Resources */,
 				9B00FF6E1B8B625D002890E2 /* LoginRegister.storyboard in Resources */,
 				9B3280081B9D072700AAD347 /* creation.storyboard in Resources */,
 				9B5CDACF1B93B95900B5452A /* MyFriendCustomCell.xib in Resources */,
 				9B267BEF1C55990B00A73CC5 /* HeaderProfileView.xib in Resources */,
+				1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */,
+				1EB274CE1C598A22008FDFA4 /* HorizontalTableView.xib in Resources */,
 				1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
+				1EB274CB1C598A22008FDFA4 /* header.xib in Resources */,
+				1EB274C61C598A22008FDFA4 /* Composition.storyboard in Resources */,
 				9BF3B69F1BA0FBB10063704C /* creationDetail.storyboard in Resources */,
 				9B5CDAD41B943EBF00B5452A /* RequestFriendCustomCell.xib in Resources */,
 				9B0CC5851B7B955400A81982 /* FluxCustomCell.xib in Resources */,
@@ -1101,17 +1168,23 @@
 				9B327FFF1B9C7F5D00AAD347 /* ProfileUserTableViewController.swift in Sources */,
 				9B267BF11C55997800A73CC5 /* HeaderProfileView.swift in Sources */,
 				9BD186EB1B8657A5004A892D /* MessengerViewController.swift in Sources */,
+				1EB274C31C598A22008FDFA4 /* compoGridDataSource.swift in Sources */,
+				1EB274DD1C598A22008FDFA4 /* trackItemView.swift in Sources */,
 				9BD186ED1B865929004A892D /* ConversationViewController.swift in Sources */,
 				9B0D5F721BFDD4BC001A9DF6 /* Room.swift in Sources */,
-				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
+				1EB274C41C598A22008FDFA4 /* compoGridOpsIntent.swift in Sources */,
 				1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */,
+				1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */,
 				9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */,
+				1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */,
 				9B0D5F761BFDDAD6001A9DF6 /* RoomCell.swift in Sources */,
 				9BF3B6A11BA101070063704C /* DetailsCreationTableViewController.swift in Sources */,
 				9B327FF81B9B91B400AAD347 /* CreationFluxCustomCell.swift in Sources */,
 				9B0D5F6F1BFBB379001A9DF6 /* FriendCustomCell.swift in Sources */,
+				1EB274CC1C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift in Sources */,
 				9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */,
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
+				1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */,
 				9BD186F31B87501E004A892D /* FriendsViewController.swift in Sources */,
 				9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */,
 				9B5CDAD61B94407C00B5452A /* RequestFriendCustomCell.swift in Sources */,
@@ -1120,6 +1193,7 @@
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				9B76B2331B3EC45C00B1C40B /* SocialViewController.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
+				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,
 				9B4C589E1BAA32450068AA9E /* commentCellView.swift in Sources */,
 				9B327FF01B9B850600AAD347 /* HomeTableViewController.swift in Sources */,
@@ -1135,7 +1209,9 @@
 				9B0CC5871B7B95D700A81982 /* FluxCustomCell.swift in Sources */,
 				1E282F1F1C238762004B2084 /* AudioEngineManager.swift in Sources */,
 				9B76B22D1B3E19BC00B1C40B /* LoginViewController.swift in Sources */,
+				1EB274CF1C598A22008FDFA4 /* horizontalTVDataSource.swift in Sources */,
 				9B6E31481BD289FA006DD0AF /* Creation.swift in Sources */,
+				1EB274DC1C598A22008FDFA4 /* trackItem.swift in Sources */,
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
 				9BD0270B1B94D1990097270B /* RequestFriendsTableViewController.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
@@ -1144,9 +1220,11 @@
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				9B1189891BD45996006FFB2C /* Comment.swift in Sources */,
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
+				1EB274CD1C598A22008FDFA4 /* HorizontalTableView.swift in Sources */,
 				1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */,
 				9B8C94AB1C065DB60037A0D3 /* AddFriendsForChatTableViewController.swift in Sources */,
 				1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */,
+				1EB274CA1C598A22008FDFA4 /* DataMgr.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				9B7886CF1C068C1F00CF0450 /* MessageCell.swift in Sources */,
 				9B46C18D1BD847220099D18C /* FriendShipRequest.swift in Sources */,

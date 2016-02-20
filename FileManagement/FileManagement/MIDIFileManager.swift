@@ -12,7 +12,6 @@ import AudioToolbox
 import Tools
 import MIDIToolbox
 
-
 public enum eOrpheeFileContent: String {
     case Tracks      = "TRACKS"
     case TracksInfos = "TRACKSINFO"
@@ -41,10 +40,10 @@ public class MIDIFileManager: pFormattedFileManager {
     }
 
     /// The object used to write to the managed file.
-    public lazy var writer: pOutputManager = try! MIDIWriter(path: self.path);
+    public lazy var writer: pOutputManager = try! DefaultWriter(path: self.path);
 
     /// The object used to read from the managed file.
-    public lazy var reader: pInputManager = try! MIDIReader(path: self.path);
+    public lazy var reader: pInputManager = try! DefaultReader(path: self.path);
 
     /// The name to the managed file.
     public var name: String;
@@ -69,7 +68,7 @@ public class MIDIFileManager: pFormattedFileManager {
         guard let input		= content,
             let tempoInfo = input[eOrpheeFileContent.Tempo.rawValue] as? UInt,
             let trackInfo = input[eOrpheeFileContent.TracksInfos.rawValue] as? [[String : Any]?],
-            let trackList	= input[eOrpheeFileContent.Tracks.rawValue] as? [Int : [[MIDINoteMessage]]]
+            let trackList	= input[eOrpheeFileContent.Tracks.rawValue] as? [Int : TimedMidiMsgCollection]
             else {
                 return false;
         }

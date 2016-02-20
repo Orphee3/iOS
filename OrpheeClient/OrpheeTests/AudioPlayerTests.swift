@@ -21,7 +21,7 @@ class AudioPlayerTests: XCTestCase {
     var session: AudioSession!;
 
     let data: NSData = NSData(contentsOfFile: NSBundle(forClass: AudioPlayerTests.self).pathForResource("Dont_Cry", ofType: ".mid")!)!;
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -60,7 +60,7 @@ class AudioPlayerTests: XCTestCase {
 
     func testLivePlayer() {
 
-        let reader = MIDIReader(path: NSBundle(forClass: AudioPlayerTests.self).pathForResource("xtreme", ofType: "mid")!)
+        let reader = DefaultReader(path: NSBundle(forClass: AudioPlayerTests.self).pathForResource("xtreme", ofType: "mid")!)
         let dat = reader.readAllData();
         let parser = MIDIDataParser(data: dat);
         let pl = LiveAudioPlayer(graph: graph, session: session, audioData: parser.parseTracks()[2]!);

@@ -4,4 +4,6 @@
 
 #import "PresetLoader.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <UIKit/UIGestureRecognizerSubclass.h>
+
 #import "RDRGrowingTextView.h"

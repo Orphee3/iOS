@@ -14,7 +14,7 @@ import FileManagement
 */
 class CreationsListVC : UITableViewController {
     var creations: [String]!
-    var mainVC: ViewController!;
+    var mainVC: CompositionVC!;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class CreationsListVC : UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        mainVC.importFile(creations[indexPath.row]);
+//        mainVC.importFile(creations[indexPath.row]);
         self.navigationController!.popViewControllerAnimated(true);
     }
 }

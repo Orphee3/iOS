@@ -5,11 +5,11 @@
 
 import Foundation
 
-/// MIDIWriter's initialization failed.
+/// DefaultWriter's initialization failed.
 public let kOrpheeDebug_MIDIWriter_initFailed: String = "\n\nMIDIWriter init failed.\n\n";
-/// MIDIWriter write succeeded.
+/// DefaultWriter write succeeded.
 public let kOrpheeDebug_MIDIWriter_writeOk: String = "\n\nMIDIWriter write succeeded.\n\n";
-/// MIDIWriter write failed.
+/// DefaultWriter write failed.
 public let kOrpheeDebug_MIDIWriter_writeFailed: String = "\n\nMIDIWriter write failed.\n\n";
 
 /// Got too many possible events for given Byte.

@@ -37,7 +37,7 @@ class MIDIReaderTests: XCTestCase {
     }
 
     func testMIDIReaderInit__throws_when_path_isIncorrect() {
-        XCTAssertThrows(try MIDIReader(path: ""));
+        XCTAssertThrows(try DefaultReader(path: ""));
     }
 
     func testMIDIReaderInit__throws_when_path_isWriteOnly() {
@@ -51,7 +51,7 @@ class MIDIReaderTests: XCTestCase {
         try! fm.setAttributes(attrs, ofItemAtPath: testPath);
         precondition(!fm.isReadableFileAtPath(testPath))
 
-        XCTAssertThrows(try MIDIReader(path: testPath))
+        XCTAssertThrows(try DefaultReader(path: testPath))
 
         try! fm.setAttributes(defaultAttrs, ofItemAtPath: testPath)
         try! fm.removeItemAtPath(testPath)
@@ -62,7 +62,7 @@ class MIDIReaderTests: XCTestCase {
         precondition(fm.fileExistsAtPath(testPath))
         precondition(fm.isReadableFileAtPath(testPath))
 
-        XCTAssertDoesNotThrow(try MIDIReader(path: testPath))
+        XCTAssertDoesNotThrow(try DefaultReader(path: testPath))
     }
 
     func testMIDIReader_readAllData__succeeds() {
@@ -70,7 +70,7 @@ class MIDIReaderTests: XCTestCase {
         precondition(fm.fileExistsAtPath(testPath))
         precondition(fm.isReadableFileAtPath(testPath))
 
-        let writer = try! MIDIReader(path: testPath)
+        let writer = try! DefaultReader(path: testPath)
 
         XCTAssertEqual(writer.readAllData().length, try! fm.attributesOfItemAtPath(testPath)[NSFileSize]! as! Int)
     }
@@ -80,7 +80,7 @@ class MIDIReaderTests: XCTestCase {
         precondition(fm.fileExistsAtPath(testPath))
         precondition(fm.isReadableFileAtPath(testPath))
 
-        let writer = try! MIDIReader(path: testPath)
+        let writer = try! DefaultReader(path: testPath)
 
         XCTAssertEqual(writer.read(size: 100).length, 100)
         XCTAssertEqual(writer.read(size: 50).length, 50)
@@ -91,7 +91,7 @@ class MIDIReaderTests: XCTestCase {
         precondition(fm.fileExistsAtPath(testPath))
         precondition(fm.isReadableFileAtPath(testPath))
 
-        let writer = try! MIDIReader(path: testPath)
+        let writer = try! DefaultReader(path: testPath)
 
         XCTAssertEqual(writer.read(size: 197).length, 197)
         XCTAssertEqual(writer.read(size: 197).length, 197)
@@ -102,7 +102,7 @@ class MIDIReaderTests: XCTestCase {
         precondition(fm.fileExistsAtPath(testPath))
         precondition(fm.isReadableFileAtPath(testPath))
 
-        let writer = try! MIDIReader(path: testPath)
+        let writer = try! DefaultReader(path: testPath)
 
         XCTAssertEqual(writer.read(size: 500).length, 197)
     }
@@ -111,7 +111,7 @@ class MIDIReaderTests: XCTestCase {
         precondition(fm.fileExistsAtPath(testPath))
         precondition(fm.isReadableFileAtPath(testPath))
 
-        let writer = try! MIDIReader(path: testPath)
+        let writer = try! DefaultReader(path: testPath)
 
         XCTAssertEqual(writer.getEOFposition(), 197)
     }

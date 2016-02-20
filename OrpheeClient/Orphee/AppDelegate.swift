@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /// This view controller graph represents the view controllers for all or part of the application’s user interface.
     var storybd: UIStoryboard?;
+
+    var makeLandscape = false
     
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -28,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("no user")
         }
         
-        let vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
+        let vc: CompositionVC? = storybd?.instantiateInitialViewController() as? CompositionVC;
         if let _ = vc {
             self.window?.rootViewController = vc!;
             self.window?.makeKeyAndVisible();
@@ -38,7 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-    
+
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+        if makeLandscape { return .Landscape }
+        return .AllButUpsideDown
+    }
     /// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     /// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     func applicationWillResignActive(application: UIApplication) {

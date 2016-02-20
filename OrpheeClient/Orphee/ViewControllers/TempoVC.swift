@@ -14,7 +14,7 @@ class TempoViewController: UITableViewController {
 
     var TempoList: [UInt] = []
 
-    weak var mainVC: ViewController!
+    weak var mainVC: CompositionVC!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class TempoViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        mainVC.tempoInfo = TempoList[indexPath.row]
+//        mainVC.tempoInfo = TempoList[indexPath.row]
         self.navigationController!.popViewControllerAnimated(true);
     }
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E282F1C1C23211D004B2084 /* MIDIWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F1B1C23211D004B2084 /* MIDIWriterTests.swift */; };
 		1E7F4A861BD557AC008B4774 /* MIDIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7F4A851BD557AC008B4774 /* MIDIToolbox.framework */; };
+		1EB2747C1C598315008FDFA4 /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB2747B1C598315008FDFA4 /* Tools.framework */; };
+		1EB2747E1C598520008FDFA4 /* kOrpheeDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2747D1C598520008FDFA4 /* kOrpheeDebug.swift */; };
 		AAAB80599524C9460B15C921 /* xFormatedFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB825EABAFA547988FABB2 /* xFormatedFileManager.swift */; };
 		AAAB8DD18564D426D7F78E54 /* MIDIReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB8C0EE642CE55AB1D4C17 /* MIDIReaderTests.swift */; };
 		DB426EB91AD7C3D4007C1617 /* FileManagement.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DA5491ABC97FC009A09B1 /* FileManagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,8 +25,8 @@
 		DBEF68F91AD7646C009F8548 /* pResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75301AC2DFF50011B197 /* pResourceManager.swift */; };
 		DBEF68FA1AD7646C009F8548 /* pFormattedFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75331AC2E4880011B197 /* pFormattedFileManager.swift */; };
 		DBEF68FB1AD7646C009F8548 /* MIDIFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */; };
-		DBEF68FC1AD7646C009F8548 /* MIDIReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */; };
-		DBEF68FD1AD7646C009F8548 /* MIDIWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */; };
+		DBEF68FC1AD7646C009F8548 /* DefaultReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5EF1AC2FA930065A99E /* DefaultReader.swift */; };
+		DBEF68FD1AD7646C009F8548 /* DefaultWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CE5F21AC2FB370065A99E /* DefaultWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		1E282F1B1C23211D004B2084 /* MIDIWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIWriterTests.swift; sourceTree = "<group>"; };
 		1E7F4A851BD557AC008B4774 /* MIDIToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MIDIToolbox.framework; path = "../MIDIToolbox/MIDIToolbox/build/Debug-iphoneos/MIDIToolbox.framework"; sourceTree = "<group>"; };
+		1EB2747B1C598315008FDFA4 /* Tools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tools.framework; path = "../Tools/build/Debug-iphoneos/Tools.framework"; sourceTree = "<group>"; };
+		1EB2747D1C598520008FDFA4 /* kOrpheeDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kOrpheeDebug.swift; sourceTree = "<group>"; };
 		AAAB825EABAFA547988FABB2 /* xFormatedFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xFormatedFileManager.swift; sourceTree = "<group>"; };
 		AAAB8C0EE642CE55AB1D4C17 /* MIDIReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIReaderTests.swift; sourceTree = "<group>"; };
 		DB5D752D1AC2D61F0011B197 /* pOutputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pOutputManager.swift; sourceTree = "<group>"; };
@@ -54,8 +58,8 @@
 		DB5DA5561ABC97FC009A09B1 /* FileManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagementTests.swift; sourceTree = "<group>"; };
 		DB61958B1BA12007002CE09E /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		DB61958D1BA1250E002CE09E /* PathManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManagerTests.swift; sourceTree = "<group>"; };
-		DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIReader.swift; sourceTree = "<group>"; };
-		DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIWriter.swift; sourceTree = "<group>"; };
+		DB6CE5EF1AC2FA930065A99E /* DefaultReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultReader.swift; sourceTree = "<group>"; };
+		DB6CE5F21AC2FB370065A99E /* DefaultWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultWriter.swift; sourceTree = "<group>"; };
 		DB74B52F1B559F8A00AFBDF7 /* eAccessMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eAccessMode.swift; sourceTree = "<group>"; };
 		DB74B5421B55BEDC00AFBDF7 /* pInputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pInputManager.swift; sourceTree = "<group>"; };
 		DBDDD92C1BA61E6800DD0E61 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -76,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB2747C1C598315008FDFA4 /* Tools.framework in Frameworks */,
 				1E7F4A861BD557AC008B4774 /* MIDIToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +91,7 @@
 		DB5DA53A1ABC97FC009A09B1 = {
 			isa = PBXGroup;
 			children = (
+				1EB2747B1C598315008FDFA4 /* Tools.framework */,
 				1E7F4A851BD557AC008B4774 /* MIDIToolbox.framework */,
 				DBDDD92E1BA61E8000DD0E61 /* Foundation.framework */,
 				DBDDD92C1BA61E6800DD0E61 /* AudioToolbox.framework */,
@@ -107,6 +113,7 @@
 		DB5DA5461ABC97FC009A09B1 /* FileManagement */ = {
 			isa = PBXGroup;
 			children = (
+				1EB2747D1C598520008FDFA4 /* kOrpheeDebug.swift */,
 				DB74B52F1B559F8A00AFBDF7 /* eAccessMode.swift */,
 				DB5D75331AC2E4880011B197 /* pFormattedFileManager.swift */,
 				DB74B5421B55BEDC00AFBDF7 /* pInputManager.swift */,
@@ -115,8 +122,8 @@
 				AAAB825EABAFA547988FABB2 /* xFormatedFileManager.swift */,
 				DB61958B1BA12007002CE09E /* PathManager.swift */,
 				DB5D75391AC2F13B0011B197 /* MIDIFileManager.swift */,
-				DB6CE5EF1AC2FA930065A99E /* MIDIReader.swift */,
-				DB6CE5F21AC2FB370065A99E /* MIDIWriter.swift */,
+				DB6CE5EF1AC2FA930065A99E /* DefaultReader.swift */,
+				DB6CE5F21AC2FB370065A99E /* DefaultWriter.swift */,
 				DB5DA5471ABC97FC009A09B1 /* Supporting Files */,
 				DB5DA5491ABC97FC009A09B1 /* FileManagement.h */,
 			);
@@ -257,12 +264,13 @@
 				DB74B5301B559F8A00AFBDF7 /* eAccessMode.swift in Sources */,
 				DBEF68FA1AD7646C009F8548 /* pFormattedFileManager.swift in Sources */,
 				DB74B5431B55BEDC00AFBDF7 /* pInputManager.swift in Sources */,
+				1EB2747E1C598520008FDFA4 /* kOrpheeDebug.swift in Sources */,
 				DBEF68F81AD7646C009F8548 /* pOutputManager.swift in Sources */,
 				DBEF68F91AD7646C009F8548 /* pResourceManager.swift in Sources */,
 				DB61958C1BA12007002CE09E /* PathManager.swift in Sources */,
 				DBEF68FB1AD7646C009F8548 /* MIDIFileManager.swift in Sources */,
-				DBEF68FC1AD7646C009F8548 /* MIDIReader.swift in Sources */,
-				DBEF68FD1AD7646C009F8548 /* MIDIWriter.swift in Sources */,
+				DBEF68FC1AD7646C009F8548 /* DefaultReader.swift in Sources */,
+				DBEF68FD1AD7646C009F8548 /* DefaultWriter.swift in Sources */,
 				AAAB80599524C9460B15C921 /* xFormatedFileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

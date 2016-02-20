@@ -15,7 +15,7 @@ class InstrumentsTableViewController: UITableViewController {
     var instrumentsList: [String] = [];
 
     var presetMgr: PresetMgr = PresetMgr();
-    weak var mainVC: ViewController!
+    weak var mainVC: CompositionVC!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,6 +152,10 @@ class InstrumentsTableViewController: UITableViewController {
         ];
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -173,7 +177,7 @@ class InstrumentsTableViewController: UITableViewController {
             path: NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!)
         self.mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!)
 
-        self.mainVC.tracksInfo[self.mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue: indexPath.row]
+//        self.mainVC.tracksInfo[self.mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue: indexPath.row]
         self.navigationController!.popViewControllerAnimated(true)
     }
 }

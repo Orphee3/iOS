@@ -186,10 +186,10 @@ extension HomeTableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        if let vc = segue.destinationViewController as? ViewController,
+        if let vc = segue.destinationViewController as? CompositionVC,
             let file = sender as? String
             where segue.identifier == "compoSegue" {
-            vc.fileForSegue = file
+//            vc.fileForSegue = file
         }
     }
 
