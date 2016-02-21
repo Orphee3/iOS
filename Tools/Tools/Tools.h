@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIKit/UITableViewHeaderFooterView.h>
 
 //! Project version number for Tools.
 FOUNDATION_EXPORT double ToolsVersionNumber;

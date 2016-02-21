@@ -7,15 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E53ECDE1C5BC31B00A29F4B /* xUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E53ECDD1C5BC31B00A29F4B /* xUINavigationController.swift */; };
+		1E53ECE01C5BC3A400A29F4B /* xUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E53ECDF1C5BC3A400A29F4B /* xUITabBarController.swift */; };
 		1E5924E81C24D663002E8A6B /* Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5924E71C24D663002E8A6B /* Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E5924F11C24D6A4002E8A6B /* xDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5924F01C24D6A4002E8A6B /* xDictionary.swift */; };
+		1E7B5DC41C52EE6800C309B0 /* xUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B5DC31C52EE6800C309B0 /* xUIColor.swift */; };
+		1E7B5DC61C52F52600C309B0 /* xCGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B5DC51C52F52600C309B0 /* xCGFloat.swift */; };
+		1EB274771C597275008FDFA4 /* xUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274761C597275008FDFA4 /* xUIView.swift */; };
+		1EBA28A71C5CF7E60031AFF0 /* FixedSpace.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EBA28A61C5CF7E60031AFF0 /* FixedSpace.xib */; };
+		1EC2B4BE1C5E288400C448DC /* defaultTableViewHeaderFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EC2B4BD1C5E288400C448DC /* defaultTableViewHeaderFooter.xib */; };
+		1ECD03421C5D1B55009DAF5B /* xCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECD03411C5D1B55009DAF5B /* xCollectionViewFlowLayout.swift */; };
+		AAAB87A296952F7368697615 /* defaultHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB85295AEF30C5386D7C3F /* defaultHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E53ECDD1C5BC31B00A29F4B /* xUINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUINavigationController.swift; sourceTree = "<group>"; };
+		1E53ECDF1C5BC3A400A29F4B /* xUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUITabBarController.swift; sourceTree = "<group>"; };
 		1E5924E41C24D663002E8A6B /* Tools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5924E71C24D663002E8A6B /* Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		1E5924E91C24D663002E8A6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E5924F01C24D6A4002E8A6B /* xDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xDictionary.swift; sourceTree = "<group>"; };
+		1E7B5DC31C52EE6800C309B0 /* xUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIColor.swift; sourceTree = "<group>"; };
+		1E7B5DC51C52F52600C309B0 /* xCGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xCGFloat.swift; sourceTree = "<group>"; };
+		1EB274761C597275008FDFA4 /* xUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIView.swift; sourceTree = "<group>"; };
+		1EBA28A61C5CF7E60031AFF0 /* FixedSpace.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FixedSpace.xib; path = UIElements/FixedSpace.xib; sourceTree = "<group>"; };
+		1EC2B4BD1C5E288400C448DC /* defaultTableViewHeaderFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = defaultTableViewHeaderFooter.xib; sourceTree = "<group>"; };
+		1ECD03411C5D1B55009DAF5B /* xCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		AAAB85295AEF30C5386D7C3F /* defaultHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defaultHeaderFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +68,15 @@
 			children = (
 				1E5924EF1C24D675002E8A6B /* SupportFiles */,
 				1E5924F01C24D6A4002E8A6B /* xDictionary.swift */,
+				1E7B5DC31C52EE6800C309B0 /* xUIColor.swift */,
+				1E7B5DC51C52F52600C309B0 /* xCGFloat.swift */,
+				1EB274761C597275008FDFA4 /* xUIView.swift */,
+				1E53ECDD1C5BC31B00A29F4B /* xUINavigationController.swift */,
+				1E53ECDF1C5BC3A400A29F4B /* xUITabBarController.swift */,
+				1EBA28A61C5CF7E60031AFF0 /* FixedSpace.xib */,
+				1ECD03411C5D1B55009DAF5B /* xCollectionViewFlowLayout.swift */,
+				AAAB85295AEF30C5386D7C3F /* defaultHeaderFooterView.swift */,
+				1EC2B4BD1C5E288400C448DC /* defaultTableViewHeaderFooter.xib */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -131,6 +158,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EC2B4BE1C5E288400C448DC /* defaultTableViewHeaderFooter.xib in Resources */,
+				1EBA28A71C5CF7E60031AFF0 /* FixedSpace.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +170,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E7B5DC41C52EE6800C309B0 /* xUIColor.swift in Sources */,
+				1EB274771C597275008FDFA4 /* xUIView.swift in Sources */,
+				1E53ECE01C5BC3A400A29F4B /* xUITabBarController.swift in Sources */,
+				1E7B5DC61C52F52600C309B0 /* xCGFloat.swift in Sources */,
 				1E5924F11C24D6A4002E8A6B /* xDictionary.swift in Sources */,
+				1ECD03421C5D1B55009DAF5B /* xCollectionViewFlowLayout.swift in Sources */,
+				1E53ECDE1C5BC31B00A29F4B /* xUINavigationController.swift in Sources */,
+				AAAB87A296952F7368697615 /* defaultHeaderFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +327,7 @@
 				1E5924EE1C24D663002E8A6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
