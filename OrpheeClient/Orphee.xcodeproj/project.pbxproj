@@ -52,6 +52,9 @@
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
 		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
+		9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */; };
+		9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */; };
+		9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B88F6141C7D1236001A77AD /* Profile.storyboard */; };
 		9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C94AE1C0679D70037A0D3 /* RDRGrowingTextView.m */; };
 		9BBE7FA21C7CAAE500B56E51 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA11C7CAAE500B56E51 /* Home.storyboard */; };
 		9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA31C7CAC4B00B56E51 /* HomeViewController.swift */; };
@@ -157,6 +160,9 @@
 		9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Orphee-Bridging-Header.h"; path = "Orphee/Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
+		9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginRegister.storyboard; sourceTree = "<group>"; };
+		9B88F6141C7D1236001A77AD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9B8C94AD1C0679D70037A0D3 /* RDRGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDRGrowingTextView.h; sourceTree = "<group>"; };
 		9B8C94AE1C0679D70037A0D3 /* RDRGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDRGrowingTextView.m; sourceTree = "<group>"; };
 		9BBE7FA11C7CAAE500B56E51 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -284,6 +290,8 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B88F6131C7D1226001A77AD /* Profile */,
+				9B88F6101C7D11D9001A77AD /* Login/Register */,
 				9BBE7FA01C7CAAC000B56E51 /* Home */,
 				9BD186F01B874505004A892D /* TabBarViewController.swift */,
 				9B327FF41B9B85B900AAD347 /* Settings */,
@@ -381,6 +389,22 @@
 			name = DataModels;
 			sourceTree = "<group>";
 		};
+		9B88F6101C7D11D9001A77AD /* Login/Register */ = {
+			isa = PBXGroup;
+			children = (
+				9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */,
+			);
+			name = Login/Register;
+			sourceTree = "<group>";
+		};
+		9B88F6131C7D1226001A77AD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9B88F6141C7D1236001A77AD /* Profile.storyboard */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		9B8C94AC1C0679D70037A0D3 /* RDRGrowingTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +419,7 @@
 			children = (
 				9BBE7FA11C7CAAE500B56E51 /* Home.storyboard */,
 				9BBE7FA31C7CAC4B00B56E51 /* HomeViewController.swift */,
+				9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -572,6 +597,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
+				9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */,
+				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */,
@@ -692,6 +719,7 @@
 				9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */,
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
 				9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */,
+				9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,

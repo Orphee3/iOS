@@ -19,10 +19,10 @@ struct User {
 extension User: Decodable {
     static func decode(j: AnyObject) throws -> User {
         return try User(
-            name:                   j => "name",
-            id:                     j => "_id",
-            picture:                j =>? "picture",
-            token:                  j =>? "token"
+            name:         j => "name",
+            id:           j => "_id",
+            picture:      j =>? "picture",
+            token:        j =>? "token"
         )
     }
 }

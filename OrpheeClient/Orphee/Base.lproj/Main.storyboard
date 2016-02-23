@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Tab Bar View Controller-->
@@ -17,11 +17,22 @@
                     </tabBar>
                     <connections>
                         <segue destination="bdA-iX-u0g" kind="relationship" relationship="viewControllers" id="TN9-VA-Nbb"/>
+                        <segue destination="e5V-7Q-eYh" kind="relationship" relationship="viewControllers" id="ane-bu-V7D"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FS-6c-xaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1301" y="582"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="6fv-J4-Jy8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="e5V-7Q-eYh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Mon profile" image="user" id="mSN-5n-KL9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XSi-8H-oe3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-611" y="1052"/>
         </scene>
         <!--Home-->
         <scene sceneID="04i-Uy-h1a">
@@ -46,5 +57,6 @@
     </scenes>
     <resources>
         <image name="home" width="25" height="25"/>
+        <image name="user" width="25" height="25"/>
     </resources>
 </document>
