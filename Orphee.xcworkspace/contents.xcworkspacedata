@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Tools/Tools.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MIDIToolbox/MIDIToolbox.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:FileManagement/FileManagement.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:OrpheeClient/Orphee.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OrpheeClient/Orphee.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
