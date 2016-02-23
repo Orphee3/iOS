@@ -62,11 +62,11 @@ class ViewController: UIViewController {
         audioIO.configureAudioGraph();
         audioIO.startAudioGraph();
 
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
-            eCreationRouter.userID = user.id
-            eCreationRouter.OAuthToken = user.token
-        }
+//        if let data = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+//            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+//            eCreationRouter.userID = user.id
+//            eCreationRouter.OAuthToken = user.token
+//        }
 
         makeActions();
         if let segueFile = fileForSegue {
