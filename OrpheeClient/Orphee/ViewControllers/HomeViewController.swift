@@ -68,4 +68,8 @@ class HomeViewController: UITableViewController{
     func goToRegister(){
         performSegueWithIdentifier("toLogin", sender: nil)
     }
+    
+    @IBAction func cancelLoginAction(segue:UIStoryboardSegue) {
+        
+    }
 }

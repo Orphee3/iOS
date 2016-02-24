@@ -141,7 +141,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Fil d'actualités" id="BUE-mu-hth"/>
                     <connections>
-                        <segue destination="fln-id-M1Z" kind="show" identifier="toLogin" id="pfU-rX-CdM"/>
+                        <segue destination="fln-id-M1Z" kind="presentation" identifier="toLogin" id="pfU-rX-CdM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKB-th-9VA" userLabel="First Responder" sceneMemberID="firstResponder"/>

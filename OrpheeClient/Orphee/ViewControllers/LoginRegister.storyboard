@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="buJ-94-qer">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j3I-wF-XPH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
-        <scene sceneID="pRB-tM-vgY">
+        <!--View Controller-->
+        <scene sceneID="wSN-IC-Fwt">
             <objects>
-                <tableViewController id="Pjl-oe-7ox" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Ip-Jq-ZBk">
+                <viewController id="j3I-wF-XPH" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ff6-qf-gdI"/>
+                        <viewControllerLayoutGuide type="bottom" id="NXQ-Ae-yWa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wFY-fr-tbn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdT-MW-o0R">
+                                <rect key="frame" x="20" y="20" width="53" height="30"/>
+                                <state key="normal" title="Annuler"/>
+                                <connections>
+                                    <segue destination="oB8-2q-3BK" kind="unwind" unwindAction="cancelLoginAction:" id="GdA-Pe-7ET"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pzr-2v-FHy">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pzr-2v-FHy" id="qE5-di-FgO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Pjl-oe-7ox" id="N2h-U4-TjW"/>
-                            <outlet property="delegate" destination="Pjl-oe-7ox" id="0dj-x0-Yd9"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="f8q-9x-mF0"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A0y-cg-bmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="vdT-MW-o0R" firstAttribute="top" secondItem="ff6-qf-gdI" secondAttribute="bottom" id="744-Hc-Fyz"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vdT-MW-o0R" secondAttribute="leading" id="kMW-9Z-ewt"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQJ-47-7yP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oB8-2q-3BK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-398" y="55"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jFb-E7-m3R">
-            <objects>
-                <navigationController id="buJ-94-qer" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zeJ-yt-7bD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Pjl-oe-7ox" kind="relationship" relationship="rootViewController" id="Iqj-Tb-mae"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Gz-kx-2Xh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1218" y="55"/>
+            <point key="canvasLocation" x="-465" y="-145"/>
         </scene>
     </scenes>
 </document>
