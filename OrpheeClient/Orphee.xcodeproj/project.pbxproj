@@ -16,7 +16,6 @@
 		1E282F781C239AE0004B2084 /* xXCTestThrowingAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F751C239AD8004B2084 /* xXCTestThrowingAssert.swift */; };
 		1E282F7A1C243CE8004B2084 /* MIDIPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F791C243CE8004B2084 /* MIDIPlayerTests.swift */; };
 		1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F7B1C2459CA004B2084 /* TempoVC.swift */; };
-		1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5924F21C24D713002E8A6B /* Tools.framework */; };
 		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
@@ -63,6 +62,9 @@
 		9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186E61B8627C0004A892D /* CropImageToSquare.swift */; };
 		9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EE1B86A006004A892D /* SocketManager.swift */; };
 		9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F01B874505004A892D /* TabBarViewController.swift */; };
+		9BD299541C80AB27000D1308 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD299531C80AB27000D1308 /* FileManagement.framework */; };
+		9BD299551C80AB58000D1308 /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2994F1C80A6CD000D1308 /* Tools.framework */; };
+		9BD299561C80AB58000D1308 /* Tools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2994F1C80A6CD000D1308 /* Tools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BD33E031C0124E800802BE3 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E021C0124E700802BE3 /* Reach.swift */; };
 		9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */; };
 		9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */; };
@@ -76,7 +78,6 @@
 		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
 		DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
-		DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD356991AC456FF00ACC304 /* FileManagement.framework */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,17 @@
 			files = (
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BD299571C80AB58000D1308 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9BD299561C80AB58000D1308 /* Tools.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -172,6 +184,8 @@
 		9BD186E61B8627C0004A892D /* CropImageToSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageToSquare.swift; sourceTree = "<group>"; };
 		9BD186EE1B86A006004A892D /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		9BD186F01B874505004A892D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		9BD2994F1C80A6CD000D1308 /* Tools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Tools.framework; path = "/Users/jerominlebon/Library/Developer/Xcode/DerivedData/Orphee-dyzvzkrrapcvujbwarremaplfnjm/Build/Products/Debug-iphoneos/Tools.framework"; sourceTree = "<absolute>"; };
+		9BD299531C80AB27000D1308 /* FileManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileManagement.framework; path = "../../../Library/Developer/Xcode/DerivedData/Orphee-dyzvzkrrapcvujbwarremaplfnjm/Build/Products/Debug-iphoneos/FileManagement.framework"; sourceTree = "<group>"; };
 		9BD33E021C0124E700802BE3 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeReachability.swift; sourceTree = "<group>"; };
 		9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeApi.swift; sourceTree = "<group>"; };
@@ -199,10 +213,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */,
-				DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */,
+				9BD299541C80AB27000D1308 /* FileManagement.framework in Frameworks */,
 				52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */,
 				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
+				9BD299551C80AB58000D1308 /* Tools.framework in Frameworks */,
 				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
 				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
 				BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */,
@@ -249,6 +263,7 @@
 		523433011A8103A40041B7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BD299531C80AB27000D1308 /* FileManagement.framework */,
 				1E5924F21C24D713002E8A6B /* Tools.framework */,
 				1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */,
 				DBD356991AC456FF00ACC304 /* FileManagement.framework */,
@@ -304,6 +319,7 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				9BD2994F1C80A6CD000D1308 /* Tools.framework */,
 				9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */,
 				9B6E31441BD248A6006DD0AF /* DataModels */,
 				88F21BCA4626CFD565278816 /* OrpheeTests */,
@@ -485,6 +501,7 @@
 				00A8E497A1C2D85966DE48EA /* Copy Pods Resources */,
 				9B6865021BF7E2C900D3D6F6 /* Embed Watch Content */,
 				1EA5CD1B1BFFB1A4004DA763 /* ShellScript */,
+				9BD299571C80AB58000D1308 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -905,7 +922,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -923,7 +939,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

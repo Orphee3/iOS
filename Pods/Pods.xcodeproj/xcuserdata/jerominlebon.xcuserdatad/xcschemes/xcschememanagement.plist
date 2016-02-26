@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DZNEmptyDataSet.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Decodable.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PullToRefreshSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>RSKImageCropper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,17 +34,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Result.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SCLAlertView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -72,32 +67,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>175892047F5D57D69AC9D102FB92A2F2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1A4E08B0D9F454C35B4B0DAF2C090D24</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>297E0C2FD3CD7B417ACE074DAE3B6157</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>328D8AB80C99123E0CCE4103BDF35B6B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>33CAE7D04E4C0E9A01FD9D3E22F6849A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,12 +77,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7834E9C931B9BB9B497725DF441EAE57</key>
+		<key>55AA7FA8D27B78B1DA42151A27340A96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B5E84F0A731C9D5F7DC16C79DA31421</key>
+		<key>6544D73AE192E27A390A96768CDC6FB5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C703090CF54F0B85DE28462A5C4637B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7447D0509CAA373C679F7676EE1B1F25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8090C4CC14739B9D538ABE681BE6FAD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,17 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA0DE61EF997456089231FB0A6BC8EDB</key>
+		<key>AC7A5A5A19A65CF11EE5BFF0161A4C5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AAAA5E05BD313713DC74B0A1AE5F60D0</key>
+		<key>B167F65A3A14E0A4B2D972C3C925E4D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B67272A3DFB959E6F5D8E953BE4C9D08</key>
+		<key>BC25E49A696A759350BBC7FFC925B0C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D90B6D41F3216DAD57F479973434A020</key>
 		<dict>
 			<key>primary</key>
 			<true/>

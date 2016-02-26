@@ -11,10 +11,10 @@
       location = "container:FileManagement/FileManagement.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:OrpheeClient/Orphee.xcodeproj">
+      location = "developer:OrpheeClient/Orphee.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OrpheeClient/Orphee.xcodeproj">
+      location = "container:OrpheeClient/Orphee.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

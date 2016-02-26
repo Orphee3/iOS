@@ -3,5 +3,4 @@
 //
 
 #import "PresetLoader.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import "RDRGrowingTextView.h"

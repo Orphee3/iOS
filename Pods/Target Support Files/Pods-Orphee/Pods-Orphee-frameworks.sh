@@ -85,29 +85,27 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Orphee/Alamofire.framework"
-  install_framework "Pods-Orphee/DZNEmptyDataSet.framework"
   install_framework "Pods-Orphee/Decodable.framework"
   install_framework "Pods-Orphee/Kingfisher.framework"
-  install_framework "Pods-Orphee/PullToRefreshSwift.framework"
   install_framework "Pods-Orphee/RSKImageCropper.framework"
   install_framework "Pods-Orphee/ReactiveCocoa.framework"
+  install_framework "Pods-Orphee/Realm.framework"
+  install_framework "Pods-Orphee/RealmSwift.framework"
   install_framework "Pods-Orphee/Result.framework"
   install_framework "Pods-Orphee/SCLAlertView.framework"
-  install_framework "Pods-Orphee/SDWebImage.framework"
   install_framework "Pods-Orphee/SlackTextViewController.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Orphee/Alamofire.framework"
-  install_framework "Pods-Orphee/DZNEmptyDataSet.framework"
   install_framework "Pods-Orphee/Decodable.framework"
   install_framework "Pods-Orphee/Kingfisher.framework"
-  install_framework "Pods-Orphee/PullToRefreshSwift.framework"
   install_framework "Pods-Orphee/RSKImageCropper.framework"
   install_framework "Pods-Orphee/ReactiveCocoa.framework"
+  install_framework "Pods-Orphee/Realm.framework"
+  install_framework "Pods-Orphee/RealmSwift.framework"
   install_framework "Pods-Orphee/Result.framework"
   install_framework "Pods-Orphee/SCLAlertView.framework"
-  install_framework "Pods-Orphee/SDWebImage.framework"
   install_framework "Pods-Orphee/SlackTextViewController.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
 fi
