@@ -86,7 +86,9 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Orphee/Alamofire.framework"
   install_framework "Pods-Orphee/Decodable.framework"
+  install_framework "Pods-Orphee/Haneke.framework"
   install_framework "Pods-Orphee/Kingfisher.framework"
+  install_framework "Pods-Orphee/MBProgressHUD.framework"
   install_framework "Pods-Orphee/RSKImageCropper.framework"
   install_framework "Pods-Orphee/ReactiveCocoa.framework"
   install_framework "Pods-Orphee/Realm.framework"
@@ -95,11 +97,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Orphee/SCLAlertView.framework"
   install_framework "Pods-Orphee/SlackTextViewController.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
+  install_framework "Pods-Orphee/UnderKeyboard.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Orphee/Alamofire.framework"
   install_framework "Pods-Orphee/Decodable.framework"
+  install_framework "Pods-Orphee/Haneke.framework"
   install_framework "Pods-Orphee/Kingfisher.framework"
+  install_framework "Pods-Orphee/MBProgressHUD.framework"
   install_framework "Pods-Orphee/RSKImageCropper.framework"
   install_framework "Pods-Orphee/ReactiveCocoa.framework"
   install_framework "Pods-Orphee/Realm.framework"
@@ -108,4 +113,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Orphee/SCLAlertView.framework"
   install_framework "Pods-Orphee/SlackTextViewController.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
+  install_framework "Pods-Orphee/UnderKeyboard.framework"
 fi

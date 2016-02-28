@@ -65,8 +65,16 @@
 		9BD299541C80AB27000D1308 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD299531C80AB27000D1308 /* FileManagement.framework */; };
 		9BD299551C80AB58000D1308 /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2994F1C80A6CD000D1308 /* Tools.framework */; };
 		9BD299561C80AB58000D1308 /* Tools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2994F1C80A6CD000D1308 /* Tools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9BD299591C82530A000D1308 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD299581C82530A000D1308 /* LoginViewController.swift */; };
+		9BD2995B1C826C08000D1308 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2995A1C826C08000D1308 /* RegisterViewController.swift */; };
+		9BD2995E1C826F5B000D1308 /* ArtistesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2995D1C826F5B000D1308 /* ArtistesCollectionViewController.swift */; };
+		9BD299601C826FB2000D1308 /* Artistes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2995F1C826FB2000D1308 /* Artistes.storyboard */; };
+		9BD299621C8272A5000D1308 /* ArtistesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD299611C8272A5000D1308 /* ArtistesCollectionViewCell.swift */; };
 		9BD33E031C0124E800802BE3 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E021C0124E700802BE3 /* Reach.swift */; };
 		9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */; };
+		9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE2AD921C8374F900AE92F5 /* User.storyboard */; };
+		9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */; };
+		9BE2AD971C83797400AE92F5 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */; };
 		9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */; };
 		AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB8C27B4B99D14C912DA9B /* AudioSequencerManager.swift */; };
 		AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB865DE44568139E96C080 /* MIDIPlayer.swift */; };
@@ -186,8 +194,16 @@
 		9BD186F01B874505004A892D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9BD2994F1C80A6CD000D1308 /* Tools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Tools.framework; path = "/Users/jerominlebon/Library/Developer/Xcode/DerivedData/Orphee-dyzvzkrrapcvujbwarremaplfnjm/Build/Products/Debug-iphoneos/Tools.framework"; sourceTree = "<absolute>"; };
 		9BD299531C80AB27000D1308 /* FileManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileManagement.framework; path = "../../../Library/Developer/Xcode/DerivedData/Orphee-dyzvzkrrapcvujbwarremaplfnjm/Build/Products/Debug-iphoneos/FileManagement.framework"; sourceTree = "<group>"; };
+		9BD299581C82530A000D1308 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9BD2995A1C826C08000D1308 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9BD2995D1C826F5B000D1308 /* ArtistesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistesCollectionViewController.swift; sourceTree = "<group>"; };
+		9BD2995F1C826FB2000D1308 /* Artistes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Artistes.storyboard; sourceTree = "<group>"; };
+		9BD299611C8272A5000D1308 /* ArtistesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistesCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BD33E021C0124E700802BE3 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeReachability.swift; sourceTree = "<group>"; };
+		9BE2AD921C8374F900AE92F5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeApi.swift; sourceTree = "<group>"; };
 		9D9820519B793A947DF35351 /* Pods_Orphee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.release.xcconfig"; sourceTree = "<group>"; };
@@ -305,6 +321,8 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BE2AD911C8374DC00AE92F5 /* User */,
+				9BD2995C1C826F28000D1308 /* Artistes */,
 				9B88F6131C7D1226001A77AD /* Profile */,
 				9B88F6101C7D11D9001A77AD /* Login/Register */,
 				9BBE7FA01C7CAAC000B56E51 /* Home */,
@@ -409,6 +427,8 @@
 			isa = PBXGroup;
 			children = (
 				9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */,
+				9BD299581C82530A000D1308 /* LoginViewController.swift */,
+				9BD2995A1C826C08000D1308 /* RegisterViewController.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -438,6 +458,26 @@
 				9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		9BD2995C1C826F28000D1308 /* Artistes */ = {
+			isa = PBXGroup;
+			children = (
+				9BD2995D1C826F5B000D1308 /* ArtistesCollectionViewController.swift */,
+				9BD2995F1C826FB2000D1308 /* Artistes.storyboard */,
+				9BD299611C8272A5000D1308 /* ArtistesCollectionViewCell.swift */,
+			);
+			name = Artistes;
+			sourceTree = "<group>";
+		};
+		9BE2AD911C8374DC00AE92F5 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9BE2AD921C8374F900AE92F5 /* User.storyboard */,
+				9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */,
+				9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		DB2BB3411ABAE280003B066B /* storyboard and xibs */ = {
@@ -613,10 +653,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD299601C826FB2000D1308 /* Artistes.storyboard in Resources */,
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
 				9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */,
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
+				9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */,
 				1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */,
@@ -740,14 +782,18 @@
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,
+				9BE2AD971C83797400AE92F5 /* UserTableViewController.swift in Sources */,
 				DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */,
 				9BD33E031C0124E800802BE3 /* Reach.swift in Sources */,
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
+				9BD299591C82530A000D1308 /* LoginViewController.swift in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
 				1E282F1F1C238762004B2084 /* AudioEngineManager.swift in Sources */,
+				9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */,
+				9BD2995E1C826F5B000D1308 /* ArtistesCollectionViewController.swift in Sources */,
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
@@ -756,9 +802,11 @@
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
 				9BBE7FA81C7CAED200B56E51 /* Creation.swift in Sources */,
 				1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */,
+				9BD2995B1C826C08000D1308 /* RegisterViewController.swift in Sources */,
 				1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */,
+				9BD299621C8272A5000D1308 /* ArtistesCollectionViewCell.swift in Sources */,
 				AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

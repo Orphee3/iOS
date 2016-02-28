@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
     </dependencies>
     <scenes>
         <!--Tab Bar View Controller-->
@@ -17,12 +17,23 @@
                     </tabBar>
                     <connections>
                         <segue destination="bdA-iX-u0g" kind="relationship" relationship="viewControllers" id="TN9-VA-Nbb"/>
+                        <segue destination="LvE-V5-AnZ" kind="relationship" relationship="viewControllers" id="Wrp-se-5hN"/>
                         <segue destination="e5V-7Q-eYh" kind="relationship" relationship="viewControllers" id="ane-bu-V7D"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FS-6c-xaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1301" y="582"/>
+        </scene>
+        <!--Artistes-->
+        <scene sceneID="pnC-9m-x98">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Artistes" id="LvE-V5-AnZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Artistes" image="friends" id="Yuc-LW-GGc"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qpv-kg-gxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-887.5" y="662"/>
         </scene>
         <!--Profile-->
         <scene sceneID="6fv-J4-Jy8">
@@ -56,6 +67,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="friends" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
     </resources>

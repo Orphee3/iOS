@@ -14,7 +14,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HanekeSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -64,10 +74,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UnderKeyboard.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>134D403967C64E427B7A57EEC49CA894</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>175892047F5D57D69AC9D102FB92A2F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>40477F6FC8A3AB53135152BE8D682201</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4487F66DFAC9E24E839F3FF65ABA51D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,27 +107,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55AA7FA8D27B78B1DA42151A27340A96</key>
+		<key>633126607F91D3BCC375625BC5880227</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6544D73AE192E27A390A96768CDC6FB5</key>
+		<key>67EBAFAE87319EF71C8932E339FF215B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C703090CF54F0B85DE28462A5C4637B</key>
+		<key>7CB0B1FB58A3227CA81EF69D4FED4988</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7447D0509CAA373C679F7676EE1B1F25</key>
+		<key>7DDF79495F24B309AF089ACC99FC1151</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8090C4CC14739B9D538ABE681BE6FAD1</key>
+		<key>8284A1D3FCA3F0BDE25ADE8400EF9162</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>84554DBB9A8773219E9BB5AB4B56A5CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F5E73915F0AA3C946CEF94DA60C2BF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,22 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC7A5A5A19A65CF11EE5BFF0161A4C5F</key>
+		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B167F65A3A14E0A4B2D972C3C925E4D8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BC25E49A696A759350BBC7FFC925B0C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D90B6D41F3216DAD57F479973434A020</key>
+		<key>F0BC737E8CC5F210C8038FA5FE5FBA37</key>
 		<dict>
 			<key>primary</key>
 			<true/>

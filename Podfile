@@ -15,4 +15,7 @@ target :Orphee do
        pod 'Decodable'
        pod 'Kingfisher', '~> 2.0'
        pod 'RealmSwift'
+       pod 'UnderKeyboard', '~> 4.0'
+       pod 'MBProgressHUD', '~> 0.9.2'
+       pod 'HanekeSwift'
 end

@@ -10,36 +10,38 @@ import Foundation
 import Alamofire
 import FileManagement
 import ReactiveCocoa
+import Haneke
 
 class OrpheeApi {
-    //
+    
     var url = "http://163.5.84.242:3000/api"
-    //
-    //    func login(token: String, completion:(response: AnyObject) ->()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        print(token)
-    //        Alamofire.request(.POST, "\(url)/login", headers: headers).responseJSON { request, response, json in
-    //            if (response?.statusCode == 500){
-    //                completion(response:"error")
-    //            }
-    //            else if(response?.statusCode == 401){
-    //                completion(response:"wrong mdp")
-    //            }
-    //            else if (response?.statusCode == 200){
-    //                print(json.value)
-    //                if let user = json.value!["user"] as! Dictionary<String, AnyObject>?{
-    //                    let user = User(User: user)
-    //                    user.token = json.value!["token"] as! String
-    //                    let data = NSKeyedArchiver.archivedDataWithRootObject(user)
-    //                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "myUser")
-    //                    SocketManager.sharedInstance.connectSocket()
-    //                    completion(response:"ok")
-    //                }
-    //            }
-    //        }
-    //    }
+    
+    func login(token: String, completion:(user: AnyObject) ->()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.POST, "\(url)/login", headers: headers).responseJSON { request, response, json in
+            if (response?.statusCode == 500){
+                completion(user:"error")
+            }
+            else if(response?.statusCode == 401){
+                completion(user: "mdp")
+            }
+            else if (response?.statusCode == 200){
+                print(json.value)
+                if let result = json.value!["user"]{
+                    do {
+                        let user = try User.decode(result)
+                        // user.token = json.value!["token"]
+                    } catch let error {
+                        print(error)
+                        completion(user: "error")
+                    }
+                }
+                completion(user: "ok")
+            }
+        }
+    }
     //
     //    func register(pseudo: String, mail: String, password: String, completion:(response: AnyObject) -> ()){
     //        let param = [
@@ -101,6 +103,7 @@ class OrpheeApi {
     //        }
     //    }
     //
+    
     func getPopularCreations(offset: Int, size: Int, completion:(creations: [Creation]) -> ()){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
         var arrayCreation: [Creation] = []
@@ -117,9 +120,6 @@ class OrpheeApi {
                         }
                     }
                     completion(creations: arrayCreation)
-                }
-                else{
-                    // A REMPLIR
                 }
             }
         }
@@ -173,20 +173,41 @@ class OrpheeApi {
     //        }
     //    }
     //
-    //    func getUsers(offset: Int, size: Int, completion:(response: [User]) ->()){
-    //        Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-    //            print(json.value)
-    //            if (response?.statusCode == 200){
-    //                var arrayUser: [User] = []
-    //                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-    //                    for elem in array{
-    //                        arrayUser.append(User(User: elem))
-    //                    }
-    //                    completion(response: arrayUser)
-    //                }
-    //            }
-    //        }
-    //    }
+    
+    func getInfoUserById(id: String, completion:(infoUser: [AnyObject]) -> ()){
+        Alamofire.request(.GET, "\(url)/user/\(id)/creation").responseJSON{request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(infoUser: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(infoUser: cachedArray.array)
+                    })
+                }
+            }
+        }
+    }
+    
+    func getUsers(offset: Int, size: Int, completion:(users: [AnyObject]) ->()){
+        Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
+            print((request?.URLString)!)
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(users: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(users: cachedArray.array)
+                    })
+                }
+            }
+        }
+    }
     //
     //    func addFriend(token: String, id: String, completion:(response: AnyObject) -> ()){
     //        let headers = [
@@ -380,4 +401,13 @@ class OrpheeApi {
     //                }
     //        }
     //    }
+    
+    func fetchFromCache(url: String, completion:(cachedArray: JSON) -> ()){
+        let cache = Shared.JSONCache
+        let URL = NSURL(string: url)!
+        
+        cache.fetch(URL: URL).onSuccess { JSON in
+            completion(cachedArray: JSON)
+        }
+    }
 }
