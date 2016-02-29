@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" id="G1c-5k-EMB">
                         <barButtonItem key="leftBarButtonItem" title="Annuler" id="ua5-D2-yUn">
                             <connections>
-                                <segue destination="oB8-2q-3BK" kind="unwind" unwindAction="cancelLoginAction:" id="QIe-A0-wZ6"/>
+                                <segue destination="oB8-2q-3BK" kind="unwind" unwindAction="cancelLoginAction:" id="vtc-Tr-lRZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

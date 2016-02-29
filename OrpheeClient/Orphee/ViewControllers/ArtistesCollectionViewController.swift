@@ -45,4 +45,17 @@ class ArtisteCollectionViewController: UICollectionViewController {
         }
         return UICollectionViewCell()
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("toDetailsUser", sender: indexPath.row)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toDetailsUser"){
+            if let controller = segue.destinationViewController as? UserTableViewController{
+                controller.id = arrayUsers[sender as! Int].id
+                controller.user = arrayUsers[sender as! Int]
+            }
+        }
+    }
 }

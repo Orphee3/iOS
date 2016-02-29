@@ -21,7 +21,10 @@ PODS:
   - RealmSwift (0.98.2):
     - Realm (= 0.98.2)
   - Result (1.0.1)
+  - RSKGrowingTextView (1.0.1):
+    - RSKPlaceholderTextView (= 1.0.0)
   - RSKImageCropper (1.4.1)
+  - RSKPlaceholderTextView (1.0.0)
   - SCLAlertView (0.5.1)
   - SlackTextViewController (1.7.2)
   - Socket.IO-Client-Swift (2.4.5)
@@ -35,6 +38,7 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.2)
   - ReactiveCocoa (~> 4.0.0-RC.1)
   - RealmSwift
+  - RSKGrowingTextView
   - RSKImageCropper
   - SCLAlertView
   - SlackTextViewController
@@ -62,7 +66,9 @@ SPEC CHECKSUMS:
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   Result: caef80340451e1f07492fa1e89117f83613bce24
+  RSKGrowingTextView: 585888654fb5007e13089a71923ce78e53a6f0d4
   RSKImageCropper: 98ae426eb4eb11b733ff87f8e2542a480f4fa8e6
+  RSKPlaceholderTextView: a34174067f43aa176abe0fc4de9f6ce29f2306c7
   SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
   SlackTextViewController: 1f4e8f68c156ef93de73fd422db2b8d5d5b0f4e7
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4

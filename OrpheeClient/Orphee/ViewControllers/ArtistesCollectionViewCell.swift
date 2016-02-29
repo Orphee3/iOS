@@ -24,6 +24,5 @@ class ArtistesCollectionViewCell: UICollectionViewCell {
             imgProfile.image = UIImage(named: "emptyprofile")
         }
         nameProfile.text = user.name
-        //nbCreations.text = user.
     }
 }

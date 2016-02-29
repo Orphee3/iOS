@@ -132,10 +132,21 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Artistes" id="2FP-OR-9Nh"/>
+                    <connections>
+                        <segue destination="iDA-qQ-GOv" kind="show" identifier="toDetailsUser" id="3F2-x2-veV"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nE-Ak-RCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="156" y="73"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="NiA-0g-4Fu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" id="iDA-qQ-GOv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgo-ob-8Ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="808.5" y="73"/>
         </scene>
     </scenes>
     <resources>
