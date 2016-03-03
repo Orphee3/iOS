@@ -76,6 +76,7 @@
 		9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */; };
 		9BE2AD971C83797400AE92F5 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */; };
 		9BE2AD9A1C84FAA700AE92F5 /* Creation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */; };
+		9BE2AD9C1C86294A00AE92F5 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */; };
 		9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */; };
 		AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB8C27B4B99D14C912DA9B /* AudioSequencerManager.swift */; };
 		AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB865DE44568139E96C080 /* MIDIPlayer.swift */; };
@@ -206,6 +207,7 @@
 		9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Creation.storyboard; sourceTree = "<group>"; };
+		9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeApi.swift; sourceTree = "<group>"; };
 		9D9820519B793A947DF35351 /* Pods_Orphee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.release.xcconfig"; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */,
+				9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */,
 			);
 			name = Creation;
 			sourceTree = "<group>";
@@ -818,6 +821,7 @@
 				1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */,
+				9BE2AD9C1C86294A00AE92F5 /* CreationViewController.swift in Sources */,
 				9BD299621C8272A5000D1308 /* ArtistesCollectionViewCell.swift in Sources */,
 				AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */,
 			);

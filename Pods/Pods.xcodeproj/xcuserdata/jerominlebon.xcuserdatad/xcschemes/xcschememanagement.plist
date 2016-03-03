@@ -29,22 +29,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NextGrowingTextView-NextGrowingTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NextGrowingTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Orphee.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RSKGrowingTextView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>RSKImageCropper.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RSKPlaceholderTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -92,17 +92,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>15BDC3C5D77EC2C6002C6457D3047A1C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>175892047F5D57D69AC9D102FB92A2F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C992387F74D5A49B7B723A8AAD5B798</key>
+		<key>28893EBC24449E0F722BC31217992015</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CD2C33DBF4AC5FBD15AECEC1744C4F9</key>
+		<key>2BCCD03581CD2F37C7039F1F8542E266</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +117,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>75FBC2EC93C5CCAEB895BBA7A2A13CC8</key>
+		<key>4C1E388BD19707FB3563B7E8A005DE23</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6930BBEB20266F81E50701C265F1A877</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7170ABFD27A49DACBC3E7D22EF4DF231</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7539499830F7767CB817FB936CC09999</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C9E397F1E51FE9D9F8A44525FF42DAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,7 +147,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84477F38639339707D423EC37F732A42</key>
+		<key>8C9E604E41DD360AD480A1103D7CF36A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,47 +157,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0012153943322454C1D96D340A163CC</key>
+		<key>A51F46E8266A4AB1EE14BA57D440FF83</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C80171A590FEFBBDB3DDCA6DC19DDF33</key>
+		<key>BAC782A63E20DD7D82331489A616C1EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D4F0A092D53178E9DF68C9EC0057DB61</key>
+		<key>D7C03232E877865D778CE834FE3B1277</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E918A99875E60110A46EBE7B985C4F61</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F23C6F3297F29232FA05685D5456AE03</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F2F69FED83EEB32256D040E891F51350</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4C906AA23BFB23791AA1A8579343168</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FCD6208DF8646A50B6A08119F97861D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

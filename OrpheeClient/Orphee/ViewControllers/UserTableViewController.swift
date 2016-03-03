@@ -71,6 +71,18 @@ class UserTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("toCreation", sender: indexPath.row)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toCreation"){
+            if let controller = segue.destinationViewController as? CreationViewController{
+                controller.creation = arrayCreations[sender as! Int]
+            }
+        }
+    }
+    
     func likeButtonTapped(sender: UIButton){
         print("liked")
         callPopUp()

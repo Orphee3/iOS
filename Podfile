@@ -18,5 +18,5 @@ target :Orphee do
        pod 'UnderKeyboard', '~> 4.0'
        pod 'MBProgressHUD', '~> 0.9.2'
        pod 'HanekeSwift'
-       pod 'RSKGrowingTextView'
+       pod "NextGrowingTextView"
 end
