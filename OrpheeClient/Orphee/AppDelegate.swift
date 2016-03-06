@@ -21,13 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-//        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-//            SocketManager.sharedInstance.connectSocket()
-//        }
-//        else{
-//            print("no user")
-//        }
-        
         let vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
         if let _ = vc {
             self.window?.rootViewController = vc!;
@@ -36,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             return false;
         }
+        return true
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        print(url)
         return true
     }
     

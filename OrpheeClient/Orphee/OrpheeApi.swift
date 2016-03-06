@@ -11,6 +11,7 @@ import Alamofire
 import FileManagement
 import ReactiveCocoa
 import Haneke
+import Locksmith
 
 class OrpheeApi {
     
@@ -31,8 +32,14 @@ class OrpheeApi {
                 print(json.value)
                 if let result = json.value!["user"]{
                     do {
-                        let user = try User.decode(result)
-                        // user.token = json.value!["token"]
+                        var user = try User.decode(result)
+                        user.token = json.value!["token"] as? String
+                        try Locksmith.saveData(["token":user.token!], forUserAccount: "myUserAccount")
+                        try Locksmith.saveData(["name":user.name], forUserAccount: "myUserAccount")
+                        try Locksmith.saveData(["id":user.id], forUserAccount: "myUserAccount")
+                        try Locksmith.saveData(["picture":user.picture!], forUserAccount: "myUserAccount")
+                        completion(user: "ok")
+                        //try Locksmith.saveData(["mail":user.mail], forUserAccount: "myUserAccount")
                     } catch let error {
                         print(error)
                         completion(user: "error")

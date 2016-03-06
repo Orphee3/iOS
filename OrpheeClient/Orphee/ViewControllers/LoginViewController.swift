@@ -56,10 +56,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(user)
                 loadingNotification.hide(true, afterDelay: 1.0)
                 if(user as! String == "mdp"){
-                    self.errorLabel.text = "Le mot de passe ou l'adresse ne correspondent pas."
+                    self.errorLabel.text = "Les identifiants ne correspondent pas."
                 }
                 if(user as! String == "ok"){
                     print("connected")
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
         }

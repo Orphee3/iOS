@@ -50,6 +50,8 @@
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
+		9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */; };
+		9B6940611C8CC8440039F826 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B6940601C8CC8440039F826 /* Info.plist */; };
 		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
 		9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */; };
 		9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */; };
@@ -183,6 +185,8 @@
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Orphee-Bridging-Header.h"; path = "Orphee/Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthConnectionViewController.swift; sourceTree = "<group>"; };
+		9B6940601C8CC8440039F826 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Orphee/Info.plist; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
 		9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginRegister.storyboard; sourceTree = "<group>"; };
@@ -346,6 +350,7 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				9B6940601C8CC8440039F826 /* Info.plist */,
 				9BD2994F1C80A6CD000D1308 /* Tools.framework */,
 				9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */,
 				9B6E31441BD248A6006DD0AF /* DataModels */,
@@ -439,6 +444,7 @@
 				9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */,
 				9BD299581C82530A000D1308 /* LoginViewController.swift */,
 				9BD2995A1C826C08000D1308 /* RegisterViewController.swift */,
+				9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -679,6 +685,7 @@
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */,
+				9B6940611C8CC8440039F826 /* Info.plist in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */,
 				1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */,
@@ -799,6 +806,7 @@
 				9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */,
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
 				9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */,
+				9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */,
 				9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,

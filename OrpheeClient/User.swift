@@ -14,7 +14,7 @@ struct User{
     let name: String
     let id: String
     let picture: String?
-    let token: String?
+    var token: String?
 }
 
 extension User: Decodable {
