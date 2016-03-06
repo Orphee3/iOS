@@ -19,4 +19,5 @@ target :Orphee do
        pod 'MBProgressHUD', '~> 0.9.2'
        pod 'HanekeSwift'
        pod "NextGrowingTextView"
+       pod "SwiftDate", "~> 2.0"
 end

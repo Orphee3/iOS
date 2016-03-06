@@ -59,6 +59,8 @@
 		9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA31C7CAC4B00B56E51 /* HomeViewController.swift */; };
 		9BBE7FA61C7CAE2C00B56E51 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA51C7CAE2C00B56E51 /* User.swift */; };
 		9BBE7FA81C7CAED200B56E51 /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA71C7CAED200B56E51 /* Creation.swift */; };
+		9BC2C5D11C8B8F12005F62D9 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2C5D01C8B8F12005F62D9 /* CommentTableViewCell.swift */; };
+		9BC2C5D31C8B921C005F62D9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2C5D21C8B921C005F62D9 /* Comment.swift */; };
 		9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186E61B8627C0004A892D /* CropImageToSquare.swift */; };
 		9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EE1B86A006004A892D /* SocketManager.swift */; };
 		9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F01B874505004A892D /* TabBarViewController.swift */; };
@@ -191,6 +193,8 @@
 		9BBE7FA31C7CAC4B00B56E51 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9BBE7FA51C7CAE2C00B56E51 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9BBE7FA71C7CAED200B56E51 /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
+		9BC2C5D01C8B8F12005F62D9 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		9BC2C5D21C8B921C005F62D9 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		9BD186E61B8627C0004A892D /* CropImageToSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageToSquare.swift; sourceTree = "<group>"; };
 		9BD186EE1B86A006004A892D /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		9BD186F01B874505004A892D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 			children = (
 				9BBE7FA51C7CAE2C00B56E51 /* User.swift */,
 				9BBE7FA71C7CAED200B56E51 /* Creation.swift */,
+				9BC2C5D21C8B921C005F62D9 /* Comment.swift */,
 			);
 			name = DataModels;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 			children = (
 				9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */,
 				9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */,
+				9BC2C5D01C8B8F12005F62D9 /* CommentTableViewCell.swift */,
 			);
 			name = Creation;
 			sourceTree = "<group>";
@@ -821,7 +827,9 @@
 				1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */,
+				9BC2C5D31C8B921C005F62D9 /* Comment.swift in Sources */,
 				9BE2AD9C1C86294A00AE92F5 /* CreationViewController.swift in Sources */,
+				9BC2C5D11C8B8F12005F62D9 /* CommentTableViewCell.swift in Sources */,
 				9BD299621C8272A5000D1308 /* ArtistesCollectionViewCell.swift in Sources */,
 				AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */,
 			);

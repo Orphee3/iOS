@@ -146,33 +146,22 @@ class OrpheeApi {
     //
     //    }
     //
-    //    func getComments(creationId: String, completion:(response: [Comment]) -> ()){
-    //        Alamofire.request(.GET, "\(url)/comment/creation/\(creationId)").responseJSON{request, response, json in
-    //            print("comments = \(json.value)")
-    //            if (response!.statusCode == 200){
-    //                var arrayComments: [Comment] = []
-    //                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-    //                    for elem in array{
-    //                        var msg = ""
-    //                        var pic = ""
-    //                        var name = ""
-    //                        if let message = elem["message"] as? String{
-    //                            msg = message
-    //                        }
-    //                        if let picture = elem["creator"]!["picture"] as? String{
-    //                            pic = picture
-    //                        }
-    //                        if let user = elem["creator"]!["name"] as? String{
-    //                            name = user
-    //                        }
-    //                        arrayComments.append(Comment(Comment: msg, user: name, picture: pic))
-    //                    }
-    //                    completion(response: arrayComments)
-    //                }
-    //            }
-    //        }
-    //    }
-    //
+    
+    func getComments(creationId: String, completion:(response: [AnyObject]) -> ()){
+        Alamofire.request(.GET, "\(url)/comment/creation/\(creationId)").responseJSON{request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+            if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+        }
+    }
+    
     
     func getInfoUserById(id: String, completion:(infoUser: [AnyObject]) -> ()){
         Alamofire.request(.GET, "\(url)/user/\(id)/creation").responseJSON{request, response, json in
