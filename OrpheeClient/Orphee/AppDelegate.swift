@@ -34,6 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         print(url)
+        var tmp = url.absoluteString
+        let index = tmp.startIndex.advancedBy("com.orphee.ios:/google?code=".characters.count)
+        tmp = tmp.substringFromIndex(index)
+        OrpheeApi().loginByGoogle(tmp) { (response) in
+            print("ok")
+        }
         return true
     }
     

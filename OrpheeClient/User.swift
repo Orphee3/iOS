@@ -8,13 +8,13 @@
 
 import Foundation
 import Decodable
-import RealmSwift
 
 struct User{
     let name: String
     let id: String
     let picture: String?
     var token: String?
+    var username: String?
 }
 
 extension User: Decodable {
@@ -23,7 +23,8 @@ extension User: Decodable {
             name:         j => "name",
             id:           j => "_id",
             picture:      j =>? "picture",
-            token:        j =>? "token"
+            token:        j =>? "token",
+            username:     j =>? "username"
         )
     }
 }

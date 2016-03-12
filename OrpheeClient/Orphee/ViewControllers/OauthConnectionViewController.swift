@@ -13,6 +13,12 @@ import OAuthSwift
 class OAuthConnectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewdidload")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        print("viewwillappear")
     }
     
     @IBAction func fbTapped(sender: AnyObject) {

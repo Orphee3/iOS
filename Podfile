@@ -20,6 +20,6 @@ target :Orphee do
        pod 'HanekeSwift'
        pod "NextGrowingTextView"
        pod "SwiftDate", "~> 2.0"
-       pod 'Locksmith'
+       pod 'Pantry'
        pod "OAuthSwift", "~> 0.5.0"
 end
