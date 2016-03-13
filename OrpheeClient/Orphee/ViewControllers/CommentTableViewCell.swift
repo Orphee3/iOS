@@ -18,6 +18,7 @@ class CommentTableViewCell: UITableViewCell{
 
     
     func fillCell(comment: Comment){
+        prepareImg()
         if let picture = comment.creator.picture{
             imgCommentator.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "emptyprofile"))
         }else{

@@ -56,21 +56,11 @@ class HomeViewController: UITableViewController{
             cell.likeButton.addTarget(self, action: "likeButtonTapped:", forControlEvents: .TouchUpInside)
             cell.likeButton.tag = indexPath.row
             cell.commentButton.addTarget(self, action: "commentButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.commentButton.tag = indexPath.row
             cell.createButton.addTarget(self, action: "createButtonTapped:", forControlEvents: .TouchUpInside)
             return cell
         }
         return UITableViewCell()
-    }
-    
-    func checkIfLikeExists(like: String, likes: Array<String>) -> Int{
-        var i = 0
-        for elem in likes{
-            if (elem == like){
-                return i
-            }
-            i += 1
-        }
-        return 0
     }
     
     func likeButtonTapped(sender: UIButton){
@@ -95,7 +85,11 @@ class HomeViewController: UITableViewController{
     
     func commentButtonTapped(sender: UIButton){
         print("comment")
-        callPopUp()
+        if ((MyUser) != nil){
+            performSegueWithIdentifier("toCreation", sender: sender.tag)
+        }else{
+            callPopUp()
+        }
     }
     
     func createButtonTapped(sender: UIButton){
@@ -116,5 +110,13 @@ class HomeViewController: UITableViewController{
     
     @IBAction func cancelLoginAction(segue:UIStoryboardSegue) {
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toCreation"){
+            if let controller = segue.destinationViewController as? CreationViewController{
+                controller.creation = arrayCreations[sender as! Int]
+            }
+        }
     }
 }

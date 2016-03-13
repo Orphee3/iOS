@@ -20,11 +20,13 @@ class CreationViewController: UIViewController{
     @IBOutlet weak var growingTextView: NextGrowingTextView!
     @IBOutlet weak var imgCreator: UIImageView!
     @IBOutlet weak var nameCreator: UILabel!
+    @IBOutlet var nameCreation: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.commentTableView.rowHeight = 80
         self.commentTableView.estimatedRowHeight = UITableViewAutomaticDimension
+        self.nameCreation.text = creation.name
         if let picture = creation.creator[0].picture{
             imgCreator.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "emptyprofile"))
         }else{
