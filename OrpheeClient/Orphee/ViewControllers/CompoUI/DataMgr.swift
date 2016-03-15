@@ -105,7 +105,7 @@ class DataMgr: NSObject {
 
     func noteForLine(line: Int) -> Int {
         if self.isValidIndex(nil, line: line) {
-            return highestNote - line
+            return highestNote - lineIdxForNote(line)
         }
         return 0
     }

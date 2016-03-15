@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ouD-lQ-JjH">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--AV Player View Controller-->
+        <scene sceneID="hHw-Pw-NTO">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="lYK-6F-lul" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ocY-Hp-ep5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="571" y="-1898"/>
+        </scene>
+        <!--Player Controller-->
+        <scene sceneID="u7k-qO-bhy">
+            <objects>
+                <viewController storyboardIdentifier="Player" useStoryboardIdentifierAsRestorationIdentifier="YES" id="juf-IJ-z4L" customClass="PlayerViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="luT-rC-3be"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eia-wN-ewA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YM6-lb-q3X">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyfunprofile" translatesAutoresizingMaskIntoConstraints="NO" id="KHU-t7-YL1">
+                                <rect key="frame" x="55" y="138" width="490" height="371"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yzs-03-WeE">
+                                <rect key="frame" x="56" y="570" width="488" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UbH-XU-iFy"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliding:" destination="fXx-bk-UlM" eventType="touchDragInside" id="KbI-rU-MWu"/>
+                                    <action selector="stopSlide:" destination="fXx-bk-UlM" eventType="touchUpInside" id="C3h-vf-ykc"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mE5-hA-98b" userLabel="elapsedTime">
+                                <rect key="frame" x="8" y="574" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Ccv-Ws-NE0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="302-dH-dXg">
+                                <rect key="frame" x="285" y="532" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6fh-ZC-4xf"/>
+                                </constraints>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressPlay:" destination="PVj-Sz-AFI" eventType="touchUpInside" id="DVw-c0-r2y"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="576-Jm-9wa" userLabel="totalDuration">
+                                <rect key="frame" x="550" y="574" width="43" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="lH8-YH-sCQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJW-Nk-WRg">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EWr-O5-jaT"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JOC-Cy-jx6"/>
+                                    <barButtonItem title="Title" id="voA-pT-hGH"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="tFt-fX-Nyl"/>
+                                    <barButtonItem systemItem="organize" id="t3b-gb-Apc">
+                                        <connections>
+                                            <segue destination="mLY-lq-JcL" kind="show" identifier="creationListSegue" id="gS4-MN-xch"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                        <constraints>
+                            <constraint firstItem="Yzs-03-WeE" firstAttribute="leading" secondItem="YM6-lb-q3X" secondAttribute="leadingMargin" constant="38" id="26m-Jt-pjE"/>
+                            <constraint firstItem="Yzs-03-WeE" firstAttribute="leading" secondItem="mE5-hA-98b" secondAttribute="trailing" constant="8" id="3K6-eH-Br0"/>
+                            <constraint firstItem="Eia-wN-ewA" firstAttribute="top" secondItem="mE5-hA-98b" secondAttribute="bottom" constant="5" id="8k4-h6-Ulf"/>
+                            <constraint firstItem="hJW-Nk-WRg" firstAttribute="leading" secondItem="YM6-lb-q3X" secondAttribute="leadingMargin" constant="-20" id="BqL-ax-pcA"/>
+                            <constraint firstItem="576-Jm-9wa" firstAttribute="leading" secondItem="Yzs-03-WeE" secondAttribute="trailing" constant="8" id="D8e-t2-VQB"/>
+                            <constraint firstItem="302-dH-dXg" firstAttribute="centerX" secondItem="YM6-lb-q3X" secondAttribute="centerX" id="WeE-N0-igc"/>
+                            <constraint firstItem="Yzs-03-WeE" firstAttribute="top" secondItem="302-dH-dXg" secondAttribute="bottom" constant="8" id="ZPz-j8-Yke"/>
+                            <constraint firstItem="Eia-wN-ewA" firstAttribute="top" secondItem="Yzs-03-WeE" secondAttribute="bottom" id="a0Z-D9-0i3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yzs-03-WeE" secondAttribute="trailing" constant="38" id="bAg-qq-MzK"/>
+                            <constraint firstItem="hJW-Nk-WRg" firstAttribute="top" secondItem="luT-rC-3be" secondAttribute="bottom" id="cPu-oX-G11"/>
+                            <constraint firstItem="Eia-wN-ewA" firstAttribute="top" secondItem="576-Jm-9wa" secondAttribute="bottom" constant="5" id="eDI-Y7-OGy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="576-Jm-9wa" secondAttribute="trailing" constant="-13" id="eZ8-vj-LgM"/>
+                            <constraint firstItem="302-dH-dXg" firstAttribute="centerX" secondItem="YM6-lb-q3X" secondAttribute="centerX" id="hNy-71-bA4"/>
+                            <constraint firstItem="KHU-t7-YL1" firstAttribute="top" secondItem="hJW-Nk-WRg" secondAttribute="bottom" constant="30" id="iXo-Os-WOQ"/>
+                            <constraint firstItem="mE5-hA-98b" firstAttribute="leading" secondItem="YM6-lb-q3X" secondAttribute="leadingMargin" constant="-12" id="jsu-dx-0f1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hJW-Nk-WRg" secondAttribute="trailing" constant="-20" id="kbN-lL-GzR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KHU-t7-YL1" secondAttribute="trailing" constant="35" id="slH-Au-0ay"/>
+                            <constraint firstItem="302-dH-dXg" firstAttribute="top" secondItem="KHU-t7-YL1" secondAttribute="bottom" constant="23" id="z2m-oK-dAv"/>
+                            <constraint firstItem="KHU-t7-YL1" firstAttribute="leading" secondItem="YM6-lb-q3X" secondAttribute="leadingMargin" constant="35" id="zYk-yj-Fpn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="exP-dx-88a"/>
+                    <connections>
+                        <outlet property="durationLbl" destination="576-Jm-9wa" id="uGb-1n-Lha"/>
+                        <outlet property="elapsedTimeLbl" destination="mE5-hA-98b" id="zx0-yv-71V"/>
+                        <outlet property="sliderIntent" destination="fXx-bk-UlM" id="GXv-Cm-2Jc"/>
+                        <outlet property="trackTitle" destination="voA-pT-hGH" id="hcg-Vh-CCh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jOD-07-MZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="PVj-Sz-AFI" customClass="PlayPauseIntent" customModule="Orphee" customModuleProvider="target">
+                    <connections>
+                        <outlet property="playButton" destination="302-dH-dXg" id="TgH-Iz-Djj"/>
+                        <outlet property="playerController" destination="juf-IJ-z4L" id="oVE-Wn-OmA"/>
+                        <outlet property="timerIntent" destination="6iH-bq-0VS" id="nXe-4m-QUY"/>
+                    </connections>
+                </customObject>
+                <customObject id="6iH-bq-0VS" customClass="TimerIntent" customModule="Orphee" customModuleProvider="target">
+                    <connections>
+                        <outlet property="position" destination="mE5-hA-98b" id="HS9-um-JCm"/>
+                        <outlet property="slider" destination="Yzs-03-WeE" id="UvA-6N-4gr"/>
+                    </connections>
+                </customObject>
+                <customObject id="fXx-bk-UlM" customClass="SliderIntent" customModule="Orphee" customModuleProvider="target">
+                    <connections>
+                        <outlet property="slider" destination="Yzs-03-WeE" id="wxR-Be-5aE"/>
+                        <outlet property="timerIntent" destination="6iH-bq-0VS" id="G9H-8y-1g2"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="566" y="-1206"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="VNw-RN-QJ6">
+            <objects>
+                <navigationController id="ouD-lQ-JjH" userLabel="Player" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Musique" image="music" selectedImage="playimage" id="uAo-0G-NQK" userLabel="Player"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="q4F-Le-BjN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="juf-IJ-z4L" kind="relationship" relationship="rootViewController" id="ydG-SN-njt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O24-Bg-F7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-337" y="-1206"/>
+        </scene>
+        <!--CreationsList-->
+        <scene sceneID="We2-ti-CZM">
+            <objects>
+                <tableViewController id="mLY-lq-JcL" userLabel="CreationsList" customClass="CreationsListVC" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="d6F-em-Etu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="O5k-1v-WLo">
+                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O5k-1v-WLo" id="c5z-gK-PyJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mLY-lq-JcL" id="Ip7-al-uOI"/>
+                            <outlet property="delegate" destination="mLY-lq-JcL" id="ZyQ-kT-x38"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Creations" id="wvk-gW-uOF" userLabel="Creations"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Th6-Qq-Jbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1411" y="-1206"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="emptyfunprofile" width="200" height="200"/>
+        <image name="music" width="25" height="25"/>
+        <image name="playimage" width="80" height="90"/>
+    </resources>
+</document>

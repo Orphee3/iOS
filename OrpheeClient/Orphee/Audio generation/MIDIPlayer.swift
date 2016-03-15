@@ -18,10 +18,17 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     public var duration: NSTimeInterval
 
     public var isPlaying: Bool {
-        return playing;
+        return sequence.isPlaying;
     }
 
-    public var currentTime: NSTimeInterval = 0
+    public var currentTime: NSTimeInterval {
+        get {
+            return self.sequence.getCurrentPosition()
+        }
+        set {
+            self.currentTime = self.sequence.getCurrentPosition()
+        }
+    }
 
     private var playing = false
     private let data: NSData
@@ -64,6 +71,7 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
                     $0[eOrpheeFileContent.PatchID.rawValue] != nil
                 }.map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
             try! engine.setInstruments(patchs, soundBank: bank, type: eSampleType.Melodic)
+//            for _ in patchs { engine.addSampler() }
             sequence.setDestinationAudioUnit(engine.samplers)
             return true
         }
@@ -78,10 +86,13 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     }
 
     func pause() {
-        playing = false
+        sequence.stop()
     }
 
     func formatTime(time: NSTimeInterval) -> String {
-        return "\(time)"
+        let minutes = Int(floor(round(time) / 60));
+        let seconds = Int(round(time)) - (minutes * 60);
+
+        return NSString(format: "%d:%02d", minutes, seconds) as String
     }
 }

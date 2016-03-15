@@ -123,6 +123,7 @@ extension MyProfileTableViewController{
             
             assert(false, "Unexpected element kind")
         }
+        return UICollectionReusableView()
     }
     
     func commentPushed(sender: UIButton){

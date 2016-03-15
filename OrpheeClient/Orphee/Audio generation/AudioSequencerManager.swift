@@ -9,6 +9,10 @@ import AVFoundation
 public class AudioSequencerManager {
     var sequencer: AVAudioSequencer
 
+    var isPlaying: Bool {
+        return sequencer.playing
+    }
+
     public init(engine: AVAudioEngine) {
         sequencer = AVAudioSequencer(audioEngine: engine)
     }
@@ -51,6 +55,15 @@ public class AudioSequencerManager {
         }
     }
 
+    public func pause() {
+        sequencer.stop()
+    }
+
+    public func stop() {
+        sequencer.stop()
+        sequencer.currentPositionInSeconds = 0
+    }
+
     public func getSequenceDuration() -> NSTimeInterval {
 
         var length: NSTimeInterval = 0;
@@ -61,5 +74,9 @@ public class AudioSequencerManager {
             }
         }
         return length;
+    }
+
+    public func getCurrentPosition() -> NSTimeInterval {
+        return sequencer.currentPositionInSeconds
     }
 }

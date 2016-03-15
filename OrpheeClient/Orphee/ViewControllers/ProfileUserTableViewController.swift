@@ -133,6 +133,7 @@ extension ProfileUserTableViewController{
             
             assert(false, "Unexpected element kind")
         }
+        return UICollectionReusableView()
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

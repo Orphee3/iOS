@@ -10,7 +10,7 @@ import UIKit
 import MIDIToolbox
 import FileManagement
 
-class CompositionVC: UIViewController, UINavigationControllerDelegate {
+class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreationListActor {
 
     typealias AlertAction = ((UIAlertAction!) -> Void)
 
@@ -183,6 +183,11 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate {
                     }
             }
         }
+    }
+
+    func actOnSelectedCreation(creation: String) {
+
+        print(creation)
     }
 
     func makeActions() {
