@@ -150,28 +150,29 @@ class OrpheeApi {
             }
         }
     }
-    //
-    //    func sendComment(token: String, name: String, picture: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        let params = [
-    //            "creation": "\(creationId)",
-    //            "creator": "\(userId)",
-    //            "message": "\(message)",
-    //            "parentId": "\(creationId)"
-    //        ]
-    //        Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
-    //            print(json.value)
-    //            if (response?.statusCode == 200){
-    //                let commentToAdd = Comment(Comment: message,
-    //                    user: name, picture: picture)
-    //                completion(response: commentToAdd)
-    //            }
-    //        }
-    //
-    //    }
-    //
+    
+    func sendComment(token: String, name: String, picture: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        let params = [
+            "creation": "\(creationId)",
+            "creator": "\(userId)",
+            "message": "\(message)",
+            "parentId": "\(creationId)"
+        ]
+        Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
+            print(json.value)
+            if (response?.statusCode == 200){
+                print("comment ok")
+//                let commentToAdd = Comment(Comment: message,
+//                    user: name, picture: picture)
+//                completion(response: commentToAdd)
+            }
+        }
+        
+    }
+    
     
     func getComments(creationId: String, completion:(response: [AnyObject]) -> ()){
         Alamofire.request(.GET, "\(url)/comment/creation/\(creationId)").responseJSON{request, response, json in

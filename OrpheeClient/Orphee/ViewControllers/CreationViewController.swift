@@ -51,6 +51,17 @@ class CreationViewController: UIViewController{
         
         self.growingTextView.layer.cornerRadius = 4
         self.growingTextView.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        commentTableView.addSubview(refreshControl)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        // Do your job, when done:
+        print("refresh")
+        refreshControl.endRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
