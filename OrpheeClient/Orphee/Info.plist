@@ -24,10 +24,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.orphee.ios</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.orphee.ios</string>
 				<string>fb560109060810772</string>
 			</array>
 		</dict>

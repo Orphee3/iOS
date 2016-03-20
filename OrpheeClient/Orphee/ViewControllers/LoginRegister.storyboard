@@ -62,22 +62,10 @@
                                     <segue destination="FoF-Lj-65Q" kind="show" id="TvK-Y4-Tdi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-kH-jjz">
-                                <rect key="frame" x="180" y="474" width="240" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="tVq-uf-UlX"/>
-                                </constraints>
-                                <state key="normal" title="Google"/>
-                                <connections>
-                                    <action selector="googleTapped:" destination="j3I-wF-XPH" eventType="touchUpInside" id="5UN-H9-CS8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="U2E-kH-jjz" firstAttribute="top" secondItem="uxF-0E-IxM" secondAttribute="bottom" constant="54" id="IVr-pa-5Dt"/>
                             <constraint firstItem="LL5-1y-FG5" firstAttribute="centerX" secondItem="wFY-fr-tbn" secondAttribute="centerX" id="UIj-M4-frX"/>
-                            <constraint firstItem="U2E-kH-jjz" firstAttribute="centerX" secondItem="wFY-fr-tbn" secondAttribute="centerX" id="WYF-PW-NeP"/>
                             <constraint firstItem="uxF-0E-IxM" firstAttribute="top" secondItem="LL5-1y-FG5" secondAttribute="bottom" constant="34" id="dIY-oV-EXD"/>
                             <constraint firstItem="LL5-1y-FG5" firstAttribute="top" secondItem="ff6-qf-gdI" secondAttribute="bottom" constant="52" id="dvJ-AN-lXR"/>
                             <constraint firstItem="uxF-0E-IxM" firstAttribute="leading" secondItem="LL5-1y-FG5" secondAttribute="leading" id="eiT-CO-rJW"/>

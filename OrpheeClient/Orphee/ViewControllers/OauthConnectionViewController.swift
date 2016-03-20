@@ -40,26 +40,4 @@ class OAuthConnectionViewController: UIViewController, UIWebViewDelegate, GIDSig
         }
         print("viewwillappear")
     }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        print("finish load")
-    }
-    
-    @IBAction func googleTapped(sender: AnyObject) {
-        let oauthswift = OAuth2Swift(
-            consumerKey:    "1091784243585-a16tac0tegj6vh5mibln1s3m1qjia72a.apps.googleusercontent.com",         // 2 Enter google app settings
-            consumerSecret: "YOUR_GOOGLE_CLIENT_SECRET",
-            authorizeUrl:   "https://accounts.google.com/o/oauth2/auth",
-            accessTokenUrl: "https://accounts.google.com/o/oauth2/token",
-            responseType:   "code"
-        )
-        let state: String = generateStateWithLength(20) as String
-        oauthswift.authorize_url_handler = SafariURLHandler(viewController: self)
-        oauthswift.authorizeWithCallbackURL( NSURL(string: "com.orphee.ios:/google")!, scope: "https://www.googleapis.com/auth/plus.me", state: state, success: {
-            credential, response, parameters in
-            print("ok")
-            }, failure: { error in
-                print("ERROR: \(error.localizedDescription)")
-        })
-    }
 }
