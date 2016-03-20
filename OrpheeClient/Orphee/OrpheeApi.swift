@@ -44,13 +44,40 @@ class OrpheeApi {
         }
     }
     
-    func loginByGoogle(token: String, completion:(response: AnyObject) -> ()){
+    func loginByGoogle(name: String, email: String, id: String, picture: String, completion:(response: AnyObject) -> ()){
         let params = [
-            "code":"\(token)",
-            "clientId":"1091784243585-a16tac0tegj6vh5mibln1s3m1qjia72a.apps.googleusercontent.com",
-            "redirectUri":"com.orphee.ios:/google"
+            "name":"\(name)",
+            "email":"\(email)",
+            "id":"\(id)",
+            "picture":"\(picture)"
         ]
-        Alamofire.request(.POST, "http://163.5.84.242:3000/auth/google", parameters: params, encoding: .JSON).responseJSON { request, response, json in
+        Alamofire.request(.POST, "http://163.5.84.242:3000/cradogoogle", parameters: params, encoding: .JSON).responseJSON { request, response, json in
+            print(response)
+            print(json.value)
+            if (response?.statusCode == 500){
+                completion(response: "error")
+            }
+            if (response?.statusCode == 200){
+                if let result = json.value{
+                    let user = result["user"]
+                    print(user)
+                    let userTmp : AnyObject = user
+                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
+                    let token = result["token"]
+                    NSUserDefaults().setObject(token, forKey: "myToken")
+                }
+            }
+        }
+    }
+    
+    func loginByFacebook(name: String, email: String, id: String, picture: String, completion:(response: AnyObject) -> ()){
+        let params = [
+            "name":"\(name)",
+            "email":"\(email)",
+            "id":"\(id)",
+            "picture":"\(picture)"
+        ]
+        Alamofire.request(.POST, "http://163.5.84.242:3000/iosFb", parameters: params, encoding: .JSON).responseJSON { request, response, json in
             print(response)
             print(json.value)
             if (response?.statusCode == 500){
@@ -165,6 +192,7 @@ class OrpheeApi {
             print(json.value)
             if (response?.statusCode == 200){
                 print("comment ok")
+                print(json.value)
 //                let commentToAdd = Comment(Comment: message,
 //                    user: name, picture: picture)
 //                completion(response: commentToAdd)

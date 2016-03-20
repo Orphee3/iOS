@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import OAuthSwift
 /// The app delegate works alongside the app object to ensure your app interacts properly with the system and with other apps.
 /// Specifically, the methods of the app delegate give you a chance to respond to important changes
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     /// The application's window
     var window: UIWindow?;
@@ -20,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+        GIDSignIn.sharedInstance().clientID = "1091784243585-a16tac0tegj6vh5mibln1s3m1qjia72a.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
         let vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
         if let _ = vc {
             self.window?.rootViewController = vc!;
@@ -29,18 +31,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             return false;
         }
+        
+//        var configureError: NSError?
+//        GGLContext.sharedInstance().configureWithError(&configureError)
+//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
         return true
     }
     
-    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        print(url)
-        var tmp = url.absoluteString
-        let index = tmp.startIndex.advancedBy("com.orphee.ios:/google?code=".characters.count)
-        tmp = tmp.substringFromIndex(index)
-        OrpheeApi().loginByGoogle(tmp) { (response) in
-            print("ok")
+    func application(application: UIApplication,
+                     openURL url: NSURL, options: [String: AnyObject]) -> Bool {
+        return GIDSignIn.sharedInstance().handleURL(url,
+                                                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String,
+                                                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+                withError error: NSError!) {
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let name = user.profile.name
+            let email = user.profile.email
+            // ...
+            OrpheeApi().loginByGoogle(user.profile.name, email: user.profile.email, id: user.userID, picture: user.profile.imageURLWithDimension(200).URLString, completion: { (response) in
+                print(response)
+            })
+        } else {
+            print("\(error.localizedDescription)")
         }
-        return true
+    }
+    
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+                withError error: NSError!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     /// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -13,6 +13,7 @@ import NextGrowingTextView
 class CreationViewController: UIViewController{
     var creation: Creation!
     var arrayComments: [Comment] = []
+    var MyUser: myUser!
     
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var inputContainerView: UIView!
@@ -24,6 +25,9 @@ class CreationViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getMyUser { (response) in
+            self.MyUser = response
+        }
         self.commentTableView.rowHeight = 80
         self.commentTableView.estimatedRowHeight = UITableViewAutomaticDimension
         self.nameCreation.text = creation.name
@@ -33,19 +37,7 @@ class CreationViewController: UIViewController{
             imgCreator.image = UIImage(named: "emptyprofile")
         }
         nameCreator.text = creation.creator[0].name
-        OrpheeApi().getComments(creation.id) { (response) in
-            print(response)
-            for elem in response{
-                do {
-                    let comment = try Comment.decode(elem)
-                    self.arrayComments.append(comment)
-                } catch let error {
-                    print(error)
-                }
-            }
-            self.commentTableView.reloadData()
-        }
-        // Do any additional setup after loading the view, typically from a nib.
+        getComment()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillAppear:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillDisappear:", name: UIKeyboardWillHideNotification, object: nil)
         
@@ -58,9 +50,25 @@ class CreationViewController: UIViewController{
         commentTableView.addSubview(refreshControl)
     }
     
+    func getComment(){
+        OrpheeApi().getComments(creation.id) { (response) in
+            print(response)
+            for elem in response{
+                do {
+                    let comment = try Comment.decode(elem)
+                    self.arrayComments.append(comment)
+                } catch let error {
+                    print(error)
+                }
+            }
+            self.commentTableView.reloadData()
+        }
+    }
+    
     func refresh(refreshControl: UIRefreshControl) {
-        // Do your job, when done:
         print("refresh")
+        arrayComments = []
+        getComment()
         refreshControl.endRefreshing()
     }
     
@@ -84,7 +92,16 @@ class CreationViewController: UIViewController{
     }
     
     @IBAction func handleSendButton(sender: AnyObject) {
-        self.growingTextView.text = ""
+        if (self.growingTextView.text == ""){
+        }
+        else{
+            if ((MyUser) != nil){
+                OrpheeApi().sendComment(MyUser.token!, name: MyUser.name, picture: MyUser.picture!, creationId: creation.id, userId: creation.creator[0].id, message: self.growingTextView.text, completion: { (response) in
+                    print(response)
+                })
+                self.growingTextView.text = ""
+            }
+        }
         self.view.endEditing(true)
     }
 }

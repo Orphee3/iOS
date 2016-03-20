@@ -49,6 +49,10 @@
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		9B2E36D01C9F0102000B8EF5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */; };
+		9B2E36D11C9F0102000B8EF5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */; };
+		9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */; };
+		9B2E36D61C9F4E5E000B8EF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */; };
 		9B2F659B1C946502004BB575 /* myUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F659A1C946502004BB575 /* myUser.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
 		9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */; };
@@ -185,6 +189,10 @@
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Orphee-Bridging-Header.h"; path = "Orphee/Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9B2F659A1C946502004BB575 /* myUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myUser.swift; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthConnectionViewController.swift; sourceTree = "<group>"; };
@@ -245,9 +253,12 @@
 			files = (
 				9BD299541C80AB27000D1308 /* FileManagement.framework in Frameworks */,
 				52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */,
+				9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */,
+				9B2E36D11C9F0102000B8EF5 /* FBSDKLoginKit.framework in Frameworks */,
 				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
 				9BD299551C80AB58000D1308 /* Tools.framework in Frameworks */,
 				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
+				9B2E36D01C9F0102000B8EF5 /* FBSDKCoreKit.framework in Frameworks */,
 				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
 				BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */,
 			);
@@ -293,6 +304,9 @@
 		523433011A8103A40041B7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */,
+				9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */,
+				9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */,
 				9BD299531C80AB27000D1308 /* FileManagement.framework */,
 				1E5924F21C24D713002E8A6B /* Tools.framework */,
 				1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */,
@@ -352,6 +366,7 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */,
 				9B6940601C8CC8440039F826 /* Info.plist */,
 				9BD2994F1C80A6CD000D1308 /* Tools.framework */,
 				9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */,
@@ -684,6 +699,7 @@
 			files = (
 				9BD299601C826FB2000D1308 /* Artistes.storyboard in Resources */,
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
+				9B2E36D61C9F4E5E000B8EF5 /* GoogleService-Info.plist in Resources */,
 				9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */,
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
@@ -1006,6 +1022,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1023,6 +1044,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
