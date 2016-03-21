@@ -14,4 +14,7 @@ target :Orphee do
        pod 'RSKImageCropper'
        pod 'SlackTextViewController'
        pod 'ReactiveCocoa', '~>4.0.0-RC.1'
+       pod 'SCLAlertView'
+       pod 'Decodable'
+       pod 'Kingfisher', '~> 2.0'
 end

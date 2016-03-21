@@ -23,12 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
-            SocketManager.sharedInstance.connectSocket()
-        }
-        else{
-            print("no user")
-        }
+//        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("myUser") as? NSData {
+//            SocketManager.sharedInstance.connectSocket()
+//        }
+//        else{
+//            print("no user")
+//        }
         
         let vc: CompositionVC? = storybd?.instantiateInitialViewController() as? CompositionVC;
         if let _ = vc {
