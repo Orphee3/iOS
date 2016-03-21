@@ -10,6 +10,47 @@ import Foundation
 import Decodable
 import Haneke
 
+class mySuperUser: NSObject, NSCoding{
+    var name: String = ""
+    var id: String = ""
+    var picture: String? = nil
+    var token: String? = nil
+    var username: String? = nil
+    var likes: Array<String> = []
+    
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("user")
+    
+    init?(name: String, id: String, picture: String?, token: String?, username: String?, likes: Array<String>){
+        self.name = name
+        self.id = id
+        self.picture = picture
+        self.token = token
+        self.username = username
+        self.likes = likes
+        super.init()
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder){
+        let name = aDecoder.decodeObjectForKey("name") as! String
+        let id = aDecoder.decodeObjectForKey("id") as! String
+        let picture = aDecoder.decodeObjectForKey("picture") as! String?
+        let token = aDecoder.decodeObjectForKey("token") as! String?
+        let username = aDecoder.decodeObjectForKey("username") as! String?
+        let likes = aDecoder.decodeObjectForKey("likes") as! Array<String>
+        self.init(name: name, id: id, picture: picture, token: token, username: username, likes: likes)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: "name")
+        aCoder.encodeObject(id, forKey: "id")
+        aCoder.encodeObject(picture, forKey: "picture")
+        aCoder.encodeObject(token, forKey: "token")
+        aCoder.encodeObject(username, forKey: "username")
+        aCoder.encodeObject(likes, forKey: "likes")
+    }
+}
+
 struct myUser{
     let name: String
     let id: String
@@ -17,6 +58,17 @@ struct myUser{
     var token: String?
     var username: String?
     var likes: Array<String>
+}
+
+func getMySuperUser() -> mySuperUser{
+    return (NSKeyedUnarchiver.unarchiveObjectWithFile(mySuperUser.ArchiveURL.path!) as? mySuperUser)!
+}
+
+func userExists() -> Bool{
+    if ((NSKeyedUnarchiver.unarchiveObjectWithFile(mySuperUser.ArchiveURL.path!) as? mySuperUser) != nil){
+        return true
+    }
+    return false
 }
 
 extension myUser: Decodable {
@@ -35,13 +87,13 @@ extension myUser: Decodable {
 func getMyUser(completion : (response: myUser) -> ()){
     if let retrievedDict = NSUserDefaults().dictionaryForKey("myUser") {
         do {
-            print("lol")
             var token: String!
             var monUser = try myUser.decode(retrievedDict)
             if let retrievedToken = NSUserDefaults().objectForKey("myToken"){
                 token = retrievedToken as! String
             }
             monUser.token = token
+            print("ouioui")
             completion(response: monUser)
         } catch let error {
             print(error)

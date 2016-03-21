@@ -52,7 +52,6 @@ class OrpheeApi {
             "picture":"\(picture)"
         ]
         Alamofire.request(.POST, "http://163.5.84.242:3000/cradogoogle", parameters: params, encoding: .JSON).responseJSON { request, response, json in
-            print(response)
             print(json.value)
             if (response?.statusCode == 500){
                 completion(response: "error")
@@ -60,11 +59,14 @@ class OrpheeApi {
             if (response?.statusCode == 200){
                 if let result = json.value{
                     let user = result["user"]
-                    print(user)
-                    let userTmp : AnyObject = user
-                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
-                    let token = result["token"]
-                    NSUserDefaults().setObject(token, forKey: "myToken")
+                    do {
+                        var monUser = try myUser.decode(user)
+                        monUser.token = result["token"] as? String
+                        var test = mySuperUser(name: monUser.name, id: monUser.id, picture: monUser.picture, token: monUser.token, username: monUser.username, likes: monUser.likes)
+                        self.saveUser(test!)
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
         }
@@ -86,11 +88,14 @@ class OrpheeApi {
             if (response?.statusCode == 200){
                 if let result = json.value{
                     let user = result["user"]
-                    print(user)
-                    let userTmp : AnyObject = user
-                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
-                    let token = result["token"]
-                    NSUserDefaults().setObject(token, forKey: "myToken")
+                    do {
+                        var monUser = try myUser.decode(user)
+                        monUser.token = result["token"] as? String
+                        var test = mySuperUser(name: monUser.name, id: monUser.id, picture: monUser.picture, token: monUser.token, username: monUser.username, likes: monUser.likes)
+                        self.saveUser(test!)
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
         }
@@ -193,9 +198,9 @@ class OrpheeApi {
             if (response?.statusCode == 200){
                 print("comment ok")
                 print(json.value)
-//                let commentToAdd = Comment(Comment: message,
-//                    user: name, picture: picture)
-//                completion(response: commentToAdd)
+                //                let commentToAdd = Comment(Comment: message,
+                //                    user: name, picture: picture)
+                //                completion(response: commentToAdd)
             }
         }
         
@@ -452,6 +457,13 @@ class OrpheeApi {
         
         cache.fetch(URL: URL).onSuccess { JSON in
             completion(cachedArray: JSON)
+        }
+    }
+    
+    func saveUser(user: mySuperUser){
+        let isSaved = NSKeyedArchiver.archiveRootObject(user, toFile: mySuperUser.ArchiveURL.path!)
+        if (isSaved){
+            print("save OK")
         }
     }
 }

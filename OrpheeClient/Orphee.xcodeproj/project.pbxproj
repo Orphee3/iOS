@@ -54,6 +54,7 @@
 		9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */; };
 		9B2E36D61C9F4E5E000B8EF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */; };
 		9B2F659B1C946502004BB575 /* myUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F659A1C946502004BB575 /* myUser.swift */; };
+		9B31B1C41CA02EE300475208 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31B1C31CA02EE300475208 /* ProfileTableViewController.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
 		9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */; };
 		9B6940611C8CC8440039F826 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B6940601C8CC8440039F826 /* Info.plist */; };
@@ -194,6 +195,7 @@
 		9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9B2F659A1C946502004BB575 /* myUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myUser.swift; sourceTree = "<group>"; };
+		9B31B1C31CA02EE300475208 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthConnectionViewController.swift; sourceTree = "<group>"; };
 		9B6940601C8CC8440039F826 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Orphee/Info.plist; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				9B88F6141C7D1236001A77AD /* Profile.storyboard */,
+				9B31B1C31CA02EE300475208 /* ProfileTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B31B1C41CA02EE300475208 /* ProfileTableViewController.swift in Sources */,
 				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
 				1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */,
 				9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */,
