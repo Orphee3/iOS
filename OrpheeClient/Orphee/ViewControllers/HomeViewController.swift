@@ -9,12 +9,18 @@
 import Foundation
 import UIKit
 import SCLAlertView
+import Locksmith
 
 class HomeViewController: UITableViewController{
     var arrayCreations: [Creation] = []
+    var MyUser: myUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getMyUser { (response) in
+            self.MyUser = response
+            print(self.MyUser.likes)
+        }
         OrpheeApi().getPopularCreations(0, size: 50) { (creations) -> () in
             self.arrayCreations = creations
             self.tableView.reloadData()
@@ -35,8 +41,22 @@ class HomeViewController: UITableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as? HomeTableViewCell{
             cell.fillCell(arrayCreations[indexPath.row])
+            if ((MyUser) != nil){
+                if !MyUser.likes.isEmpty{
+                    let i = checkIfLikeExists(arrayCreations[indexPath.row].id, likes: MyUser.likes)
+                    if (i == 0){
+                        cell.likeButton.setImage(UIImage(named: "heart"), forState: .Normal)
+                    }
+                    else{
+                        cell.likeButton.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                    }
+                }
+            }
+            
             cell.likeButton.addTarget(self, action: "likeButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.likeButton.tag = indexPath.row
             cell.commentButton.addTarget(self, action: "commentButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.commentButton.tag = indexPath.row
             cell.createButton.addTarget(self, action: "createButtonTapped:", forControlEvents: .TouchUpInside)
             return cell
         }
@@ -44,13 +64,32 @@ class HomeViewController: UITableViewController{
     }
     
     func likeButtonTapped(sender: UIButton){
-        print("liked")
-        callPopUp()
+        if ((MyUser) != nil){
+            OrpheeApi().like(arrayCreations[sender.tag].id, token: MyUser.token!, completion: { (response) in
+                print(response)
+                if (response as! String == "liked"){
+                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                }
+                if (response as! String == "disliked"){
+                    sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                }
+                updateMyUser(self.arrayCreations[sender.tag].id, completion: { (response) in
+                    print(response)
+                    self.MyUser = response
+                })
+            })
+        }else{
+            callPopUp()
+        }
     }
     
     func commentButtonTapped(sender: UIButton){
         print("comment")
-        callPopUp()
+        if ((MyUser) != nil){
+            performSegueWithIdentifier("toCreation", sender: sender.tag)
+        }else{
+            callPopUp()
+        }
     }
     
     func createButtonTapped(sender: UIButton){
@@ -71,5 +110,13 @@ class HomeViewController: UITableViewController{
     
     @IBAction func cancelLoginAction(segue:UIStoryboardSegue) {
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toCreation"){
+            if let controller = segue.destinationViewController as? CreationViewController{
+                controller.creation = arrayCreations[sender as! Int]
+            }
+        }
     }
 }

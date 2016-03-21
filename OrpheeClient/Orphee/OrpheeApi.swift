@@ -10,36 +10,91 @@ import Foundation
 import Alamofire
 import FileManagement
 import ReactiveCocoa
+import Haneke
 
 class OrpheeApi {
-    //
+    
     var url = "http://163.5.84.242:3000/api"
-    //
-    //    func login(token: String, completion:(response: AnyObject) ->()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        print(token)
-    //        Alamofire.request(.POST, "\(url)/login", headers: headers).responseJSON { request, response, json in
-    //            if (response?.statusCode == 500){
-    //                completion(response:"error")
-    //            }
-    //            else if(response?.statusCode == 401){
-    //                completion(response:"wrong mdp")
-    //            }
-    //            else if (response?.statusCode == 200){
-    //                print(json.value)
-    //                if let user = json.value!["user"] as! Dictionary<String, AnyObject>?{
-    //                    let user = User(User: user)
-    //                    user.token = json.value!["token"] as! String
-    //                    let data = NSKeyedArchiver.archivedDataWithRootObject(user)
-    //                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "myUser")
-    //                    SocketManager.sharedInstance.connectSocket()
-    //                    completion(response:"ok")
-    //                }
-    //            }
-    //        }
-    //    }
+    
+    func login(token: String, completion:(user: AnyObject) ->()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.POST, "\(url)/login", headers: headers).responseJSON { request, response, json in
+            if (response?.statusCode == 500){
+                completion(user:"error")
+            }
+            else if(response?.statusCode == 401){
+                completion(user: "mdp")
+            }
+            else if (response?.statusCode == 200){
+                print(json.value)
+                if let result = json.value!["user"]{
+                    do {
+                        var user = try User.decode(result)
+                        user.token = json.value!["token"] as? String
+                        completion(user: "ok")
+                    } catch let error {
+                        print(error)
+                        completion(user: "error")
+                    }
+                }
+                completion(user: "ok")
+            }
+        }
+    }
+    
+    func loginByGoogle(name: String, email: String, id: String, picture: String, completion:(response: AnyObject) -> ()){
+        let params = [
+            "name":"\(name)",
+            "email":"\(email)",
+            "id":"\(id)",
+            "picture":"\(picture)"
+        ]
+        Alamofire.request(.POST, "http://163.5.84.242:3000/cradogoogle", parameters: params, encoding: .JSON).responseJSON { request, response, json in
+            print(response)
+            print(json.value)
+            if (response?.statusCode == 500){
+                completion(response: "error")
+            }
+            if (response?.statusCode == 200){
+                if let result = json.value{
+                    let user = result["user"]
+                    print(user)
+                    let userTmp : AnyObject = user
+                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
+                    let token = result["token"]
+                    NSUserDefaults().setObject(token, forKey: "myToken")
+                }
+            }
+        }
+    }
+    
+    func loginByFacebook(name: String, email: String, id: String, picture: String, completion:(response: AnyObject) -> ()){
+        let params = [
+            "name":"\(name)",
+            "email":"\(email)",
+            "id":"\(id)",
+            "picture":"\(picture)"
+        ]
+        Alamofire.request(.POST, "http://163.5.84.242:3000/iosFb", parameters: params, encoding: .JSON).responseJSON { request, response, json in
+            print(response)
+            print(json.value)
+            if (response?.statusCode == 500){
+                completion(response: "error")
+            }
+            if (response?.statusCode == 200){
+                if let result = json.value{
+                    let user = result["user"]
+                    print(user)
+                    let userTmp : AnyObject = user
+                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
+                    let token = result["token"]
+                    NSUserDefaults().setObject(token, forKey: "myToken")
+                }
+            }
+        }
+    }
     //
     //    func register(pseudo: String, mail: String, password: String, completion:(response: AnyObject) -> ()){
     //        let param = [
@@ -71,36 +126,37 @@ class OrpheeApi {
     //        }
     //    }
     //
-    //    func like(id :String, token: String, completion:(response: AnyObject) ->()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(id)", headers: headers).responseJSON{request, response, json in
-    //            print(response)
-    //            if (response?.statusCode == 200){
-    //                print(json.value)
-    //                completion(response: "ok")
-    //            }
-    //            if (response?.statusCode == 400){
-    //                print(json.value)
-    //                completion(response: "liked")
-    //            }
-    //        }
-    //    }
-    //
-    //    func dislike(id: String, token: String, completion:(response: AnyObject) ->()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        Alamofire.request(.GET, "http://163.5.84.242:3000/api/dislike/\(id)", headers: headers).responseJSON{request, response, json in
-    //            print(response)
-    //            if (response?.statusCode == 200){
-    //                print(json.value)
-    //                completion(response: "ok")
-    //            }
-    //        }
-    //    }
-    //
+    
+    
+    func like(id :String, token: String, completion:(response: AnyObject) ->()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/like/\(id)", headers: headers).responseJSON{request, response, json in
+            if (response?.statusCode == 200){
+                completion(response: "liked")
+            }
+            if (response?.statusCode == 400){
+                self.dislike(id, token: token, completion: { (response) in
+                    print(response)
+                })
+                completion(response: "disliked")
+            }
+        }
+    }
+    
+    func dislike(id: String, token: String, completion:(response: AnyObject) ->()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/dislike/\(id)", headers: headers).responseJSON{request, response, json in
+            if (response?.statusCode == 200){
+                completion(response: "disliked")
+            }
+        }
+    }
+    
+    
     func getPopularCreations(offset: Int, size: Int, completion:(creations: [Creation]) -> ()){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
         var arrayCreation: [Creation] = []
@@ -118,75 +174,84 @@ class OrpheeApi {
                     }
                     completion(creations: arrayCreation)
                 }
-                else{
-                    // A REMPLIR
+            }
+        }
+    }
+    
+    func sendComment(token: String, name: String, picture: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        let params = [
+            "creation": "\(creationId)",
+            "creator": "\(userId)",
+            "message": "\(message)",
+            "parentId": "\(creationId)"
+        ]
+        Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
+            print(json.value)
+            if (response?.statusCode == 200){
+                print("comment ok")
+                print(json.value)
+//                let commentToAdd = Comment(Comment: message,
+//                    user: name, picture: picture)
+//                completion(response: commentToAdd)
+            }
+        }
+        
+    }
+    
+    
+    func getComments(creationId: String, completion:(response: [AnyObject]) -> ()){
+        Alamofire.request(.GET, "\(url)/comment/creation/\(creationId)").responseJSON{request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+            if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+        }
+    }
+    
+    
+    func getInfoUserById(id: String, completion:(infoUser: [AnyObject]) -> ()){
+        Alamofire.request(.GET, "\(url)/user/\(id)/creation").responseJSON{request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(infoUser: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(infoUser: cachedArray.array)
+                    })
                 }
             }
         }
     }
-    //
-    //    func sendComment(token: String, name: String, picture: String, creationId: String, userId: String, message: String, completion:(response: AnyObject) -> ()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        let params = [
-    //            "creation": "\(creationId)",
-    //            "creator": "\(userId)",
-    //            "message": "\(message)",
-    //            "parentId": "\(creationId)"
-    //        ]
-    //        Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
-    //            print(json.value)
-    //            if (response?.statusCode == 200){
-    //                let commentToAdd = Comment(Comment: message,
-    //                    user: name, picture: picture)
-    //                completion(response: commentToAdd)
-    //            }
-    //        }
-    //
-    //    }
-    //
-    //    func getComments(creationId: String, completion:(response: [Comment]) -> ()){
-    //        Alamofire.request(.GET, "\(url)/comment/creation/\(creationId)").responseJSON{request, response, json in
-    //            print("comments = \(json.value)")
-    //            if (response!.statusCode == 200){
-    //                var arrayComments: [Comment] = []
-    //                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-    //                    for elem in array{
-    //                        var msg = ""
-    //                        var pic = ""
-    //                        var name = ""
-    //                        if let message = elem["message"] as? String{
-    //                            msg = message
-    //                        }
-    //                        if let picture = elem["creator"]!["picture"] as? String{
-    //                            pic = picture
-    //                        }
-    //                        if let user = elem["creator"]!["name"] as? String{
-    //                            name = user
-    //                        }
-    //                        arrayComments.append(Comment(Comment: msg, user: name, picture: pic))
-    //                    }
-    //                    completion(response: arrayComments)
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //    func getUsers(offset: Int, size: Int, completion:(response: [User]) ->()){
-    //        Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-    //            print(json.value)
-    //            if (response?.statusCode == 200){
-    //                var arrayUser: [User] = []
-    //                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-    //                    for elem in array{
-    //                        arrayUser.append(User(User: elem))
-    //                    }
-    //                    completion(response: arrayUser)
-    //                }
-    //            }
-    //        }
-    //    }
+    
+    func getUsers(offset: Int, size: Int, completion:(users: [AnyObject]) ->()){
+        Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
+            print((request?.URLString)!)
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(users: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(users: cachedArray.array)
+                    })
+                }
+            }
+        }
+    }
     //
     //    func addFriend(token: String, id: String, completion:(response: AnyObject) -> ()){
     //        let headers = [
@@ -380,4 +445,13 @@ class OrpheeApi {
     //                }
     //        }
     //    }
+    
+    func fetchFromCache(url: String, completion:(cachedArray: JSON) -> ()){
+        let cache = Shared.JSONCache
+        let URL = NSURL(string: url)!
+        
+        cache.fetch(URL: URL).onSuccess { JSON in
+            completion(cachedArray: JSON)
+        }
+    }
 }

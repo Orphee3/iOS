@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Fs-N2-6OW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15E61b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Fs-N2-6OW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -142,6 +142,7 @@
                     <navigationItem key="navigationItem" title="Fil d'actualités" id="BUE-mu-hth"/>
                     <connections>
                         <segue destination="fln-id-M1Z" kind="presentation" identifier="toLogin" id="pfU-rX-CdM"/>
+                        <segue destination="qqf-3g-Dic" kind="show" identifier="toCreation" id="kWa-Pb-t8V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKB-th-9VA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -156,10 +157,20 @@
             </objects>
             <point key="canvasLocation" x="2294.5" y="-13"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Creation-->
+        <scene sceneID="OJE-sn-BO9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Creation" id="qqf-3g-Dic" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Dq-pi-gcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2294.5" y="144"/>
+        </scene>
+        <!--Fil d'actualités-->
         <scene sceneID="tAA-6v-OKO">
             <objects>
                 <navigationController id="2Fs-N2-6OW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Fil d'actualités" image="home" id="VWi-BD-Q8L"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Hi-c3-hMH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -178,6 +189,7 @@
         <image name="emptyprofile" width="200" height="200"/>
         <image name="guitare_square" width="500" height="500"/>
         <image name="heart" width="50" height="50"/>
+        <image name="home" width="25" height="25"/>
         <image name="share" width="100" height="100"/>
     </resources>
 </document>

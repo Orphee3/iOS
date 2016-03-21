@@ -25,6 +25,7 @@
 		1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E638F1A1C8B517600B161BE /* pCreationListActor.swift */; };
 		1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */; };
 		1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */; };
+		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
 		1EB274C21C598A22008FDFA4 /* cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB2748F1C598A22008FDFA4 /* cell.xib */; };
@@ -72,7 +73,14 @@
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		9B2E36D01C9F0102000B8EF5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */; };
+		9B2E36D11C9F0102000B8EF5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */; };
+		9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */; };
+		9B2E36D61C9F4E5E000B8EF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */; };
+		9B2F659B1C946502004BB575 /* myUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F659A1C946502004BB575 /* myUser.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
+		9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */; };
+		9B6940611C8CC8440039F826 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B6940601C8CC8440039F826 /* Info.plist */; };
 		9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */; };
 		9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */; };
 		9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */; };
@@ -82,11 +90,26 @@
 		9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA31C7CAC4B00B56E51 /* HomeViewController.swift */; };
 		9BBE7FA61C7CAE2C00B56E51 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA51C7CAE2C00B56E51 /* User.swift */; };
 		9BBE7FA81C7CAED200B56E51 /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE7FA71C7CAED200B56E51 /* Creation.swift */; };
+		9BC2C5D11C8B8F12005F62D9 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2C5D01C8B8F12005F62D9 /* CommentTableViewCell.swift */; };
+		9BC2C5D31C8B921C005F62D9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2C5D21C8B921C005F62D9 /* Comment.swift */; };
 		9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186E61B8627C0004A892D /* CropImageToSquare.swift */; };
 		9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186EE1B86A006004A892D /* SocketManager.swift */; };
 		9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD186F01B874505004A892D /* TabBarViewController.swift */; };
+		9BD299541C80AB27000D1308 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD299531C80AB27000D1308 /* FileManagement.framework */; };
+		9BD299551C80AB58000D1308 /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2994F1C80A6CD000D1308 /* Tools.framework */; };
+		9BD299561C80AB58000D1308 /* Tools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2994F1C80A6CD000D1308 /* Tools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9BD299591C82530A000D1308 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD299581C82530A000D1308 /* LoginViewController.swift */; };
+		9BD2995B1C826C08000D1308 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2995A1C826C08000D1308 /* RegisterViewController.swift */; };
+		9BD2995E1C826F5B000D1308 /* ArtistesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2995D1C826F5B000D1308 /* ArtistesCollectionViewController.swift */; };
+		9BD299601C826FB2000D1308 /* Artistes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2995F1C826FB2000D1308 /* Artistes.storyboard */; };
+		9BD299621C8272A5000D1308 /* ArtistesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD299611C8272A5000D1308 /* ArtistesCollectionViewCell.swift */; };
 		9BD33E031C0124E800802BE3 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E021C0124E700802BE3 /* Reach.swift */; };
 		9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */; };
+		9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE2AD921C8374F900AE92F5 /* User.storyboard */; };
+		9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */; };
+		9BE2AD971C83797400AE92F5 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */; };
+		9BE2AD9A1C84FAA700AE92F5 /* Creation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */; };
+		9BE2AD9C1C86294A00AE92F5 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */; };
 		9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */; };
 		AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB8C27B4B99D14C912DA9B /* AudioSequencerManager.swift */; };
 		AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB865DE44568139E96C080 /* MIDIPlayer.swift */; };
@@ -98,7 +121,6 @@
 		DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A00FF1B495CA5007F27FF /* BlockArrayList.swift */; };
 		DB8E61E11ABB4D2B005BF7B4 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		DB8E61F11ABB4D86005BF7B4 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
-		DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD356991AC456FF00ACC304 /* FileManagement.framework */; };
 		DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */ = {isa = PBXBuildFile; fileRef = 88F21A363E92E4DAFEE687AF /* SoundBanks */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +157,17 @@
 			files = (
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BD299571C80AB58000D1308 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9BD299561C80AB58000D1308 /* Tools.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -205,7 +238,14 @@
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Orphee-Bridging-Header.h"; path = "Orphee/Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9B2F659A1C946502004BB575 /* myUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myUser.swift; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthConnectionViewController.swift; sourceTree = "<group>"; };
+		9B6940601C8CC8440039F826 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Orphee/Info.plist; sourceTree = "<group>"; };
 		9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsTableViewController.swift; sourceTree = "<group>"; };
 		9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginRegister.storyboard; sourceTree = "<group>"; };
@@ -216,11 +256,25 @@
 		9BBE7FA31C7CAC4B00B56E51 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9BBE7FA51C7CAE2C00B56E51 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9BBE7FA71C7CAED200B56E51 /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
+		9BC2C5D01C8B8F12005F62D9 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		9BC2C5D21C8B921C005F62D9 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		9BD186E61B8627C0004A892D /* CropImageToSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageToSquare.swift; sourceTree = "<group>"; };
 		9BD186EE1B86A006004A892D /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		9BD186F01B874505004A892D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		9BD2994F1C80A6CD000D1308 /* Tools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Tools.framework; path = "/Users/jerominlebon/Library/Developer/Xcode/DerivedData/Orphee-dyzvzkrrapcvujbwarremaplfnjm/Build/Products/Debug-iphoneos/Tools.framework"; sourceTree = "<absolute>"; };
+		9BD299531C80AB27000D1308 /* FileManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileManagement.framework; path = "../../../Library/Developer/Xcode/DerivedData/Orphee-dyzvzkrrapcvujbwarremaplfnjm/Build/Products/Debug-iphoneos/FileManagement.framework"; sourceTree = "<group>"; };
+		9BD299581C82530A000D1308 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9BD2995A1C826C08000D1308 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9BD2995D1C826F5B000D1308 /* ArtistesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistesCollectionViewController.swift; sourceTree = "<group>"; };
+		9BD2995F1C826FB2000D1308 /* Artistes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Artistes.storyboard; sourceTree = "<group>"; };
+		9BD299611C8272A5000D1308 /* ArtistesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistesCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BD33E021C0124E700802BE3 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		9BD33E041C012B6400802BE3 /* OrpheeReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeReachability.swift; sourceTree = "<group>"; };
+		9BE2AD921C8374F900AE92F5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
+		9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Creation.storyboard; sourceTree = "<group>"; };
+		9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		9BFE18421BF638D1005FCB92 /* OrpheeApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrpheeApi.swift; sourceTree = "<group>"; };
 		9D9820519B793A947DF35351 /* Pods_Orphee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C185F4747A147A01C2DE99 /* Pods-Orphee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,11 +300,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */,
-				DBD3569A1AC456FF00ACC304 /* FileManagement.framework in Frameworks */,
+				9BD299541C80AB27000D1308 /* FileManagement.framework in Frameworks */,
 				52C61DD01A7A59EE00B3DE23 /* CoreFoundation.framework in Frameworks */,
+				9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */,
+				9B2E36D11C9F0102000B8EF5 /* FBSDKLoginKit.framework in Frameworks */,
 				52C61DC81A7A11BC00B3DE23 /* CoreAudio.framework in Frameworks */,
+				9BD299551C80AB58000D1308 /* Tools.framework in Frameworks */,
 				52C61DC41A7A11AC00B3DE23 /* AudioToolbox.framework in Frameworks */,
+				9B2E36D01C9F0102000B8EF5 /* FBSDKCoreKit.framework in Frameworks */,
 				52C61DC61A7A11AC00B3DE23 /* AVFoundation.framework in Frameworks */,
 				BA05F8726A627B13C7EB4DF7 /* Pods_Orphee.framework in Frameworks */,
 			);
@@ -334,6 +391,10 @@
 		523433011A8103A40041B7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */,
+				9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */,
+				9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */,
+				9BD299531C80AB27000D1308 /* FileManagement.framework */,
 				1E5924F21C24D713002E8A6B /* Tools.framework */,
 				1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */,
 				DBD356991AC456FF00ACC304 /* FileManagement.framework */,
@@ -375,6 +436,9 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BE2AD981C84FA9700AE92F5 /* Creation */,
+				9BE2AD911C8374DC00AE92F5 /* User */,
+				9BD2995C1C826F28000D1308 /* Artistes */,
 				9B88F6131C7D1226001A77AD /* Profile */,
 				9B88F6101C7D11D9001A77AD /* Login/Register */,
 				9BBE7FA01C7CAAC000B56E51 /* Home */,
@@ -390,6 +454,9 @@
 		52C61D8C1A79E5C400B3DE23 = {
 			isa = PBXGroup;
 			children = (
+				9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */,
+				9B6940601C8CC8440039F826 /* Info.plist */,
+				9BD2994F1C80A6CD000D1308 /* Tools.framework */,
 				9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */,
 				9B6E31441BD248A6006DD0AF /* DataModels */,
 				88F21BCA4626CFD565278816 /* OrpheeTests */,
@@ -473,6 +540,8 @@
 			children = (
 				9BBE7FA51C7CAE2C00B56E51 /* User.swift */,
 				9BBE7FA71C7CAED200B56E51 /* Creation.swift */,
+				9BC2C5D21C8B921C005F62D9 /* Comment.swift */,
+				9B2F659A1C946502004BB575 /* myUser.swift */,
 			);
 			name = DataModels;
 			sourceTree = "<group>";
@@ -481,6 +550,9 @@
 			isa = PBXGroup;
 			children = (
 				9B88F6111C7D11EE001A77AD /* LoginRegister.storyboard */,
+				9BD299581C82530A000D1308 /* LoginViewController.swift */,
+				9BD2995A1C826C08000D1308 /* RegisterViewController.swift */,
+				9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -510,6 +582,36 @@
 				9B88F60E1C7D0982001A77AD /* HomeTableViewCell.swift */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		9BD2995C1C826F28000D1308 /* Artistes */ = {
+			isa = PBXGroup;
+			children = (
+				9BD2995D1C826F5B000D1308 /* ArtistesCollectionViewController.swift */,
+				9BD2995F1C826FB2000D1308 /* Artistes.storyboard */,
+				9BD299611C8272A5000D1308 /* ArtistesCollectionViewCell.swift */,
+			);
+			name = Artistes;
+			sourceTree = "<group>";
+		};
+		9BE2AD911C8374DC00AE92F5 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9BE2AD921C8374F900AE92F5 /* User.storyboard */,
+				9BE2AD941C8376D100AE92F5 /* UserTableViewCell.swift */,
+				9BE2AD961C83797400AE92F5 /* UserTableViewController.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		9BE2AD981C84FA9700AE92F5 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				9BE2AD991C84FAA700AE92F5 /* Creation.storyboard */,
+				9BE2AD9B1C86294A00AE92F5 /* CreationViewController.swift */,
+				9BC2C5D01C8B8F12005F62D9 /* CommentTableViewCell.swift */,
+			);
+			name = Creation;
 			sourceTree = "<group>";
 		};
 		DB2BB3411ABAE280003B066B /* storyboard and xibs */ = {
@@ -573,6 +675,7 @@
 				00A8E497A1C2D85966DE48EA /* Copy Pods Resources */,
 				9B6865021BF7E2C900D3D6F6 /* Embed Watch Content */,
 				1EA5CD1B1BFFB1A4004DA763 /* ShellScript */,
+				9BD299571C80AB58000D1308 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -684,13 +787,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD299601C826FB2000D1308 /* Artistes.storyboard in Resources */,
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
+				9B2E36D61C9F4E5E000B8EF5 /* GoogleService-Info.plist in Resources */,
 				9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */,
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				1E25E7DB1C8770D000C499D6 /* Player.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
-				9B327FFA1B9C778E00AAD347 /* profile.storyboard in Resources */,
-				1EB274C21C598A22008FDFA4 /* cell.xib in Resources */,
+				9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */,
+				9B6940611C8CC8440039F826 /* Info.plist in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				9B267BEF1C55990B00A73CC5 /* HeaderProfileView.xib in Resources */,
 				1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */,
@@ -700,6 +805,7 @@
 				1EB274CB1C598A22008FDFA4 /* header.xib in Resources */,
 				1EB274C61C598A22008FDFA4 /* Composition.storyboard in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
+				9BE2AD9A1C84FAA700AE92F5 /* Creation.storyboard in Resources */,
 				9BBE7FA21C7CAAE500B56E51 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,21 +927,27 @@
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
 				1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */,
 				9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */,
+				9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */,
 				1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */,
 				9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
+				9B2F659B1C946502004BB575 /* myUser.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
 				1E25E7DF1C87817800C499D6 /* SliderIntent.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,
+				9BE2AD971C83797400AE92F5 /* UserTableViewController.swift in Sources */,
 				DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */,
 				9BD33E031C0124E800802BE3 /* Reach.swift in Sources */,
 				52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */,
+				9BD299591C82530A000D1308 /* LoginViewController.swift in Sources */,
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
 				1E282F1F1C238762004B2084 /* AudioEngineManager.swift in Sources */,
+				9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */,
+				9BD2995E1C826F5B000D1308 /* ArtistesCollectionViewController.swift in Sources */,
 				1EB274CF1C598A22008FDFA4 /* horizontalTVDataSource.swift in Sources */,
 				1EB274DC1C598A22008FDFA4 /* trackItem.swift in Sources */,
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
@@ -849,10 +961,15 @@
 				9BBE7FA81C7CAED200B56E51 /* Creation.swift in Sources */,
 				1EB274CD1C598A22008FDFA4 /* HorizontalTableView.swift in Sources */,
 				1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */,
+				9BD2995B1C826C08000D1308 /* RegisterViewController.swift in Sources */,
 				1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */,
 				1EB274CA1C598A22008FDFA4 /* DataMgr.swift in Sources */,
 				52C61DCA1A7A4CB600B3DE23 /* AudioSession.swift in Sources */,
 				AAAB8BBC3042710CCD6570D2 /* MIDIPlayer.swift in Sources */,
+				9BC2C5D31C8B921C005F62D9 /* Comment.swift in Sources */,
+				9BE2AD9C1C86294A00AE92F5 /* CreationViewController.swift in Sources */,
+				9BC2C5D11C8B8F12005F62D9 /* CommentTableViewCell.swift in Sources */,
+				9BD299621C8272A5000D1308 /* ArtistesCollectionViewCell.swift in Sources */,
 				AAAB818CC8C756C62A442C6C /* AudioSequencerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1016,7 +1133,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1034,7 +1155,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

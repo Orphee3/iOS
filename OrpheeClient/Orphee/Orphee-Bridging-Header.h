@@ -3,7 +3,9 @@
 //
 
 #import "PresetLoader.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <UIKit/UIGestureRecognizerSubclass.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Google/SignIn.h>
 
-#import "RDRGrowingTextView.h"
+#import <UIKit/UIGestureRecognizerSubclass.h>

@@ -9,7 +9,7 @@
 import Foundation
 import Decodable
 
-struct Creation {
+struct Creation{
     let name: String
     let id: String
     let nbLikes: Int

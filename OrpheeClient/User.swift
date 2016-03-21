@@ -9,11 +9,12 @@
 import Foundation
 import Decodable
 
-struct User {
+struct User{
     let name: String
     let id: String
     let picture: String?
-    let token: String?
+    var token: String?
+    var username: String?
 }
 
 extension User: Decodable {
@@ -22,7 +23,8 @@ extension User: Decodable {
             name:         j => "name",
             id:           j => "_id",
             picture:      j =>? "picture",
-            token:        j =>? "token"
+            token:        j =>? "token",
+            username:     j =>? "username"
         )
     }
 }
