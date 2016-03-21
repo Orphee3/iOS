@@ -14,7 +14,7 @@ import FileManagement
 */
 class CreationsListVC : UITableViewController {
     var creations: [String]!
-    var mainVC: CompositionVC!;
+    var mainVC: pCreationListActor!;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class CreationsListVC : UITableViewController {
         super.viewWillAppear(animated)
         creations = try! PathManager.listFiles(kOrpheeFile_store, fileExtension: kOrpheeFile_extension);
     }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -39,7 +40,7 @@ class CreationsListVC : UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        mainVC.importFile(creations[indexPath.row]);
+        mainVC.actOnSelectedCreation(creations[indexPath.row])
         self.navigationController!.popViewControllerAnimated(true);
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7qf-bM-t08">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7qf-bM-t08">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -104,33 +104,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcW-qw-USM" userLabel="global actions">
-                                <rect key="frame" x="4" y="64" width="592" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="3Kx-Y0-rpD"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem systemItem="trash" id="HjR-mC-aDj">
-                                        <connections>
-                                            <action selector="cleanAll:" destination="gSN-K2-8lC" id="2xp-9a-DxP"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="dzO-q7-eE3"/>
-                                    <barButtonItem title="Item" style="plain" id="NFd-de-AjP"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Plp-jf-3qo"/>
-                                    <barButtonItem systemItem="play" id="7CD-RZ-PYd">
-                                        <connections>
-                                            <action selector="playButtonTouched:" destination="F7I-Il-7Zs" id="sGI-pt-Mx7"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XjJ-sZ-80u"/>
-                                    <barButtonItem systemItem="action" id="jFf-BL-Epl">
-                                        <connections>
-                                            <action selector="actionButtonTouched:" destination="F7I-Il-7Zs" id="1GD-Gf-U0b"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqI-kJ-41F">
                                 <rect key="frame" x="556" y="99" width="40" height="422"/>
                                 <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -278,6 +251,33 @@
                                     <outletCollection property="gestureRecognizers" destination="8JW-LK-PlT" appends="YES" id="Hnf-4z-fz1"/>
                                 </connections>
                             </tableView>
+                            <toolbar clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcW-qw-USM" userLabel="global actions">
+                                <rect key="frame" x="4" y="64" width="592" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="3Kx-Y0-rpD"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="HjR-mC-aDj">
+                                        <connections>
+                                            <action selector="cleanAll:" destination="gSN-K2-8lC" id="2xp-9a-DxP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="dzO-q7-eE3"/>
+                                    <barButtonItem title="Item" style="plain" id="NFd-de-AjP"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Plp-jf-3qo"/>
+                                    <barButtonItem systemItem="play" id="7CD-RZ-PYd">
+                                        <connections>
+                                            <action selector="playButtonTouched:" destination="F7I-Il-7Zs" id="sGI-pt-Mx7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XjJ-sZ-80u"/>
+                                    <barButtonItem systemItem="action" id="jFf-BL-Epl">
+                                        <connections>
+                                            <action selector="actionButtonTouched:" destination="F7I-Il-7Zs" id="1GD-Gf-U0b"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -370,7 +370,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="3x0-r0-poF" kind="relationship" relationship="rootViewController" id="Mca-3O-pMq"/>
+                        <segue destination="3x0-r0-poF" kind="relationship" relationship="rootViewController" id="h72-Gf-K4p"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygW-Av-0iq" userLabel="First Responder" sceneMemberID="firstResponder"/>

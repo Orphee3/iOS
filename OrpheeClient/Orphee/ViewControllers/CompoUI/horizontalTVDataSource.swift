@@ -65,6 +65,7 @@ class horizontalCVDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "head", forIndexPath: indexPath) as! defaultHeader
         cell.noteLbl.text = notes[self.dataMgr.noteForLine(lineID) % 12]
+        print(lineID, cell.noteLbl.text)
         cell.octaveLbl.text = " \(lineID / 12 - 1)"
         cell.backgroundColor = UIColor.lightGrayColor()
         return cell

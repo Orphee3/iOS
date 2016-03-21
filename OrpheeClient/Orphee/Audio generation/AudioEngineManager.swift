@@ -59,7 +59,7 @@ public class AudioEngineManager {
 
     public func setInstrument(program: UInt8 = 1, soundBank bank: String, type: eSampleType, forSampler smplr: AVAudioUnitSampler) -> Bool {
         do {
-            let bankURL = NSURL(fileURLWithPath: bank)
+            let bankURL: NSURL = NSURL(fileURLWithPath: bank)
             try smplr.loadSoundBankInstrumentAtURL(bankURL, program: program, bankMSB: type.bankMSB, bankLSB: type.bankLSB)
         } catch {
             debugPrint(error);
@@ -69,22 +69,32 @@ public class AudioEngineManager {
     }
 
     public func setInstruments(programs: [UInt8], soundBank bank: String, type: eSampleType) throws {
+        var it = 0
         for program in programs {
             let sampler = addSampler()
             guard setInstrument(program, soundBank: bank, type: type, forSampler: sampler) else {
                 throw eAudioEngineManagerError.SetInstrumentFailure(soundbank: bank, program: program, type: type, sampler: sampler)
             }
+            print("iteration #\(it)")
+            ++it
         }
     }
 
     public func cleanEngine() {
+        engine.stop()
         for sampler in samplers {
+            engine.disconnectNodeInput(sampler)
+            engine.disconnectNodeOutput(sampler)
             engine.detachNode(sampler)
+            sampler.reset()
+            sampler.AUAudioUnit.deallocateRenderResources()
         }
+        engine.reset()
         samplers.removeAll()
     }
 
     deinit {
+        print("cleaning")
         cleanEngine()
     }
 }

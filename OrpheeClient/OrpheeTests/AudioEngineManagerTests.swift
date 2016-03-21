@@ -51,7 +51,7 @@ class AudioEngineManagerTests: XCTestCase {
         XCTAssertTrue(engine.setInstrument(soundBank: soundbankPath, type: .Melodic, forSampler: smp))
     }
 
-    func testAudioGeneration() {
+    func AudioGeneration() {
         let seq: AVAudioSequencer = AVAudioSequencer(audioEngine: engine.engine)
 
         XCTAssertDoesNotThrow(try seq.loadFromURL(NSURL(fileURLWithPath: bundle.pathForResource("xtreme", ofType: "mid")!), options: .SMF_PreserveTracks))

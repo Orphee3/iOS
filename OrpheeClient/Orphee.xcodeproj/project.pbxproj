@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0EDCFF1C06C47300F343CB /* eCreationRouter.swift */; };
+		1E25E7D81C876F9B00C499D6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25E7D61C876F9B00C499D6 /* PlayerViewController.swift */; };
+		1E25E7DB1C8770D000C499D6 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E25E7DA1C8770D000C499D6 /* Player.storyboard */; };
+		1E25E7DD1C877AA700C499D6 /* PlayPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25E7DC1C877AA700C499D6 /* PlayPauseIntent.swift */; };
+		1E25E7DF1C87817800C499D6 /* SliderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25E7DE1C87817800C499D6 /* SliderIntent.swift */; };
+		1E25E7E11C87906100C499D6 /* TimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25E7E01C87906100C499D6 /* TimerIntent.swift */; };
 		1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB819AE58CDFE2034C2A2A /* pAudioPlayer.swift */; };
 		1E282F1F1C238762004B2084 /* AudioEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F1E1C238762004B2084 /* AudioEngineManager.swift */; };
 		1E282F211C238FB2004B2084 /* AudioEngineManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F201C238FB2004B2084 /* AudioEngineManagerTests.swift */; };
@@ -17,6 +22,7 @@
 		1E282F7A1C243CE8004B2084 /* MIDIPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F791C243CE8004B2084 /* MIDIPlayerTests.swift */; };
 		1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E282F7B1C2459CA004B2084 /* TempoVC.swift */; };
 		1E5924F31C24D713002E8A6B /* Tools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5924F21C24D713002E8A6B /* Tools.framework */; };
+		1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E638F1A1C8B517600B161BE /* pCreationListActor.swift */; };
 		1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */; };
 		1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
@@ -136,6 +142,11 @@
 /* Begin PBXFileReference section */
 		1678DBE59EAC60ABDF27D624 /* Pods-Orphee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphee.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Orphee/Pods-Orphee.debug.xcconfig"; sourceTree = "<group>"; };
 		1E0EDCFF1C06C47300F343CB /* eCreationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eCreationRouter.swift; sourceTree = "<group>"; };
+		1E25E7D61C876F9B00C499D6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		1E25E7DA1C8770D000C499D6 /* Player.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
+		1E25E7DC1C877AA700C499D6 /* PlayPauseIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseIntent.swift; sourceTree = "<group>"; };
+		1E25E7DE1C87817800C499D6 /* SliderIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderIntent.swift; sourceTree = "<group>"; };
+		1E25E7E01C87906100C499D6 /* TimerIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerIntent.swift; sourceTree = "<group>"; };
 		1E282F1E1C238762004B2084 /* AudioEngineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEngineManager.swift; sourceTree = "<group>"; };
 		1E282F201C238FB2004B2084 /* AudioEngineManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEngineManagerTests.swift; sourceTree = "<group>"; };
 		1E282F751C239AD8004B2084 /* xXCTestThrowingAssert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = xXCTestThrowingAssert.swift; path = ../../FileManagement/FileManagementTests/xXCTestThrowingAssert.swift; sourceTree = "<group>"; };
@@ -143,6 +154,7 @@
 		1E282F7B1C2459CA004B2084 /* TempoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoVC.swift; sourceTree = "<group>"; };
 		1E5924F21C24D713002E8A6B /* Tools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tools.framework; path = "../Tools/build/Debug-iphoneos/Tools.framework"; sourceTree = "<group>"; };
 		1E6300851BFCCB2A009F4478 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Composition.storyboard; path = Orphee/Views/Composition.storyboard; sourceTree = SOURCE_ROOT; };
+		1E638F1A1C8B517600B161BE /* pCreationListActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pCreationListActor.swift; sourceTree = "<group>"; };
 		1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalActionsIntents.swift; sourceTree = "<group>"; };
 		1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrollableToolbar.swift; sourceTree = "<group>"; };
 		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Dont_Cry.mid; sourceTree = "<group>"; };
@@ -268,6 +280,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E25E7D51C876EFE00C499D6 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				1E25E7DC1C877AA700C499D6 /* PlayPauseIntent.swift */,
+				1E25E7D61C876F9B00C499D6 /* PlayerViewController.swift */,
+				1E25E7DA1C8770D000C499D6 /* Player.storyboard */,
+				1E25E7DE1C87817800C499D6 /* SliderIntent.swift */,
+				1E25E7E01C87906100C499D6 /* TimerIntent.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		1E8DA7011BD83E98003C07B8 /* Test resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +378,7 @@
 				9B88F6131C7D1226001A77AD /* Profile */,
 				9B88F6101C7D11D9001A77AD /* Login/Register */,
 				9BBE7FA01C7CAAC000B56E51 /* Home */,
+				1E25E7D51C876EFE00C499D6 /* Player */,
 				9BD186F01B874505004A892D /* TabBarViewController.swift */,
 				9B327FF41B9B85B900AAD347 /* Settings */,
 				9B327FF21B9B855A00AAD347 /* Composition */,
@@ -392,6 +417,7 @@
 		52C61D971A79E5C400B3DE23 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1E638F1A1C8B517600B161BE /* pCreationListActor.swift */,
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
 				DB3A9EAC1AA996ED000660F4 /* Audio generation */,
 				DB3A9EAB1AA99650000660F4 /* Preset management */,
@@ -661,6 +687,7 @@
 				DB2BB3421ABAE355003B066B /* Main.storyboard in Resources */,
 				9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */,
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
+				1E25E7DB1C8770D000C499D6 /* Player.storyboard in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				9B327FFA1B9C778E00AAD347 /* profile.storyboard in Resources */,
 				1EB274C21C598A22008FDFA4 /* cell.xib in Resources */,
@@ -785,6 +812,7 @@
 				1EB274DD1C598A22008FDFA4 /* trackItemView.swift in Sources */,
 				1EB274C41C598A22008FDFA4 /* compoGridOpsIntent.swift in Sources */,
 				1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */,
+				1E25E7DD1C877AA700C499D6 /* PlayPauseIntent.swift in Sources */,
 				1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */,
 				9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */,
 				1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */,
@@ -793,10 +821,12 @@
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
 				1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */,
 				9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */,
+				1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */,
 				9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
+				1E25E7DF1C87817800C499D6 /* SliderIntent.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,
 				DB3A01001B495CA5007F27FF /* BlockArrayList.swift in Sources */,
 				9BD33E031C0124E800802BE3 /* Reach.swift in Sources */,
@@ -810,7 +840,9 @@
 				1EB274DC1C598A22008FDFA4 /* trackItem.swift in Sources */,
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
+				1E25E7D81C876F9B00C499D6 /* PlayerViewController.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
+				1E25E7E11C87906100C499D6 /* TimerIntent.swift in Sources */,
 				9BBE7FA61C7CAE2C00B56E51 /* User.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
