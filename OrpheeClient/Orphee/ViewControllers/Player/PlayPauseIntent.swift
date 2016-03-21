@@ -16,6 +16,10 @@ class PlayPauseIntent: NSObject {
 
     var testTimer: NSTimer?
 
+    let pauseImage = UIImage(named: "player/pause")!
+    let playImage = UIImage(named: "player/play")!
+    let defaultColor = UIColor(r: 0x33, g: 0x33, b: 0x33, alpha: 1)
+
     var isPlaying: Bool {
         if let pl = playerController.player where pl.isPlaying {
             return true
@@ -23,18 +27,27 @@ class PlayPauseIntent: NSObject {
         return false
     }
 
-    var buttonTitle: String {
-        if isPlaying { return "Pause" }
-        else { return "Play" }
+    var buttonTitle: UIImage {
+        if isPlaying { return  pauseImage}
+        else { return playImage }
+    }
+
+    @IBAction func pressPlayStarted(sender: UIButton) {
+        playButton?.imageView?.tintColor = UIColor.randomColor()
     }
 
     @IBAction func pressPlay(sender: UIButton) {
         timerIntent.timer?.invalidate()
 
         self.playerController.playPause()
-        self.playButton?.setTitle(buttonTitle, forState: .Normal)
+        self.playButton?.setImage(self.buttonTitle, forState: .Normal)
         if self.isPlaying {
             self.timerIntent.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: playerController, selector: Selector("updateElapsedTime"), userInfo: nil, repeats: true)
         }
+        playButton?.imageView?.tintColor = defaultColor
+    }
+
+    @IBAction func delPlayer() {
+        self.playerController.player = nil
     }
 }

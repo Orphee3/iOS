@@ -10,6 +10,9 @@ import UIKit
 
 extension UINavigationController {
     public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        if let _ = self.visibleViewController as? UIAlertController {
+            return .AllButUpsideDown
+        }
         return (self.visibleViewController?.supportedInterfaceOrientations() ?? .AllButUpsideDown)
     }
 

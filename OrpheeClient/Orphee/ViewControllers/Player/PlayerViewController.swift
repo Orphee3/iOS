@@ -17,6 +17,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
     var session: AudioSession = AudioSession();
 
     @IBOutlet weak var trackTitle: UIBarButtonItem!
+    @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var durationLbl: UILabel!
     @IBOutlet weak var elapsedTimeLbl: UILabel!
 
@@ -26,6 +27,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBarHidden = true
         setupAudio()
     }
 
@@ -33,7 +35,11 @@ class PlayerViewController: UIViewController, pCreationListActor {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    override func viewDidDisappear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+        super.viewDidDisappear(animated)
+    }
 
     // MARK: - Navigation
 
@@ -46,7 +52,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
     }
 
     func setupAudio() {
-        self.session.setupSession(&audioIO);
+//        self.session.setupSession(&audioIO);
         self.audioIO.createAudioGraph();
         self.audioIO.configureAudioGraph();
         self.audioIO.startAudioGraph();
@@ -59,6 +65,10 @@ class PlayerViewController: UIViewController, pCreationListActor {
         else if let pl = player {
             pl.play()
         }
+        else {
+            actOnSelectedCreation("EIP2.mid")
+            self.player!.play()
+        }
         updateElapsedTime()
     }
 
@@ -68,14 +78,27 @@ class PlayerViewController: UIViewController, pCreationListActor {
 
         player = try! MIDIPlayer(path: path)
         player?.setupAudioGraph()
-        trackTitle.title = creation
-        durationLbl.text = self.player?.formatTime(self.player!.duration)
-        sliderIntent.updateMaxValue(Float(player!.duration))
+        updateTimeUI()
+        updateTrackUI(creation)
     }
 
     func updateElapsedTime() {
-        let currentTime = player!.currentTime
-        elapsedTimeLbl?.text = player?.formatTime(currentTime)
+        let currentTime = player?.currentTime ?? 0
+        elapsedTimeLbl?.text = MIDIPlayer.formatTime(currentTime)
         sliderIntent.updateCurrentValue(Float(currentTime))
+    }
+
+    func updateTrackUI(name: String) {
+//        trackTitle.title = name
+        trackImage.image = getImageForTrack(name)
+    }
+
+    func getImageForTrack(name: String) -> UIImage {
+        return UIImage(named: name) ?? UIImage(named: "emptyfunprofile")!
+    }
+
+    func updateTimeUI() {
+        durationLbl.text = MIDIPlayer.formatTime(self.player!.duration)
+        sliderIntent.updateMaxValue(Float(player!.duration))
     }
 }

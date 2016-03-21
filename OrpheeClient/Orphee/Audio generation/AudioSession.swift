@@ -32,6 +32,27 @@ class AudioSession {
             return false;
         }
         do {
+            try session.setMode(AVAudioSessionModeDefault);
+        }
+        catch (let err) {
+            print("ERROR: \(err)");
+            return false;
+        }
+        do {
+            try session.setPreferredInputNumberOfChannels(session.maximumInputNumberOfChannels)
+        }
+        catch (let err) {
+            print("ERROR: \(err)");
+            return false;
+        }
+        do {
+            try session.setPreferredOutputNumberOfChannels(session.maximumOutputNumberOfChannels)
+        }
+        catch (let err) {
+            print("ERROR: \(err)");
+            return false;
+        }
+        do {
             try session.setPreferredSampleRate(graph.sampleRate);
         }
         catch (let err) {

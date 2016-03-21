@@ -23,5 +23,5 @@ protocol pMediaPlayerTimeManager {
     var duration: NSTimeInterval { get }
     var currentTime: NSTimeInterval { get set }
 
-    func formatTime(time: NSTimeInterval) -> String
+    static func formatTime(time: NSTimeInterval) -> String
 }

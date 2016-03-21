@@ -32,17 +32,6 @@ class globalActionsIntents: NSObject {
     
     
     @IBAction func actionButtonTouched(sender: AnyObject) {
-        let optionMenu = UIAlertController(title: nil, message: "Choisissez une option", preferredStyle: .ActionSheet)
-        
-        let importAction = UIAlertAction(title: "Importer", style: .Default, handler: self.VC.importAction);
-        let tempoAction = UIAlertAction(title: "Choisir le tempo", style: .Default, handler: self.VC.tempoAction);
-        let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.VC.saveAction)
-        let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.VC.cancelAction)
-        
-        optionMenu.addAction(tempoAction)
-        optionMenu.addAction(importAction)
-        optionMenu.addAction(saveAction)
-        optionMenu.addAction(cancelAction)
-        self.VC.presentViewController(optionMenu, animated: true, completion: nil)
+        self.VC.presentActions()
     }
 }

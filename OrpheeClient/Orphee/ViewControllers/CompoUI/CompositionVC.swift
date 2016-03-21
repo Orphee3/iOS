@@ -49,7 +49,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     var saveAction: AlertAction!
     var cancelAction: AlertAction!
 
-    let supportedOrientations: UIInterfaceOrientationMask = [.Landscape]
+//    let supportedOrientations: UIInterfaceOrientationMask = [.Landscape]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,10 +81,6 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         self.tableView.reloadData()
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         navigationController?.navigationBarHidden = false
@@ -105,9 +101,8 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     }
 
     override func viewWillLayoutSubviews() {
-        self.trackBarOps.updateLayout()
-
         super.viewWillLayoutSubviews()
+        self.trackBarOps.updateLayout()
     }
 
 
@@ -187,7 +182,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
 
     func actOnSelectedCreation(creation: String) {
 
-        print(creation)
+        fileForSegue = creation
     }
 
     func makeActions() {
@@ -213,5 +208,20 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
 
             print("Cancelled")
         };
+    }
+
+    func presentActions() {
+        let optionMenu = UIAlertController(title: nil, message: "Choisissez une option", preferredStyle: .ActionSheet)
+
+        let importAction = UIAlertAction(title: "Importer", style: .Default, handler: self.importAction);
+        let tempoAction = UIAlertAction(title: "Choisir le tempo", style: .Default, handler: self.tempoAction);
+        let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.saveAction)
+        let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.cancelAction)
+
+        optionMenu.addAction(tempoAction)
+        optionMenu.addAction(importAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        self.presentViewController(optionMenu, animated: true, completion: nil)
     }
 }

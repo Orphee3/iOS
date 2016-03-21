@@ -14,4 +14,11 @@ public extension UIColor {
 
         return UIColor(red: CGFloat.rand0_1CGFloat(), green: CGFloat.rand0_1CGFloat(), blue: CGFloat.rand0_1CGFloat(), alpha: 1)
     }
+
+    public convenience init(r: Int, g: Int, b: Int, alpha: CGFloat) {
+//        let red = CGFloat(r) / 255
+//        let green = CGFloat(g) / 255
+//        let blue = CGFloat(b) / 255
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: alpha)
+    }
 }
