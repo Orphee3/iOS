@@ -67,7 +67,7 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
         let infos   = content?[eOrpheeFileContent.TracksInfos.rawValue]
         if let infos = infos as? [[String : Any]] where infos.count > 0 {
 
-//            self.engine.engine.stop()
+            self.engine.engine.stop()
             let patchs: [UInt8] = infos.filter {
                     $0[eOrpheeFileContent.PatchID.rawValue] != nil
                 }.map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
