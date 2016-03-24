@@ -62,8 +62,8 @@ class OrpheeApi {
                     do {
                         var monUser = try myUser.decode(user)
                         monUser.token = result["token"] as? String
-                        var test = mySuperUser(name: monUser.name, id: monUser.id, picture: monUser.picture, token: monUser.token, username: monUser.username, likes: monUser.likes)
-                        self.saveUser(test!)
+                        let user = mySuperUser(name: monUser.name, id: monUser.id, picture: monUser.picture, token: monUser.token, username: monUser.username, likes: monUser.likes)
+                        self.saveUser(user!)
                     } catch let error {
                         print(error)
                     }
@@ -457,13 +457,6 @@ class OrpheeApi {
         
         cache.fetch(URL: URL).onSuccess { JSON in
             completion(cachedArray: JSON)
-        }
-    }
-    
-    func saveUser(user: mySuperUser){
-        let isSaved = NSKeyedArchiver.archiveRootObject(user, toFile: mySuperUser.ArchiveURL.path!)
-        if (isSaved){
-            print("save OK")
         }
     }
 }

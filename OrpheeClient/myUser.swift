@@ -71,6 +71,13 @@ func userExists() -> Bool{
     return false
 }
 
+func saveUser(user: mySuperUser){
+    let isSaved = NSKeyedArchiver.archiveRootObject(user, toFile: mySuperUser.ArchiveURL.path!)
+    if (isSaved){
+        print("save OK")
+    }
+}
+
 extension myUser: Decodable {
     static func decode(j: AnyObject) throws -> myUser {
         return try myUser(

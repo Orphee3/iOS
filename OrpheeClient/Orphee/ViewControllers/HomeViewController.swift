@@ -13,13 +13,13 @@ import Locksmith
 
 class HomeViewController: UITableViewController{
     var arrayCreations: [Creation] = []
-    var MyUser: myUser!
+    var MyUser: mySuperUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMyUser { (response) in
-            self.MyUser = response
-            print(self.MyUser.likes)
+        if (userExists()){
+            MyUser = getMySuperUser()
+            print(MyUser.name)
         }
         OrpheeApi().getPopularCreations(0, size: 50) { (creations) -> () in
             self.arrayCreations = creations
@@ -43,12 +43,12 @@ class HomeViewController: UITableViewController{
             cell.fillCell(arrayCreations[indexPath.row])
             if ((MyUser) != nil){
                 if !MyUser.likes.isEmpty{
-                    let i = checkIfLikeExists(arrayCreations[indexPath.row].id, likes: MyUser.likes)
-                    if (i == 0){
-                        cell.likeButton.setImage(UIImage(named: "heart"), forState: .Normal)
-                    }
-                    else{
-                        cell.likeButton.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                    for (var i = 0; i < MyUser.likes.count; i += 1){
+                        if (arrayCreations[indexPath.row].id == MyUser.likes[i]){
+                            cell.likeButton.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                        }else{
+                            cell.likeButton.setImage(UIImage(named: "heart"), forState: .Normal)
+                        }
                     }
                 }
             }
@@ -73,10 +73,10 @@ class HomeViewController: UITableViewController{
                 if (response as! String == "disliked"){
                     sender.setImage(UIImage(named: "heart"), forState: .Normal)
                 }
-                updateMyUser(self.arrayCreations[sender.tag].id, completion: { (response) in
-                    print(response)
-                    self.MyUser = response
-                })
+                self.MyUser.likes.append(self.arrayCreations[sender.tag].id)
+                
+                //#warning CHEKC TOUT LE LIKE
+                saveUser(self.MyUser)
             })
         }else{
             callPopUp()
