@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GIDSignIn.sharedInstance().clientID = "1091784243585-a16tac0tegj6vh5mibln1s3m1qjia72a.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
-        let vc: CompositionVC? = storybd?.instantiateInitialViewController() as? ViewController;
+        let vc: CompositionVC? = storybd?.instantiateInitialViewController() as? CompositionVC;
         if let _ = vc {
             self.window?.rootViewController = vc!;
             self.window?.makeKeyAndVisible();
