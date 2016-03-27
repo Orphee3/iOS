@@ -50,6 +50,7 @@ class HomeViewController: UITableViewController{
                     for i in 0 ..< MyUser.likes.count{
                         if (arrayCreations[indexPath.row].id == MyUser.likes[i]){
                             cell.likeButton.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                            break
                         }else{
                             cell.likeButton.setImage(UIImage(named: "heart"), forState: .Normal)
                         }
