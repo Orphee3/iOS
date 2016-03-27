@@ -163,22 +163,19 @@ class OrpheeApi {
     }
     
     
-    func getPopularCreations(offset: Int, size: Int, completion:(creations: [Creation]) -> ()){
+    func getPopularCreations(offset: Int, size: Int, completion:(creations: [AnyObject]) -> ()){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
-        var arrayCreation: [Creation] = []
         Alamofire.request(.GET, url).responseJSON{request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(creations: cachedArray.array)
+                })
+            }
             if (response?.statusCode == 200){
-                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                    for elem in array{
-                        do {
-                            let creation = try Creation.decode(elem)
-                            arrayCreation.append(creation)
-                        } catch let error {
-                            print(error)
-                            completion(creations: arrayCreation)
-                        }
-                    }
-                    completion(creations: arrayCreation)
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(creations: cachedArray.array)
+                    })
                 }
             }
         }
@@ -196,15 +193,12 @@ class OrpheeApi {
         ]
         Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
             print(json.value)
+            print(response)
             if (response?.statusCode == 200){
-                print("comment ok")
                 print(json.value)
-                //                let commentToAdd = Comment(Comment: message,
-                //                    user: name, picture: picture)
-                //                completion(response: commentToAdd)
+                completion(response: json.value!)
             }
         }
-        
     }
     
     
@@ -215,10 +209,12 @@ class OrpheeApi {
                     completion(response: cachedArray.array)
                 })
             }
-            if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
-                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
-                    completion(response: cachedArray.array)
-                })
+            if (response?.statusCode == 200){
+                if let comments = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(response: cachedArray.array)
+                    })
+                }
             }
         }
     }
@@ -226,7 +222,6 @@ class OrpheeApi {
     
     func getInfoUserById(id: String, completion:(infoUser: [AnyObject]) -> ()){
         Alamofire.request(.GET, "\(url)/user/\(id)/creation").responseJSON{request, response, json in
-            print("GET INFO USER BY ID : \(json.value)")
             if (response == nil){
                 self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
                     completion(infoUser: cachedArray.array)

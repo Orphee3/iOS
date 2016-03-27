@@ -63,9 +63,9 @@ class UserTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as? UserTableViewCell{
             cell.fillCell(arrayCreations[indexPath.row])
-            cell.likeButton.addTarget(self, action: "likeButtonTapped:", forControlEvents: .TouchUpInside)
-            cell.commentButton.addTarget(self, action: "commentButtonTapped:", forControlEvents: .TouchUpInside)
-            cell.createButton.addTarget(self, action: "createButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.likeButton.addTarget(self, action: #selector(UserTableViewController.likeButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            cell.commentButton.addTarget(self, action: #selector(UserTableViewController.commentButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            cell.createButton.addTarget(self, action: #selector(UserTableViewController.createButtonTapped(_:)), forControlEvents: .TouchUpInside)
             return cell
         }
         return UITableViewCell()

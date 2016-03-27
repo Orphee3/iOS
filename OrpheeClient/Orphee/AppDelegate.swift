@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 withError error: NSError!) {
         if (error == nil) {
             OrpheeApi().loginByGoogle(user.profile.name, email: user.profile.email, id: user.userID, picture: user.profile.imageURLWithDimension(200).URLString, completion: { (response) in
-                print(response)
+                print("google ok")
             })
         } else {
             print("\(error.localizedDescription)")
@@ -96,7 +96,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if (isSaved){
             print("token save OK")
         }
-        print("DEVICE TOKEN = \(deviceToken)")
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

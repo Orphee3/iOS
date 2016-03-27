@@ -17,6 +17,7 @@ struct Creation{
     let url: String
     let isPrivate: Bool
     let creator: [User]
+    let dateCreation: String
 }
 
 extension Creation: Decodable {
@@ -28,7 +29,8 @@ extension Creation: Decodable {
             nbComments:     j => "nbComments",
             url:            j => "url",
             isPrivate:      j => "isPrivate",
-            creator:        j => "creator"
+            creator:        j => "creator",
+            dateCreation:   j => "dateCreation"
         )
     }
 }

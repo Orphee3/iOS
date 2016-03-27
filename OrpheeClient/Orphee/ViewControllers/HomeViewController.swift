@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SCLAlertView
-import Locksmith
 
 class HomeViewController: UITableViewController{
     var arrayCreations: [Creation] = []
@@ -23,10 +22,18 @@ class HomeViewController: UITableViewController{
         super.viewWillAppear(true)
         if (userExists()){
             MyUser = getMySuperUser()
-            print(MyUser.likes)
         }
         OrpheeApi().getPopularCreations(0, size: 50) { (creations) -> () in
-            self.arrayCreations = creations
+            self.arrayCreations = []
+            for elem in creations{
+                do {
+                    let creation = try Creation.decode(elem)
+                    self.arrayCreations.append(creation)
+                } catch let error {
+                    print(error)
+                }
+            }
+            self.arrayCreations = self.arrayCreations.sort({ $0.dateCreation > $1.dateCreation })
             self.tableView.reloadData()
         }
     }
@@ -57,7 +64,6 @@ class HomeViewController: UITableViewController{
                     }
                 }
             }
-            
             cell.likeButton.addTarget(self, action: #selector(HomeViewController.likeButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.likeButton.tag = indexPath.row
             cell.commentButton.addTarget(self, action: #selector(HomeViewController.commentButtonTapped(_:)), forControlEvents: .TouchUpInside)
@@ -101,12 +107,10 @@ class HomeViewController: UITableViewController{
         print("create")
     }
     
-    //PopUp Login
-    
     func callPopUp(){
         let alertView = SCLAlertView()
         alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(HomeViewController.goToRegister))
-        alertView.showSuccess("Button View", subTitle: "This alert view has buttons")
+        alertView.showSuccess("Orphee", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
     
     func goToRegister(){

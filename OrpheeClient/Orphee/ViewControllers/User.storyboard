@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15E64a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tcb-AJ-4dP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tcb-AJ-4dP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,10 +18,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyprofile" translatesAutoresizingMaskIntoConstraints="NO" id="S8e-b7-BZc">
-                                    <rect key="frame" x="248" y="56" width="104" height="104"/>
+                                    <rect key="frame" x="248" y="27" width="104" height="104"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="104" id="cNf-br-yuh"/>
-                                        <constraint firstAttribute="width" constant="104" id="tLl-FD-Y8B"/>
+                                        <constraint firstAttribute="width" constant="104" id="b2W-P9-pRP"/>
+                                        <constraint firstAttribute="height" constant="104" id="kMy-KN-id9"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -30,10 +30,10 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yus-Oe-8cu">
-                                    <rect key="frame" x="156" y="27" width="288" height="21"/>
+                                    <rect key="frame" x="156" y="139" width="288" height="21"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="288" id="1hN-iK-rLO"/>
-                                        <constraint firstAttribute="height" constant="21" id="FAT-RS-Wis"/>
+                                        <constraint firstAttribute="height" constant="21" id="kYK-Rv-FaJ"/>
+                                        <constraint firstAttribute="width" constant="288" id="ybt-uo-9jI"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -42,10 +42,10 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="yus-Oe-8cu" firstAttribute="centerX" secondItem="td8-ng-WTg" secondAttribute="centerX" id="XZ5-qm-qkv"/>
-                                <constraint firstItem="S8e-b7-BZc" firstAttribute="centerX" secondItem="yus-Oe-8cu" secondAttribute="centerX" id="bk4-No-F77"/>
-                                <constraint firstItem="S8e-b7-BZc" firstAttribute="top" secondItem="yus-Oe-8cu" secondAttribute="bottom" constant="8" id="dAA-0u-vTl"/>
-                                <constraint firstItem="yus-Oe-8cu" firstAttribute="top" secondItem="td8-ng-WTg" secondAttribute="top" constant="27" id="qDC-Mh-CKO"/>
+                                <constraint firstItem="yus-Oe-8cu" firstAttribute="centerX" secondItem="S8e-b7-BZc" secondAttribute="centerX" id="8Vx-m6-UOf"/>
+                                <constraint firstItem="S8e-b7-BZc" firstAttribute="top" secondItem="td8-ng-WTg" secondAttribute="top" constant="27" id="Muy-1v-ifQ"/>
+                                <constraint firstItem="yus-Oe-8cu" firstAttribute="top" secondItem="S8e-b7-BZc" secondAttribute="bottom" constant="8" id="nDD-mD-L4Z"/>
+                                <constraint firstItem="S8e-b7-BZc" firstAttribute="centerX" secondItem="td8-ng-WTg" secondAttribute="centerX" id="sSa-KS-wa9"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -125,7 +125,6 @@
                                                 <constraint firstAttribute="width" constant="81" id="A7C-oB-1Wl"/>
                                                 <constraint firstAttribute="height" constant="30" id="gXS-SN-tWD"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bb-uc-rKi">
                                             <rect key="frame" x="225" y="76" width="81" height="30"/>
@@ -133,7 +132,6 @@
                                                 <constraint firstAttribute="height" constant="30" id="IBP-cM-Nbh"/>
                                                 <constraint firstAttribute="width" constant="81" id="WRX-Rp-Y93"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6m-xa-VoO">
                                             <rect key="frame" x="317" y="78" width="57" height="30"/>
@@ -141,7 +139,6 @@
                                                 <constraint firstAttribute="width" constant="57" id="rRW-hA-2s3"/>
                                                 <constraint firstAttribute="height" constant="30" id="vtE-oj-Blx"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
                                         </button>
                                     </subviews>
                                     <constraints>

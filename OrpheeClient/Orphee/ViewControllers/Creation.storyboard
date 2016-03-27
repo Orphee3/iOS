@@ -179,7 +179,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vk7-i7-2It">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vk7-i7-2It">
                                                     <rect key="frame" x="64" y="33" width="528" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,6 +199,7 @@
                                                 <constraint firstItem="vk7-i7-2It" firstAttribute="leading" secondItem="vlH-WR-Png" secondAttribute="trailing" constant="8" id="3WA-Lv-xkN"/>
                                                 <constraint firstAttribute="topMargin" secondItem="YOb-Jf-Vvb" secondAttribute="top" id="3uo-H1-AcU"/>
                                                 <constraint firstItem="vk7-i7-2It" firstAttribute="top" secondItem="YOb-Jf-Vvb" secondAttribute="bottom" constant="4" id="DQI-H2-pEb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vk7-i7-2It" secondAttribute="bottom" id="DVa-Uq-Inl"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="vk7-i7-2It" secondAttribute="trailing" id="FYH-Tn-H8D"/>
                                                 <constraint firstItem="YOb-Jf-Vvb" firstAttribute="leading" secondItem="vlH-WR-Png" secondAttribute="trailing" constant="8" id="Jtk-1o-xIb"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="vlH-WR-Png" secondAttribute="leading" id="SUb-Gg-YPR"/>
@@ -277,10 +278,11 @@
                         <outlet property="imgCreator" destination="6Zr-iW-djb" id="fEZ-Am-ZCy"/>
                         <outlet property="inputContainerView" destination="Eqk-uE-Khm" id="FUa-1Z-rX5"/>
                         <outlet property="inputContainerViewBottom" destination="fCD-pH-dMx" id="Mnw-Nd-PdY"/>
-                        <outlet property="likeButton" destination="iwj-uz-w4n" id="ZVf-od-leV"/>
                         <outlet property="likeImage" destination="j1Y-ur-eQy" id="KaF-OT-dGM"/>
                         <outlet property="nameCreation" destination="DbQ-sm-Pep" id="EGp-vJ-Qb9"/>
                         <outlet property="nameCreator" destination="LuK-cV-UAW" id="nTl-ha-BtK"/>
+                        <outlet property="nbComLabel" destination="E75-LP-aBQ" id="I91-gN-AAp"/>
+                        <outlet property="nbLikeLabel" destination="xBq-3z-mFL" id="0v1-a2-Fy7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PO6-dX-aY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
