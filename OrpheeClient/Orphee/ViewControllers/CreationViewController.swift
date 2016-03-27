@@ -13,8 +13,9 @@ import NextGrowingTextView
 class CreationViewController: UIViewController{
     var creation: Creation!
     var arrayComments: [Comment] = []
-    var MyUser: myUser!
+    var MyUser: mySuperUser!
     
+    @IBOutlet var likeButton: UIButton!
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var inputContainerView: UIView!
     @IBOutlet weak var inputContainerViewBottom: NSLayoutConstraint!
@@ -22,14 +23,18 @@ class CreationViewController: UIViewController{
     @IBOutlet weak var imgCreator: UIImageView!
     @IBOutlet weak var nameCreator: UILabel!
     @IBOutlet var nameCreation: UILabel!
+    @IBOutlet var likeImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMyUser { (response) in
-            self.MyUser = response
+        if (userExists()){
+            MyUser = getMySuperUser()
+            for i in 0 ..< MyUser.likes.count{
+                if (creation.id == MyUser.likes[i]){
+                    likeImage.image = UIImage(named: "heartfill")
+                }
+            }
         }
-        self.commentTableView.rowHeight = 80
-        self.commentTableView.estimatedRowHeight = UITableViewAutomaticDimension
         self.nameCreation.text = creation.name
         if let picture = creation.creator[0].picture{
             imgCreator.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "emptyprofile"))
@@ -38,24 +43,28 @@ class CreationViewController: UIViewController{
         }
         nameCreator.text = creation.creator[0].name
         getComment()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillAppear:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillDisappear:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(CreationViewController.keyboardWillAppear(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(CreationViewController.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.growingTextView.layer.cornerRadius = 4
         self.growingTextView.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        self.commentTableView.rowHeight = 80
+        self.commentTableView.estimatedRowHeight = UITableViewAutomaticDimension
         
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(CreationViewController.refresh(_:)), forControlEvents: .ValueChanged)
         commentTableView.addSubview(refreshControl)
     }
     
     func getComment(){
+        arrayComments = []
         OrpheeApi().getComments(creation.id) { (response) in
             print(response)
             for elem in response{
                 do {
                     let comment = try Comment.decode(elem)
+                    print("ok")
                     self.arrayComments.append(comment)
                 } catch let error {
                     print(error)
@@ -66,8 +75,6 @@ class CreationViewController: UIViewController{
     }
     
     func refresh(refreshControl: UIRefreshControl) {
-        print("refresh")
-        arrayComments = []
         getComment()
         refreshControl.endRefreshing()
     }
@@ -104,18 +111,20 @@ class CreationViewController: UIViewController{
         }
         self.view.endEditing(true)
     }
+    
+    
+    @IBAction func like(sender: AnyObject) {
+        
+    }
 }
 
-extension CreationViewController: UITableViewDelegate, UITableViewDataSource{
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
+extension CreationViewController: UITableViewDelegate, UITableViewDataSource{    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (!arrayComments.isEmpty){
+        if (arrayComments.isEmpty){
+            return 0
+        }else{
             return arrayComments.count
         }
-        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

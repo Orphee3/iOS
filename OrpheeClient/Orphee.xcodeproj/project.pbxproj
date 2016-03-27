@@ -667,6 +667,11 @@
 					52C61D941A79E5C400B3DE23 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 99BX55LUM5;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					52C61DA91A79E5C400B3DE23 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -977,6 +982,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1013,6 +1019,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1034,8 +1041,9 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1056,8 +1064,9 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
 			};
 			name = Release;

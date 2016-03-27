@@ -34,6 +34,7 @@ class OAuthConnectionViewController: UIViewController, UIWebViewDelegate, GIDSig
                     print(result)
                     OrpheeApi().loginByFacebook(result["name"] as! String, email: result["email"] as! String, id: result["id"] as! String, picture: result["picture"]!!["data"]!!["url"] as! String, completion: { (response) in
                         print(response)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 }
             })

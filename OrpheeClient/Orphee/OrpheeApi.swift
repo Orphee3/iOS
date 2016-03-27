@@ -31,8 +31,9 @@ class OrpheeApi {
                 print(json.value)
                 if let result = json.value!["user"]{
                     do {
-                        var user = try User.decode(result)
+                        var user = try mySuperUser.decode(result)
                         user.token = json.value!["token"] as? String
+                        saveUser(user)
                         completion(user: "ok")
                     } catch let error {
                         print(error)
@@ -49,7 +50,8 @@ class OrpheeApi {
             "name":"\(name)",
             "email":"\(email)",
             "id":"\(id)",
-            "picture":"\(picture)"
+            "picture":"\(picture)",
+            "tokenIos":"\(getDeviceToken())"
         ]
         Alamofire.request(.POST, "http://163.5.84.242:3000/cradogoogle", parameters: params, encoding: .JSON).responseJSON { request, response, json in
             print(json.value)
@@ -60,10 +62,9 @@ class OrpheeApi {
                 if let result = json.value{
                     let user = result["user"]
                     do {
-                        var monUser = try myUser.decode(user)
-                        monUser.token = result["token"] as? String
-                        let user = mySuperUser(name: monUser.name, id: monUser.id, picture: monUser.picture, token: monUser.token, username: monUser.username, likes: monUser.likes)
-                        self.saveUser(user!)
+                        let monUser = try mySuperUser.decode(user)
+                        monUser.token = String(result["token"])
+                        saveUser(monUser)
                     } catch let error {
                         print(error)
                     }
@@ -77,7 +78,8 @@ class OrpheeApi {
             "name":"\(name)",
             "email":"\(email)",
             "id":"\(id)",
-            "picture":"\(picture)"
+            "picture":"\(picture)",
+            "tokenIos":"\(getDeviceToken)"
         ]
         Alamofire.request(.POST, "http://163.5.84.242:3000/iosFb", parameters: params, encoding: .JSON).responseJSON { request, response, json in
             print(response)
@@ -89,10 +91,9 @@ class OrpheeApi {
                 if let result = json.value{
                     let user = result["user"]
                     do {
-                        var monUser = try myUser.decode(user)
-                        monUser.token = result["token"] as? String
-                        var test = mySuperUser(name: monUser.name, id: monUser.id, picture: monUser.picture, token: monUser.token, username: monUser.username, likes: monUser.likes)
-                        self.saveUser(test!)
+                        let monUser = try mySuperUser.decode(user)
+                        monUser.token = String(result["token"])
+                        saveUser(monUser)
                     } catch let error {
                         print(error)
                     }
@@ -225,6 +226,7 @@ class OrpheeApi {
     
     func getInfoUserById(id: String, completion:(infoUser: [AnyObject]) -> ()){
         Alamofire.request(.GET, "\(url)/user/\(id)/creation").responseJSON{request, response, json in
+            print("GET INFO USER BY ID : \(json.value)")
             if (response == nil){
                 self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
                     completion(infoUser: cachedArray.array)
@@ -242,7 +244,6 @@ class OrpheeApi {
     
     func getUsers(offset: Int, size: Int, completion:(users: [AnyObject]) ->()){
         Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-            print((request?.URLString)!)
             if (response == nil){
                 self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
                     completion(users: cachedArray.array)
@@ -458,5 +459,11 @@ class OrpheeApi {
         cache.fetch(URL: URL).onSuccess { JSON in
             completion(cachedArray: JSON)
         }
+    }
+    
+    func getDeviceToken() -> NSData{
+        let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tokenNotif")
+        return (NSKeyedUnarchiver.unarchiveObjectWithFile(ArchiveURL.path!) as? NSData)!
     }
 }

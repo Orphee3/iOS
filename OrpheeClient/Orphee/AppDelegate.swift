@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     /// Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        application.registerUserNotificationSettings(pushNotificationSettings)
+        application.registerForRemoteNotifications()
         GIDSignIn.sharedInstance().clientID = "1091784243585-a16tac0tegj6vh5mibln1s3m1qjia72a.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         let vc: ViewController? = storybd?.instantiateInitialViewController() as? ViewController;
@@ -82,6 +86,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     /// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     func applicationWillTerminate(application: UIApplication) {
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tokenNotif")
+
+        let isSaved = NSKeyedArchiver.archiveRootObject(deviceToken, toFile: ArchiveURL.path!)
+        if (isSaved){
+            print("token save OK")
+        }
+        print("DEVICE TOKEN = \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print(error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        application.registerForRemoteNotifications();
     }
 }
 

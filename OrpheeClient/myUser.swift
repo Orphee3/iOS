@@ -10,7 +10,7 @@ import Foundation
 import Decodable
 import Haneke
 
-class mySuperUser: NSObject, NSCoding{
+final class mySuperUser: NSObject, NSCoding{
     var name: String = ""
     var id: String = ""
     var picture: String? = nil
@@ -51,17 +51,22 @@ class mySuperUser: NSObject, NSCoding{
     }
 }
 
-struct myUser{
-    let name: String
-    let id: String
-    let picture: String?
-    var token: String?
-    var username: String?
-    var likes: Array<String>
-}
-
 func getMySuperUser() -> mySuperUser{
     return (NSKeyedUnarchiver.unarchiveObjectWithFile(mySuperUser.ArchiveURL.path!) as? mySuperUser)!
+}
+
+func updateMyUser(id: String){
+    if (OrpheeReachability().isConnected()){
+        OrpheeApi().getInfoUserById(id, completion: { (infoUser) in
+            let user = infoUser as! mySuperUser
+            do {
+                let monUser = try mySuperUser.decode(user)
+                saveUser(monUser)
+            } catch let error {
+                print(error)
+            }
+        })
+    }
 }
 
 func userExists() -> Bool{
@@ -78,69 +83,15 @@ func saveUser(user: mySuperUser){
     }
 }
 
-extension myUser: Decodable {
-    static func decode(j: AnyObject) throws -> myUser {
-        return try myUser(
+extension mySuperUser: Decodable {
+    static func decode(j: AnyObject) throws -> mySuperUser {
+        return try mySuperUser(
             name:         j => "name",
             id:           j => "_id",
             picture:      j =>? "picture",
             token:        j =>? "token",
             username:     j =>? "username",
             likes:        j => "likes"
-        )
+            )!
     }
-}
-
-func getMyUser(completion : (response: myUser) -> ()){
-    if let retrievedDict = NSUserDefaults().dictionaryForKey("myUser") {
-        do {
-            var token: String!
-            var monUser = try myUser.decode(retrievedDict)
-            if let retrievedToken = NSUserDefaults().objectForKey("myToken"){
-                token = retrievedToken as! String
-            }
-            monUser.token = token
-            print("ouioui")
-            completion(response: monUser)
-        } catch let error {
-            print(error)
-        }
-    }
-}
-
-func updateMyUser(like: String, completion : (response: myUser) -> ()){
-    if var retrievedDict = NSUserDefaults().objectForKey("myUser") as? Dictionary<String, AnyObject> {
-        do {
-            var token: String!
-            var likes = retrievedDict["likes"] as! Array<String>
-            let i = checkIfLikeExists(like, likes: likes)
-            if (i == 0){
-                likes.append(like)
-            }
-            else{
-                likes.removeAtIndex(i)
-            }
-            retrievedDict["likes"] = likes
-            NSUserDefaults().setObject(retrievedDict, forKey: "myUser")
-            var monUser = try myUser.decode(retrievedDict)
-            if let retrievedToken = NSUserDefaults().objectForKey("myToken"){
-                token = retrievedToken as! String
-            }
-            monUser.token = token
-            completion(response: monUser)
-        } catch let error {
-            print(error)
-        }
-    }
-}
-
-func checkIfLikeExists(like: String, likes: Array<String>) -> Int{
-    var i = 0
-    for elem in likes{
-        if (elem == like){
-            return i
-        }
-        i += 1
-    }
-    return 0
 }

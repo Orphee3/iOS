@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15E64a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DZQ-Zm-xFZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DZQ-Zm-xFZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -105,6 +105,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="81" id="xd6-Yj-q2Q"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="like:" destination="DZQ-Zm-xFZ" eventType="touchUpInside" id="c2j-WC-XYw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOp-1j-6Uh">
                                 <rect key="frame" x="138" y="129" width="81" height="30"/>
@@ -274,6 +277,8 @@
                         <outlet property="imgCreator" destination="6Zr-iW-djb" id="fEZ-Am-ZCy"/>
                         <outlet property="inputContainerView" destination="Eqk-uE-Khm" id="FUa-1Z-rX5"/>
                         <outlet property="inputContainerViewBottom" destination="fCD-pH-dMx" id="Mnw-Nd-PdY"/>
+                        <outlet property="likeButton" destination="iwj-uz-w4n" id="ZVf-od-leV"/>
+                        <outlet property="likeImage" destination="j1Y-ur-eQy" id="KaF-OT-dGM"/>
                         <outlet property="nameCreation" destination="DbQ-sm-Pep" id="EGp-vJ-Qb9"/>
                         <outlet property="nameCreator" destination="LuK-cV-UAW" id="nTl-ha-BtK"/>
                     </connections>

@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.orphee.ios.orphee</string>
+				<string>com.orphee.ios</string>
 			</array>
 		</dict>
 	</array>
