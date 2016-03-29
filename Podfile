@@ -22,4 +22,5 @@ target :Orphee do
        pod "SwiftDate", "~> 2.0"
        pod "OAuthSwift", "~> 0.5.0"
        pod 'Google/SignIn'
+       pod 'SwiftWebSocket'
 end

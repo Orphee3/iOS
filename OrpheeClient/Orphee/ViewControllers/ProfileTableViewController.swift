@@ -59,6 +59,18 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as? ProfileCellTableViewController{
             cell.fillCell(arrayCreations[indexPath.row])
+            if ((myUser) != nil){
+                if !myUser.likes.isEmpty{
+                    for i in 0 ..< myUser.likes.count{
+                        if (arrayCreations[indexPath.row].id == myUser.likes[i]){
+                            cell.heartImg.image = UIImage(named: "heartfill")
+                            break
+                        }else{
+                            cell.heartImg.image = UIImage(named: "heart")
+                        }
+                    }
+                }
+            }
             cell.likeButton.addTarget(self, action: #selector(ProfileTableViewController.likeButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.likeButton.tag = indexPath.row
             cell.commentButton.addTarget(self, action: #selector(ProfileTableViewController.commentButtonTapped(_:)), forControlEvents: .TouchUpInside)
@@ -128,5 +140,13 @@ class ProfileTableViewController: UITableViewController {
     
     func closePopUp(){
         performSegueWithIdentifier("toHome", sender: nil)
+    }
+    
+    @IBAction func disconnect(sender: AnyObject) {
+        OrpheeApi().disconnect(myUser.id) { (disconnected) in
+            print(disconnected)
+            deleteUser()
+            self.performSegueWithIdentifier("toHome", sender: nil)
+        }
     }
 }

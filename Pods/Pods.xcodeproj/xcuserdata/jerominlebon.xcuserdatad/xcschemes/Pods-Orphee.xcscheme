@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '74903A980674FA650C84333E'
+               BlueprintIdentifier = 'BB62EAD655AFD98488E18511'
                BlueprintName = 'Pods-Orphee'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Orphee.framework'>

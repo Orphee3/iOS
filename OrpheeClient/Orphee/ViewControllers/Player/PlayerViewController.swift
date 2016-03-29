@@ -129,7 +129,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
     func getImageForTrack(name: String) -> UIImage {
         print(name)
         
-        return UIImage(contentsOfFile: NSHomeDirectory() + "/Documents/AlbumArt/" + name) ?? UIImage(named: "emptyfunprofile")!
+        return UIImage(named: "emptyfunprofile")!
     }
     
     func updateTimeUI() {

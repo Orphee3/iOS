@@ -33,31 +33,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLM-Hp-Ndg">
-                                <rect key="frame" x="356" y="390" width="64" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="Gp0-Yp-Kcw"/>
-                                    <constraint firstAttribute="height" constant="30" id="hax-mg-wpX"/>
-                                </constraints>
-                                <state key="normal" title="S'inscrire"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLM-Hp-Ndg">
+                                <rect key="frame" x="268" y="290" width="64" height="30"/>
+                                <state key="normal" title="S'inscrire">
+                                    <color key="titleColor" red="0.40784313725490196" green="0.72941176470588232" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.40784313725490196" green="0.72941176470588232" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="mrr-do-yhg" kind="show" id="YE2-FL-23e"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orpheeLogoRound" translatesAutoresizingMaskIntoConstraints="NO" id="LL5-1y-FG5">
-                                <rect key="frame" x="180" y="116" width="240" height="240"/>
+                                <rect key="frame" x="225" y="76" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Orm-zw-WAG"/>
-                                    <constraint firstAttribute="height" constant="240" id="aAh-gX-e7Q"/>
+                                    <constraint firstAttribute="width" constant="150" id="Orm-zw-WAG"/>
+                                    <constraint firstAttribute="height" constant="150" id="aAh-gX-e7Q"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxF-0E-IxM">
-                                <rect key="frame" x="180" y="390" width="92" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e1-uQ-1Hc" customClass="GIDSignInButton">
+                                <rect key="frame" x="230" y="365" width="140" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="K8S-eC-o2a"/>
-                                    <constraint firstAttribute="width" constant="92" id="tu3-JX-UKh"/>
+                                    <constraint firstAttribute="height" constant="43" id="cpe-tG-rdD"/>
+                                    <constraint firstAttribute="width" constant="140" id="j3X-dw-QpW"/>
                                 </constraints>
-                                <state key="normal" title="Se connecter"/>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxF-0E-IxM">
+                                <rect key="frame" x="254" y="252" width="92" height="30"/>
+                                <state key="normal" title="Se connecter">
+                                    <color key="titleColor" red="0.40784313725490196" green="0.72941176470588232" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.40784313725490196" green="0.72941176470588232" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="FoF-Lj-65Q" kind="show" id="TvK-Y4-Tdi"/>
                                 </connections>
@@ -65,13 +91,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nLM-Hp-Ndg" firstAttribute="centerX" secondItem="uxF-0E-IxM" secondAttribute="centerX" id="5P4-af-rGM"/>
                             <constraint firstItem="LL5-1y-FG5" firstAttribute="centerX" secondItem="wFY-fr-tbn" secondAttribute="centerX" id="UIj-M4-frX"/>
-                            <constraint firstItem="uxF-0E-IxM" firstAttribute="top" secondItem="LL5-1y-FG5" secondAttribute="bottom" constant="34" id="dIY-oV-EXD"/>
-                            <constraint firstItem="LL5-1y-FG5" firstAttribute="top" secondItem="ff6-qf-gdI" secondAttribute="bottom" constant="52" id="dvJ-AN-lXR"/>
-                            <constraint firstItem="uxF-0E-IxM" firstAttribute="leading" secondItem="LL5-1y-FG5" secondAttribute="leading" id="eiT-CO-rJW"/>
-                            <constraint firstItem="nLM-Hp-Ndg" firstAttribute="top" secondItem="LL5-1y-FG5" secondAttribute="bottom" constant="34" id="oFT-AY-3QY"/>
+                            <constraint firstItem="nLM-Hp-Ndg" firstAttribute="top" secondItem="uxF-0E-IxM" secondAttribute="bottom" constant="8" id="acX-QT-pnU"/>
+                            <constraint firstItem="LL5-1y-FG5" firstAttribute="top" secondItem="ff6-qf-gdI" secondAttribute="bottom" constant="12" id="dvJ-AN-lXR"/>
+                            <constraint firstItem="uxF-0E-IxM" firstAttribute="centerX" secondItem="LL5-1y-FG5" secondAttribute="centerX" id="eDP-Jo-V9O"/>
+                            <constraint firstItem="2e1-uQ-1Hc" firstAttribute="centerX" secondItem="nLM-Hp-Ndg" secondAttribute="centerX" id="jWV-Zq-afd"/>
                             <constraint firstItem="nLM-Hp-Ndg" firstAttribute="leading" secondItem="LL5-1y-FG5" secondAttribute="leading" id="rkM-5H-16X"/>
-                            <constraint firstItem="nLM-Hp-Ndg" firstAttribute="trailing" secondItem="LL5-1y-FG5" secondAttribute="trailing" id="upn-vS-Fs7"/>
+                            <constraint firstItem="uxF-0E-IxM" firstAttribute="top" secondItem="LL5-1y-FG5" secondAttribute="bottom" constant="26" id="trk-fP-5aN"/>
+                            <constraint firstItem="2e1-uQ-1Hc" firstAttribute="top" secondItem="nLM-Hp-Ndg" secondAttribute="bottom" constant="45" id="ySl-cd-N8B"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

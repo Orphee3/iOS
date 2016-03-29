@@ -11,6 +11,7 @@ import Alamofire
 import FileManagement
 import ReactiveCocoa
 import Haneke
+import UIKit
 
 class OrpheeApi {
     
@@ -45,6 +46,19 @@ class OrpheeApi {
         }
     }
     
+    func disconnect(id: String, completion:(disconnected: AnyObject) -> ()){
+        Alamofire.request(.GET, "http://163.5.84.242:3000/api/deco/\(id)").responseJSON { request, response, json in
+            completion(disconnected: "ok")
+            if (response?.statusCode == 500){
+                completion(disconnected: "error")
+            }
+            if (response?.statusCode == 200){
+                    completion(disconnected: "ok")
+            }
+        }
+        
+    }
+    
     func loginByGoogle(name: String, email: String, id: String, picture: String, completion:(response: AnyObject) -> ()){
         let params = [
             "name":"\(name)",
@@ -65,6 +79,7 @@ class OrpheeApi {
                         let monUser = try mySuperUser.decode(user)
                         monUser.token = String(result["token"])
                         saveUser(monUser)
+                        self.goToMainPageConnected()
                     } catch let error {
                         print(error)
                     }
@@ -94,6 +109,7 @@ class OrpheeApi {
                         let monUser = try mySuperUser.decode(user)
                         monUser.token = String(result["token"])
                         saveUser(monUser)
+                        self.goToMainPageConnected()
                     } catch let error {
                         print(error)
                     }
@@ -460,5 +476,12 @@ class OrpheeApi {
         let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tokenNotif")
         return (NSKeyedUnarchiver.unarchiveObjectWithFile(ArchiveURL.path!) as? NSData)!
+    }
+    
+    func goToMainPageConnected(){
+        let storybd = UIStoryboard(name: "Main", bundle: nil)
+        let tabBar = storybd.instantiateViewControllerWithIdentifier("tabBar") as! TabBarViewController
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window?.rootViewController = tabBar
     }
 }

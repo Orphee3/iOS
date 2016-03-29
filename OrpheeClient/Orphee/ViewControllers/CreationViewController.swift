@@ -110,6 +110,13 @@ class CreationViewController: UIViewController{
             if ((MyUser) != nil){
                 OrpheeApi().sendComment(MyUser.token!, name: MyUser.name, picture: MyUser.picture!, creationId: creation.id, userId: MyUser.id, message: self.growingTextView.text, completion: { (response) in
                     print("commentaire envoyé : \(response)")
+                    do {
+                        let comment = try Comment.decode(response)
+                        self.arrayComments.append(comment)
+                        self.commentTableView.reloadData()
+                    } catch let error {
+                        print(error)
+                    }
                 })
                 self.growingTextView.text = ""
             }
