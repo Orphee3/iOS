@@ -31,8 +31,9 @@ class OrpheeApi {
                 print(json.value)
                 if let result = json.value!["user"]{
                     do {
-                        var user = try User.decode(result)
+                        var user = try mySuperUser.decode(result)
                         user.token = json.value!["token"] as? String
+                        saveUser(user)
                         completion(user: "ok")
                     } catch let error {
                         print(error)
@@ -49,10 +50,10 @@ class OrpheeApi {
             "name":"\(name)",
             "email":"\(email)",
             "id":"\(id)",
-            "picture":"\(picture)"
+            "picture":"\(picture)",
+            "tokenIos":"\(getDeviceToken())"
         ]
         Alamofire.request(.POST, "http://163.5.84.242:3000/cradogoogle", parameters: params, encoding: .JSON).responseJSON { request, response, json in
-            print(response)
             print(json.value)
             if (response?.statusCode == 500){
                 completion(response: "error")
@@ -60,11 +61,13 @@ class OrpheeApi {
             if (response?.statusCode == 200){
                 if let result = json.value{
                     let user = result["user"]
-                    print(user)
-                    let userTmp : AnyObject = user
-                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
-                    let token = result["token"]
-                    NSUserDefaults().setObject(token, forKey: "myToken")
+                    do {
+                        let monUser = try mySuperUser.decode(user)
+                        monUser.token = String(result["token"])
+                        saveUser(monUser)
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
         }
@@ -75,7 +78,8 @@ class OrpheeApi {
             "name":"\(name)",
             "email":"\(email)",
             "id":"\(id)",
-            "picture":"\(picture)"
+            "picture":"\(picture)",
+            "tokenIos":"\(getDeviceToken)"
         ]
         Alamofire.request(.POST, "http://163.5.84.242:3000/iosFb", parameters: params, encoding: .JSON).responseJSON { request, response, json in
             print(response)
@@ -86,11 +90,13 @@ class OrpheeApi {
             if (response?.statusCode == 200){
                 if let result = json.value{
                     let user = result["user"]
-                    print(user)
-                    let userTmp : AnyObject = user
-                    NSUserDefaults().setObject(userTmp, forKey: "myUser")
-                    let token = result["token"]
-                    NSUserDefaults().setObject(token, forKey: "myToken")
+                    do {
+                        let monUser = try mySuperUser.decode(user)
+                        monUser.token = String(result["token"])
+                        saveUser(monUser)
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
         }
@@ -157,22 +163,19 @@ class OrpheeApi {
     }
     
     
-    func getPopularCreations(offset: Int, size: Int, completion:(creations: [Creation]) -> ()){
+    func getPopularCreations(offset: Int, size: Int, completion:(creations: [AnyObject]) -> ()){
         let url = "http://163.5.84.242:3000/api/creationPopular?offset=\(offset)&size=\(size)"
-        var arrayCreation: [Creation] = []
         Alamofire.request(.GET, url).responseJSON{request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(creations: cachedArray.array)
+                })
+            }
             if (response?.statusCode == 200){
-                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-                    for elem in array{
-                        do {
-                            let creation = try Creation.decode(elem)
-                            arrayCreation.append(creation)
-                        } catch let error {
-                            print(error)
-                            completion(creations: arrayCreation)
-                        }
-                    }
-                    completion(creations: arrayCreation)
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(creations: cachedArray.array)
+                    })
                 }
             }
         }
@@ -190,15 +193,12 @@ class OrpheeApi {
         ]
         Alamofire.request(.POST, "\(url)/comment", headers: headers, parameters: params, encoding: .JSON).responseJSON{ request, response, json in
             print(json.value)
+            print(response)
             if (response?.statusCode == 200){
-                print("comment ok")
                 print(json.value)
-//                let commentToAdd = Comment(Comment: message,
-//                    user: name, picture: picture)
-//                completion(response: commentToAdd)
+                completion(response: json.value!)
             }
         }
-        
     }
     
     
@@ -209,10 +209,12 @@ class OrpheeApi {
                     completion(response: cachedArray.array)
                 })
             }
-            if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
-                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
-                    completion(response: cachedArray.array)
-                })
+            if (response?.statusCode == 200){
+                if let comments = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(response: cachedArray.array)
+                    })
+                }
             }
         }
     }
@@ -237,7 +239,6 @@ class OrpheeApi {
     
     func getUsers(offset: Int, size: Int, completion:(users: [AnyObject]) ->()){
         Alamofire.request(.GET, "\(url)/user?offset=\(offset)&size=\(size)").responseJSON{request, response, json in
-            print((request?.URLString)!)
             if (response == nil){
                 self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
                     completion(users: cachedArray.array)
@@ -453,5 +454,11 @@ class OrpheeApi {
         cache.fetch(URL: URL).onSuccess { JSON in
             completion(cachedArray: JSON)
         }
+    }
+    
+    func getDeviceToken() -> NSData{
+        let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tokenNotif")
+        return (NSKeyedUnarchiver.unarchiveObjectWithFile(ArchiveURL.path!) as? NSData)!
     }
 }

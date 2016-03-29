@@ -73,11 +73,13 @@
 		52C61DD41A7A61C300B3DE23 /* PresetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C61DD31A7A61C300B3DE23 /* PresetLoader.m */; };
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
+		9B0B737F1CA8502600E26322 /* ProfileCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B737E1CA8502600E26322 /* ProfileCellTableViewController.swift */; };
 		9B2E36D01C9F0102000B8EF5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */; };
 		9B2E36D11C9F0102000B8EF5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */; };
 		9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */; };
 		9B2E36D61C9F4E5E000B8EF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */; };
 		9B2F659B1C946502004BB575 /* myUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F659A1C946502004BB575 /* myUser.swift */; };
+		9B31B1C41CA02EE300475208 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31B1C31CA02EE300475208 /* ProfileTableViewController.swift */; };
 		9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */; };
 		9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */; };
 		9B6940611C8CC8440039F826 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B6940601C8CC8440039F826 /* Info.plist */; };
@@ -238,11 +240,13 @@
 		88F21A363E92E4DAFEE687AF /* SoundBanks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SoundBanks; path = Ressources/SoundBanks; sourceTree = "<group>"; };
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Orphee-Bridging-Header.h"; path = "Orphee/Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B0B737E1CA8502600E26322 /* ProfileCellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCellTableViewController.swift; sourceTree = "<group>"; };
 		9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		9B2E36D51C9F4E5E000B8EF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9B2F659A1C946502004BB575 /* myUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myUser.swift; sourceTree = "<group>"; };
+		9B31B1C31CA02EE300475208 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		9B327FED1B9A374C00AAD347 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9B69405E1C8CA7D50039F826 /* OauthConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthConnectionViewController.swift; sourceTree = "<group>"; };
 		9B6940601C8CC8440039F826 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Orphee/Info.plist; sourceTree = "<group>"; };
@@ -561,6 +565,8 @@
 			isa = PBXGroup;
 			children = (
 				9B88F6141C7D1236001A77AD /* Profile.storyboard */,
+				9B31B1C31CA02EE300475208 /* ProfileTableViewController.swift */,
+				9B0B737E1CA8502600E26322 /* ProfileCellTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -754,6 +760,11 @@
 					52C61D941A79E5C400B3DE23 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 99BX55LUM5;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					52C61DA91A79E5C400B3DE23 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -914,6 +925,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B31B1C41CA02EE300475208 /* ProfileTableViewController.swift in Sources */,
+				52C61D9D1A79E5C400B3DE23 /* ViewController.swift in Sources */,
 				1EB274C31C598A22008FDFA4 /* compoGridDataSource.swift in Sources */,
 				1EB274DD1C598A22008FDFA4 /* trackItemView.swift in Sources */,
 				1EB274C41C598A22008FDFA4 /* compoGridOpsIntent.swift in Sources */,
@@ -923,6 +936,7 @@
 				9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */,
 				1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */,
 				1EB274CC1C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift in Sources */,
+				9B0B737F1CA8502600E26322 /* ProfileCellTableViewController.swift in Sources */,
 				9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */,
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
 				1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */,
@@ -1084,6 +1098,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1120,6 +1135,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1141,8 +1157,9 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1163,8 +1180,9 @@
 				INFOPLIST_FILE = Orphee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.orphee.ios.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SWIFT_OBJC_BRIDGING_HEADER = "Orphee/Orphee-Bridging-Header.h";
 			};
 			name = Release;

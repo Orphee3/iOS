@@ -16,12 +16,12 @@ class OAuthConnectionViewController: UIViewController, UIWebViewDelegate, GIDSig
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
         print("viewdidload")
-        var loginButton = FBSDKLoginButton()
+        let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        loginButton.center = self.view.center
+        loginButton.center = CGPointMake(self.view.center.x, self.view.center.y + loginButton.frame.size.height * 2)
         self.view.addSubview(loginButton)
         
-        var googleButton = GIDSignInButton()
+        let googleButton = GIDSignInButton()
         googleButton.center = CGPointMake(self.view.center.x, self.view.center.y + loginButton.frame.size.height * 2)
         self.view.addSubview(googleButton)
     }
@@ -34,6 +34,7 @@ class OAuthConnectionViewController: UIViewController, UIWebViewDelegate, GIDSig
                     print(result)
                     OrpheeApi().loginByFacebook(result["name"] as! String, email: result["email"] as! String, id: result["id"] as! String, picture: result["picture"]!!["data"]!!["url"] as! String, completion: { (response) in
                         print(response)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 }
             })

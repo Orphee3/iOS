@@ -9,20 +9,31 @@
 import Foundation
 import UIKit
 import SCLAlertView
-import Locksmith
 
 class HomeViewController: UITableViewController{
     var arrayCreations: [Creation] = []
-    var MyUser: myUser!
+    var MyUser: mySuperUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMyUser { (response) in
-            self.MyUser = response
-            print(self.MyUser.likes)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if (userExists()){
+            MyUser = getMySuperUser()
         }
         OrpheeApi().getPopularCreations(0, size: 50) { (creations) -> () in
-            self.arrayCreations = creations
+            self.arrayCreations = []
+            for elem in creations{
+                do {
+                    let creation = try Creation.decode(elem)
+                    self.arrayCreations.append(creation)
+                } catch let error {
+                    print(error)
+                }
+            }
+            self.arrayCreations = self.arrayCreations.sort({ $0.dateCreation > $1.dateCreation })
             self.tableView.reloadData()
         }
     }
@@ -43,21 +54,21 @@ class HomeViewController: UITableViewController{
             cell.fillCell(arrayCreations[indexPath.row])
             if ((MyUser) != nil){
                 if !MyUser.likes.isEmpty{
-                    let i = checkIfLikeExists(arrayCreations[indexPath.row].id, likes: MyUser.likes)
-                    if (i == 0){
-                        cell.likeButton.setImage(UIImage(named: "heart"), forState: .Normal)
-                    }
-                    else{
-                        cell.likeButton.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                    for i in 0 ..< MyUser.likes.count{
+                        if (arrayCreations[indexPath.row].id == MyUser.likes[i]){
+                            cell.likeButton.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                            break
+                        }else{
+                            cell.likeButton.setImage(UIImage(named: "heart"), forState: .Normal)
+                        }
                     }
                 }
             }
-            
-            cell.likeButton.addTarget(self, action: "likeButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.likeButton.addTarget(self, action: #selector(HomeViewController.likeButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.likeButton.tag = indexPath.row
-            cell.commentButton.addTarget(self, action: "commentButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.commentButton.addTarget(self, action: #selector(HomeViewController.commentButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.commentButton.tag = indexPath.row
-            cell.createButton.addTarget(self, action: "createButtonTapped:", forControlEvents: .TouchUpInside)
+            cell.createButton.addTarget(self, action: #selector(HomeViewController.createButtonTapped(_:)), forControlEvents: .TouchUpInside)
             return cell
         }
         return UITableViewCell()
@@ -68,15 +79,15 @@ class HomeViewController: UITableViewController{
             OrpheeApi().like(arrayCreations[sender.tag].id, token: MyUser.token!, completion: { (response) in
                 print(response)
                 if (response as! String == "liked"){
+                    self.MyUser.likes.append(self.arrayCreations[sender.tag].id)
                     sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
                 }
                 if (response as! String == "disliked"){
+                    let index = self.MyUser.likes.indexOf(self.arrayCreations[sender.tag].id)
+                    self.MyUser.likes.removeAtIndex(index!)
                     sender.setImage(UIImage(named: "heart"), forState: .Normal)
                 }
-                updateMyUser(self.arrayCreations[sender.tag].id, completion: { (response) in
-                    print(response)
-                    self.MyUser = response
-                })
+                saveUser(self.MyUser)
             })
         }else{
             callPopUp()
@@ -96,12 +107,10 @@ class HomeViewController: UITableViewController{
         print("create")
     }
     
-    //PopUp Login
-    
     func callPopUp(){
         let alertView = SCLAlertView()
-        alertView.addButton("S'inscrire / Se connecter", target:self, selector:Selector("goToRegister"))
-        alertView.showSuccess("Button View", subTitle: "This alert view has buttons")
+        alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(HomeViewController.goToRegister))
+        alertView.showSuccess("Orphee", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
     
     func goToRegister(){
