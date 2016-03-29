@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -20,6 +20,7 @@
                         <segue destination="LvE-V5-AnZ" kind="relationship" relationship="viewControllers" id="Wrp-se-5hN"/>
                         <segue destination="e5V-7Q-eYh" kind="relationship" relationship="viewControllers" id="ane-bu-V7D"/>
                         <segue destination="wm4-rq-gs8" kind="relationship" relationship="viewControllers" id="NYJ-n7-Om5"/>
+                        <segue destination="aLc-nU-apl" kind="relationship" relationship="viewControllers" id="78z-gV-CpO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FS-6c-xaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -60,17 +61,28 @@
         <scene sceneID="C4V-eT-Ku8">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="Composition" storyboardName="Player" id="wm4-rq-gs8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Player" badgeValue="Player" selectedImage="player/play" id="fBr-Zz-29M"/>
+                    <tabBarItem key="tabBarItem" title="Player" image="player" id="fBr-Zz-29M"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Va-OO-cbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-641.5" y="296"/>
         </scene>
+        <!--Composition-->
+        <scene sceneID="JI1-9b-mGW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Composition" id="aLc-nU-apl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Composition" image="music" id="H1o-jp-fPe"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eXu-uw-pzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-660.5" y="1015"/>
+        </scene>
     </scenes>
     <resources>
         <image name="friends" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
-        <image name="player/play" width="76" height="76"/>
+        <image name="music" width="25" height="25"/>
+        <image name="player" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
     </resources>
 </document>

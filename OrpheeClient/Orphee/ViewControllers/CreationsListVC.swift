@@ -20,6 +20,11 @@ class CreationsListVC : UITableViewController {
         super.viewDidLoad()
         creations = try! PathManager.listFiles(kOrpheeFile_store, fileExtension: kOrpheeFile_extension);
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = false
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
