@@ -72,8 +72,6 @@ class BlockArrayList {
                 midiNoteMsgs.removeAtIndex(idx);
             }
         }
-        print(cleanedList);
-        print(midiNoteMsgs);
         return midiNoteMsgs;
     }
 

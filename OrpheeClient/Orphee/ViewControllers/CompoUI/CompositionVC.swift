@@ -25,14 +25,13 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     @IBOutlet weak var gridOps: compoGridOpsIntent!
     @IBOutlet weak var dataSrc: compoGridDataSource!
 
-    @IBOutlet weak var trackBarOps: trackBarOpsIntent!
     @IBOutlet weak var currentInstrument: UIBarButtonItem!
 
     var tracks = [DataMgr]()
-    var tracksInfo: [[String : Any]?] = [[eOrpheeFileContent.TracksInfos.rawValue : [eOrpheeFileContent.PatchID : 1]]]
+    var tracksInfo: [[String : Any]?] = [[eOrpheeFileContent.PatchID.rawValue : 1]]
     var tempoInfo: UInt = 120
 
-    var commonTime: Int = 0
+    var commonOffset: CGFloat = 0
     var currentTrack: Int = 0
     var trkCount: Int = 0
 
@@ -49,19 +48,28 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     var saveAction: AlertAction!
     var cancelAction: AlertAction!
 
-//    let supportedOrientations: UIInterfaceOrientationMask = [.Landscape]
+    var content: [String : Any] {
+        get {
+            return [
+                eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
+                eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo,
+                eOrpheeFileContent.Tempo.rawValue : self.tempoInfo
+            ]
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.dataMgr.data = DataMgr().data
-        self.tracks.append(self.dataMgr)
-        self.trackBarOps.setup()
+        let mgr = DataMgr()
+        self.dataMgr.data = mgr.data
+        self.tracks.append(mgr)
         self.setupAudio()
         self.setupGraphics()
         self.makeActions();
 
+//        panSide.requireGestureRecognizerToFail(self.tableView.panGestureRecognizer)
         if let segueFile = fileForSegue {
             self.importFile(segueFile)
         }
@@ -71,6 +79,9 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        self.dataMgr.resetData()
+        self.tracks.removeAll()
+        self.tableView.reloadData()
         // Dispose of any resources that can be recreated.
     }
 
@@ -89,22 +100,14 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
             instrus.mainVC = self;
         }
         else if (segue.identifier == "creationListSegue") {
-            print("segueseguesegue")
             let creationList = segue.destinationViewController as! CreationsListVC;
             creationList.mainVC = self;
         }
         else if (segue.identifier == "tempoSegue") {
-            print("segueseguesegue")
             let tempoVC = segue.destinationViewController as! TempoViewController;
             tempoVC.mainVC = self;
         }
     }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.trackBarOps.updateLayout()
-    }
-
 
     func setupAudio() {
         self.session.setupSession(&audioIO);
@@ -120,7 +123,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         self.currentInstrument.enabled = false
         self.addButton.layer.borderWidth = 2
         self.addButton.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.tableView.backgroundColor = UIColor.whiteColor()
+//        self.tableView.backgroundColor = UIColor.whiteColor()
     }
 
     func prepareTracksForSave() -> [Int : TimedMidiMsgCollection] {
@@ -134,11 +137,11 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
             }
             trks[idx] = timedMidiMsgCollections
         }
-        print(trks)
         return trks
     }
 
     func saveFile() {
+        print("saving!\n\n\n")
         let tracks: [String : Any]? = [
             eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
             eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo,
@@ -150,32 +153,37 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         //        if OrpheeReachability().isConnected() {
         //            OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
         //        }
-        try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
+        print("\n\nsaved!\n\n\n")
+        let _ = try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
 
-        fileNbr++
+        fileNbr += 1
     }
 
     func importFile(file: String) {
-        let data: [String : Any] = MIDIFileManager(name: file).readFile()!;
-        //        print(data)
-        for (key, value) in data {
-            if key == eOrpheeFileContent.Tempo.rawValue {
-                tempoInfo = value as! UInt
+        if let data = MIDIFileManager(name: file).readFile() {
+            self.tempoInfo = 0
+            self.tracksInfo.removeAll()
+            self.tracks.removeAll()
+            if let tempo = data[eOrpheeFileContent.Tempo.rawValue] as? UInt {
+                self.tempoInfo = tempo
             }
-            if var trackList = value as? [Int : [[Int]]]
-                where key == eOrpheeFileContent.Tracks.rawValue {
-                    currentTrack = 0;
-                    for idx in 0..<trackList.count {
-                        let track = trackList[idx]!
+            if let infos = data[eOrpheeFileContent.TracksInfos.rawValue] as? [[String : Any]?] {
+                self.tracksInfo = infos
+            }
+            if let tracks = data[eOrpheeFileContent.Tracks.rawValue] as? [Int : TimedMidiMsgCollection] {
+                tracks.sort { $0.0.0 < $0.1.0 }.forEach { (_, collection) in
+                    if collection.count > 0 {
+                        self.tracks.append(DataMgr(timedMsgCollection: collection))
                     }
-                    if let infoList = value as? [[String : Any]]
-                        where key == eOrpheeFileContent.TracksInfos.rawValue {
-                            for (idx, info) in infoList.enumerate() {
-                                if let patch = info[eOrpheeFileContent.PatchID.rawValue] as? Int {
-                                    tracksInfo[idx] = [eOrpheeFileContent.PatchID.rawValue : patch];
-                                }
-                            }
-                    }
+                }
+                if let newData = self.tracks.first?.data {
+                    self.dataMgr.data = newData
+                }
+                else {
+                    let newData = DataMgr()
+                    self.tracks.append(newData)
+                    self.dataMgr.data = newData.data
+                }
             }
         }
     }
@@ -183,6 +191,49 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     func actOnSelectedCreation(creation: String) {
 
         fileForSegue = creation
+        importFile(fileForSegue ?? "test")
+        self.tableView.reloadData()
+    }
+
+    func cleanData() {
+        self.tracks.removeAll()
+        self.tracksInfo.removeAll()
+        self.currentTrack = 0
+
+        let mgr = DataMgr()
+        self.tracksInfo.append([eOrpheeFileContent.PatchID.rawValue : 1])
+        self.tracks.append(mgr)
+        self.dataMgr.data = mgr.data
+        self.tableView.reloadData()
+    }
+
+    func addTrack() {
+        self.tracks.append(DataMgr())
+        self.tracksInfo.append([eOrpheeFileContent.PatchID.rawValue : 1])
+        self.changeCurrentTrack(self.tracks.count - 1)
+    }
+
+    func removeTrack(idx: Int) {
+        guard idx >= 0 && idx < self.tracks.count else { return }
+        if self.tracks.count == 1 {
+            self.cleanData()
+            return
+        }
+        self.tracks.removeAtIndex(idx)
+        switch idx {
+        case _ where idx == self.currentTrack:
+            self.changeCurrentTrack(0)
+        case _ where idx < self.currentTrack:
+            self.currentTrack -= 1
+        default:
+            break
+        }
+    }
+
+    func changeCurrentTrack(idx: Int) {
+        guard idx >= 0 && idx < self.tracks.count else { return }
+        self.currentTrack = idx
+        self.tableView.reloadData()
     }
 
     func makeActions() {
@@ -194,7 +245,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
 
         importAction = { AlertAction in
 
-            print("File imported")
+            print("Importe File")
             self.performSegueWithIdentifier("creationListSegue", sender: self);
         };
 
@@ -217,7 +268,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         let tempoAction = UIAlertAction(title: "Choisir le tempo", style: .Default, handler: self.tempoAction);
         let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.saveAction)
         let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.cancelAction)
-
+        
         optionMenu.addAction(tempoAction)
         optionMenu.addAction(importAction)
         optionMenu.addAction(saveAction)

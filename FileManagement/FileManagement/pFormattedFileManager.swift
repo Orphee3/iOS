@@ -46,12 +46,19 @@ public protocol pFormattedFileManager: class {
 
     ///    Writes the information provided by `content` and transformed by an instance of `dataBuilderType`.
     ///
-    ///    - parameter name:			The name of the new file. If nil, the internal `name` is used instead.
     ///    - parameter content:			A dictionnary of values to fill the file.
     ///    - parameter dataBuilderType:	The Type in charge of transforming `content` into construct
     ///
     ///    - returns: `true` if `content` was written successfully, `false` otherwise.
     func writeToFile<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> Bool;
+
+    ///    Provides the information provided by `content` and transformed by an instance of `dataBuilderType` as NSData.
+    ///
+    ///    - parameter content:			A dictionnary of values to fill the file.
+    ///    - parameter dataBuilderType:	The Type in charge of transforming `content` into construct
+    ///
+    ///    - returns: `content` formated by a `dataBuilderType` instance as NSData.
+    static func toData<T where T: pMIDIByteStreamBuilder>(content content: [String : Any]?, dataBuilderType: T.Type) -> NSData?;
 
     ///  Reads the managed file and produces a formatted dictionnary describing the content.
     ///

@@ -11,6 +11,7 @@ import UIKit
 class trackItemView: UIView {
 
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var muteButton: UIButton!
 
     var activeColor = UIColor.darkGrayColor()
     var inactiveColor = UIColor.lightGrayColor()

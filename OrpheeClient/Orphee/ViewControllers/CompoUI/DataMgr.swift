@@ -11,27 +11,65 @@ import MIDIToolbox
 
 typealias TimedMidiMsg = (MusicTimeStamp, MIDINoteMessage)
 
+public extension Dictionary where Key: FloatLiteralConvertible, Value: CollectionType, Value.Generator.Element == MIDINoteMessage {//Value: _ArrayType, Value.Generator.Element == MIDINoteMessage {
+    func getMinMaxNotes() -> (Min: UInt8, Max: UInt8) {
+        let mins = self.flatMap { (k, v) in v.minElement({ $0.note < $1.note })?.note }
+        let maxs = self.flatMap { (k, v) in v.maxElement({ $0.note < $1.note })?.note }
+        let min = mins.minElement() ?? 0
+        let max = maxs.maxElement() ?? min
+        return (min, max)
+    }
+
+    func getMinNoteLength() -> Float32 {
+        return self.flatMap { (k, v) in v.minElement({ $0.duration < $1.duration })?.duration }.sort().first ?? 0
+    }
+}
+
 class DataMgr: NSObject {
 
     struct sDataCell {
         var active: Bool = false
         var length: Int = 4
-        var noteMsg: MIDINoteMessage? = nil
+        var noteMsg: MIDINoteMessage? = nil {
+            willSet {
+                if let note = newValue {
+                    self.length = DataMgr.sizes[note.duration] ?? 1
+                }
+            }
+        }
     }
 
     var highestNote: Int = 127
+    var minimalDuration = 2
     var data = [[sDataCell]]()
-    let sizes = [1, 2, 4, 8]
+    static let sizes: [Float32 : Int] = [
+        eNoteLength.minim.rawValue : 8,
+        eNoteLength.crotchet.rawValue : 4,
+        eNoteLength.quaver.rawValue : 2,
+        eNoteLength.semiquaver.rawValue : 1
+    ]
+    static let lengths: [Int : Float32] = [
+        8 : eNoteLength.minim.rawValue,
+        4 : eNoteLength.crotchet.rawValue,
+        2 : eNoteLength.quaver.rawValue,
+        1 : eNoteLength.semiquaver.rawValue
+    ]
     var lines: Int { return data.count }
     var cellCount: Int { return data.reduce(0, combine: { $0 + $1.count }) }
 
     init(lineCount: Int, cellPerLine: Int, highestNote: Int = 127) {
         self.highestNote = DataMgr.normaliseNote(highestNote)
         for _ in 0..<lineCount {
-            var line = [sDataCell]()
-            line.appendContentsOf([sDataCell](count: cellPerLine, repeatedValue: sDataCell()))
+            let line = [sDataCell](count: cellPerLine, repeatedValue: sDataCell())
+            //            line.appendContentsOf()
             data.append(line)
         }
+    }
+
+    convenience init(timedMsgCollection: TimedMidiMsgCollection) {
+        self.init(lineCount: 128, cellPerLine: 0)
+
+        self.dataFromTimedMidiMsgsCollection(timedMsgCollection)
     }
 
     override convenience init() {
@@ -76,7 +114,7 @@ class DataMgr: NSObject {
             var cell = self.data[line][row]
             cell.active = !cell.active
             if cell.active {
-                cell.noteMsg = MIDINoteMessage(channel: 0, note: UInt8(self.noteForLine(line)), velocity: 76, releaseVelocity: 0, duration: Float(cell.length))
+                cell.noteMsg = MIDINoteMessage(channel: 0, note: UInt8(self.noteForLine(line)), velocity: 76, releaseVelocity: 0, duration: DataMgr.lengths[cell.length]!)
             }
             else { cell.noteMsg = nil }
             self.data[line][row] = cell
@@ -91,7 +129,7 @@ class DataMgr: NSObject {
             }
             let count = data[line].count
             if lastIdx >= 0 {
-            return data[line][0..<(count - lastIdx)].map() { ($0.active ? $0 : nil) as sDataCell? }
+                return data[line][0..<(count - lastIdx)].map() { ($0.active ? $0 : nil) as sDataCell? }
             }
         }
         return []
@@ -101,6 +139,21 @@ class DataMgr: NSObject {
         var cells = [[sDataCell?]]()
         for line in 0..<lines { cells.append(self.activeCellsForLine(line)) }
         return cells
+    }
+
+    func lastActiveCellIndex(forLine line: Int) -> Int? {
+        if self.isValidIndex(nil, line: line) {
+            var lastActiveCellIdx = 0
+            let count = self.data[line].count
+            let ln = self.data[line]
+            for idx in 0..<count {
+                if ln[idx].active {
+                    lastActiveCellIdx = idx
+                }
+            }
+            return lastActiveCellIdx
+        }
+        return nil
     }
 
     func noteForLine(line: Int) -> Int {
@@ -115,12 +168,13 @@ class DataMgr: NSObject {
         return self.highestNote - note
     }
 
+
     func timedMidiMsgsForActiveCellsInLine(line: Int) -> [TimedMidiMsg] {
         if self.isValidIndex(nil, line: line) {
             var midiMsgs: [TimedMidiMsg] = []
             for (idx, cell) in self.data[line].enumerate() {
                 if cell.active {
-                    let timeStmp = MusicTimeStamp(self.timeForCell(atRow: idx, forLine: line))
+                    let timeStmp = MusicTimeStamp(self.startTimeForCell(atRow: idx, forLine: line) ?? 0)
                     midiMsgs.append(TimedMidiMsg(timeStmp, cell.noteMsg!))
                 }
             }
@@ -153,18 +207,155 @@ class DataMgr: NSObject {
         return timedMidiMsgCollections
     }
 
-    func timeForCell(atRow row: Int, forLine line: Int) -> Int {
+    func dataFromTimedMidiMsgsCollection(timedMsgCollection: TimedMidiMsgCollection) {
+        self.resetData()
+
+        let timedMsgs = timedMsgCollection.sort { $0.0.0 < $0.1.0 }
+        let minDuration = timedMsgCollection.getMinNoteLength()
+
+        timedMsgs.forEach { (tmStmp, msgs) in
+            msgs.forEach { noteMsg in
+                let tmStmp = Float32(tmStmp)
+                let lineIdx = Int(noteMsg.note)
+                let lastActiveCellTmStmp = Float32(self.endTimeForLastActiveCell(forLine: lineIdx))
+                let emptyCellsForLine = (tmStmp - lastActiveCellTmStmp) / minDuration
+                var cell = sDataCell(active: false, length: DataMgr.sizes[minDuration]!, noteMsg: nil)
+                if emptyCellsForLine > 0 {
+                    let cellArray = [sDataCell](count: Int(emptyCellsForLine), repeatedValue: cell)
+                    self.data[lineIdx].appendContentsOf(cellArray)
+                }
+                cell.active = true
+                cell.noteMsg = noteMsg
+                self.data[lineIdx].append(cell)
+            }
+        }
+        self.padLinesWithCells(DataMgr.sizes[minDuration]!)
+    }
+
+
+    func endTimeForLastActiveCell() -> Float32 {
+        var endTime: Float32 = 0
+        for line in 0..<lines {
+            if case let lineEnd = endTimeForLastActiveCell(forLine: line) where lineEnd > endTime {
+                endTime = lineEnd
+            }
+        }
+        return endTime
+    }
+
+    func startTimeForLastActiveCell() -> Float32 {
+        var lastCellStartTime: Float32 = 0
+        for line in 0..<lines {
+            if case let lastCellStart = startTimeForLastActiveCell(forLine: line) where lastCellStart > lastCellStartTime {
+                lastCellStartTime = lastCellStart
+            }
+        }
+        return lastCellStartTime
+    }
+
+    func endTimeForLastActiveCell(forLine line: Int) -> Float32 {
+        let index = self.lastActiveCellIndex(forLine: line) ?? 0
+        return endTimeForCell(atRow: index, forLine: line) ?? 0
+    }
+
+    func startTimeForLastActiveCell(forLine line: Int) -> Float32 {
+        let index = self.lastActiveCellIndex(forLine: line) ?? 0
+        return startTimeForCell(atRow: index, forLine: line) ?? 0
+    }
+
+    func endTimeForCell(atRow row: Int, forLine line: Int) -> Float32? {
+        if self.isValidIndex(row, line: line) {
+            let ln = data[line]
+            return ln[0...row].reduce(0, combine: { $0! + DataMgr.lengths[$1.length]! })
+        }
+        return nil
+    }
+
+    func startTimeForCell(atRow row: Int, forLine line: Int) -> Float32? {
+        if self.isValidIndex(row, line: line) {
+            let ln = data[line]
+            return ln[0..<row].reduce(0, combine: { $0! + DataMgr.lengths[$1.length]! })
+        }
+        return nil
+    }
+
+
+    func endLengthForLastActiveCell() -> Int {
+        var endLength: Int = 0
+        for line in 0..<lines {
+            if case let lineEnd = endLengthForLastActiveCell(forLine: line) where lineEnd > endLength {
+                endLength = lineEnd
+            }
+        }
+        return endLength
+    }
+
+    func startLengthForLastActiveCell() -> Int {
+        var lastCellStartLength: Int = 0
+        for line in 0..<lines {
+            if case let lastCellStart = startLengthForLastActiveCell(forLine: line) where lastCellStart > lastCellStartLength {
+                lastCellStartLength = lastCellStart
+            }
+        }
+        return lastCellStartLength
+    }
+
+    func endLengthForLastActiveCell(forLine line: Int) -> Int {
+        let index = self.lastActiveCellIndex(forLine: line) ?? 0
+        return endLengthForCell(atRow: index, forLine: line) ?? 0
+    }
+
+    func startLengthForLastActiveCell(forLine line: Int) -> Int {
+        let index = self.lastActiveCellIndex(forLine: line) ?? 0
+        return startLengthForCell(atRow: index, forLine: line) ?? 0
+    }
+
+    func endLengthForCell(atRow row: Int, forLine line: Int) -> Int? {
+        if self.isValidIndex(row, line: line) {
+            let ln = data[line]
+            return ln[0...row].reduce(0, combine: { $0 + $1.length })
+        }
+        return nil
+    }
+
+    func startLengthForCell(atRow row: Int, forLine line: Int) -> Int? {
         if self.isValidIndex(row, line: line) {
             let ln = data[line]
             return ln[0..<row].reduce(0, combine: { $0 + $1.length })
         }
-        return -1
+        return nil
     }
+
 
     func isValidIndex(row: Int?, line: Int) -> Bool {
         if line < 0 || line > lines { return false }
-        if let row = row where row < 0 || row > data[line].count  { return false }
+        if let row = row where row < 0 || row >= data[line].count  { return false }
         return true
+    }
+
+    func resetData() {
+        for line in 0..<self.lines {
+            self.data[line].removeAll()
+        }
+    }
+
+    func padLinesWithCells(length: Int?) {
+        var minDuration: Int
+        if let duration = length {
+            self.minimalDuration = duration
+            minDuration = duration
+        }
+        else { minDuration = self.minimalDuration }
+        let maxTmStmp = self.endLengthForLastActiveCell()
+        for line in 0..<self.lines {
+            let endTime = self.endLengthForLastActiveCell(forLine: line)
+            if case let emptyCellsNbr = (maxTmStmp - endTime) / minDuration
+                where emptyCellsNbr > 0 {
+
+                let emptyCells = [sDataCell](count: emptyCellsNbr, repeatedValue: sDataCell(active: false, length: minDuration, noteMsg: nil))
+                self.data[line].appendContentsOf(emptyCells)
+            }
+        }
     }
 
     class func normaliseNote(note: Int, highestNote: Int = 127) -> Int {

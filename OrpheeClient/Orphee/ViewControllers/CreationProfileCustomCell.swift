@@ -20,9 +20,7 @@ class CreationProfileCustomCell: UICollectionViewCell {
     
     func putInGraphic(creation: Creation){
         if let nameCreation = creation.name{
-            self.nameCreation.text = nameCreation.substringWithRange(
-                Range<String.Index>(start: nameCreation.startIndex.advancedBy(0),
-                    end: nameCreation.endIndex.advancedBy(-4)))
+            self.nameCreation.text = nameCreation.substringWithRange(nameCreation.startIndex.advancedBy(0)..<nameCreation.endIndex.advancedBy(-4))
         }
         if let nbComments = creation.nbCommments{
             //self.nbCommentsCreation.text = String(nbComments)

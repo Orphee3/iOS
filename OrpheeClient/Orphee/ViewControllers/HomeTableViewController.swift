@@ -21,7 +21,7 @@ class HomeTableViewController: UITableViewController{
     var arrayUser: [User] = []
     var offset = 0
     var size = 100
-    var user = User!()
+    var user = User!(nil)
 
     var player: MIDIPlayer!;
     var audioIO: AudioGraph = AudioGraph();

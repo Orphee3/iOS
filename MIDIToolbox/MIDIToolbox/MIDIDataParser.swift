@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 ///  Checks if given Byte is last Byte of a Variable Length Value.
 ///
@@ -23,7 +24,7 @@ func isLastVLVByte(byte: UInt8) -> Bool {
 ///
 public class MIDIDataParser {
 
-	///  Structure in charge of parsing tracks.
+    ///  Structure in charge of parsing tracks.
     public struct sTrack {
 
         /// Byte stream buffer containing the track's data.
@@ -32,6 +33,8 @@ public class MIDIDataParser {
         public var trackNbr: UInt16;
         /// The length of the track, in Bytes.
         var trackLength: UInt32 = 0;
+
+        var isTempoTrack: Bool = false
 
         /// Number of MIDI clock ticks per metronome click (pulse).
         /// - remark: A 4/4 time signature sets this value to 24ticks/pulse. This is also the default.
@@ -143,6 +146,7 @@ public class MIDIDataParser {
                 signature = (data[0], data[1]);
                 clockTicksPerPulse = data[2];
                 nbrOf32ndNotePerBeat = data[3];
+                isTempoTrack = true
             }
             else {
                 signature = (UInt32(kMIDIEventDefaultData_timeSig[0]), UInt32(kMIDIEventDefaultData_timeSig[1] * 2));
@@ -178,9 +182,9 @@ public class MIDIDataParser {
         ///  Provides a dictionnary of all timed events with delta-time offsets as keys.
         ///
         ///  - returns: All timed events sorted by delta-time offset.
-        func getNoteArray() -> [UInt32 : [pMidiEvent]] {
+        func getNoteArray() -> [UInt32 : [pTimedMidiEvent]] {
 
-            var timedEvents: [UInt32 : [pMidiEvent]] = [0 : []];
+            var timedEvents: [UInt32 : [pTimedMidiEvent]] = [:]
             var currentDt: UInt32 = 0;
 
             for midiEvent in midiEvents {
@@ -190,7 +194,11 @@ public class MIDIDataParser {
                         currentDt += tmEvent.deltaTime;
                         timedEvents[currentDt] = [];
                     }
-                    timedEvents[currentDt]!.append(tmEvent);
+                    if let _ = timedEvents[currentDt] {
+                        timedEvents[currentDt]!.append(tmEvent)
+                    } else {
+                        timedEvents[currentDt] = [tmEvent]
+                    }
                 }
             }
             return timedEvents;
@@ -252,43 +260,54 @@ public class MIDIDataParser {
 
     ///  Parses each track in the file and provides all timed events for each track.
     ///
-    ///  - returns: A dictionnary with the track number as key and an array of all timed events for the track as value.
-    public func parseTracks() -> [Int : [[Int]]] {
-
-        var tracks: [Int : [[Int]]] = [:];
-
-        build_allTracks:
-            for idx in 0..<self.nbrOfTracks {
-                let track: sTrack = sTrack(trackData: dataBuffer, trackNbr: idx);
-                track.getNoteArray();
-                if (track.quarterNotePerMinute > 0) {
-                    tempo = UInt(track.quarterNotePerMinute)
+    ///  - returns: A dictionnary with the track number as key and a TimedMidiMsgCollection.
+    public func parseTracks() -> [Int : TimedMidiMsgCollection] {
+        var tracks: [Int : TimedMidiMsgCollection] = [:]
+        for idx in 0..<self.nbrOfTracks {
+            var msgCollection = TimedMidiMsgCollection()	
+            let strack = sTrack(trackData: dataBuffer, trackNbr: idx)
+            self.tracks.append(strack);
+            let timedEvents = strack.getNoteArray().sort { $0.0.0 < $0.1.0 }
+            if (strack.quarterNotePerMinute > 0) {
+                tempo = UInt(strack.quarterNotePerMinute)
+                if self.midiFileType == 1 && strack.isTempoTrack && timedEvents.count == 0 {
+                    continue
                 }
-                self.tracks.append(track);
-
-                let timedEvents: [pTimedMidiEvent] = track.midiEvents.flatMap({ $0 as? pTimedMidiEvent });
-
-                for tmEvent in timedEvents where tmEvent.deltaTime > 0 {
-                    smallestTimeDiv = (smallestTimeDiv > tmEvent.deltaTime) ? tmEvent.deltaTime : smallestTimeDiv;
-                }
-                var i: Int = 0;
-                var cleanedEvents: [[Int]] = [];
-                for event in timedEvents {
-                    if (event.deltaTime >= self.smallestTimeDiv && event.deltaTime > 0) {
-                        let silences = Int(event.deltaTime / self.smallestTimeDiv);
-                        cleanedEvents.appendContentsOf([[Int]](count: silences, repeatedValue: []));
-                        i += silences;
-                    }
-                    if (event.type == eMidiEventType.noteOn) {
-                        if (cleanedEvents.count <= i) {
-                            cleanedEvents.append([])
+            }
+            var noteOns = [UInt8 : (dTm: UInt32, note: MIDINoteMessage)]()
+            print(timedEvents)
+            timedEvents.forEach { (delta, events) in
+                let ons = events.filter { $0.type == .noteOn }
+                let offs = events.filter { $0.type == .noteOff }
+                offs.forEach {
+                    let note = UInt8($0.data[1])
+                    if var (dt, msg) = noteOns[note] {
+                        let tickDivs = Float64(self.tickDivsForDelta(dt))
+                        msg.duration = self.tickDivsForDelta(delta - dt)
+                        noteOns.removeValueForKey(note)
+                        if let _ = msgCollection[tickDivs] {
+                            msgCollection[tickDivs]!.append(msg)
                         }
-                        cleanedEvents[i].append(Int(event.data![1]));
+                        else {
+                            msgCollection[tickDivs] = [msg]
+                        }
                     }
                 }
-                tracks[Int(idx)] = cleanedEvents;
+                ons.forEach {
+                    let note = UInt8($0.data[1])
+                    let vel = UInt8($0.data[2])
+                    noteOns[note] = (delta, MIDINoteMessage(channel: UInt8(strack.channel), note: note, velocity: vel, releaseVelocity: 0, duration: 0))
+                }
+            }
+            tracks[Int(idx)] = msgCollection
+            print(msgCollection)
         }
-        return tracks;
+        return tracks
+    }
+
+    private func tickDivsForDelta(dt: UInt32) -> Float32 {
+        let tickDivNbr = Float32(dt) / Float32(self.deltaTickPerQuarterNote)
+        return tickDivNbr
     }
 
     ///  pretty print the file's properties.
@@ -316,12 +335,12 @@ func printData(dataBuffer: ByteBuffer, trackLength: UInt32) {
         if (i < trackLength && i % 8 < 7) {
             let byte = dataBuffer.getUInt8();
             let strByte: String!;
-//            if (byte < 128 && byte != 0) {
-//                strByte = "  " + String(byte);
-//            }
-//            else {
-                strByte = (byte > 15 ? "0x" : "0x0") + String(byte, radix: 16);
-//            }
+            //            if (byte < 128 && byte != 0) {
+            //                strByte = "  " + String(byte);
+            //            }
+            //            else {
+            strByte = (byte > 15 ? "0x" : "0x0") + String(byte, radix: 16);
+            //            }
             print(strByte!, terminator: "\t");
         }
         else {

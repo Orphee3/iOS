@@ -30,9 +30,7 @@ class CreationFluxCustomCell: UITableViewCell{
             self.nameProfileCreator.text = nameProfileCreator
         }
         if let nameCreation = creation.name{
-            self.nameCreation.text = nameCreation.substringWithRange(
-                Range<String.Index>(start: nameCreation.startIndex.advancedBy(0),
-                    end: nameCreation.endIndex.advancedBy(-4)))
+            self.nameCreation.text = nameCreation.substringWithRange(nameCreation.startIndex.advancedBy(0)..<nameCreation.endIndex.advancedBy(-4))
         }else{
             self.nameCreation.text = "Sans titre"
         }
