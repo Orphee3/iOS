@@ -53,6 +53,7 @@ PODS:
   - SlackTextViewController (1.7.2)
   - Socket.IO-Client-Swift (2.4.5)
   - SwiftDate (2.0.2)
+  - SwiftWebSocket (2.6.0)
   - UnderKeyboard (4.0.2)
 
 DEPENDENCIES:
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`,
     branch `swift-2`)
   - SwiftDate (~> 2.0)
+  - SwiftWebSocket
   - UnderKeyboard (~> 4.0)
 
 EXTERNAL SOURCES:
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   SlackTextViewController: 1f4e8f68c156ef93de73fd422db2b8d5d5b0f4e7
   Socket.IO-Client-Swift: 461a98fde2b27b61f5c833889a577d0824bd5ee4
   SwiftDate: b4f4d0962afe48365ad2800c9850a6626deb9359
+  SwiftWebSocket: c24c0dde0b33852f478ffb54226408bfe703b26b
   UnderKeyboard: 6ec3057822332c985806da7c36b8dd57647d54e9
 
 COCOAPODS: 0.39.0

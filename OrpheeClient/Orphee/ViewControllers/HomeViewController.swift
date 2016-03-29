@@ -16,6 +16,30 @@ class HomeViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(CreationViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        self.view.addSubview(refreshControl)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        if (userExists()){
+            MyUser = getMySuperUser()
+        }
+        arrayCreations = []
+        OrpheeApi().getPopularCreations(0, size: 50) { (creations) -> () in
+            self.arrayCreations = []
+            for elem in creations{
+                do {
+                    let creation = try Creation.decode(elem)
+                    self.arrayCreations.append(creation)
+                } catch let error {
+                    print(error)
+                }
+            }
+            self.arrayCreations = self.arrayCreations.sort({ $0.dateCreation > $1.dateCreation })
+            self.tableView.reloadData()
+        }
+        refreshControl.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {

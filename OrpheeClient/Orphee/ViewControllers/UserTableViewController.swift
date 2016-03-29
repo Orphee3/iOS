@@ -18,6 +18,8 @@ class UserTableViewController: UITableViewController {
     var id: String!
     var user: User!
     var arrayCreations: [Creation] = []
+    var MyUser: mySuperUser!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUser()
@@ -47,6 +49,9 @@ class UserTableViewController: UITableViewController {
         super.viewWillAppear(true)
         self.tableView.estimatedRowHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        if (userExists()){
+            MyUser = getMySuperUser()
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,6 +68,18 @@ class UserTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as? UserTableViewCell{
             cell.fillCell(arrayCreations[indexPath.row])
+            if ((MyUser) != nil){
+                if !MyUser.likes.isEmpty{
+                    for i in 0 ..< MyUser.likes.count{
+                        if (arrayCreations[indexPath.row].id == MyUser.likes[i]){
+                            cell.heartImg.image = UIImage(named: "heartfill")
+                            break
+                        }else{
+                            cell.heartImg.image = UIImage(named: "heart")
+                        }
+                    }
+                }
+            }
             cell.likeButton.addTarget(self, action: #selector(UserTableViewController.likeButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.commentButton.addTarget(self, action: #selector(UserTableViewController.commentButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.createButton.addTarget(self, action: #selector(UserTableViewController.createButtonTapped(_:)), forControlEvents: .TouchUpInside)
@@ -84,13 +101,32 @@ class UserTableViewController: UITableViewController {
     }
     
     func likeButtonTapped(sender: UIButton){
-        print("liked")
-        callPopUp()
+        if ((MyUser) != nil){
+            OrpheeApi().like(arrayCreations[sender.tag].id, token: MyUser.token!, completion: { (response) in
+                print(response)
+                if (response as! String == "liked"){
+                    self.MyUser.likes.append(self.arrayCreations[sender.tag].id)
+                    sender.setImage(UIImage(named: "heartfill"), forState: .Normal)
+                }
+                if (response as! String == "disliked"){
+                    let index = self.MyUser.likes.indexOf(self.arrayCreations[sender.tag].id)
+                    self.MyUser.likes.removeAtIndex(index!)
+                    sender.setImage(UIImage(named: "heart"), forState: .Normal)
+                }
+                saveUser(self.MyUser)
+            })
+        }else{
+            callPopUp()
+        }
     }
     
     func commentButtonTapped(sender: UIButton){
         print("comment")
-        callPopUp()
+        if ((MyUser) != nil){
+            performSegueWithIdentifier("toCreation", sender: sender.tag)
+        }else{
+            callPopUp()
+        }
     }
     
     func createButtonTapped(sender: UIButton){

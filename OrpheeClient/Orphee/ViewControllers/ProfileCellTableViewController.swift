@@ -15,6 +15,7 @@ class ProfileCellTableViewController: UITableViewCell {
     @IBOutlet var nbLikes: UILabel!
     @IBOutlet var nbComments: UILabel!
     
+    @IBOutlet var heartImg: UIImageView!
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var commentButton: UIButton!
     @IBOutlet var createButton: UIButton!

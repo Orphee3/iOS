@@ -83,6 +83,12 @@ func saveUser(user: mySuperUser){
     }
 }
 
+func deleteUser(){
+    if ((NSKeyedUnarchiver.unarchiveObjectWithFile(mySuperUser.ArchiveURL.path!) as? mySuperUser) != nil){
+        NSKeyedArchiver.archiveRootObject("", toFile: mySuperUser.ArchiveURL.path!)
+    }
+}
+
 extension mySuperUser: Decodable {
     static func decode(j: AnyObject) throws -> mySuperUser {
         return try mySuperUser(

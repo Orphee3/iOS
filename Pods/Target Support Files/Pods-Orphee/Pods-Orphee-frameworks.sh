@@ -100,6 +100,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Orphee/SlackTextViewController.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
   install_framework "Pods-Orphee/SwiftDate.framework"
+  install_framework "Pods-Orphee/SwiftWebSocket.framework"
   install_framework "Pods-Orphee/UnderKeyboard.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -119,5 +120,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Orphee/SlackTextViewController.framework"
   install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
   install_framework "Pods-Orphee/SwiftDate.framework"
+  install_framework "Pods-Orphee/SwiftWebSocket.framework"
   install_framework "Pods-Orphee/UnderKeyboard.framework"
 fi
