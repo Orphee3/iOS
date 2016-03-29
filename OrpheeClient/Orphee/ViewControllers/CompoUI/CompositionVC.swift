@@ -25,11 +25,18 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     @IBOutlet weak var gridOps: compoGridOpsIntent!
     @IBOutlet weak var dataSrc: compoGridDataSource!
 
+    @IBOutlet weak var trackBarOps: trackBarOpsIntent!
+
     @IBOutlet weak var currentInstrument: UIBarButtonItem!
+    @IBOutlet weak var bpm: UIBarButtonItem!
 
     var tracks = [DataMgr]()
     var tracksInfo: [[String : Any]?] = [[eOrpheeFileContent.PatchID.rawValue : 1]]
-    var tempoInfo: UInt = 120
+    var tempoInfo: UInt = 120 {
+        willSet {
+            self.bpm.title = "@\(newValue)Bpm"
+        }
+    }
 
     var commonOffset: CGFloat = 0
     var currentTrack: Int = 0
@@ -38,6 +45,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     var fileForSegue: String?
     var fileNbr: Int = 0;
 
+    var mutedTracks: Set<Int> = []
 
     var player: MIDIPlayer?;
     var audioIO: AudioGraph = AudioGraph();
@@ -68,7 +76,6 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         self.setupAudio()
         self.setupGraphics()
         self.makeActions();
-
 //        panSide.requireGestureRecognizerToFail(self.tableView.panGestureRecognizer)
         if let segueFile = fileForSegue {
             self.importFile(segueFile)
@@ -119,16 +126,18 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     func setupGraphics() {
         self.tableView.rowHeight = 40
         self.tableView.separatorStyle = .None
-        self.currentInstrument.title = "Guitare"
+        self.currentInstrument.title = "Grand piano"
         self.currentInstrument.enabled = false
+        self.tempoInfo = 120
+        self.bpm.enabled = false
         self.addButton.layer.borderWidth = 2
         self.addButton.layer.borderColor = UIColor.lightGrayColor().CGColor
-//        self.tableView.backgroundColor = UIColor.whiteColor()
     }
 
     func prepareTracksForSave() -> [Int : TimedMidiMsgCollection] {
         var trks = [Int : TimedMidiMsgCollection]()
         for (idx, trackMgr) in tracks.enumerate() {
+            if self.mutedTracks.contains(idx) { continue }
             let timedMidiMsgCollections = trackMgr.dataAsTimedMidiMsgsCollection()
             timedMidiMsgCollections.forEach() { _, msgCollection in
                 for var midiMsg in msgCollection {
@@ -141,7 +150,6 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     }
 
     func saveFile() {
-        print("saving!\n\n\n")
         let tracks: [String : Any]? = [
             eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
             eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo,
@@ -153,7 +161,6 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         //        if OrpheeReachability().isConnected() {
         //            OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
         //        }
-        print("\n\nsaved!\n\n\n")
         let _ = try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
 
         fileNbr += 1
@@ -193,7 +200,8 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         fileForSegue = creation
         importFile(fileForSegue ?? "test")
         self.tableView.reloadData()
-    }
+        self.trackBarOps.refresh()
+}
 
     func cleanData() {
         self.tracks.removeAll()
@@ -205,6 +213,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         self.tracks.append(mgr)
         self.dataMgr.data = mgr.data
         self.tableView.reloadData()
+        self.trackBarOps.refresh()
     }
 
     func addTrack() {
@@ -230,10 +239,19 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         }
     }
 
+    func toggleMute(forTrack: Int) {
+        if let idx = mutedTracks.indexOf(forTrack) {
+            mutedTracks.removeAtIndex(idx)
+        } else {
+            mutedTracks.insert(forTrack)
+        }
+    }
+
     func changeCurrentTrack(idx: Int) {
         guard idx >= 0 && idx < self.tracks.count else { return }
         self.currentTrack = idx
         self.tableView.reloadData()
+        self.trackBarOps.refresh()
     }
 
     func makeActions() {

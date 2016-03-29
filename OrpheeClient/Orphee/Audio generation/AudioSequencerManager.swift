@@ -86,4 +86,17 @@ public class AudioSequencerManager {
     public func getCurrentPosition() -> NSTimeInterval {
         return sequencer.currentPositionInSeconds
     }
+
+    public func setLoopFile(shouldLoop: Bool) {
+        for track in sequencer.tracks {
+            track.loopingEnabled = shouldLoop
+        }
+    }
+
+    public func isLooping() -> Bool {
+        for track in sequencer.tracks {
+            if track.loopingEnabled { return true }
+        }
+        return false
+    }
 }

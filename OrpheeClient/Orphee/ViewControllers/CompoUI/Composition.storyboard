@@ -146,15 +146,19 @@
                                             <action selector="cleanAll" destination="F7I-Il-7Zs" id="xA9-Oe-qBE"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="dzO-q7-eE3"/>
+                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="dzO-q7-eE3"/>
                                     <barButtonItem title="Item" style="plain" id="NFd-de-AjP"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Plp-jf-3qo"/>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="w2e-yA-ndB"/>
                                     <barButtonItem systemItem="play" id="7CD-RZ-PYd">
                                         <connections>
                                             <action selector="playButtonTouched:" destination="F7I-Il-7Zs" id="sGI-pt-Mx7"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="n40-6K-qul"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="XjJ-sZ-80u"/>
+                                    <barButtonItem title="Item" style="plain" id="nUG-LJ-avb" userLabel="BPM"/>
+                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="vx5-na-X1q"/>
                                     <barButtonItem systemItem="action" id="jFf-BL-Epl">
                                         <connections>
                                             <action selector="actionButtonTouched:" destination="F7I-Il-7Zs" id="1GD-Gf-U0b"/>
@@ -162,17 +166,17 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-A0-uoh">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-A0-uoh" userLabel="trackBar">
                                 <rect key="frame" x="4" y="521" width="592" height="35"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="6Ee-wq-zuc">
-                                        <rect key="frame" x="0.0" y="7" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="6Ee-wq-zuc" userLabel="Tracks label">
+                                        <rect key="frame" x="0.0" y="7" width="51" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Gd-61-dvG">
-                                        <rect key="frame" x="62" y="0.0" width="400" height="35"/>
+                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Gd-61-dvG" userLabel="Tracks">
+                                        <rect key="frame" x="71" y="0.0" width="391" height="35"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -272,7 +276,7 @@
                                         </cells>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
+                                                <real key="value" value="17.5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -281,7 +285,7 @@
                                             <outletCollection property="gestureRecognizers" destination="lRL-CG-WkA" appends="YES" id="7rC-ps-zWL"/>
                                         </connections>
                                     </collectionView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lz8-NX-9gz">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lz8-NX-9gz" userLabel="Actions">
                                         <rect key="frame" x="482" y="0.0" width="110" height="35"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSk-7j-M0q">
@@ -415,10 +419,28 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="head" id="4r5-45-9e9" customClass="defaultHeader" customModule="Orphee" customModuleProvider="target">
+                                                    <collectionReusableView key="sectionHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="head" id="4r5-45-9e9" customClass="defaultHeader" customModule="Orphee" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Zb-kt-tp2">
+                                                                <rect key="frame" x="3" y="3" width="44" height="24"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                                                        <point key="value" x="0.0" y="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLe-sx-IrP" userLabel="G#">
                                                                 <rect key="frame" x="5" y="0.0" width="25" height="30"/>
                                                                 <constraints>
@@ -438,13 +460,17 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="MLe-sx-IrP" firstAttribute="bottom" secondItem="4r5-45-9e9" secondAttribute="bottom" id="4KQ-js-EMd"/>
                                                             <constraint firstItem="y28-k8-aeM" firstAttribute="top" secondItem="4r5-45-9e9" secondAttribute="top" id="9U7-pu-W2h"/>
+                                                            <constraint firstItem="2Zb-kt-tp2" firstAttribute="leading" secondItem="4r5-45-9e9" secondAttribute="leading" constant="3" id="BsG-GA-Hnb"/>
                                                             <constraint firstItem="MLe-sx-IrP" firstAttribute="leading" secondItem="4r5-45-9e9" secondAttribute="leading" constant="5" id="EgZ-Hz-Sev"/>
+                                                            <constraint firstItem="2Zb-kt-tp2" firstAttribute="bottom" secondItem="4r5-45-9e9" secondAttribute="bottom" constant="-3" id="GRc-ZK-Yjd"/>
                                                             <constraint firstItem="y28-k8-aeM" firstAttribute="trailing" secondItem="4r5-45-9e9" secondAttribute="trailing" constant="-5" id="GiF-hT-iKi"/>
+                                                            <constraint firstItem="2Zb-kt-tp2" firstAttribute="trailing" secondItem="4r5-45-9e9" secondAttribute="trailing" constant="-3" id="LX6-cm-blr"/>
                                                             <constraint firstItem="y28-k8-aeM" firstAttribute="bottom" secondItem="4r5-45-9e9" secondAttribute="bottom" id="P51-S3-IMB"/>
+                                                            <constraint firstItem="2Zb-kt-tp2" firstAttribute="top" secondItem="4r5-45-9e9" secondAttribute="top" constant="3" id="TES-LW-I1R"/>
                                                             <constraint firstItem="MLe-sx-IrP" firstAttribute="top" secondItem="4r5-45-9e9" secondAttribute="top" id="yeP-o8-DlH"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
@@ -454,17 +480,9 @@
                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                <real key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
+                                                            <outlet property="bg" destination="2Zb-kt-tp2" id="fED-Cz-er9"/>
                                                             <outlet property="noteLbl" destination="MLe-sx-IrP" id="chv-A7-9kh"/>
                                                             <outlet property="octaveLbl" destination="y28-k8-aeM" id="C3T-7W-sSu"/>
                                                         </connections>
@@ -532,6 +550,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="addButton" destination="HqI-kJ-41F" id="7kd-Q4-QLM"/>
+                        <outlet property="bpm" destination="nUG-LJ-avb" id="XBW-t3-Nw2"/>
                         <outlet property="currentInstrument" destination="NFd-de-AjP" id="Uuk-9i-Wy9"/>
                         <outlet property="dataMgr" destination="81L-Uo-Av6" id="rvf-bV-6Cd"/>
                         <outlet property="dataSrc" destination="4XF-zO-pll" id="DPE-vD-e2k"/>
@@ -539,13 +558,12 @@
                         <outlet property="panSide" destination="8JW-LK-PlT" id="1As-of-DpB"/>
                         <outlet property="tableView" destination="wck-vY-ATD" id="KYW-JI-538"/>
                         <outlet property="trackBar" destination="GGg-aI-eJF" id="Stf-6L-iEr"/>
+                        <outlet property="trackBarOps" destination="Q9E-aY-MHv" id="nK8-eP-UDy"/>
                         <segue destination="alL-FF-LoK" kind="show" identifier="tempoSegue" id="WKf-hF-qjW"/>
                         <segue destination="Tg2-lG-wOm" kind="show" identifier="creationListSegue" id="wjO-dU-Rkg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YH2-NQ-JOM" sceneMemberID="firstResponder"/>
-                <customObject id="Una-1O-F7t" userLabel="CollectionView Delegate" customClass="horizontalCVFDelegate" customModule="Orphee" customModuleProvider="target"/>
-                <customObject id="s4i-nJ-4aq" userLabel="CollectionView DataSrc" customClass="horizontalCVDataSource" customModule="Orphee" customModuleProvider="target"/>
                 <customObject id="4XF-zO-pll" userLabel="CompoGrid DataSrc" customClass="compoGridDataSource" customModule="Orphee" customModuleProvider="target">
                     <connections>
                         <outlet property="VC" destination="3x0-r0-poF" id="kyS-M9-h6a"/>
@@ -574,7 +592,7 @@
                         <outlet property="trackEditBtns" destination="spB-or-HAe" id="nNm-x4-oZD"/>
                     </connections>
                 </customObject>
-                <customObject id="9DP-ZV-Yyf" customClass="trackBarDataSrc" customModule="Orphee" customModuleProvider="target">
+                <customObject id="9DP-ZV-Yyf" userLabel="Track Bar DataSrc" customClass="trackBarDataSrc" customModule="Orphee" customModuleProvider="target">
                     <connections>
                         <outlet property="VC" destination="3x0-r0-poF" id="2Xk-Pu-ZWb"/>
                     </connections>

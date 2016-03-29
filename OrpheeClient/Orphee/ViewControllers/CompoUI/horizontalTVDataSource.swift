@@ -20,6 +20,7 @@ class defaultCell: UICollectionViewCell {
 class defaultHeader: UICollectionReusableView {
     @IBOutlet weak var noteLbl: UILabel!
     @IBOutlet weak var octaveLbl: UILabel!
+    @IBOutlet weak var bg: UIView!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

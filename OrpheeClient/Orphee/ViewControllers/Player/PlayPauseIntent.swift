@@ -16,7 +16,7 @@ class PlayPauseIntent: NSObject {
 
     var testTimer: NSTimer?
 
-    let pauseImage = UIImage(named: "player/pause")!
+    let pauseImage = UIImage(named: "player/stop")!
     let playImage = UIImage(named: "player/play")!
 
     var isPlaying: Bool {
@@ -35,7 +35,7 @@ class PlayPauseIntent: NSObject {
 //        playButton?.imageView?.tintColor = UIColor.randomColor()
     }
 
-    @IBAction func pressPlay(sender: UIButton) {
+    @IBAction func pressPlay() {
         timerIntent.timer?.invalidate()
 
         self.playerController.playPause()

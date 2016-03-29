@@ -178,6 +178,7 @@ class InstrumentsTableViewController: UITableViewController {
 //        self.mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!)
 
         self.mainVC.tracksInfo[self.mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue : indexPath.row]
+        self.mainVC.currentInstrument.title = instrumentsList[indexPath.row]
         self.navigationController!.popViewControllerAnimated(true)
     }
 }

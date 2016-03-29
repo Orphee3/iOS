@@ -29,11 +29,9 @@ class trackBarDataSrc: NSObject, UICollectionViewDataSource {
             content.deleteButton.tag = indexPath.row
             content.muteButton.tag = indexPath.row
             content.active = (indexPath.row == self.VC.currentTrack)
-//            content.backgroundColor = UIColor.darkGrayColor()
-//            if indexPath.row == self.VC.currentTrack {
-//                content.backgroundColor = UIColor.randomColor()
-//            }
+            content.muted = self.VC.mutedTracks.contains(indexPath.row)
             content.deleteButton.hidden = !deleteMode
+            content.muteButton.hidden = deleteMode
         }
         return cell
     }
@@ -58,12 +56,12 @@ class trackBarOpsIntent: NSObject {
 
     @IBAction func addTrack() {
         self.VC.addTrack()
-        self.collection.reloadData()
+        self.refresh()
     }
 
     @IBAction func rmTrack(button: UIButton) {
         self.VC.removeTrack(button.tag)
-        self.collection.reloadData()
+        self.refresh()
     }
 
     @IBAction func startDeleteMode() {
@@ -84,11 +82,11 @@ class trackBarOpsIntent: NSObject {
     }
 
     @IBAction func muteTrack(sender: UIButton) {
-        sender.imageView?.tintColor = UIColor.blueColor()
-        sender.borderColor = UIColor.blueColor()
+        self.VC.toggleMute(sender.tag)
+        self.refresh()
     }
 
-    func deleteAll() {
+    func refresh() {
         self.collection.reloadData()
     }
 }

@@ -10,20 +10,29 @@ import UIKit
 import AVKit
 import FileManagement
 
+
+public enum repeatCount {
+    case all
+    case one
+    case none
+}
+
 class PlayerViewController: UIViewController, pCreationListActor {
 
     var player: MIDIPlayer?;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
-    @IBOutlet weak var trackTitle: UIBarButtonItem!
+    @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var bkGrndImage: UIImageView!
     @IBOutlet weak var durationLbl: UILabel!
     @IBOutlet weak var elapsedTimeLbl: UILabel!
 
+    @IBOutlet weak var repeatBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var sliderIntent: SliderIntent!
+    @IBOutlet weak var playPauseIntent: PlayPauseIntent!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +90,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
         player?.setupAudioGraph()
         updateTimeUI()
         updateTrackUI(creation)
+        trackTitle.text = creation
     }
 
     func updateElapsedTime() {
@@ -89,14 +99,18 @@ class PlayerViewController: UIViewController, pCreationListActor {
         if !self.sliderIntent.isSliding {
             sliderIntent.updateCurrentValue(Float(currentTime))
         }
+        if currentTime >= player?.duration ?? 0 {
+            self.playPauseIntent.pressPlay()
+            if repeatCnt == .one {
+                self.playPauseIntent.pressPlay()
+            }
+        }
     }
 
     func updateTrackUI(name: String) {
-        //        trackTitle.title = name
         let image = getImageForTrack(name)
         trackImage.image = image
         bkGrndImage.image = UIImage.init(CGImage: image.CGImage!, scale: image.scale, orientation: .DownMirrored)
-        //        nextBtn.imageView?.tintColor = UIColor.randomColor()
     }
 
     func getImageForTrack(name: String) -> UIImage {
@@ -114,5 +128,21 @@ class PlayerViewController: UIViewController, pCreationListActor {
         let paths = try! PathManager.listFiles(NSHomeDirectory() + "/Documents/AlbumArt")
         let albumName = paths[paths.startIndex.advancedBy(Int(arc4random_uniform(UInt32(paths.count))))]
         updateTrackUI(albumName)
+    }
+
+    let repeatOne = UIImage(named: "player/repeat/one")!
+    let repeatNone = UIImage(named: "player/repeat/none")!
+
+    var repeatCnt = repeatCount.none
+
+    @IBAction func pressRepeat() {
+        switch repeatCnt {
+        case .none:
+            repeatCnt = .one
+            repeatBtn.setImage(repeatOne, forState: .Normal)
+        default:
+            repeatCnt = .none
+            repeatBtn.setImage(repeatNone, forState: .Normal)
+        }
     }
 }

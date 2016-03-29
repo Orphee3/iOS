@@ -275,7 +275,6 @@ public class MIDIDataParser {
                 }
             }
             var noteOns = [UInt8 : (dTm: UInt32, note: MIDINoteMessage)]()
-            print(timedEvents)
             timedEvents.forEach { (delta, events) in
                 let ons = events.filter { $0.type == .noteOn }
                 let offs = events.filter { $0.type == .noteOff }
@@ -300,7 +299,6 @@ public class MIDIDataParser {
                 }
             }
             tracks[Int(idx)] = msgCollection
-            print(msgCollection)
         }
         return tracks
     }

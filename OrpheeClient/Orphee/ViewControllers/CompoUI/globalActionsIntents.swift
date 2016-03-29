@@ -38,6 +38,6 @@ class globalActionsIntents: NSObject {
     
     @IBAction func cleanAll() {
         self.VC.cleanData()
-        self.trackBarOps.deleteAll()
+        self.trackBarOps.refresh()
     }
 }
