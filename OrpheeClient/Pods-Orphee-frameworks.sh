@@ -85,10 +85,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+install_framework "Tools.framework"
 install_framework "MIDIToolbox.framework"
 install_framework "FileManagement.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+install_framework "Tools.framework"
 install_framework "MIDIToolbox.framework"
 install_framework "FileManagement.framework"
 fi

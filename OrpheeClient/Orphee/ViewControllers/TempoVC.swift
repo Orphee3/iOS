@@ -24,6 +24,14 @@ class TempoViewController: UITableViewController {
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let row = self.TempoList.indexOf(self.mainVC.tempoInfo) ?? 0
+        let path = NSIndexPath(forItem: row, inSection: 0)
+        self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: .Middle, animated: false)
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -40,7 +48,7 @@ class TempoViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-//        mainVC.tempoInfo = TempoList[indexPath.row]
+        self.mainVC.tempoInfo = TempoList[indexPath.row]
         self.navigationController!.popViewControllerAnimated(true);
     }
 }

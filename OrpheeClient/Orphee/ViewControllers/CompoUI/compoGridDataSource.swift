@@ -23,11 +23,12 @@ class compoGridDataSource: NSObject, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: HorizontalTableView = tableView.dequeueReusableCellWithIdentifier("Toto") as! HorizontalTableView
-        cell.updateCellData(self.dataMgr, lineID: indexPath.row)
+        cell.updateCellData(self.dataMgr, lineID: self.dataMgr.lineIdxForNote(indexPath.row))
         cell.setViewController(self.VC)
         cell.setupGraphics()
-        cell.scrollToTime(self.VC.commonTime, animated: false)
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.scrollWithOffset(self.VC.commonOffset, animated: false)
+//        cell.scrollToTime(self.VC.commonTime, animated: false)
+//        cell.backgroundColor = UIColor.whiteColor()
         return cell
     }
 

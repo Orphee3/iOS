@@ -25,6 +25,7 @@
 		1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E638F1A1C8B517600B161BE /* pCreationListActor.swift */; };
 		1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */; };
 		1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */; };
+		1EA5AED41CA4A6DC00026144 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
 		1E6300861BFCCB2A009F4478 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6300851BFCCB2A009F4478 /* Composition.storyboard */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
@@ -45,6 +46,7 @@
 		1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */; };
 		1EB274E41C598B25008FDFA4 /* CompoScroll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
+		1ECEFB181CA5F5D200D1719F /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEFB171CA5F5D200D1719F /* UITests.swift */; };
 		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
 		1ED8F4031C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
 		1ED8F4051C0158CB00FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
@@ -127,6 +129,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1ECEFB1A1CA5F5D200D1719F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52C61D941A79E5C400B3DE23;
+			remoteInfo = Orphee;
+		};
+		9B6864EA1BF7E2C900D3D6F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B6864E71BF7E2C900D3D6F6;
+			remoteInfo = "OrpheeWatch Extension";
+		};
+		9B6864F81BF7E2C900D3D6F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B6864DB1BF7E2C800D3D6F6;
+			remoteInfo = OrpheeWatch;
+		};
 		DB8E61DA1ABB4D2B005BF7B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52C61D8D1A79E5C400B3DE23 /* Project object */;
@@ -216,6 +239,9 @@
 		1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionVC.swift; sourceTree = "<group>"; };
 		1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompoScroll.storyboard; sourceTree = "<group>"; };
 		1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSequencer.swift; sourceTree = "<group>"; };
+		1ECEFB151CA5F5D200D1719F /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ECEFB171CA5F5D200D1719F /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
+		1ECEFB191CA5F5D200D1719F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		523432E31A80C1420041B7BD /* PresetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetLoader.h; sourceTree = "<group>"; };
 		526FF6041A81106E00CF6A9C /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = Ressources/Sounds; sourceTree = "<group>"; };
 		52C61D951A79E5C400B3DE23 /* Orphee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orphee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +326,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1ECEFB121CA5F5D100D1719F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52C61D921A79E5C400B3DE23 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,6 +425,15 @@
 			path = CompoUI;
 			sourceTree = "<group>";
 		};
+		1ECEFB161CA5F5D200D1719F /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				1ECEFB171CA5F5D200D1719F /* UITests.swift */,
+				1ECEFB191CA5F5D200D1719F /* Info.plist */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
 		523433011A8103A40041B7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +506,7 @@
 				9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */,
 				9B6E31441BD248A6006DD0AF /* DataModels */,
 				88F21BCA4626CFD565278816 /* OrpheeTests */,
+				1ECEFB161CA5F5D200D1719F /* UITests */,
 				523433011A8103A40041B7BD /* Frameworks */,
 				523433021A8103DB0041B7BD /* Ressources */,
 				526FF5C11A810AA000CF6A9C /* ViewControllers */,
@@ -481,6 +524,7 @@
 				52C61DAA1A79E5C400B3DE23 /* OrpheeTests.xctest */,
 				DB8E61E71ABB4D2B005BF7B4 /* AudioGraphTests.xctest */,
 				DB8E61F81ABB4D86005BF7B4 /* PresetManagementTests.xctest */,
+				1ECEFB151CA5F5D200D1719F /* UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -669,6 +713,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1ECEFB141CA5F5D100D1719F /* UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ECEFB1C1CA5F5D200D1719F /* Build configuration list for PBXNativeTarget "UITests" */;
+			buildPhases = (
+				1ECEFB111CA5F5D100D1719F /* Sources */,
+				1ECEFB121CA5F5D100D1719F /* Frameworks */,
+				1ECEFB131CA5F5D100D1719F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1ECEFB1B1CA5F5D200D1719F /* PBXTargetDependency */,
+			);
+			name = UITests;
+			productName = UITests;
+			productReference = 1ECEFB151CA5F5D200D1719F /* UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		52C61D941A79E5C400B3DE23 /* Orphee */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52C61DB41A79E5C400B3DE23 /* Build configuration list for PBXNativeTarget "Orphee" */;
@@ -753,10 +815,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = __ORPHEE__;
 				TargetAttributes = {
+					1ECEFB141CA5F5D100D1719F = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 52C61D941A79E5C400B3DE23;
+					};
 					52C61D941A79E5C400B3DE23 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 99BX55LUM5;
@@ -789,11 +855,19 @@
 				52C61DA91A79E5C400B3DE23 /* OrpheeTests */,
 				DB8E61D81ABB4D2B005BF7B4 /* AudioGraphTests */,
 				DB8E61E91ABB4D86005BF7B4 /* PresetManagementTests */,
+				1ECEFB141CA5F5D100D1719F /* UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1ECEFB131CA5F5D100D1719F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52C61D931A79E5C400B3DE23 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -804,6 +878,8 @@
 				9B88F6121C7D11EE001A77AD /* LoginRegister.storyboard in Resources */,
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				1E25E7DB1C8770D000C499D6 /* Player.storyboard in Resources */,
+				9B0D5F741BFDDA40001A9DF6 /* RoomCell.xib in Resources */,
+				1EA5AED41CA4A6DC00026144 /* xtreme.mid in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */,
 				9B6940611C8CC8440039F826 /* Info.plist in Resources */,
@@ -921,6 +997,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1ECEFB111CA5F5D100D1719F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ECEFB181CA5F5D200D1719F /* UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52C61D911A79E5C400B3DE23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1021,6 +1105,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1ECEFB1B1CA5F5D200D1719F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52C61D941A79E5C400B3DE23 /* Orphee */;
+			targetProxy = 1ECEFB1A1CA5F5D200D1719F /* PBXContainerItemProxy */;
+		};
+		9B6864EB1BF7E2C900D3D6F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B6864E71BF7E2C900D3D6F6 /* OrpheeWatch Extension */;
+			targetProxy = 9B6864EA1BF7E2C900D3D6F6 /* PBXContainerItemProxy */;
+		};
+		9B6864F91BF7E2C900D3D6F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B6864DB1BF7E2C800D3D6F6 /* OrpheeWatch */;
+			targetProxy = 9B6864F81BF7E2C900D3D6F6 /* PBXContainerItemProxy */;
+		};
 		DB8E61D91ABB4D2B005BF7B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 52C61D941A79E5C400B3DE23 /* Orphee */;
@@ -1060,6 +1159,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1ECEFB1D1CA5F5D200D1719F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Orphee;
+			};
+			name = Debug;
+		};
+		1ECEFB1E1CA5F5D200D1719F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Orphee;
+			};
+			name = Release;
+		};
 		52C61DB21A79E5C400B3DE23 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1295,6 +1425,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1ECEFB1C1CA5F5D200D1719F /* Build configuration list for PBXNativeTarget "UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ECEFB1D1CA5F5D200D1719F /* Debug */,
+				1ECEFB1E1CA5F5D200D1719F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		52C61D901A79E5C400B3DE23 /* Build configuration list for PBXProject "Orphee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

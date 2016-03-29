@@ -10,18 +10,29 @@ import UIKit
 import AVKit
 import FileManagement
 
+
+public enum repeatCount {
+    case all
+    case one
+    case none
+}
+
 class PlayerViewController: UIViewController, pCreationListActor {
 
     var player: MIDIPlayer?;
     var audioIO: AudioGraph = AudioGraph();
     var session: AudioSession = AudioSession();
 
-    @IBOutlet weak var trackTitle: UIBarButtonItem!
+    @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var bkGrndImage: UIImageView!
     @IBOutlet weak var durationLbl: UILabel!
     @IBOutlet weak var elapsedTimeLbl: UILabel!
 
+    @IBOutlet weak var repeatBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var sliderIntent: SliderIntent!
+    @IBOutlet weak var playPauseIntent: PlayPauseIntent!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,22 +63,21 @@ class PlayerViewController: UIViewController, pCreationListActor {
     }
 
     func setupAudio() {
-//        self.session.setupSession(&audioIO);
+        self.session.setupSession(&audioIO);
         self.audioIO.createAudioGraph();
         self.audioIO.configureAudioGraph();
         self.audioIO.startAudioGraph();
     }
 
     func playPause() {
-        if let pl = player where pl.isPlaying {
-            pl.pause()
-        }
-        else if let pl = player {
-            pl.play()
-        }
-        else {
-            actOnSelectedCreation("EIP2.mid")
-            self.player!.play()
+        switch self.player?.isPlaying {
+        case .Some(true):
+            self.player?.pause()
+        case .Some(false):
+            self.player?.play()
+        default:
+            self.actOnSelectedCreation("EIP2.mid")
+            self.player?.play()
         }
         updateElapsedTime()
     }
@@ -80,25 +90,59 @@ class PlayerViewController: UIViewController, pCreationListActor {
         player?.setupAudioGraph()
         updateTimeUI()
         updateTrackUI(creation)
+        trackTitle.text = creation
     }
 
     func updateElapsedTime() {
         let currentTime = player?.currentTime ?? 0
         elapsedTimeLbl?.text = MIDIPlayer.formatTime(currentTime)
-        sliderIntent.updateCurrentValue(Float(currentTime))
+        if !self.sliderIntent.isSliding {
+            sliderIntent.updateCurrentValue(Float(currentTime))
+        }
+        if currentTime >= player?.duration ?? 0 {
+            self.playPauseIntent.pressPlay()
+            if repeatCnt == .one {
+                self.playPauseIntent.pressPlay()
+            }
+        }
     }
 
     func updateTrackUI(name: String) {
-//        trackTitle.title = name
-        trackImage.image = getImageForTrack(name)
+        let image = getImageForTrack(name)
+        trackImage.image = image
+        bkGrndImage.image = UIImage.init(CGImage: image.CGImage!, scale: image.scale, orientation: .DownMirrored)
     }
 
     func getImageForTrack(name: String) -> UIImage {
-        return UIImage(named: name) ?? UIImage(named: "emptyfunprofile")!
+        print(name)
+
+        return UIImage(contentsOfFile: NSHomeDirectory() + "/Documents/AlbumArt/" + name) ?? UIImage(named: "emptyfunprofile")!
     }
 
     func updateTimeUI() {
         durationLbl.text = MIDIPlayer.formatTime(self.player!.duration)
         sliderIntent.updateMaxValue(Float(player!.duration))
+    }
+
+    @IBAction func pressNext() {
+        let paths = try! PathManager.listFiles(NSHomeDirectory() + "/Documents/AlbumArt")
+        let albumName = paths[paths.startIndex.advancedBy(Int(arc4random_uniform(UInt32(paths.count))))]
+        updateTrackUI(albumName)
+    }
+
+    let repeatOne = UIImage(named: "player/repeat/one")!
+    let repeatNone = UIImage(named: "player/repeat/none")!
+
+    var repeatCnt = repeatCount.none
+
+    @IBAction func pressRepeat() {
+        switch repeatCnt {
+        case .none:
+            repeatCnt = .one
+            repeatBtn.setImage(repeatOne, forState: .Normal)
+        default:
+            repeatCnt = .none
+            repeatBtn.setImage(repeatNone, forState: .Normal)
+        }
     }
 }

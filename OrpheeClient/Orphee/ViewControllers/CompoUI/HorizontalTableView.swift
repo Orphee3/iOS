@@ -36,7 +36,7 @@ class HorizontalTableView: UITableViewCell {
 
     func setupGraphics() {
         self.selectionStyle = .None
-        self.collectionView.backgroundColor = UIColor.whiteColor()
+//        self.collectionView.backgroundColor = UIColor.whiteColor()
         self.collectionView.alwaysBounceHorizontal = false
         (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
     }
@@ -62,6 +62,7 @@ class HorizontalTableView: UITableViewCell {
     func setViewController(vc: CompositionVC) {
         self.VC = vc
         self.tabDelegate.VC = vc
+        self.tabDataSource.VC = vc
     }
 
     func normalizeIndex(row: Int) -> NSIndexPath {
@@ -71,32 +72,44 @@ class HorizontalTableView: UITableViewCell {
         return NSIndexPath(forItem: row, inSection: 0)
     }
 
-    func timeForItem(atRow: Int, forLine: Int) -> Int {
-        return self.dataMgr.timeForCell(atRow: atRow, forLine: forLine)
+    func timeForItem(atRow: Int, forLine: Int) -> Float32 {
+        return self.dataMgr.startTimeForCell(atRow: atRow, forLine: forLine) ?? 0
     }
 
-    func cellIndexForTime(time: Int) -> Int {
+    func cellIndexForTime(time: Float32) -> Int {
         if let line = self.dataMgr.lineForIndex(self.lineID) {
-            var newTm = 0
+            var newTm: Float32 = 0
             for (idx, cell) in line.enumerate() {
-                newTm += cell.length
+                newTm += DataMgr.lengths[cell.length]!
                 if newTm >= time { return idx }
             }
         }
         return -1
     }
 
-    func timeForContentOffset(offset: CGPoint) -> Int {
-        return Int(offset.x / 27.5)
+    func timeForContentOffset(offset: CGPoint) -> Float32 {
+        let path = collectionView.indexPathForItemAtPoint(offset)!
+        return timeForItem(path.row, forLine: lineID)
     }
 
-    func contentOffsetForTime(time: Int) -> CGPoint {
-        return CGPoint(x: CGFloat(Double(time) * 27.5), y: self.collectionView.contentOffset.y)
+    func contentOffsetForTime(time: Float32) -> CGPoint {
+        let idx = cellIndexForTime(time)
+        let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: idx, inSection: 0))
+        let cellPoint = cell?.frame.origin ?? CGPointZero
+        let offset = collectionView.convertPoint(cellPoint, fromView: cell)
+        return CGPoint(x: offset.x, y: self.collectionView.contentOffset.y)
+//        return collectionView
+//        return CGPoint(x: CGFloat(Double(time) * 27.5), y: self.collectionView.contentOffset.y)
     }
 
-    func scrollToTime(time: Int, animated: Bool = true) {
+    func scrollToTime(time: Float32, animated: Bool = true) {
         let r = self.collectionView.frame.size
         let rect = CGRect(origin: self.contentOffsetForTime(time), size: r)
+        self.collectionView.scrollRectToVisible(rect, animated: animated)
+    }
+
+    func scrollWithOffset(x: CGFloat, animated: Bool = true) {
+        let rect = CGRectMake(x, 0, self.collectionView.frame.width, self.collectionView.frame.height)
         self.collectionView.scrollRectToVisible(rect, animated: animated)
     }
 }

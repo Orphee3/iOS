@@ -68,6 +68,7 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
         var trk: MusicTrack = MusicTrack();
         var ct: UInt32 = 0;
 
+        print(notes)
         MusicSequenceNewTrack(buffer, &trk);
         MusicSequenceGetTrackCount(buffer, &ct);
 
@@ -76,9 +77,9 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
         var endNote = MIDINoteMessage(channel: UInt8(trkCnt), note: 0, velocity: 0, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
         var trackHasNotes = false
-//        var tmStmp: Float64 = 0;
         var curTmStmp: Float64 = 0
         for (tmStmp, dtNotes) in notes {
+            print(tmStmp)
             trackHasNotes = true
             for var note in dtNotes {
                 MusicTrackNewMIDINoteEvent(trk, tmStmp, &note);

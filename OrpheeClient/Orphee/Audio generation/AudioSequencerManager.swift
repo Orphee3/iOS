@@ -17,6 +17,13 @@ public class AudioSequencerManager {
         sequencer = AVAudioSequencer(audioEngine: engine)
     }
 
+    deinit {
+        sequencer.stop()
+        for track in sequencer.tracks {
+            track.destinationAudioUnit = nil
+        }
+    }
+
     public func loadFile(path: String) -> Bool {
         guard let data = NSData(contentsOfFile: path) else {
             return false
@@ -40,7 +47,7 @@ public class AudioSequencerManager {
 
     public func setDestinationAudioUnit(units: [AVAudioUnit]) {
         guard units.count > 0 else { return }
-        for (idx, track) in sequencer.tracks.enumerate() where track.lengthInSeconds > 0 {
+        for (idx, track) in sequencer.tracks.enumerate() {
             track.destinationAudioUnit = units[idx]
         }
     }
@@ -78,5 +85,18 @@ public class AudioSequencerManager {
 
     public func getCurrentPosition() -> NSTimeInterval {
         return sequencer.currentPositionInSeconds
+    }
+
+    public func setLoopFile(shouldLoop: Bool) {
+        for track in sequencer.tracks {
+            track.loopingEnabled = shouldLoop
+        }
+    }
+
+    public func isLooping() -> Bool {
+        for track in sequencer.tracks {
+            if track.loopingEnabled { return true }
+        }
+        return false
     }
 }

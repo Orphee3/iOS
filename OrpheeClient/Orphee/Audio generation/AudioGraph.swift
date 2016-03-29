@@ -16,7 +16,7 @@ class AudioGraph {
     var sampleRate: Float64 = 44_100;
 
     /// The actual processing Audio Graph
-    var graph: AUGraph! = AUGraph();
+    var graph: AUGraph! = AUGraph()
 
     /// The default I/O unit
     lazy var ioUnit: AudioUnit! = AudioUnit();

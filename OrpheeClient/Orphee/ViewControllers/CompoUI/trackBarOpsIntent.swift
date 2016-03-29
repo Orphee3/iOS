@@ -9,77 +9,84 @@
 import UIKit
 import Tools
 
+
+class trackBarDataSrc: NSObject, UICollectionViewDataSource {
+
+    @IBOutlet weak var VC: CompositionVC!
+    var deleteMode = false
+
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.VC.tracks.count
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("trackCell", forIndexPath: indexPath) as! defaultCell
+        if let content = cell.content as? trackItemView {
+            content.deleteButton.tag = indexPath.row
+            content.muteButton.tag = indexPath.row
+            content.active = (indexPath.row == self.VC.currentTrack)
+            content.muted = self.VC.mutedTracks.contains(indexPath.row)
+            content.deleteButton.hidden = !deleteMode
+            content.muteButton.hidden = deleteMode
+        }
+        return cell
+    }
+}
+
+class trackBarDelegate: NSObject, UICollectionViewDelegate {
+    @IBOutlet weak var VC: CompositionVC!
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.VC.changeCurrentTrack(indexPath.row)
+        collectionView.reloadData()
+    }
+}
+
 class trackBarOpsIntent: NSObject {
 
-    var trackItems: [trackItemView] = []
-
-    var scroll: UIScrollView!
-    @IBOutlet weak var trackBar: UIToolbar!
     @IBOutlet weak var VC: CompositionVC!
-    @IBOutlet weak var item1: UIBarButtonItem!
-    @IBOutlet weak var item2: UIBarButtonItem!
+    @IBOutlet weak var dataSrc: trackBarDataSrc!
+    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var endDelBtn: UIButton!
+    @IBOutlet weak var trackEditBtns: UIStackView!
 
-    func updateLayout() {
-//        trackBar.layoutIfNeeded()
-//        trackBar.bounds.size.width = trackBar.superview!.bounds.width - 190
-//        scroll.frame.size.width = trackBar.bounds.width - 250
-//        scroll.frame.origin.x = trackBar.frame.origin.x + 120
-//        scroll.frame.origin.y = 7.5
-        //        scroll.layoutIfNeeded()
-        scroll.frame.size.width = trackBar.frame.width - scroll.frame.origin.x - 200
-        print("layout update")
-//        for view in trackBar.subviews {
-            print(scroll.frame)
-//        }
-//        print("")
+    @IBAction func addTrack() {
+        self.VC.addTrack()
+        self.refresh()
     }
 
-    func setup() {
-        self.scroll = item1.customView as! UIScrollView
-        scroll.frame.size.height = 20
-//        scroll.frame.origin.x += 50
-        scroll.frame.size.width = trackBar.frame.width - scroll.frame.origin.x - 200
-//        scroll.autoresizingMask = .None
-        scroll.showsHorizontalScrollIndicator = false
-        scroll.layer.cornerRadius = 10
-//        trackBar.items?.insert(UIBarButtonItem(customView: scroll), atIndex: 1)
-//        trackBar.addSubview(scroll)
-        print(scroll.bounds)
-        for _ in self.VC.tracks {
-            self.addTrack(self)
-        }
+    @IBAction func rmTrack(button: UIButton) {
+        self.VC.removeTrack(button.tag)
+        self.refresh()
     }
 
-    @IBAction func addTrack(sender: AnyObject) {
-        let v: trackItemView = trackItemView.fromNib("trackItemView")
-        let idx = trackItems.count
-
-        v.deleteButton.addTarget(self, action: Selector("rmTrack:"), forControlEvents: .TouchUpInside)
-        v.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("changeTrack:")))
-        v.frame.offsetInPlace(dx: CGFloat(idx) * v.frame.width + CGFloat(idx * 10), dy: 0)
-        v.active = false
-        scroll.addSubview(v)
-        trackItems.append(v)
-        scroll.contentSize.width += v.frame.width + 10
+    @IBAction func startDeleteMode() {
+        self.dataSrc.deleteMode = true
+        self.collection.reloadData()
+        self.trackEditBtns.hidden = true
+        self.trackEditBtns.subviews.forEach { $0.hidden = true }
+        self.endDelBtn.hidden = false
+        self.endDelBtn.imageView?.hidden = false
     }
 
-    @IBAction func rmTrack(sender: UIButton) {
-        if let v = sender.superview as? trackItemView, let idx = trackItems.indexOf(v) {
-            if v.active { self.trackItems[0].active = true }
-            v.removeFromSuperview()
-            trackItems.removeAtIndex(idx)
-            scroll.contentSize.width -= v.frame.width + 10
-            for index in idx..<trackItems.count {
-                let view = trackItems[index]
-                view.frame.offsetInPlace(dx: -view.frame.width - 10, dy: 0)
-            }
-        }
+    @IBAction func endDeleteMode() {
+        self.dataSrc.deleteMode = false
+        self.collection.reloadData()
+        self.trackEditBtns.hidden = false
+        self.trackEditBtns.subviews.forEach { $0.hidden = false }
+        self.endDelBtn.hidden = true
     }
 
-    @IBAction func changeTrack(sender: UITapGestureRecognizer) {
-        if let view = sender.view as? trackItemView {
-            trackItems.forEach() { $0.active = false }
-            view.active = true
-        }
+    @IBAction func muteTrack(sender: UIButton) {
+        self.VC.toggleMute(sender.tag)
+        self.refresh()
+    }
+
+    func refresh() {
+        self.collection.reloadData()
     }
 }

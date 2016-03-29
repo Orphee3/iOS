@@ -44,16 +44,9 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     }
 
     required public init?(data: NSData) {
-        do {
-            self.data = data
-            engine = try AudioEngineManager()
-            sequence = AudioSequencerManager(engine: engine.engine)
-        }
-        catch {
-            print("MIDIPlayer init Failed: \(error)")
-            self.duration = 0
-            return nil
-        }
+        self.data = data
+        engine = AudioEngineManager()
+        sequence = AudioSequencerManager(engine: engine.engine)
         guard sequence.loadFile(data) else {
             self.duration = 0
             return nil
@@ -63,20 +56,17 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
 
     public func setupAudioGraph() -> Bool {
         let bank    = NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!
+//        let bank    = NSBundle.mainBundle().pathForResource("xtreme", ofType: "mid")! // test
         let content = MIDIFileManager.parseData(data)
         let infos   = content?[eOrpheeFileContent.TracksInfos.rawValue]
-        if let infos = infos as? [[String : Any]] where infos.count > 0 {
+        if let infos = infos as? [[String : Any]?] where infos.count > 0 {
 
-//            self.engine.engine.stop()
-            let patchs: [UInt8] = infos.filter {
-                    $0[eOrpheeFileContent.PatchID.rawValue] != nil
-                }.map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
-//            dispatch_async(dispatch_queue_create("toto", DISPATCH_QUEUE_SERIAL)) {
-                try! self.engine.setInstruments(patchs, soundBank: bank, type: eSampleType.Melodic)
-//            for _ in patchs { self.engine.addSampler() }
-                self.sequence.setDestinationAudioUnit(self.engine.samplers)
-//            }
-            try! self.engine.engine.start()
+            let patchs = infos
+                .flatMap { $0 }
+                .filter { $0[eOrpheeFileContent.PatchID.rawValue] != nil }
+                .map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
+            self.engine.setInstruments(patchs, soundBank: bank, type: eSampleType.Melodic)
+            self.sequence.setDestinationAudioUnit(self.engine.samplers)
             return true
         }
         else {

@@ -173,11 +173,12 @@ class InstrumentsTableViewController: UITableViewController {
     /// TODO: Clean it! Possible solution: pFormattedFileManager realisation for SoundBanks/SoundFonts.
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        var instrumentToLoad = self.presetMgr.getMelodicInstrumentFromSoundBank(UInt8(indexPath.row),
-            path: NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!)
-        self.mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!)
+//        var instrumentToLoad = self.presetMgr.getMelodicInstrumentFromSoundBank(UInt8(indexPath.row),
+//            path: NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!)
+//        self.mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!)
 
-//        self.mainVC.tracksInfo[self.mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue: indexPath.row]
+        self.mainVC.tracksInfo[self.mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue : indexPath.row]
+        self.mainVC.currentInstrument.title = instrumentsList[indexPath.row]
         self.navigationController!.popViewControllerAnimated(true)
     }
 }

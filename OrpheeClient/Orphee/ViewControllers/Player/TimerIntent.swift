@@ -14,10 +14,10 @@ class TimerIntent: NSObject {
 
     var timer: NSTimer?
 
-    func formatTimeValue(var time: Float) -> String {
-        time *= 120
-        let minutes = Int(floorf(roundf(time) / 60));
-        let seconds = Int(roundf(time)) - (minutes * 60);
+    func formatTimeValue(time: Float) -> String {
+        let tm = 120 * time
+        let minutes = Int(floorf(roundf(tm) / 60));
+        let seconds = Int(roundf(tm)) - (minutes * 60);
 
         return NSString(format: "%d:%02d", minutes, seconds) as String
     }
