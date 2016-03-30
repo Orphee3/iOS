@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol pCreationListActor {
+public protocol pCreationListActor: class {
 
     func actOnSelectedCreation(creation: String)
 }
