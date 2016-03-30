@@ -30,6 +30,13 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
         }
     }
 
+    public var repeats: Bool = false {
+        willSet {
+            self.sequence.repeats = newValue
+            self.sequence.setLoopFile(newValue)
+        }
+    }
+
     private var playing = false
     private let data: NSData
 
@@ -80,13 +87,28 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     }
 
     func pause() {
+        sequence.pause()
+    }
+
+    func stop() {
         sequence.stop()
+    }
+
+    func repeatCnt(loops: Int? = 0) {
+        switch loops {
+            case nil:
+                sequence.setLoopFile(false)
+        case .Some(let cnt) where cnt > 0:
+            sequence.setLoopFile(true)
+        default:
+            sequence.setLoopFile(true)
+        }
     }
 
     class func formatTime(time: NSTimeInterval) -> String {
         let minutes = Int(floor(round(time) / 60));
         let seconds = Int(round(time)) - (minutes * 60);
-
-        return NSString(format: "%d:%02d", minutes, seconds) as String
+        let formatedString = String(format: "%d:%02d", minutes, seconds)
+        return formatedString
     }
 }

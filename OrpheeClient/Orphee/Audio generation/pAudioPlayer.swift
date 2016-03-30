@@ -16,6 +16,7 @@ protocol pMediaPlayer {
 
     func play()
     func pause()
+    func stop()
 }
 
 protocol pMediaPlayerTimeManager {

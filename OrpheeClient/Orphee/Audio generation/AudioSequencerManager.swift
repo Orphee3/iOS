@@ -7,9 +7,13 @@ import Foundation
 import AVFoundation
 
 public class AudioSequencerManager {
-    var sequencer: AVAudioSequencer
+    private var sequencer: AVAudioSequencer
 
-    var isPlaying: Bool {
+    private var timer: NSTimer?
+
+    public var repeats: Bool = false
+
+    public var isPlaying: Bool {
         return sequencer.playing
     }
 
@@ -53,22 +57,28 @@ public class AudioSequencerManager {
     }
 
     public func play() {
+        self.sequencer.prepareToPlay()
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self,
+                selector: #selector(AudioSequencerManager.timerCheck),
+                userInfo: nil, repeats: true)
         do {
-            sequencer.prepareToPlay()
             try sequencer.start()
         }
         catch {
+            self.timer?.invalidate()
             debugPrint(error)
         }
     }
 
     public func pause() {
-        sequencer.stop()
+        self.timer?.invalidate()
+        self.sequencer.stop()
     }
 
     public func stop() {
-        sequencer.stop()
-        sequencer.currentPositionInSeconds = 0
+        self.timer?.invalidate()
+        self.sequencer.stop()
+        self.sequencer.currentPositionInSeconds = 0
     }
 
     public func getSequenceDuration() -> NSTimeInterval {
@@ -87,16 +97,30 @@ public class AudioSequencerManager {
         return sequencer.currentPositionInSeconds
     }
 
-    public func setLoopFile(shouldLoop: Bool) {
+    public func setLoopFile(shouldLoop: Bool, loopCnt: Int = 0) {
+        let loops: Int
+        if loopCnt > 0 {
+            loops = loopCnt
+        } else {
+            loops = AVMusicTrackLoopCount.Forever.rawValue
+        }
         for track in sequencer.tracks {
             track.loopingEnabled = shouldLoop
+            track.numberOfLoops = loops
         }
     }
 
-    public func isLooping() -> Bool {
-        for track in sequencer.tracks {
-            if track.loopingEnabled { return true }
+
+    @objc private func timerCheck() {
+        let duration = self.getSequenceDuration()
+        let currentTime = self.getCurrentPosition()
+        if currentTime >= duration {
+            switch self.repeats {
+            case true:
+                self.sequencer.currentPositionInSeconds = 0
+            case false:
+                self.stop()
+            }
         }
-        return false
     }
 }
