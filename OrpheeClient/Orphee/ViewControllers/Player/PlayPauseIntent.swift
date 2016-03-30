@@ -41,7 +41,7 @@ class PlayPauseIntent: NSObject {
         self.playerController.playPause()
         self.playButton?.setImage(self.buttonTitle, forState: .Normal)
         if self.isPlaying {
-            self.timerIntent.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: playerController, selector: #selector(PlayerViewController.updateElapsedTime), userInfo: nil, repeats: true)
+            self.timerIntent.timer = NSTimer.every(0.1.seconds, act: playerController.updateElapsedTime)
         }
     }
 

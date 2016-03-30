@@ -6,6 +6,7 @@
 import Foundation
 import AVFoundation
 
+
 public class AudioSequencerManager {
     private var sequencer: AVAudioSequencer
 
@@ -58,9 +59,7 @@ public class AudioSequencerManager {
 
     public func play() {
         self.sequencer.prepareToPlay()
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self,
-                selector: #selector(AudioSequencerManager.timerCheck),
-                userInfo: nil, repeats: true)
+        self.timer = NSTimer.every(0.05.seconds, act: timerCheck)
         do {
             try sequencer.start()
         }
@@ -85,12 +84,12 @@ public class AudioSequencerManager {
 
         var length: NSTimeInterval = 0;
         for track in sequencer.tracks {
-            let trackEndPos = sequencer.secondsForBeats(track.offsetTime) + track.lengthInSeconds
+            let trackEndPos = track.offsetTime + track.lengthInBeats
             if length < trackEndPos {
                 length = trackEndPos;
             }
         }
-        return length;
+        return sequencer.secondsForBeats(length)
     }
 
     public func getCurrentPosition() -> NSTimeInterval {

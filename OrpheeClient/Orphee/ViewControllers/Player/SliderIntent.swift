@@ -21,7 +21,7 @@ class SliderIntent: NSObject {
 
     @IBAction func stopSlide(sender: UISlider) {
         isSliding = false
-        let _ = NSTimer.scheduledTimerWithTimeInterval(0.01, target: timerIntent, selector: #selector(TimerIntent.updateElapsedTime), userInfo: nil, repeats: false)
+        let _ = NSTimer.after(0.seconds, act: timerIntent.updateElapsedTime)
     }
 
     func updateMaxValue(value: Float) {

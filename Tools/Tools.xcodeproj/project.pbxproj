@@ -14,6 +14,8 @@
 		1E7B5DC41C52EE6800C309B0 /* xUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B5DC31C52EE6800C309B0 /* xUIColor.swift */; };
 		1E7B5DC61C52F52600C309B0 /* xCGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B5DC51C52F52600C309B0 /* xCGFloat.swift */; };
 		1EA5AED61CA5D4B900026144 /* DefaultErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5AED51CA5D4B900026144 /* DefaultErrorAlert.swift */; };
+		1EB08B1B1CAC877800F5D438 /* xNSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB08B1A1CAC877800F5D438 /* xNSTimer.swift */; };
+		1EB08B1D1CAC91E200F5D438 /* xNSTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB08B1C1CAC91E200F5D438 /* xNSTimeInterval.swift */; };
 		1EB274771C597275008FDFA4 /* xUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274761C597275008FDFA4 /* xUIView.swift */; };
 		1EBA28A71C5CF7E60031AFF0 /* FixedSpace.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EBA28A61C5CF7E60031AFF0 /* FixedSpace.xib */; };
 		1EBDC4161CA73E3D00AB9F0F /* xUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBDC4151CA73E3D00AB9F0F /* xUIButton.swift */; };
@@ -34,6 +36,8 @@
 		1E7B5DC31C52EE6800C309B0 /* xUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIColor.swift; sourceTree = "<group>"; };
 		1E7B5DC51C52F52600C309B0 /* xCGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xCGFloat.swift; sourceTree = "<group>"; };
 		1EA5AED51CA5D4B900026144 /* DefaultErrorAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultErrorAlert.swift; sourceTree = "<group>"; };
+		1EB08B1A1CAC877800F5D438 /* xNSTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xNSTimer.swift; sourceTree = "<group>"; };
+		1EB08B1C1CAC91E200F5D438 /* xNSTimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xNSTimeInterval.swift; sourceTree = "<group>"; };
 		1EB274761C597275008FDFA4 /* xUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIView.swift; sourceTree = "<group>"; };
 		1EBA28A61C5CF7E60031AFF0 /* FixedSpace.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FixedSpace.xib; path = UIElements/FixedSpace.xib; sourceTree = "<group>"; };
 		1EBDC4151CA73E3D00AB9F0F /* xUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xUIButton.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		1E5924E61C24D663002E8A6B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1EB08B1C1CAC91E200F5D438 /* xNSTimeInterval.swift */,
+				1EB08B1A1CAC877800F5D438 /* xNSTimer.swift */,
 				1E5924EF1C24D675002E8A6B /* SupportFiles */,
 				1E5924F01C24D6A4002E8A6B /* xDictionary.swift */,
 				1E7B5DC31C52EE6800C309B0 /* xUIColor.swift */,
@@ -186,9 +192,11 @@
 				1E7B5DC41C52EE6800C309B0 /* xUIColor.swift in Sources */,
 				1EBDC4181CA744A600AB9F0F /* xUIImageView.swift in Sources */,
 				1EB274771C597275008FDFA4 /* xUIView.swift in Sources */,
+				1EB08B1B1CAC877800F5D438 /* xNSTimer.swift in Sources */,
 				1E53ECE01C5BC3A400A29F4B /* xUITabBarController.swift in Sources */,
 				1E7B5DC61C52F52600C309B0 /* xCGFloat.swift in Sources */,
 				1E5924F11C24D6A4002E8A6B /* xDictionary.swift in Sources */,
+				1EB08B1D1CAC91E200F5D438 /* xNSTimeInterval.swift in Sources */,
 				1ECD03421C5D1B55009DAF5B /* xCollectionViewFlowLayout.swift in Sources */,
 				1E53ECDE1C5BC31B00A29F4B /* xUINavigationController.swift in Sources */,
 				1EA5AED61CA5D4B900026144 /* DefaultErrorAlert.swift in Sources */,

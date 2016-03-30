@@ -80,7 +80,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
     func playPause() {
         switch self.player?.isPlaying {
         case .Some(true):
-            self.player?.pause()
+            self.player?.stop()
         case .Some(false):
             self.player?.play()
         default:
