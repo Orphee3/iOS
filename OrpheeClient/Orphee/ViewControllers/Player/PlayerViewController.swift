@@ -27,10 +27,12 @@ class PlayerViewController: UIViewController, pCreationListActor {
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var bkGrndImage: UIImageView!
-    @IBOutlet weak var durationLbl: UILabel!
-    @IBOutlet weak var elapsedTimeLbl: UILabel!
+    @IBOutlet weak var trackLengthLbl: UILabel!
+    @IBOutlet weak var trackElapsedTimeLbl: UILabel!
 
     @IBOutlet weak var repeatBtn: UIButton!
+    @IBOutlet weak var playBtn: UIButton!
+    @IBOutlet weak var prevBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var sliderIntent: SliderIntent!
     @IBOutlet weak var playPauseIntent: PlayPauseIntent!
@@ -50,11 +52,9 @@ class PlayerViewController: UIViewController, pCreationListActor {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
-        if let _ = self.player {
-            self.trackTitle.hidden = false
-        } else {
-            self.trackTitle.hidden = true
-        }
+        updateTimeUI()
+        updateTrackUI(nil)
+        updatePlayerUI()
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -62,9 +62,6 @@ class PlayerViewController: UIViewController, pCreationListActor {
         super.viewDidDisappear(animated)
     }
 
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "creationListSegue") {
             let creationList = segue.destinationViewController as! CreationsListVC;
@@ -72,6 +69,7 @@ class PlayerViewController: UIViewController, pCreationListActor {
         }
     }
 
+    // MARK:
     func setupAudio() {
         self.session.setupSession(&audioIO);
         self.audioIO.createAudioGraph();
@@ -89,7 +87,6 @@ class PlayerViewController: UIViewController, pCreationListActor {
             self.actOnSelectedCreation("EIP2.mid")
             self.player?.play()
         }
-        updateElapsedTime()
     }
 
     func actOnSelectedCreation(creation: String) {
@@ -108,34 +105,44 @@ class PlayerViewController: UIViewController, pCreationListActor {
     }
 
     func updateElapsedTime() {
+        if let _ = self.player {
+            updatePlayerUI()
+        }
         let currentTime = player?.currentTime ?? 0
-        elapsedTimeLbl?.text = MIDIPlayer.formatTime(currentTime)
+        trackElapsedTimeLbl?.text = MIDIPlayer.formatTime(currentTime)
         if !self.sliderIntent.isSliding {
             sliderIntent.updateCurrentValue(Float(currentTime))
         }
-        if currentTime >= player?.duration ?? 0 {
-            self.playPauseIntent.pressPlay()
-            if repeatCnt == .one {
-                self.playPauseIntent.pressPlay()
-            }
+    }
+
+    func updateTrackUI(name: String?) {
+        if let name = name {
+            let image = getImageForTrack(name)
+            trackImage.image = image
+            bkGrndImage.image = UIImage.init(CGImage: image.CGImage!, scale: image.scale, orientation: .DownMirrored)
+        }
+        if let _ = self.player {
+            self.trackTitle.hidden = false
+        } else {
+            self.trackTitle.hidden = true
         }
     }
 
-    func updateTrackUI(name: String) {
-        let image = getImageForTrack(name)
-        trackImage.image = image
-        bkGrndImage.image = UIImage.init(CGImage: image.CGImage!, scale: image.scale, orientation: .DownMirrored)
+    func updateTimeUI() {
+        trackElapsedTimeLbl.text = MIDIPlayer.formatTime(self.player?.currentTime ?? 0)
+        trackLengthLbl.text = MIDIPlayer.formatTime(self.player?.duration ?? 0)
+        sliderIntent.updateMaxValue(Float(self.player?.duration ?? 0))
+    }
+
+    func updatePlayerUI() {
+        let playBtnImage = self.playPauseIntent.buttonTitle
+        self.playBtn.setImage(playBtnImage, forState: .Normal)
     }
 
     func getImageForTrack(name: String) -> UIImage {
         print(name)
 
         return UIImage(named: "emptyfunprofile")!
-    }
-
-    func updateTimeUI() {
-        durationLbl.text = MIDIPlayer.formatTime(self.player?.duration ?? 0)
-        sliderIntent.updateMaxValue(Float(player?.duration ?? 0))
     }
 
     @IBAction func pressNext() {
@@ -155,9 +162,11 @@ class PlayerViewController: UIViewController, pCreationListActor {
         case .none:
             repeatCnt = .one
             repeatBtn.setImage(repeatOne, forState: .Normal)
+            player?.repeats = true
         default:
             repeatCnt = .none
             repeatBtn.setImage(repeatNone, forState: .Normal)
+            player?.repeats = false
         }
     }
 }

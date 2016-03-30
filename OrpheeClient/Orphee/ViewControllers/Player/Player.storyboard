@@ -528,13 +528,15 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="bkGrndImage" destination="Qjc-hc-xvb" id="caC-fg-9Q7"/>
-                        <outlet property="durationLbl" destination="576-Jm-9wa" id="uGb-1n-Lha"/>
-                        <outlet property="elapsedTimeLbl" destination="mE5-hA-98b" id="zx0-yv-71V"/>
-                        <outlet property="nextBtn" destination="5bP-Zt-BYC" id="YXI-n8-AGw"/>
+                        <outlet property="nextBtn" destination="5bP-Zt-BYC" id="S6e-iw-671"/>
+                        <outlet property="playBtn" destination="302-dH-dXg" id="gE7-Lb-yLH"/>
                         <outlet property="playPauseIntent" destination="PVj-Sz-AFI" id="XSs-Bg-u65"/>
+                        <outlet property="prevBtn" destination="qWd-GZ-ypp" id="Jwx-Le-pEy"/>
                         <outlet property="repeatBtn" destination="FiY-1R-2vA" id="WmW-Kn-oo9"/>
                         <outlet property="sliderIntent" destination="fXx-bk-UlM" id="GXv-Cm-2Jc"/>
+                        <outlet property="trackElapsedTimeLbl" destination="mE5-hA-98b" id="TSP-9E-dWo"/>
                         <outlet property="trackImage" destination="KHU-t7-YL1" id="ytc-GH-iKP"/>
+                        <outlet property="trackLengthLbl" destination="576-Jm-9wa" id="koD-35-SQL"/>
                         <outlet property="trackTitle" destination="pH6-ru-zLC" id="zTf-9T-0xG"/>
                         <outlet property="view" destination="YM6-lb-q3X" id="vQJ-77-ets"/>
                     </connections>
@@ -549,7 +551,6 @@
                 </customObject>
                 <customObject id="6iH-bq-0VS" customClass="TimerIntent" customModule="Orphee" customModuleProvider="target">
                     <connections>
-                        <outlet property="position" destination="mE5-hA-98b" id="HS9-um-JCm"/>
                         <outlet property="slider" destination="Yzs-03-WeE" id="UvA-6N-4gr"/>
                     </connections>
                 </customObject>

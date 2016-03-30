@@ -43,10 +43,13 @@ class PlayPauseIntent: NSObject {
         if self.isPlaying {
             self.timerIntent.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: playerController, selector: #selector(PlayerViewController.updateElapsedTime), userInfo: nil, repeats: true)
         }
-//        playButton?.imageView?.tintColor = defaultColor
     }
 
     @IBAction func delPlayer() {
         self.playerController.player = nil
+    }
+
+    func updateUI() {
+        self.playButton?.setImage(self.buttonTitle, forState: .Normal)
     }
 }
