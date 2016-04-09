@@ -81,7 +81,9 @@ class UserTableViewController: UITableViewController {
                 }
             }
             cell.likeButton.addTarget(self, action: #selector(UserTableViewController.likeButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            cell.likeButton.tag = indexPath.row
             cell.commentButton.addTarget(self, action: #selector(UserTableViewController.commentButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            cell.commentButton.tag = indexPath.row
             cell.createButton.addTarget(self, action: #selector(UserTableViewController.createButtonTapped(_:)), forControlEvents: .TouchUpInside)
             return cell
         }

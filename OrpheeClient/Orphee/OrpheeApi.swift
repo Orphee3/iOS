@@ -32,10 +32,10 @@ class OrpheeApi {
                 print(json.value)
                 if let result = json.value!["user"]{
                     do {
-                        var user = try mySuperUser.decode(result)
-                        user.token = json.value!["token"] as? String
+                        let user = try mySuperUser.decode(result)
+                        user.token = String(json.value!["token"])
                         saveUser(user)
-                        completion(user: "ok")
+                        self.goToMainPageConnected()
                     } catch let error {
                         print(error)
                         completion(user: "error")
@@ -53,7 +53,7 @@ class OrpheeApi {
                 completion(disconnected: "error")
             }
             if (response?.statusCode == 200){
-                    completion(disconnected: "ok")
+                completion(disconnected: "ok")
             }
         }
         
@@ -117,37 +117,49 @@ class OrpheeApi {
             }
         }
     }
-    //
-    //    func register(pseudo: String, mail: String, password: String, completion:(response: AnyObject) -> ()){
-    //        let param = [
-    //            "name": "\(pseudo)",
-    //            "username": "\(mail)",
-    //            "password": "\(password)"
-    //        ]
-    //        Alamofire.request(.POST, "\(url)/register", parameters: param, encoding: .JSON).responseJSON { request, response, json in
-    //            if (response?.statusCode == 500){
-    //                completion(response: "error")
-    //            }
-    //            else if(response?.statusCode == 409){
-    //                completion(response: "exists")
-    //            }
-    //            else if(response?.statusCode == 200){
-    //                completion(response: "ok")
+    
+    func register(pseudo: String, mail: String, password: String, completion:(response: AnyObject) -> ()){
+        let param = [
+            "name": "\(pseudo)",
+            "username": "\(mail)",
+            "password": "\(password)"
+        ]
+        Alamofire.request(.POST, "\(url)/register", parameters: param, encoding: .JSON).responseJSON { request, response, json in
+            print(json.value)
+            if (response?.statusCode == 500){
+                completion(response: "error")
+            }
+            else if(response?.statusCode == 409){
+                completion(response: "exists")
+            }
+            else if(response?.statusCode == 200){
+                if let result = json.value!["user"]{
+                    do {
+                        let user = try mySuperUser.decode(result)
+                        user.token = String(json.value!["token"])
+                        saveUser(user)
+                        self.goToMainPageConnected()
+                    } catch let error {
+                        print(error)
+                        completion(response: "error")
+                    }
+                }
+                completion(response: "ok")
+            }
+        }
+    }
+    
+    //        func lostPassword(mail: String, completion:(response: AnyObject) -> ()){
+    //            let param = [
+    //                "username":"\(mail)"
+    //            ]
+    //            Alamofire.request(.POST, "\(url)/forgot", parameters: param, encoding: .JSON).responseJSON { request, response, json in
+    //                if (response?.statusCode == 200){
+    //                    completion(response: "ok")
+    //                }
     //            }
     //        }
-    //    }
-    //
-    //    func lostPassword(mail: String, completion:(response: AnyObject) -> ()){
-    //        let param = [
-    //            "username":"\(mail)"
-    //        ]
-    //        Alamofire.request(.POST, "\(url)/forgot", parameters: param, encoding: .JSON).responseJSON { request, response, json in
-    //            if (response?.statusCode == 200){
-    //                completion(response: "ok")
-    //            }
-    //        }
-    //    }
-    //
+    
     
     
     func like(id :String, token: String, completion:(response: AnyObject) ->()){
