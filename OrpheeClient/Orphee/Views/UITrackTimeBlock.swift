@@ -93,8 +93,8 @@ class UITrackTimeBlock: UIButton {
 //        tBlock.setImage(image, forState: .Normal);
         tBlock.note = note;
         tBlock.graph = graph;
-        tBlock.addTarget(tBlock, action: Selector("onTouchDown"), forControlEvents: UIControlEvents.TouchDown);
-        tBlock.addTarget(tBlock, action: Selector("onClick"), forControlEvents: UIControlEvents.TouchUpInside);
+        tBlock.addTarget(tBlock, action: #selector(UITrackTimeBlock.onTouchDown), forControlEvents: UIControlEvents.TouchDown);
+        tBlock.addTarget(tBlock, action: #selector(UITrackTimeBlock.onClick), forControlEvents: UIControlEvents.TouchUpInside);
         return tBlock;
     }
 

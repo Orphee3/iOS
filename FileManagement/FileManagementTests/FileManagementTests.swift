@@ -34,10 +34,11 @@ class FileManagementTests: XCTestCase {
                 2: [[], [], []]
             ],
                 eOrpheeFileContent.TracksInfos.rawValue: [
-                0 : [eOrpheeFileContent.PatchID.rawValue : 1 as Any],
-                1 : [eOrpheeFileContent.PatchID.rawValue : 34 as Any],
-                2 : [eOrpheeFileContent.PatchID.rawValue : 1 as Any]
-            ]
+                    [eOrpheeFileContent.PatchID.rawValue : 1 as Any] as [String : Any]?,
+                [eOrpheeFileContent.PatchID.rawValue : 34 as Any] as [String : Any]?,
+                [eOrpheeFileContent.PatchID.rawValue : 1 as Any] as [String : Any]?
+            ],
+            eOrpheeFileContent.Tempo.rawValue: UInt(120)
         ];
 
         try! NSFileManager.defaultManager().createDirectoryAtPath(MIDIFileManager.store, withIntermediateDirectories: true, attributes: nil);
@@ -77,7 +78,7 @@ class FileManagementTests: XCTestCase {
 
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: MIDIByteBufferCreator.self));
 
-        try? NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/testByteBuffer.mid");
+        let _ = try? NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/testByteBuffer.mid");
     }
 
     func testWriteToFile_fails__using_MIDIByteBufferCreator__when_contentIs_nil() {
@@ -110,7 +111,7 @@ class FileManagementTests: XCTestCase {
         precondition(fm!.createFile())
         XCTAssertTrue(fm!.writeToFile(content: testContent, dataBuilderType: CoreMIDISequenceCreator.self))
 
-        try? NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/testCoreMIDI.mid");
+        let _ = try? NSFileManager.defaultManager().copyItemAtPath((fm as! MIDIFileManager).path, toPath: "/Users/johnbob/Desktop/testCoreMIDI.mid");
     }
 
     func testWriteToFile_fails__using_CoreMIDISequenceCreator__when_contentIs_nil() {

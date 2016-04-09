@@ -54,6 +54,8 @@ let kMIDIEventDefaultData_timeSig: [UInt8] = [0x04, 0x02, 0x18, 0x08];
 let kMIDIEventDefaultData_setTempo: [UInt8] = [0x07, 0xA1, 0x20];
 
 
+public typealias TimedMidiMsgCollection = [MusicTimeStamp : [MIDINoteMessage]]
+
 /// pMIDIByteStreamBuilder protocol:
 ///
 /// Any class building a MIDI byte stream/buffer needs to follow this protocol.
@@ -89,7 +91,7 @@ public protocol pMIDIByteStreamBuilder {
     ///    - parameter  notes:    The note events in the form of an array of arrays of MIDINoteMessages.
     ///                     Each array contains all the data for every note event sent at deltaTime = array index.
     ///    - parameter  prog:     The MIDI program (instrument) associated with this track.
-    func addTrack(notes: [[MIDINoteMessage]], prog: MIDIChannelMessage);
+    func addTrack(notes: TimedMidiMsgCollection, prog: MIDIChannelMessage);
 
     ///    Provides the formatted content as NSData.
     ///

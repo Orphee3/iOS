@@ -7,3 +7,5 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Google/SignIn.h>
+
+#import <UIKit/UIGestureRecognizerSubclass.h>

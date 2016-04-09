@@ -493,7 +493,7 @@ public final class SocketEngine: NSObject, WebSocketDelegate {
         
         while reader.hasNext {
             let n = reader.readUntilStringOccurence(":")
-            let str = reader.read(Int(n)!)
+            let str = reader.read(Int(n) ?? 0)
             
             dispatch_async(handleQueue) {
                 self.parseEngineMessage(str, fromPolling: true)

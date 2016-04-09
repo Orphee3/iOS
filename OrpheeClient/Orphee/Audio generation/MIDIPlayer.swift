@@ -18,10 +18,24 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     public var duration: NSTimeInterval
 
     public var isPlaying: Bool {
-        return playing;
+        return sequence.isPlaying;
     }
 
-    public var currentTime: NSTimeInterval = 0
+    public var currentTime: NSTimeInterval {
+        get {
+            return self.sequence.getCurrentPosition()
+        }
+        set {
+            self.currentTime = self.sequence.getCurrentPosition()
+        }
+    }
+
+    public var repeats: Bool = false {
+        willSet {
+            self.sequence.repeats = newValue
+            self.sequence.setLoopFile(newValue)
+        }
+    }
 
     private var playing = false
     private let data: NSData
@@ -37,16 +51,9 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     }
 
     required public init?(data: NSData) {
-        do {
-            self.data = data
-            engine = try AudioEngineManager()
-            sequence = AudioSequencerManager(engine: engine.engine)
-        }
-        catch {
-            print("MIDIPlayer init Failed: \(error)")
-            self.duration = 0
-            return nil
-        }
+        self.data = data
+        engine = AudioEngineManager()
+        sequence = AudioSequencerManager(engine: engine.engine)
         guard sequence.loadFile(data) else {
             self.duration = 0
             return nil
@@ -56,15 +63,17 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
 
     public func setupAudioGraph() -> Bool {
         let bank    = NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!
+//        let bank    = NSBundle.mainBundle().pathForResource("xtreme", ofType: "mid")! // test
         let content = MIDIFileManager.parseData(data)
         let infos   = content?[eOrpheeFileContent.TracksInfos.rawValue]
-        if let infos = infos as? [[String : Any]] where infos.count > 0 {
+        if let infos = infos as? [[String : Any]?] where infos.count > 0 {
 
-            let patchs: [UInt8] = infos.filter {
-                    $0[eOrpheeFileContent.PatchID.rawValue] != nil
-                }.map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
-            try! engine.setInstruments(patchs, soundBank: bank, type: eSampleType.Melodic)
-            sequence.setDestinationAudioUnit(engine.samplers)
+            let patchs = infos
+                .flatMap { $0 }
+                .filter { $0[eOrpheeFileContent.PatchID.rawValue] != nil }
+                .map { UInt8($0[eOrpheeFileContent.PatchID.rawValue]! as! Int) }
+            self.engine.setInstruments(patchs, soundBank: bank, type: eSampleType.Melodic)
+            self.sequence.setDestinationAudioUnit(self.engine.samplers)
             return true
         }
         else {
@@ -78,10 +87,28 @@ public class MIDIPlayer: pMediaPlayer, pMediaPlayerTimeManager {
     }
 
     func pause() {
-        playing = false
+        sequence.pause()
     }
 
-    func formatTime(time: NSTimeInterval) -> String {
-        return "\(time)"
+    func stop() {
+        sequence.stop()
+    }
+
+    func repeatCnt(loops: Int? = 0) {
+        switch loops {
+            case nil:
+                sequence.setLoopFile(false)
+        case .Some(let cnt) where cnt > 0:
+            sequence.setLoopFile(true)
+        default:
+            sequence.setLoopFile(true)
+        }
+    }
+
+    class func formatTime(time: NSTimeInterval) -> String {
+        let minutes = Int(floor(round(time) / 60));
+        let seconds = Int(round(time)) - (minutes * 60);
+        let formatedString = String(format: "%d:%02d", minutes, seconds)
+        return formatedString
     }
 }

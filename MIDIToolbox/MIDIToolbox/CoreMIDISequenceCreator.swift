@@ -63,11 +63,12 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
     ///
     ///  - parameter notes: The MIDI note events composing a track.
     ///  - parameter prog:  The MIDI program (instrument) associated with this track.
-    public func addTrack(notes: [[MIDINoteMessage]], var prog: MIDIChannelMessage) {
+    public func addTrack(notes: TimedMidiMsgCollection, var prog: MIDIChannelMessage) {
 
         var trk: MusicTrack = MusicTrack();
         var ct: UInt32 = 0;
 
+        print(notes)
         MusicSequenceNewTrack(buffer, &trk);
         MusicSequenceGetTrackCount(buffer, &ct);
 
@@ -76,26 +77,17 @@ public final class CoreMIDISequenceCreator : pMIDIByteStreamBuilder {
 
         var endNote = MIDINoteMessage(channel: UInt8(trkCnt), note: 0, velocity: 0, releaseVelocity: 0, duration: eNoteLength.crotchet.rawValue);
         var trackHasNotes = false
-        var tmStmp: Float64 = 0;
-        var curTmStmp = tmStmp;
-        for (idx, dtNotes) in notes.enumerate() {
-            if (dtNotes.count == 0) {
-                tmStmp += Float64(eNoteLength.crotchet.rawValue);
+        var curTmStmp: Float64 = 0
+        for (tmStmp, dtNotes) in notes {
+            print(tmStmp)
+            trackHasNotes = true
+            for var note in dtNotes {
+                MusicTrackNewMIDINoteEvent(trk, tmStmp, &note);
             }
-            else {
-                trackHasNotes = true
-                for var note in dtNotes {
-                    if (idx != 0 && curTmStmp == tmStmp) {
-                        tmStmp += Float64(note.duration)
-                    }
-                    note.channel = UInt8(trkCnt);
-                    MusicTrackNewMIDINoteEvent(trk, tmStmp, &note);
-                }
-                curTmStmp = tmStmp
-            }
+            curTmStmp = tmStmp
         }
         if (trackHasNotes) {
-            MusicTrackNewMIDINoteEvent(trk, tmStmp, &endNote);
+            MusicTrackNewMIDINoteEvent(trk, curTmStmp, &endNote);
         }
         trkCnt++;
     }

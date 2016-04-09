@@ -65,7 +65,7 @@ class UITimeBlockArray {
     /// - parameter toView:  The view to which to add these buttons.
     func addButtons(count: Int, color: UIColor) {
 
-        for (var col = 0; col < count; col++) {
+        for col in 0 ..< count {
             let tBlock = UITrackTimeBlock.timeBlock(row: row, column: col + size, note: note, graph: graph);
 
             buttons.append(tBlock);
@@ -82,7 +82,7 @@ class UITimeBlockArray {
 
         let safeCount = (count <= size) ? count : size;
 
-        for (var idx = 0; idx < safeCount; idx++) {
+        for _ in 0 ..< safeCount {
             var button = buttons.removeLast();
 
             button?.removeFromSuperview();
