@@ -35,6 +35,7 @@ class OrpheeApi {
                         let user = try mySuperUser.decode(result)
                         user.token = String(json.value!["token"])
                         saveUser(user)
+                        SocketManager.sharedInstance.connectSocket()
                         self.goToMainPageConnected()
                     } catch let error {
                         print(error)
@@ -79,6 +80,7 @@ class OrpheeApi {
                         let monUser = try mySuperUser.decode(user)
                         monUser.token = String(result["token"])
                         saveUser(monUser)
+                        SocketManager.sharedInstance.connectSocket()
                         self.goToMainPageConnected()
                     } catch let error {
                         print(error)
@@ -109,6 +111,7 @@ class OrpheeApi {
                         let monUser = try mySuperUser.decode(user)
                         monUser.token = String(result["token"])
                         saveUser(monUser)
+                        SocketManager.sharedInstance.connectSocket()
                         self.goToMainPageConnected()
                     } catch let error {
                         print(error)
@@ -138,6 +141,7 @@ class OrpheeApi {
                         let user = try mySuperUser.decode(result)
                         user.token = String(json.value!["token"])
                         saveUser(user)
+                        SocketManager().connectSocket()
                         self.goToMainPageConnected()
                     } catch let error {
                         print(error)
@@ -159,8 +163,6 @@ class OrpheeApi {
     //                }
     //            }
     //        }
-    
-    
     
     func like(id :String, token: String, completion:(response: AnyObject) ->()){
         let headers = [
@@ -238,7 +240,7 @@ class OrpheeApi {
                 })
             }
             if (response?.statusCode == 200){
-                if let comments = json.value as! Array<Dictionary<String, AnyObject>>?{
+                if let _ = json.value as! Array<Dictionary<String, AnyObject>>?{
                     self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
                         completion(response: cachedArray.array)
                     })
@@ -281,21 +283,21 @@ class OrpheeApi {
             }
         }
     }
-    //
-    //    func addFriend(token: String, id: String, completion:(response: AnyObject) -> ()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        Alamofire.request(.GET, "\(url)/askfriend/\(id)", headers: headers).responseJSON{
-    //            request, response, json in
-    //            if (response?.statusCode == 200){
-    //                completion(response: "ok")
-    //            }
-    //            else if (response?.statusCode == 500){
-    //                completion(response: "error")
-    //            }
-    //        }
-    //    }
+    
+    func addFriend(token: String, id: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/askfriend/\(id)", headers: headers).responseJSON{
+            request, response, json in
+            if (response?.statusCode == 200){
+                completion(response: "ok")
+            }
+            else if (response?.statusCode == 500){
+                completion(response: "error")
+            }
+        }
+    }
     //
     //    func notify(token: String, creationId: String, completion:(response: AnyObject) -> ()){
     //        let headers = [
@@ -359,46 +361,101 @@ class OrpheeApi {
     //        }
     //    }
     //
-    //    func getFriends(id: String, completion:(response:AnyObject) -> ()){
-    //        Alamofire.request(.GET, "\(url)/user/\(id)/friends").responseJSON{ request, response, json in
-    //            print(response)
-    //            if (response?.statusCode == 200){
-    //                print(json.value)
-    //                if let array = json.value as! Array<Dictionary<String, AnyObject>>?{
-    //                    var arrayFriends: [User] = []
-    //                    for elem in array{
-    //                        arrayFriends.append(User(User: elem))
-    //                        print(elem)
-    //                    }
-    //                    completion(response: arrayFriends)
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //    func getNews(id: String, token: String, completion:(response: AnyObject) -> ()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        Alamofire.request(.GET, "\(url)/user/\(id)/news", headers: headers).responseJSON{ request, response, json in
-    //            print(response)
-    //            if (response?.statusCode == 200){
-    //                print(json.value)
-    //            }
-    //        }
-    //    }
-    //
-    //    func removeFriend(id: String, token: String, completion:(response: AnyObject) -> ()){
-    //        let headers = [
-    //            "Authorization": "Bearer \(token)"
-    //        ]
-    //        Alamofire.request(.GET, "\(url)/removeFriend/\(id)", headers: headers).responseJSON{ request, response, json in
-    //            if (response?.statusCode == 200){
-    //                print(json.value)
-    //                completion(response: "ok")
-    //            }
-    //        }
-    //    }
+    
+    func getFriends(id: String, completion:(response: [AnyObject]) -> ()){
+        Alamofire.request(.GET, "\(url)/user/\(id)/friends").responseJSON{ request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let test = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(response: test)
+                    })
+                }
+            }
+        }
+    }
+    
+    func getNews(id: String, token: String, completion:(response: [AnyObject]) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/user/\(id)/news", headers: headers).responseJSON{ request, response, json in
+            print("my News : \(response)")
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let test = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(response: test)
+                    })
+                }
+            }
+        }
+    }
+    
+    func removeFriend(id: String, token: String, completion:(response: AnyObject) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/removeFriend/\(id)", headers: headers).responseJSON{ request, response, json in
+            if (response?.statusCode == 200){
+                print(json.value)
+                completion(response: "ok")
+            }else{
+                completion(response: "error")
+            }
+        }
+    }
+    
+    func acceptFriend(id: String, token: String, completion:(response: String) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/acceptfriend/\(id)", headers: headers).responseJSON{ request, response, json in
+            if (response?.statusCode == 200){
+                if (json.value as! String == "already friend"){
+                    completion(response: "already friend")
+                }
+                else if (json.value as! String == "no friend invitation"){
+                    completion(response: "no friend invitation")
+                }
+                else {
+                    completion(response: "ok")
+                }
+            }else{
+                completion(response: "error")
+            }
+        }
+    }
+    
+    func getConversation(id: String, token: String, completion:(response :[AnyObject]) -> ()){
+        let headers = [
+            "Authorization": "Bearer \(token)"
+        ]
+        Alamofire.request(.GET, "\(url)/room/privateMessage/\(id)", headers: headers).responseJSON{ request, response, json in
+            if (response == nil){
+                self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                    completion(response: cachedArray.array)
+                })
+            }
+            if (response?.statusCode == 200){
+                if let test = json.value as! Array<Dictionary<String, AnyObject>>?{
+                    completion(response: test)
+                    self.fetchFromCache((request?.URLString)!, completion: { (cachedArray) in
+                        completion(response: test)
+                    })
+                }
+            }
+        }
+    }
+    
     //
     //    func sendCreationToServer(userId: String, name: String, completion:(response: AnyObject) -> ()) {
     //        Alamofire.request(eCreationRouter.GetStoreURL)

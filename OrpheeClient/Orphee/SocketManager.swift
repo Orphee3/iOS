@@ -40,9 +40,6 @@ class SocketManager {
             
             socket.on("friend") {data, ack in
                 print("friend data : \(data! as Array)")
-//                self.user.arrayFriendShipRequests.insert(FriendShipRequest(FriendShipRequest: data?.objectAtIndex(0)["userSource"] as! Dictionary<String, AnyObject>), atIndex: 0)
-//                let userData = NSKeyedArchiver.archivedDataWithRootObject(self.user)
-//                NSUserDefaults.standardUserDefaults().setObject(userData, forKey: "myUser")
                 self.notifyApp("requestFriend", data: data! as Array<AnyObject>)
             }
             

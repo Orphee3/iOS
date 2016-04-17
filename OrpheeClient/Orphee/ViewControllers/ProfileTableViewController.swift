@@ -15,6 +15,7 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet var labelNameProfile: UILabel!
     var myUser: mySuperUser!
     var arrayCreations: [Creation] = []
+    @IBOutlet var disconnectButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class ProfileTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         if (userExists()){
+            disconnectButton.hidden = false
             myUser = getMySuperUser()
             if let picture = myUser.picture{
                 imgProfile.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "emptyprofile"))
@@ -42,6 +44,7 @@ class ProfileTableViewController: UITableViewController {
                 self.tableView.reloadData()
             })
         }else{
+            disconnectButton.hidden = true
             callPopUp()
             print("no user registered")
         }
@@ -131,7 +134,7 @@ class ProfileTableViewController: UITableViewController {
         alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(ProfileTableViewController.goToRegister))
         alertView.addButton("Fermer", target: self, selector: #selector(ProfileTableViewController.closePopUp))
         alertView.showCloseButton = false
-        alertView.showSuccess("Button View", subTitle: "This alert view has buttons")
+        alertView.showSuccess("Orphée", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
     
     func goToRegister(){

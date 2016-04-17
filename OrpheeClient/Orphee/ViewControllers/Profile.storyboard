@@ -87,10 +87,24 @@
                                                     <action selector="disconnect:" destination="YhG-UD-Dzu" eventType="touchUpInside" id="We2-65-F2X"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQw-Kt-OzI">
+                                                <rect key="frame" x="198" y="192" width="70" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="6KV-6K-tsw"/>
+                                                </constraints>
+                                                <state key="normal" title="Amis">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="M10-vJ-xgJ" kind="show" id="hru-OA-UPw"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="top" secondItem="oF6-lp-ZAe" secondAttribute="bottom" constant="26" id="H6o-K7-JNI"/>
                                             <constraint firstItem="oF6-lp-ZAe" firstAttribute="centerX" secondItem="6mY-zw-Rht" secondAttribute="centerX" id="IIF-he-Ea0"/>
                                             <constraint firstItem="oF6-lp-ZAe" firstAttribute="top" secondItem="6mY-zw-Rht" secondAttribute="bottom" constant="23" id="Mz8-PI-QKI"/>
+                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="leading" secondItem="3HI-zd-b0L" secondAttribute="leading" constant="198" id="UQF-6c-aRO"/>
                                             <constraint firstItem="6mY-zw-Rht" firstAttribute="centerX" secondItem="3HI-zd-b0L" secondAttribute="centerX" id="XkD-97-UNw"/>
                                             <constraint firstItem="AW9-SH-o5X" firstAttribute="top" secondItem="3HI-zd-b0L" secondAttribute="top" constant="8" id="l5L-eQ-5hi"/>
                                             <constraint firstItem="6mY-zw-Rht" firstAttribute="top" secondItem="3HI-zd-b0L" secondAttribute="top" constant="19" id="nef-KB-IcA"/>
@@ -139,7 +153,7 @@
                                                 <constraint firstAttribute="height" constant="27" id="kAq-82-mWO"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2e-Sc-h8I">
@@ -251,6 +265,7 @@
                     <navigationItem key="navigationItem" title="Mon profile" id="Kb3-cc-FRg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="disconnectButton" destination="AW9-SH-o5X" id="cf3-GX-SIg"/>
                         <outlet property="imgProfile" destination="6mY-zw-Rht" id="3HB-bB-2HE"/>
                         <outlet property="labelNameProfile" destination="oF6-lp-ZAe" id="ApD-1h-Yvn"/>
                         <segue destination="cux-5A-9Xi" kind="presentation" identifier="toLogin" id="YT6-5V-MvL"/>
@@ -285,6 +300,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIB-ZZ-meF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="997.5" y="279"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="2rW-yL-Aad">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Friends" id="M10-vJ-xgJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orM-OS-L01" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ggf-HA-aES">

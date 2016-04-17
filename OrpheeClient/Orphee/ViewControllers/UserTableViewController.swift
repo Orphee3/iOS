@@ -14,11 +14,14 @@ import SCLAlertView
 class UserTableViewController: UITableViewController {
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var nameUser: UILabel!
+    @IBOutlet var askButton: UIButton!
     
     var id: String!
     var user: User!
     var arrayCreations: [Creation] = []
     var MyUser: mySuperUser!
+    var arrayFriends: [User] = []
+    var isFriend = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +54,22 @@ class UserTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         if (userExists()){
             MyUser = getMySuperUser()
+        }
+        if ((MyUser) != nil){
+            OrpheeApi().getFriends(MyUser.id, completion: { (response) in
+                for elem in response{
+                    do {
+                        let user = try User.decode(elem)
+                        if (user.id == self.user.id){
+                            self.isFriend = true
+                            self.askButton.setTitle("Ajouté", forState: .Normal)
+                            return
+                        }
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            })
         }
     }
     
@@ -139,11 +158,35 @@ class UserTableViewController: UITableViewController {
     
     func callPopUp(){
         let alertView = SCLAlertView()
-        alertView.addButton("S'inscrire / Se connecter", target:self, selector:Selector("goToRegister"))
-        alertView.showSuccess("Button View", subTitle: "This alert view has buttons")
+        alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(UserTableViewController.goToRegister))
+        alertView.showSuccess("Orphée", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
     
     func goToRegister(){
         performSegueWithIdentifier("toLogin", sender: nil)
+    }
+    
+    @IBAction func askFriend(sender: AnyObject) {
+        if ((MyUser) != nil){
+            if (self.isFriend == false){
+            OrpheeApi().addFriend(MyUser.token!, id: user.id!) { (response) in
+                if (response as! String == "ok"){
+                    self.isFriend = true
+                    self.askButton.setTitle("Ajouté", forState: .Normal)
+                }else{
+                    print("ask error")
+                }
+            }
+            }else{
+                OrpheeApi().removeFriend(user.id!, token: MyUser.token!) { (response) in
+                    if (response as! String == "ok"){
+                        self.isFriend = false
+                        self.askButton.setTitle("Ajouter", forState: .Normal)
+                    }else{
+                        print("remove error")
+                    }
+                }
+            }
+        }
     }
 }

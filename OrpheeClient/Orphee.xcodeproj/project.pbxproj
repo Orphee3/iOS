@@ -72,6 +72,18 @@
 		88F2117E3FD94E352EF7FC76 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */; };
 		88F216B085A2E312D400D549 /* PresetMgrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2139ADB38C6F177B9C5E6 /* PresetMgrTests.swift */; };
 		9B0B737F1CA8502600E26322 /* ProfileCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B737E1CA8502600E26322 /* ProfileCellTableViewController.swift */; };
+		9B1188201CC2858F00FE3E58 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B11881F1CC2858F00FE3E58 /* Friends.storyboard */; };
+		9B1188221CC286DC00FE3E58 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188211CC286DC00FE3E58 /* FriendsTableViewController.swift */; };
+		9B1188241CC28EE700FE3E58 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188231CC28EE700FE3E58 /* FriendsTableViewCell.swift */; };
+		9B1188261CC29E7400FE3E58 /* AskFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188251CC29E7300FE3E58 /* AskFriendTableViewCell.swift */; };
+		9B1188281CC2A00000FE3E58 /* UserNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188271CC2A00000FE3E58 /* UserNews.swift */; };
+		9B11882A1CC2A30300FE3E58 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188291CC2A30300FE3E58 /* Media.swift */; };
+		9B11882D1CC4049F00FE3E58 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B11882C1CC4049F00FE3E58 /* Chat.storyboard */; };
+		9B11882F1CC416F300FE3E58 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11882E1CC416F300FE3E58 /* ChatTableViewController.swift */; };
+		9B1188311CC4272900FE3E58 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188301CC4272900FE3E58 /* ConversationViewController.swift */; };
+		9B1188331CC43C7200FE3E58 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188321CC43C7100FE3E58 /* Message.swift */; };
+		9B1188351CC441C500FE3E58 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1188341CC441C500FE3E58 /* ConversationCell.swift */; };
+		9B1188371CC4420F00FE3E58 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B1188361CC4420F00FE3E58 /* ConversationCell.xib */; };
 		9B2E36D01C9F0102000B8EF5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */; };
 		9B2E36D11C9F0102000B8EF5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */; };
 		9B2E36D21C9F0102000B8EF5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */; };
@@ -246,6 +258,18 @@
 		88F21F1BE1B7FDED0CA1F9DD /* AudioGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		9B09F1671BDA676C00018B39 /* Orphee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Orphee-Bridging-Header.h"; path = "Orphee/Orphee-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B0B737E1CA8502600E26322 /* ProfileCellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCellTableViewController.swift; sourceTree = "<group>"; };
+		9B11881F1CC2858F00FE3E58 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
+		9B1188211CC286DC00FE3E58 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		9B1188231CC28EE700FE3E58 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		9B1188251CC29E7300FE3E58 /* AskFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskFriendTableViewCell.swift; sourceTree = "<group>"; };
+		9B1188271CC2A00000FE3E58 /* UserNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNews.swift; sourceTree = "<group>"; };
+		9B1188291CC2A30300FE3E58 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		9B11882C1CC4049F00FE3E58 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		9B11882E1CC416F300FE3E58 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		9B1188301CC4272900FE3E58 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		9B1188321CC43C7100FE3E58 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9B1188341CC441C500FE3E58 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		9B1188361CC4420F00FE3E58 /* ConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		9B2E36CD1C9F0101000B8EF5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		9B2E36CE1C9F0102000B8EF5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		9B2E36CF1C9F0102000B8EF5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -459,6 +483,8 @@
 		526FF5C11A810AA000CF6A9C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B11882B1CC4048600FE3E58 /* Chat */,
+				9B11881E1CC2857E00FE3E58 /* Friends */,
 				9BE2AD981C84FA9700AE92F5 /* Creation */,
 				9BE2AD911C8374DC00AE92F5 /* User */,
 				9BD2995C1C826F28000D1308 /* Artistes */,
@@ -538,6 +564,29 @@
 			path = OrpheeTests;
 			sourceTree = "<group>";
 		};
+		9B11881E1CC2857E00FE3E58 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				9B11881F1CC2858F00FE3E58 /* Friends.storyboard */,
+				9B1188211CC286DC00FE3E58 /* FriendsTableViewController.swift */,
+				9B1188231CC28EE700FE3E58 /* FriendsTableViewCell.swift */,
+				9B1188251CC29E7300FE3E58 /* AskFriendTableViewCell.swift */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		9B11882B1CC4048600FE3E58 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				9B11882C1CC4049F00FE3E58 /* Chat.storyboard */,
+				9B11882E1CC416F300FE3E58 /* ChatTableViewController.swift */,
+				9B1188301CC4272900FE3E58 /* ConversationViewController.swift */,
+				9B1188341CC441C500FE3E58 /* ConversationCell.swift */,
+				9B1188361CC4420F00FE3E58 /* ConversationCell.xib */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 		9B327FF21B9B855A00AAD347 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +615,9 @@
 				9BBE7FA71C7CAED200B56E51 /* Creation.swift */,
 				9BC2C5D21C8B921C005F62D9 /* Comment.swift */,
 				9B2F659A1C946502004BB575 /* myUser.swift */,
+				9B1188271CC2A00000FE3E58 /* UserNews.swift */,
+				9B1188291CC2A30300FE3E58 /* Media.swift */,
+				9B1188321CC43C7100FE3E58 /* Message.swift */,
 			);
 			name = DataModels;
 			sourceTree = "<group>";
@@ -855,14 +907,17 @@
 				9B88F6151C7D1236001A77AD /* Profile.storyboard in Resources */,
 				1E25E7DB1C8770D000C499D6 /* Player.storyboard in Resources */,
 				1EA5AED41CA4A6DC00026144 /* xtreme.mid in Resources */,
+				9B1188371CC4420F00FE3E58 /* ConversationCell.xib in Resources */,
 				DB2BB3431ABAE355003B066B /* LaunchScreen.xib in Resources */,
 				9BE2AD931C8374F900AE92F5 /* User.storyboard in Resources */,
 				9B6940611C8CC8440039F826 /* Info.plist in Resources */,
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */,
+				9B11882D1CC4049F00FE3E58 /* Chat.storyboard in Resources */,
 				1EB274CE1C598A22008FDFA4 /* HorizontalTableView.xib in Resources */,
 				1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
+				9B1188201CC2858F00FE3E58 /* Friends.storyboard in Resources */,
 				1EB274CB1C598A22008FDFA4 /* header.xib in Resources */,
 				1EB274C61C598A22008FDFA4 /* Composition.storyboard in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
@@ -989,6 +1044,7 @@
 				1EB274C41C598A22008FDFA4 /* compoGridOpsIntent.swift in Sources */,
 				1E282F7C1C2459CA004B2084 /* TempoVC.swift in Sources */,
 				1E25E7DD1C877AA700C499D6 /* PlayPauseIntent.swift in Sources */,
+				9B11882A1CC2A30300FE3E58 /* Media.swift in Sources */,
 				1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */,
 				9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */,
 				1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */,
@@ -997,14 +1053,17 @@
 				9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */,
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
 				1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */,
+				9B1188221CC286DC00FE3E58 /* FriendsTableViewController.swift in Sources */,
 				9BD186F11B874505004A892D /* TabBarViewController.swift in Sources */,
 				9B69405F1C8CA7D50039F826 /* OauthConnectionViewController.swift in Sources */,
 				1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */,
 				9B88F60F1C7D0982001A77AD /* HomeTableViewCell.swift in Sources */,
+				9B1188311CC4272900FE3E58 /* ConversationViewController.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				9B2F659B1C946502004BB575 /* myUser.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
+				9B11882F1CC416F300FE3E58 /* ChatTableViewController.swift in Sources */,
 				1E25E7DF1C87817800C499D6 /* SliderIntent.swift in Sources */,
 				9BD186EF1B86A006004A892D /* SocketManager.swift in Sources */,
 				9BE2AD971C83797400AE92F5 /* UserTableViewController.swift in Sources */,
@@ -1015,6 +1074,7 @@
 				52C61D9B1A79E5C400B3DE23 /* AppDelegate.swift in Sources */,
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */,
+				9B1188261CC29E7400FE3E58 /* AskFriendTableViewCell.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
 				1E282F1F1C238762004B2084 /* AudioEngineManager.swift in Sources */,
 				9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */,
@@ -1026,11 +1086,15 @@
 				1E25E7D81C876F9B00C499D6 /* PlayerViewController.swift in Sources */,
 				52C61DCD1A7A54EE00B3DE23 /* PresetMgr.swift in Sources */,
 				1E25E7E11C87906100C499D6 /* TimerIntent.swift in Sources */,
+				9B1188241CC28EE700FE3E58 /* FriendsTableViewCell.swift in Sources */,
+				9B1188281CC2A00000FE3E58 /* UserNews.swift in Sources */,
 				9BBE7FA61C7CAE2C00B56E51 /* User.swift in Sources */,
 				9B76B2351B3ED45D00B1C40B /* InstrumentsTableViewController.swift in Sources */,
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
 				9BBE7FA81C7CAED200B56E51 /* Creation.swift in Sources */,
+				9B1188331CC43C7200FE3E58 /* Message.swift in Sources */,
 				1EB274CD1C598A22008FDFA4 /* HorizontalTableView.swift in Sources */,
+				9B1188351CC441C500FE3E58 /* ConversationCell.swift in Sources */,
 				1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */,
 				9BD2995B1C826C08000D1308 /* RegisterViewController.swift in Sources */,
 				1E282F1D1C236A09004B2084 /* pAudioPlayer.swift in Sources */,
