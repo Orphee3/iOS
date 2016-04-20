@@ -22,6 +22,8 @@
 // THE SOFTWARE.
 //
 
+#import <UIKit/UIKit.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -47,6 +49,20 @@ NS_ASSUME_NONNULL_BEGIN
  @param animated Set this value to YES to animate the reset.
  */
 - (void)reset:(BOOL)animated;
+
+/**
+ Sets the current rotation angle of the image in radians.
+ 
+ @param rotationAngle The rotation angle of the image in radians.
+ */
+- (void)setRotationAngle:(CGFloat)rotationAngle;
+
+/**
+ Sets the current scale factor for the image.
+ 
+ @param zoomScale The scale factor for the image.
+ */
+- (void)setZoomScale:(CGFloat)zoomScale;
 
 @end
 

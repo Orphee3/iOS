@@ -202,7 +202,6 @@
 		1E282F791C243CE8004B2084 /* MIDIPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIPlayerTests.swift; sourceTree = "<group>"; };
 		1E282F7B1C2459CA004B2084 /* TempoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoVC.swift; sourceTree = "<group>"; };
 		1E5924F21C24D713002E8A6B /* Tools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tools.framework; path = "../Tools/build/Debug-iphoneos/Tools.framework"; sourceTree = "<group>"; };
-		1E6300851BFCCB2A009F4478 /* Composition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Composition.storyboard; path = Orphee/Views/Composition.storyboard; sourceTree = SOURCE_ROOT; };
 		1E638F1A1C8B517600B161BE /* pCreationListActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pCreationListActor.swift; sourceTree = "<group>"; };
 		1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalActionsIntents.swift; sourceTree = "<group>"; };
 		1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrollableToolbar.swift; sourceTree = "<group>"; };
@@ -228,7 +227,6 @@
 		1EB274B11C598A22008FDFA4 /* trackItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = trackItemView.swift; sourceTree = "<group>"; };
 		1EB274B21C598A22008FDFA4 /* trackItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = trackItemView.xib; sourceTree = "<group>"; };
 		1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionVC.swift; sourceTree = "<group>"; };
-		1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompoScroll.storyboard; sourceTree = "<group>"; };
 		1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSequencer.swift; sourceTree = "<group>"; };
 		1ECEFB151CA5F5D200D1719F /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECEFB171CA5F5D200D1719F /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -403,7 +401,6 @@
 		1EB2747F1C598A22008FDFA4 /* CompoUI */ = {
 			isa = PBXGroup;
 			children = (
-				1EB274E31C598B25008FDFA4 /* CompoScroll.storyboard */,
 				1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */,
 				1EB2748F1C598A22008FDFA4 /* cell.xib */,
 				1EB274901C598A22008FDFA4 /* compoGridDataSource.swift */,
@@ -591,7 +588,6 @@
 			isa = PBXGroup;
 			children = (
 				1EB2747F1C598A22008FDFA4 /* CompoUI */,
-				1E6300851BFCCB2A009F4478 /* Composition.storyboard */,
 				1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */,
 				52C61D9C1A79E5C400B3DE23 /* ViewController.swift */,
 				9B76B2341B3ED45D00B1C40B /* InstrumentsTableViewController.swift */,
@@ -763,12 +759,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52C61DB41A79E5C400B3DE23 /* Build configuration list for PBXNativeTarget "Orphee" */;
 			buildPhases = (
-				5F396F313AD3C121515DE354 /* Check Pods Manifest.lock */,
+				5F396F313AD3C121515DE354 /* 📦 Check Pods Manifest.lock */,
 				52C61D911A79E5C400B3DE23 /* Sources */,
 				52C61D921A79E5C400B3DE23 /* Frameworks */,
 				52C61D931A79E5C400B3DE23 /* Resources */,
-				473AE783EE22113072CD7C6A /* Embed Pods Frameworks */,
-				00A8E497A1C2D85966DE48EA /* Copy Pods Resources */,
+				473AE783EE22113072CD7C6A /* 📦 Embed Pods Frameworks */,
+				00A8E497A1C2D85966DE48EA /* 📦 Copy Pods Resources */,
 				9B6865021BF7E2C900D3D6F6 /* Embed Watch Content */,
 				1EA5CD1B1BFFB1A4004DA763 /* ShellScript */,
 				9BD299571C80AB58000D1308 /* Embed Frameworks */,
@@ -965,14 +961,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00A8E497A1C2D85966DE48EA /* Copy Pods Resources */ = {
+		00A8E497A1C2D85966DE48EA /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -993,14 +989,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../OrpheeClient/Pods-Orphee-frameworks.sh\"";
 		};
-		473AE783EE22113072CD7C6A /* Embed Pods Frameworks */ = {
+		473AE783EE22113072CD7C6A /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1008,14 +1004,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Orphee/Pods-Orphee-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F396F313AD3C121515DE354 /* Check Pods Manifest.lock */ = {
+		5F396F313AD3C121515DE354 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1252,7 +1248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
@@ -1290,7 +1286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "b6202a82-2fb0-4137-87a6-1fab08b16778";
 				SDKROOT = iphoneos;
@@ -1312,7 +1308,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Orphee/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1335,7 +1331,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Orphee/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orphee.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -25,7 +25,7 @@ class ConversationCell: UITableViewCell {
         }
         nameUser.text = message.creator.name
         messageUser.text = message.message
-        let date = message.dateCreation.toDate(DateFormat.ISO8601)
+        let date = message.dateCreation.toDate(DateFormat.ISO8601Format(.Full))
         dateMessage.text = date?.toString(DateFormat.Custom("dd/MM/YYYY 'à' HH:mm"))
     }
 }

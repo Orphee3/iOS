@@ -26,7 +26,7 @@ class CommentTableViewCell: UITableViewCell{
         }
         nameCommentator.text = comment.creator.name
         commentText.text = comment.message
-        let date = comment.dateCreation.toDate(DateFormat.ISO8601)
+        let date = comment.dateCreation.toDate(DateFormat.ISO8601Format(.Full))
         dateComment.text = date?.toString(DateFormat.Custom("dd/MM/YYYY 'à' HH:mm"))
     }
     

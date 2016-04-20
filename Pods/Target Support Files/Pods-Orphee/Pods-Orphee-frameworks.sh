@@ -16,7 +16,7 @@ install_framework()
     local source="$1"
   fi
 
-  local destination="${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+  local destination="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 
   if [ -L "${source}" ]; then
       echo "Symlinked..."
@@ -59,8 +59,8 @@ code_sign_if_enabled() {
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY}" -a "${CODE_SIGNING_REQUIRED}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
     # Use the current code_sign_identitiy
     echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
-    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements \"$1\""
-    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements "$1"
+    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements \"$1\""
+    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements "$1"
   fi
 }
 
@@ -84,42 +84,34 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Orphee/Alamofire.framework"
-  install_framework "Pods-Orphee/Decodable.framework"
-  install_framework "Pods-Orphee/Haneke.framework"
-  install_framework "Pods-Orphee/Kingfisher.framework"
-  install_framework "Pods-Orphee/MBProgressHUD.framework"
-  install_framework "Pods-Orphee/NextGrowingTextView.framework"
-  install_framework "Pods-Orphee/OAuthSwift.framework"
-  install_framework "Pods-Orphee/RSKImageCropper.framework"
-  install_framework "Pods-Orphee/ReactiveCocoa.framework"
-  install_framework "Pods-Orphee/Realm.framework"
-  install_framework "Pods-Orphee/RealmSwift.framework"
-  install_framework "Pods-Orphee/Result.framework"
-  install_framework "Pods-Orphee/SCLAlertView.framework"
-  install_framework "Pods-Orphee/SlackTextViewController.framework"
-  install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
-  install_framework "Pods-Orphee/SwiftDate.framework"
-  install_framework "Pods-Orphee/SwiftWebSocket.framework"
-  install_framework "Pods-Orphee/UnderKeyboard.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Decodable/Decodable.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/HanekeSwift/Haneke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/NextGrowingTextView/NextGrowingTextView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OAuthSwift/OAuthSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RSKImageCropper/RSKImageCropper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SlackTextViewController/SlackTextViewController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Socket.IO-Client-Swift/SocketIOClientSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftDate/SwiftDate.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftWebSocket/SwiftWebSocket.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UnderKeyboard/UnderKeyboard.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Orphee/Alamofire.framework"
-  install_framework "Pods-Orphee/Decodable.framework"
-  install_framework "Pods-Orphee/Haneke.framework"
-  install_framework "Pods-Orphee/Kingfisher.framework"
-  install_framework "Pods-Orphee/MBProgressHUD.framework"
-  install_framework "Pods-Orphee/NextGrowingTextView.framework"
-  install_framework "Pods-Orphee/OAuthSwift.framework"
-  install_framework "Pods-Orphee/RSKImageCropper.framework"
-  install_framework "Pods-Orphee/ReactiveCocoa.framework"
-  install_framework "Pods-Orphee/Realm.framework"
-  install_framework "Pods-Orphee/RealmSwift.framework"
-  install_framework "Pods-Orphee/Result.framework"
-  install_framework "Pods-Orphee/SCLAlertView.framework"
-  install_framework "Pods-Orphee/SlackTextViewController.framework"
-  install_framework "Pods-Orphee/Socket_IO_Client_Swift.framework"
-  install_framework "Pods-Orphee/SwiftDate.framework"
-  install_framework "Pods-Orphee/SwiftWebSocket.framework"
-  install_framework "Pods-Orphee/UnderKeyboard.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Decodable/Decodable.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/HanekeSwift/Haneke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/NextGrowingTextView/NextGrowingTextView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OAuthSwift/OAuthSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RSKImageCropper/RSKImageCropper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SlackTextViewController/SlackTextViewController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Socket.IO-Client-Swift/SocketIOClientSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftDate/SwiftDate.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftWebSocket/SwiftWebSocket.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UnderKeyboard/UnderKeyboard.framework"
 fi

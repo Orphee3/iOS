@@ -1,26 +1,23 @@
 workspace 'Orphee'
-xcodeproj 'FileManagement/FileManagement.xcodeproj'
 xcodeproj 'OrpheeClient/Orphee.xcodeproj'
 
 target :Orphee do
        use_frameworks!
-       platform :ios, '8.0'
+       platform :ios, '9.3'
        source 'https://github.com/CocoaPods/Specs.git'
-       pod 'Alamofire', '~> 2.0'
-       pod 'Socket.IO-Client-Swift', :git => 'https://github.com/socketio/socket.io-client-swift.git', :branch => 'swift-2'
+       pod 'Alamofire'
+       pod 'Socket.IO-Client-Swift'
        pod 'RSKImageCropper'
        pod 'SlackTextViewController'
-       pod 'ReactiveCocoa', '~>4.0.0-RC.1'
        pod 'SCLAlertView'
        pod 'Decodable'
-       pod 'Kingfisher', '~> 2.0'
-       pod 'RealmSwift'
-       pod 'UnderKeyboard', '~> 4.0'
-       pod 'MBProgressHUD', '~> 0.9.2'
+       pod 'Kingfisher'
+       pod 'UnderKeyboard'
+       pod 'MBProgressHUD'
        pod 'HanekeSwift'
        pod "NextGrowingTextView"
-       pod "SwiftDate", "~> 2.0"
-       pod "OAuthSwift", "~> 0.5.0"
+       pod "SwiftDate"
+       pod "OAuthSwift"
        pod 'Google/SignIn'
        pod 'SwiftWebSocket'
 end

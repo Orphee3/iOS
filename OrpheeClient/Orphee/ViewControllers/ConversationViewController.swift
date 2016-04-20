@@ -32,7 +32,7 @@ class ConversationViewController: SLKTextViewController {
         self.textInputbar.maxCharCount = 140
         self.textInputbar.counterStyle = SLKCounterStyle.Split
         
-        self.typingIndicatorView.canResignByTouch = true
+        self.typingIndicatorView?.canResignByTouch = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,12 +50,12 @@ class ConversationViewController: SLKTextViewController {
                 }
             }
             print(self.messages)
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
         })
         print("PUTAIN")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 44.0
-        self.tableView.registerNib(UINib(nibName: "ConversationCell", bundle: nil), forCellReuseIdentifier: "ConversationCell")
+        self.tableView?.rowHeight = UITableViewAutomaticDimension
+        self.tableView?.estimatedRowHeight = 44.0
+        self.tableView?.registerNib(UINib(nibName: "ConversationCell", bundle: nil), forCellReuseIdentifier: "ConversationCell")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ConversationViewController.messageReceived(_:)), name: "message", object: nil)
     }
     
@@ -70,7 +70,7 @@ class ConversationViewController: SLKTextViewController {
             let msg = notif.object?.objectAtIndex(0)["message"]
             let messageToDecode = try Message.decode(msg!!)
             self.messages.append(messageToDecode)
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
         } catch let error {
             print(error)
         }
@@ -96,7 +96,7 @@ class ConversationViewController: SLKTextViewController {
             let messageToDecode = try Message.decode(message)
             self.messages.append(messageToDecode)
             SocketManager.sharedInstance.sendMessage(friend.id!, message: messageToDecode.message)
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
         } catch let error {
             print(error)
         }

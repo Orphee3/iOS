@@ -32,7 +32,7 @@ class HomeTableViewCell: UITableViewCell {
         let index1 = creation.name.endIndex.advancedBy(-4)
         let finalName = creation.name.substringToIndex(index1)
         creationName.text = finalName
-        let date = creation.dateCreation.toDate(DateFormat.ISO8601)
+        let date = creation.dateCreation.toDate(DateFormat.ISO8601Format(.Full))
         dateCreation.text = date?.toString(DateFormat.Custom("dd/MM/YYYY 'à' HH:mm"))
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Socket_IO_Client_Swift
+import SocketIOClientSwift
 
 class SocketManager {
     static let sharedInstance = SocketManager()
@@ -17,8 +17,8 @@ class SocketManager {
     func connectSocket(){
         if (userExists()){
             MyUser = getMySuperUser()
-            self.socket = SocketIOClient(socketURL: "http://163.5.84.242:3000", opts: ["connectParams" : ["token": MyUser.token!]])
-            
+            self.socket = SocketIOClient(socketURL: NSURL(string: "http://163.5.84.242:3000")!, options: Set(arrayLiteral: SocketIOClientOption.ConnectParams(["token": MyUser.token!])))
+
             socket.on("connect") {data, ack in
                 print("socket connected")
                 self.socket.emit("subscribe", ["channel":self.MyUser.id])
@@ -39,8 +39,8 @@ class SocketManager {
             }
             
             socket.on("friend") {data, ack in
-                print("friend data : \(data! as Array)")
-                self.notifyApp("requestFriend", data: data! as Array<AnyObject>)
+                print("friend data : \(data as Array)")
+                self.notifyApp("requestFriend", data: data as Array<AnyObject>)
             }
             
             socket.on("comments") {data, ack in
@@ -59,6 +59,6 @@ class SocketManager {
     }
     
     func disconnectFromSocket(){
-        socket.disconnect(fast: true)
+        socket.disconnect()
     }
 }
