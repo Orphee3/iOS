@@ -1,23 +1,31 @@
 workspace 'Orphee'
-xcodeproj 'OrpheeClient/Orphee.xcodeproj'
+
+platform :ios, '9.3'
+use_frameworks!
+project 'OrpheeClient/Orphee.xcodeproj'
 
 target :Orphee do
-       use_frameworks!
-       platform :ios, '9.3'
-       source 'https://github.com/CocoaPods/Specs.git'
-       pod 'Alamofire'
-       pod 'Socket.IO-Client-Swift'
        pod 'RSKImageCropper'
        pod 'SlackTextViewController'
        pod 'SCLAlertView'
-       pod 'Decodable'
-       pod 'Kingfisher'
        pod 'UnderKeyboard'
        pod 'MBProgressHUD'
-       pod 'HanekeSwift'
        pod "NextGrowingTextView"
        pod "SwiftDate"
        pod "OAuthSwift"
        pod 'Google/SignIn'
        pod 'SwiftWebSocket'
+       pod 'RxSwift'
+       pod 'RxCocoa'
+       pod 'RxBlocking'
+       pod 'RxOptional'
+       pod 'NSObject+Rx'
+       pod 'Action'
+       pod 'Moya'
+       pod 'Moya/RxSwift'
+       pod 'Socket.IO-Client-Swift'
+       pod 'Alamofire'
+       pod 'Kingfisher'
+       pod 'HanekeSwift'
+       pod 'Decodable'
 end
