@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F18b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BDj-4S-r0g">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -16,6 +17,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="miniPlayer" destination="4sA-xB-sQy" id="eCd-OU-4ni"/>
                         <segue destination="bdA-iX-u0g" kind="relationship" relationship="viewControllers" id="TN9-VA-Nbb"/>
                         <segue destination="LvE-V5-AnZ" kind="relationship" relationship="viewControllers" id="Wrp-se-5hN"/>
                         <segue destination="aLc-nU-apl" kind="relationship" relationship="viewControllers" id="78z-gV-CpO"/>
@@ -24,6 +26,13 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FS-6c-xaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <containerView opaque="NO" contentMode="scaleToFill" id="4sA-xB-sQy">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <segue destination="vgz-Ak-Ujf" kind="embed" id="rN8-Ql-pBE"/>
+                    </connections>
+                </containerView>
             </objects>
             <point key="canvasLocation" x="-1304" y="588"/>
         </scene>
@@ -35,7 +44,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qpv-kg-gxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-641.5" y="684"/>
+            <point key="canvasLocation" x="-635.5" y="691"/>
         </scene>
         <!--Profile-->
         <scene sceneID="6fv-J4-Jy8">
@@ -45,7 +54,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSi-8H-oe3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-642" y="868"/>
+            <point key="canvasLocation" x="-640" y="874"/>
         </scene>
         <!--Home-->
         <scene sceneID="04i-Uy-h1a">
@@ -55,7 +64,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3m-Wq-S8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-642" y="480"/>
+            <point key="canvasLocation" x="-642" y="510"/>
         </scene>
         <!--Chat-->
         <scene sceneID="Rzg-xg-HfA">
@@ -65,7 +74,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8LY-Ur-edU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-840.5" y="358"/>
+            <point key="canvasLocation" x="-645.5" y="323"/>
         </scene>
         <!--Composition-->
         <scene sceneID="JI1-9b-mGW">
@@ -75,7 +84,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXu-uw-pzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-660.5" y="1015"/>
+            <point key="canvasLocation" x="-621.5" y="1053"/>
+        </scene>
+        <!--miniPlayer-->
+        <scene sceneID="Wi7-wB-oiV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Player" referencedIdentifier="miniPlayer" id="vgz-Ak-Ujf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yKl-bP-YPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-641" y="115"/>
         </scene>
     </scenes>
     <resources>

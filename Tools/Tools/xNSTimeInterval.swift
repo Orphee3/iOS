@@ -9,6 +9,8 @@
 import Foundation
 
 public extension NSTimeInterval {
+    var milliSecond: NSTimeInterval { return self / 1000 }
+    var milliSeconds: NSTimeInterval { return self / 1000 }
     var second: NSTimeInterval { return self }
     var seconds: NSTimeInterval { return self }
     var minute: NSTimeInterval { return self * 60 }

@@ -9,26 +9,30 @@
 import UIKit
 import MIDIToolbox
 import FileManagement
+import MDSpreadView
 
 class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreationListActor {
 
     typealias AlertAction = ((UIAlertAction!) -> Void)
 
     /// The scroll view containing the composition area
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: MDSpreadView!
     @IBOutlet weak var trackBar: UIToolbar!
     @IBOutlet weak var addButton: UIButton!
 
     @IBOutlet weak var panSide: UIPanGestureRecognizer!
 
-    @IBOutlet weak var dataMgr: DataMgr!
+    @IBOutlet var dataMgr: DataMgr!
     @IBOutlet weak var gridOps: compoGridOpsIntent!
-    @IBOutlet weak var dataSrc: compoGridDataSource!
+    @IBOutlet weak var gridSrc: compoGridDataSource!
+    @IBOutlet weak var gridDlgt: compoGridDelegate!
 
     @IBOutlet weak var trackBarOps: trackBarOpsIntent!
 
     @IBOutlet weak var currentInstrument: UIBarButtonItem!
     @IBOutlet weak var bpm: UIBarButtonItem!
+
+    var trackNames = ["Grand Piano"]
 
     var tracks = [DataMgr]()
     var tracksInfo: [[String : Any]?] = [[eOrpheeFileContent.PatchID.rawValue : 1]]
@@ -70,18 +74,17 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let mgr = DataMgr()
-        self.dataMgr.data = mgr.data
-        self.tracks.append(mgr)
+        self.tracks.append(self.dataMgr)
+
         self.setupAudio()
         self.setupGraphics()
         self.makeActions();
-//        panSide.requireGestureRecognizerToFail(self.tableView.panGestureRecognizer)
         if let segueFile = fileForSegue {
             self.importFile(segueFile)
         }
 
-        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: dataMgr.lineIdxForNote(60), inSection: 0), atScrollPosition: .Top, animated: false)
+        let rect = self.tableView.frame.offsetBy(dx: 0, dy: 60 * 40)
+        self.tableView.contentOffset = rect.origin
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,11 +99,14 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         super.viewWillAppear(animated)
 
         self.navigationController?.navigationBarHidden = true
+
+        self.updateCurrentTrackInstrument()
         self.tableView.reloadData()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
+        self.player?.stop()
         navigationController?.navigationBarHidden = false
         if (segue.identifier == "instrumentsSegue") {
             let instrus = segue.destinationViewController as! InstrumentsTableViewController;
@@ -125,8 +131,10 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
 
     func setupGraphics() {
         self.tableView.rowHeight = 40
-        self.tableView.separatorStyle = .None
-        self.currentInstrument.title = "Grand piano"
+        self.tableView.columnWidth = 75
+        self.tableView.sectionColumnHeaderWidth = 75
+        self.tableView.selectionMode = MDSpreadViewSelectionModeNone
+
         self.currentInstrument.enabled = false
         self.tempoInfo = 120
         self.bpm.enabled = false
@@ -204,16 +212,13 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
 }
 
     func cleanData() {
+        self.player?.stop()
         self.tracks.removeAll()
         self.tracksInfo.removeAll()
-        self.currentTrack = 0
+        self.trackNames.removeAll()
+        self.mutedTracks.removeAll()
 
-        let mgr = DataMgr()
-        self.tracksInfo.append([eOrpheeFileContent.PatchID.rawValue : 1])
-        self.tracks.append(mgr)
-        self.dataMgr.data = mgr.data
-        self.tableView.reloadData()
-        self.trackBarOps.refresh()
+        self.addTrack()
     }
 
     func addTrack() {
@@ -250,8 +255,24 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     func changeCurrentTrack(idx: Int) {
         guard idx >= 0 && idx < self.tracks.count else { return }
         self.currentTrack = idx
+
+        self.dataMgr = self.tracks[idx]
+        self.gridSrc.dataMgr = self.dataMgr
+        self.gridDlgt.dataMgr = self.dataMgr
+
         self.tableView.reloadData()
         self.trackBarOps.refresh()
+
+        self.updateCurrentTrackInstrument()
+    }
+
+    func updateCurrentTrackInstrument() {
+        let idx = self.currentTrack
+        if idx >= trackNames.count {
+            self.trackNames.append("Grand Piano")
+        }
+        let instrumentName = trackNames[idx]
+        self.currentInstrument.title = instrumentName
     }
 
     func makeActions() {
@@ -293,4 +314,16 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         optionMenu.addAction(cancelAction)
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
+
+    @IBAction func cancelledInstruSelection(segue: UIStoryboardSegue) {
+//        print("cancelled")
+    }
+
+    @IBAction func selectedInstrument(segue: UIStoryboardSegue) {
+        if let instrus = segue.sourceViewController as? InstrumentsTableViewController {
+            self.tracksInfo[self.currentTrack] = [eOrpheeFileContent.PatchID.rawValue : instrus.instruID]
+            self.trackNames[self.currentTrack] = instrus.instruName
+        }
+    }
+
 }

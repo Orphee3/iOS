@@ -24,6 +24,8 @@
 		1E638F1B1C8B517600B161BE /* pCreationListActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E638F1A1C8B517600B161BE /* pCreationListActor.swift */; };
 		1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */; };
 		1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */; };
+		1E7FDAB31CC96CBB0027EA35 /* horizontalTVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2749C1C598A22008FDFA4 /* horizontalTVDataSource.swift */; };
+		1E7FDAB51CCA373B0027EA35 /* compoGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FDAB41CCA373B0027EA35 /* compoGridCell.swift */; };
 		1EA5AED41CA4A6DC00026144 /* xtreme.mid in Resources */ = {isa = PBXBuildFile; fileRef = DB5B249F1BD893A1008D48D2 /* xtreme.mid */; };
 		1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5CD191BFFB047004DA763 /* Pods-Orphee-frameworks.sh */; };
 		1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACBF031BD8388500D7B1C1 /* CreationsListVC.swift */; };
@@ -31,11 +33,6 @@
 		1EB274C41C598A22008FDFA4 /* compoGridOpsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274911C598A22008FDFA4 /* compoGridOpsIntent.swift */; };
 		1EB274C61C598A22008FDFA4 /* Composition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274931C598A22008FDFA4 /* Composition.storyboard */; };
 		1EB274CA1C598A22008FDFA4 /* DataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274971C598A22008FDFA4 /* DataMgr.swift */; };
-		1EB274CB1C598A22008FDFA4 /* header.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274981C598A22008FDFA4 /* header.xib */; };
-		1EB274CC1C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274991C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift */; };
-		1EB274CD1C598A22008FDFA4 /* HorizontalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2749A1C598A22008FDFA4 /* HorizontalTableView.swift */; };
-		1EB274CE1C598A22008FDFA4 /* HorizontalTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB2749B1C598A22008FDFA4 /* HorizontalTableView.xib */; };
-		1EB274CF1C598A22008FDFA4 /* horizontalTVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2749C1C598A22008FDFA4 /* horizontalTVDataSource.swift */; };
 		1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274AF1C598A22008FDFA4 /* trackBarOpsIntent.swift */; };
 		1EB274DC1C598A22008FDFA4 /* trackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274B01C598A22008FDFA4 /* trackItem.swift */; };
 		1EB274DD1C598A22008FDFA4 /* trackItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274B11C598A22008FDFA4 /* trackItemView.swift */; };
@@ -205,6 +202,7 @@
 		1E638F1A1C8B517600B161BE /* pCreationListActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pCreationListActor.swift; sourceTree = "<group>"; };
 		1E7105DA1C5A67F100EB0CE2 /* globalActionsIntents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalActionsIntents.swift; sourceTree = "<group>"; };
 		1E77383F1C59B7DE0012F801 /* scrollableToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrollableToolbar.swift; sourceTree = "<group>"; };
+		1E7FDAB41CCA373B0027EA35 /* compoGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = compoGridCell.swift; sourceTree = "<group>"; };
 		1EA5BA651BFD46C700ABAF25 /* Dont_Cry.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Dont_Cry.mid; sourceTree = "<group>"; };
 		1EA5BA6D1BFD46C700ABAF25 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
 		1EA5BA6E1BFD46C700ABAF25 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
@@ -401,6 +399,7 @@
 		1EB2747F1C598A22008FDFA4 /* CompoUI */ = {
 			isa = PBXGroup;
 			children = (
+				1E7FDAB41CCA373B0027EA35 /* compoGridCell.swift */,
 				1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */,
 				1EB2748F1C598A22008FDFA4 /* cell.xib */,
 				1EB274901C598A22008FDFA4 /* compoGridDataSource.swift */,
@@ -910,11 +909,9 @@
 				DBDC8A0E1A98020B001ADE00 /* SoundBanks in Resources */,
 				1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */,
 				9B11882D1CC4049F00FE3E58 /* Chat.storyboard in Resources */,
-				1EB274CE1C598A22008FDFA4 /* HorizontalTableView.xib in Resources */,
 				1EA5CD1A1BFFB047004DA763 /* Pods-Orphee-frameworks.sh in Resources */,
 				526FF6051A81106E00CF6A9C /* Sounds in Resources */,
 				9B1188201CC2858F00FE3E58 /* Friends.storyboard in Resources */,
-				1EB274CB1C598A22008FDFA4 /* header.xib in Resources */,
 				1EB274C61C598A22008FDFA4 /* Composition.storyboard in Resources */,
 				526FF5F51A810DA000CF6A9C /* Images.xcassets in Resources */,
 				9BE2AD9A1C84FAA700AE92F5 /* Creation.storyboard in Resources */,
@@ -1044,7 +1041,6 @@
 				1E7738401C59B7DE0012F801 /* scrollableToolbar.swift in Sources */,
 				9B8C94AF1C0679D70037A0D3 /* RDRGrowingTextView.m in Sources */,
 				1E7105DB1C5A67F100EB0CE2 /* globalActionsIntents.swift in Sources */,
-				1EB274CC1C598A22008FDFA4 /* HorizontalPanGestureRecognizer.swift in Sources */,
 				9B0B737F1CA8502600E26322 /* ProfileCellTableViewController.swift in Sources */,
 				9BFE18431BF638D1005FCB92 /* OrpheeApi.swift in Sources */,
 				9BD33E051C012B6400802BE3 /* OrpheeReachability.swift in Sources */,
@@ -1057,6 +1053,7 @@
 				9B1188311CC4272900FE3E58 /* ConversationViewController.swift in Sources */,
 				1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */,
 				9B2F659B1C946502004BB575 /* myUser.swift in Sources */,
+				1E7FDAB31CC96CBB0027EA35 /* horizontalTVDataSource.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
 				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
 				9B11882F1CC416F300FE3E58 /* ChatTableViewController.swift in Sources */,
@@ -1071,11 +1068,11 @@
 				52C61DBF1A7A041200B3DE23 /* AudioGraph.swift in Sources */,
 				9BBE7FA41C7CAC4B00B56E51 /* HomeViewController.swift in Sources */,
 				9B1188261CC29E7400FE3E58 /* AskFriendTableViewCell.swift in Sources */,
+				1E7FDAB51CCA373B0027EA35 /* compoGridCell.swift in Sources */,
 				DB19999E1AA6F99F00DBDB95 /* UITrackTimeBlock.swift in Sources */,
 				1E282F1F1C238762004B2084 /* AudioEngineManager.swift in Sources */,
 				9BE2AD951C8376D100AE92F5 /* UserTableViewCell.swift in Sources */,
 				9BD2995E1C826F5B000D1308 /* ArtistesCollectionViewController.swift in Sources */,
-				1EB274CF1C598A22008FDFA4 /* horizontalTVDataSource.swift in Sources */,
 				1EB274DC1C598A22008FDFA4 /* trackItem.swift in Sources */,
 				9BD186E71B8627C0004A892D /* CropImageToSquare.swift in Sources */,
 				DB1999A41AA73EA500DBDB95 /* UITimeBlockArray.swift in Sources */,
@@ -1089,7 +1086,6 @@
 				9B327FEE1B9A374C00AAD347 /* SettingsTableViewController.swift in Sources */,
 				9BBE7FA81C7CAED200B56E51 /* Creation.swift in Sources */,
 				9B1188331CC43C7200FE3E58 /* Message.swift in Sources */,
-				1EB274CD1C598A22008FDFA4 /* HorizontalTableView.swift in Sources */,
 				9B1188351CC441C500FE3E58 /* ConversationCell.swift in Sources */,
 				1EACBF041BD8388500D7B1C1 /* CreationsListVC.swift in Sources */,
 				9BD2995B1C826C08000D1308 /* RegisterViewController.swift in Sources */,

@@ -1,0 +1,6 @@
+framework module MDSpreadView {
+  umbrella header "MDSpreadView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -32,6 +32,7 @@ PODS:
   - HanekeSwift (0.10.1)
   - Kingfisher (2.2.2)
   - MBProgressHUD (0.9.2)
+  - MDSpreadView (0.8)
   - Moya (6.4.0):
     - Moya/Core (= 6.4.0)
   - Moya/Core (6.4.0):
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - HanekeSwift
   - Kingfisher
   - MBProgressHUD
+  - MDSpreadView
   - Moya
   - Moya/RxSwift
   - NextGrowingTextView
@@ -101,6 +103,7 @@ SPEC CHECKSUMS:
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   Kingfisher: 7e8de5b0cf7b5dc8ec559d193029a0859df93ef1
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MDSpreadView: 3614e938d5b194b0340155ddc76e2bfc534f8c8c
   Moya: 4d526954c8afd79820991393d40d7d8af756ceee
   NextGrowingTextView: 8a179d9a5a328918c089d6d1fbe7d40d32c3b396
   NSObject+Rx: 5d032a7f161602dec6b82dcf12731e91ce15b8da
@@ -118,6 +121,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: c24c0dde0b33852f478ffb54226408bfe703b26b
   UnderKeyboard: 6ec3057822332c985806da7c36b8dd57647d54e9
 
-PODFILE CHECKSUM: c7b8a3e48d8e4c236e09d264d6b749c6cad119fc
+PODFILE CHECKSUM: 0c315b9a1d951ac803c057cd140dc9bcd9ed066a
 
 COCOAPODS: 1.0.0.beta.8

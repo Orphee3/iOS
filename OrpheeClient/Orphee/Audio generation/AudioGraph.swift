@@ -183,7 +183,7 @@ class AudioGraph {
         var result: OSStatus = noErr;
         let cmd: UInt32 = 0x9 << 4 | 0;
 
-        result = MusicDeviceMIDIEvent(sampler, cmd, note, 127, 0);
+        result = MusicDeviceMIDIEvent(sampler, cmd, note, 76, 0);
         return result;
     }
 

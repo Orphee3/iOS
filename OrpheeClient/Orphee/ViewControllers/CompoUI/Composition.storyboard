@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7qf-bM-t08">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Instruments-->
+        <!--Instruments Table View Controller-->
         <scene sceneID="xNg-n1-FxL">
             <objects>
                 <tableViewController id="stM-uy-J5J" customClass="InstrumentsTableViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,9 +15,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="iRd-ou-TyV">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vj-AM-4BY">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <items>
+                                        <barButtonItem systemItem="cancel" id="tGR-sq-UaT">
+                                            <connections>
+                                                <segue destination="FYG-Ym-MO0" kind="unwind" unwindAction="cancelledInstruSelection:" id="0mV-hk-PxE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="kR8-cI-gb8"/>
+                                        <barButtonItem systemItem="done" id="vpD-WC-wTQ">
+                                            <connections>
+                                                <segue destination="FYG-Ym-MO0" kind="unwind" unwindAction="selectedInstrument:" id="UB5-5e-y2Q"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </items>
+                                </toolbar>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="1vj-AM-4BY" secondAttribute="trailing" id="9n2-d9-X2f"/>
+                                <constraint firstItem="1vj-AM-4BY" firstAttribute="top" secondItem="iRd-ou-TyV" secondAttribute="top" id="Bwm-uP-if4"/>
+                                <constraint firstItem="1vj-AM-4BY" firstAttribute="leading" secondItem="iRd-ou-TyV" secondAttribute="leading" id="j2W-fq-ySg"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="NQs-GC-6pb">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="130" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQs-GC-6pb" id="BOA-dK-jE7">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -29,7 +58,6 @@
                             <outlet property="delegate" destination="stM-uy-J5J" id="Vde-qk-2Xe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Instruments" id="BSp-HW-HHd"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWb-My-mGh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -87,7 +115,7 @@
                             <outlet property="delegate" destination="alL-FF-LoK" id="pnI-vU-3Du"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Creations" id="46F-FN-JMg" userLabel="Tempo"/>
+                    <navigationItem key="navigationItem" title="Tempo" id="46F-FN-JMg" userLabel="Tempo"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOl-WT-KHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqI-kJ-41F">
-                                <rect key="frame" x="556" y="99" width="40" height="422"/>
+                                <rect key="frame" x="556" y="99" width="40" height="372"/>
                                 <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="H2B-kE-jfX"/>
@@ -135,39 +163,8 @@
                                     <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="PV6-im-icF"/>
                                 </items>
                             </toolbar>
-                            <toolbar clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcW-qw-USM" userLabel="global actions">
-                                <rect key="frame" x="4" y="64" width="592" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="3Kx-Y0-rpD"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem systemItem="trash" id="HjR-mC-aDj">
-                                        <connections>
-                                            <action selector="cleanAll" destination="F7I-Il-7Zs" id="xA9-Oe-qBE"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="dzO-q7-eE3"/>
-                                    <barButtonItem title="Item" style="plain" id="NFd-de-AjP"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Plp-jf-3qo"/>
-                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="w2e-yA-ndB"/>
-                                    <barButtonItem systemItem="play" id="7CD-RZ-PYd">
-                                        <connections>
-                                            <action selector="playButtonTouched:" destination="F7I-Il-7Zs" id="sGI-pt-Mx7"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="n40-6K-qul"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XjJ-sZ-80u"/>
-                                    <barButtonItem title="Item" style="plain" id="nUG-LJ-avb" userLabel="BPM"/>
-                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="vx5-na-X1q"/>
-                                    <barButtonItem systemItem="action" id="jFf-BL-Epl">
-                                        <connections>
-                                            <action selector="actionButtonTouched:" destination="F7I-Il-7Zs" id="1GD-Gf-U0b"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sCh-A0-uoh" userLabel="trackBar">
-                                <rect key="frame" x="4" y="521" width="592" height="35"/>
+                                <rect key="frame" x="4" y="471" width="592" height="35"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="6Ee-wq-zuc" userLabel="Tracks label">
                                         <rect key="frame" x="0.0" y="7" width="51" height="21"/>
@@ -340,8 +337,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="34" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="wck-vY-ATD">
-                                <rect key="frame" x="4" y="99" width="552" height="422"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33I-3f-s6d" userLabel="compoGrid" customClass="MDSpreadView">
+                                <rect key="frame" x="0.0" y="99" width="556" height="372"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4XF-zO-pll" id="fZO-Qi-GBe"/>
+                                    <outlet property="delegate" destination="pcx-DQ-Mn3" id="BFC-YZ-U3W"/>
+                                </connections>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="34" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="wck-vY-ATD">
+                                <rect key="frame" x="4" y="99" width="552" height="372"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -414,6 +419,11 @@
                                                                 <constraint firstAttribute="trailing" secondItem="lEW-qj-7oq" secondAttribute="trailing" constant="5" id="edh-RJ-Xrl"/>
                                                                 <constraint firstItem="lEW-qj-7oq" firstAttribute="centerY" secondItem="Syv-Fs-X8q" secondAttribute="centerY" id="sXq-5M-rAz"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="subviews">
+                                                                    <exclude reference="lEW-qj-7oq"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <outlet property="content" destination="lEW-qj-7oq" id="udI-a2-Bno"/>
                                                             </connections>
@@ -481,6 +491,13 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="2Zb-kt-tp2"/>
+                                                                <exclude reference="MLe-sx-IrP"/>
+                                                                <exclude reference="y28-k8-aeM"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <outlet property="bg" destination="2Zb-kt-tp2" id="fED-Cz-er9"/>
                                                             <outlet property="noteLbl" destination="MLe-sx-IrP" id="chv-A7-9kh"/>
@@ -490,6 +507,11 @@
                                                 </collectionView>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="ywb-5v-8tc"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.64369523525238037" green="0.77603435516357422" blue="0.92597806453704834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -505,41 +527,82 @@
                                 </prototypes>
                                 <sections/>
                                 <connections>
-                                    <outlet property="dataSource" destination="4XF-zO-pll" id="cs9-pV-icb"/>
                                     <outlet property="delegate" destination="pcx-DQ-Mn3" id="EA3-qv-9zN"/>
                                     <outletCollection property="gestureRecognizers" destination="8JW-LK-PlT" appends="YES" id="Hnf-4z-fz1"/>
                                 </connections>
                             </tableView>
+                            <toolbar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcW-qw-USM" userLabel="global actions">
+                                <rect key="frame" x="4" y="64" width="592" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="3Kx-Y0-rpD"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="HjR-mC-aDj">
+                                        <connections>
+                                            <action selector="cleanAll" destination="F7I-Il-7Zs" id="xA9-Oe-qBE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="dzO-q7-eE3"/>
+                                    <barButtonItem title="Item" style="plain" id="NFd-de-AjP"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Plp-jf-3qo"/>
+                                    <barButtonItem width="20" systemItem="fixedSpace" id="w2e-yA-ndB">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="play" id="7CD-RZ-PYd">
+                                        <connections>
+                                            <action selector="playButtonTouched:" destination="F7I-Il-7Zs" id="sGI-pt-Mx7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="n40-6K-qul"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XjJ-sZ-80u"/>
+                                    <barButtonItem title="Item" style="plain" id="nUG-LJ-avb" userLabel="BPM"/>
+                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="vx5-na-X1q"/>
+                                    <barButtonItem systemItem="action" id="jFf-BL-Epl">
+                                        <connections>
+                                            <action selector="actionButtonTouched:" destination="F7I-Il-7Zs" id="1GD-Gf-U0b"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sCh-A0-uoh" firstAttribute="trailing" secondItem="qfr-ct-FKs" secondAttribute="trailingMargin" constant="16" id="032-xc-kDJ"/>
                             <constraint firstItem="TcW-qw-USM" firstAttribute="trailing" secondItem="qfr-ct-FKs" secondAttribute="trailingMargin" constant="16" id="3ZG-Vc-yKQ"/>
+                            <constraint firstItem="HqI-kJ-41F" firstAttribute="leading" secondItem="33I-3f-s6d" secondAttribute="trailing" id="5D7-DX-o5U"/>
                             <constraint firstItem="GGg-aI-eJF" firstAttribute="leading" secondItem="qfr-ct-FKs" secondAttribute="leadingMargin" constant="-16" id="6fR-up-gj3"/>
-                            <constraint firstItem="sCh-A0-uoh" firstAttribute="top" secondItem="HqI-kJ-41F" secondAttribute="bottom" id="8Do-hL-0Sv"/>
+                            <constraint firstItem="HqI-kJ-41F" firstAttribute="bottom" secondItem="sCh-A0-uoh" secondAttribute="top" id="8Do-hL-0Sv"/>
+                            <constraint firstItem="33I-3f-s6d" firstAttribute="top" secondItem="TcW-qw-USM" secondAttribute="bottom" id="ATc-If-frt"/>
                             <constraint firstItem="GGg-aI-eJF" firstAttribute="top" secondItem="wck-vY-ATD" secondAttribute="bottom" id="FOk-dA-BGG"/>
                             <constraint firstItem="HqI-kJ-41F" firstAttribute="leading" secondItem="wck-vY-ATD" secondAttribute="trailing" id="FZS-nq-nPk"/>
                             <constraint firstItem="wck-vY-ATD" firstAttribute="leading" secondItem="qfr-ct-FKs" secondAttribute="leadingMargin" constant="-16" id="G0h-zg-oze"/>
-                            <constraint firstItem="sCh-A0-uoh" firstAttribute="top" secondItem="wck-vY-ATD" secondAttribute="bottom" id="LQC-PY-TZF"/>
+                            <constraint firstItem="wck-vY-ATD" firstAttribute="bottom" secondItem="sCh-A0-uoh" secondAttribute="top" id="LQC-PY-TZF"/>
                             <constraint firstItem="HqI-kJ-41F" firstAttribute="top" secondItem="TcW-qw-USM" secondAttribute="bottom" id="Npc-D6-bI8"/>
-                            <constraint firstItem="OZi-uK-7nG" firstAttribute="top" secondItem="sCh-A0-uoh" secondAttribute="bottom" id="PfD-Ch-3zf"/>
+                            <constraint firstItem="OZi-uK-7nG" firstAttribute="top" secondItem="sCh-A0-uoh" secondAttribute="bottom" constant="50" id="PfD-Ch-3zf"/>
+                            <constraint firstItem="33I-3f-s6d" firstAttribute="leading" secondItem="qfr-ct-FKs" secondAttribute="leading" id="SL3-DE-lFf"/>
                             <constraint firstItem="sCh-A0-uoh" firstAttribute="leading" secondItem="qfr-ct-FKs" secondAttribute="leadingMargin" constant="-16" id="W2d-qp-LEc"/>
                             <constraint firstItem="GGg-aI-eJF" firstAttribute="trailing" secondItem="qfr-ct-FKs" secondAttribute="trailingMargin" constant="16" id="ejM-VX-LFw"/>
                             <constraint firstItem="GGg-aI-eJF" firstAttribute="top" secondItem="HqI-kJ-41F" secondAttribute="bottom" id="hje-zC-llI"/>
                             <constraint firstItem="TcW-qw-USM" firstAttribute="top" secondItem="Sw4-fc-uUQ" secondAttribute="bottom" id="ihS-BC-tJH"/>
                             <constraint firstItem="HqI-kJ-41F" firstAttribute="trailing" secondItem="qfr-ct-FKs" secondAttribute="trailingMargin" constant="16" id="lKa-Et-lgT"/>
+                            <constraint firstItem="sCh-A0-uoh" firstAttribute="top" secondItem="33I-3f-s6d" secondAttribute="bottom" id="qUt-qS-LnZ"/>
                             <constraint firstItem="wck-vY-ATD" firstAttribute="top" secondItem="TcW-qw-USM" secondAttribute="bottom" id="u4e-Fv-p6a"/>
                             <constraint firstItem="TcW-qw-USM" firstAttribute="leading" secondItem="qfr-ct-FKs" secondAttribute="leadingMargin" constant="-16" id="wwD-Tk-Iha"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="GGg-aI-eJF"/>
+                                <exclude reference="wck-vY-ATD"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="G0h-zg-oze"/>
+                                <exclude reference="LQC-PY-TZF"/>
+                                <exclude reference="u4e-Fv-p6a"/>
                                 <exclude reference="6fR-up-gj3"/>
                                 <exclude reference="FOk-dA-BGG"/>
                                 <exclude reference="ejM-VX-LFw"/>
                                 <exclude reference="hje-zC-llI"/>
+                                <exclude reference="FZS-nq-nPk"/>
                             </mask>
                         </variation>
                     </view>
@@ -553,10 +616,11 @@
                         <outlet property="bpm" destination="nUG-LJ-avb" id="XBW-t3-Nw2"/>
                         <outlet property="currentInstrument" destination="NFd-de-AjP" id="Uuk-9i-Wy9"/>
                         <outlet property="dataMgr" destination="81L-Uo-Av6" id="rvf-bV-6Cd"/>
-                        <outlet property="dataSrc" destination="4XF-zO-pll" id="DPE-vD-e2k"/>
+                        <outlet property="gridDlgt" destination="pcx-DQ-Mn3" id="vDl-1D-mlc"/>
                         <outlet property="gridOps" destination="gSN-K2-8lC" id="ld4-vS-U57"/>
+                        <outlet property="gridSrc" destination="4XF-zO-pll" id="E7r-ml-iIa"/>
                         <outlet property="panSide" destination="8JW-LK-PlT" id="1As-of-DpB"/>
-                        <outlet property="tableView" destination="wck-vY-ATD" id="KYW-JI-538"/>
+                        <outlet property="tableView" destination="33I-3f-s6d" id="c0B-od-57s"/>
                         <outlet property="trackBar" destination="GGg-aI-eJF" id="Stf-6L-iEr"/>
                         <outlet property="trackBarOps" destination="Q9E-aY-MHv" id="nK8-eP-UDy"/>
                         <segue destination="alL-FF-LoK" kind="show" identifier="tempoSegue" id="WKf-hF-qjW"/>
@@ -564,13 +628,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YH2-NQ-JOM" sceneMemberID="firstResponder"/>
+                <exit id="FYG-Ym-MO0" userLabel="Exit" sceneMemberID="exit"/>
                 <customObject id="4XF-zO-pll" userLabel="CompoGrid DataSrc" customClass="compoGridDataSource" customModule="Orphee" customModuleProvider="target">
                     <connections>
                         <outlet property="VC" destination="3x0-r0-poF" id="kyS-M9-h6a"/>
                         <outlet property="dataMgr" destination="81L-Uo-Av6" id="ARi-mE-lYm"/>
                     </connections>
                 </customObject>
-                <customObject id="pcx-DQ-Mn3" userLabel="CompoGrid Delegate" customClass="compoGridDelegate" customModule="Orphee" customModuleProvider="target"/>
+                <customObject id="pcx-DQ-Mn3" userLabel="CompoGrid Delegate" customClass="compoGridDelegate" customModule="Orphee" customModuleProvider="target">
+                    <connections>
+                        <outlet property="dataMgr" destination="81L-Uo-Av6" id="tS7-8q-chJ"/>
+                    </connections>
+                </customObject>
                 <customObject id="gSN-K2-8lC" userLabel="CompoGrid Ops" customClass="compoGridOpsIntent" customModule="Orphee" customModuleProvider="target">
                     <connections>
                         <outlet property="VC" destination="3x0-r0-poF" id="p8h-qU-c8b"/>
@@ -603,11 +672,7 @@
                     </connections>
                 </customObject>
                 <customObject id="81L-Uo-Av6" customClass="DataMgr" customModule="Orphee" customModuleProvider="target"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="8JW-LK-PlT">
-                    <connections>
-                        <action selector="handlePan:" destination="gSN-K2-8lC" id="WDL-EZ-UJV"/>
-                    </connections>
-                </panGestureRecognizer>
+                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="8JW-LK-PlT"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="lRL-CG-WkA">
                     <connections>
                         <action selector="startDeleteMode" destination="Q9E-aY-MHv" id="c9Z-YD-Eyn"/>

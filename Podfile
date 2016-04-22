@@ -28,4 +28,5 @@ target :Orphee do
        pod 'Kingfisher'
        pod 'HanekeSwift'
        pod 'Decodable'
+       pod 'MDSpreadView'
 end
