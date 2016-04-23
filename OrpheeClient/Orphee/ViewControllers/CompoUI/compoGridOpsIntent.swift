@@ -17,7 +17,7 @@ class compoGridOpsIntent: NSObject {
 
     @IBAction func addColumn(sender: UIButton) {
         print("add columns")
-        self.VC.tracks[self.VC.currentTrack].addCellsToAllLines(15)
+        self.VC.dataMgr.addCellsToAllLines(15)
         self.VC.tableView.reloadData()
     }
 

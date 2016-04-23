@@ -15,7 +15,7 @@ class CompoGridCell: MDSpreadViewCell {
 
     var active: Bool = false {
         willSet(isActive) {
-            self.backgroundColor = isActive ? .redColor() : .grayColor()
+            self.backgroundView.backgroundColor = isActive ? .redColor() : .grayColor()
         }
     }
 
@@ -30,6 +30,7 @@ class CompoGridCell: MDSpreadViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.touchRecon.delegate = self
+        self.backgroundColor = .whiteColor()
     }
 
     

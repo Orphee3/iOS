@@ -11,9 +11,6 @@ import MIDIToolbox
 import FileManagement
 import MDSpreadView
 
-import RxSwift
-import NSObject_Rx
-
 class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreationListActor {
 
     typealias AlertAction = ((UIAlertAction!) -> Void)

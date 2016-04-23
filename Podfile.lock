@@ -1,8 +1,5 @@
 PODS:
-  - Action (1.2.1):
-    - RxCocoa (~> 2.0)
-    - RxSwift (~> 2.0)
-  - Alamofire (3.3.1)
+  - Alamofire (2.0.2)
   - Decodable (0.4.2)
   - Google/Core (2.0.4):
     - GoogleInterchangeUtilities (~> 1.0)
@@ -30,32 +27,12 @@ PODS:
   - GoogleUtilities (1.3.0):
     - GoogleSymbolUtilities (~> 1.0)
   - HanekeSwift (0.10.1)
-  - Kingfisher (2.2.2)
+  - Kingfisher (2.3.1)
   - MBProgressHUD (0.9.2)
   - MDSpreadView (0.8)
-  - Moya (6.4.0):
-    - Moya/Core (= 6.4.0)
-  - Moya/Core (6.4.0):
-    - Alamofire (~> 3.0)
-    - Result (~> 2.0)
-  - Moya/RxSwift (6.4.0):
-    - Moya/Core
-    - RxSwift (~> 2.0)
   - NextGrowingTextView (0.6.0)
-  - NSObject+Rx (1.2.1):
-    - RxSwift (~> 2.1)
   - OAuthSwift (0.5.2)
-  - Result (2.0.0)
-  - RSKImageCropper (1.5.1)
-  - RxBlocking (2.4):
-    - RxSwift (~> 2.4)
-  - RxCocoa (2.4):
-    - RxSwift (~> 2.4)
-  - RxOptional (2.0.0):
-    - RxCocoa (~> 2.0)
-    - RxSwift (~> 2.0)
-  - RxSwift (2.4)
-  - SCLAlertView (0.5.3)
+  - SCLAlertView (0.5.4)
   - SlackTextViewController (1.9.2)
   - Socket.IO-Client-Swift (6.1.0)
   - SwiftDate (3.0.8)
@@ -63,24 +40,15 @@ PODS:
   - UnderKeyboard (4.0.2)
 
 DEPENDENCIES:
-  - Action
-  - Alamofire
+  - Alamofire (~> 2.0)
   - Decodable
   - Google/SignIn
   - HanekeSwift
   - Kingfisher
   - MBProgressHUD
   - MDSpreadView
-  - Moya
-  - Moya/RxSwift
   - NextGrowingTextView
-  - NSObject+Rx
   - OAuthSwift
-  - RSKImageCropper
-  - RxBlocking
-  - RxCocoa
-  - RxOptional
-  - RxSwift
   - SCLAlertView
   - SlackTextViewController
   - Socket.IO-Client-Swift
@@ -89,8 +57,7 @@ DEPENDENCIES:
   - UnderKeyboard
 
 SPEC CHECKSUMS:
-  Action: b602680262545973293b0fd0aca84d1a49141608
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   Decodable: b1cd96ad9f722721bc98b0310952214a47f71d6a
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleAppUtilities: 974598e8ed618c74ead33541d9caffbc3d144266
@@ -101,26 +68,18 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: eb3965ea12710569c7b80db198a39e39b18613f7
   GoogleUtilities: 5c653f7df2eedf0ce0efdfe5afe4f831f375fd7a
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
-  Kingfisher: 7e8de5b0cf7b5dc8ec559d193029a0859df93ef1
+  Kingfisher: 6d3fbada4829cbc7b89e883e8218c28afeb64e42
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDSpreadView: 3614e938d5b194b0340155ddc76e2bfc534f8c8c
-  Moya: 4d526954c8afd79820991393d40d7d8af756ceee
   NextGrowingTextView: 8a179d9a5a328918c089d6d1fbe7d40d32c3b396
-  NSObject+Rx: 5d032a7f161602dec6b82dcf12731e91ce15b8da
   OAuthSwift: 1ef042d4362e755e24a78f158d817245641a5d24
-  Result: 9e75e1111c774c6ac594e14907b15057053a7959
-  RSKImageCropper: edd65fedb3734332818deb139906d6b7f54b8a44
-  RxBlocking: 1226c1fa0ca1e0ca5f964d4330ca3649f2128680
-  RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
-  RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
-  RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
-  SCLAlertView: dcd89117943cd804208645e0702a913397e5b352
+  SCLAlertView: 081f824b17b7cf41057159535591f4d6fc8acde3
   SlackTextViewController: bac3350ccc639bc446bb14cbd09da238f5e01f32
   Socket.IO-Client-Swift: b0ebbd80f039992bad6d0f74730b5a540d979520
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftWebSocket: c24c0dde0b33852f478ffb54226408bfe703b26b
   UnderKeyboard: 6ec3057822332c985806da7c36b8dd57647d54e9
 
-PODFILE CHECKSUM: 0c315b9a1d951ac803c057cd140dc9bcd9ed066a
+PODFILE CHECKSUM: 11c8dc583ee016b08b32e11b66e7a31e95db21d9
 
 COCOAPODS: 1.0.0.beta.8

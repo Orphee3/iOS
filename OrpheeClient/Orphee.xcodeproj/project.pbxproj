@@ -39,7 +39,6 @@
 		1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274B21C598A22008FDFA4 /* trackItemView.xib */; };
 		1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
-		1EBE3A8C1CCAB15A00E2E0AE /* eAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE3A8B1CCAB15A00E2E0AE /* eAPI.swift */; };
 		1ECEFB181CA5F5D200D1719F /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEFB171CA5F5D200D1719F /* UITests.swift */; };
 		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
 		1ED8F4031C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
@@ -1066,7 +1065,6 @@
 				9B2F659B1C946502004BB575 /* myUser.swift in Sources */,
 				1E7FDAB31CC96CBB0027EA35 /* horizontalTVDataSource.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
-				1EBE3A8C1CCAB15A00E2E0AE /* eAPI.swift in Sources */,
 				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
 				9B11882F1CC416F300FE3E58 /* ChatTableViewController.swift in Sources */,
 				1E25E7DF1C87817800C499D6 /* SliderIntent.swift in Sources */,
