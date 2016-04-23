@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import RSKImageCropper
+//import RSKImageCropper
 
 class SettingsTableViewController: UITableViewController {
 //    var user: User!

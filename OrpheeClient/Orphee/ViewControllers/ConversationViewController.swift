@@ -100,11 +100,6 @@ class ConversationViewController: SLKTextViewController {
         } catch let error {
             print(error)
         }
-        
-        
-        //self.messages.insert(["id":"\(user.id)", "message":"\(message)"], atIndex: 0)
-        //self.tableView.reloadData()
-        // SocketManager().sendMessage(friend.id, message: message)
         super.didPressRightButton(sender)
     }
 }

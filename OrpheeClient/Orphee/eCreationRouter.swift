@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum eCreationRouter: URLRequestConvertible {
-    static let baseURLString = "http://163.5.84.242:3000"
+    static let baseURLString = "http://10.224.9.242:3000"
     static var OAuthToken: String?
 
     case CreateCrea(String, String)

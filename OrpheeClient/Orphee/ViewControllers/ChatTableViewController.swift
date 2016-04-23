@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SCLAlertView
 
 class ChatTableViewController: UITableViewController {
     var myUser: mySuperUser!
@@ -15,6 +16,11 @@ class ChatTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         if (userExists()){
             myUser = getMySuperUser()
             OrpheeApi().getFriends(myUser.id, completion: { (response) in
@@ -28,8 +34,9 @@ class ChatTableViewController: UITableViewController {
                 }
                 self.tableView.reloadData()
             })
+        }else{
+            callPopUp()
         }
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,5 +67,21 @@ class ChatTableViewController: UITableViewController {
                 controller.myUser = myUser
             }
         }
+    }
+    
+    func callPopUp(){
+        let alertView = SCLAlertView()
+        alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(ChatTableViewController.goToRegister))
+        alertView.addButton("Fermer", target: self, selector: #selector(ChatTableViewController.closePopUp))
+        alertView.showCloseButton = false
+        alertView.showSuccess("Orphée", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
+    }
+    
+    func goToRegister(){
+        performSegueWithIdentifier("toLogin", sender: nil)
+    }
+    
+    func closePopUp(){
+        performSegueWithIdentifier("toHome", sender: nil)
     }
 }

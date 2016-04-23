@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uzr-Nv-qHw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F18b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uzr-Nv-qHw">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -88,7 +89,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQw-Kt-OzI">
-                                                <rect key="frame" x="198" y="192" width="70" height="30"/>
+                                                <rect key="frame" x="8" y="8" width="70" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="6KV-6K-tsw"/>
                                                 </constraints>
@@ -101,11 +102,12 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="top" secondItem="oF6-lp-ZAe" secondAttribute="bottom" constant="26" id="H6o-K7-JNI"/>
+                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="top" secondItem="oF6-lp-ZAe" secondAttribute="bottom" constant="-158" id="H6o-K7-JNI"/>
                                             <constraint firstItem="oF6-lp-ZAe" firstAttribute="centerX" secondItem="6mY-zw-Rht" secondAttribute="centerX" id="IIF-he-Ea0"/>
                                             <constraint firstItem="oF6-lp-ZAe" firstAttribute="top" secondItem="6mY-zw-Rht" secondAttribute="bottom" constant="23" id="Mz8-PI-QKI"/>
-                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="leading" secondItem="3HI-zd-b0L" secondAttribute="leading" constant="198" id="UQF-6c-aRO"/>
+                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="leading" secondItem="3HI-zd-b0L" secondAttribute="leading" constant="8" id="UQF-6c-aRO"/>
                                             <constraint firstItem="6mY-zw-Rht" firstAttribute="centerX" secondItem="3HI-zd-b0L" secondAttribute="centerX" id="XkD-97-UNw"/>
+                                            <constraint firstItem="fQw-Kt-OzI" firstAttribute="top" secondItem="3HI-zd-b0L" secondAttribute="top" constant="8" id="gFn-G3-Oal"/>
                                             <constraint firstItem="AW9-SH-o5X" firstAttribute="top" secondItem="3HI-zd-b0L" secondAttribute="top" constant="8" id="l5L-eQ-5hi"/>
                                             <constraint firstItem="6mY-zw-Rht" firstAttribute="top" secondItem="3HI-zd-b0L" secondAttribute="top" constant="19" id="nef-KB-IcA"/>
                                             <constraint firstAttribute="trailing" secondItem="AW9-SH-o5X" secondAttribute="trailing" constant="8" id="qrF-Lg-CGe"/>
@@ -113,6 +115,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="H6o-K7-JNI"/>
                                                 <exclude reference="vgU-hJ-yUN"/>
                                             </mask>
                                         </variation>

@@ -20,7 +20,7 @@ import FileManagement
 
 class OrpheeApi: NSObject {
 
-    var url = "http://163.5.84.242:3000/api"
+    var url = "http://10.224.9.242:3000/api"
 
     func login(token: String, completion:(user: AnyObject) ->()){
         let headers = [

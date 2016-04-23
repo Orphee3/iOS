@@ -97,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tokenNotif")
 
+        print(deviceToken)
         let isSaved = NSKeyedArchiver.archiveRootObject(deviceToken, toFile: ArchiveURL.path!)
         if (isSaved){
             print("token save OK")
