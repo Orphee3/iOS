@@ -19,10 +19,9 @@ class CreationsListVC : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = false
         creations = try! PathManager.listFiles(kOrpheeFile_store, fileExtension: kOrpheeFile_extension);
     }
 
@@ -43,6 +42,11 @@ class CreationsListVC : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let creation = creations[indexPath.row]
         mainVC.actOnSelectedCreation(creation)
-        self.navigationController!.popViewControllerAnimated(true);
+        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.navigationController!.popViewControllerAnimated(true);
+    }
+
+    @IBAction func dismiss() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

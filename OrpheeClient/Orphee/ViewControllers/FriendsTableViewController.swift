@@ -13,6 +13,7 @@ class FriendsTableViewController: UITableViewController{
     var myUser: mySuperUser!
     var arrayFriends: [User] = []
     var arrayNews: [UserNews] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if (userExists()){
@@ -42,16 +43,17 @@ class FriendsTableViewController: UITableViewController{
                 self.tableView.reloadData()
             })
         }
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
     }
-    
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 1){
             if (!arrayFriends.isEmpty){
@@ -67,7 +69,7 @@ class FriendsTableViewController: UITableViewController{
         }
         return 0
     }
-    
+
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         switch section
@@ -80,7 +82,7 @@ class FriendsTableViewController: UITableViewController{
             return "Amis"
         }
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 1){
             if let cell = tableView.dequeueReusableCellWithIdentifier("FriendsTableViewCell") as? FriendsTableViewCell{
@@ -96,17 +98,17 @@ class FriendsTableViewController: UITableViewController{
                 cell.acceptButton.tag = indexPath.row
                 cell.acceptButton.addTarget(self, action: #selector(FriendsTableViewController.acceptFriend(_:)), forControlEvents: .TouchUpInside)
                 cell.refuseButton.tag = indexPath.row
-                
+
                 return cell
             }
         }
         return UITableViewCell()
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("toDetailsUser", sender: indexPath)
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toDetailsUser"){
             if let controller = segue.destinationViewController as? UserTableViewController{
@@ -121,7 +123,7 @@ class FriendsTableViewController: UITableViewController{
             }
         }
     }
-    
+
     func acceptFriend(sender: UIButton){
         OrpheeApi().acceptFriend(arrayNews[sender.tag].userSource!.id!, token: myUser.token!) { (response) in
             if (response == "ok"){
@@ -133,7 +135,7 @@ class FriendsTableViewController: UITableViewController{
             }
         }
     }
-    
+
     func removeFriend(sender: UIButton){
         OrpheeApi().removeFriend(arrayFriends[sender.tag].id!, token: myUser.token!) { (response) in
             if (response as! String == "ok"){
@@ -144,8 +146,8 @@ class FriendsTableViewController: UITableViewController{
             }
         }
     }
-    
+
     func refuseFriend(){
-        
+
     }
 }

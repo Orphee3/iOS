@@ -18,15 +18,108 @@ public enum repeatCount {
     case none
 }
 
+
+class MiniPlayer: UIViewController, pCreationListActor {
+    var player: MIDIPlayer?
+    var audioIO: AudioGraph = AudioGraph()
+    var session: AudioSession = AudioSession()
+
+    let pauseImage = UIImage(named: "player/stop")!
+    let playImage = UIImage(named: "player/play")!
+
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var trackTitle: UILabel!
+    @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var sliderIntent: SliderIntent!
+    @IBOutlet weak var timerManager: TimerManager!
+    @IBOutlet weak var playBtnIntent: playButtonIntent!
+
+    lazy var maxPlayer: PlayerViewController = { [weak self] in
+        let sb = UIStoryboard(name: "Player", bundle: nil)
+        let maxPlayer = sb.instantiateViewControllerWithIdentifier("MaxPlayer") as! PlayerViewController
+        maxPlayer.modalPresentationStyle = .OverFullScreen
+        maxPlayer.parentVC = self
+        return maxPlayer
+    }()
+
+    var isPlaying: Bool {
+        return self.player?.isPlaying == .Some(true)
+    }
+
+    var buttonTitle: UIImage {
+        if self.isPlaying { return self.pauseImage}
+        else { return self.playImage }
+    }
+
+    var currentTime: NSTimeInterval {
+        return self.player?.currentTime ?? 0
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.sliderIntent = maxPlayer.sliderIntent
+        self.timerManager.sliderIntent = self.sliderIntent
+        setupAudio()
+    }
+
+
+    func setupAudio() {
+        self.session.setupSession(&audioIO);
+        self.audioIO.createAudioGraph();
+        self.audioIO.configureAudioGraph();
+        self.audioIO.startAudioGraph();
+    }
+
+    func playPause() {
+        print("MinPlayer playPause")
+        switch self.player?.isPlaying {
+        case .Some(true):
+            self.player?.stop()
+        case .Some(false):
+            self.player?.play()
+        default:
+            break
+        }
+        self.maxPlayer.playPause()
+    }
+
+    func actOnSelectedCreation(creation: String) {
+
+        let path = MIDIFileManager(name: creation).path
+
+        guard let player = try? MIDIPlayer(path: path) else {
+            DefaultErrorAlert.makeAndPresent("Le lecteur a rencontré l'erreur suivante:", message: "Impossible d'ouvrir le fichier à l'emplacement suivant: \(path)")
+            return
+        }
+        self.player = player
+        self.player!.setupAudioGraph()
+    }
+
+    func updatePlayButton() {
+        self.playButton.setImage(self.buttonTitle, forState: .Normal)
+        self.maxPlayer.playBtn.setImage(self.buttonTitle, forState: .Normal)
+    }
+
+    func updateTimeUI() {
+        self.maxPlayer.updateTimeUI()
+    }
+
+    @IBAction func maximize() {
+        self.presentViewController(maxPlayer, animated: true, completion: nil)
+    }
+}
+
+
+
 class PlayerViewController: UIViewController, pCreationListActor {
 
-    var player: MIDIPlayer?;
-    var audioIO: AudioGraph = AudioGraph();
-    var session: AudioSession = AudioSession();
+    weak var parentVC: MiniPlayer!
+
+    var blurView: UIVisualEffectView!
 
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var trackImage: UIImageView!
-    @IBOutlet weak var bkGrndImage: UIImageView!
     @IBOutlet weak var trackLengthLbl: UILabel!
     @IBOutlet weak var trackElapsedTimeLbl: UILabel!
 
@@ -35,13 +128,15 @@ class PlayerViewController: UIViewController, pCreationListActor {
     @IBOutlet weak var prevBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var sliderIntent: SliderIntent!
-    @IBOutlet weak var playPauseIntent: PlayPauseIntent!
+
+    @IBOutlet weak var contentView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupAudio()
+        self.playBtn.addTarget(self.parentVC.playBtnIntent, action: #selector(playButtonIntent.pressPlay), forControlEvents: .TouchUpInside)
+        self.setupBlurView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +149,12 @@ class PlayerViewController: UIViewController, pCreationListActor {
         self.navigationController?.navigationBarHidden = true
         updateTimeUI()
         updateTrackUI(nil)
-        updatePlayerUI()
+        self.blurView.frame = self.view.bounds
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.blurView.frame = self.view.bounds
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -69,59 +169,34 @@ class PlayerViewController: UIViewController, pCreationListActor {
         }
     }
 
-    // MARK:
-    func setupAudio() {
-        self.session.setupSession(&audioIO);
-        self.audioIO.createAudioGraph();
-        self.audioIO.configureAudioGraph();
-        self.audioIO.startAudioGraph();
+    func setupBlurView() {
+        let blur = UIBlurEffect(style: .ExtraLight)
+        let blurView = UIVisualEffectView(effect: blur)
+        self.view.addSubview(blurView)
+        self.view.sendSubviewToBack(blurView)
+        self.blurView = blurView
     }
 
+    // MARK:
     func playPause() {
-        switch self.player?.isPlaying {
-        case .Some(true):
-            self.player?.stop()
-        case .Some(false):
-            self.player?.play()
-        default:
-            self.actOnSelectedCreation("EIP2.mid")
-            self.player?.play()
-        }
+        print("MaxPlayer playPause")
+//        self.parentVC.playPause()
     }
 
     func actOnSelectedCreation(creation: String) {
 
-        let path = MIDIFileManager(name: creation).path
-
-        guard let player = try? MIDIPlayer(path: path) else {
-            DefaultErrorAlert.makeAndPresent("Le lecteur a rencontré l'erreur suivante:", message: "Impossible d'ouvrir le fichier à l'emplacement suivant: \(path)")
-            return
-        }
-        self.player = player
-        self.player!.setupAudioGraph()
+        parentVC.actOnSelectedCreation(creation)
         updateTimeUI()
         updateTrackUI(creation)
         trackTitle.text = creation
-    }
-
-    func updateElapsedTime() {
-        if let _ = self.player {
-            updatePlayerUI()
-        }
-        let currentTime = player?.currentTime ?? 0
-        trackElapsedTimeLbl?.text = MIDIPlayer.formatTime(currentTime)
-        if !self.sliderIntent.isSliding {
-            sliderIntent.updateCurrentValue(Float(currentTime))
-        }
     }
 
     func updateTrackUI(name: String?) {
         if let name = name {
             let image = getImageForTrack(name)
             trackImage.image = image
-            bkGrndImage.image = UIImage.init(CGImage: image.CGImage!, scale: image.scale, orientation: .DownMirrored)
         }
-        if let _ = self.player {
+        if let _ = self.parentVC.player {
             self.trackTitle.hidden = false
         } else {
             self.trackTitle.hidden = true
@@ -129,14 +204,9 @@ class PlayerViewController: UIViewController, pCreationListActor {
     }
 
     func updateTimeUI() {
-        trackElapsedTimeLbl.text = MIDIPlayer.formatTime(self.player?.currentTime ?? 0)
-        trackLengthLbl.text = MIDIPlayer.formatTime(self.player?.duration ?? 0)
-        sliderIntent.updateMaxValue(Float(self.player?.duration ?? 0))
-    }
-
-    func updatePlayerUI() {
-        let playBtnImage = self.playPauseIntent.buttonTitle
-        self.playBtn.setImage(playBtnImage, forState: .Normal)
+        let player = self.parentVC.player
+        trackElapsedTimeLbl.text = MIDIPlayer.formatTime(player?.currentTime ?? 0)
+        trackLengthLbl.text = MIDIPlayer.formatTime(player?.duration ?? 0)
     }
 
     func getImageForTrack(name: String) -> UIImage {
@@ -162,11 +232,15 @@ class PlayerViewController: UIViewController, pCreationListActor {
         case .none:
             repeatCnt = .one
             repeatBtn.setImage(repeatOne, forState: .Normal)
-            player?.repeats = true
+            self.parentVC.player?.repeats = true
         default:
             repeatCnt = .none
             repeatBtn.setImage(repeatNone, forState: .Normal)
-            player?.repeats = false
+            self.parentVC.player?.repeats = false
         }
+    }
+
+    @IBAction func dismiss() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -13,14 +13,15 @@ import SCLAlertView
 class HomeViewController: UITableViewController{
     var arrayCreations: [Creation] = []
     var MyUser: mySuperUser!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(CreationViewController.refresh(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(refreshControl)
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
-    
+
     func refresh(refreshControl: UIRefreshControl) {
         if (userExists()){
             MyUser = getMySuperUser()
@@ -41,7 +42,7 @@ class HomeViewController: UITableViewController{
         }
         refreshControl.endRefreshing()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         if (userExists()){
@@ -61,18 +62,18 @@ class HomeViewController: UITableViewController{
             self.tableView.reloadData()
         }
     }
-    
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!self.arrayCreations.isEmpty){
             return self.arrayCreations.count
         }
         return 0
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as? HomeTableViewCell{
             cell.fillCell(arrayCreations[indexPath.row])
@@ -97,7 +98,7 @@ class HomeViewController: UITableViewController{
         }
         return UITableViewCell()
     }
-    
+
     func likeButtonTapped(sender: UIButton){
         if ((MyUser) != nil){
             OrpheeApi().like(arrayCreations[sender.tag].id, token: MyUser.token!, completion: { (response) in
@@ -117,7 +118,7 @@ class HomeViewController: UITableViewController{
             callPopUp()
         }
     }
-    
+
     func commentButtonTapped(sender: UIButton){
         print("comment")
         if ((MyUser) != nil){
@@ -126,25 +127,25 @@ class HomeViewController: UITableViewController{
             callPopUp()
         }
     }
-    
+
     func createButtonTapped(sender: UIButton){
         print("create")
     }
-    
+
     func callPopUp(){
         let alertView = SCLAlertView()
         alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(HomeViewController.goToRegister))
         alertView.showSuccess("Orphee", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
-    
+
     func goToRegister(){
         performSegueWithIdentifier("toLogin", sender: nil)
     }
-    
+
     @IBAction func cancelLoginAction(segue:UIStoryboardSegue) {
-        
+
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toCreation"){
             if let controller = segue.destinationViewController as? CreationViewController{

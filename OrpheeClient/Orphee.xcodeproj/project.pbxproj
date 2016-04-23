@@ -39,6 +39,7 @@
 		1EB274DE1C598A22008FDFA4 /* trackItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB274B21C598A22008FDFA4 /* trackItemView.xib */; };
 		1EB274E21C598AE8008FDFA4 /* CompositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */; };
 		1EBD0F8B1BD89A7400C2CA05 /* AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */; };
+		1EBE3A8C1CCAB15A00E2E0AE /* eAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBE3A8B1CCAB15A00E2E0AE /* eAPI.swift */; };
 		1ECEFB181CA5F5D200D1719F /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEFB171CA5F5D200D1719F /* UITests.swift */; };
 		1ED8F4021C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
 		1ED8F4031C0158C900FA1852 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5BA871BFD483500ABAF25 /* Sounds */; };
@@ -226,6 +227,7 @@
 		1EB274B21C598A22008FDFA4 /* trackItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = trackItemView.xib; sourceTree = "<group>"; };
 		1EB274E11C598AE8008FDFA4 /* CompositionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionVC.swift; sourceTree = "<group>"; };
 		1EBD0F8A1BD89A7400C2CA05 /* AudioSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSequencer.swift; sourceTree = "<group>"; };
+		1EBE3A8B1CCAB15A00E2E0AE /* eAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eAPI.swift; sourceTree = "<group>"; };
 		1ECEFB151CA5F5D200D1719F /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECEFB171CA5F5D200D1719F /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		1ECEFB191CA5F5D200D1719F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -422,6 +424,14 @@
 			path = CompoUI;
 			sourceTree = "<group>";
 		};
+		1EBE3A8A1CCAB12900E2E0AE /* NetworkCreation */ = {
+			isa = PBXGroup;
+			children = (
+				1EBE3A8B1CCAB15A00E2E0AE /* eAPI.swift */,
+			);
+			name = NetworkCreation;
+			sourceTree = "<group>";
+		};
 		1ECEFB161CA5F5D200D1719F /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +540,7 @@
 		52C61D971A79E5C400B3DE23 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1EBE3A8A1CCAB12900E2E0AE /* NetworkCreation */,
 				1E638F1A1C8B517600B161BE /* pCreationListActor.swift */,
 				52C61D9A1A79E5C400B3DE23 /* AppDelegate.swift */,
 				DB3A9EAC1AA996ED000660F4 /* Audio generation */,
@@ -1055,6 +1066,7 @@
 				9B2F659B1C946502004BB575 /* myUser.swift in Sources */,
 				1E7FDAB31CC96CBB0027EA35 /* horizontalTVDataSource.swift in Sources */,
 				1E0EDD001C06C47300F343CB /* eCreationRouter.swift in Sources */,
+				1EBE3A8C1CCAB15A00E2E0AE /* eAPI.swift in Sources */,
 				1EB274DB1C598A22008FDFA4 /* trackBarOpsIntent.swift in Sources */,
 				9B11882F1CC416F300FE3E58 /* ChatTableViewController.swift in Sources */,
 				1E25E7DF1C87817800C499D6 /* SliderIntent.swift in Sources */,

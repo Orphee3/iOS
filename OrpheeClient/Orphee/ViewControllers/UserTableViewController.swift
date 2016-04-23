@@ -15,14 +15,14 @@ class UserTableViewController: UITableViewController {
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var nameUser: UILabel!
     @IBOutlet var askButton: UIButton!
-    
+
     var id: String!
     var user: User!
     var arrayCreations: [Creation] = []
     var MyUser: mySuperUser!
     var arrayFriends: [User] = []
     var isFriend = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUser()
@@ -37,8 +37,9 @@ class UserTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
         }
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
-    
+
     func prepareUser(){
         nameUser.text = self.user.name
         if let picture = user.picture{
@@ -47,7 +48,7 @@ class UserTableViewController: UITableViewController {
             imgUser.image = UIImage(named: "emptyprofile")
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.tableView.estimatedRowHeight = 44.0
@@ -72,18 +73,18 @@ class UserTableViewController: UITableViewController {
             })
         }
     }
-    
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!arrayCreations.isEmpty){
             return arrayCreations.count
         }
         return 0
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as? UserTableViewCell{
             cell.fillCell(arrayCreations[indexPath.row])
@@ -108,11 +109,11 @@ class UserTableViewController: UITableViewController {
         }
         return UITableViewCell()
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("toCreation", sender: indexPath.row)
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toCreation"){
             if let controller = segue.destinationViewController as? CreationViewController{
@@ -120,7 +121,7 @@ class UserTableViewController: UITableViewController {
             }
         }
     }
-    
+
     func likeButtonTapped(sender: UIButton){
         if ((MyUser) != nil){
             OrpheeApi().like(arrayCreations[sender.tag].id, token: MyUser.token!, completion: { (response) in
@@ -140,7 +141,7 @@ class UserTableViewController: UITableViewController {
             callPopUp()
         }
     }
-    
+
     func commentButtonTapped(sender: UIButton){
         print("comment")
         if ((MyUser) != nil){
@@ -149,23 +150,23 @@ class UserTableViewController: UITableViewController {
             callPopUp()
         }
     }
-    
+
     func createButtonTapped(sender: UIButton){
         print("create")
     }
-    
+
     //PopUp Login
-    
+
     func callPopUp(){
         let alertView = SCLAlertView()
         alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(UserTableViewController.goToRegister))
         alertView.showSuccess("Orphée", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
-    
+
     func goToRegister(){
         performSegueWithIdentifier("toLogin", sender: nil)
     }
-    
+
     @IBAction func askFriend(sender: AnyObject) {
         if ((MyUser) != nil){
             if (self.isFriend == false){

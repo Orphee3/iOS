@@ -10,12 +10,53 @@ import Foundation
 import UIKit
 import FileManagement
 
+private class PlaySampleAction: NSOperation {
+    var presetMgr: PresetMgr = PresetMgr()
+    var graph: AudioGraph = {
+        let graph = AudioGraph()
+        graph.createAudioGraph()
+        graph.configureAudioGraph()
+        graph.startAudioGraph()
+        return graph
+    }()
+
+    var instruData: AUSamplerInstrumentData?
+    let bank = NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!
+
+    init(instruID: Int) {
+        self.instruData = self.presetMgr.getMelodicInstrumentFromSoundBank(UInt8(instruID), path: bank, isSoundFont: true)
+    }
+
+    private override func main() {
+        guard !self.cancelled else { return }
+        guard var data = self.instruData else {
+            self.cancel()
+            return
+        }
+        self.graph.loadInstrumentFromInstrumentData(&data)
+        guard !self.cancelled else { return }
+        graph.playNote(60); usleep(500 * 1000); graph.stopNote(60)
+        guard !self.cancelled else { return }
+        graph.playNote(62); usleep(500 * 1000); graph.stopNote(62)
+        guard !self.cancelled else { return }
+        graph.playNote(64); usleep(500 * 1000); graph.stopNote(64)
+    }
+}
+
 class InstrumentsTableViewController: UITableViewController {
+    weak var mainVC: CompositionVC!
 
     var instrumentsList: [String] = [];
 
-    var presetMgr: PresetMgr = PresetMgr();
-    weak var mainVC: CompositionVC!
+    var instruID = 0
+    var instruName = ""
+    lazy var playSampleOpsQueue: NSOperationQueue = {
+        var queue = NSOperationQueue()
+        queue.name = "Play instrument sample queue"
+        queue.qualityOfService = .UserInitiated
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +194,7 @@ class InstrumentsTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBarHidden = true
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -170,15 +211,16 @@ class InstrumentsTableViewController: UITableViewController {
         return cell;
     }
 
-    /// TODO: Clean it! Possible solution: pFormattedFileManager realisation for SoundBanks/SoundFonts.
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-//        var instrumentToLoad = self.presetMgr.getMelodicInstrumentFromSoundBank(UInt8(indexPath.row),
-//            path: NSBundle.mainBundle().pathForResource("SoundBanks/32MbGMStereo", ofType: "sf2")!)
-//        self.mainVC.audioIO.loadInstrumentFromInstrumentData(&instrumentToLoad!)
+        self.playSampleOpsQueue.cancelAllOperations()
+        self.instruID = indexPath.row
+        self.instruName = instrumentsList[indexPath.row]
+        self.playSampleForInstrument(indexPath.row)
+    }
 
-        self.mainVC.tracksInfo[self.mainVC.currentTrack] = [eOrpheeFileContent.PatchID.rawValue : indexPath.row]
-        self.mainVC.currentInstrument.title = instrumentsList[indexPath.row]
-        self.navigationController!.popViewControllerAnimated(true)
+    private func playSampleForInstrument(id: Int) {
+        let op = PlaySampleAction(instruID: id)
+        self.playSampleOpsQueue.addOperation(op)
     }
 }

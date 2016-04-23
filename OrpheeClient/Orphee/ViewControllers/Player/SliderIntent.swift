@@ -10,8 +10,8 @@ import UIKit
 
 class SliderIntent: NSObject {
 
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var timerIntent: TimerIntent!
+    @IBOutlet weak var slider: UISlider?
+    @IBOutlet weak var player: MiniPlayer!
 
     var isSliding: Bool = false
 
@@ -21,16 +21,18 @@ class SliderIntent: NSObject {
 
     @IBAction func stopSlide(sender: UISlider) {
         isSliding = false
-        let _ = NSTimer.after(0.seconds, act: timerIntent.updateElapsedTime)
+        let _ = NSTimer.after(0.seconds, act: player.updateTimeUI)
     }
 
     func updateMaxValue(value: Float) {
-        slider.maximumValue = value;
-        slider.minimumValue = 0
-        slider.value = 0
+        slider?.maximumValue = value;
+        slider?.minimumValue = 0
+        slider?.value = 0
     }
 
-    func updateCurrentValue(value: Float) {
-        slider.value = value
+    func updateCurrentValue(value: NSTimeInterval) {
+        if !self.isSliding {
+            slider?.value = Float(value)
+        }
     }
 }

@@ -16,11 +16,12 @@ class ProfileTableViewController: UITableViewController {
     var myUser: mySuperUser!
     var arrayCreations: [Creation] = []
     @IBOutlet var disconnectButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         if (userExists()){
@@ -51,14 +52,14 @@ class ProfileTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!arrayCreations.isEmpty){
             return arrayCreations.count
         }
         return 0
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as? ProfileCellTableViewController{
             cell.fillCell(arrayCreations[indexPath.row])
@@ -84,13 +85,13 @@ class ProfileTableViewController: UITableViewController {
         }
         return UITableViewCell()
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if ((myUser) != nil){
             performSegueWithIdentifier("toCreation", sender: indexPath.row)
         }
     }
-    
+
     func likeButtonTapped(sender: UIButton){
         print("liked")
         if ((myUser) != nil){
@@ -109,18 +110,18 @@ class ProfileTableViewController: UITableViewController {
             })
         }
     }
-    
+
     func commentButtonTapped(sender: UIButton){
         print("comment")
         if ((myUser) != nil){
             performSegueWithIdentifier("toCreation", sender: sender.tag)
         }
     }
-    
+
     func createButtonTapped(sender: UIButton){
         print("create")
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toCreation"){
             if let controller = segue.destinationViewController as? CreationViewController{
@@ -128,7 +129,7 @@ class ProfileTableViewController: UITableViewController {
             }
         }
     }
-    
+
     func callPopUp(){
         let alertView = SCLAlertView()
         alertView.addButton("S'inscrire / Se connecter", target:self, selector:#selector(ProfileTableViewController.goToRegister))
@@ -136,15 +137,15 @@ class ProfileTableViewController: UITableViewController {
         alertView.showCloseButton = false
         alertView.showSuccess("Orphée", subTitle: "Tu n'es pas encore inscrit ? Rejoins-nous !")
     }
-    
+
     func goToRegister(){
         performSegueWithIdentifier("toLogin", sender: nil)
     }
-    
+
     func closePopUp(){
         performSegueWithIdentifier("toHome", sender: nil)
     }
-    
+
     @IBAction func disconnect(sender: AnyObject) {
         OrpheeApi().disconnect(myUser.id) { (disconnected) in
             print(disconnected)

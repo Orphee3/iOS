@@ -9,7 +9,7 @@
 import Foundation
 import Decodable
 
-struct Creation{
+public struct Creation{
     let name: String
     let id: String
     let nbLikes: Int
@@ -21,7 +21,7 @@ struct Creation{
 }
 
 extension Creation: Decodable {
-    static func decode(j: AnyObject) throws -> Creation {
+    public static func decode(j: AnyObject) throws -> Creation {
         return try Creation(
             name:           j => "name",
             id:             j => "_id",

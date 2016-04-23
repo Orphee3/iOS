@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F18b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tcb-AJ-4dP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tcb-AJ-4dP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -59,23 +59,8 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc5-wa-IsF">
-                                                <rect key="frame" x="529" y="19" width="65" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="65" id="i1M-lq-KuA"/>
-                                                    <constraint firstAttribute="height" constant="30" id="qpN-nh-Ujt"/>
-                                                </constraints>
-                                                <state key="normal" title="Ajouter">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="askFriend:" destination="Tcb-AJ-4dP" eventType="touchUpInside" id="MZi-b3-BRH"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="Hc5-wa-IsF" firstAttribute="top" secondItem="NHF-Jv-4Tx" secondAttribute="top" constant="19" id="Aq8-My-02u"/>
-                                            <constraint firstAttribute="trailing" secondItem="Hc5-wa-IsF" secondAttribute="trailing" constant="6" id="BEB-e6-daJ"/>
                                             <constraint firstItem="yKm-Qm-EPs" firstAttribute="top" secondItem="NHF-Jv-4Tx" secondAttribute="top" constant="19" id="IKS-Gg-OWk"/>
                                             <constraint firstItem="gyZ-AW-XC7" firstAttribute="centerX" secondItem="yKm-Qm-EPs" secondAttribute="centerX" id="UfD-dh-DBL"/>
                                             <constraint firstItem="gyZ-AW-XC7" firstAttribute="centerX" secondItem="yKm-Qm-EPs" secondAttribute="centerX" id="XeP-s3-rfw"/>
@@ -125,7 +110,7 @@
                                                 <constraint firstAttribute="width" constant="456" id="VIn-Tw-vOn"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -246,7 +231,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="9ia-QF-N01"/>
                     <connections>
-                        <outlet property="askButton" destination="Hc5-wa-IsF" id="pjB-6Q-MAq"/>
                         <outlet property="imgUser" destination="yKm-Qm-EPs" id="Ku4-eV-4hs"/>
                         <outlet property="nameUser" destination="gyZ-AW-XC7" id="rxo-8g-cuN"/>
                         <segue destination="bv5-iM-Ufk" kind="show" identifier="toLogin" id="Y5O-Cr-Tpq"/>

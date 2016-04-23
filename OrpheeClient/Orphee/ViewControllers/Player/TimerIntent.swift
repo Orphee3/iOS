@@ -8,21 +8,34 @@
 
 import UIKit
 
-class TimerIntent: NSObject {
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var position: UILabel!
+class TimerManager: NSObject {
+    @IBOutlet weak var sliderIntent: SliderIntent!
 
-    var timer: NSTimer?
+    @IBOutlet weak var player: MiniPlayer!
 
-    func formatTimeValue(time: Float) -> String {
-        let tm = 120 * time
-        let minutes = Int(floorf(roundf(tm) / 60));
-        let seconds = Int(roundf(tm)) - (minutes * 60);
+    var mainTimer: NSTimer?
+    var preciseTimer: NSTimer?
+    var wasPlaying: Bool = false
 
-        return NSString(format: "%d:%02d", minutes, seconds) as String
+    var playStateChanged: Bool {
+        return self.wasPlaying != self.player.isPlaying
     }
 
-    func updateElapsedTime() {
-        position?.text = formatTimeValue(slider.value)
+    func start() {
+        self.preciseTimer = NSTimer.every(100.milliSeconds) { [weak self] in
+            if let this = self {
+                this.sliderIntent.updateCurrentValue(this.player.currentTime)
+                this.player.updateTimeUI()
+                if this.playStateChanged {
+                    this.player.updatePlayButton()
+                    this.wasPlaying = this.player.isPlaying
+                }
+            }
+        }
+    }
+
+    func stop() {
+        self.mainTimer?.invalidate()
+        self.preciseTimer?.invalidate()
     }
 }

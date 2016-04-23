@@ -95,6 +95,7 @@
         <!--TempoVC-->
         <scene sceneID="TfL-dH-TGh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kOl-WT-KHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="alL-FF-LoK" userLabel="TempoVC" customClass="TempoViewController" customModule="Orphee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vvg-Ar-BBt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -117,7 +118,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tempo" id="46F-FN-JMg" userLabel="Tempo"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kOl-WT-KHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1341" y="-638"/>
         </scene>
@@ -528,7 +528,6 @@
                                 <sections/>
                                 <connections>
                                     <outlet property="delegate" destination="pcx-DQ-Mn3" id="EA3-qv-9zN"/>
-                                    <outletCollection property="gestureRecognizers" destination="8JW-LK-PlT" appends="YES" id="Hnf-4z-fz1"/>
                                 </connections>
                             </tableView>
                             <toolbar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcW-qw-USM" userLabel="global actions">
@@ -619,7 +618,6 @@
                         <outlet property="gridDlgt" destination="pcx-DQ-Mn3" id="vDl-1D-mlc"/>
                         <outlet property="gridOps" destination="gSN-K2-8lC" id="ld4-vS-U57"/>
                         <outlet property="gridSrc" destination="4XF-zO-pll" id="E7r-ml-iIa"/>
-                        <outlet property="panSide" destination="8JW-LK-PlT" id="1As-of-DpB"/>
                         <outlet property="tableView" destination="33I-3f-s6d" id="c0B-od-57s"/>
                         <outlet property="trackBar" destination="GGg-aI-eJF" id="Stf-6L-iEr"/>
                         <outlet property="trackBarOps" destination="Q9E-aY-MHv" id="nK8-eP-UDy"/>
@@ -672,7 +670,6 @@
                     </connections>
                 </customObject>
                 <customObject id="81L-Uo-Av6" customClass="DataMgr" customModule="Orphee" customModuleProvider="target"/>
-                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="8JW-LK-PlT"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="lRL-CG-WkA">
                     <connections>
                         <action selector="startDeleteMode" destination="Q9E-aY-MHv" id="c9Z-YD-Eyn"/>

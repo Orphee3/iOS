@@ -11,6 +11,9 @@ import MIDIToolbox
 import FileManagement
 import MDSpreadView
 
+import RxSwift
+import NSObject_Rx
+
 class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreationListActor {
 
     typealias AlertAction = ((UIAlertAction!) -> Void)
@@ -19,8 +22,6 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     @IBOutlet weak var tableView: MDSpreadView!
     @IBOutlet weak var trackBar: UIToolbar!
     @IBOutlet weak var addButton: UIButton!
-
-    @IBOutlet weak var panSide: UIPanGestureRecognizer!
 
     @IBOutlet var dataMgr: DataMgr!
     @IBOutlet weak var gridOps: compoGridOpsIntent!
@@ -158,20 +159,38 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
     }
 
     func saveFile() {
-        let tracks: [String : Any]? = [
-            eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
-            eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo,
-            eOrpheeFileContent.Tempo.rawValue : self.tempoInfo
-        ];
-        let fm = MIDIFileManager(name: "test\(self.fileNbr).mid");
-        fm.createFile()
-        precondition(fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self));
-        //        if OrpheeReachability().isConnected() {
-        //            OrpheeApi().sendCreationToServer(eCreationRouter.userID!, name: fm.name, completion: { print($0) });
-        //        }
-        let _ = try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
 
-        fileNbr += 1
+        let alert = UIAlertController(title: nil, message: "Voulez-vous sauvegarder ce morceau?", preferredStyle: .Alert)
+        var field: UITextField!
+        alert.addTextFieldWithConfigurationHandler() { textField in
+            textField.placeholder = "MyCreation\(self.fileNbr)"
+            field = textField
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .Default) { action in
+
+
+            let tracks: [String : Any]? = [
+                eOrpheeFileContent.Tracks.rawValue : self.prepareTracksForSave(),
+                eOrpheeFileContent.TracksInfos.rawValue : self.tracksInfo,
+                eOrpheeFileContent.Tempo.rawValue : self.tempoInfo
+            ];
+            let fm = MIDIFileManager(name: field.text ?? field.placeholder!);
+            fm.createFile()
+            precondition(fm.writeToFile(content: tracks, dataBuilderType: CoreMIDISequenceCreator.self));
+            if (userExists()){
+                let MyUser = getMySuperUser()
+//                    if OrpheeReachability().isConnected() {
+                print(MyUser.token)
+                print(MyUser.id)
+                eCreationRouter.OAuthToken = MyUser.token!
+                OrpheeApi().sendCreationToServer(MyUser.id, name: fm.name, completion: { print($0) });
+            }
+            let _ = try? NSFileManager.defaultManager().copyItemAtPath(fm.path, toPath: "/Users/johnbob/Desktop/\(fm.name)");
+
+            self.fileNbr += 1
+            })
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func importFile(file: String) {
@@ -209,7 +228,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         importFile(fileForSegue ?? "test")
         self.tableView.reloadData()
         self.trackBarOps.refresh()
-}
+    }
 
     func cleanData() {
         self.player?.stop()
@@ -307,7 +326,7 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         let tempoAction = UIAlertAction(title: "Choisir le tempo", style: .Default, handler: self.tempoAction);
         let saveAction = UIAlertAction(title: "Sauvegarder", style: .Default, handler: self.saveAction)
         let cancelAction = UIAlertAction(title: "Annuler", style: .Cancel, handler: self.cancelAction)
-        
+
         optionMenu.addAction(tempoAction)
         optionMenu.addAction(importAction)
         optionMenu.addAction(saveAction)
@@ -315,15 +334,16 @@ class CompositionVC: UIViewController, UINavigationControllerDelegate, pCreation
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
 
-    @IBAction func cancelledInstruSelection(segue: UIStoryboardSegue) {
-//        print("cancelled")
-    }
 
+    @IBAction func cancelledInstruSelection(segue: UIStoryboardSegue) {
+        //        print("cancelled")
+    }
+    
     @IBAction func selectedInstrument(segue: UIStoryboardSegue) {
         if let instrus = segue.sourceViewController as? InstrumentsTableViewController {
             self.tracksInfo[self.currentTrack] = [eOrpheeFileContent.PatchID.rawValue : instrus.instruID]
             self.trackNames[self.currentTrack] = instrus.instruName
         }
     }
-
+    
 }

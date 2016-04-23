@@ -12,9 +12,8 @@ import Alamofire
 enum eCreationRouter: URLRequestConvertible {
     static let baseURLString = "http://163.5.84.242:3000"
     static var OAuthToken: String?
-    static var userID: String?
 
-    case CreateCrea(String)
+    case CreateCrea(String, String)
     case ReadCrea(String)
     case UpdateCrea(String, [String: AnyObject])
     case DestroyCrea(String)
@@ -82,10 +81,10 @@ enum eCreationRouter: URLRequestConvertible {
         mutableURLRequest.HTTPMethod = method.rawValue
 
         switch self {
-        case .CreateCrea(let name):
+        case .CreateCrea(let name, let id):
             let params = [
-                    "name": name,
-                    "creator": eCreationRouter.userID!
+                    "name": "\(name)",
+                    "creator": "\(id)"
             ]
             return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
         case .UpdateCrea(_, let parameters):
